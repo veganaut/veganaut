@@ -1,0 +1,11 @@
+{
+    "name": "monkey-head",
+    "private": true,
+    "repository": "https://github.com/OperationMonkey/monkey-face",
+    "devDependencies": {
+        "phantomjs" : "~1.9",
+        "karma" : "~0.10",
+        "karma-jasmine" : "~0.1",
+        "karma-ng-scenario" : "~0.1"
+    }
+}
