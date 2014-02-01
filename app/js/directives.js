@@ -81,6 +81,10 @@
                     .attr('height', size);
 
                 var onNodeClick = function(node) {
+                    if (d3.event.defaultPrevented) {
+                        return;
+                    }
+
                     scope.$apply(function() {
                         if (node === scope.selectedNode) {
                             scope.selectedNode = undefined;
@@ -90,6 +94,7 @@
                         }
                     });
 
+
                     // Update the node and link styles
                     svg.selectAll('.node').attr('class', getNodeClasses);
 
@@ -97,6 +102,8 @@
                         .attr('class', getLinkClasses)
                         .style('stroke-width', getLinkWidth)
                     ;
+                    
+                    d3.behavior.zoom().event(node);
                 };
 
                 var onLinkClick = function(link) {
@@ -109,6 +116,27 @@
                         }
                     });
                 };
+
+                svg.call(d3.behavior.zoom()
+                    .on('zoom', function() {
+                        console.log('translate: ' + d3.event.translate + ' scale: ' + d3.event.scale);
+                        console.log('width: ' + svg.attr('width') + ' height: ' + svg.attr('height'));
+
+                        var h = parseInt(svg.attr('height')/2);
+                        var w = parseInt(svg.attr('width')/2);
+                        var trX = Math.max(Math.min(d3.event.translate[0], w/2), -w/2);
+                        var trY = Math.max(Math.min(d3.event.translate[1], h/2), -h/2);
+
+                        svg.attr('transform',
+                            'translate(' + trX + ',' + trY + ')' +
+                                ' scale(' + d3.event.scale + ')');
+
+                    })
+                    .on('zoomstart', function() {
+                        console.log('foo');
+                        d3.event.sourceEvent.stopPropagation();
+                    })
+                );
 
                 force
                     .nodes(nodeProvider.nodes)
