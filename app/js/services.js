@@ -11,14 +11,16 @@
 
     monkeyFaceServices.value('d3', window.d3);
 
-    // Node types:
-    // - me: the user looking at the graph
-    // - user: other users (that have a full user account)
-    // - confirmed: people that entered an activity link code at least once
-    // - maybe: the me user created an activity with this as of yet unknown user
-    // - dummy: nodes that only serve as an interaction start point to connect to a new person
-
+    /**
+     * nodeProvider provides the nodes and links for the social graph
+     */
     monkeyFaceServices.provider('nodeProvider', function() {
+        // Node types:
+        // - me: the user looking at the graph
+        // - user: other users (that have a full user account)
+        // - confirmed: people that entered an activity link code at least once
+        // - maybe: the me user created an activity with this as of yet unknown user
+        // - dummy: nodes that only serve as an interaction start point to connect to a new person
         var nodes = [
             {"name":"Toby",type:'me',fixed:true,"x":200,"y":200},
             {"name":"Napoleon",type:'user',"x":119.78326114385005,"y":148.22850053702265},
@@ -59,6 +61,25 @@
                 nodes: nodes,
                 links: links,
                 isStable: isStable
+            };
+        };
+    });
+
+    /**
+     * localProvider provides the translation strings
+     */
+    monkeyFaceServices.provider('localeProvider', function() {
+        var translations = {
+            'activityLink.form.choose': '-- choose an activity --',
+            'activityLink.form.targetName': 'Whom do you do this with',
+            'activityLink.form.location': 'Where do you do this',
+            'activityLink.form.startTime': 'When do you do this',
+            'activityLink.form.submit': 'Start Activity'
+        };
+
+        this.$get = function() {
+            return {
+                translations: translations
             };
         };
     });

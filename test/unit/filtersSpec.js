@@ -6,14 +6,22 @@ describe('filter', function() {
     beforeEach(module('monkeyFace.filters'));
 
 
-    describe('interpolate', function() {
+    describe('trans', function() {
         beforeEach(module(function($provide) {
-            $provide.value('version', 'TEST_VER');
+            $provide.value('localeProvider', {
+                translations: {
+                    test: 'le test'
+                }
+            });
         }));
 
 
-        it('should replace VERSION', inject(function(interpolateFilter) {
-            expect(interpolateFilter('before %VERSION% after')).toEqual('before TEST_VER after');
+        it('should translate "test"', inject(function(transFilter) {
+            expect(transFilter('test')).toEqual('le test');
+        }));
+
+        it('should return the value if there is no translation found', inject(function(transFilter) {
+            expect(transFilter('unknown.translation.string')).toEqual('unknown.translation.string');
         }));
     });
 });

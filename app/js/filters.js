@@ -4,15 +4,10 @@
     /* Filters */
     var monkeyFaceFilters = angular.module('monkeyFace.filters', []);
 
-    monkeyFaceFilters.filter('interpolate', ['version', function(version) {
+    monkeyFaceFilters.filter('trans', ['localeProvider', function(localeProvider) {
+        var trans = localeProvider.translations;
         return function(text) {
-            return String(text).replace(/\%VERSION\%/mg, version);
-        };
-    }]);
-
-    monkeyFaceFilters.filter('trans', [function() {
-        return function(text) {
-            return text;
+            return (trans.hasOwnProperty(text)) ? trans[text] : text;
         };
     }]);
 })();

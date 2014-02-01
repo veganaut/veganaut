@@ -8,15 +8,11 @@
 </head>
 <body>
 
-  <button class="btn btn-default btn-block" ng-click="goToView('register')">{{ 'Register' | trans }}</button>
-  <button class="btn btn-default btn-block">{{ 'Login' | trans }}</button>
-  <input class="form-control" placeholder="Reference Code" />
-  <button class="btn btn-default btn-block">{{ 'Avatar' | trans }}</button>
-
-  <ul class="menu">
-    <li><a href="#/socialGraph">Social Graph</a></li>
-    <li><a href="#/activity">Activity</a></li>
-  </ul>
+  <button class="btn btn-default btn-block" ng-click="goToView('register')" ng-hide="loggedIn">{{ 'navigation.register' | trans }}</button>
+  <button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="loggedIn">{{ 'navigation.login' | trans }}</button>
+  <button class="btn btn-default btn-block" ng-click="logout()" ng-show="loggedIn">{{ 'navigation.logout' | trans }}</button>
+  <input class="form-control" placeholder="navigation.referenceCode" />
+  <button class="btn btn-default btn-block" ng-click="goToView('socialGraph')">{{ 'navigation.avatar' | trans }}</button>
 
   <div ng-view></div>
 

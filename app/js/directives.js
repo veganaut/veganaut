@@ -20,16 +20,56 @@
         return {
             restrict: 'E',
             scope: {
-                selectedNode: '='
+                selectedNode: '=',
+                selectedLink: '='
             },
             link: function(scope, element, attr) {
-                var size = parseFloat(attr.size);
-
-                var onNodeClick = function(node) {
-                    scope.$apply(function() {
-                        scope.selectedNode = node;
-                    });
+                // TODO: where should these helper functions go
+                /**
+                 * Returns the list of css classes that should be applied to
+                 * the given node
+                 * @param node
+                 * @returns {string}
+                 */
+                var getNodeClasses = function(node) {
+                    var klass = 'node ' + node.type;
+                    if (node === scope.selectedNode) {
+                        klass += ' selected';
+                    }
+                    return klass;
                 };
+
+                /**
+                 * Returns the list of css classes that should be applied to
+                 * the given link
+                 * @param link
+                 * @returns {string}
+                 */
+                var getLinkClasses = function(link) {
+                    var klass = 'link';
+                    if (isMe(link.target) || isMe(link.source)) {
+                        klass += ' mine';
+                    }
+                    if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
+                        klass += ' selected';
+                    }
+                    return klass;
+                };
+
+                /**
+                 * Returns the width with which the given link should be
+                 * rendered
+                 * @param link
+                 * @returns {number}
+                 */
+                var getLinkWidth = function(link) {
+                    if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
+                        return 8; // TODO: move constant somewhere
+                    }
+                    return Math.sqrt(link.numActivities);
+                };
+
+                var size = parseFloat(attr.size);
 
                 var force = d3.layout.force()
                     .charge(-1 * size)
@@ -40,6 +80,36 @@
                     .attr('width', size)
                     .attr('height', size);
 
+                var onNodeClick = function(node) {
+                    scope.$apply(function() {
+                        if (node === scope.selectedNode) {
+                            scope.selectedNode = undefined;
+                        }
+                        else {
+                            scope.selectedNode = node;
+                        }
+                    });
+
+                    // Update the node and link styles
+                    svg.selectAll('.node').attr('class', getNodeClasses);
+
+                    svg.selectAll('.link')
+                        .attr('class', getLinkClasses)
+                        .style('stroke-width', getLinkWidth)
+                    ;
+                };
+
+                var onLinkClick = function(link) {
+                    scope.$apply(function() {
+                        if (link === scope.selectedLink) {
+                            scope.selectedLink = undefined;
+                        }
+                        else {
+                            scope.selectedLink = link;
+                        }
+                    });
+                };
+
                 force
                     .nodes(nodeProvider.nodes)
                     .links(nodeProvider.links)
@@ -48,23 +118,14 @@
                 var link = svg.selectAll('.link')
                     .data(nodeProvider.links)
                     .enter().append('line')
-                    .attr('class', function(d) {
-                        var klass = 'link';
-                        if (isMe(d.target) || isMe(d.source)) {
-                            klass += ' mine';
-                        }
-                        return klass;
-                    })
-                    .style('stroke-width', function(d) {
-                        return Math.sqrt(d.numActivities);
-                    });
+                    .attr('class', getLinkClasses)
+                    .style('stroke-width', getLinkWidth)
+                    .on('click', onLinkClick);
 
                 var node = svg.selectAll('.node')
                     .data(nodeProvider.nodes)
                     .enter().append('circle')
-                    .attr('class', function(d) {
-                        return 'node ' + d.type;
-                    })
+                    .attr('class', getNodeClasses)
                     .attr('r', size/30)
                     .on('click', onNodeClick);
 
@@ -83,6 +144,7 @@
                     }
 
                     if (nodeProvider.isStable) {
+                        // If the nodes are already arranged, don't continue
                         force.stop();
                     }
 
@@ -96,6 +158,7 @@
 
                     iterations -= 1;
                     if (iterations <= 0) {
+                        // Stop the force movement after some iterations
                         nodeProvider.isStable = true;
                     }
                 });
