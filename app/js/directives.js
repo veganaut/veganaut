@@ -26,9 +26,11 @@
                 var size = parseFloat(attr.size);
 
                 var onNodeClick = function(node) {
+                    if (d3.event.defaultPrevented) return;
                     scope.$apply(function() {
                         scope.selectedNode = node;
                     });
+                    d3.behavior.zoom().event(node);
                 };
 
                 var force = d3.layout.force()
@@ -39,6 +41,26 @@
                 var svg = d3.select(element[0]).append('svg')
                     .attr('width', size)
                     .attr('height', size);
+
+                svg.call(d3.behavior.zoom().on('zoom', function()
+                {
+                    console.log("translate: " + d3.event.translate + " scale: " + d3.event.scale);
+                    console.log("width: " + svg.attr('width') + " height: " + svg.attr('height'));
+
+                    var h = parseInt(svg.attr('height')/2);
+                    var w = parseInt(svg.attr('width')/2);
+                    var tr_x = Math.max(Math.min(d3.event.translate[0], w/2), -w/2);
+                    var tr_y= Math.max(Math.min(d3.event.translate[1], h/2), -h/2);
+
+                    svg.attr('transform',
+                        'translate(' + tr_x + ',' + tr_y + ')'
+                            + ' scale(' + d3.event.scale + ')');
+
+                }).on('zoomstart', function()
+                {
+                    console.log('foo');
+                    d3.event.sourceEvent.stopPropagation();
+                }));
 
                 force
                     .nodes(nodeProvider.nodes)
