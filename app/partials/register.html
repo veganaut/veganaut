@@ -1,0 +1,10 @@
+<h2>{{ 'Register' | trans }}</h2>
+
+<div class="alert alert-success" ng-show="formSubmitted">{{ 'Registered' | trans }}</div>
+<form novalidate class="simple-form" ng-hide="formSubmitted">
+    <input class="form-control" ng-model="form.email" placeholder="{{'E-Mail' | trans}}" />
+    <input class="form-control" ng-model="form.firstName" placeholder="{{'First name' | trans}}" />
+    <input class="form-control" ng-model="form.lastName" placeholder="{{'Last name' | trans}}" />
+    <input class="form-control" ng-model="form.alienName"  placeholder="{{'Alien name' | trans}}" />
+    <button class="btn btn-default" ng-click="submit()">{{ 'Register' | trans }}</button>
+</form>

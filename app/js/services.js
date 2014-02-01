@@ -51,11 +51,14 @@
             {"source":7,"target":8,"numActivities":1}
         ];
 
+        var isStable = false;
+
 
         this.$get = function() {
             return {
                 nodes: nodes,
-                links: links
+                links: links,
+                isStable: isStable
             };
         };
     });

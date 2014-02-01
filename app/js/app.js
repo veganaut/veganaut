@@ -12,6 +12,7 @@
     ]);
 
     monkeyFace.config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
         $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
         $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityInstanceCtrl'});
         $routeProvider.otherwise({redirectTo: '/socialGraph'});

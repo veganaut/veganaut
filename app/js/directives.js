@@ -66,7 +66,6 @@
                         return 'node ' + d.type;
                     })
                     .attr('r', size/30)
-                    .call(force.drag)
                     .on('click', onNodeClick);
 
                 node.append('title').text(function(d) {
@@ -75,12 +74,18 @@
 
 
                 var breakTicks = 0;
+                var iterations = 50;
                 force.on('tick', function() {
                     // TODO; this is retarted, slow it down some better way
                     breakTicks = (breakTicks + 1) % 5;
                     if (breakTicks !== 0) {
                         return;
                     }
+
+                    if (nodeProvider.isStable) {
+                        force.stop();
+                    }
+
                     link.attr('x1', function(d) { return d.source.x; })
                         .attr('y1', function(d) { return d.source.y; })
                         .attr('x2', function(d) { return d.target.x; })
@@ -88,6 +93,11 @@
 
                     node.attr('cx', function(d) { return d.x; })
                         .attr('cy', function(d) { return d.y; });
+
+                    iterations -= 1;
+                    if (iterations <= 0) {
+                        nodeProvider.isStable = true;
+                    }
                 });
             }
         };

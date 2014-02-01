@@ -9,4 +9,10 @@
             return String(text).replace(/\%VERSION\%/mg, version);
         };
     }]);
+
+    monkeyFaceFilters.filter('trans', [function() {
+        return function(text) {
+            return text;
+        };
+    }]);
 })();
