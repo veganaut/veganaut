@@ -83,7 +83,6 @@
 
     // Project Specific Globals
     "globals"        : {
-        "angular": false,
-        "flokModule": true
+        "angular": false
     }
 }

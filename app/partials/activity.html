@@ -1,0 +1,12 @@
+<h2>Start an activity with ...</h2>
+
+<div class="alert alert-success" ng-show="formSubmitted">Activity submitted!</div>
+<form novalidate class="simple-form" ng-hide="formSubmitted">
+    <select class="form-control" ng-model="form.selectedActivity" ng-options="a.name for a in activities">
+        <option value="">-- choose an activity --</option>
+    </select>
+    <input class="form-control" ng-model="form.targetName" placeholder="Name" />
+    <input class="form-control" ng-model="form.location" placeholder="Location" />
+    <input class="form-control" ng-model="form.startTime"  placeholder="Start Time" />
+    <button class="btn btn-default" ng-click="submit()">Do it</button>
+</form>

@@ -4,6 +4,7 @@
     // Declare app level module which depends on filters, and services
     var monkeyFace = angular.module('monkeyFace', [
         'ngRoute',
+        'ui.bootstrap',
         'monkeyFace.filters',
         'monkeyFace.services',
         'monkeyFace.directives',
@@ -11,8 +12,8 @@
     ]);
 
     monkeyFace.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-        $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
+        $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityInstanceCtrl'});
+        $routeProvider.otherwise({redirectTo: '/socialGraph'});
     }]);
 })();
