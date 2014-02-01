@@ -15,7 +15,22 @@
         $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
         $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
-        $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityInstanceCtrl'});
+        $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityLinkCtrl'});
         $routeProvider.otherwise({redirectTo: '/socialGraph'});
     }]);
+
+
+    // Add $onRootScope method for pub/sub
+    // See https://github.com/angular/angular.js/issues/4574
+    monkeyFace.config(function($provide) {
+        $provide.decorator('$rootScope', ['$delegate', function($delegate){
+
+            $delegate.constructor.prototype.$onRootScope = function(name, listener){
+                var unsubscribe = $delegate.$on(name, listener);
+                this.$on('$destroy', unsubscribe);
+            };
+
+            return $delegate;
+        }]);
+    });
 })();

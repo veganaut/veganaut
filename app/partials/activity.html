@@ -2,11 +2,14 @@
 
 <div class="alert alert-success" ng-show="formSubmitted">Activity submitted!</div>
 <form novalidate class="simple-form" ng-hide="formSubmitted">
+    <div ng-switch="activityLinkTarget.type">
+        <input class="form-control" ng-switch-when="dummy" ng-model="form.targetName" placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
+        {{ 'activityLink.label.targetName' | trans }}: <span ng-switch-default ng-bind="activityLinkTarget.name"></span>
+    </div>
     <select class="form-control" ng-model="form.selectedActivity" ng-options="a.name for a in activities">
         <option value="">{{ 'activityLink.form.choose' | trans }}</option>
     </select>
-    <input class="form-control" ng-model="form.targetName" placeholder="{{ 'activityLink.form.targetName' | trans }}" />
-    <input class="form-control" ng-model="form.location" placeholder="{{ 'activityLink.form.location'  | trans }}" />
-    <input class="form-control" ng-model="form.startTime"  placeholder="{{ 'activityLink.form.startTime'  | trans }}" />
+    <input class="form-control" ng-model="form.location" placeholder="{{ 'activityLink.form.location'  | trans }}"/>
+    <input class="form-control" ng-model="form.startTime" placeholder="{{ 'activityLink.form.startTime'  | trans }}"/>
     <button class="btn btn-default" ng-click="submit()">{{ 'activityLink.form.submit' | trans }}</button>
 </form>

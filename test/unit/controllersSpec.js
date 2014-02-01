@@ -8,10 +8,19 @@ describe('controllers', function() {
     beforeEach(module('monkeyFace.controllers'));
 
 
-    describe('ActivityInstanceCtrl', function() {
+    describe('ActivityLinkCtrl', function() {
         beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
-            $controller('ActivityInstanceCtrl', {$scope: $scope});
+            $controller('ActivityLinkCtrl', {$scope: $scope, activityLinkTargetProvider: {
+                get: function() {
+                    return {
+                        type: 'dummy'
+                    };
+                },
+                set: function() {
+
+                }
+            }});
         }));
 
 

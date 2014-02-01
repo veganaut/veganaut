@@ -87,7 +87,7 @@
 
                     scope.$apply(function() {
                         if (node === scope.selectedNode) {
-                            scope.selectedNode = undefined;
+                            scope.$root.$emit('alien.socialGraph.nodeAction', node);
                         }
                         else {
                             scope.selectedNode = node;
