@@ -1,5 +1,7 @@
 <h2>{{ 'socialGraph.title' | trans }}</h2>
-<social-graph size="400" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
+<g id="viewport">
+    <social-graph size="400" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
+</g>
 
 <div class="nodeInfo" ng-show="selectedNode">
   Selected: <span ng-bind="selectedNode.name"></span>
