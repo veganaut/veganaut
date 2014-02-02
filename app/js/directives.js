@@ -119,8 +119,6 @@
                         .attr('class', getLinkClasses)
                         .style('stroke-width', getLinkWidth)
                     ;
-                    
-                    d3.behavior.zoom().event(node);
                 };
 
                 var onLinkClick = function(link) {
