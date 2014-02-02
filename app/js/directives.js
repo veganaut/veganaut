@@ -76,9 +76,26 @@
                     .linkDistance(size/4)
                     .size([size, size]);
 
+                var zoom = d3.behavior.zoom()
+                    .on('zoom', function() {
+                        console.log('translate: ' + d3.event.translate + ' scale: ' + d3.event.scale);
+                        zoom.translate(d3.event.translate);
+
+                        svg.attr('transform',
+                            'translate(' + d3.event.translate + ')' +
+                                ' scale(' + d3.event.scale + ')');
+
+                    })
+                    .scaleExtent([0.3, 10])
+                    .on('zoomstart', function() {
+                        d3.event.sourceEvent.stopPropagation();
+                    });
+
                 var svg = d3.select(element[0]).append('svg')
                     .attr('width', size)
-                    .attr('height', size);
+                    .attr('height', size)
+                    .call(zoom)
+                    .append('g');
 
                 var onNodeClick = function(node) {
                     if (d3.event.defaultPrevented) {
@@ -116,29 +133,6 @@
                         }
                     });
                 };
-
-                var zoom = d3.behavior.zoom()
-                    .on('zoom', function() {
-                        console.log('translate: ' + d3.event.translate + ' scale: ' + d3.event.scale);
-                        console.log('width: ' + svg.attr('width') + ' height: ' + svg.attr('height'));
-
-                        var h = parseInt(svg.attr('height')/2);
-                        var w = parseInt(svg.attr('width')/2);
-                        var trX = Math.max(Math.min(d3.event.translate[0], w/2), -w/2);
-                        var trY = Math.max(Math.min(d3.event.translate[1], h/2), -h/2);
-
-                        zoom.translate([trX, trY]);
-
-                        svg.attr('transform',
-                         'translate(' + trX + ',' + trY + ')' +
-                         ' scale(' + d3.event.scale + ')');
-
-                    })
-                    .scaleExtent([0.3, 10])
-                    .on('zoomstart', function() {
-                        d3.event.sourceEvent.stopPropagation();
-                    });
-                d3.select('#viewport').call(zoom);
 
                 force
                     .nodes(nodeProvider.nodes)
