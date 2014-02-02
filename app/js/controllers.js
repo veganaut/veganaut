@@ -38,7 +38,7 @@
 
     monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', function($scope, backend) {
         $scope.submit = function() {
-            if ($scope.form.email && $scope.form.password) {
+            if ($scope.form && $scope.form.email && $scope.form.password) {
                 backend.login($scope.form.email, $scope.form.password)
                     .success(function (data) {
                         if (data.sessionId) {
