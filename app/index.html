@@ -5,17 +5,22 @@
     <title>Monkey Face</title>
     <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/master.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<button class="btn btn-default btn-block" ng-click="goToView('register')" ng-hide="isLoggedIn()">{{ 'navigation.register' | trans }}</button>
-<button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="isLoggedIn()">{{ 'navigation.login' | trans }}</button>
-<button class="btn btn-default btn-block" ng-click="logout()" ng-show="isLoggedIn()">{{ 'navigation.logout' | trans }}</button>
-<input class="form-control" placeholder="navigation.referenceCode"/>
-<button class="btn btn-default btn-block" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()">{{ 'navigation.avatar' | trans }}</button>
+<div class="container">
+    <h1>Something Alien</h1>
 
-<div ng-view></div>
+    <button class="btn btn-default btn-block" ng-click="goToView('register')" ng-hide="isLoggedIn()">{{ 'navigation.register' | trans }}</button>
+    <button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="isLoggedIn()">{{ 'navigation.login' | trans }}</button>
+    <button class="btn btn-default btn-block" ng-click="logout()" ng-show="isLoggedIn()">{{ 'navigation.logout' | trans }}</button>
+    <input class="form-control" placeholder="{{ 'navigation.form.referenceCode' | trans }}"/>
+    <button class="btn btn-default btn-block" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()">{{ 'navigation.avatar' | trans }}</button>
+
+    <div ng-view></div>
+</div>
 
 <script src="lib/angular/angular.js"></script>
 <script src="lib/d3.v3.min.js"></script>

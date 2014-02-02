@@ -13,8 +13,11 @@
         $scope.isLoggedIn = backend.isLoggedIn;
 
         $scope.logout = function() {
-            backend.logout();
-            $scope.goToView('login');
+            backend.logout()
+                .success(function() {
+                    $scope.goToView('login');
+                })
+            ;
         };
     }]);
 
@@ -32,10 +35,14 @@
     }]);
 
     monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', function($scope, backend) {
+        if (backend.isLoggedIn()) {
+            $scope.goToView('socialGraph');
+        }
+
         $scope.submit = function() {
             if ($scope.form && $scope.form.email && $scope.form.password) {
                 backend.login($scope.form.email, $scope.form.password)
-                    .success(function (data) {
+                    .success(function () {
                         if (backend.isLoggedIn()) {
                             $scope.goToView('socialGraph');
                         }

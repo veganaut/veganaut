@@ -1,10 +1,10 @@
-<h2>{{ 'activityLink.title' }}</h2>
+<h2>{{ 'activityLink.title' | trans }}</h2>
 
-<div class="alert alert-success" ng-show="formSubmitted">Activity submitted!</div>
+<div class="alert alert-success" ng-show="formSubmitted">{{ 'message.activityLinkCreated' | trans }}</div>
 <form novalidate class="simple-form" ng-hide="formSubmitted">
     <div ng-switch="activityLinkTarget.type">
         <input class="form-control" ng-switch-when="dummy" ng-model="form.targetName" placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
-        {{ 'activityLink.label.targetName' | trans }}: <span ng-switch-default ng-bind="activityLinkTarget.fullName"></span>
+        <span ng-switch-default>{{ 'activityLink.label.targetName' | trans }}: <span ng-bind="activityLinkTarget.fullName"></span></span>
     </div>
     <select class="form-control" ng-model="form.selectedActivity" ng-options="a.name for a in activities">
         <option value="">{{ 'activityLink.form.choose' | trans }}</option>

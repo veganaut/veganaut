@@ -53,6 +53,18 @@
                                 links.push(link);
                             }
 
+                            // Add a dummy
+                            nodes.push({
+                                fullName: 'Mister Dummy',
+                                type: 'dummy'
+                            });
+
+                            // Or two
+                            nodes.push({
+                                fullName: 'Miss Dummy',
+                                type: 'dummy'
+                            });
+
                             dataRequested = true;
                             cb(nodes, links);
                         })
@@ -72,11 +84,33 @@
      */
     monkeyFaceServices.provider('localeProvider', function() {
         var translations = {
-            'activityLink.form.choose': '-- choose an activity --',
-            'activityLink.form.targetName': 'Whom do you do this with',
-            'activityLink.form.location': 'Where do you do this',
-            'activityLink.form.startTime': 'When do you do this',
-            'activityLink.form.submit': 'Start Activity'
+            'navigation.register': 'Registrieren',
+            'navigation.login': 'Login',
+            'navigation.logout': 'Logout',
+            'navigation.avatar': 'Ich',
+            'navigation.form.referenceCode': 'Referenz-Code eingeben',
+            'register.title': 'Registrieren',
+            'message.registered': 'Registrierung erfolgreich.',
+            'register.form.email': 'email@beispiel.com',
+            'register.form.firstName': 'Vorname',
+            'register.form.lastName': 'Nachname',
+            'register.form.alienName': 'öffentlich sichtbarer Name',
+            'register.form.submit': 'Registrieren',
+            'login.title': 'Login',
+            'login.form.email': 'email@beispiel.com',
+            'login.form.password': 'Passwort',
+            'action.forgotPassword': 'Passwort vergessen?',
+            'action.register': 'Registrieren',
+            'login.form.submit': 'Login',
+            'activityLink.title': 'Neue Aktivität',
+            'activityLink.form.targetName': 'Name',
+            'activityLink.label.targetName': 'Mit wem?',
+            'activityLink.form.choose': 'Was?',
+            'activityLink.form.location': 'Wo?',
+            'activityLink.form.startTime': 'Wann?',
+            'activityLink.form.submit': 'Speichern und zurück',
+            'message.activityLinkCreated': 'Aktivität erstellt.',
+            'socialGraph.title': 'Mein Netzwerk'
         };
 
         this.$get = function() {
@@ -117,36 +151,82 @@
 
         var sessionId;
 
-        var isLoggedIn = function() {
-            return (typeof sessionId !== 'undefined');
+        /**
+         * Handles a login with the given session id
+         * @param sid
+         */
+        var handleLogin = function(sid) {
+            if (angular.isString(sid)) {
+                sessionId = sid;
+                sessionStorage.setItem('sid', sid);
+                $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sid;
+            }
         };
 
+        /**
+         * Logs the user out (removes the session)
+         */
+        var handleLogout = function() {
+            sessionId = undefined;
+            sessionStorage.removeItem('sid');
+            $http.defaults.headers.common.Authorization = undefined;
+        };
+
+        /**
+         * Returns whether the user is currently logged in
+         * @returns {boolean}
+         */
+        var isLoggedIn = function() {
+            return (angular.isString(sessionId));
+        };
+
+        /**
+         * Sends the login request to the backend
+         *
+         * @param email
+         * @param password
+         * @returns {promise} promise returned from $http.post
+         */
         var login = function(email, password) {
             return $http.post(backendUrl + '/session', {email: email, password: password})
                 .success(function(data) {
-                    sessionId = data.sessionId;
-                    $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sessionId;
+                    handleLogin(data.sessionId);
                 })
             ;
         };
 
+        /**
+         * Sends the logout request to the backend
+         * @returns {promise} promise returned from $http.delete
+         */
         var logout = function() {
+            // TODO: make sure we are logged in first
             return $http.delete(backendUrl + '/session')
-                .success(function() {
-                    sessionId = undefined;
-                    $http.defaults.headers.common.Authorization = undefined;
-                })
+                .success(handleLogout)
             ;
         };
 
+        /**
+         * Sends the get graph request to the backend
+         * @returns {promise} promise returned from $http.get
+         */
         var getGraph = function() {
             // TODO: make sure we are logged in first
             return $http.get(backendUrl + '/graph/me');
         };
 
+
+        /**
+         * Returns this service
+         * @type {*[]}
+         */
         this.$get = ['$http', 'backendUrl', function(_$http_, _backendUrl_) {
             $http = _$http_;
             backendUrl = _backendUrl_;
+
+            // Try to get session sid from storage
+            handleLogin(sessionStorage.getItem('sid'));
+
             return {
                 isLoggedIn: isLoggedIn,
                 login: login,

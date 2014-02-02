@@ -75,21 +75,19 @@
                 var setupGraph = function(nodes, links) {
                     var size = parseFloat(attr.size);
 
-                    // Make a local copy
-                    nodes = angular.copy(nodes);
-
                     // Scale coordinates to the proper size
                     for (var i = 0; i < nodes.length; i++) {
-                        if (typeof nodes[i].coordX !== 'undefined') {
-                            nodes[i].x = nodes[i].coordX * size;
+                        var node = nodes[i];
+                        if (angular.isNumber(node.coordX) && !angular.isNumber(node.x)) {
+                            node.x = node.coordX * size;
                         }
-                        if (typeof nodes[i].coordY !== 'undefined') {
-                            nodes[i].y = nodes[i].coordY * size;
+                        if (angular.isNumber(node.coordY) && !angular.isNumber(node.y)) {
+                            node.y = node.coordY * size;
                         }
 
                         // The 'me' node should never move
-                        if (nodes[i].type === 'me') {
-                            nodes[i].fixed = true;
+                        if (node.type === 'me') {
+                            node.fixed = true;
                         }
                     }
 
@@ -159,21 +157,21 @@
                         .links(links)
                         .start();
 
-                    var link = svg.selectAll('.link')
+                    var svgLinks = svg.selectAll('.link')
                         .data(links)
                         .enter().append('line')
                         .attr('class', getLinkClasses)
                         .style('stroke-width', getLinkWidth)
                         .on('click', onLinkClick);
 
-                    var node = svg.selectAll('.node')
+                    var svgNodes = svg.selectAll('.node')
                         .data(nodes)
                         .enter().append('circle')
                         .attr('class', getNodeClasses)
                         .attr('r', size/30)
                         .on('click', onNodeClick);
 
-                    node.append('title').text(function(d) {
+                    svgNodes.append('title').text(function(d) {
                         return d.fullName;
                     });
 
@@ -192,12 +190,12 @@
                             force.stop();
                         }
 
-                        link.attr('x1', function(d) { return d.source.x; })
+                        svgLinks.attr('x1', function(d) { return d.source.x; })
                             .attr('y1', function(d) { return d.source.y; })
                             .attr('x2', function(d) { return d.target.x; })
                             .attr('y2', function(d) { return d.target.y; });
 
-                        node.attr('cx', function(d) { return d.x; })
+                        svgNodes.attr('cx', function(d) { return d.x; })
                             .attr('cy', function(d) { return d.y; });
 
                         iterations -= 1;
