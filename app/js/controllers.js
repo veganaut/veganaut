@@ -36,13 +36,20 @@
         };
     }]);
 
-    monkeyFaceControllers.controller('LoginCtrl', ['$scope', function($scope) {
+    monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', function($scope, backend) {
         $scope.submit = function() {
-            for (var key in $scope.form) {
-                if ($scope.form.hasOwnProperty(key) && $scope.form[key]) {
-                    $scope.login();
-                    break;
-                }
+            if ($scope.form.email && $scope.form.password) {
+                backend.login($scope.form.email, $scope.form.password)
+                    .success(function (data) {
+                        if (data.sessionId) {
+                            $scope.login();
+                        }
+                    })
+                    // TODO: handle error
+                    .error(function (data) {
+                        console.log('Error: ', data);
+                    })
+                ;
             }
         };
     }]);
@@ -63,7 +70,7 @@
         function($scope, activityLinkTargetProvider) {
             $scope.activityLinkTarget = activityLinkTargetProvider.get();
             if (!$scope.activityLinkTarget) {
-                $scope.goToView('socialGraph')
+                $scope.goToView('socialGraph');
             }
 
             $scope.activities = [

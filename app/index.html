@@ -13,7 +13,7 @@
 <button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="loggedIn">{{ 'navigation.login' | trans }}</button>
 <button class="btn btn-default btn-block" ng-click="logout()" ng-show="loggedIn">{{ 'navigation.logout' | trans }}</button>
 <input class="form-control" placeholder="navigation.referenceCode"/>
-<button class="btn btn-default btn-block" ng-click="goToView('socialGraph')">{{ 'navigation.avatar' | trans }}</button>
+<button class="btn btn-default btn-block" ng-click="goToView('socialGraph')" ng-show="loggedIn">{{ 'navigation.avatar' | trans }}</button>
 
 <div ng-view></div>
 

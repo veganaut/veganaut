@@ -11,6 +11,8 @@
 
     monkeyFaceServices.value('d3', window.d3);
 
+    monkeyFaceServices.value('backendUrl', 'http://localhost:3000');
+
     /**
      * nodeProvider provides the nodes and links for the social graph
      */
@@ -103,5 +105,27 @@
                 }
             };
         };
+    });
+
+    monkeyFaceServices.provider('backend', function() {
+        var $http;
+        var backendUrl;
+        var login = function(email, password) {
+            return $http.post(backendUrl + '/session', {email: email, password: password});
+        };
+
+        var getGraph = function() {
+            // TODO: make sure we are logged in first
+            return $http.get(backendUrl + '/graph/me');
+        };
+
+        this.$get = ['$http', 'backendUrl', function(_$http_, _backendUrl_) {
+            $http = _$http_;
+            backendUrl = _backendUrl_;
+            return {
+                login: login,
+                getGraph: getGraph
+            };
+        }];
     });
 })();
