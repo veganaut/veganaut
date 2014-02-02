@@ -192,7 +192,7 @@
                 .success(function(data) {
                     handleLogin(data.sessionId);
                 })
-            ;
+                .error(handleLogout);
         };
 
         /**
@@ -203,7 +203,7 @@
             // TODO: make sure we are logged in first
             return $http.delete(backendUrl + '/session')
                 .success(handleLogout)
-            ;
+                .error(handleLogout);
         };
 
         /**
@@ -212,7 +212,8 @@
          */
         var getGraph = function() {
             // TODO: make sure we are logged in first
-            return $http.get(backendUrl + '/graph/me');
+            return $http.get(backendUrl + '/graph/me')
+                .error(handleLogout);
         };
 
 

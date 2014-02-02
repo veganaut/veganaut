@@ -93,17 +93,17 @@
 
                     var force = d3.layout.force()
                         .charge(-1 * size)
-                        .linkDistance(size/4)
+                        .linkDistance(size / 4)
                         .size([size, size]);
 
                     var zoom = d3.behavior.zoom()
                         .on('zoom', function() {
-                            console.log('translate: ' + d3.event.translate + ' scale: ' + d3.event.scale);
                             zoom.translate(d3.event.translate);
 
                             svg.attr('transform',
                                 'translate(' + d3.event.translate + ')' +
-                                    ' scale(' + d3.event.scale + ')');
+                                    ' scale(' + d3.event.scale + ')'
+                            );
 
                         })
                         .scaleExtent([0.3, 10])
@@ -168,7 +168,7 @@
                         .data(nodes)
                         .enter().append('circle')
                         .attr('class', getNodeClasses)
-                        .attr('r', size/30)
+                        .attr('r', size / 30)
                         .on('click', onNodeClick);
 
                     svgNodes.append('title').text(function(d) {
