@@ -75,6 +75,24 @@
                 var setupGraph = function(nodes, links) {
                     var size = parseFloat(attr.size);
 
+                    // Make a local copy
+                    nodes = angular.copy(nodes);
+
+                    // Scale coordinates to the proper size
+                    for (var i = 0; i < nodes.length; i++) {
+                        if (typeof nodes[i].coordX !== 'undefined') {
+                            nodes[i].x = nodes[i].coordX * size;
+                        }
+                        if (typeof nodes[i].coordY !== 'undefined') {
+                            nodes[i].y = nodes[i].coordY * size;
+                        }
+
+                        // The 'me' node should never move
+                        if (nodes[i].type === 'me') {
+                            nodes[i].fixed = true;
+                        }
+                    }
+
                     var force = d3.layout.force()
                         .charge(-1 * size)
                         .linkDistance(size/4)
@@ -156,7 +174,7 @@
                         .on('click', onNodeClick);
 
                     node.append('title').text(function(d) {
-                        return d.name;
+                        return d.fullName;
                     });
 
 

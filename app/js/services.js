@@ -31,8 +31,28 @@
                     }
                     backend.getGraph()
                         .success(function(data) {
-                            nodes = data.nodes;
-                            links = data.links;
+                            nodes = [];
+                            links = [];
+
+                            var nodeIdToIndexMap = {};
+
+                            // Backend gives an object indexed by node id
+                            // We need an array
+                            for (var nodeId in data.nodes) {
+                                if (data.nodes.hasOwnProperty(nodeId)) {
+                                    nodes.push(data.nodes[nodeId]);
+                                    nodeIdToIndexMap[nodeId] = nodes.length - 1;
+                                }
+                            }
+
+                            // Change referenced from node id to indices
+                            for (var i = 0; i < data.links.length; i++) {
+                                var link = data.links[i];
+                                link.source = nodeIdToIndexMap[link.source];
+                                link.target = nodeIdToIndexMap[link.target];
+                                links.push(link);
+                            }
+
                             dataRequested = true;
                             cb(nodes, links);
                         })

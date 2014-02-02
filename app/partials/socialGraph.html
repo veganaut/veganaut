@@ -4,11 +4,11 @@
 </g>
 
 <div class="nodeInfo" ng-show="selectedNode">
-  Selected: <span ng-bind="selectedNode.name"></span>
+  Selected: <span ng-bind="selectedNode.fullName"></span>
 </div>
 <div class="linkInfo" ng-show="selectedLink">
     <!-- TODO: translate -->
-  Activities links from <span ng-bind="selectedLink.source.name"></span>
-  to <span ng-bind="selectedLink.target.name"></span>.
+  Activities links from <span ng-bind="selectedLink.source.fullName"></span>
+  to <span ng-bind="selectedLink.target.fullName"></span>.
   Number of activities: <span ng-bind="selectedLink.numActivities"></span>.
 </div>

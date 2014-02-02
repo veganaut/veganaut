@@ -50,8 +50,11 @@
     }]);
 
 
-    monkeyFaceControllers.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetProvider',
-        function($scope, $location, activityLinkTargetProvider) {
+    monkeyFaceControllers.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetProvider', 'backend',
+        function($scope, $location, activityLinkTargetProvider, backend) {
+            if (!backend.isLoggedIn()) {
+                $scope.goToView('login');
+            }
             $scope.$onRootScope('alien.socialGraph.nodeAction', function(event, node) {
                 if (node) {
                     activityLinkTargetProvider.set(node);
