@@ -4,22 +4,17 @@
     /* Controllers */
     var monkeyFaceControllers = angular.module('monkeyFace.controllers', []);
 
-    monkeyFaceControllers.controller('AppCtrl', ['$scope', '$location', function($scope, $location) {
+    monkeyFaceControllers.controller('AppCtrl', ['$scope', '$location', 'backend', function($scope, $location, backend) {
         $scope.goToView = function(view) {
             $location.path(view);
         };
 
         // TODO: should move the login/out functionality to a service
-        $scope.loggedIn = false;
-
-        $scope.login = function() {
-            $scope.loggedIn = true;
-            $scope.goToView('socialGraph');
-        };
+        $scope.isLoggedIn = backend.isLoggedIn;
 
         $scope.logout = function() {
-            $scope.loggedIn = false;
-            $scope.goToView('socialGraph');
+            backend.logout();
+            $scope.goToView('login');
         };
     }]);
 
@@ -41,8 +36,8 @@
             if ($scope.form && $scope.form.email && $scope.form.password) {
                 backend.login($scope.form.email, $scope.form.password)
                     .success(function (data) {
-                        if (data.sessionId) {
-                            $scope.login();
+                        if (backend.isLoggedIn()) {
+                            $scope.goToView('socialGraph');
                         }
                     })
                     // TODO: handle error

@@ -38,7 +38,6 @@
                         })
                         .error(function(data, statusCode) {
                             console.log('Error requesting graph data', data, statusCode);
-                            dataRequested = true;
                         })
                     ;
 
@@ -95,8 +94,29 @@
     monkeyFaceServices.provider('backend', function() {
         var $http;
         var backendUrl;
+
+        var sessionId;
+
+        var isLoggedIn = function() {
+            return (typeof sessionId !== 'undefined');
+        };
+
         var login = function(email, password) {
-            return $http.post(backendUrl + '/session', {email: email, password: password});
+            return $http.post(backendUrl + '/session', {email: email, password: password})
+                .success(function(data) {
+                    sessionId = data.sessionId;
+                    $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sessionId;
+                })
+            ;
+        };
+
+        var logout = function() {
+            return $http.delete(backendUrl + '/session')
+                .success(function() {
+                    sessionId = undefined;
+                    $http.defaults.headers.common.Authorization = undefined;
+                })
+            ;
         };
 
         var getGraph = function() {
@@ -108,7 +128,9 @@
             $http = _$http_;
             backendUrl = _backendUrl_;
             return {
+                isLoggedIn: isLoggedIn,
                 login: login,
+                logout: logout,
                 getGraph: getGraph
             };
         }];
