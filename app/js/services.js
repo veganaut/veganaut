@@ -207,6 +207,17 @@
         };
 
         /**
+         * Sends the get activity list request to the backend
+         * @returns {promise} promise returned from $http.get
+         * TODO: cache this list for a while
+         */
+        var getActivities = function() {
+            // TODO: make sure we are logged in first
+            return $http.get(backendUrl + '/activity')
+                .error(handleLogout);
+        };
+
+        /**
          * Sends the get graph request to the backend
          * @returns {promise} promise returned from $http.get
          */
@@ -232,6 +243,7 @@
                 isLoggedIn: isLoggedIn,
                 login: login,
                 logout: logout,
+                getActivities: getActivities,
                 getGraph: getGraph
             };
         }];

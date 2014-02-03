@@ -71,24 +71,16 @@
         }]
     );
 
-    monkeyFaceControllers.controller('ActivityLinkCtrl', ['$scope', 'activityLinkTargetProvider',
-        function($scope, activityLinkTargetProvider) {
+    monkeyFaceControllers.controller('ActivityLinkCtrl', ['$scope', 'activityLinkTargetProvider', 'backend',
+        function($scope, activityLinkTargetProvider, backend) {
             $scope.activityLinkTarget = activityLinkTargetProvider.get();
             if (!$scope.activityLinkTarget) {
                 $scope.goToView('socialGraph');
             }
 
-            $scope.activities = [
-                {
-                    name: 'Bring Cake'
-                },
-                {
-                    name: 'Go to a restaurant'
-                }
-            ];
+            $scope.activities = [];
 
             $scope.formSubmitted = false;
-
 
             $scope.submit = function() {
                 for (var key in $scope.form) {
@@ -99,6 +91,13 @@
                     }
                 }
             };
+
+            // Get the activities
+            backend.getActivities()
+                .success(function(data) {
+                    $scope.activities = data;
+                })
+            ;
         }]
     );
 })();
