@@ -103,12 +103,12 @@
             'action.register': 'Registrieren',
             'login.form.submit': 'Login',
             'activityLink.title': 'Neue Aktivität',
-            'activityLink.form.targetName': 'Name',
-            'activityLink.label.targetName': 'Mit wem?',
+            'activityLink.form.targetName': 'Mit wem? / Für wen?',
+            'activityLink.label.targetName': 'Name',
             'activityLink.form.choose': 'Was?',
             'activityLink.form.location': 'Wo?',
             'activityLink.form.startTime': 'Wann?',
-            'activityLink.form.submit': 'Speichern und zurück',
+            'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk'
         };
