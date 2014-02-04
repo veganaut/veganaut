@@ -4,12 +4,6 @@
     /* Directives */
     var monkeyFaceDirectives = angular.module('monkeyFace.directives', []);
 
-    monkeyFaceDirectives.directive('appVersion', ['version', function(version) {
-        return function(scope, elem /*, attrs*/) {
-            elem.text(version);
-        };
-    }]);
-
 
     // TODO: refactor this whole thing to make it more angularesque
     monkeyFaceDirectives.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
@@ -69,12 +63,14 @@
                     return Math.sqrt(link.numActivities);
                 };
 
+
+                // Get the available width and set it as size of the square
+                var size = element[0].clientWidth;
+
                 /**
                  * Creates the d3 graph
                  */
                 var setupGraph = function(nodes, links) {
-                    var size = parseFloat(attr.size);
-
                     // Scale coordinates to the proper size
                     for (var i = 0; i < nodes.length; i++) {
                         var node = nodes[i];
@@ -114,6 +110,7 @@
                     var svg = d3.select(element[0]).append('svg')
                         .attr('width', size)
                         .attr('height', size)
+                        .attr('class', 'graphSvg')
                         .call(zoom)
                         .append('g');
 
@@ -205,7 +202,6 @@
                         }
                     });
                 };
-
 
                 // Get the nodes
                 nodeProvider.getNodes(setupGraph);
