@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-    <h1>Something Alien</h1>
+    <h1>{{ 'app.title' | trans }}</h1>
 
     <button class="btn btn-default btn-block" ng-click="goToView('register')" ng-hide="isLoggedIn()">{{ 'navigation.register' | trans }}</button>
     <button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="isLoggedIn()">{{ 'navigation.login' | trans }}</button>

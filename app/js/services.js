@@ -84,6 +84,7 @@
      */
     monkeyFaceServices.provider('localeProvider', function() {
         var translations = {
+            'app.title': 'Irgendwas',
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
