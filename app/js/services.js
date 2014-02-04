@@ -104,7 +104,7 @@
             'login.form.submit': 'Login',
             'activityLink.title': 'Neue Aktivität',
             'activityLink.form.targetName': 'Mit wem? / Für wen?',
-            'activityLink.label.targetName': 'Name',
+            'activityLink.label.targetName': 'Mit wem? / Für wen?',
             'activityLink.form.choose': 'Was?',
             'activityLink.form.location': 'Wo?',
             'activityLink.form.startTime': 'Wann?',
