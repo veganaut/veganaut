@@ -9,7 +9,7 @@ describe('controllers', function() {
 
     describe('ActivityLinkCtrl', function() {
         var backendMock;
-        var getActivitiesCallback;
+        var successCb;
 
         beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
@@ -29,7 +29,7 @@ describe('controllers', function() {
                 getActivities: function() {
                     return {
                         success: function(cb) {
-                            getActivitiesCallback = cb;
+                            successCb = cb;
                         }
                     };
                 }
@@ -55,11 +55,11 @@ describe('controllers', function() {
             expect(backendMock.getActivities.calls.length).toEqual(1);
 
             // Make sure it binds to success
-            expect(getActivitiesCallback).toBeDefined();
-            expect(typeof getActivitiesCallback).toBe('function');
+            expect(successCb).toBeDefined();
+            expect(typeof successCb).toBe('function');
 
             // Give a couple of activities and make sure it exposes it
-            getActivitiesCallback(['activity1', 'activity2']);
+            successCb(['activity1', 'activity2']);
             expect($scope.activities.length).toEqual(2);
         }));
 
@@ -87,20 +87,14 @@ describe('controllers', function() {
 
 
     describe('LoginCtrl', function() {
-        var backend;
-        var successCb;
-        var loginEmail;
-        var loginPassword;
+        var backendMock;
+
         beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
-            backend = {
-                login: function(email, password) {
-                    loginEmail = email;
-                    loginPassword = password;
-
+            backendMock = {
+                login: function() {
                     var req = {
-                        success: function(cb) {
-                            successCb = cb;
+                        success: function() {
                             return req;
                         },
                         error: function() {
@@ -109,19 +103,19 @@ describe('controllers', function() {
                     };
 
                     return req;
+                },
+                isLoggedIn: function() {
+                    return false;
                 }
             };
-            $controller('LoginCtrl', {$scope: $scope, backend: backend});
+
+            spyOn(backendMock, 'login').andCallThrough();
+
+            $controller('LoginCtrl', {$scope: $scope, backend: backendMock});
         }));
 
-        it('should have a submit method that logs in', inject(function($httpBackend) {
+        it('should have a submit method that logs in', inject(function() {
             expect(typeof $scope.submit).toEqual('function');
-
-            // Dummy login function that should be called
-            var loggedIn = false;
-            $scope.login = function() {
-                loggedIn = true;
-            };
 
             // Enter data in the form
             $scope.form = {
@@ -131,16 +125,9 @@ describe('controllers', function() {
 
             // Submit the form
             $scope.submit();
-            expect(loginEmail).toBe('test@example.com');
-            expect(loginPassword).toBe('1234');
-
-            // Return from backend
-            successCb({
-                'sessionId': 'some-session-id'
-            });
-
-            // Check that we are logged in
-            expect(loggedIn).toBe(true);
+            expect(backendMock.login).toHaveBeenCalled();
+            expect(backendMock.login.calls.length).toEqual(1);
+            expect(backendMock.login).toHaveBeenCalledWith('test@example.com', '1234');
         }));
     });
 });
