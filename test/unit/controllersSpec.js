@@ -1,16 +1,20 @@
 'use strict';
 
 /* jasmine specs for controllers go here */
-/* global describe, beforeEach, it, inject, expect */
+/* global describe, beforeEach, it, inject, expect, spyOn */
 describe('controllers', function() {
     var $scope;
 
     beforeEach(module('monkeyFace.controllers'));
 
     describe('ActivityLinkCtrl', function() {
+        var backendMock;
+        var getActivitiesCallback;
+
         beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
-            $controller('ActivityLinkCtrl', {$scope: $scope, activityLinkTargetProvider: {
+
+            var activityLinkTargetMock = {
                 get: function() {
                     return {
                         type: 'dummy'
@@ -19,12 +23,43 @@ describe('controllers', function() {
                 set: function() {
 
                 }
-            }});
+            };
+
+            backendMock = {
+                getActivities: function() {
+                    return {
+                        success: function(cb) {
+                            getActivitiesCallback = cb;
+                        }
+                    };
+                }
+            };
+
+            spyOn(backendMock, 'getActivities').andCallThrough();
+
+            $controller('ActivityLinkCtrl', {
+                $scope: $scope,
+                activityLinkTargetProvider: activityLinkTargetMock,
+                backend: backendMock
+            });
         }));
 
 
-        it('should have activities', inject(function() {
+        it('should initialise activities to an empty array', inject(function() {
             expect(typeof $scope.activities).toEqual('object');
+            expect($scope.activities.length).toEqual(0);
+        }));
+
+        it('should request activities from the backend', inject(function() {
+            expect(backendMock.getActivities).toHaveBeenCalled();
+            expect(backendMock.getActivities.calls.length).toEqual(1);
+
+            // Make sure it binds to success
+            expect(getActivitiesCallback).toBeDefined();
+            expect(typeof getActivitiesCallback).toBe('function');
+
+            // Give a couple of activities and make sure it exposes it
+            getActivitiesCallback(['activity1', 'activity2']);
             expect($scope.activities.length).toEqual(2);
         }));
 
