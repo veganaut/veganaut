@@ -13,11 +13,11 @@
 <div class="container">
     <h1>{{ 'app.title' | trans }}</h1>
 
-    <button class="btn btn-default btn-block" ng-click="goToView('register')" ng-hide="isLoggedIn()">{{ 'navigation.register' | trans }}</button>
-    <button class="btn btn-default btn-block" ng-click="goToView('login')" ng-hide="isLoggedIn()">{{ 'navigation.login' | trans }}</button>
-    <button class="btn btn-default btn-block" ng-click="logout()" ng-show="isLoggedIn()">{{ 'navigation.logout' | trans }}</button>
+    <button class="btn btn-default btn-block navRegister" ng-click="goToView('register')" ng-hide="isLoggedIn()">{{ 'navigation.register' | trans }}</button>
+    <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')" ng-hide="isLoggedIn()">{{ 'navigation.login' | trans }}</button>
+    <button class="btn btn-default btn-block navLogout" ng-click="logout()" ng-show="isLoggedIn()">{{ 'navigation.logout' | trans }}</button>
     <input class="form-control" placeholder="{{ 'navigation.form.referenceCode' | trans }}"/>
-    <button class="btn btn-default btn-block" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()">{{ 'navigation.avatar' | trans }}</button>
+    <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()">{{ 'navigation.avatar' | trans }}</button>
 
     <div ng-view></div>
 </div>
