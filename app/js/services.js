@@ -228,6 +228,29 @@
                 .error(handleLogout);
         };
 
+        /**
+         * Posts a new activity link with the given data to the backend
+         * @param personName
+         * @param location
+         * @param startDate
+         * @param activityId
+         * @returns {promise} promise returned from $http.post
+         */
+        var addActivityLink = function(personName, location, startDate, activityId) {
+            // TODO: make sure we are logged in first
+            // TODO: support adding links to existing people
+            var data = {
+                target: {
+                    fullName: personName
+                },
+                location: location,
+                startDate: startDate,
+                activityId: activityId
+            };
+            return $http.post(backendUrl + '/activityLink', data)
+                .error(handleLogout);
+        };
+
 
         /**
          * Returns this service
@@ -245,7 +268,8 @@
                 login: login,
                 logout: logout,
                 getActivities: getActivities,
-                getGraph: getGraph
+                getGraph: getGraph,
+                addActivityLink: addActivityLink
             };
         }];
     });

@@ -58,7 +58,7 @@ describe('service', function() {
                     fullName: 'Tester'
                 },
                 location: 'Bern',
-                startData: '01.02.2014',
+                startDate: '01.02.2014',
                 activityId: '1'
             };
             $httpBackend.expectPOST('/activityLink', expectedPostData)
