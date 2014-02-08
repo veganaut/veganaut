@@ -78,7 +78,7 @@
                 $scope.goToView('socialGraph');
             }
 
-            $scope.activities = [];
+            $scope.activities = {};
 
             $scope.formSubmitted = false;
 
@@ -95,7 +95,11 @@
             // Get the activities
             backend.getActivities()
                 .success(function(data) {
-                    $scope.activities = data;
+                    // Index the activities by their id
+                    $scope.activities = {};
+                    for (var i = 0; i < data.length; i++) {
+                        $scope.activities[data[i].id] = data[i];
+                    }
                 })
             ;
         }]

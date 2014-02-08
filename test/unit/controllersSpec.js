@@ -45,9 +45,9 @@ describe('controllers', function() {
         }));
 
 
-        it('should initialise activities to an empty array', inject(function() {
+        it('should initialise activities to an empty object', inject(function() {
             expect(typeof $scope.activities).toEqual('object');
-            expect($scope.activities.length).toEqual(0);
+            expect(Object.keys($scope.activities).length).toEqual(0);
         }));
 
         it('should request activities from the backend', inject(function() {
@@ -59,8 +59,8 @@ describe('controllers', function() {
             expect(typeof successCb).toBe('function');
 
             // Give a couple of activities and make sure it exposes it
-            successCb(['activity1', 'activity2']);
-            expect($scope.activities.length).toEqual(2);
+            successCb([{ id: 1, name: 'a1' }, { id: 2, name: 'a2' }]);
+            expect(Object.keys($scope.activities).length).toEqual(2);
         }));
 
         it('should have not submit when form empty', inject(function() {
