@@ -28,7 +28,7 @@ describe('service', function() {
         }));
 
         it('should have a login method', inject(function($httpBackend, backend) {
-            // Set up the http backend mock
+            // Define our expectations
             $httpBackend.expectPOST('/session', {email: 'e@mail.com', password: 'word'})
                 .respond({
                     sessionId: 'test-session-d'
@@ -48,6 +48,35 @@ describe('service', function() {
 
             // Should be logged in now
             expect(backend.isLoggedIn()).toBe(true);
+        }));
+
+
+        it('should have a addActivityLink method', inject(function($httpBackend, backend) {
+            // Define our expectations
+            var expectedPostData = {
+                target: {
+                    fullName: 'Tester'
+                },
+                location: 'Bern',
+                startData: '01.02.2014',
+                activityId: '1'
+            };
+            $httpBackend.expectPOST('/activityLink', expectedPostData)
+                .respond({
+                    referenceCode: 'ref-123'
+                })
+            ;
+
+            expect(typeof backend.addActivityLink).toBe('function');
+
+            // Use login
+            var req = backend.addActivityLink('Tester', 'Bern', '01.02.2014', '1');
+            $httpBackend.flush();
+
+            // Make sure we got a $http object
+            expect(typeof req.then).toBe('function');
+            expect(typeof req.success).toBe('function');
+            expect(typeof req.error).toBe('function');
         }));
 
         // TODO: test other backend methods
