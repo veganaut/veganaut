@@ -54,12 +54,14 @@ describe('service', function() {
         it('should have a addActivityLink method', inject(function($httpBackend, backend) {
             // Define our expectations
             var expectedPostData = {
-                target: {
+                targets: [{
                     fullName: 'Tester'
-                },
+                }],
                 location: 'Bern',
                 startDate: '01.02.2014',
-                activityId: '1'
+                activity: {
+                    id: '1'
+                }
             };
             $httpBackend.expectPOST('/activityLink', expectedPostData)
                 .respond({
@@ -70,7 +72,7 @@ describe('service', function() {
             expect(typeof backend.addActivityLink).toBe('function');
 
             // Use login
-            var req = backend.addActivityLink('Tester', 'Bern', '01.02.2014', '1');
+            var req = backend.addActivityLink('Tester', 'Bern', '01.02.2014', { id: '1'});
             $httpBackend.flush();
 
             // Make sure we got a $http object

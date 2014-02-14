@@ -17,7 +17,7 @@
                 selectedNode: '=',
                 selectedLink: '='
             },
-            link: function(scope, element, attr) {
+            link: function(scope, element) {
                 // TODO: where should these helper functions go
                 /**
                  * Returns the list of css classes that should be applied to
@@ -182,23 +182,24 @@
                             return;
                         }
 
-                        if (nodeProvider.isStable) {
+                        if (nodeProvider.isStable()) {
                             // If the nodes are already arranged, don't continue
                             force.stop();
                         }
+                        else {
+                            svgLinks.attr('x1', function(d) { return d.source.x; })
+                                .attr('y1', function(d) { return d.source.y; })
+                                .attr('x2', function(d) { return d.target.x; })
+                                .attr('y2', function(d) { return d.target.y; });
 
-                        svgLinks.attr('x1', function(d) { return d.source.x; })
-                            .attr('y1', function(d) { return d.source.y; })
-                            .attr('x2', function(d) { return d.target.x; })
-                            .attr('y2', function(d) { return d.target.y; });
+                            svgNodes.attr('cx', function(d) { return d.x; })
+                                .attr('cy', function(d) { return d.y; });
 
-                        svgNodes.attr('cx', function(d) { return d.x; })
-                            .attr('cy', function(d) { return d.y; });
-
-                        iterations -= 1;
-                        if (iterations <= 0) {
-                            // Stop the force movement after some iterations
-                            nodeProvider.isStable = true;
+                            iterations -= 1;
+                            if (iterations <= 0) {
+                                // Stop the force movement after some iterations
+                                nodeProvider.setStable(true);
+                            }
                         }
                     });
                 };

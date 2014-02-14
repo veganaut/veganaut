@@ -19,6 +19,10 @@
     <input class="form-control" placeholder="{{ 'navigation.form.referenceCode' | trans }}"/>
     <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()">{{ 'navigation.avatar' | trans }}</button>
 
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert(alert)">
+        {{ alert.message }}
+    </alert>
+
     <div ng-view></div>
 </div>
 

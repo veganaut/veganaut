@@ -11,6 +11,7 @@ describe('controllers', function() {
         var backendMock;
         var successCb;
 
+        // TODO: too much mocking is happening here
         beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
 
@@ -32,6 +33,17 @@ describe('controllers', function() {
                             successCb = cb;
                         }
                     };
+                },
+                addActivityLink: function() {
+                    var promise = {
+                        success: function() {
+                            return promise;
+                        },
+                        error: function() {
+                            return promise;
+                        }
+                    };
+                    return promise;
                 }
             };
 
@@ -40,7 +52,8 @@ describe('controllers', function() {
             $controller('ActivityLinkCtrl', {
                 $scope: $scope,
                 activityLinkTargetProvider: activityLinkTargetMock,
-                backend: backendMock
+                backend: backendMock,
+                alertProvider: {}
             });
         }));
 

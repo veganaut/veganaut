@@ -20,17 +20,13 @@
         var nodes = [];
         var links = [];
         var isStable = false;
-        var dataRequested = false;
 
         this.$get = ['backend', function(backend) {
             return {
                 getNodes: function(cb) {
-                    if (dataRequested) {
-                        cb(nodes, links);
-                        return;
-                    }
                     backend.getGraph()
                         .success(function(data) {
+                            isStable = false;
                             nodes = [];
                             links = [];
 
@@ -65,7 +61,6 @@
                                 type: 'dummy'
                             });
 
-                            dataRequested = true;
                             cb(nodes, links);
                         })
                         .error(function(data, statusCode) {
@@ -74,7 +69,12 @@
                     ;
 
                 },
-                isStable: isStable
+                isStable: function() {
+                    return isStable;
+                },
+                setStable: function(stable) {
+                    isStable = stable;
+                }
             };
         }];
     });
@@ -230,25 +230,34 @@
 
         /**
          * Posts a new activity link with the given data to the backend
-         * @param personName
+         * @param person Either a name of a person to create or a person object
          * @param location
          * @param startDate
-         * @param activityId
+         * @param activity
          * @returns {promise} promise returned from $http.post
          */
-        var addActivityLink = function(personName, location, startDate, activityId) {
+        var addActivityLink = function(person, location, startDate, activity) {
             // TODO: make sure we are logged in first
             // TODO: support adding links to existing people
+            var target = {};
+            if (angular.isString(person)) {
+                // Create a person object
+                target.fullName = person;
+            }
+            else {
+                target.id = person.id;
+            }
             var data = {
-                target: {
-                    fullName: personName
-                },
+                targets: [target],
                 location: location,
-                startDate: startDate,
-                activityId: activityId
+                startDate: startDate
             };
-            return $http.post(backendUrl + '/activityLink', data)
-                .error(handleLogout);
+            if (activity) {
+                data.activity = {
+                    id: activity.id
+                };
+            }
+            return $http.post(backendUrl + '/activityLink', data);
         };
 
 
@@ -272,5 +281,30 @@
                 addActivityLink: addActivityLink
             };
         }];
+    });
+
+    // TODO: docu & tests
+    monkeyFaceServices.provider('alertProvider', function() {
+        var alerts = [];
+
+        this.$get = function() {
+            return {
+                alerts: alerts,
+                addAlert: function(message, type) {
+                    alerts.push({
+                        message: message,
+                        type: type || 'info'
+                    });
+                },
+                removeAlert: function(alert) {
+                    for (var i = 0; i < alerts.length; i++) {
+                        if (alerts[i] === alert) {
+                            alerts.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            };
+        };
     });
 })();

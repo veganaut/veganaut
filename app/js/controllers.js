@@ -4,22 +4,28 @@
     /* Controllers */
     var monkeyFaceControllers = angular.module('monkeyFace.controllers', []);
 
-    monkeyFaceControllers.controller('AppCtrl', ['$scope', '$location', 'backend', function($scope, $location, backend) {
-        $scope.goToView = function(view) {
-            $location.path(view);
-        };
+    monkeyFaceControllers.controller('AppCtrl', ['$scope', '$location', 'backend', 'alertProvider',
+        function($scope, $location, backend, alertProvider) {
+            $scope.goToView = function(view) {
+                $location.path(view);
+            };
 
-        // TODO: should move the login/out functionality to a service
-        $scope.isLoggedIn = backend.isLoggedIn;
+            // TODO: should move the login/out functionality to a service
+            $scope.isLoggedIn = backend.isLoggedIn;
 
-        $scope.logout = function() {
-            backend.logout()
-                .success(function() {
-                    $scope.goToView('login');
-                })
-            ;
-        };
-    }]);
+            $scope.logout = function() {
+                backend.logout()
+                    .success(function() {
+                        $scope.goToView('login');
+                    })
+                ;
+            };
+
+            // Expose alerts
+            $scope.alerts = alertProvider.alerts;
+            $scope.closeAlert = alertProvider.removeAlert;
+        }
+    ]);
 
     monkeyFaceControllers.controller('RegisterCtrl', ['$scope', function($scope) {
         $scope.formSubmitted = false;
@@ -71,8 +77,8 @@
         }]
     );
 
-    monkeyFaceControllers.controller('ActivityLinkCtrl', ['$scope', 'activityLinkTargetProvider', 'backend',
-        function($scope, activityLinkTargetProvider, backend) {
+    monkeyFaceControllers.controller('ActivityLinkCtrl', ['$scope', 'activityLinkTargetProvider', 'backend', 'alertProvider',
+        function($scope, activityLinkTargetProvider, backend, alertProvider) {
             $scope.activityLinkTarget = activityLinkTargetProvider.get();
             if (!$scope.activityLinkTarget) {
                 $scope.goToView('socialGraph');
@@ -82,13 +88,50 @@
 
             $scope.formSubmitted = false;
 
+            $scope.form = {};
+
             $scope.submit = function() {
+                // Check if form is valid
+                // TODO: improve this and use angular forms
+                var formValid = false;
                 for (var key in $scope.form) {
                     if ($scope.form.hasOwnProperty(key) && $scope.form[key]) {
-                        $scope.formSubmitted = true;
-                        activityLinkTargetProvider.set();
+                        formValid = true;
                         break;
                     }
+                }
+
+                if (formValid) {
+                    // Check if the target is an already existing player
+                    var target;
+                    if ($scope.activityLinkTarget.type === 'dummy') {
+                        // Dummy target -> read name from the form
+                        target = $scope.form.targetName;
+                    }
+                    else {
+                        // No dummy -> target already exists
+                        target = $scope.activityLinkTarget;
+                    }
+                    backend
+                        .addActivityLink(
+                            target,
+                            $scope.form.location,
+                            $scope.form.startTime,
+                            $scope.form.selectedActivity
+                        )
+                        .success(function(data) {
+                            // TODO: translate
+                            alertProvider.addAlert('Activity link created with reference code: ' + data.referenceCode, 'success');
+                            $scope.goToView('socialGraph');
+                        })
+                        .error(function(data) {
+                            // TODO: translate
+                            alertProvider.addAlert('Activity link could not be created: ' + data.error.message, 'danger');
+                            $scope.goToView('socialGraph');
+                        })
+                    ;
+                    $scope.formSubmitted = true;
+                    activityLinkTargetProvider.set();
                 }
             };
 
