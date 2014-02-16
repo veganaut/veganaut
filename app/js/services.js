@@ -94,9 +94,9 @@
             'register.title': 'Registrieren',
             'message.registered': 'Registrierung erfolgreich.',
             'register.form.email': 'email@beispiel.com',
-            'register.form.firstName': 'Vorname',
-            'register.form.lastName': 'Nachname',
-            'register.form.alienName': 'öffentlich sichtbarer Name',
+            'register.form.fullName': 'Vorname und Nachname',
+            'register.form.password': 'Passwort',
+            'register.form.passwordRepeat': 'Nochmals Passwort',
             'register.form.submit': 'Registrieren',
             'login.title': 'Login',
             'login.form.email': 'email@beispiel.com',
@@ -208,6 +208,29 @@
         };
 
         /**
+         * Registers a new user. If the user has already entered a reference
+         * code, the person from that activity's target will be used.
+         * @param email
+         * @param fullName
+         * @param password
+         * @returns {promise}
+         */
+        var register = function(email, fullName, password) {
+            var postData = {
+                email: email,
+                fullName: fullName,
+                password: password
+            };
+
+            // If we already have a person id, register as that person
+            if (personId) {
+                postData._id = personId;
+            }
+
+            return $http.post(backendUrl + '/person', postData);
+        };
+
+        /**
          * Sends the login request to the backend
          *
          * @param email
@@ -307,7 +330,7 @@
                     // TODO: validate id?
                     personId = data.targets[0];
                 })
-            ;
+                ;
         };
 
 
@@ -325,6 +348,7 @@
             return {
                 isLoggedIn: isLoggedIn,
                 canViewGraph: canViewGraph,
+                register: register,
                 login: login,
                 logout: logout,
                 getActivities: getActivities,

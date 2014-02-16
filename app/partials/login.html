@@ -1,6 +1,6 @@
 <h2>{{ 'login.title' | trans }}</h2>
 
-<form novalidate class="simple-form" ng-hide="formSubmitted">
+<form novalidate class="loginForm" ng-hide="formSubmitted">
     <input class="form-control" ng-model="form.email" placeholder="{{ 'login.form.email' | trans}}"/>
     <input class="form-control" ng-model="form.password" type="password" placeholder="{{ 'login.form.password' | trans}}"/>
     <a href="#/forgotPassword">{{ 'action.forgotPassword' | trans}}</a><br/>

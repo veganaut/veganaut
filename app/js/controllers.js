@@ -45,18 +45,25 @@
         }
     ]);
 
-    monkeyFaceControllers.controller('RegisterCtrl', ['$scope', function($scope) {
-        $scope.formSubmitted = false;
-
-        $scope.submit = function() {
-            for (var key in $scope.form) {
-                if ($scope.form.hasOwnProperty(key) && $scope.form[key]) {
-                    $scope.formSubmitted = true;
-                    break;
+    monkeyFaceControllers.controller('RegisterCtrl', ['$scope', 'backend', 'alertProvider',
+        function($scope, backend, alertProvider) {
+            $scope.submit = function() {
+                // TODO: get the form to already validate that password and password repeat should be the same
+                if ($scope.form.password === $scope.form.passwordRepeat) {
+                    backend.register($scope.form.email, $scope.form.fullName, $scope.form.password)
+                        .success(function(data) {
+                            // TODO: now start a session as that user
+                            console.log(data);
+                        })
+                        .error(function(data) {
+                            // TODO: showing the error to the user should be done by the backend service
+                            alertProvider.addAlert('Could not register: ' + data.error, 'danger');
+                        })
+                    ;
                 }
-            }
-        };
-    }]);
+            };
+        }])
+    ;
 
     monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', function($scope, backend) {
         if (backend.isLoggedIn()) {
