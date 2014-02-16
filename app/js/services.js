@@ -151,7 +151,16 @@
         var $http;
         var backendUrl;
 
+        /**
+         * The session id of the current user
+         */
         var sessionId;
+
+        /**
+         * Person id is set if the user entered a reference code but is not
+         * logged in
+         */
+        var personId;
 
         /**
          * Handles a login with the given session id
@@ -180,6 +189,22 @@
          */
         var isLoggedIn = function() {
             return (angular.isString(sessionId));
+        };
+
+        /**
+         * Returns whether there is a valid person id set
+         * @returns {boolean}
+         */
+        var hasValidPersonId = function() {
+            return (angular.isString(personId));
+        };
+
+        /**
+         * Returns whether the user is allowed to view the graph
+         * @returns {boolean}
+         */
+        var canViewGraph = function() {
+            return isLoggedIn() || hasValidPersonId();
         };
 
         /**
@@ -215,8 +240,7 @@
          */
         var getActivities = function() {
             // TODO: make sure we are logged in first
-            return $http.get(backendUrl + '/activity')
-                .error(handleLogout);
+            return $http.get(backendUrl + '/activity');
         };
 
         /**
@@ -224,9 +248,18 @@
          * @returns {promise} promise returned from $http.get
          */
         var getGraph = function() {
-            // TODO: make sure we are logged in first
-            return $http.get(backendUrl + '/graph/me')
-                .error(handleLogout);
+            var person;
+            if (isLoggedIn()) {
+                person = 'me';
+            }
+            else if (hasValidPersonId()) {
+                person = personId;
+            }
+//            else {
+//                // TODO: return failed promise
+//            }
+
+            return $http.get(backendUrl + '/graph/' + person);
         };
 
         /**
@@ -239,7 +272,6 @@
          */
         var addActivityLink = function(person, location, startDate, activity) {
             // TODO: make sure we are logged in first
-            // TODO: support adding links to existing people
             var target = {};
             if (angular.isString(person)) {
                 // Create a person object
@@ -248,24 +280,34 @@
             else {
                 target.id = person.id;
             }
-            var data = {
+
+            // Prepare the data to post
+            var postData = {
                 targets: [target],
                 location: location,
                 startDate: startDate
             };
+
+            // Add activity if given
             if (activity) {
-                data.activity = {
+                postData.activity = {
                     id: activity.id
                 };
             }
-            return $http.post(backendUrl + '/activityLink', data);
+            return $http.post(backendUrl + '/activityLink', postData);
         };
 
         var submitReferenceCode = function(referenceCode) {
-            var data = {
+            var postData = {
                 referenceCode: referenceCode
             };
-            return $http.post(backendUrl + '/activityLink/reference', data);
+
+            return $http.post(backendUrl + '/activityLink/reference', postData)
+                .success(function(data) {
+                    // TODO: validate id?
+                    personId = data.targets[0];
+                })
+            ;
         };
 
 
@@ -282,6 +324,7 @@
 
             return {
                 isLoggedIn: isLoggedIn,
+                canViewGraph: canViewGraph,
                 login: login,
                 logout: logout,
                 getActivities: getActivities,

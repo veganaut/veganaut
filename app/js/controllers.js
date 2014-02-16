@@ -10,8 +10,9 @@
                 $location.path(view);
             };
 
-            // TODO: should move the login/out functionality to a service
+            // Expose some backend states
             $scope.isLoggedIn = backend.isLoggedIn;
+            $scope.canViewGraph = backend.canViewGraph;
 
             $scope.logout = function() {
                 backend.logout()
@@ -27,12 +28,14 @@
 
             $scope.submitReferenceCode = function() {
                 backend.submitReferenceCode($scope.form.referenceCode)
-                    // TODO: use the returned target id to redirect to the graph view
-                    .success(function(data) {
-                        alertProvider.addAlert('Successfully submitted reference code for person with id: ' + data.targets[0], 'success');
+                    .success(function() {
+                        alertProvider.addAlert('Successfully submitted reference code', 'success');
 
                         // Reset form
                         $scope.form.referenceCode = '';
+
+                        // Show the graph
+                        $scope.goToView('socialGraph');
                     })
                     .error(function(data) {
                         alertProvider.addAlert('Could not submit reference code: ' + data.error, 'danger');
@@ -80,7 +83,7 @@
 
     monkeyFaceControllers.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetProvider', 'backend',
         function($scope, $location, activityLinkTargetProvider, backend) {
-            if (!backend.isLoggedIn()) {
+            if (!backend.canViewGraph()) {
                 $scope.goToView('login');
             }
             $scope.$onRootScope('alien.socialGraph.nodeAction', function(event, node) {

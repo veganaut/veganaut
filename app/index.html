@@ -16,7 +16,7 @@
     <button class="btn btn-default btn-block navRegister" ng-click="goToView('register')" ng-hide="isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
     <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')" ng-hide="isLoggedIn()" ng-bind="'navigation.login' | trans"></button>
     <button class="btn btn-default btn-block navLogout" ng-click="logout()" ng-show="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
-    <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')" ng-show="isLoggedIn()" ng-bind="'navigation.avatar' | trans"></button>
+    <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')" ng-show="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
     <form novalidate name="referenceCodeForm" class="referenceCodeForm">
         <div class="row">
             <div class="col-xs-8">
