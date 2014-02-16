@@ -4,6 +4,7 @@
 // http://docs.angularjs.org/guide/dev_guide.e2e-testing
 // This scenario has to be run while monkey-tail is running with
 // the fixtures in test/fixtures.
+// TODO: split this up in multiple files
 describe('my app', function() {
     beforeEach(function() {
         browser().navigateTo('/app/index.html');
@@ -127,10 +128,37 @@ describe('my app', function() {
             input('form.referenceCode').enter('OiWCrB');
             element('.referenceCodeForm button').click();
 
-            // Should show a social graph with two nodes and a connection between them
+            // Should show a social graph with two nodes and a connection between them (plus the dummies)
             expect(browser().location().url()).toBe('/socialGraph');
             expect(element('social-graph svg circle').count()).toBe(4);
             expect(element('social-graph svg line').count()).toBe(1);
+        });
+    });
+
+    describe('register', function() {
+        it('should have a link to the register form', function() {
+            var button = element('.navRegister');
+            expect(button.count()).toBe(1);
+
+            button.click();
+            expect(browser().location().url()).toBe('/register');
+        });
+
+        it('should be possible to register as a new user', function() {
+            browser().navigateTo('#/register');
+
+            input('form.email').enter('cody@testerburger.com');
+            input('form.fullName').enter('Cody Testerburger');
+            input('form.password').enter('so secure brah');
+            input('form.passwordRepeat').enter('so secure brah');
+            element('.registerForm button').click();
+
+            expect(element('.alert-success').count()).toBe(1);
+
+            // Should show a social graph with two dummies and no connections
+            expect(browser().location().url()).toBe('/socialGraph');
+            expect(element('social-graph svg circle').count()).toBe(2);
+            expect(element('social-graph svg line').count()).toBe(0);
         });
     });
 });
