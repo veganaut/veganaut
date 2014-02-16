@@ -63,7 +63,7 @@ describe('my app', function() {
                     expect(element('social-graph svg circle').count()).toBeGreaterThan(3);
                     expect(element('social-graph svg line').count()).toBeGreaterThan(0);
 
-                    // Should have multiple dummmy nodes
+                    // Should have multiple dummy nodes
                     expect(element('social-graph svg circle.dummy').count()).toBeGreaterThan(1);
                 });
 
@@ -115,6 +115,22 @@ describe('my app', function() {
 
                 // TODO: describe the /activity form more
             });
+        });
+    });
+
+    describe('enter reference code when logged out', function() {
+        it('should have a reference code input field', function() {
+            expect(input('form.referenceCode').val()).toBe('');
+        });
+
+        it('should show the graph when entering a valid reference code', function() {
+            input('form.referenceCode').enter('OiWCrB');
+            element('.referenceCodeForm button').click();
+
+            // Should show a social graph with two nodes and a connection between them
+            expect(browser().location().url()).toBe('/socialGraph');
+            expect(element('social-graph svg circle').count()).toBe(2);
+            expect(element('social-graph svg line').count()).toBe(1);
         });
     });
 });
