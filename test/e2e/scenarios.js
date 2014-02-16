@@ -7,6 +7,7 @@
 // TODO: split this up in multiple files
 describe('my app', function() {
     beforeEach(function() {
+        // TODO: this completely reloads the angular app before every test, takes forever
         browser().navigateTo('/app/index.html');
 
         // TODO: not so great to logout before every test
@@ -155,9 +156,9 @@ describe('my app', function() {
 
             expect(element('.alert-success').count()).toBe(1);
 
-            // Should show a social graph with two dummies and no connections
+            // Should show a social graph with me and two dummies and no connections
             expect(browser().location().url()).toBe('/socialGraph');
-            expect(element('social-graph svg circle').count()).toBe(2);
+            expect(element('social-graph svg circle').count()).toBe(3);
             expect(element('social-graph svg line').count()).toBe(0);
         });
     });
