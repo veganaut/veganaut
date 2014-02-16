@@ -76,27 +76,27 @@
         }])
     ;
 
-    monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', function($scope, backend) {
-        if (backend.isLoggedIn()) {
-            $scope.goToView('socialGraph');
-        }
+    monkeyFaceControllers.controller('LoginCtrl', ['$scope', 'backend', 'alertProvider',
+        function($scope, backend, alertProvider) {
+            if (backend.isLoggedIn()) {
+                $scope.goToView('socialGraph');
+            }
 
-        $scope.submit = function() {
-            if ($scope.form && $scope.form.email && $scope.form.password) {
+            $scope.submit = function() {
                 backend.login($scope.form.email, $scope.form.password)
                     .success(function () {
                         if (backend.isLoggedIn()) {
                             $scope.goToView('socialGraph');
                         }
                     })
-                    // TODO: handle error
                     .error(function (data) {
-                        console.log('Error: ', data);
+                        // TODO: showing the error to the user should be done by the backend service
+                        alertProvider.addAlert('Could not log in: ' + data.error, 'danger');
                     })
                 ;
-            }
-        };
-    }]);
+            };
+        }
+    ]);
 
 
     monkeyFaceControllers.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetProvider', 'backend',

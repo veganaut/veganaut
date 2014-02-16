@@ -1,4 +1,4 @@
-<h2>{{ 'activityLink.title' | trans }}</h2>
+<h2 ng-bind="'activityLink.title' | trans"></h2>
 <form novalidate class="activityLinkForm">
     <div ng-switch="activityLinkTarget.type">
         <input class="form-control" ng-switch-when="dummy" ng-model="form.targetName" placeholder="{{ 'activityLink.form.targetName' | trans }}"/>

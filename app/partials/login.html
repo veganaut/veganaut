@@ -1,8 +1,11 @@
-<h2>{{ 'login.title' | trans }}</h2>
+<h2 ng-bind="'login.title' | trans"></h2>
 
-<form novalidate class="loginForm" ng-hide="formSubmitted">
-    <input class="form-control" ng-model="form.email" placeholder="{{ 'login.form.email' | trans}}"/>
-    <input class="form-control" ng-model="form.password" type="password" placeholder="{{ 'login.form.password' | trans}}"/>
-    <a href="#/register">{{ 'action.register' | trans}}</a><br/>
-    <button class="btn btn-default" ng-click="submit()">{{ 'login.form.submit' | trans }}</button>
+<form novalidate name="loginForm" class="loginForm">
+    <input type="email" required class="form-control" ng-model="form.email"
+     placeholder="{{ 'login.form.email' | trans}}"/>
+    <input type="password" required class="form-control" ng-model="form.password"
+     placeholder="{{ 'login.form.password' | trans}}" />
+
+    <button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid"
+     ng-click="submit()" ng-bind="'login.form.submit' | trans"></button>
 </form>
