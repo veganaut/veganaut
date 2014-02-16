@@ -56,12 +56,12 @@ describe('my app', function() {
 
                     // Give it some time to render the graph
                     /**
-                     * TODO: the next tests should actually be .toBe(4) and .toBe(1) but for some
+                     * TODO: the next tests should actually be .toBe(6) and .toBe(3) but for some
                      * reason the next describe section is executed first. So we already
                      * added a new activity link...
                      */
-                    expect(element('social-graph svg circle').count()).toBeGreaterThan(3);
-                    expect(element('social-graph svg line').count()).toBeGreaterThan(0);
+                    expect(element('social-graph svg circle').count()).toBeGreaterThan(5);
+                    expect(element('social-graph svg line').count()).toBeGreaterThan(2);
 
                     // Should have multiple dummy nodes
                     expect(element('social-graph svg circle.dummy').count()).toBeGreaterThan(1);
@@ -99,7 +99,7 @@ describe('my app', function() {
 
                         // Check that the social graph has one more node than before
                         browser().navigateTo('#/socialGraph');
-                        expect(element('social-graph svg circle').count()).toBe(5); // TODO: this is messed up because the reference code was already entered. darn, can't it just do stuff in the order i say
+                        expect(element('social-graph svg circle').count()).toBe(7);
                     });
                 });
             });
@@ -129,7 +129,7 @@ describe('my app', function() {
 
             // Should show a social graph with two nodes and a connection between them
             expect(browser().location().url()).toBe('/socialGraph');
-            expect(element('social-graph svg circle').count()).toBe(2);
+            expect(element('social-graph svg circle').count()).toBe(4);
             expect(element('social-graph svg line').count()).toBe(1);
         });
     });
