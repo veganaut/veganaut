@@ -24,6 +24,21 @@
             // Expose alerts
             $scope.alerts = alertProvider.alerts;
             $scope.closeAlert = alertProvider.removeAlert;
+
+            $scope.submitReferenceCode = function() {
+                backend.submitReferenceCode($scope.form.referenceCode)
+                    // TODO: use the returned target id to redirect to the graph view
+                    .success(function(data) {
+                        alertProvider.addAlert('Successfully submitted reference code for person with id: ' + data.targets[0], 'success');
+
+                        // Reset form
+                        $scope.form.referenceCode = '';
+                    })
+                    .error(function(data) {
+                        alertProvider.addAlert('Could not submit reference code: ' + data.error, 'danger');
+                    })
+                ;
+            };
         }
     ]);
 

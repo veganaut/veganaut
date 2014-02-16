@@ -99,7 +99,7 @@ describe('my app', function() {
 
                         // Check that the social graph has one more node than before
                         browser().navigateTo('#/socialGraph');
-                        expect(element('social-graph svg circle').count()).toBe(5);
+                        expect(element('social-graph svg circle').count()).toBe(5); // TODO: this is messed up because the reference code was already entered. darn, can't it just do stuff in the order i say
                     });
                 });
             });

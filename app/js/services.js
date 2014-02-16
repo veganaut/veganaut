@@ -88,8 +88,9 @@
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
-            'navigation.avatar': 'Ich',
-            'navigation.form.referenceCode': 'Referenz-Code eingeben',
+            'navigation.avatar': 'Mein Graph',
+            'form.referenceCode.placeholder': 'Referenz-Code eingeben',
+            'form.referenceCode.submit': 'Code absenden',
             'register.title': 'Registrieren',
             'message.registered': 'Registrierung erfolgreich.',
             'register.form.email': 'email@beispiel.com',
@@ -260,6 +261,13 @@
             return $http.post(backendUrl + '/activityLink', data);
         };
 
+        var submitReferenceCode = function(referenceCode) {
+            var data = {
+                referenceCode: referenceCode
+            };
+            return $http.post(backendUrl + '/activityLink/reference', data);
+        };
+
 
         /**
          * Returns this service
@@ -278,7 +286,8 @@
                 logout: logout,
                 getActivities: getActivities,
                 getGraph: getGraph,
-                addActivityLink: addActivityLink
+                addActivityLink: addActivityLink,
+                submitReferenceCode: submitReferenceCode
             };
         }];
     });
