@@ -1,5 +1,5 @@
 <h2>{{ 'activityLink.title' | trans }}</h2>
-<form novalidate class="simple-form">
+<form novalidate class="activityLinkForm">
     <div ng-switch="activityLinkTarget.type">
         <input class="form-control" ng-switch-when="dummy" ng-model="form.targetName" placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
         <span ng-switch-default>{{ 'activityLink.label.targetName' | trans }}: <span ng-bind="activityLinkTarget.fullName"></span></span>

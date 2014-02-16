@@ -23,7 +23,7 @@
             };
 
             // Expose alerts
-            $scope.alerts = alertProvider.alerts;
+            $scope.getAlerts = alertProvider.getAlerts;
             $scope.closeAlert = alertProvider.removeAlert;
 
             $scope.submitReferenceCode = function() {

@@ -88,7 +88,7 @@
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
-            'navigation.avatar': 'Mein Graph',
+            'navigation.avatar': 'Mein Netzwerk',
             'form.referenceCode.placeholder': 'Referenz-Code eingeben',
             'form.referenceCode.submit': 'Code absenden',
             'register.title': 'Registrieren',
@@ -101,7 +101,6 @@
             'login.title': 'Login',
             'login.form.email': 'email@beispiel.com',
             'login.form.password': 'Passwort',
-            'action.forgotPassword': 'Passwort vergessen?',
             'action.register': 'Registrieren',
             'login.form.submit': 'Login',
             'activityLink.title': 'Neue Aktivität',
@@ -150,6 +149,7 @@
     monkeyFaceServices.provider('backend', function() {
         var $http;
         var backendUrl;
+        var alertProvider;
 
         /**
          * The session id of the current user
@@ -169,6 +169,7 @@
         var handleLogin = function(sid) {
             if (angular.isString(sid)) {
                 sessionId = sid;
+                personId = undefined;
                 sessionStorage.setItem('sid', sid);
                 $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sid;
             }
@@ -179,8 +180,11 @@
          */
         var handleLogout = function() {
             sessionId = undefined;
+            personId = undefined;
             sessionStorage.removeItem('sid');
             $http.defaults.headers.common.Authorization = undefined;
+
+            alertProvider.removeAllAlerts();
         };
 
         /**
@@ -338,9 +342,10 @@
          * Returns this service
          * @type {*[]}
          */
-        this.$get = ['$http', 'backendUrl', function(_$http_, _backendUrl_) {
+        this.$get = ['$http', 'backendUrl', 'alertProvider', function(_$http_, _backendUrl_, _alertProvider_) {
             $http = _$http_;
             backendUrl = _backendUrl_;
+            alertProvider = _alertProvider_;
 
             // Try to get session sid from storage
             handleLogin(sessionStorage.getItem('sid'));
@@ -365,12 +370,17 @@
 
         this.$get = function() {
             return {
-                alerts: alerts,
+                getAlerts: function() {
+                    return alerts;
+                },
                 addAlert: function(message, type) {
                     alerts.push({
                         message: message,
                         type: type || 'info'
                     });
+                },
+                removeAllAlerts: function() {
+                    alerts = [];
                 },
                 removeAlert: function(alert) {
                     for (var i = 0; i < alerts.length; i++) {
