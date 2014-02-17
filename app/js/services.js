@@ -91,8 +91,8 @@
             'navigation.avatar': 'Mein Netzwerk',
             'form.referenceCode.placeholder': 'Referenz-Code eingeben',
             'form.referenceCode.submit': 'Code absenden',
-            'register.title': 'Registrieren',
             'message.registered': 'Registrierung erfolgreich.',
+            'register.title': 'Registrieren',
             'register.form.email': 'email@beispiel.com',
             'register.form.fullName': 'Vorname und Nachname',
             'register.form.password': 'Passwort',
@@ -101,8 +101,8 @@
             'login.title': 'Login',
             'login.form.email': 'email@beispiel.com',
             'login.form.password': 'Passwort',
-            'action.register': 'Registrieren',
             'login.form.submit': 'Login',
+            'action.register': 'Registrieren',
             'activityLink.title': 'Neue Aktivität',
             'activityLink.form.targetName': 'Mit wem? / Für wen?',
             'activityLink.label.targetName': 'Mit / Für',
@@ -111,7 +111,9 @@
             'activityLink.form.startTime': 'Wann? (Format: JJJJ-MM-TT)',
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
-            'socialGraph.title': 'Mein Netzwerk'
+            'socialGraph.title': 'Mein Netzwerk',
+            'referenceCodeList.title': 'Offene Aktivitäten',
+            'referenceCodeList.description': 'Referenz-Codes für alle offenen Aktivitäten.'
         };
 
         this.$get = function() {
@@ -324,6 +326,14 @@
             return $http.post(backendUrl + '/activityLink', postData);
         };
 
+        /**
+         * Submits the given referenceCode to the backend. Will set the
+         * returned target of the activity link as the active person,
+         * which makes it possible to query the graph of that person.
+         *
+         * @param referenceCode
+         * @returns {promise} promise returned from $http.post
+         */
         var submitReferenceCode = function(referenceCode) {
             var postData = {
                 referenceCode: referenceCode
@@ -333,8 +343,17 @@
                 .success(function(data) {
                     // TODO: validate id?
                     personId = data.targets[0];
-                })
-                ;
+                });
+        };
+
+        /**
+         * Gets the list of open activityLink for the logged in user
+         *
+         * @returns {promise}
+         */
+        var getOpenActivityLinks = function() {
+            // TODO: make sure we are logged in first
+            return $http.get(backendUrl + '/activityLink/mine/open');
         };
 
 
@@ -359,7 +378,8 @@
                 getActivities: getActivities,
                 getGraph: getGraph,
                 addActivityLink: addActivityLink,
-                submitReferenceCode: submitReferenceCode
+                submitReferenceCode: submitReferenceCode,
+                getOpenActivityLinks: getOpenActivityLinks
             };
         }];
     });

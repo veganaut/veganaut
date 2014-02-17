@@ -71,7 +71,7 @@ describe('my app', function() {
 
                 it('should show list of incomplete activity links with reference codes', function() {
                     var referenceCodeListElements = element('.referenceCodeList li');
-                    expect(referenceCodeListElements.count()).toBe(1);
+                    expect(referenceCodeListElements.count()).toBeGreaterThan(0);
 
                     // Should have the reference code that is unused
                     expect(referenceCodeListElements.text()).toContain('OiWCrB');
