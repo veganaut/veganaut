@@ -84,7 +84,7 @@
      */
     monkeyFaceServices.provider('localeProvider', function() {
         var translations = {
-            'app.title': 'Irgendwas',
+            'app.title': 'VeganFoodWeb',
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
@@ -105,10 +105,10 @@
             'login.form.submit': 'Login',
             'activityLink.title': 'Neue Aktivität',
             'activityLink.form.targetName': 'Mit wem? / Für wen?',
-            'activityLink.label.targetName': 'Mit wem? / Für wen?',
+            'activityLink.label.targetName': 'Mit / Für',
             'activityLink.form.choose': 'Was?',
             'activityLink.form.location': 'Wo?',
-            'activityLink.form.startTime': 'Wann?',
+            'activityLink.form.startTime': 'Wann? (Format: JJJJ-MM-TT)',
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk'
