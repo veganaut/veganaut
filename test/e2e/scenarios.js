@@ -69,6 +69,14 @@ describe('my app', function() {
                     expect(element('social-graph svg circle.dummy').count()).toBeGreaterThan(1);
                 });
 
+                it('should show list of incomplete activity links with reference codes', function() {
+                    var referenceCodeListElements = element('.referenceCodeList li');
+                    expect(referenceCodeListElements.count()).toBe(1);
+
+                    // Should have the reference code that is unused
+                    expect(referenceCodeListElements.text()).toContain('OiWCrB');
+                });
+
                 describe('activity link form', function() {
                     var someDummy;
                     beforeEach(function() {
