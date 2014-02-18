@@ -10,7 +10,8 @@
     <!-- TODO: translate -->
   Activities links from <span ng-bind="selectedLink.source.fullName"></span>
   to <span ng-bind="selectedLink.target.fullName"></span>.
-  Number of activities: <span ng-bind="selectedLink.numActivities"></span>.
+  Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
+  <span ng-bind="selectedLink.openActivities"></span> open.
 </div>
 <div class="referenceCodeList" ng-show="openActivityLinks">
     <h3 ng-bind="'referenceCodeList.title' | trans"></h3>
