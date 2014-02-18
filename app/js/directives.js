@@ -44,6 +44,9 @@
                     if (isMe(link.target) || isMe(link.source)) {
                         klass += ' mine';
                     }
+                    if (link.completedActivities > 0) {
+                        klass += ' completed';
+                    }
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
                         klass += ' selected';
                     }
@@ -60,7 +63,7 @@
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
                         return 8; // TODO: move constant somewhere
                     }
-                    return Math.sqrt(link.numActivities);
+                    return Math.sqrt(link.completedActivities + link.openActivities);
                 };
 
 
