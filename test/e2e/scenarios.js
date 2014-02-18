@@ -84,7 +84,7 @@ describe('my app', function() {
                     });
 
                     it('should go to /activity when clicking dummy node twice', function() {
-                        // On the first click, stay on socialGrpah
+                        // On the first click, stay on socialGraph
                         someDummy.click();
                         expect(browser().location().url()).toBe('/socialGraph');
 
@@ -94,6 +94,11 @@ describe('my app', function() {
                     });
 
                     it('should be possible to add a new activity link with a dummy node', function() {
+                        // Verify the number of nodes before adding new activity link
+                        expect(element('social-graph svg circle').count()).toBe(6);
+                        expect(element('social-graph svg circle.maybe').count()).toBe(1);
+
+                        // Browse to the activity link form
                         someDummy.click();
                         someDummy.click();
 
@@ -110,6 +115,7 @@ describe('my app', function() {
                         // Check that the social graph has one more node than before
                         browser().navigateTo('#/socialGraph');
                         expect(element('social-graph svg circle').count()).toBe(7);
+                        expect(element('social-graph svg circle.maybe').count()).toBe(2);
                     });
                 });
             });
