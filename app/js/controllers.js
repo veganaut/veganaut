@@ -172,7 +172,7 @@
                         })
                         .error(function(data) {
                             // TODO: translate
-                            alertProvider.addAlert('Activity link could not be created: ' + data.error.message, 'danger');
+                            alertProvider.addAlert('Activity link could not be created: ' + data.error, 'danger');
                             $scope.goToView('socialGraph');
                         })
                     ;
