@@ -44,6 +44,9 @@
                     if (isMe(link.target) || isMe(link.source)) {
                         klass += ' mine';
                     }
+                    if (link.target.type === 'friendOfFriend' || link.source.type === 'friendOfFriend') {
+                        klass += ' friendOfFriend';
+                    }
                     if (link.completedActivities > 0) {
                         klass += ' completed';
                     }
@@ -63,7 +66,9 @@
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
                         return 8; // TODO: move constant somewhere
                     }
-                    return Math.sqrt(link.completedActivities + link.openActivities);
+
+                    var width = (link.completedActivities || 0) + (link.openActivities || 0);
+                    return Math.max(1, Math.sqrt(width));
                 };
 
 
@@ -90,6 +95,7 @@
                         }
                     }
 
+                    // TODO: should not change the force based on size, should just zoom in and out for different screen sizes
                     var force = d3.layout.force()
                         .charge(-1 * size)
                         .linkDistance(size / 4)
