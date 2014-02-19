@@ -56,17 +56,21 @@ describe('my app', function() {
                     expect(element('social-graph').count()).toMatch(1);
                     expect(element('social-graph svg').count()).toMatch(1);
 
-                    // Give it some time to render the graph
                     /**
-                     * TODO: the next tests should actually be .toBe(6) and .toBe(3) but for some
-                     * reason the next describe section is executed first. So we already
-                     * added a new activity link...
+                     * TODO: some of the next tests have the wrong number now because the next
+                     * describe section is executed first. So we already added a new activity link.
                      */
-                    expect(element('social-graph svg circle').count()).toBeGreaterThan(5);
-                    expect(element('social-graph svg line').count()).toBeGreaterThan(2);
+                    // Check that the graph has the correct elements
+                    expect(element('social-graph svg circle.me').count()).toBe(1);
+                    expect(element('social-graph svg circle.maybe').count()).toBe(2); // Should be .toBe(1), see above
+                    expect(element('social-graph svg circle.baby').count()).toBe(1);
+                    expect(element('social-graph svg circle.user').count()).toBe(1);
+                    expect(element('social-graph svg circle.dummy').count()).toBe(2);
+                    expect(element('social-graph svg circle.friendOfFriend').count()).toBe(1);
 
-                    // Should have multiple dummy nodes
-                    expect(element('social-graph svg circle.dummy').count()).toBeGreaterThan(1);
+                    expect(element('social-graph svg line').count()).toBe(5); // Should be .toBe(4), see above
+                    expect(element('social-graph svg line.completed').count()).toBe(2);
+                    expect(element('social-graph svg line.friendOfFriend').count()).toBe(1);
                 });
 
                 it('should show list of incomplete activity links with reference codes', function() {
@@ -95,7 +99,7 @@ describe('my app', function() {
 
                     it('should be possible to add a new activity link with a dummy node', function() {
                         // Verify the number of nodes before adding new activity link
-                        expect(element('social-graph svg circle').count()).toBe(6);
+                        expect(element('social-graph svg circle').count()).toBe(7);
                         expect(element('social-graph svg circle.maybe').count()).toBe(1);
 
                         // Browse to the activity link form
@@ -114,7 +118,7 @@ describe('my app', function() {
 
                         // Check that the social graph has one more node than before
                         browser().navigateTo('#/socialGraph');
-                        expect(element('social-graph svg circle').count()).toBe(7);
+                        expect(element('social-graph svg circle').count()).toBe(8);
                         expect(element('social-graph svg circle.maybe').count()).toBe(2);
                     });
                 });
@@ -143,10 +147,18 @@ describe('my app', function() {
             input('form.referenceCode').enter('OiWCrB');
             element('.referenceCodeForm button').click();
 
-            // Should show a social graph with two nodes and a connection between them (plus the dummies)
+            // Should show the correct social graph
             expect(browser().location().url()).toBe('/socialGraph');
-            expect(element('social-graph svg circle').count()).toBe(4);
-            expect(element('social-graph svg line').count()).toBe(1);
+            expect(element('social-graph svg circle.me').count()).toBe(1);
+            expect(element('social-graph svg circle.maybe').count()).toBe(0);
+            expect(element('social-graph svg circle.baby').count()).toBe(0);
+            expect(element('social-graph svg circle.user').count()).toBe(1);
+            expect(element('social-graph svg circle.dummy').count()).toBe(2);
+            expect(element('social-graph svg circle.friendOfFriend').count()).toBe(3);
+
+            expect(element('social-graph svg line').count()).toBe(4);
+            expect(element('social-graph svg line.completed').count()).toBe(1);
+            expect(element('social-graph svg line.friendOfFriend').count()).toBe(3);
         });
     });
 
