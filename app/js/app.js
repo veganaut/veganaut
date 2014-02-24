@@ -16,7 +16,7 @@
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
         $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
         $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityLinkCtrl'});
-        $routeProvider.otherwise({redirectTo: '/socialGraph'});
+        $routeProvider.otherwise({redirectTo: '/login'});
     }]);
 
 
