@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app="e2eBridge" ng-controller="BridgeCtrl">
+<head>
+    <meta charset="utf-8">
+    <title>Monkey Face e2e Bridge</title>
+</head>
+<body>
+
+<script src="../../app/lib/angular/angular.js"></script>
+<script type="text/javascript">
+angular.module('e2eBridge', [])
+    .controller('BridgeCtrl', ['$http', function($http) {
+        $http.post('http://localhost:3333/fixtures');
+    }])
+;
+</script>
+</body>
+</html>
