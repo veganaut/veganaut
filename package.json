@@ -3,10 +3,11 @@
     "private": true,
     "repository": "https://github.com/OperationMonkey/monkey-face",
     "devDependencies": {
-        "phantomjs" : "~1.9",
-        "karma" : "~0.10",
-        "karma-jasmine" : "~0.1",
-        "karma-ng-scenario" : "~0.1",
-        "less": "~1.6"
+        "protractor" : "0.19.x",
+        "phantomjs" : "1.9.x",
+        "karma" : "0.10.x",
+        "karma-jasmine" : "0.1.x",
+        "karma-ng-scenario" : "0.1.x",
+        "less": "1.6.x"
     }
 }
