@@ -7,8 +7,27 @@
 
     // TODO: refactor this whole thing to make it more angularesque
     monkeyFaceDirectives.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
+        /**
+         * Checks whether the given node is the "me" node
+         * @param node
+         * @returns {boolean}
+         */
         var isMe = function(node) {
             return node.type === 'me';
+        };
+
+        /**
+         * Makes an arced link between two points.
+         * Taken from http://bl.ocks.org/mbostock/1153292
+         * @param d
+         * @returns {string}
+         */
+        var linkArc = function(d) {
+            var dx = d.target.x - d.source.x;
+            var dy = d.target.y - d.source.y;
+            var dr = Math.sqrt(dx * dx + dy * dy);
+            return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr +
+                ' 0 0,1 ' + d.target.x + ',' + d.target.y;
         };
 
         return {
@@ -18,6 +37,7 @@
                 selectedLink: '='
             },
             link: function(scope, element) {
+                // TODO: move all the constants somewhere together
                 // TODO: where should these helper functions go
                 /**
                  * Returns the list of css classes that should be applied to
@@ -95,10 +115,10 @@
                         }
                     }
 
-                    // TODO: should not change the force based on size, should just zoom in and out for different screen sizes
+                    // TODO: should zoom in and out for different screen sizes
                     var force = d3.layout.force()
-                        .charge(-1 * size)
-                        .linkDistance(size / 4)
+                        .charge(-400)
+                        .linkDistance(100)
                         .size([size, size]);
 
                     var zoom = d3.behavior.zoom()
@@ -109,7 +129,6 @@
                                 'translate(' + d3.event.translate + ')' +
                                     ' scale(' + d3.event.scale + ')'
                             );
-
                         })
                         .scaleExtent([0.3, 10])
                         .on('zoomstart', function() {
@@ -122,6 +141,21 @@
                         .attr('class', 'graphSvg')
                         .call(zoom)
                         .append('g');
+
+                    // Add some end-marker style
+                    svg.append('defs').selectAll('marker')
+                        .data(['pointer'])
+                        .enter().append('marker')
+                        .attr('id', function(d) { return d; })
+                        .attr('viewBox', '0 -5 10 10')
+                        .attr('refX', 35)
+                        .attr('refY', -3.5)
+                        .attr('markerWidth', 6)
+                        .attr('markerHeight', 6)
+                        .attr('markerUnits', 'userSpaceOnUse')
+                        .attr('orient', 'auto')
+                        .append('path')
+                        .attr('d', 'M0,-5L10,0L0,5');
 
                     var onNodeClick = function(node) {
                         if (d3.event.defaultPrevented) {
@@ -165,8 +199,9 @@
 
                     var svgLinks = svg.selectAll('.link')
                         .data(links)
-                        .enter().append('line')
+                        .enter().append('path')
                         .attr('class', getLinkClasses)
+                        .attr('marker-end', 'url(#pointer)')
                         .style('stroke-width', getLinkWidth)
                         .on('click', onLinkClick);
 
@@ -174,18 +209,17 @@
                         .data(nodes)
                         .enter().append('circle')
                         .attr('class', getNodeClasses)
-                        .attr('r', size / 30)
+                        .attr('r', 15)
                         .on('click', onNodeClick);
 
                     svgNodes.append('title').text(function(d) {
                         return d.fullName;
                     });
 
-
                     var breakTicks = 0;
                     var iterations = 50;
                     force.on('tick', function() {
-                        // TODO; this is retarted, slow it down some better way
+                        // TODO; this is retarded, slow it down some better way
                         breakTicks = (breakTicks + 1) % 5;
                         if (breakTicks !== 0) {
                             return;
@@ -196,10 +230,7 @@
                             force.stop();
                         }
                         else {
-                            svgLinks.attr('x1', function(d) { return d.source.x; })
-                                .attr('y1', function(d) { return d.source.y; })
-                                .attr('x2', function(d) { return d.target.x; })
-                                .attr('y2', function(d) { return d.target.y; });
+                            svgLinks.attr('d', linkArc);
 
                             svgNodes.attr('cx', function(d) { return d.x; })
                                 .attr('cy', function(d) { return d.y; });
