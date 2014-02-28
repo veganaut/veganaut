@@ -37,7 +37,7 @@ describe('scenarios', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html');
+        browser.get('test/e2e/bridge.html#/basic');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever

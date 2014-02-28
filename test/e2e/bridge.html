@@ -9,8 +9,15 @@
 <script src="../../app/lib/angular/angular.js"></script>
 <script type="text/javascript">
 angular.module('e2eBridge', [])
-    .controller('BridgeCtrl', ['$http', function($http) {
-        $http.post('http://localhost:3333/fixtures');
+    .controller('BridgeCtrl', ['$http', '$location', function($http, $location) {
+        // The fixture that should be loaded is passed as the path,
+        // e.g. #/basic for the basic fixture
+        var fixture = $location.path();
+        $http.post('http://localhost:3333/fixtures' + fixture)
+            .error(function(data, code) {
+                console.log(code, data);
+            })
+        ;
     }])
 ;
 </script>
