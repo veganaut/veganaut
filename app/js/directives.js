@@ -5,7 +5,11 @@
     var monkeyFaceDirectives = angular.module('monkeyFace.directives', []);
 
 
-    // TODO: refactor this whole thing to make it more angularesque
+    // TODO: refactor this whole thing, it's a big mess
+    // TODO: move all the constants somewhere together
+    // TODO: should zoom in and out for different screen sizes
+    // TODO: redo the way the graph is re-created when the data changes
+    // TODO: find a better way to slow down the force animation
     monkeyFaceDirectives.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
         /**
          * Checks whether the given node is the "me" node
@@ -37,8 +41,6 @@
                 selectedLink: '='
             },
             link: function(scope, element) {
-                // TODO: move all the constants somewhere together
-                // TODO: where should these helper functions go
                 /**
                  * Returns the list of css classes that should be applied to
                  * the given node
@@ -84,7 +86,7 @@
                  */
                 var getLinkWidth = function(link) {
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
-                        return 8; // TODO: move constant somewhere
+                        return 8;
                     }
 
                     var width = (link.completedActivities || 0) + (link.openActivities || 0);
@@ -94,6 +96,9 @@
 
                 // Get the available width and set it as size of the square
                 var size = element[0].clientWidth;
+
+                var svgContainer = d3.select(element[0]);
+                var svg;
 
                 /**
                  * Creates the d3 graph
@@ -115,7 +120,6 @@
                         }
                     }
 
-                    // TODO: should zoom in and out for different screen sizes
                     var force = d3.layout.force()
                         .charge(-400)
                         .linkDistance(100)
@@ -135,27 +139,35 @@
                             d3.event.sourceEvent.stopPropagation();
                         });
 
-                    var svg = d3.select(element[0]).append('svg')
-                        .attr('width', size)
-                        .attr('height', size)
-                        .attr('class', 'graphSvg')
-                        .call(zoom)
-                        .append('g');
+                    if (typeof svg === 'undefined') {
+                        // Setup the svg for the first time
+                        svg = svgContainer.append('svg')
+                            .attr('width', size)
+                            .attr('height', size)
+                            .attr('class', 'graphSvg')
+                            .call(zoom)
+                            .append('g');
 
-                    // Add some end-marker style
-                    svg.append('defs').selectAll('marker')
-                        .data(['pointer'])
-                        .enter().append('marker')
-                        .attr('id', function(d) { return d; })
-                        .attr('viewBox', '0 -5 10 10')
-                        .attr('refX', 35)
-                        .attr('refY', -3.5)
-                        .attr('markerWidth', 6)
-                        .attr('markerHeight', 6)
-                        .attr('markerUnits', 'userSpaceOnUse')
-                        .attr('orient', 'auto')
-                        .append('path')
-                        .attr('d', 'M0,-5L10,0L0,5');
+                        // Add some end-marker style
+                        svg.append('defs').selectAll('marker')
+                            .data(['pointer'])
+                            .enter().append('marker')
+                            .attr('id', function(d) { return d; })
+                            .attr('viewBox', '0 -5 10 10')
+                            .attr('refX', 35)
+                            .attr('refY', -3.5)
+                            .attr('markerWidth', 6)
+                            .attr('markerHeight', 6)
+                            .attr('markerUnits', 'userSpaceOnUse')
+                            .attr('orient', 'auto')
+                            .append('path')
+                            .attr('d', 'M0,-5L10,0L0,5');
+                    }
+                    else {
+                        // If we already created this once, remove the nodes and links
+                        svg.selectAll('.node').remove();
+                        svg.selectAll('.link').remove();
+                    }
 
                     var onNodeClick = function(node) {
                         if (d3.event.defaultPrevented) {
@@ -164,7 +176,7 @@
 
                         scope.$apply(function() {
                             if (node === scope.selectedNode) {
-                                scope.$root.$emit('alien.socialGraph.nodeAction', node);
+                                scope.$root.$emit('monkey.socialGraph.nodeAction', node);
                             }
                             else {
                                 scope.selectedNode = node;
@@ -219,7 +231,6 @@
                     var breakTicks = 0;
                     var iterations = 50;
                     force.on('tick', function() {
-                        // TODO; this is retarded, slow it down some better way
                         breakTicks = (breakTicks + 1) % 5;
                         if (breakTicks !== 0) {
                             return;
@@ -246,6 +257,11 @@
 
                 // Get the nodes
                 nodeProvider.getNodes(setupGraph);
+
+                // Reload the data when it changes
+                scope.$onRootScope('monkey.socialGraph.dataChanged', function() {
+                    nodeProvider.getNodes(setupGraph);
+                });
             }
         };
     }]);

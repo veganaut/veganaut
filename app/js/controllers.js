@@ -34,6 +34,9 @@
                         // Reset form
                         $scope.form.referenceCode = '';
 
+                        // Publish that the graph data has changed
+                        $scope.$root.$emit('monkey.socialGraph.dataChanged');
+
                         // Show the graph
                         $scope.goToView('socialGraph');
                     })
@@ -105,7 +108,7 @@
                 $scope.goToView('login');
             }
 
-            $scope.$onRootScope('alien.socialGraph.nodeAction', function(event, node) {
+            $scope.$onRootScope('monkey.socialGraph.nodeAction', function(event, node) {
                 if (node) {
                     activityLinkTargetProvider.set(node);
                     $location.path('activity');
