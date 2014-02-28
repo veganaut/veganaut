@@ -6,7 +6,7 @@ describe('referenceCodes', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('test/e2e/bridge.html#/referenceCodes');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
@@ -82,6 +82,50 @@ describe('referenceCodes', function() {
 
             expect(element.all(by.css('social-graph svg .link.open')).count())
                 .toBe(0, 'should have zero open links')
+            ;
+        });
+    });
+
+    describe('enter reference code from new friend when logged in', function() {
+        it('should be possible to enter reference code as logged in user', function() {
+            // Login as Frank, he doesn't know anyone yet
+            browser.get('app/index.html#/login');
+            element(by.model('form.email')).sendKeys('frank@frank.fr');
+            element(by.model('form.password')).sendKeys('frank\n');
+
+            var refInput = element(by.model('form.referenceCode'));
+            refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
+
+            expect(element.all(by.css('.alert-success')).count()).toBe(1);
+            expect(element.all(by.css('social-graph svg .link.completed')).count())
+                .toBe(1, 'a new completed link should have been added')
+            ;
+
+            expect(element.all(by.css('social-graph svg .node.user')).count())
+                .toBe(1, 'a new friend should have been added')
+            ;
+
+
+            // Logout and back in as Bob
+            element(by.css('button.navLogout')).click();
+            browser.get('app/index.html#/login');
+            element(by.model('form.email')).sendKeys('im@stoop.id');
+            element(by.model('form.password')).sendKeys('bestpasswordever\n');
+
+            expect(element.all(by.css('.referenceCodeList li')).count())
+                .toBe(0, 'should have no more open activities')
+            ;
+
+            expect(element.all(by.css('social-graph svg .link.completed')).count())
+                .toBe(2, 'should have two completed links')
+            ;
+
+            expect(element.all(by.css('social-graph svg .node.user')).count())
+                .toBe(2, 'should now know two users')
+            ;
+
+            expect(element.all(by.css('social-graph svg .node.maybe')).count())
+                .toBe(0, 'should have no more maybe nodes')
             ;
         });
     });
