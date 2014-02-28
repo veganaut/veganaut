@@ -42,6 +42,7 @@ describe('referenceCodes', function() {
 
     describe('enter reference code when logged in', function() {
         it('should be possible to enter reference code as logged in user', function() {
+            // Login as Alice
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('foo@bar.baz');
             element(by.model('form.password')).sendKeys('foobar\n');
@@ -63,6 +64,24 @@ describe('referenceCodes', function() {
 
             expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count())
                 .toBe(0, 'the friendOfFriend was actually me, so should not be shown anymore')
+            ;
+
+            // Logout and back in as Bob
+            element(by.css('button.navLogout')).click();
+            browser.get('app/index.html#/login');
+            element(by.model('form.email')).sendKeys('im@stoop.id');
+            element(by.model('form.password')).sendKeys('bestpasswordever\n');
+
+            expect(element.all(by.css('.referenceCodeList li')).count())
+                .toBe(0, 'should have no more open activities')
+            ;
+
+            expect(element.all(by.css('social-graph svg .link.completed')).count())
+                .toBe(2, 'should have two completed links')
+            ;
+
+            expect(element.all(by.css('social-graph svg .link.open')).count())
+                .toBe(0, 'should have zero open links')
             ;
         });
     });
