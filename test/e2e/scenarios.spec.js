@@ -174,32 +174,6 @@ describe('scenarios', function() {
         });
     });
 
-    describe('enter reference code when logged out', function() {
-        var refInput;
-        it('should have a reference code input field', function() {
-            refInput = element(by.model('form.referenceCode'));
-            expect(refInput.isPresent()).toBe(true);
-            expect(refInput.getText()).toBe('');
-        });
-
-        it('should show the graph when entering a valid reference code', function() {
-            refInput.sendKeys('OiWCrB\n');
-
-            // Should show the correct social graph
-            expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(0);
-            expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(0);
-            expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2);
-            expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(2);
-
-            expect(element.all(by.css('social-graph svg .link')).count()).toBe(3);
-            expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(2);
-        });
-    });
-
     describe('register', function() {
         it('should have a link to the register form', function() {
             var button = element.all(by.css('.navRegister'));
