@@ -12,6 +12,14 @@ describe('referenceCodes', function() {
         // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('app/index.html');
         ptor = protractor.getInstance();
+
+        // TODO: not so great to logout before every test
+        var logoutButton = element(by.css('button.navLogout'));
+        logoutButton.isDisplayed().then(function(isDisplayed) {
+            if (isDisplayed) {
+                logoutButton.click();
+            }
+        });
     });
 
     describe('enter reference code when logged out', function() {
