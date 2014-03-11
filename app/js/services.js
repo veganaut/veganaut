@@ -84,7 +84,7 @@
      */
     monkeyFaceServices.provider('localeProvider', function() {
         var translations = {
-            'app.title': 'VeganFoodWeb',
+            'app.title': 'veganaut',
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
