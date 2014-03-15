@@ -1,16 +1,12 @@
-(function() {
+(function(directivesModule) {
     'use strict';
-
-    /* Directives */
-    var monkeyFaceDirectives = angular.module('monkeyFace.directives', []);
-
 
     // TODO: refactor this whole thing, it's a big mess
     // TODO: move all the constants somewhere together
     // TODO: should zoom in and out for different screen sizes
     // TODO: redo the way the graph is re-created when the data changes
     // TODO: find a better way to slow down the force animation
-    monkeyFaceDirectives.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
+    directivesModule.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
         /**
          * Checks whether the given node is the "me" node
          * @param node
@@ -265,4 +261,4 @@
             }
         };
     }]);
-})();
+})(window.monkeyFace.directivesModule);

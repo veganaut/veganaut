@@ -42,15 +42,25 @@
     <div ng-view></div>
 </div>
 
+<!-- TODO: concat & uglify all that -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/d3.v3.min.js"></script>
 <script src="lib/angular/i18n/angular-locale_en-gb.js"></script>
 <script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/ui-bootstrap-tpls-0.10.0.min.js"></script>
 <script src="js/app.js"></script>
-<script src="js/services.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/directives.js"></script>
+<script src="js/config.js"></script>
+<script src="js/services/activityLinkTargetProvider.js"></script>
+<script src="js/services/alertProvider.js"></script>
+<script src="js/services/backend.js"></script>
+<script src="js/services/localeProvider.js"></script>
+<script src="js/services/nodeProvider.js"></script>
+<script src="js/controllers/ActivityLinkCtrl.js"></script>
+<script src="js/controllers/AppCtrl.js"></script>
+<script src="js/controllers/LoginCtrl.js"></script>
+<script src="js/controllers/RegisterCtrl.js"></script>
+<script src="js/controllers/SocialGraphCtrl.js"></script>
+<script src="js/filters/trans.js"></script>
+<script src="js/directives/socialGraph.js"></script>
 </body>
 </html>
