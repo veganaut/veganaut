@@ -80,6 +80,7 @@ Backend unit tests:
 The frontend unit tests use [Karma](https://github.com/karma-runner/karma). Start Karma with:
 
     ./scripts/unit-test.sh
-    open http://localhost:9876/
+
+and point your browser to http://localhost:9876/.
 
 Karma will automatically rerun all your tests if you change the code.
