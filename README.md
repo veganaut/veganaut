@@ -20,11 +20,8 @@ Install the dependencies using npm:
 
 Start mongodb if it isn't already runing:
 
-    mongodb --db testdb
-
-Or, depending on your installation:
-
-    mongod
+    mkdir testdb
+    mongod --dbpath testdb
 
 Start the backend:
 
