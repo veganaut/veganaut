@@ -107,6 +107,12 @@ describe('scenarios', function() {
                     expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(1);
                 });
 
+                it('nodes should have teams', function() {
+                    // Check that the graph has the correct elements
+                    expect(element(by.css('social-graph svg .node.teamBlue')).isPresent()).toBe(true);
+                    expect(element(by.css('social-graph svg .node.teamGreen')).isPresent()).toBe(true);
+                });
+
                 it('should show list of incomplete activity links with reference codes', function() {
                     expect(element.all(by.css('.referenceCodeList li')).count()).toBeGreaterThan(0);
 

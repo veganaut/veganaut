@@ -45,6 +45,9 @@
                  */
                 var getNodeClasses = function(node) {
                     var klass = 'node ' + node.type;
+                    if (typeof node.team !== 'undefined') {
+                        klass += ' team' + node.team.charAt(0).toUpperCase() + node.team.slice(1);
+                    }
                     if (node === scope.selectedNode) {
                         klass += ' selected';
                     }

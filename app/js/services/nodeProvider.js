@@ -40,7 +40,7 @@
                             // Add a dummy
                             nodes.push({
                                 fullName: 'Mister Dummy',
-                                type: 'dummy'
+                                type: 'dummy',
                             });
 
                             // Or two
