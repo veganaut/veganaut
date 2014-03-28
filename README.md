@@ -81,6 +81,6 @@ The frontend unit tests use [Karma](https://github.com/karma-runner/karma). Star
 
     ./scripts/unit-test.sh
 
-and point your browser to http://localhost:9876/.
+and point your browser to [http://localhost:9876/](http://localhost:9876/).
 
 Karma will automatically rerun all your tests if you change the code.
