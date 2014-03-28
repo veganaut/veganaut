@@ -1,7 +1,7 @@
 /* global protractor, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
-xdescribe('referenceCodes', function() {
+describe('referenceCodes', function() {
     var ptor;
 
     beforeEach(function() {

@@ -53,11 +53,11 @@ describe('scenarios', function() {
         });
     });
 
-    xit('should redirect to /login when location hash is empty', function() {
+    it('should redirect to /login when location hash is empty', function() {
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
-    xit('should redirect to /login for pages needing authentication', function() {
+    it('should redirect to /login for pages needing authentication', function() {
         browser.get('app/index.html#/socialGraph');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
@@ -70,7 +70,7 @@ describe('scenarios', function() {
             browser.get('app/index.html#/login');
         });
 
-        xit('should render login form when navigating to /login', function() {
+        it('should render login form when navigating to /login', function() {
             expect(element(by.css('[ng-view] form')).isPresent()).toBe(true);
             expect(element(by.css('[ng-view] form input[type=password]')).isPresent()).toBe(true);
         });
@@ -81,7 +81,7 @@ describe('scenarios', function() {
                 element(by.model('form.password')).sendKeys('foobar\n');
             });
 
-            xit('should be possible to login with correct username and pw', function() {
+            it('should be possible to login with correct username and pw', function() {
                 expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
             });
 
@@ -120,7 +120,7 @@ describe('scenarios', function() {
                     expect(element(by.css('.referenceCodeList')).getText()).toContain('OiWCrB');
                 });
 
-                xdescribe('activity link form', function() {
+                describe('activity link form', function() {
                     var someDummy;
                     beforeEach(function() {
                         someDummy = element.all(by.css('social-graph svg circle.dummy')).first();
@@ -166,7 +166,7 @@ describe('scenarios', function() {
                 });
             });
 
-            xdescribe('activity link redirect', function() {
+            describe('activity link redirect', function() {
                 beforeEach(function() {
                     browser.get('app/index.html#/activity');
                 });
@@ -180,7 +180,7 @@ describe('scenarios', function() {
         });
     });
 
-    xdescribe('register', function() {
+    describe('register', function() {
         it('should have a link to the register form', function() {
             var button = element.all(by.css('.navRegister'));
             expect(button.count()).toBe(1);
