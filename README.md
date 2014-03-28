@@ -38,7 +38,7 @@ If you edit the code, you need to restart the backend.
 
 Then start the server through supervisor:
 
-    cd monkey-face; supervisor app.js
+    cd monkey-tail; supervisor app.js
 
 Compile less and start the frontend:
 
