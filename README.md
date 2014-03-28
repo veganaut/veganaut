@@ -16,11 +16,15 @@ After that checkout monkey-tail and monkey-face:
 Install the dependencies using npm:
 
     (cd monkey-tail; npm install)
-	(cd monkey-face; npm install)
+    (cd monkey-face; npm install)
 
 Start mongodb if it isn't already runing:
 
     mongodb --db testdb
+
+Or, depending on your installation:
+
+    mongod
 
 Start the backend:
 
@@ -29,3 +33,4 @@ Start the backend:
 Start the frontend:
 
     cd monkey-face; node scripts/web-server.js
+    open http://localhost:8000/app/index.html
