@@ -54,7 +54,12 @@ Running Tests
 ### Full End-to-End Tests
 The backend has a secondary server running so that the frontend can tell it which fixtures to load.
 You need to have Chromium (or Chrome) installed to run these (that's gonna change, don't worry).
-Start the e2eBridge and run [protractor](https://github.com/angular/protractor) for running the tests:
+
+The tests use [protractor](https://github.com/angular/protractor) which uses Selenium. Selenium can be installed with:
+
+    cd monkey-tail; ./node_modules/protractor/bin/webdriver-manager update
+
+Then, start the e2eBridge and run protractor for running the tests:
 
     cd monkey-tail; supervisor e2eBridge.js
     cd monkey-face; ./node_modules/.bin/protractor config/protractor.conf.js
