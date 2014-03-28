@@ -57,7 +57,7 @@ You need to have Chromium (or Chrome) installed to run these (that's gonna chang
 
 The tests use [protractor](https://github.com/angular/protractor) which uses Selenium. Selenium can be installed with:
 
-    cd monkey-tail; ./node_modules/protractor/bin/webdriver-manager update
+    cd monkey-face; ./node_modules/protractor/bin/webdriver-manager update
 
 Then, start the e2eBridge,
 
