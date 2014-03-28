@@ -37,28 +37,49 @@
 .node {
     stroke: #fff;
     stroke-width: 1.5px;
-}
-.node.me {
-    fill: #28b34c;
-}
-.node.user {
-    fill: #156028;
-}
-.node.baby {
-    fill: #4444b3;
-}
-.node.maybe {
-    fill: #a4b2b3;
-}
-.node.dummy {
-    fill: #eeeeee;
-}
-.node.friendOfFriend {
-    fill: #ecfbf0;
-}
-.node.selected {
-    stroke: #000;
-    stroke-width: 3px;
+
+    &.teamBlue {
+        &.me {
+            fill: #4444b3;
+        }
+        &.user {
+            fill: #6162b3;
+        }
+        &.baby {
+            fill: #8d8eb3;
+        }
+        &.maybe {
+            fill: #bdbef0;
+        }
+        &.friendOfFriend {
+            fill: #33335e;
+        }
+    }
+    &.teamGreen {
+        &.me {
+            fill: #156028;
+        }
+        &.user {
+            fill: #336f42;
+        }
+        &.baby {
+            fill: #729c79;
+        }
+        &.maybe {
+            fill: #bbd7c1;
+        }
+        &.friendOfFriend {
+            fill: #21462a;
+        }
+    }
+
+    &.dummy {
+        fill: #eeeeee;
+    }
+    &.selected {
+        stroke: #000;
+        stroke-width: 3px;
+    }
 }
 
 .link {
