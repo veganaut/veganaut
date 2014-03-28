@@ -10,24 +10,39 @@ To run monkey, you'll need to install [nodejs](http://nodejs.org/) and [mongodb]
 
 After that checkout monkey-tail and monkey-face:
 
-    git clone git@github.com:OperationMonkey/monkey-tail.git
-    git clone git@github.com:OperationMonkey/monkey-face.git
+    git clone https://github.com/OperationMonkey/monkey-tail.git
+    git clone https://github.com/OperationMonkey/monkey-face.git
 
 Install the dependencies using npm:
 
     (cd monkey-tail; npm install)
     (cd monkey-face; npm install)
 
-Start mongodb if it isn't already runing:
+Start mongodb if it isn't already running:
 
     mkdir testdb
     mongod --dbpath testdb
+
+Load the fixtures:
+
+    cd monkey-tail; node ./test/fixtures/basic.js
 
 Start the backend:
 
     cd monkey-tail; node app.js
 
-Start the frontend:
+If you edit the code, you need to restart the backend.
+Supervisor will watch the files for you and restart the backend. Install supervisor globally:
 
-    cd monkey-face; node scripts/web-server.js
+    sudo npm install -g supervisor
+
+Then start the server through supervisor:
+
+    cd monkey-face; supervisor -w app.js,app,test app.js
+
+Compile less and start the frontend:
+
+    cd monkey-face
+    ./node_modules/.bin/lessc app/less/master.less > app/css/master.css
+    node scripts/web-server.js
     open http://localhost:8000/app/index.html
