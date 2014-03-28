@@ -15,6 +15,7 @@ scripts/web-server.js > log/webserver.log 2>&1 &
 
 cd ../monkey-tail
 supervisor app.js > ../monkey-face/log/app.log 2>&1 &
+supervisor e2eBridge.js > ../monkey-face/log/e2eBridge.log 2>&1 &
 
 cd ../monkey-face
 
