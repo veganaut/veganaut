@@ -59,9 +59,12 @@ The tests use [protractor](https://github.com/angular/protractor) which uses Sel
 
     cd monkey-tail; ./node_modules/protractor/bin/webdriver-manager update
 
-Then, start the e2eBridge and run protractor for running the tests:
+Then, start the e2eBridge,
 
     cd monkey-tail; supervisor e2eBridge.js
+
+and run protractor in another terminal for running the tests:
+
     cd monkey-face; ./node_modules/.bin/protractor config/protractor.conf.js
 
 ### Backend Tests
