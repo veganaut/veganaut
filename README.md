@@ -45,7 +45,9 @@ Compile less and start the frontend:
     cd monkey-face
     ./node_modules/.bin/lessc app/less/master.less > app/css/master.css
     node scripts/web-server.js
-    open http://localhost:8000/app/index.html
+
+Go to [http://localhost:8000/app/index.html](http://localhost:8000/app/index.html) and login
+as foo@bar.baz with password foobar.
 
 
 Running Tests
