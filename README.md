@@ -38,14 +38,16 @@ If you edit the code, you need to restart the backend.
 
 Then start the server through supervisor:
 
-    cd monkey-face; supervisor app.js
+    cd monkey-tail; supervisor app.js
 
 Compile less and start the frontend:
 
     cd monkey-face
     ./node_modules/.bin/lessc app/less/master.less > app/css/master.css
     node scripts/web-server.js
-    open http://localhost:8000/app/index.html
+
+Go to [http://localhost:8000/app/index.html](http://localhost:8000/app/index.html) and login
+as foo@bar.baz with password foobar.
 
 
 Running Tests
@@ -57,11 +59,14 @@ You need to have Chromium (or Chrome) installed to run these (that's gonna chang
 
 The tests use [protractor](https://github.com/angular/protractor) which uses Selenium. Selenium can be installed with:
 
-    cd monkey-tail; ./node_modules/protractor/bin/webdriver-manager update
+    cd monkey-face; ./node_modules/protractor/bin/webdriver-manager update
 
-Then, start the e2eBridge and run protractor for running the tests:
+Then, start the e2eBridge,
 
     cd monkey-tail; supervisor e2eBridge.js
+
+and run protractor in another terminal for running the tests:
+
     cd monkey-face; ./node_modules/.bin/protractor config/protractor.conf.js
 
 ### Backend Tests
@@ -77,6 +82,7 @@ Backend unit tests:
 The frontend unit tests use [Karma](https://github.com/karma-runner/karma). Start Karma with:
 
     ./scripts/unit-test.sh
-    open http://localhost:9876/
+
+and point your browser to [http://localhost:9876/](http://localhost:9876/).
 
 Karma will automatically rerun all your tests if you change the code.
