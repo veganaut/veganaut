@@ -76,9 +76,26 @@
     &.dummy {
         fill: #eeeeee;
     }
-    &.selected {
-        stroke: #000;
-        stroke-width: 3px;
+    &.captured {
+        &.teamGreen {
+            stroke: #4444b3;
+            stroke-dasharray: 3,5;
+        }
+        &.teamBlue {
+            stroke: #156028;
+            stroke-dasharray: 3,5;
+        }
+
+        stroke-width: 5px;
+        &.selected {
+            stroke-width: 8px;
+        }
+    }
+    &.notcaptured {
+        &.selected {
+            stroke: #000;
+            stroke-width: 3px;
+        }
     }
 }
 
