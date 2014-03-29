@@ -14,6 +14,7 @@ describe('referenceCodes', function() {
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
+        element(by.css('a.menuLink')).click();
         var logoutButton = element(by.css('button.navLogout'));
         logoutButton.isDisplayed().then(function(isDisplayed) {
             if (isDisplayed) {
@@ -25,12 +26,15 @@ describe('referenceCodes', function() {
     describe('enter reference code when logged out', function() {
         var refInput;
         it('should have a reference code input field', function() {
+            element(by.css('a.menuLink')).click();
             refInput = element(by.model('form.referenceCode'));
             expect(refInput.isPresent()).toBe(true);
             expect(refInput.getText()).toBe('');
         });
 
         it('should show the graph when entering a valid reference code', function() {
+            element(by.css('a.menuLink')).click();
+            refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('OiWCrB\n');
 
             // Should show the correct social graph
@@ -59,7 +63,7 @@ describe('referenceCodes', function() {
             element.all(by.css('social-graph svg .link.completed')).count().then(function(count) {
                 beforeCompletedLinks = count;
             });
-
+            element(by.css('a.menuLink')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Alice Eve for this activityLink
 
@@ -69,12 +73,12 @@ describe('referenceCodes', function() {
                     'should have one more completed link than before entering ref code'
                 );
             });
-
             expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count())
                 .toBe(0, 'the friendOfFriend was actually me, so should not be shown anymore')
             ;
 
             // Logout and back in as Bob
+            element(by.css('a.menuLink')).click();
             element(by.css('button.navLogout')).click();
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
@@ -100,7 +104,7 @@ describe('referenceCodes', function() {
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
-
+            element(by.css('a.menuLink')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
 
@@ -117,23 +121,25 @@ describe('referenceCodes', function() {
 
 
             // Logout and back in as Bob
+            element(by.css('a.menuLink')).click();
             element(by.css('button.navLogout')).click();
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
 
+            element(by.css('a.menuLink')).click();
+            element(by.css('button.navActivities')).click();
             expect(element.all(by.css('.referenceCodeList li')).count())
                 .toBe(0, 'should have no more open activities')
             ;
-
+            element(by.css('a.menuLink')).click();
+            element(by.css('button.navGraph')).click();
             expect(element.all(by.css('social-graph svg .link.completed')).count())
                 .toBe(2, 'should have two completed links')
             ;
-
             expect(element.all(by.css('social-graph svg .node.user')).count())
                 .toBe(2, 'should now know two users')
             ;
-
             expect(element.all(by.css('social-graph svg .node.maybe')).count())
                 .toBe(0, 'should have no more maybe nodes')
             ;
