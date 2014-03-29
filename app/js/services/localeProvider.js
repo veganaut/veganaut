@@ -30,8 +30,6 @@
             'activityLink.form.targetName': 'Mit wem? / Für wen?',
             'activityLink.label.targetName': 'Mit / Für',
             'activityLink.form.choose': 'Was?',
-            'activityLink.form.location': 'Wo?',
-            'activityLink.form.startTime': 'Wann? (Format: JJJJ-MM-TT)',
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk',

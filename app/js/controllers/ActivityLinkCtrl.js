@@ -39,8 +39,6 @@
                     backend
                         .addActivityLink(
                             target,
-                            $scope.form.location,
-                            $scope.form.startTime,
                             $scope.form.selectedActivity
                         )
                         .success(function(data) {

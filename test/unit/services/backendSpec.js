@@ -47,8 +47,6 @@ describe('backend service', function() {
             targets: [{
                 fullName: 'Tester'
             }],
-            location: 'Bern',
-            startDate: '01.02.2014',
             activity: {
                 id: '1'
             }
@@ -62,7 +60,7 @@ describe('backend service', function() {
         expect(typeof backend.addActivityLink).toBe('function');
 
         // Use login
-        var req = backend.addActivityLink('Tester', 'Bern', '01.02.2014', { id: '1'});
+        var req = backend.addActivityLink('Tester', { id: '1'});
         $httpBackend.flush();
 
         // Make sure we got a $http object

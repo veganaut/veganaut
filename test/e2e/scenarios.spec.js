@@ -140,10 +140,8 @@ describe('scenarios', function() {
                         someDummy.click();
                         someDummy.click();
 
-                        element(by.model('form.targetName')).sendKeys('Hans');
                         selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
-                        element(by.model('form.location')).sendKeys('Bern');
-                        element(by.model('form.startTime')).sendKeys('2014-02-15\n');
+                        element(by.model('form.targetName')).sendKeys('Hans\n');
 
                         // Should have a success message
                         expect(element.all(by.css('.alert-success')).count()).toBe(1);

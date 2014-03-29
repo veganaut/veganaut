@@ -150,12 +150,10 @@
         /**
          * Posts a new activity link with the given data to the backend
          * @param person Either a name of a person to create or a person object
-         * @param location
-         * @param startDate
          * @param activity
          * @returns {promise} promise returned from $http.post
          */
-        var addActivityLink = function(person, location, startDate, activity) {
+        var addActivityLink = function(person, activity) {
             // TODO: make sure we are logged in first
             var target = {};
             if (angular.isString(person)) {
@@ -168,9 +166,7 @@
 
             // Prepare the data to post
             var postData = {
-                targets: [target],
-                location: location,
-                startDate: startDate
+                targets: [target]
             };
 
             // Add activity if given
