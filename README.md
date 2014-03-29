@@ -18,12 +18,6 @@ Install the dependencies using npm:
     (cd monkey-tail; npm install)
     (cd monkey-face; npm install)
 
-This repo comes with a git-commit hook to run jshint prior to commits. To
-enable it, use the following commands after cloning.
-
-    (cd monkey-tail/.git/ && rm -r hooks/ && ln -s ../git_hooks hooks)
-    (cd monkey-face/.git/ && rm -r hooks/ && ln -s ../git_hooks hooks)
-
 Start mongodb if it isn't already running:
 
     mkdir testdb
@@ -59,10 +53,16 @@ as foo@bar.baz with password foobar.
 Code Quality Tools
 ------------------
 
-Run JSHint like this:
+This repo comes with a git-commit hook to run jshint prior to commits. To
+enable it, use the following commands after cloning.
 
-    (cd monkey-face; ./node_modules/.bin/jshint -c .jshintrc app/js test/e2e test/unit)
-    (cd monkey-tail; ./node_modules/.bin/jshint -c .jshintrc app test)
+    (cd monkey-tail/.git/ && rm -r hooks/ && ln -s ../git_hooks hooks)
+    (cd monkey-face/.git/ && rm -r hooks/ && ln -s ../git_hooks hooks)
+
+You can also run JSHint like this:
+
+    (cd monkey-face; ./node_modules/.bin/jshint .)
+    (cd monkey-tail; ./node_modules/.bin/jshint .)
 
 
 Running Tests
