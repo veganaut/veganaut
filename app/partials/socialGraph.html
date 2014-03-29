@@ -15,13 +15,3 @@
   Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
   <span ng-bind="selectedLink.openActivities"></span> open.
 </div>
-<div class="referenceCodeList" ng-show="openActivityLinks">
-    <h3 ng-bind="'referenceCodeList.title' | trans"></h3>
-    <span ng-bind="'referenceCodeList.description' | trans"></span>
-    <ul>
-        <li ng-repeat="link in openActivityLinks">
-            <span ng-bind="link.activity"></span> <span ng-repeat="target in link.targets" ng-bind="target"></span>:
-            <span ng-bind="link.referenceCode"></span>
-        </li>
-    </ul>
-</div>

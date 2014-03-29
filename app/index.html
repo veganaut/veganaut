@@ -21,6 +21,8 @@
      ng-show="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
     <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')"
      ng-show="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
+    <button class="btn btn-default btn-block navActivities" ng-click="goToView('openActivities')"
+     ng-show="canViewGraph()" ng-bind="'navigation.openActivities' | trans"></button>
 
     <form novalidate name="referenceCodeForm" class="referenceCodeForm">
         <div class="row">
@@ -58,6 +60,7 @@
 <script src="js/controllers/ActivityLinkCtrl.js"></script>
 <script src="js/controllers/AppCtrl.js"></script>
 <script src="js/controllers/LoginCtrl.js"></script>
+<script src="js/controllers/OpenActivitiesCtrl.js"></script>
 <script src="js/controllers/RegisterCtrl.js"></script>
 <script src="js/controllers/SocialGraphCtrl.js"></script>
 <script src="js/filters/trans.js"></script>

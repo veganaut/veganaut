@@ -113,13 +113,6 @@ describe('scenarios', function() {
                     expect(element(by.css('social-graph svg .node.teamGreen')).isPresent()).toBe(true);
                 });
 
-                it('should show list of incomplete activity links with reference codes', function() {
-                    expect(element.all(by.css('.referenceCodeList li')).count()).toBeGreaterThan(0);
-
-                    // Should have the reference code that is unused
-                    expect(element(by.css('.referenceCodeList')).getText()).toContain('OiWCrB');
-                });
-
                 describe('activity link form', function() {
                     var someDummy;
                     beforeEach(function() {
@@ -161,8 +154,24 @@ describe('scenarios', function() {
                         expect(element.all(by.css('social-graph svg circle.maybe')).count()).toBe(2);
 
                         // Should show the new open activity link
+                        browser.get('app/index.html#/openActivities');
                         expect(element(by.css('.referenceCodeList')).getText()).toContain('Hans');
                     });
+                });
+            });
+
+            describe('list of open activity links', function() {
+                beforeEach(function() {
+                    browser.get('app/index.html#/openActivities');
+                });
+
+                it('shows the list of open activities when browsing to /openActivities', function() {
+                    expect(ptor.getCurrentUrl()).toMatch(/\/openActivities/);
+
+                    expect(element.all(by.css('.referenceCodeList li')).count()).toBeGreaterThan(0);
+
+                    // Should have the reference code that is unused
+                    expect(element(by.css('.referenceCodeList')).getText()).toContain('OiWCrB');
                 });
             });
 

@@ -11,6 +11,7 @@
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
             'navigation.avatar': 'Mein Netzwerk',
+            'navigation.openActivities': 'Offene Aktivitäten',
             'form.referenceCode.placeholder': 'Referenz-Code eingeben',
             'form.referenceCode.submit': 'Code absenden',
             'message.registered': 'Registrierung erfolgreich.',
@@ -34,8 +35,8 @@
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk',
-            'referenceCodeList.title': 'Offene Aktivitäten',
-            'referenceCodeList.description': 'Referenz-Codes für alle offenen Aktivitäten.'
+            'openActivities.title': 'Offene Aktivitäten',
+            'openActivities.description': 'Referenz-Codes für alle offenen Aktivitäten.'
         };
 
         this.$get = function() {
