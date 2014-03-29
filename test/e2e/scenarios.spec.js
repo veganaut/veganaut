@@ -2,6 +2,8 @@
 'use strict';
 
 describe('scenarios', function() {
+    var MENU_DELAY = 100;
+    var menuButton;
     var ptor;
 
     /**
@@ -45,6 +47,9 @@ describe('scenarios', function() {
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
+        menuButton = element(by.css('button.menuButton'));
+        menuButton.click();
+        browser.sleep(MENU_DELAY);
         var logoutButton = element(by.css('button.navLogout'));
         logoutButton.isDisplayed().then(function(isDisplayed) {
             if (isDisplayed) {

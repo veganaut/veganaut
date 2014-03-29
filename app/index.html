@@ -10,45 +10,55 @@
 </head>
 <body>
 
-<div class="container">
-    <h1 ng-bind="'app.title' | trans"></h1>
-    <div class="dropdown">
-        <a class="dropdown-toggle menuLink">Menu</a>
-
-
-    <div class="dropdown-menu menuDropdown btn-block">
-        <button class="btn btn-default btn-block navRegister" ng-click="goToView('register')"
-         ng-hide="isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
-        <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')"
-         ng-hide="canViewGraph()" ng-bind="'navigation.login' | trans"></button>
-        <button class="btn btn-default btn-block navLogout" ng-click="logout()"
-         ng-show="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
-        <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')"
-         ng-show="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
-        <button class="btn btn-default btn-block navActivities" ng-click="goToView('openActivities')"
-         ng-show="canViewGraph()" ng-bind="'navigation.openActivities' | trans"></button>
-        <form novalidate name="referenceCodeForm" class="referenceCodeForm">
-            <div class="row">
-                <div class="col-xs-8">
-                    <input type="text" required class="form-control" ng-model="form.referenceCode"
-                     placeholder="{{ 'form.referenceCode.placeholder' | trans }}" stop-propagation/>
-                </div>
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-default btn-block" ng-disabled="referenceCodeForm.$invalid"
-                     ng-click="submitReferenceCode()" ng-bind="'form.referenceCode.submit' | trans"></button>
-                </div>
+<header class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle menuButton" ng-click="menuShown = !menuShown">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span class="navbar-brand" href="#" ng-bind="'app.title' | trans"></span>
             </div>
-        </form>
+            <nav class="collapse" collapse="!menuShown">
+                <button class="btn btn-default btn-block navRegister" ng-click="goToView('register')"
+                 ng-hide="isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
+                <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')"
+                 ng-hide="canViewGraph()" ng-bind="'navigation.login' | trans"></button>
+                <button class="btn btn-default btn-block navLogout" ng-click="logout()"
+                 ng-show="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
+                <button class="btn btn-default btn-block navGraph" ng-click="goToView('socialGraph')"
+                 ng-show="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
+                <button class="btn btn-default btn-block navActivities" ng-click="goToView('openActivities')"
+                 ng-show="canViewGraph()" ng-bind="'navigation.openActivities' | trans"></button>
+            </nav>
+        </div>
     </div>
-    </div>
+</header>
 
-
+<div class="container mainContainer">
+    <form novalidate name="referenceCodeForm" class="referenceCodeForm">
+        <div class="row">
+            <div class="col-xs-8">
+                <input type="text" required class="form-control" ng-model="form.referenceCode"
+                 placeholder="{{ 'form.referenceCode.placeholder' | trans }}" stop-propagation/>
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-default btn-block" ng-disabled="referenceCodeForm.$invalid"
+                 ng-click="submitReferenceCode()" ng-bind="'form.referenceCode.submit' | trans"></button>
+            </div>
+        </div>
+    </form>
     <alert ng-repeat="alert in getAlerts()" type="alert.type" close="closeAlert(alert)" class="mainAlert">
         <span ng-bind="alert.message"></span>
     </alert>
 
     <div ng-view></div>
 </div>
+
+<div class="modal-backdrop in menuBackdrop" ng-show="menuShown" ng-click="menuShown = false"></div>
 
 <!-- TODO: concat & uglify all that -->
 <script src="lib/angular/angular.js"></script>

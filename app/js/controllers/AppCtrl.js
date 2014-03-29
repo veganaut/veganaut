@@ -4,12 +4,15 @@
     controllersModule.controller('AppCtrl', ['$scope', '$location', 'backend', 'alertProvider',
         function($scope, $location, backend, alertProvider) {
             $scope.goToView = function(view) {
+                $scope.menuShown = false;
                 $location.path(view);
             };
 
             // Expose some backend states
             $scope.isLoggedIn = backend.isLoggedIn;
             $scope.canViewGraph = backend.canViewGraph;
+
+            $scope.menuShown = false;
 
             $scope.logout = function() {
                 backend.logout()
@@ -24,6 +27,7 @@
             $scope.closeAlert = alertProvider.removeAlert;
 
             $scope.submitReferenceCode = function() {
+                $scope.menuShown = false;
                 backend.submitReferenceCode($scope.form.referenceCode)
                     .success(function() {
                         alertProvider.addAlert('Successfully submitted reference code', 'success');
