@@ -6,7 +6,7 @@
      */
     servicesModule.provider('localeProvider', function() {
         var translations = {
-            'app.title': 'veganaut',
+            'app.title': 'veganaut.net',
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
