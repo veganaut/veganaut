@@ -6,7 +6,7 @@
      */
     servicesModule.provider('localeProvider', function() {
         var translations = {
-            'app.title': 'veganaut',
+            'app.title': 'veganaut.net',
             'navigation.register': 'Registrieren',
             'navigation.login': 'Login',
             'navigation.logout': 'Logout',
@@ -30,8 +30,6 @@
             'activityLink.form.targetName': 'Mit wem? / Für wen?',
             'activityLink.label.targetName': 'Mit / Für',
             'activityLink.form.choose': 'Was?',
-            'activityLink.form.location': 'Wo?',
-            'activityLink.form.startTime': 'Wann? (Format: JJJJ-MM-TT)',
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk',

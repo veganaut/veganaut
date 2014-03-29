@@ -4,14 +4,36 @@
 </g>
 
 <div class="nodeInfo" ng-show="selectedNode">
-  Selected: <span ng-bind="selectedNode.fullName"></span>,
-  type: <span ng-bind="selectedNode.type"></span>,
-  team: <span ng-bind="selectedNode.team"></span>,
+    <span ng-hide="selectedNode.type==='dummy'" class="badge team-{{selectedNode.team}}">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <span ng-bind="selectedNode.fullName"></span>
+    </span>
+    <span class="badge">
+        <span ng-show="selectedNode.type==='user'">
+            <span class="glyphicon glyphicon-user"></span>
+            User
+        </span>
+        <span ng-show="selectedNode.type==='maybe'">
+            <span class="glyphicon glyphicon-question-sign"></span>
+            Maybe
+        </span>
+        <span ng-show="selectedNode.type==='baby'" >
+            <span class="glyphicon glyphicon-heart-empty"></span>
+            Baby
+        </span>
+        <span ng-show="selectedNode.type==='dummy'" >
+            <span class="glyphicon glyphicon-asterisk"></span>
+            Create Invitation
+        </span>
+    </span>
+
+    <span ng-show="selectedNode.captured" class="badge captured"><span class="glyphicon glyphicon-star-empty"></span>Captured</span>
+
 </div>
 <div class="linkInfo" ng-show="selectedLink">
     <!-- TODO: translate -->
-  Activities links from <span ng-bind="selectedLink.source.fullName"></span>
-  to <span ng-bind="selectedLink.target.fullName"></span>.
-  Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
-  <span ng-bind="selectedLink.openActivities"></span> open.
+    Activities links from <span ng-bind="selectedLink.source.fullName"></span>
+    to <span ng-bind="selectedLink.target.fullName"></span>.
+    Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
+    <span ng-bind="selectedLink.openActivities"></span> open.
 </div>
