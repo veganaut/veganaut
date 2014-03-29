@@ -2,6 +2,27 @@
     'use strict';
 
     /**
+     * Node Class
+     * @param nodeData
+     * @constructor
+     */
+    var Node = function(nodeData) {
+        for (var key in nodeData) {
+            if (nodeData.hasOwnProperty(key)) {
+                this[key] = nodeData[key];
+            }
+        }
+    };
+
+    /**
+     * Returns whether this node is the 'me' node
+     * @returns {boolean}
+     */
+    Node.prototype.isMe = function() {
+        return this.relation === 'me';
+    };
+
+    /**
      * nodeProvider provides the nodes and links for the social graph
      */
     servicesModule.provider('nodeProvider', function() {
@@ -26,7 +47,7 @@
                                 if (data.nodes.hasOwnProperty(nodeId)) {
                                     // TODO: Mock, until backend delivers attribute
                                     data.nodes[nodeId].captured = (Math.random() > 0.5);
-                                    nodes.push(data.nodes[nodeId]);
+                                    nodes.push(new Node(data.nodes[nodeId]));
                                     nodeIdToIndexMap[nodeId] = nodes.length - 1;
                                 }
                             }
@@ -42,7 +63,7 @@
                             // Add a dummy
                             nodes.push({
                                 fullName: 'Mister Dummy',
-                                type: 'dummy',
+                                type: 'dummy'
                             });
 
                             // Or two
