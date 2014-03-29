@@ -109,8 +109,8 @@ describe('scenarios', function() {
 
                 it('nodes should have teams', function() {
                     // Check that the graph has the correct elements
-                    expect(element(by.css('social-graph svg .node.teamBlue')).isPresent()).toBe(true);
-                    expect(element(by.css('social-graph svg .node.teamGreen')).isPresent()).toBe(true);
+                    expect(element(by.css('social-graph svg .node.team-blue')).isPresent()).toBe(true);
+                    expect(element(by.css('social-graph svg .node.team-green')).isPresent()).toBe(true);
                 });
 
                 describe('activity link form', function() {

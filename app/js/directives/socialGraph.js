@@ -13,7 +13,7 @@
          * @returns {boolean}
          */
         var isMe = function(node) {
-            return node.type === 'me';
+            return node.relation === 'me';
         };
 
         /**
@@ -44,9 +44,15 @@
                  * @returns {string}
                  */
                 var getNodeClasses = function(node) {
-                    var klass = 'node ' + node.type;
+                    var klass = 'node ';
+                    if (node.relation === 'friend' || node.type === 'dummy') {
+                        klass += node.type;
+                    }
+                    else {
+                        klass += node.relation;
+                    }
                     if (typeof node.team !== 'undefined') {
-                        klass += ' team' + node.team.charAt(0).toUpperCase() + node.team.slice(1);
+                        klass += ' team-' + node.team;
                     }
                     if (node === scope.selectedNode) {
                         klass += ' selected';
@@ -71,7 +77,7 @@
                     if (isMe(link.target) || isMe(link.source)) {
                         klass += ' mine';
                     }
-                    if (link.target.type === 'friendOfFriend' || link.source.type === 'friendOfFriend') {
+                    if (link.target.relation === 'friendOfFriend' || link.source.relation === 'friendOfFriend') {
                         klass += ' friendOfFriend';
                     }
                     if (link.completedActivities > 0) {
@@ -120,7 +126,7 @@
                         }
 
                         // The 'me' node should never move
-                        if (node.type === 'me') {
+                        if (isMe(node)) {
                             node.fixed = true;
                         }
                     }
