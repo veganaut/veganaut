@@ -2,7 +2,7 @@
 
 # Some sanity checks to see whether the prerequisites are running
 for process in scripts/web-server.js app.js e2eBridge.js; do
-    if ! pgrep -qf $process; then
+    if ! pgrep -f $process > /dev/null; then
         echo "Could not find any process running $process."
         echo "Please start it manually or use scripts/run-all.sh"
         exit 1
