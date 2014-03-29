@@ -50,6 +50,15 @@ Go to [http://localhost:8000/app/index.html](http://localhost:8000/app/index.htm
 as foo@bar.baz with password foobar.
 
 
+Code Quality Tools
+------------------
+
+Run JSHint like this:
+
+    (cd monkey-face; ./node_modules/.bin/jshint -c .jshintrc app/js test/e2e test/unit)
+    (cd monkey-tail; ./node_modules/.bin/jshint -c .jshintrc app test)
+
+
 Running Tests
 -------------
 

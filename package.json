@@ -8,6 +8,7 @@
         "karma" : "0.10.x",
         "karma-jasmine" : "0.1.x",
         "karma-ng-scenario" : "0.1.x",
-        "less": "1.6.x"
+        "less": "1.6.x",
+        "jshint": "2.4.1"
     }
 }
