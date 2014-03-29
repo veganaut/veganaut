@@ -104,7 +104,9 @@ describe('referenceCodes', function() {
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
 
-            expect(element.all(by.css('.alert-success')).count()).toBe(1);
+            expect(element.all(by.css('.alert-success')).count())
+                .toBe(1, 'a success message should be displayed')
+            ;
             expect(element.all(by.css('social-graph svg .link.completed')).count())
                 .toBe(1, 'a new completed link should have been added')
             ;

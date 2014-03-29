@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Some sanity checks to see whether the prerequisites are running
+for process in scripts/web-server.js app.js e2eBridge.js; do
+    if ! pgrep -qf $process; then
+        echo "Could not find any process running $process."
+        echo "Please start it manually or use scripts/run-all.sh"
+        exit 1
+    fi
+done
+
 # Define reasonable set of browsers in case we are running manually from commandline
 if [[ -z "$BROWSERS" ]]; then
   BROWSERS="Firefox"
