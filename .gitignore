@@ -3,3 +3,4 @@ node_modules/
 app/css/master.css
 log/
 mongodb/
+tests.out
