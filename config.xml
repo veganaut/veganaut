@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+ xmlns:gap = "http://phonegap.com/ns/1.0"
+ id = "net.veganaut.v1"
+ versionCode = "1"
+ version = "0.0.1">
+
+    <name>Veganaut</name>
+    <description>Gamification platform for the veg*n movement</description>
+
+    <author email="leugger.tobias@web.de">Tobias Leugger</author>
+
+    <!-- Settings for all systems -->
+    <preference name="permissions" value="none" />
+    <preference name="phonegap-version" value="3.1.0" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+
+    <!-- iOS settings -->
+    <preference name="prerendered-icon" value="true" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="false" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="auto-hide-splash-screen" value="true" />
+
+    <!-- Android settings -->
+    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-installLocation" value="auto" />
+
+    <!-- Only build for these systems -->
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+    <gap:platform name="winphone" />
+
+    <!-- Deny access to all external resources but the backend -->
+    <access origin="http://veganaut.net:3000" />
+    <access origin="http://veganaut.net" />
+</widget>
