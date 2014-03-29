@@ -34,5 +34,5 @@
     <gap:platform name="winphone" />
 
     <!-- Deny access to all external resources but the backend -->
-    <access origin="*" />
+    <access origin="api.veganaut.net" />
 </widget>
