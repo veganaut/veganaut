@@ -24,7 +24,7 @@
                             // We need an array
                             for (var nodeId in data.nodes) {
                                 if (data.nodes.hasOwnProperty(nodeId)) {
-                                    //TODO Hack bis Backend die Auszeichnung übernimmt
+                                    // TODO: Mock, until backend delivers attribute
                                     data.nodes[nodeId].captured = (Math.random() > 0.5);
                                     nodes.push(data.nodes[nodeId]);
                                     nodeIdToIndexMap[nodeId] = nodes.length - 1;
