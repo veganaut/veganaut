@@ -1,3 +1,22 @@
+@greenBaseColour: #49b34c;
+@blueBaseColour: #4444b3;
+
+@greenDarkColour: darken(@greenBaseColour, 20%);
+@greenXhighColour: @greenBaseColour;
+@greenHighColour: lighten(@greenBaseColour, 7%);
+@greenMedColour: lighten(@greenBaseColour, 14%);
+@greenLowColour: lighten(@greenBaseColour, 21%);
+@greenXlowColour: lighten(@greenBaseColour, 28%);
+
+@blueDarkColour: darken(@blueBaseColour, 20%);
+@blueXhighColour: @blueBaseColour;
+@blueHighColour: lighten(@blueBaseColour, 7%);
+@blueMedColour: lighten(@blueBaseColour, 14%);
+@blueLowColour: lighten(@blueBaseColour, 21%);
+@blueXlowColour: lighten(@blueBaseColour, 28%);
+
+@passiveColour: #dbdbdb;
+
 // Nav bar
 .referenceCodeForm {
     margin: 5px 0;
@@ -51,66 +70,79 @@
 }
 
 .node {
-    stroke: #fff;
-    stroke-width: 1.5px;
+    &.type-maybe, &.type-dummy {
+        fill: @passiveColour;
+    }
+
+    &.team-green {
+        &.type-baby {
+            fill: @greenXlowColour;
+        }
+        &.type-user {
+            &.balance-xlow {
+                fill: @greenXlowColour
+            }
+            &.balance-low {
+                fill: @greenLowColour
+            }
+            &.balance-med {
+                fill: @greenMedColour
+            }
+            &.balance-high {
+                fill: @greenHighColour
+            }
+            &.balance-xhigh {
+                fill: @greenXhighColour
+            }
+        }
+    }
 
     &.team-blue {
-        &.me {
-            fill: #4444b3;
+        &.type-baby {
+            fill: @blueXlowColour;
         }
-        &.user {
-            fill: #6162b3;
-        }
-        &.baby {
-            fill: #8d8eb3;
-        }
-        &.maybe {
-            fill: #bdbef0;
-        }
-        &.friendOfFriend {
-            fill: #33335e;
-        }
-    }
-    &.team-green {
-        &.me {
-            fill: #156028;
-        }
-        &.user {
-            fill: #336f42;
-        }
-        &.baby {
-            fill: #729c79;
-        }
-        &.maybe {
-            fill: #bbd7c1;
-        }
-        &.friendOfFriend {
-            fill: #21462a;
+        &.type-user {
+            &.balance-xlow {
+                fill: @blueXlowColour
+            }
+            &.balance-low {
+                fill: @blueLowColour
+            }
+            &.balance-med {
+                fill: @blueMedColour
+            }
+            &.balance-high {
+                fill: @blueHighColour
+            }
+            &.balance-xhigh {
+                fill: @blueXhighColour
+            }
         }
     }
 
-    &.dummy {
-        fill: #eeeeee;
-    }
     &.captured {
+        stroke-width: 5px;
         &.team-green {
-            stroke: #4444b3;
+            stroke: @blueBaseColour;
             stroke-dasharray: 3,5;
         }
         &.team-blue {
-            stroke: #156028;
+            stroke: @greenBaseColour;
             stroke-dasharray: 3,5;
         }
 
-        stroke-width: 5px;
         &.selected {
-            stroke-width: 8px;
+            stroke-dasharray: 5,3;
         }
     }
-    &.notcaptured {
-        &.selected {
-            stroke: #000;
-            stroke-width: 3px;
+    &.notcaptured.selected {
+        stroke: #000;
+        stroke-width: 3px;
+        &.team-green {
+            stroke: @greenDarkColour;
+        }
+        &.team-blue {
+            stroke: @blueDarkColour;
         }
     }
 }
@@ -136,10 +168,10 @@
 
 .badge {
     &.team-blue, &.badgeOwnPoints-blue, &.badgeOtherPoints-green {
-        background-color: #4444b3;
+        background-color: @blueBaseColour;
     }
     &.team-green, &.badgeOwnPoints-green, &.badgeOtherPoints-blue {
-        background-color: #156028;
+        background-color: @greenBaseColour;
     }
 }
 

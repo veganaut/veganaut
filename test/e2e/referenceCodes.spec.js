@@ -40,12 +40,13 @@ describe('referenceCodes', function() {
 
             // Should show the correct social graph
             expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph .node.me')).count()).toBe(1, 'me node');
-            expect(element.all(by.css('social-graph .node.maybe')).count()).toBe(0, 'maybe node');
-            expect(element.all(by.css('social-graph .node.baby')).count()).toBe(0, 'baby node');
-            expect(element.all(by.css('social-graph .node.user')).count()).toBe(1, 'user node');
-            expect(element.all(by.css('social-graph .node.dummy')).count()).toBe(2, 'dummy node');
-            expect(element.all(by.css('social-graph .node.friendOfFriend')).count()).toBe(2, 'friendOfFriend node');
+            expect(element.all(by.css('social-graph .node.relation-me')).count()).toBe(1, 'me node');
+            expect(element.all(by.css('social-graph .node.relation-friend')).count()).toBe(1, 'friend node');
+            expect(element.all(by.css('social-graph .node.relation-friendOfFriend')).count()).toBe(2, 'friendOfFriend node');
+            expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(0, 'maybe node');
+            expect(element.all(by.css('social-graph .node.type-baby')).count()).toBe(2, 'baby node');
+            expect(element.all(by.css('social-graph .node.type-user')).count()).toBe(2, 'user node');
+            expect(element.all(by.css('social-graph .node.type-dummy')).count()).toBe(2, 'dummy node');
 
             expect(element.all(by.css('social-graph .link')).count()).toBe(3, 'total links');
             expect(element.all(by.css('social-graph .link.completed')).count()).toBe(1, 'completed links');
@@ -117,7 +118,7 @@ describe('referenceCodes', function() {
                 .toBe(1, 'a new completed link should have been added')
             ;
 
-            expect(element.all(by.css('social-graph .node.user')).count())
+            expect(element.all(by.css('social-graph .node.relation-friend')).count())
                 .toBe(1, 'a new friend should have been added')
             ;
 
@@ -143,11 +144,11 @@ describe('referenceCodes', function() {
             expect(element.all(by.css('social-graph .link.completed')).count())
                 .toBe(2, 'should have two completed links')
             ;
-            expect(element.all(by.css('social-graph .node.user')).count())
-                .toBe(2, 'should now know two users')
+            expect(element.all(by.css('social-graph .node.type-user')).count())
+                .toBe(3, 'should now have three users: me (bob), alice, frank')
             ;
-            expect(element.all(by.css('social-graph .node.maybe')).count())
-                .toBe(0, 'should have no more maybe nodes')
+            expect(element.all(by.css('social-graph .node.relation-friend.type-maybe')).count())
+                .toBe(0, 'should have no more friend maybe nodes')
             ;
         });
     });

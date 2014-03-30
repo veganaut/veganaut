@@ -37,25 +37,49 @@
                  */
                 var getNodeClasses = function(node) {
                     var klass = 'node ';
-                    if (node.relation === 'friend' || node.type === 'dummy') {
-                        klass += node.type;
+                    if (typeof node.relation !== 'undefined') {
+                        klass += ' relation-' + node.relation;
                     }
-                    else {
-                        klass += node.relation;
+
+                    if (typeof node.type !== 'undefined') {
+                        klass += ' type-' + node.type;
                     }
+
                     if (typeof node.team !== 'undefined') {
                         klass += ' team-' + node.team;
                     }
-                    if (node === scope.selectedNode) {
-                        klass += ' selected';
-                    }
+
                     if (node.isCaptured === true) {
                         klass += ' captured';
                     }
                     else {
                         klass += ' notcaptured';
                     }
+
+                    var balanceMapping = node.getBalanceMapping();
+                    if (typeof balanceMapping !== 'undefined') {
+                        klass += ' balance-' + balanceMapping;
+                    }
+
+                    if (node === scope.selectedNode) {
+                        klass += ' selected';
+                    }
+
                     return klass;
+                };
+
+                /**
+                 * TODO
+                 * @param node
+                 * @returns {number}
+                 */
+                var getNodeRadius = function(node) {
+                    if (node.isMaybe() || node.isBaby()) {
+                        return 10;
+                    }
+                    else {
+                        return 15;
+                    }
                 };
 
                 /**
@@ -79,6 +103,16 @@
                         klass += ' selected';
                     }
                     return klass;
+                };
+
+                var getMarkerEnd = function(link) {
+                    var node = link.target;
+                    if (node.isMaybe() || node.isBaby()) {
+                        return 'url(#pointerToSmall)';
+                    }
+                    else {
+                        return 'url(#pointerToBig)';
+                    }
                 };
 
                 /**
@@ -153,12 +187,16 @@
 
                         // Add some end-marker style
                         svg.append('defs').selectAll('marker')
-                            .data(['pointer'])
+                            .data(['pointerToSmall', 'pointerToBig'])
                             .enter().append('marker')
                             .attr('id', function(d) { return d; })
                             .attr('viewBox', '0 -5 10 10')
-                            .attr('refX', 35)
-                            .attr('refY', -3.5)
+                            .attr('refX', function(d) {
+                                return (d === 'pointerToSmall') ? 25 : 35;
+                            })
+                            .attr('refY', function(d) {
+                                return (d === 'pointerToSmall') ? -1 : -3.5;
+                            })
                             .attr('markerWidth', 6)
                             .attr('markerHeight', 6)
                             .attr('markerUnits', 'userSpaceOnUse')
@@ -216,7 +254,7 @@
                         .data(links)
                         .enter().append('path')
                         .attr('class', getLinkClasses)
-                        .attr('marker-end', 'url(#pointer)')
+                        .attr('marker-end', getMarkerEnd)
                         .style('stroke-width', getLinkWidth)
                         .on('click', onLinkClick);
 
@@ -224,7 +262,7 @@
                         .data(nodes)
                         .enter().append('circle')
                         .attr('class', getNodeClasses)
-                        .attr('r', 15)
+                        .attr('r', getNodeRadius)
                         .on('click', onNodeClick);
 
                     svgNodes.append('title').text(function(d) {

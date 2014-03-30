@@ -5,7 +5,7 @@
 
 <div class="nodeInfo" ng-show="selectedNode">
     <!-- TODO: translate -->
-    <span ng-hide="selectedNode.isDummy()" class="badge team-{{selectedNode.team}}">
+    <span ng-show="selectedNode.fullName" class="badge team-{{selectedNode.team}}">
         <span class="glyphicon glyphicon-eye-open"></span>
         <span ng-bind="selectedNode.fullName"></span>
     </span>
@@ -29,7 +29,7 @@
         <span ng-bind="'person.captured'|trans"></span>
     </span>
 
-    <span ng-show="selectedNode.isUser()">
+    <span ng-show="selectedNode.hasBalance()">
         <span ng-bind="'person.balance'|trans"></span>:
         <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
         <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>

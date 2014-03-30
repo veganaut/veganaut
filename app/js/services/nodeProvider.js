@@ -14,6 +14,14 @@
         }
     };
 
+    Node.BALANCE_MAPPING = [
+        [2, 'xlow'],
+        [3, 'low'],
+        [5, 'med'],
+        [8, 'high'],
+        [Infinity, 'xhigh']
+    ];
+
     /**
      * Returns whether this Node has a 'me' relation
      * aka represents ME
@@ -66,6 +74,28 @@
      */
     Node.prototype.isDummy = function(){
         return this.type === 'dummy';
+    };
+
+    Node.prototype.hasBalance = function() {
+        return (typeof this.team !== 'undefined');
+    };
+
+    Node.prototype.getBalance = function() {
+        if (this.hasBalance()) {
+            return this.strength - this.hits;
+        }
+    };
+
+    Node.prototype.getBalanceMapping = function() {
+        var balance = this.getBalance();
+        for (var i = 0; i < Node.BALANCE_MAPPING.length; i++) {
+            if (balance < Node.BALANCE_MAPPING[i][0]) {
+                return Node.BALANCE_MAPPING[i][1];
+            }
+        }
+
+        // Could not find balance mapping
+        return undefined;
     };
 
     /**

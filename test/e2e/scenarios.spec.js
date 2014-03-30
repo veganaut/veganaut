@@ -3,6 +3,7 @@
 
 describe('scenarios', function() {
     var MENU_DELAY = 100;
+    var GRAPH_DELAY = 800;
     var menuButton;
     var ptor;
 
@@ -100,12 +101,13 @@ describe('scenarios', function() {
                     expect(element(by.css('social-graph svg')).isPresent()).toBe(true);
 
                     // Check that the graph has the correct elements
-                    expect(element.all(by.css('social-graph .node.me')).count()).toBe(1, 'me node');
-                    expect(element.all(by.css('social-graph .node.maybe')).count()).toBe(1, 'maybe node');
-                    expect(element.all(by.css('social-graph .node.baby')).count()).toBe(1, 'baby node');
-                    expect(element.all(by.css('social-graph .node.user')).count()).toBe(1, 'user node');
-                    expect(element.all(by.css('social-graph .node.dummy')).count()).toBe(2, 'dummy node');
-                    expect(element.all(by.css('social-graph .node.friendOfFriend')).count()).toBe(1, 'friendOfFriend node');
+                    expect(element.all(by.css('social-graph .node.relation-me')).count()).toBe(1, 'me node');
+                    expect(element.all(by.css('social-graph .node.relation-friend')).count()).toBe(3, 'friend node');
+                    expect(element.all(by.css('social-graph .node.relation-friendOfFriend')).count()).toBe(1, 'friendOfFriend node');
+                    expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(2, 'maybe node');
+                    expect(element.all(by.css('social-graph .node.type-baby')).count()).toBe(1, 'baby node');
+                    expect(element.all(by.css('social-graph .node.type-user')).count()).toBe(2, 'user node');
+                    expect(element.all(by.css('social-graph .node.type-dummy')).count()).toBe(2, 'dummy node');
 
                     expect(element.all(by.css('social-graph .link')).count()).toBe(4, 'total links');
                     expect(element.all(by.css('social-graph .link.completed')).count()).toBe(2, 'completed links');
@@ -122,12 +124,14 @@ describe('scenarios', function() {
                     var someDummy;
                     var inviteButton;
                     beforeEach(function() {
-                        someDummy = element.all(by.css('social-graph circle.dummy')).first();
+                        var dummies = element.all(by.css('social-graph .node.type-dummy'));
+                        expect(dummies.count()).toBeGreaterThan(0, 'should have at least one dummy');
+                        someDummy = dummies.first();
                         inviteButton = element(by.css('button.addActivity'));
                     });
 
                     it('should deselect node when clicking dummy node twice', function() {
-                        ptor.sleep(500);
+                        ptor.sleep(GRAPH_DELAY);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
                         expect(element.all(by.css('social-graph .node.selected')).count()).toBe(1, 'Dummy Node should be selected');
@@ -140,7 +144,7 @@ describe('scenarios', function() {
 
                     it('should go to /activity when selecting dummy node and click invite', function() {
                         // On the first click, stay on socialGraph
-                        ptor.sleep(500);
+                        ptor.sleep(GRAPH_DELAY);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
 
@@ -152,9 +156,9 @@ describe('scenarios', function() {
 
                     it('should be possible to add a new activity link with a dummy node', function() {
                         // Verify the number of nodes before adding new activity link
-                        ptor.sleep(500);
-                        expect(element.all(by.css('social-graph circle')).count()).toBe(7);
-                        expect(element.all(by.css('social-graph circle.maybe')).count()).toBe(1);
+                        ptor.sleep(GRAPH_DELAY);
+                        expect(element.all(by.css('social-graph .node')).count()).toBe(7, 'total nodes');
+                        expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(2, 'maybe nodes');
 
                         // Browse to the activity link form
                         someDummy.click();
@@ -169,8 +173,8 @@ describe('scenarios', function() {
 
                         // Check that the social graph has one more node than before
                         browser.get('app/index.html#/socialGraph');
-                        expect(element.all(by.css('social-graph circle')).count()).toBe(8);
-                        expect(element.all(by.css('social-graph circle.maybe')).count()).toBe(2);
+                        expect(element.all(by.css('social-graph .node')).count()).toBe(8, 'total nodes after');
+                        expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(3, 'maybe nodes after');
 
                         // Should show the new open activity link
                         browser.get('app/index.html#/openActivities');
