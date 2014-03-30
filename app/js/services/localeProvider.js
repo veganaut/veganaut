@@ -18,6 +18,7 @@
             'register.title': 'Registrieren',
             'register.form.email': 'email@beispiel.com',
             'register.form.fullName': 'Vorname und Nachname',
+            'register.form.role': 'Rolle auswählen',
             'register.form.password': 'Passwort',
             'register.form.passwordRepeat': 'Nochmals Passwort',
             'register.form.submit': 'Registrieren',

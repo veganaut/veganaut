@@ -3,10 +3,14 @@
 
     controllersModule.controller('RegisterCtrl', ['$scope', 'backend', 'alertProvider',
         function($scope, backend, alertProvider) {
+
+            // TODO: move somewhere more global
+            $scope.roles = ['rookie', 'scout', 'veteran'];
+
             $scope.submit = function() {
                 // TODO: get the form to already validate that password and password repeat should be the same
                 if ($scope.form.password === $scope.form.passwordRepeat) {
-                    backend.register($scope.form.email, $scope.form.fullName, $scope.form.password)
+                    backend.register($scope.form.email, $scope.form.fullName, $scope.form.password, $scope.form.role)
                         .success(function() {
                             alertProvider.addAlert('Registered successfully', 'success');
 

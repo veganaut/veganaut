@@ -75,13 +75,15 @@
          * @param email
          * @param fullName
          * @param password
+         * @param role: rookie, scout or veteran
          * @returns {promise}
          */
-        var register = function(email, fullName, password) {
+        var register = function(email, fullName, password, role) {
             var postData = {
                 email: email,
                 fullName: fullName,
-                password: password
+                password: password,
+                role: role
             };
 
             // If we already have a person id, register as that person

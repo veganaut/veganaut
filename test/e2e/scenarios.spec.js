@@ -228,10 +228,10 @@ describe('scenarios', function() {
 
             element(by.model('form.email')).sendKeys('cody@testerburger.com');
             element(by.model('form.fullName')).sendKeys('Cody Testerburger');
+            selectOption(by.model('form.role'), 'Scout');
             element(by.model('form.password')).sendKeys('so secure brah');
             element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
-
-            expect(element.all(by.css('.alert-success')).count()).toBe(1);
+            expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
             // Should show a social graph with me and two dummies and no connections
             expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
