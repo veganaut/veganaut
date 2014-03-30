@@ -33,8 +33,15 @@
             'activityLink.form.submit': 'Speichern und Weiter',
             'message.activityLinkCreated': 'Aktivität erstellt.',
             'socialGraph.title': 'Mein Netzwerk',
+            'action.socialGraph.createActivityLink': 'Aktivität erstellen',
             'openActivities.title': 'Offene Aktivitäten',
-            'openActivities.description': 'Referenz-Codes für alle offenen Aktivitäten.'
+            'openActivities.description': 'Referenz-Codes für alle offenen Aktivitäten.',
+            'person.role.veteran': 'Veteran',
+            'person.role.scout': 'Scout',
+            'person.role.rookie': 'Rookie',
+            'person.type.baby': 'Baby',
+            'person.type.maybe': 'Maybe',
+            'person.captured': 'Gefangen'
         };
 
         this.$get = function() {

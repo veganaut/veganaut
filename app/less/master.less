@@ -50,15 +50,6 @@
     overflow: visible;
 }
 
-.badge.team-blue{
-    background-color: #4444b3;
-}
-
-.badge.team-green{
-    background-color: #156028;
-}
-
-
 .node {
     stroke: #fff;
     stroke-width: 1.5px;
@@ -124,11 +115,6 @@
     }
 }
 
-.nodeInfo {
-    position: absolute;
-    margin: -45px 0 0 15px ;
-}
-
 .link {
     fill: none;
     stroke: #a4b2b3;
@@ -143,6 +129,19 @@
     stroke: #28b34c;
 }
 
+.nodeInfo {
+    position: absolute;
+    margin: -45px 0 0 15px ;
+}
+
+.badge {
+    &.team-blue, &.badgeOwnPoints-blue, &.badgeOtherPoints-green {
+        background-color: #4444b3;
+    }
+    &.team-green, &.badgeOwnPoints-green, &.badgeOtherPoints-blue {
+        background-color: #156028;
+    }
+}
 
 // Make sure ng-cloak is around even if angular is not loaded yet
 .ng-cloak {

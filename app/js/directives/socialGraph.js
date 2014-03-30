@@ -49,7 +49,7 @@
                     if (node === scope.selectedNode) {
                         klass += ' selected';
                     }
-                    if (node.captured === true) {
+                    if (node.isCaptured === true) {
                         klass += ' captured';
                     }
                     else {
