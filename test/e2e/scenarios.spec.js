@@ -120,19 +120,34 @@ describe('scenarios', function() {
 
                 describe('activity link form', function() {
                     var someDummy;
+                    var inviteButton;
                     beforeEach(function() {
                         someDummy = element.all(by.css('social-graph svg circle.dummy')).first();
+                        inviteButton = element(by.css('button.addActivity'));
                     });
 
-                    it('should go to /activity when clicking dummy node twice', function() {
+                    it('should deselect node when clicking dummy node twice', function() {
+                        ptor.sleep(500);
+                        someDummy.click();
+                        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
+                        expect(element.all(by.css('social-graph svg .node.selected')).count()).toBe(1, 'Dummy Node should be selected');
+
+                        // On the second click, go to activity
+                        someDummy.click();
+                        expect(element.all(by.css('social-graph svg .node.selected')).count()).toBe(0, 'Dummy Node should be deselected');
+                        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/,'We should now still be on SocialGraph Page');
+                    });
+
+                    it('should go to /activity when selecting dummy node and click invite', function() {
                         // On the first click, stay on socialGraph
                         ptor.sleep(500);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
 
-                        // On the second click, go to activity
-                        someDummy.click();
-                        expect(ptor.getCurrentUrl()).toMatch(/\/activity/);
+                        expect(element.all(by.css('social-graph svg .node.selected')).count()).toBe(1,'Dummy Node should be selected');
+                        // On the click addActivity Button, go to activity
+                        inviteButton.click();
+                        expect(ptor.getCurrentUrl()).toMatch(/\/activity/, 'We should now be on Activity Page');
                     });
 
                     it('should be possible to add a new activity link with a dummy node', function() {
@@ -143,7 +158,8 @@ describe('scenarios', function() {
 
                         // Browse to the activity link form
                         someDummy.click();
-                        someDummy.click();
+                        // On the click addActivity Button, go to activity
+                        inviteButton.click();
 
                         selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
                         element(by.model('form.targetName')).sendKeys('Hans\n');

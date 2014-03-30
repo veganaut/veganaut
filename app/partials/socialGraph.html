@@ -4,31 +4,30 @@
 </g>
 
 <div class="nodeInfo" ng-show="selectedNode">
-    <span ng-hide="selectedNode.type==='dummy'" class="badge team-{{selectedNode.team}}">
+    <!-- TODO: translate -->
+    <span ng-hide="selectedNode.isDummy()" class="badge team-{{selectedNode.team}}">
         <span class="glyphicon glyphicon-eye-open"></span>
         <span ng-bind="selectedNode.fullName"></span>
     </span>
-    <span class="badge">
-        <span ng-show="selectedNode.type==='user'">
+    <span ng-hide="selectedNode.isDummy()" class="badge">
+        <span ng-show="selectedNode.isUser()">
             <span class="glyphicon glyphicon-user"></span>
             User
         </span>
-        <span ng-show="selectedNode.type==='maybe'">
+        <span ng-show="selectedNode.isMaybe()">
             <span class="glyphicon glyphicon-question-sign"></span>
             Maybe
         </span>
-        <span ng-show="selectedNode.type==='baby'" >
+        <span ng-show="selectedNode.isBaby()" >
             <span class="glyphicon glyphicon-heart-empty"></span>
             Baby
         </span>
-        <span ng-show="selectedNode.type==='dummy'" >
-            <span class="glyphicon glyphicon-asterisk"></span>
-            Create Invitation
-        </span>
     </span>
 
-    <span ng-show="selectedNode.captured" class="badge captured"><span class="glyphicon glyphicon-star-empty"></span>Captured</span>
+    <span ng-show="selectedNode.captured" class="badge captured"><span class="glyphicon glyphicon-asterisk"></span>Captured</span>
 
+    <button type="button" ng-hide="selectedNode.isMe() || selectedNode.isFriendOfFriend()" class="addActivity btn btn-xs" ng-click="createActivityOnNode(selectedNode)"><span class="glyphicon glyphicon-star"></span>
+        Create Invitation</button>
 </div>
 <div class="linkInfo" ng-show="selectedLink">
     <!-- TODO: translate -->

@@ -15,11 +15,57 @@
     };
 
     /**
-     * Returns whether this node is the 'me' node
+     * Returns whether this Node has a 'me' relation
+     * aka represents ME
      * @returns {boolean}
      */
     Node.prototype.isMe = function() {
         return this.relation === 'me';
+    };
+
+    /**
+     * Returns whether this Node has a 'frientOfFriend' relation
+     * aka represents a indirect Relation to a Person
+     * @returns {boolean}
+     */
+    Node.prototype.isFriendOfFriend = function() {
+        return this.relation === 'friendOfFriend';
+    };
+
+    /**
+     * Returns whether this Node Type is a User
+     * aka Someone with a Login
+     * @returns {boolean}
+     */
+    Node.prototype.isUser = function(){
+        return this.type === 'user';
+    };
+
+    /**
+     * Returns whether this Node Type is a Maybe
+     * aka Someone who is Linked To, and has already entered a Ref Code
+     * @returns {boolean}
+     */
+    Node.prototype.isBaby = function(){
+        return this.type === 'baby';
+    };
+
+    /**
+     * Returns whether this Node Type is a Maybe
+     * aka Someone who is Linked To, but never has entered a Ref Code
+     * @returns {boolean}
+     */
+    Node.prototype.isMaybe = function(){
+        return this.type === 'maybe';
+    };
+
+    /**
+     * Returns whether this Node is a Dummy
+     * aka No One, but a an Invitation Node
+     * @returns {boolean}
+     */
+    Node.prototype.isDummy = function(){
+        return this.type === 'dummy';
     };
 
     /**
@@ -59,18 +105,18 @@
                                 link.target = nodeIdToIndexMap[link.target];
                                 links.push(link);
                             }
-
+                            // FIXME: This should not be part of the Node Model, but rather a SVG Button or similar
                             // Add a dummy
-                            nodes.push({
+                            nodes.push(new Node({
                                 fullName: 'Mister Dummy',
                                 type: 'dummy'
-                            });
+                            }));
 
                             // Or two
-                            nodes.push({
+                            nodes.push(new Node({
                                 fullName: 'Miss Dummy',
                                 type: 'dummy'
-                            });
+                            }));
 
                             cb(nodes, links);
                         })

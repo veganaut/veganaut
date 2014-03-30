@@ -7,6 +7,11 @@
                 $scope.goToView('login');
             }
 
+            $scope.createActivityOnNode = function(node) {
+                activityLinkTargetProvider.set(node);
+                $location.path('activity');
+            };
+
             $scope.$onRootScope('monkey.socialGraph.nodeAction', function(event, node) {
                 if (node) {
                     activityLinkTargetProvider.set(node);

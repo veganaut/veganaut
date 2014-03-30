@@ -7,14 +7,6 @@
     // TODO: redo the way the graph is re-created when the data changes
     // TODO: find a better way to slow down the force animation
     directivesModule.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
-        /**
-         * Checks whether the given node is the "me" node
-         * @param node
-         * @returns {boolean}
-         */
-        var isMe = function(node) {
-            return node.relation === 'me';
-        };
 
         /**
          * Makes an arced link between two points.
@@ -74,10 +66,10 @@
                  */
                 var getLinkClasses = function(link) {
                     var klass = 'link';
-                    if (isMe(link.target) || isMe(link.source)) {
+                    if (link.target.isMe() || link.source.isMe()) {
                         klass += ' mine';
                     }
-                    if (link.target.relation === 'friendOfFriend' || link.source.relation === 'friendOfFriend') {
+                    if (link.target.isFriendOfFriend() || link.source.isFriendOfFriend()) {
                         klass += ' friendOfFriend';
                     }
                     if (link.completedActivities > 0) {
@@ -126,7 +118,7 @@
                         }
 
                         // The 'me' node should never move
-                        if (isMe(node)) {
+                        if (node.isMe()) {
                             node.fixed = true;
                         }
                     }
@@ -187,7 +179,7 @@
 
                         scope.$apply(function() {
                             if (node === scope.selectedNode) {
-                                scope.$root.$emit('monkey.socialGraph.nodeAction', node);
+                                scope.selectedNode = undefined;
                             }
                             else {
                                 scope.selectedNode = node;
