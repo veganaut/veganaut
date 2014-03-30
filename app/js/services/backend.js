@@ -208,6 +208,15 @@
             return $http.get(backendUrl + '/activityLink/mine/open');
         };
 
+        /**
+         * Gets the match data
+         *
+         * @returns {promise}
+         */
+        var getMatch = function() {
+            return $http.get(backendUrl + '/match');
+        };
+
 
         /**
          * Returns this service
@@ -231,7 +240,8 @@
                 getGraph: getGraph,
                 addActivityLink: addActivityLink,
                 submitReferenceCode: submitReferenceCode,
-                getOpenActivityLinks: getOpenActivityLinks
+                getOpenActivityLinks: getOpenActivityLinks,
+                getMatch: getMatch
             };
         }];
     });

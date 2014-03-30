@@ -59,8 +59,40 @@ describe('backend service', function() {
 
         expect(typeof backend.addActivityLink).toBe('function');
 
-        // Use login
+        // Add activity link
         var req = backend.addActivityLink('Tester', { id: '1'});
+        $httpBackend.flush();
+
+        // Make sure we got a $http object
+        expect(typeof req.then).toBe('function');
+        expect(typeof req.success).toBe('function');
+        expect(typeof req.error).toBe('function');
+    }));
+
+    it('should have a getMatch method', inject(function($httpBackend, backend) {
+        // Define our expectations
+        $httpBackend.expectGET('/match')
+            .respond({
+                blue: {
+                    score: 113,
+                    users: 130,
+                    babies: 20,
+                    captured: 27
+                },
+                green: {
+                    score: 85,
+                    users: 105,
+                    babies: 18,
+                    captured: 29
+                }
+            })
+        ;
+
+
+        expect(typeof backend.getMatch).toBe('function');
+
+        // Get the match
+        var req = backend.getMatch();
         $httpBackend.flush();
 
         // Make sure we got a $http object
