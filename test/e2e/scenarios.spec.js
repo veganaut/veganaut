@@ -210,6 +210,8 @@ describe('scenarios', function() {
 
     describe('register', function() {
         it('should have a link to the register form', function() {
+            menuButton.click();
+            browser.sleep(MENU_DELAY);
             var button = element.all(by.css('.navRegister'));
             expect(button.count()).toBe(1);
 
