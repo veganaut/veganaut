@@ -51,6 +51,7 @@
             </div>
         </div>
     </form>
+    <hr />
     <alert ng-repeat="alert in getAlerts()" type="alert.type" close="closeAlert(alert)" class="mainAlert">
         <span ng-bind="alert.message"></span>
     </alert>
