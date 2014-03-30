@@ -213,8 +213,8 @@ describe('scenarios', function() {
 
             // Should show a social graph with me and two dummies and no connections
             expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph svg .node')).count()).toBe(3);
-            expect(element.all(by.css('social-graph svg .link')).count()).toBe(0);
+            expect(element.all(by.css('social-graph svg .node')).count()).toBe(3, 'total nodes');
+            expect(element.all(by.css('social-graph svg .link')).count()).toBe(0, 'total links');
         });
     });
 });
