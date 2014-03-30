@@ -18,6 +18,6 @@ fi
 ./node_modules/karma/bin/karma start config/karma-unit.conf.js --single-run --browsers $BROWSERS | tee -a tests.out
 
 cd ../monkey-tail
-./node_modules/.bin/jasmine-node test/e2e/     | tee -a ../monkey-face/tests.out
-./node_modules/.bin/jasmine-node test/models/  | tee -a ../monkey-face/tests.out
+./node_modules/.bin/jasmine-node --captureExceptions test/e2e/     | tee -a ../monkey-face/tests.out
+./node_modules/.bin/jasmine-node --captureExceptions test/models/  | tee -a ../monkey-face/tests.out
 

@@ -87,11 +87,11 @@ and run protractor in another terminal for running the tests:
 ### Backend Tests
 Backend integration (end-to-end) tests:
 
-    ./node_modules/.bin/jasmine-node test/e2e/
+    ./node_modules/.bin/jasmine-node --captureExceptions --verbose test/e2e/
 
 Backend unit tests:
 
-    ./node_modules/.bin/jasmine-node test/models/
+    ./node_modules/.bin/jasmine-node --captureExceptions --verbose test/models/
 
 ### Frontend Tests
 The frontend unit tests use [Karma](https://github.com/karma-runner/karma). Start Karma with:
