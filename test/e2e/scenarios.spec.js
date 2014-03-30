@@ -56,6 +56,9 @@ describe('scenarios', function() {
             if (isDisplayed) {
                 logoutButton.click();
             }
+            else {
+                menuButton.click();
+            }
         });
     });
 
