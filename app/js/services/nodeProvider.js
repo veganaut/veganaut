@@ -87,7 +87,7 @@
      * @returns {boolean}
      */
     Node.prototype.isSmallNode = function() {
-        return this.isMaybe() || this.isBaby();
+        return this.isMaybe() || this.isBaby() || this.isDummy();
     };
 
     /**
