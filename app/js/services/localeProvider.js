@@ -41,7 +41,8 @@
             'person.role.rookie': 'Rookie',
             'person.type.baby': 'Baby',
             'person.type.maybe': 'Maybe',
-            'person.captured': 'Gefangen'
+            'person.captured': 'Gefangen',
+            'person.balance': 'Balance'
         };
 
         this.$get = function() {

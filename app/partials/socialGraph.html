@@ -30,7 +30,7 @@
     </span>
 
     <span ng-show="selectedNode.isUser()">
-        Balance:
+        <span ng-bind="'person.balance'|trans"></span>:
         <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
         <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
     </span>
