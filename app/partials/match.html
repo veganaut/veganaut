@@ -1,5 +1,5 @@
 <div ng-controller="MatchCtrl">
-    <div class="well text-center matchScoreDisplay" ng-if="scoreData">
+    <div class="well text-center matchScoreDisplay" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
         <div class="scoreElement">
             Score:
             <span class="blueScore" ng-bind="scoreData.blue.score"></span> :
@@ -22,7 +22,7 @@
                 <span class="greenScore" ng-bind="scoreData.green.babies"></span>
             </div>
         </div>
-        <div class="showFullScoreToggle" ng-click="showFullScore = !showFullScore">
+        <div class="showFullScoreToggle">
             <span class="glyphicon glyphicon-chevron-down" ng-hide="showFullScore"></span>
             <span class="glyphicon glyphicon-chevron-up" ng-show="showFullScore"></span>
         </div>
