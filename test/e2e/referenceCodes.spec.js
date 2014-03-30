@@ -40,16 +40,16 @@ describe('referenceCodes', function() {
 
             // Should show the correct social graph
             expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(0);
-            expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(0);
-            expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2);
-            expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(2);
+            expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1, 'me node');
+            expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(0, 'maybe node');
+            expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(0, 'baby node');
+            expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1, 'user node');
+            expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2, 'dummy node');
+            expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(2, 'friendOfFriend node');
 
-            expect(element.all(by.css('social-graph svg .link')).count()).toBe(3);
-            expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(1);
-            expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(2);
+            expect(element.all(by.css('social-graph svg .link')).count()).toBe(3, 'total links');
+            expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(1, 'completed links');
+            expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(2, 'friendOfFriend links');
         });
     });
 

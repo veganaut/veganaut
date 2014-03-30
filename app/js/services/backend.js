@@ -166,7 +166,7 @@
 
             // Prepare the data to post
             var postData = {
-                targets: [target]
+                target: target
             };
 
             // Add activity if given
@@ -194,7 +194,7 @@
             return $http.post(backendUrl + '/activityLink/reference', postData)
                 .success(function(data) {
                     // TODO: validate id?
-                    personId = data.targets[0];
+                    personId = data.target;
                 });
         };
 

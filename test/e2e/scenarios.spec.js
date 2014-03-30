@@ -100,16 +100,16 @@ describe('scenarios', function() {
                     expect(element(by.css('social-graph svg')).isPresent()).toBe(true);
 
                     // Check that the graph has the correct elements
-                    expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1);
-                    expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(1);
-                    expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(1);
-                    expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1);
-                    expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2);
-                    expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(1);
+                    expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1, 'me node');
+                    expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(1, 'maybe node');
+                    expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(1, 'baby node');
+                    expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1, 'user node');
+                    expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2, 'dummy node');
+                    expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(1, 'friendOfFriend node');
 
-                    expect(element.all(by.css('social-graph svg .link')).count()).toBe(4);
-                    expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(2);
-                    expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(1);
+                    expect(element.all(by.css('social-graph svg .link')).count()).toBe(4, 'total links');
+                    expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(2, 'completed links');
+                    expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(1, 'friendOfFriend links');
                 });
 
                 it('nodes should have teams', function() {

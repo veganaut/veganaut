@@ -44,9 +44,9 @@ describe('backend service', function() {
     it('should have a addActivityLink method', inject(function($httpBackend, backend) {
         // Define our expectations
         var expectedPostData = {
-            targets: [{
+            target: {
                 fullName: 'Tester'
-            }],
+            },
             activity: {
                 id: '1'
             }

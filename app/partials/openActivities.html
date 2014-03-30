@@ -3,7 +3,7 @@
     <span ng-bind="'openActivities.description' | trans"></span>
     <ul>
         <li ng-repeat="link in openActivityLinks">
-            <span ng-bind="link.activity"></span> <span ng-repeat="target in link.targets" ng-bind="target"></span>:
+            <span ng-bind="link.activity"></span> <span ng-bind="target"></span>:
             <span ng-bind="link.referenceCode"></span>
         </li>
     </ul>
