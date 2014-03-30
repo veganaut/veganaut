@@ -40,16 +40,16 @@ describe('referenceCodes', function() {
 
             // Should show the correct social graph
             expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph svg .node.me')).count()).toBe(1, 'me node');
-            expect(element.all(by.css('social-graph svg .node.maybe')).count()).toBe(0, 'maybe node');
-            expect(element.all(by.css('social-graph svg .node.baby')).count()).toBe(0, 'baby node');
-            expect(element.all(by.css('social-graph svg .node.user')).count()).toBe(1, 'user node');
-            expect(element.all(by.css('social-graph svg .node.dummy')).count()).toBe(2, 'dummy node');
-            expect(element.all(by.css('social-graph svg .node.friendOfFriend')).count()).toBe(2, 'friendOfFriend node');
+            expect(element.all(by.css('social-graph .node.me')).count()).toBe(1, 'me node');
+            expect(element.all(by.css('social-graph .node.maybe')).count()).toBe(0, 'maybe node');
+            expect(element.all(by.css('social-graph .node.baby')).count()).toBe(0, 'baby node');
+            expect(element.all(by.css('social-graph .node.user')).count()).toBe(1, 'user node');
+            expect(element.all(by.css('social-graph .node.dummy')).count()).toBe(2, 'dummy node');
+            expect(element.all(by.css('social-graph .node.friendOfFriend')).count()).toBe(2, 'friendOfFriend node');
 
-            expect(element.all(by.css('social-graph svg .link')).count()).toBe(3, 'total links');
-            expect(element.all(by.css('social-graph svg .link.completed')).count()).toBe(1, 'completed links');
-            expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count()).toBe(2, 'friendOfFriend links');
+            expect(element.all(by.css('social-graph .link')).count()).toBe(3, 'total links');
+            expect(element.all(by.css('social-graph .link.completed')).count()).toBe(1, 'completed links');
+            expect(element.all(by.css('social-graph .link.friendOfFriend')).count()).toBe(2, 'friendOfFriend links');
         });
     });
 
@@ -61,7 +61,7 @@ describe('referenceCodes', function() {
             element(by.model('form.password')).sendKeys('foobar\n');
 
             var beforeCompletedLinks;
-            element.all(by.css('social-graph svg .link.completed')).count().then(function(count) {
+            element.all(by.css('social-graph .link.completed')).count().then(function(count) {
                 beforeCompletedLinks = count;
             });
 
@@ -69,12 +69,12 @@ describe('referenceCodes', function() {
             refInput.sendKeys('AK92oj\n'); // Bob called Alice Eve for this activityLink
 
             expect(element.all(by.css('.alert-success')).count()).toBe(1);
-            element.all(by.css('social-graph svg .link.completed')).count().then(function(count) {
+            element.all(by.css('social-graph .link.completed')).count().then(function(count) {
                 expect(count).toBe(beforeCompletedLinks + 1,
                     'should have one more completed link than before entering ref code'
                 );
             });
-            expect(element.all(by.css('social-graph svg .link.friendOfFriend')).count())
+            expect(element.all(by.css('social-graph .link.friendOfFriend')).count())
                 .toBe(0, 'the friendOfFriend was actually me, so should not be shown anymore')
             ;
 
@@ -90,11 +90,11 @@ describe('referenceCodes', function() {
                 .toBe(0, 'should have no more open activities')
             ;
 
-            expect(element.all(by.css('social-graph svg .link.completed')).count())
+            expect(element.all(by.css('social-graph .link.completed')).count())
                 .toBe(2, 'should have two completed links')
             ;
 
-            expect(element.all(by.css('social-graph svg .link.open')).count())
+            expect(element.all(by.css('social-graph .link.open')).count())
                 .toBe(0, 'should have zero open links')
             ;
         });
@@ -113,11 +113,11 @@ describe('referenceCodes', function() {
             expect(element.all(by.css('.alert-success')).count())
                 .toBe(1, 'a success message should be displayed')
             ;
-            expect(element.all(by.css('social-graph svg .link.completed')).count())
+            expect(element.all(by.css('social-graph .link.completed')).count())
                 .toBe(1, 'a new completed link should have been added')
             ;
 
-            expect(element.all(by.css('social-graph svg .node.user')).count())
+            expect(element.all(by.css('social-graph .node.user')).count())
                 .toBe(1, 'a new friend should have been added')
             ;
 
@@ -140,13 +140,13 @@ describe('referenceCodes', function() {
             menuButton.click();
             browser.sleep(MENU_DELAY);
             element(by.css('button.navGraph')).click();
-            expect(element.all(by.css('social-graph svg .link.completed')).count())
+            expect(element.all(by.css('social-graph .link.completed')).count())
                 .toBe(2, 'should have two completed links')
             ;
-            expect(element.all(by.css('social-graph svg .node.user')).count())
+            expect(element.all(by.css('social-graph .node.user')).count())
                 .toBe(2, 'should now know two users')
             ;
-            expect(element.all(by.css('social-graph svg .node.maybe')).count())
+            expect(element.all(by.css('social-graph .node.maybe')).count())
                 .toBe(0, 'should have no more maybe nodes')
             ;
         });
