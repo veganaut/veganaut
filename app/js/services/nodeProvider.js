@@ -14,6 +14,12 @@
         }
     };
 
+    /**
+     * Mapping of upper bounds of point balance to the balance name.
+     * Used for setting the correct balance classes on the nodes and
+     * showing them in the right colour instensity.
+     * @type {*[]}
+     */
     Node.BALANCE_MAPPING = [
         [2, 'xlow'],
         [3, 'low'],
@@ -45,7 +51,7 @@
      * aka Someone with a Login
      * @returns {boolean}
      */
-    Node.prototype.isUser = function(){
+    Node.prototype.isUser = function() {
         return this.type === 'user';
     };
 
@@ -54,7 +60,7 @@
      * aka Someone who is Linked To, and has already entered a Ref Code
      * @returns {boolean}
      */
-    Node.prototype.isBaby = function(){
+    Node.prototype.isBaby = function() {
         return this.type === 'baby';
     };
 
@@ -63,7 +69,7 @@
      * aka Someone who is Linked To, but never has entered a Ref Code
      * @returns {boolean}
      */
-    Node.prototype.isMaybe = function(){
+    Node.prototype.isMaybe = function() {
         return this.type === 'maybe';
     };
 
@@ -72,20 +78,41 @@
      * aka No One, but a an Invitation Node
      * @returns {boolean}
      */
-    Node.prototype.isDummy = function(){
+    Node.prototype.isDummy = function() {
         return this.type === 'dummy';
     };
 
+    /**
+     * Returns whether this node should be displayed as small node.
+     * @returns {boolean}
+     */
+    Node.prototype.isSmallNode = function() {
+        return this.isMaybe() || this.isBaby();
+    };
+
+    /**
+     * Returns whether this node has a valid point balance
+     * @returns {boolean}
+     */
     Node.prototype.hasBalance = function() {
         return (typeof this.team !== 'undefined');
     };
 
+    /**
+     * Returns the point balance or undefined if this node doesn't have one
+     * @returns {number}
+     */
     Node.prototype.getBalance = function() {
         if (this.hasBalance()) {
             return this.strength - this.hits;
         }
     };
 
+    /**
+     * Returns the balance string of this node (xlow, low, med, high, xhigh).
+     * Returns undefined if it doesn't have a balance.
+     * @returns {*}
+     */
     Node.prototype.getBalanceMapping = function() {
         var balance = this.getBalance();
         for (var i = 0; i < Node.BALANCE_MAPPING.length; i++) {

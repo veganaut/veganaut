@@ -69,12 +69,12 @@
                 };
 
                 /**
-                 * TODO
+                 * Returns the radius of the node
                  * @param node
                  * @returns {number}
                  */
                 var getNodeRadius = function(node) {
-                    if (node.isMaybe() || node.isBaby()) {
+                    if (node.isSmallNode()) {
                         return 10;
                     }
                     else {
@@ -105,9 +105,14 @@
                     return klass;
                 };
 
+                /**
+                 * Returns the style of the marker end for the given link
+                 * @param link
+                 * @returns {string}
+                 */
                 var getMarkerEnd = function(link) {
                     var node = link.target;
-                    if (node.isMaybe() || node.isBaby()) {
+                    if (node.isSmallNode()) {
                         return 'url(#pointerToSmall)';
                     }
                     else {
