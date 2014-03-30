@@ -28,13 +28,22 @@ describe('referenceCodes', function() {
     });
 
     describe('enter reference code when logged out', function() {
-        it('should have a reference code input field', function() {
+        it('should have a page to enter the reference code', function() {
+            menuButton.click();
+            browser.sleep(MENU_DELAY);
+            element(by.css('button.navRefCode')).click();
+            expect(ptor.getCurrentUrl()).toMatch(/\/referenceCode/);
+
             var refInput = element(by.model('form.referenceCode'));
             expect(refInput.isPresent()).toBe(true);
             expect(refInput.getText()).toBe('');
         });
 
         it('should show the graph when entering a valid reference code', function() {
+            menuButton.click();
+            browser.sleep(MENU_DELAY);
+            element(by.css('button.navRefCode')).click('bla');
+
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('OiWCrB\n');
 
@@ -65,6 +74,10 @@ describe('referenceCodes', function() {
             element.all(by.css('social-graph .link.completed')).count().then(function(count) {
                 beforeCompletedLinks = count;
             });
+
+            menuButton.click();
+            browser.sleep(MENU_DELAY);
+            element(by.css('button.navRefCode')).click();
 
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Alice Eve for this activityLink
@@ -108,6 +121,9 @@ describe('referenceCodes', function() {
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
 
+            menuButton.click();
+            browser.sleep(MENU_DELAY);
+            element(by.css('button.navRefCode')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
 

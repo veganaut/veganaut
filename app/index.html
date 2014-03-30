@@ -33,25 +33,14 @@
                  ng-show="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
                 <button class="btn btn-default btn-block navActivities" ng-click="goToView('openActivities')"
                  ng-show="canViewGraph()" ng-bind="'navigation.openActivities' | trans"></button>
+                <button class="btn btn-default btn-block navRefCode" ng-click="goToView('referenceCode')"
+                 ng-bind="'navigation.referenceCode' | trans"></button>
             </nav>
         </div>
     </div>
 </header>
 
 <div class="container mainContainer">
-    <form novalidate name="referenceCodeForm" class="referenceCodeForm">
-        <div class="row">
-            <div class="col-xs-8">
-                <input type="text" required class="form-control" ng-model="form.referenceCode"
-                 placeholder="{{ 'form.referenceCode.placeholder' | trans }}" stop-propagation/>
-            </div>
-            <div class="col-xs-4">
-                <button type="submit" class="btn btn-default btn-block" ng-disabled="referenceCodeForm.$invalid"
-                 ng-click="submitReferenceCode()" ng-bind="'form.referenceCode.submit' | trans"></button>
-            </div>
-        </div>
-    </form>
-    <hr />
     <alert ng-repeat="alert in getAlerts()" type="alert.type" close="closeAlert(alert)" class="mainAlert">
         <span ng-bind="alert.message"></span>
     </alert>
@@ -79,10 +68,10 @@
 <script src="js/controllers/LoginCtrl.js"></script>
 <script src="js/controllers/MatchCtrl.js"></script>
 <script src="js/controllers/OpenActivitiesCtrl.js"></script>
+<script src="js/controllers/ReferenceCodeCtrl.js"></script>
 <script src="js/controllers/RegisterCtrl.js"></script>
 <script src="js/controllers/SocialGraphCtrl.js"></script>
 <script src="js/filters/trans.js"></script>
 <script src="js/directives/socialGraph.js"></script>
-<script src="js/directives/stopPropagation.js"></script>
 </body>
 </html>
