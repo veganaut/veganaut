@@ -113,8 +113,8 @@ describe('scenarios', function() {
                     expect(element.all(by.css('social-graph .node.type-dummy')).count()).toBe(2, 'dummy node');
 
                     expect(element.all(by.css('social-graph .link')).count()).toBe(4, 'total links');
-                    expect(element.all(by.css('social-graph .link.completed')).count()).toBe(2, 'completed links');
-                    expect(element.all(by.css('social-graph .link.friendOfFriend')).count()).toBe(1, 'friendOfFriend links');
+                    expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count()).toBe(2, 'completed links');
+                    // TODO: describe other link types
                 });
 
                 it('nodes should have teams', function() {

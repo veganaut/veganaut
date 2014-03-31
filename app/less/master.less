@@ -1,31 +1,29 @@
 @greenBaseColour: #49b34c;
 @blueBaseColour: #4444b3;
 
-@greenDarkColour: darken(@greenBaseColour, 20%);
 @greenXhighColour: @greenBaseColour;
 @greenHighColour: lighten(@greenBaseColour, 7%);
 @greenMedColour: lighten(@greenBaseColour, 14%);
 @greenLowColour: lighten(@greenBaseColour, 21%);
 @greenXlowColour: lighten(@greenBaseColour, 28%);
+@greenDarkColour: darken(@greenBaseColour, 20%);
+@greenLightColour: lighten(@greenBaseColour, 35%);
 
-@blueDarkColour: darken(@blueBaseColour, 20%);
 @blueXhighColour: @blueBaseColour;
 @blueHighColour: lighten(@blueBaseColour, 7%);
 @blueMedColour: lighten(@blueBaseColour, 14%);
 @blueLowColour: lighten(@blueBaseColour, 21%);
 @blueXlowColour: lighten(@blueBaseColour, 28%);
+@blueDarkColour: darken(@blueBaseColour, 20%);
+@blueLightColour: lighten(@blueBaseColour, 35%);
 
 @passiveColour: #dbdbdb;
-
-// Nav bar
-.referenceCodeForm {
-    margin: 5px 0;
-}
 
 .mainContainer {
     margin-top: 55px;
 }
 
+// Nav bar styles
 .menuBackdrop {
     z-index: 1020;
 }
@@ -43,6 +41,7 @@
     margin: 5px 0;
 }
 
+// Forms
 .spacedForm > * {
     margin-bottom: 5px;
 }
@@ -110,7 +109,7 @@
     }
 
     &.captured {
-        stroke-width: 5px;
+        stroke-width: 7px;
         &.team-green {
             stroke: @blueBaseColour;
             stroke-dasharray: 3,5;
@@ -139,20 +138,28 @@
 .link {
     fill: none;
     stroke: #a4b2b3;
-    stroke-opacity: .6;
-}
+    stroke-dasharray: 3,3;
 
-.link.friendOfFriend {
-    stroke: #deece1;
-}
-
-.link.completed {
-    stroke: #28b34c;
+    &.hasCompletedActivities {
+        stroke-dasharray: none;
+    }
+    &.team-green {
+        stroke: @greenBaseColour;
+        &.hasOpenActivities {
+            stroke: @greenLightColour;
+        }
+    }
+    &.team-blue {
+        stroke: @blueBaseColour;
+        &.hasOpenActivities {
+            stroke: @blueLightColour;
+        }
+    }
 }
 
 .nodeInfo {
     position: absolute;
-    margin: -45px 0 0 15px ;
+    margin: -45px 0 0 15px;
 }
 
 .badge {

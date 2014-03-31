@@ -90,15 +90,18 @@
                  */
                 var getLinkClasses = function(link) {
                     var klass = 'link';
-                    if (link.target.isMe() || link.source.isMe()) {
-                        klass += ' mine';
+                    var sourceTeam = link.source.team;
+                    if (typeof sourceTeam !== 'undefined') {
+                        klass += ' team-' + sourceTeam;
                     }
-                    if (link.target.isFriendOfFriend() || link.source.isFriendOfFriend()) {
-                        klass += ' friendOfFriend';
-                    }
+
                     if (link.completedActivities > 0) {
-                        klass += ' completed';
+                        klass += ' hasCompletedActivities';
                     }
+                    if (link.openActivities > 0) {
+                        klass += ' hasOpenActivities';
+                    }
+
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
                         klass += ' selected';
                     }
@@ -131,8 +134,21 @@
                         return 8;
                     }
 
-                    var width = (link.completedActivities || 0) + (link.openActivities || 0);
-                    return Math.max(1, Math.sqrt(width));
+                    // TODO: move this to a Link class
+                    var totalActivities = (link.completedActivities || 0) + (link.openActivities || 0);
+                    var width;
+
+                    if (totalActivities < 2) {
+                        width = 1;
+                    }
+                    else if (totalActivities < 3) {
+                        width = 3;
+                    }
+                    else {
+                        width = 4;
+                    }
+                    console.log(totalActivities, width);
+                    return width;
                 };
 
 
