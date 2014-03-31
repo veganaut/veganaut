@@ -88,7 +88,7 @@
 
             // If we already have a person id, register as that person
             if (personId) {
-                postData._id = personId;
+                postData.id = personId;
             }
 
             return $http.post(backendUrl + '/person', postData);
