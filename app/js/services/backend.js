@@ -219,6 +219,15 @@
             return $http.get(backendUrl + '/match');
         };
 
+        /**
+         * Gets the currently logged in user info
+         * @returns {HttpPromise}
+         */
+        var getMe = function() {
+            // TOTO: make sure we are logged in first
+            return $http.get(backendUrl + '/person/me');
+        };
+
 
         /**
          * Returns this service
@@ -243,7 +252,8 @@
                 addActivityLink: addActivityLink,
                 submitReferenceCode: submitReferenceCode,
                 getOpenActivityLinks: getOpenActivityLinks,
-                getMatch: getMatch
+                getMatch: getMatch,
+                getMe: getMe
             };
         }];
     });

@@ -101,5 +101,34 @@ describe('backend service', function() {
         expect(typeof req.error).toBe('function');
     }));
 
-        // TODO: test other backend methods
+    it('should have a getMe method', inject(function($httpBackend, backend) {
+        // Define our expectations
+        $httpBackend.expectGET('/person/me')
+            .respond({
+                email: 'foo@bar.baz',
+                nickName: 'Zorg-81201',
+                fullName: 'Alice Alison',
+                team: 'blue',
+                role: 'veteran',
+                id: '000000000000000000000001',
+                type: 'user',
+                strength: 12,
+                hits: 0,
+                isCaptured: false
+            })
+        ;
+
+        expect(typeof backend.getMe).toBe('function');
+
+        // Get the match
+        var req = backend.getMe();
+        $httpBackend.flush();
+
+        // Make sure we got a $http object
+        expect(typeof req.then).toBe('function');
+        expect(typeof req.success).toBe('function');
+        expect(typeof req.error).toBe('function');
+    }));
+
+    // TODO: test other backend methods
 });
