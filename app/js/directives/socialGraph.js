@@ -147,7 +147,6 @@
                     else {
                         width = 4;
                     }
-                    console.log(totalActivities, width);
                     return width;
                 };
 
