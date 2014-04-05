@@ -22,6 +22,24 @@
                 ;
             };
 
+            // Holds the logged in user data
+            $scope.me = {};
+
+            // Get the user data as soon as we are logged in
+            $scope.$watch('isLoggedIn()', function(isLoggedIn) {
+                if (isLoggedIn) {
+                    backend.getMe()
+                        .success(function(data) {
+                            $scope.me = data;
+                        })
+                    ;
+                }
+                else {
+                    // Reset the player
+                    $scope.me = {};
+                }
+            });
+
             // Expose alerts
             $scope.getAlerts = alertProvider.getAlerts;
             $scope.closeAlert = alertProvider.removeAlert;

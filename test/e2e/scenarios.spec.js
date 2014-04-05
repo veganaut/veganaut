@@ -94,6 +94,10 @@ describe('scenarios', function() {
                 expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
             });
 
+            it('should mark the current player\'s team', function() {
+                expect(element(by.css('body.bluePlayer')).isPresent()).toBe(true);
+            });
+
             describe('socialGraph', function() {
                 beforeEach(function() {
                     browser.get('app/index.html#/socialGraph');
