@@ -285,6 +285,20 @@
                         .attr('r', getNodeRadius)
                         .on('click', onNodeClick);
 
+                    var meNode = svg.select('.node.relation-me');
+
+                    // Add an extra circle to mark the me node
+                    svg.append('circle')
+                        .attr('class', 'meMarker')
+                        .attr('r', 4)
+                        .attr('cx', size / 2) // The me node is always exactly in the middle
+                        .attr('cy', size / 2)
+                        .on('click', function() {
+                            // Pass clicks through to the me node
+                            onNodeClick(meNode.data()[0]);
+                        })
+                    ;
+
                     svgNodes.append('title').text(function(d) {
                         return d.fullName;
                     });
@@ -304,8 +318,10 @@
                         else {
                             svgLinks.attr('d', linkArc);
 
-                            svgNodes.attr('cx', function(d) { return d.x; })
-                                .attr('cy', function(d) { return d.y; });
+                            svgNodes
+                                .attr('cx', function(d) { return d.x; })
+                                .attr('cy', function(d) { return d.y; })
+                            ;
 
                             iterations -= 1;
                             if (iterations <= 0) {
