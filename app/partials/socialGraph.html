@@ -4,10 +4,12 @@
 </g>
 
 <div class="nodeInfo" ng-show="selectedNode">
-    <!-- TODO: translate -->
-    <span ng-show="selectedNode.fullName" class="badge team-{{selectedNode.team}}">
+    <span class="badge team-{{selectedNode.team}}">
         <span class="glyphicon glyphicon-eye-open"></span>
         <span ng-bind="selectedNode.fullName"></span>
+        <span ng-show="selectedNode.nickName">
+            (<span ng-bind="selectedNode.nickName"></span>)
+        </span>
     </span>
     <span ng-hide="selectedNode.isDummy()" class="badge">
         <span ng-show="selectedNode.isUser()">
