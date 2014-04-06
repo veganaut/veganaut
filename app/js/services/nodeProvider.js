@@ -163,13 +163,13 @@
                             // FIXME: This should not be part of the Node Model, but rather a SVG Button or similar
                             // Add a dummy
                             nodes.push(new Node({
-                                fullName: 'Mister Dummy',
+                                fullName: 'Dummy',
                                 type: 'dummy'
                             }));
 
                             // Or two
                             nodes.push(new Node({
-                                fullName: 'Miss Dummy',
+                                fullName: 'Dummy',
                                 type: 'dummy'
                             }));
 
