@@ -1,6 +1,5 @@
 'use strict';
 
-/* jasmine specs for controllers go here */
 /* global describe, beforeEach, it, inject, expect, spyOn */
 describe('LoginCtrl', function() {
     var $scope;

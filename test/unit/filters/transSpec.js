@@ -1,6 +1,5 @@
 'use strict';
 
-/* jasmine specs for filters go here */
 /* global describe, beforeEach, it, expect, inject */
 describe('trans filter', function() {
     beforeEach(module('monkeyFace.filters'));
