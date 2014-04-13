@@ -22,4 +22,9 @@ describe('frontPage', function() {
 
         // TODO: extend this
     });
+
+    it('should show the intro tour on the front page', function() {
+        ptor.sleep(500);
+        expect(element(by.css('.tour-intro')).isPresent()).toBe(true, 'has tour-intro');
+    });
 });
