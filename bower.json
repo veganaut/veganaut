@@ -6,6 +6,8 @@
         "angular-route": "1.2.15",
         "angular-ui-bootstrap-bower": "0.10.0",
         "d3": "3.4.5",
-        "bootstrap": "3.1.0"
+        "jquery": "2.1.0",
+        "bootstrap": "3.1.0",
+        "bootstrap-tour": "0.9.1"
     }
 }

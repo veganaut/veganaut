@@ -42,6 +42,9 @@
     // Make d3js available as angular service
     servicesModule.value('d3', window.d3);
 
+    // Make bootstrap-tour available as angular service
+    servicesModule.value('Tour', window.Tour);
+
     // Main directives module
     var directivesModule = angular.module('monkeyFace.directives', []);
 
