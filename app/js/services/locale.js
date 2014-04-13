@@ -9,6 +9,7 @@
             title: 'veganaut.net'
         },
         navigation: {
+            front: 'Home',
             register: 'Registrieren',
             login: 'Login',
             logout: 'Logout',
@@ -81,6 +82,40 @@
             },
             captured: 'Gefangen',
             balance: 'Balance'
+        },
+        score: {
+            totalScore: 'Punktestand',
+            players: 'Spieler',
+            captured: 'Gefangen',
+            babies: 'Babies'
+        },
+        tour: {
+            intro: [
+                {
+                    title: 'Willkommen!',
+                    content: 'Willkommen, das ist veganaut.net, ein Hub für Entdeckerinnen und Erkunder des veganen Universums. Ich bin Iris, deine Lotsin.'
+                },
+                {
+                    title: 'Das veganautische Netzwerk',
+                    content: 'Das ist das veganautische Netzwerk. Es umfasst alle Veganautinnen und Veganauten, von Rookies bis zu Veterans. Die Punkte stehen für die Leute, die Linien für die Interaktionen zwischen ihnen.'
+                },
+                {
+                    title: 'Veganautische Spiele',
+                    content: 'Veganautinnen sind Entdecker, die in kulinarische Galaxien vordringen, die nie ein Mensch zuvor erlebt hat, aber sie wollen auch Spass und Spiele. Deshalb teilen sie sich regelmässig in zwei Teams auf, das grüne und das blaue (die Farben ihres Heimatplaneten), und versuchen einander in einem freundlichen Wettbewerb zu übertrumpfen. Auf der Anzeigetafel siehst du, wer gerade die Nase vorne hat.'
+                },
+                {
+                    title: 'Wie das Spiel funktioniert',
+                    content: 'Das Spiel funktioniert ein bisschen wie Fangen (oder wie es in der Schweiz heisst: Fangis), nur musst du deine "Opfer" nicht fangen, sondern ihnen etwas veganes zu essen geben. Wenn sie es annehmen, hast du sie. Darum gib ihnen etwas super-leckeres, damit sie nicht widerstehen können!'
+                },
+                {
+                    title: 'Wie die Punkte verteilt werden',
+                    content: 'Ein Team verliert einen Punkt für jede Veganautin, die dem Essen des anderen Teams nicht widerstehen konnte. Punkte können zurückgewonnen werden, indem neue Veganautinnen für das Team rekrutiert oder Veganautinnen, die der Versuchung nicht widerstehen konnten, wieder "befreit" werden. Beides macht man mit veganem Essen.'
+                },
+                {
+                    title: 'Registrieren',
+                    content: 'Registriere dich jetzt und mach mit!'
+                }
+            ]
         }
     });
 })(window.monkeyFace.servicesModule);

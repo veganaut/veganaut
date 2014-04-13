@@ -3,28 +3,54 @@
 
     // TODO: docu
     servicesModule.provider('tourProvider', function() {
-        this.$get = ['Tour', function(Tour) {
+        var TOUR_CONFIG = {
+            intro: [
+                {},
+                {
+                    element: '.frontIllustration',
+                    placement: 'top'
+                },
+                {
+                    element: '.matchScoreDisplay',
+                    placement: 'bottom'
+                },
+                {
+                    element: '.matchScoreDisplay',
+                    placement: 'bottom'
+                },
+                {
+                    element: '.matchScoreDisplay',
+                    placement: 'bottom'
+                },
+                {
+                    element: '.frontRegisterBtn',
+                    placement: 'bottom'
+                }
+            ]
+        };
+
+        this.$get = ['Tour', 'translate', function(Tour, t) {
             var tours = {};
 
-            var introTourName = 'intro';
-            // TODO: fill with actual content
-            tours[introTourName] = new Tour({
-                name: introTourName,
-                steps: [
-                    {
-                        element: '.matchScoreDisplay',
-                        placement: 'bottom',
-                        title: 'Intro Tour Step 1',
-                        content: 'Content of first step. Content of first step. Content of first step.'
-                    },
-                    {
-                        element: '.matchScoreDisplay',
-                        placement: 'bottom',
-                        title: 'Intro Tour Step 2',
-                        content: 'Content of second step. Content of second step. Content of second step.'
+            // Create all the tours
+            for (var tourName in TOUR_CONFIG) {
+                if (TOUR_CONFIG.hasOwnProperty(tourName)) {
+                    var steps = angular.copy(TOUR_CONFIG[tourName]);
+
+                    // Add the title and content to the steps
+                    for (var i = 0; i < steps.length; i++) {
+                        steps[i].title = t('tour.' + tourName + '.' + i + '.title');
+                        steps[i].content = t('tour.' + tourName + '.' + i + '.content');
                     }
-                ]
-            });
+
+                    // Instantiate the tour
+                    tours[tourName] = new Tour({
+                        name: tourName,
+                        orphan: true,
+                        steps: steps
+                    });
+                }
+            }
 
             return {
                 startTour: function(tourName) {
