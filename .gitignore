@@ -1,6 +1,9 @@
 .idea/workspace.xml
 node_modules/
-app/css/master.css
+app/css/*
+!app/css/.gitkeep
+app/lib/*
+!app/lib/.gitkeep
 log/
 mongodb/
 tests.out
