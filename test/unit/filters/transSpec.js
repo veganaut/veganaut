@@ -1,23 +1,22 @@
 'use strict';
 
-/* global describe, beforeEach, it, expect, inject */
+/* global describe, beforeEach, it, expect, inject, jasmine */
 describe('trans filter', function() {
+    var translateMock;
     beforeEach(module('monkeyFace.filters'));
 
     beforeEach(module(function($provide) {
-        $provide.value('localeProvider', {
-            translations: {
-                test: 'le test'
-            }
-        });
+        translateMock = jasmine.createSpy('translate');
+        $provide.value('translate', translateMock);
     }));
 
+    it('should pass translations to the translate service"', inject(function(transFilter) {
+        transFilter('test');
+        expect(translateMock).toHaveBeenCalledWith('test');
 
-    it('should translate "test"', inject(function(transFilter) {
-        expect(transFilter('test')).toEqual('le test');
-    }));
+        transFilter('another.test');
+        expect(translateMock).toHaveBeenCalledWith('another.test');
 
-    it('should return the value if there is no translation found', inject(function(transFilter) {
-        expect(transFilter('unknown.translation.string')).toEqual('unknown.translation.string');
+        expect(translateMock.calls.length).toBe(2, 'called translate twice in total');
     }));
 });

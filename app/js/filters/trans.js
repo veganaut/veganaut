@@ -1,10 +1,12 @@
 (function(filtersModule) {
     'use strict';
 
-    filtersModule.filter('trans', ['localeProvider', function(localeProvider) {
-        var trans = localeProvider.translations;
+    /**
+     * Simple filter that translates strings with the help of the translate service
+     */
+    filtersModule.filter('trans', ['translate', function(translate) {
         return function(text) {
-            return (trans.hasOwnProperty(text)) ? trans[text] : text;
+            return translate(text);
         };
     }]);
 })(window.monkeyFace.filtersModule);
