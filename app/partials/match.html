@@ -1,5 +1,5 @@
 <div ng-controller="MatchCtrl">
-    <div class="well text-center matchScoreDisplay" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
+    <div class="well text-center matchScoreDisplay" ng-if="scoreData" ng-click="showFullScore = !showFullScore" start-tour="intro">
         <div class="scoreElement">
             Score:
             <span class="blueScore" ng-bind="scoreData.blue.score"></span> :
