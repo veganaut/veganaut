@@ -12,13 +12,14 @@
     ]);
 
     monkeyFaceModule.config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/', {templateUrl: 'partials/front.html'});
         $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
         $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
         $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
         $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityLinkCtrl'});
         $routeProvider.when('/openActivities', {templateUrl: 'partials/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'partials/referenceCode.html', controller: 'ReferenceCodeCtrl'});
-        $routeProvider.otherwise({redirectTo: '/login'});
+        $routeProvider.otherwise({redirectTo: '/'});
     }]);
 
 

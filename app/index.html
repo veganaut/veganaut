@@ -24,6 +24,8 @@
                 <span class="navbar-brand" href="#" ng-bind="'app.title' | trans"></span>
             </div>
             <nav class="collapse" collapse="!menuShown">
+                <button class="btn btn-default btn-block navFront" ng-click="goToView('')"
+                 ng-hide="isLoggedIn()" ng-bind="'navigation.front' | trans"></button>
                 <button class="btn btn-default btn-block navRegister" ng-click="goToView('register')"
                  ng-hide="isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
                 <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')"

@@ -1,0 +1,14 @@
+<div ng-include="'partials/match.html'" start-tour="intro"></div>
+
+<div class="row">
+    <div class="col-xs-6">
+        <button class="btn btn-default btn-block frontRegisterBtn" ng-click="goToView('register')"
+         ng-hide="isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-default btn-block frontLoginBtn" ng-click="goToView('login')"
+         ng-hide="canViewGraph()" ng-bind="'navigation.login' | trans"></button>
+    </div>
+</div>
+
+<img src="img/front.png" class="img-responsive frontIllustration"/>
