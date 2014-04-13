@@ -44,7 +44,7 @@ describe('scenarios', function() {
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html');
+        browser.get('app/index.html#/login');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
@@ -60,10 +60,6 @@ describe('scenarios', function() {
                 menuButton.click();
             }
         });
-    });
-
-    it('should redirect to /login when location hash is empty', function() {
-        expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
     it('should redirect to /login for pages needing authentication', function() {

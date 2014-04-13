@@ -12,7 +12,7 @@ describe('referenceCodes', function() {
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html');
+        browser.get('app/index.html#/login');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
