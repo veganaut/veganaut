@@ -2,7 +2,7 @@
     'use strict';
 
     // TODO: docu & tests
-    servicesModule.provider('alertProvider', function() {
+    servicesModule.provider('alertService', function() {
         var alerts = [];
 
         this.$get = function() {

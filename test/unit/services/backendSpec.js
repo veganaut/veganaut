@@ -8,16 +8,16 @@ describe('backend service', function() {
         $provide.value('backendUrl', '');
     }));
 
-    it('should have a isLoggedIn method', inject(function($httpBackend, backend) {
-        expect(typeof backend.isLoggedIn).toBe('function');
+    it('should have a isLoggedIn method', inject(function($httpBackend, backendService) {
+        expect(typeof backendService.isLoggedIn).toBe('function');
 
         // Should not be logged in by default
-//        expect(backend.isLoggedIn()).toBe(false);
+//        expect(backendService.isLoggedIn()).toBe(false);
         // TODO: this doesn't work because it stores the sid in the session storage
         // Need to mock the sessionStorage somehow
     }));
 
-    it('should have a login method', inject(function($httpBackend, backend) {
+    it('should have a login method', inject(function($httpBackend, backendService) {
         // Define our expectations
         $httpBackend.expectPOST('/session', {email: 'e@mail.com', password: 'word'})
             .respond({
@@ -25,10 +25,10 @@ describe('backend service', function() {
             })
         ;
 
-        expect(typeof backend.login).toBe('function');
+        expect(typeof backendService.login).toBe('function');
 
         // Use login
-        var req = backend.login('e@mail.com', 'word');
+        var req = backendService.login('e@mail.com', 'word');
         $httpBackend.flush();
 
         // Make sure we got a $http object
@@ -37,11 +37,11 @@ describe('backend service', function() {
         expect(typeof req.error).toBe('function');
 
         // Should be logged in now
-        expect(backend.isLoggedIn()).toBe(true);
+        expect(backendService.isLoggedIn()).toBe(true);
     }));
 
 
-    it('should have a addActivityLink method', inject(function($httpBackend, backend) {
+    it('should have a addActivityLink method', inject(function($httpBackend, backendService) {
         // Define our expectations
         var expectedPostData = {
             target: {
@@ -57,10 +57,10 @@ describe('backend service', function() {
             })
         ;
 
-        expect(typeof backend.addActivityLink).toBe('function');
+        expect(typeof backendService.addActivityLink).toBe('function');
 
         // Add activity link
-        var req = backend.addActivityLink('Tester', { id: '1'});
+        var req = backendService.addActivityLink('Tester', { id: '1'});
         $httpBackend.flush();
 
         // Make sure we got a $http object
@@ -69,7 +69,7 @@ describe('backend service', function() {
         expect(typeof req.error).toBe('function');
     }));
 
-    it('should have a getMatch method', inject(function($httpBackend, backend) {
+    it('should have a getMatch method', inject(function($httpBackend, backendService) {
         // Define our expectations
         $httpBackend.expectGET('/match')
             .respond({
@@ -89,10 +89,10 @@ describe('backend service', function() {
         ;
 
 
-        expect(typeof backend.getMatch).toBe('function');
+        expect(typeof backendService.getMatch).toBe('function');
 
         // Get the match
-        var req = backend.getMatch();
+        var req = backendService.getMatch();
         $httpBackend.flush();
 
         // Make sure we got a $http object
@@ -101,7 +101,7 @@ describe('backend service', function() {
         expect(typeof req.error).toBe('function');
     }));
 
-    it('should have a getMe method', inject(function($httpBackend, backend) {
+    it('should have a getMe method', inject(function($httpBackend, backendService) {
         // Define our expectations
         $httpBackend.expectGET('/person/me')
             .respond({
@@ -118,10 +118,10 @@ describe('backend service', function() {
             })
         ;
 
-        expect(typeof backend.getMe).toBe('function');
+        expect(typeof backendService.getMe).toBe('function');
 
         // Get the match
-        var req = backend.getMe();
+        var req = backendService.getMe();
         $httpBackend.flush();
 
         // Make sure we got a $http object

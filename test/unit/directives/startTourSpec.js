@@ -2,20 +2,20 @@
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('startTour directive', function() {
-    var tourProviderMock;
+    var tourServiceMock;
     beforeEach(module('monkeyFace.directives'));
 
     // Mock the tour provider
     beforeEach(module(function($provide) {
-        tourProviderMock = jasmine.createSpyObj('tourProvider', ['startTour']);
-        $provide.value('tourProvider', tourProviderMock);
+        tourServiceMock = jasmine.createSpyObj('tourService', ['startTour']);
+        $provide.value('tourService', tourServiceMock);
     }));
 
-    it('should tell the tourProvider to start the tour', inject(function($compile, $rootScope) {
+    it('should tell the tourService to start the tour', inject(function($compile, $rootScope) {
         $compile('<span start-tour="testTour"></span>')($rootScope);
 
-        expect(tourProviderMock.startTour).toHaveBeenCalled();
-        expect(tourProviderMock.startTour.calls.length).toEqual(1);
-        expect(tourProviderMock.startTour).toHaveBeenCalledWith('testTour');
+        expect(tourServiceMock.startTour).toHaveBeenCalled();
+        expect(tourServiceMock.startTour.calls.length).toEqual(1);
+        expect(tourServiceMock.startTour).toHaveBeenCalledWith('testTour');
     }));
 });

@@ -5,9 +5,9 @@
      * TODO: shouldn't need a provider for this
      * But how else do hand around the node that was selected
      * from the graph to the form?
-     * activityLinkTargetProvider
+     * activityLinkTargetService
      */
-    servicesModule.provider('activityLinkTargetProvider', function() {
+    servicesModule.provider('activityLinkTargetService', function() {
         var target;
 
         this.$get = function() {

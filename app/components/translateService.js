@@ -2,9 +2,9 @@
     'use strict';
 
     /**
-     * translate provides methods to translate strings
+     * translateService provides methods to translate strings
      */
-    servicesModule.provider('translate', function() {
+    servicesModule.provider('translateService', function() {
         /**
          * Recursively goes through the given dictionary to find the translation.
          *
@@ -58,9 +58,9 @@
             }
         };
 
-        this.$get = ['locale', function(locale) {
+        this.$get = ['localeService', function(localeService) {
             return function(text) {
-                return translate(locale, text);
+                return translate(localeService, text);
             };
         }];
     });

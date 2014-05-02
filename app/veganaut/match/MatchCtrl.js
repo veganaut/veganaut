@@ -2,11 +2,11 @@
     'use strict';
 
     // TODO: this should be a directive
-    controllersModule.controller('MatchCtrl', ['$scope', 'backend',
-        function($scope, backend) {
+    controllersModule.controller('MatchCtrl', ['$scope', 'backendService',
+        function($scope, backendService) {
             $scope.scoreData = {};
 
-            backend.getMatch()
+            backendService.getMatch()
                 .success(function(data) {
                     $scope.scoreData = data;
                 })

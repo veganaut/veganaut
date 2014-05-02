@@ -1,20 +1,20 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetProvider', 'backend',
-        function($scope, $location, activityLinkTargetProvider, backend) {
-            if (!backend.canViewGraph()) {
+    controllersModule.controller('SocialGraphCtrl', ['$scope', '$location', 'activityLinkTargetService', 'backendService',
+        function($scope, $location, activityLinkTargetService, backendService) {
+            if (!backendService.canViewGraph()) {
                 $scope.goToView('login');
             }
 
             $scope.createActivityOnNode = function(node) {
-                activityLinkTargetProvider.set(node);
+                activityLinkTargetService.set(node);
                 $location.path('activity');
             };
 
             $scope.$onRootScope('monkey.socialGraph.nodeAction', function(event, node) {
                 if (node) {
-                    activityLinkTargetProvider.set(node);
+                    activityLinkTargetService.set(node);
                     $location.path('activity');
                 }
             });

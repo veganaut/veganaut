@@ -6,7 +6,7 @@
     // TODO: should zoom in and out for different screen sizes
     // TODO: redo the way the graph is re-created when the data changes
     // TODO: find a better way to slow down the force animation
-    directivesModule.directive('socialGraph', ['d3', 'nodeProvider', function(d3, nodeProvider) {
+    directivesModule.directive('socialGraph', ['d3', 'nodeService', function(d3, nodeService) {
 
         /**
          * Makes an arced link between two points.
@@ -311,7 +311,7 @@
                             return;
                         }
 
-                        if (nodeProvider.isStable()) {
+                        if (nodeService.isStable()) {
                             // If the nodes are already arranged, don't continue
                             force.stop();
                         }
@@ -326,18 +326,18 @@
                             iterations -= 1;
                             if (iterations <= 0) {
                                 // Stop the force movement after some iterations
-                                nodeProvider.setStable(true);
+                                nodeService.setStable(true);
                             }
                         }
                     });
                 };
 
                 // Get the nodes
-                nodeProvider.getNodes(setupGraph);
+                nodeService.getNodes(setupGraph);
 
                 // Reload the data when it changes
                 scope.$onRootScope('monkey.socialGraph.dataChanged', function() {
-                    nodeProvider.getNodes(setupGraph);
+                    nodeService.getNodes(setupGraph);
                 });
             }
         };

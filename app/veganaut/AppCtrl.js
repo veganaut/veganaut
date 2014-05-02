@@ -1,21 +1,21 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('AppCtrl', ['$scope', '$location', 'backend', 'alertProvider',
-        function($scope, $location, backend, alertProvider) {
+    controllersModule.controller('AppCtrl', ['$scope', '$location', 'backendService', 'alertService',
+        function($scope, $location, backendService, alertService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
                 $location.path(view);
             };
 
             // Expose some backend states
-            $scope.isLoggedIn = backend.isLoggedIn;
-            $scope.canViewGraph = backend.canViewGraph;
+            $scope.isLoggedIn = backendService.isLoggedIn;
+            $scope.canViewGraph = backendService.canViewGraph;
 
             $scope.menuShown = false;
 
             $scope.logout = function() {
-                backend.logout()
+                backendService.logout()
                     .success(function() {
                         $scope.goToView('login');
                     })
@@ -28,7 +28,7 @@
             // Get the user data as soon as we are logged in
             $scope.$watch('isLoggedIn()', function(isLoggedIn) {
                 if (isLoggedIn) {
-                    backend.getMe()
+                    backendService.getMe()
                         .success(function(data) {
                             $scope.me = data;
                         })
@@ -41,8 +41,8 @@
             });
 
             // Expose alerts
-            $scope.getAlerts = alertProvider.getAlerts;
-            $scope.closeAlert = alertProvider.removeAlert;
+            $scope.getAlerts = alertService.getAlerts;
+            $scope.closeAlert = alertService.removeAlert;
         }
     ]);
 })(window.monkeyFace.controllersModule);

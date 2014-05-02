@@ -172,7 +172,9 @@ describe('scenarios', function() {
                         element(by.model('form.targetName')).sendKeys('Hans\n');
 
                         // Should have a success message
-                        expect(element.all(by.css('.alert-success')).count()).toBe(1);
+                        expect(element.all(by.css('.alert-success')).count()).toBe(1,
+                            'should have a success message, NOTE: this might fail if your browser window was hidden because of the dropdown selection'
+                        );
 
                         // Check that the social graph has one more node than before
                         browser.get('app/index.html#/socialGraph');

@@ -29,7 +29,7 @@ describe('LoginCtrl', function() {
 
         spyOn(backendMock, 'login').andCallThrough();
 
-        $controller('LoginCtrl', {$scope: $scope, backend: backendMock, alertProvider: {}});
+        $controller('LoginCtrl', {$scope: $scope, backendService: backendMock, alertService: {}});
     }));
 
     it('should have a submit method that logs in', inject(function() {

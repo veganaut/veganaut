@@ -1,13 +1,13 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('ReferenceCodeCtrl', ['$scope', 'backend', 'alertProvider',
-        function($scope, backend, alertProvider) {
+    controllersModule.controller('ReferenceCodeCtrl', ['$scope', 'backendService', 'alertService',
+        function($scope, backendService, alertService) {
             $scope.submitReferenceCode = function() {
                 $scope.menuShown = false;
-                backend.submitReferenceCode($scope.form.referenceCode)
+                backendService.submitReferenceCode($scope.form.referenceCode)
                     .success(function() {
-                        alertProvider.addAlert('Successfully submitted reference code', 'success');
+                        alertService.addAlert('Successfully submitted reference code', 'success');
 
                         // Reset form
                         $scope.form.referenceCode = '';
@@ -19,7 +19,7 @@
                         $scope.goToView('socialGraph');
                     })
                     .error(function(data) {
-                        alertProvider.addAlert('Could not submit reference code: ' + data.error, 'danger');
+                        alertService.addAlert('Could not submit reference code: ' + data.error, 'danger');
                     })
                 ;
             };

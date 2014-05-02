@@ -1,7 +1,7 @@
 (function(directivesModule) {
     'use strict';
 
-    directivesModule.directive('startTour', ['tourProvider', function(tourProvider) {
+    directivesModule.directive('startTour', ['tourService', function(tourService) {
 
         return {
             restrict: 'A',
@@ -10,7 +10,7 @@
             },
             link: function(scope) {
                 var tourName = scope.startTour;
-                tourProvider.startTour(tourName);
+                tourService.startTour(tourName);
             }
         };
     }]);

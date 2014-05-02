@@ -2,7 +2,7 @@
     'use strict';
 
     // TODO: docu
-    servicesModule.provider('tourProvider', function() {
+    servicesModule.provider('tourService', function() {
         var TOUR_CONFIG = {
             intro: [
                 {},
@@ -29,7 +29,7 @@
             ]
         };
 
-        this.$get = ['Tour', 'translate', function(Tour, t) {
+        this.$get = ['Tour', 'translateService', function(Tour, t) {
             var tours = {};
 
             // Create all the tours

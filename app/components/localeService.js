@@ -4,7 +4,7 @@
     /**
      * locale service provides the translation strings
      */
-    servicesModule.value('locale', {
+    servicesModule.value('localeService', {
         app: {
             title: 'veganaut.net'
         },

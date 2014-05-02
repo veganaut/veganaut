@@ -12,13 +12,13 @@
     ]);
 
     monkeyFaceModule.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'partials/front.html'});
-        $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterCtrl'});
-        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
-        $routeProvider.when('/socialGraph', {templateUrl: 'partials/socialGraph.html', controller: 'SocialGraphCtrl'});
-        $routeProvider.when('/activity', {templateUrl: 'partials/activity.html', controller: 'ActivityLinkCtrl'});
-        $routeProvider.when('/openActivities', {templateUrl: 'partials/openActivities.html', controller: 'OpenActivitiesCtrl'});
-        $routeProvider.when('/referenceCode', {templateUrl: 'partials/referenceCode.html', controller: 'ReferenceCodeCtrl'});
+        $routeProvider.when('/', {templateUrl: 'veganaut/front/front.html'});
+        $routeProvider.when('/register', {templateUrl: 'veganaut/register/register.html', controller: 'RegisterCtrl'});
+        $routeProvider.when('/login', {templateUrl: 'veganaut/login/login.html', controller: 'LoginCtrl'});
+        $routeProvider.when('/socialGraph', {templateUrl: 'veganaut/socialGraph/socialGraph.html', controller: 'SocialGraphCtrl'});
+        $routeProvider.when('/activity', {templateUrl: 'veganaut/activityLink/activity.html', controller: 'ActivityLinkCtrl'});
+        $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
+        $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 
@@ -37,6 +37,7 @@
         }]);
     });
 
+    // TODO: reorganise the modules semantically
     // Main service module
     var servicesModule = angular.module('monkeyFace.services', []);
 

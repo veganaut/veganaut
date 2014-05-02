@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: rename and move all the unit test
+
 /* global describe, beforeEach, it, expect, inject */
 describe('config', function() {
     beforeEach(module('monkeyFace.services'));

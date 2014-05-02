@@ -6,8 +6,8 @@ describe('trans filter', function() {
     beforeEach(module('monkeyFace.filters'));
 
     beforeEach(module(function($provide) {
-        translateMock = jasmine.createSpy('translate');
-        $provide.value('translate', translateMock);
+        translateMock = jasmine.createSpy('translateService');
+        $provide.value('translateService', translateMock);
     }));
 
     it('should pass translations to the translate service"', inject(function(transFilter) {

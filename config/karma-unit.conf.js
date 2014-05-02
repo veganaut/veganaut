@@ -9,7 +9,9 @@ module.exports = function(config) {
             'app/lib/angular/angular.js',
             'app/lib/angular-route/angular-route.js',
             'test/lib/angular/angular-mocks.js',
-            'app/js/**/*.js',
+            'app/veganaut/app.js',
+            'app/veganaut/**/*.js',
+            'app/components/**/*.js',
             'test/unit/**/*.js'
         ],
 

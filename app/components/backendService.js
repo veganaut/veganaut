@@ -4,10 +4,10 @@
     /**
      * Interface with the backend
      */
-    servicesModule.provider('backend', function() {
+    servicesModule.provider('backendService', function() {
         var $http;
         var backendUrl;
-        var alertProvider;
+        var alertService;
 
         /**
          * The session id of the current user
@@ -42,7 +42,7 @@
             sessionStorage.removeItem('sid');
             $http.defaults.headers.common.Authorization = undefined;
 
-            alertProvider.removeAllAlerts();
+            alertService.removeAllAlerts();
         };
 
         /**
@@ -233,10 +233,10 @@
          * Returns this service
          * @type {*[]}
          */
-        this.$get = ['$http', 'backendUrl', 'alertProvider', function(_$http_, _backendUrl_, _alertProvider_) {
+        this.$get = ['$http', 'backendUrl', 'alertService', function(_$http_, _backendUrl_, _alertService_) {
             $http = _$http_;
             backendUrl = _backendUrl_;
-            alertProvider = _alertProvider_;
+            alertService = _alertService_;
 
             // Try to get session sid from storage
             handleLogin(sessionStorage.getItem('sid'));

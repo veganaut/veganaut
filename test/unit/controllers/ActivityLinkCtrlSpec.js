@@ -48,9 +48,9 @@ describe('ActivityLinkCtrl', function() {
 
         $controller('ActivityLinkCtrl', {
             $scope: $scope,
-            activityLinkTargetProvider: activityLinkTargetMock,
-            backend: backendMock,
-            alertProvider: {}
+            activityLinkTargetService: activityLinkTargetMock,
+            backendService: backendMock,
+            alertService: {}
         });
     }));
 

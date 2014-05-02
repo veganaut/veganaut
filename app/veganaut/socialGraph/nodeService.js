@@ -126,17 +126,17 @@
     };
 
     /**
-     * nodeProvider provides the nodes and links for the social graph
+     * nodeService provides the nodes and links for the social graph
      */
-    servicesModule.provider('nodeProvider', function() {
+    servicesModule.provider('nodeService', function() {
         var nodes = [];
         var links = [];
         var isStable = false;
 
-        this.$get = ['backend', function(backend) {
+        this.$get = ['backendService', function(backendService) {
             return {
                 getNodes: function(cb) {
-                    backend.getGraph()
+                    backendService.getGraph()
                         .success(function(data) {
                             isStable = false;
                             nodes = [];
