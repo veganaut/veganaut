@@ -1,7 +1,7 @@
 'use strict';
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
-describe('trans filter', function() {
+describe('transFilter', function() {
     var translateMock;
     beforeEach(module('monkeyFace.filters'));
 

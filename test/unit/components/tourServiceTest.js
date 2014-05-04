@@ -1,7 +1,7 @@
 'use strict';
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
-describe('tourService service', function() {
+describe('tourService', function() {
     var TourMock, tourInstanceMock;
     beforeEach(module('monkeyFace.services'));
 

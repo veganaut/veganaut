@@ -1,7 +1,7 @@
 'use strict';
 
 /* global describe, beforeEach, it, expect, inject */
-describe('backend service', function() {
+describe('backendService', function() {
     beforeEach(module('monkeyFace.services'));
 
     beforeEach(module(function($provide) {

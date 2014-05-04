@@ -1,7 +1,7 @@
 'use strict';
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
-describe('startTour directive', function() {
+describe('startTourDirective', function() {
     var tourServiceMock;
     beforeEach(module('monkeyFace.directives'));
 
