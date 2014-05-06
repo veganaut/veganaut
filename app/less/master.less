@@ -150,6 +150,18 @@ body.bluePlayer .socialGraph {
     stroke: #a4b2b3;
     stroke-dasharray: 3,3;
 
+    &.numActivitiesSmall {
+        stroke-width: 1;
+    }
+    &.numActivitiesMedium {
+        stroke-width: 3;
+    }
+    &.numActivitiesLarge {
+        stroke-width: 5;
+    }
+    &.highlighted {
+        stroke-width: 8;
+    }
     &.hasCompletedActivities {
         stroke-dasharray: initial;
     }

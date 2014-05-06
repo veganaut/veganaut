@@ -102,8 +102,20 @@
                         klass += ' hasOpenActivities';
                     }
 
+                    // Set class based on total number of activities
+                    var totalActivities = (link.completedActivities || 0) + (link.openActivities || 0);
+                    if (totalActivities < 2) {
+                        klass += ' numActivitiesSmall';
+                    }
+                    else if (totalActivities < 3) {
+                        klass += ' numActivitiesMedium';
+                    }
+                    else {
+                        klass += ' numActivitiesLarge';
+                    }
+
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
-                        klass += ' selected';
+                        klass += ' highlighted';
                     }
                     return klass;
                 };
@@ -121,33 +133,6 @@
                     else {
                         return 'url(#pointerToBig)';
                     }
-                };
-
-                /**
-                 * Returns the width with which the given link should be
-                 * rendered
-                 * @param link
-                 * @returns {number}
-                 */
-                var getLinkWidth = function(link) {
-                    if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
-                        return 8;
-                    }
-
-                    // TODO: move this to a Link class
-                    var totalActivities = (link.completedActivities || 0) + (link.openActivities || 0);
-                    var width;
-
-                    if (totalActivities < 2) {
-                        width = 1;
-                    }
-                    else if (totalActivities < 3) {
-                        width = 3;
-                    }
-                    else {
-                        width = 4;
-                    }
-                    return width;
                 };
 
 
@@ -250,7 +235,6 @@
 
                         svg.selectAll('.link')
                             .attr('class', getLinkClasses)
-                            .style('stroke-width', getLinkWidth)
                         ;
                     };
 
@@ -275,7 +259,6 @@
                         .enter().append('path')
                         .attr('class', getLinkClasses)
                         .attr('marker-end', getMarkerEnd)
-                        .style('stroke-width', getLinkWidth)
                         .on('click', onLinkClick);
 
                     var svgNodes = svg.selectAll('.node')
