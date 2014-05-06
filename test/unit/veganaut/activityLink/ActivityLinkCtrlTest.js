@@ -37,8 +37,8 @@ describe('ActivityLinkCtrl', function() {
         };
 
         var nodeServiceMock = {
-            getNodes: function(cb) {
-                cb([], []);
+            getNodes: function() {
+                return [];
             }
         };
 

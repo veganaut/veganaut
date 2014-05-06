@@ -1,4 +1,4 @@
-<form novalidate name="activityLinkForm" class="activityLinkForm spacedForm" ng-controller="ActivityLinkCtrl" ng-show="formReady()">
+<form novalidate name="activityLinkForm" class="activityLinkForm spacedForm" ng-controller="ActivityLinkCtrl">
     <input type="text" required class="form-control" ng-if="!target" ng-model="form.targetName"
      placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
     <span ng-if="target">

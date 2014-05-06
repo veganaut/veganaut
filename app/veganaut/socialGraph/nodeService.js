@@ -7,14 +7,14 @@
     servicesModule.provider('nodeService', function() {
         var nodes = [];
         var links = [];
-        var isStable = false;
+        var graphIsStable = false;
 
         this.$get = ['backendService', 'Node', function(backendService, Node) {
             return {
-                getNodes: function(cb) {
+                updateData: function(cb) {
                     backendService.getGraph()
                         .success(function(data) {
-                            isStable = false;
+                            graphIsStable = false;
                             nodes = [];
                             links = [];
 
@@ -49,19 +49,25 @@
                                 type: 'dummy'
                             }));
 
-                            cb(nodes, links);
+                            cb();
                         })
                         .error(function(data, statusCode) {
                             console.log('Error requesting graph data', data, statusCode);
+                            cb();
                         })
                     ;
-
                 },
-                isStable: function() {
-                    return isStable;
+                getNodes: function() {
+                    return nodes;
                 },
-                setStable: function(stable) {
-                    isStable = stable;
+                getLinks: function() {
+                    return links;
+                },
+                isGraphStable: function() {
+                    return graphIsStable;
+                },
+                setGraphStable: function(stable) {
+                    graphIsStable = stable;
                 }
             };
         }];

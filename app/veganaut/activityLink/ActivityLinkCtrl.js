@@ -43,12 +43,6 @@
                 ;
             };
 
-            var activitiesLoaded = false;
-            var targetLoaded = false;
-            $scope.formReady = function() {
-                return activitiesLoaded && targetLoaded;
-            };
-
             // Get the activities
             backendService.getActivities()
                 .success(function(data) {
@@ -57,26 +51,19 @@
                     for (var i = 0; i < data.length; i++) {
                         $scope.activities[data[i].id] = data[i];
                     }
-                    activitiesLoaded = true;
                 })
             ;
 
             // Get the node if the target is given
-            // TODO: this re-requests the nodes from the backend, shouldn't do that probably
             if (typeof targetId !== 'undefined') {
-                nodeService.getNodes(function(nodes) {
-                    for (var i = 0; i < nodes.length; i++) {
-                        var node = nodes[i];
-                        if (node.id === targetId) {
-                            $scope.target = node;
-                            break;
-                        }
+                var nodes = nodeService.getNodes();
+                for (var i = 0; i < nodes.length; i++) {
+                    var node = nodes[i];
+                    if (node.id === targetId) {
+                        $scope.target = node;
+                        break;
                     }
-                    targetLoaded = true;
-                });
-            }
-            else {
-                targetLoaded = true;
+                }
             }
         }]
     );

@@ -145,7 +145,10 @@
                 /**
                  * Creates the d3 graph
                  */
-                var setupGraph = function(nodes, links) {
+                var setupGraph = function() {
+                    var nodes = nodeService.getNodes();
+                    var links = nodeService.getLinks();
+
                     // Scale coordinates to the proper size
                     for (var i = 0; i < nodes.length; i++) {
                         var node = nodes[i];
@@ -294,7 +297,7 @@
                             return;
                         }
 
-                        if (nodeService.isStable()) {
+                        if (nodeService.isGraphStable()) {
                             // If the nodes are already arranged, don't continue
                             force.stop();
                         }
@@ -309,18 +312,18 @@
                             iterations -= 1;
                             if (iterations <= 0) {
                                 // Stop the force movement after some iterations
-                                nodeService.setStable(true);
+                                nodeService.setGraphStable(true);
                             }
                         }
                     });
                 };
 
                 // Get the nodes
-                nodeService.getNodes(setupGraph);
+                nodeService.updateData(setupGraph);
 
                 // Reload the data when it changes
                 scope.$onRootScope('monkey.socialGraph.dataChanged', function() {
-                    nodeService.getNodes(setupGraph);
+                    nodeService.updateData(setupGraph);
                 });
             }
         };
