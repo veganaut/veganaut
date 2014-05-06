@@ -66,7 +66,7 @@ describe('scenarios', function() {
         browser.get('app/index.html#/socialGraph');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
-        browser.get('app/index.html#/activity');
+        browser.get('app/index.html#/createActivity');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
@@ -123,7 +123,7 @@ describe('scenarios', function() {
                     expect(element(by.css('social-graph .node.team-green')).isPresent()).toBe(true);
                 });
 
-                describe('activity link form', function() {
+                describe('createActivity link form', function() {
                     var someDummy;
                     var inviteButton;
                     beforeEach(function() {
@@ -139,22 +139,21 @@ describe('scenarios', function() {
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
                         expect(element.all(by.css('social-graph .node.selected')).count()).toBe(1, 'Dummy Node should be selected');
 
-                        // On the second click, go to activity
                         someDummy.click();
                         expect(element.all(by.css('social-graph .node.selected')).count()).toBe(0, 'Dummy Node should be deselected');
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/,'We should now still be on SocialGraph Page');
                     });
 
-                    it('should go to /activity when selecting dummy node and click invite', function() {
+                    it('should go to /createActivity when selecting dummy node and click invite', function() {
                         // On the first click, stay on socialGraph
                         ptor.sleep(GRAPH_DELAY);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
 
                         expect(element.all(by.css('social-graph .node.selected')).count()).toBe(1,'Dummy Node should be selected');
-                        // On the click addActivity Button, go to activity
+                        // On the click addActivity Button, go to createActivity
                         inviteButton.click();
-                        expect(ptor.getCurrentUrl()).toMatch(/\/activity/, 'We should now be on Activity Page');
+                        expect(ptor.getCurrentUrl()).toMatch(/\/createActivity/, 'We should now be on Activity Page');
                     });
 
                     it('should be possible to add a new activity link with a dummy node', function() {
@@ -165,7 +164,7 @@ describe('scenarios', function() {
 
                         // Browse to the activity link form
                         someDummy.click();
-                        // On the click addActivity Button, go to activity
+                        // On the click addActivity Button, go to createActivity
                         inviteButton.click();
 
                         selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
@@ -202,18 +201,7 @@ describe('scenarios', function() {
                     expect(element(by.css('.referenceCodeList')).getText()).toContain('OiWCrB');
                 });
             });
-
-            describe('activity link redirect', function() {
-                beforeEach(function() {
-                    browser.get('app/index.html#/activity');
-                });
-
-                it('should redirect to /socialGraph when navigating directly to /activity', function() {
-                    expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-                });
-
-                // TODO: describe the /activity form more
-            });
+            // TODO: describe the /createActivity form more
         });
     });
 

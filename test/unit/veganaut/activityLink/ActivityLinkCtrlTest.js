@@ -12,18 +12,10 @@ describe('ActivityLinkCtrl', function() {
     beforeEach(inject(function($rootScope, $controller) {
         $scope = $rootScope.$new();
 
-        var activityLinkTargetMock = {
-            get: function() {
-                return {
-                    type: 'dummy'
-                };
-            },
-            set: function() {
-
-            }
-        };
-
         backendMock = {
+            canViewGraph: function() {
+                return true;
+            },
             getActivities: function() {
                 return {
                     success: function(cb) {
@@ -44,13 +36,21 @@ describe('ActivityLinkCtrl', function() {
             }
         };
 
+        var nodeServiceMock = {
+            getNodes: function(cb) {
+                cb([], []);
+            }
+        };
+
         spyOn(backendMock, 'getActivities').andCallThrough();
+        spyOn(backendMock, 'addActivityLink').andCallThrough();
 
         $controller('ActivityLinkCtrl', {
             $scope: $scope,
-            activityLinkTargetService: activityLinkTargetMock,
+            $routeParams: {},
             backendService: backendMock,
-            alertService: {}
+            alertService: {},
+            nodeService: nodeServiceMock
         });
     }));
 
@@ -73,24 +73,14 @@ describe('ActivityLinkCtrl', function() {
         expect(Object.keys($scope.activities).length).toEqual(2);
     }));
 
-    it('should have not submit when form empty', inject(function() {
-        expect($scope.formSubmitted).toBe(false);
-
-        $scope.submit();
-        expect($scope.formSubmitted).toBe(false);
-
-        $scope.form = {
-            name: ''
-        };
-        $scope.submit();
-        expect($scope.formSubmitted).toBe(false);
-    }));
-
     it('should submit when form is not empty', inject(function() {
         $scope.form = {
-            name: 'test'
+            targetName: 'test',
+            selectedActivity: 'testActivity'
         };
         $scope.submit();
-        expect($scope.formSubmitted).toBe(true);
+
+        expect(backendMock.addActivityLink).toHaveBeenCalledWith('test', 'testActivity');
+        expect(backendMock.addActivityLink.calls.length).toEqual(1);
     }));
 });

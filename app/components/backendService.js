@@ -3,6 +3,7 @@
 
     /**
      * Interface with the backend
+     * TODO: rather return promises for the return object instead of $http promises
      */
     servicesModule.provider('backendService', function() {
         var $http;

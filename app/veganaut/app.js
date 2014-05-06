@@ -8,7 +8,8 @@
         'monkeyFace.filters',
         'monkeyFace.services',
         'monkeyFace.directives',
-        'monkeyFace.controllers'
+        'monkeyFace.controllers',
+        'monkeyFace.models'
     ]);
 
     monkeyFaceModule.config(['$routeProvider', function($routeProvider) {
@@ -16,7 +17,7 @@
         $routeProvider.when('/register', {templateUrl: 'veganaut/register/register.html', controller: 'RegisterCtrl'});
         $routeProvider.when('/login', {templateUrl: 'veganaut/login/login.html', controller: 'LoginCtrl'});
         $routeProvider.when('/socialGraph', {templateUrl: 'veganaut/socialGraph/socialGraph.html', controller: 'SocialGraphCtrl'});
-        $routeProvider.when('/activity', {templateUrl: 'veganaut/activityLink/activity.html', controller: 'ActivityLinkCtrl'});
+        $routeProvider.when('/createActivity/:target?', {templateUrl: 'veganaut/activityLink/activity.html'});
         $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
         $routeProvider.otherwise({redirectTo: '/'});
@@ -56,11 +57,15 @@
     // Main controllers module
     var controllersModule = angular.module('monkeyFace.controllers', []);
 
+    // Main models module
+    var modelsModule = angular.module('monkeyFace.models', []);
+
     window.monkeyFace = {
         appModule: monkeyFaceModule,
         servicesModule: servicesModule,
         directivesModule: directivesModule,
         filtersModule: filtersModule,
-        controllersModule: controllersModule
+        controllersModule: controllersModule,
+        modelsModule: modelsModule
     };
 })();
