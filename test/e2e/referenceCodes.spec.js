@@ -61,8 +61,6 @@ describe('referenceCodes', function() {
             expect(element.all(by.css('social-graph .node.type-dummy')).count()).toBe(2, 'dummy node');
 
             expect(element.all(by.css('social-graph .link')).count()).toBe(3, 'total links');
-            expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count()).toBe(1, 'completed links');
-            // TODO: test for other link types
         });
     });
 
@@ -108,7 +106,7 @@ describe('referenceCodes', function() {
             ;
 
             expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count())
-                .toBe(2, 'should have two completed links')
+                .toBe(3, 'should have three completed links')
             ;
 
             expect(element.all(by.css('social-graph .link.open')).count())
@@ -133,8 +131,8 @@ describe('referenceCodes', function() {
             expect(element.all(by.css('.alert-success')).count())
                 .toBe(1, 'a success message should be displayed')
             ;
-            expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count())
-                .toBe(1, 'a new completed link should have been added')
+            expect(element.all(by.css('social-graph .link')).count())
+                .toBe(2, 'should see a total of two links')
             ;
 
             expect(element.all(by.css('social-graph .node.relation-friend')).count())
@@ -161,7 +159,7 @@ describe('referenceCodes', function() {
             browser.sleep(MENU_DELAY);
             element(by.css('button.navGraph')).click();
             expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count())
-                .toBe(2, 'should have two completed links')
+                .toBe(3, 'should have three completed links')
             ;
             expect(element.all(by.css('social-graph .node.type-user')).count())
                 .toBe(3, 'should now have three users: me (bob), alice, frank')
