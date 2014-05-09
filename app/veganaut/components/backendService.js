@@ -7,6 +7,7 @@
      */
     servicesModule.provider('backendService', function() {
         var $http;
+        var $rootScope;
         var backendUrl;
         var alertService;
 
@@ -31,6 +32,8 @@
                 personId = undefined;
                 sessionStorage.setItem('sid', sid);
                 $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sid;
+
+                $rootScope.$emit('monkey.backend.session.login');
             }
         };
 
@@ -44,6 +47,8 @@
             $http.defaults.headers.common.Authorization = undefined;
 
             alertService.removeAllAlerts();
+
+            $rootScope.$emit('monkey.backend.session.logout');
         };
 
         /**
@@ -234,8 +239,9 @@
          * Returns this service
          * @type {*[]}
          */
-        this.$get = ['$http', 'backendUrl', 'alertService', function(_$http_, _backendUrl_, _alertService_) {
+        this.$get = ['$http', '$rootScope', 'backendUrl', 'alertService', function(_$http_, _$rootScope_, _backendUrl_, _alertService_) {
             $http = _$http_;
+            $rootScope = _$rootScope_;
             backendUrl = _backendUrl_;
             alertService = _alertService_;
 

@@ -1,8 +1,8 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('AppCtrl', ['$scope', '$location', 'backendService', 'alertService',
-        function($scope, $location, backendService, alertService) {
+    controllersModule.controller('AppCtrl', ['$scope', '$location', 'backendService', 'playerService', 'alertService',
+        function($scope, $location, backendService, playerService, alertService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
                 $location.path(view);
@@ -17,28 +17,13 @@
             $scope.logout = function() {
                 backendService.logout()
                     .success(function() {
-                        $scope.goToView('login');
+                        $scope.goToView('');
                     })
                 ;
             };
 
             // Holds the logged in user data
-            $scope.me = {};
-
-            // Get the user data as soon as we are logged in
-            $scope.$watch('isLoggedIn()', function(isLoggedIn) {
-                if (isLoggedIn) {
-                    backendService.getMe()
-                        .success(function(data) {
-                            $scope.me = data;
-                        })
-                    ;
-                }
-                else {
-                    // Reset the player
-                    $scope.me = {};
-                }
-            });
+            $scope.me = playerService.getMe();
 
             // Expose alerts
             $scope.getAlerts = alertService.getAlerts;
