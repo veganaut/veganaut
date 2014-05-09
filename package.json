@@ -9,7 +9,7 @@
         "karma-jasmine" : "0.1.x",
         "karma-ng-scenario" : "0.1.x",
         "less": "1.6.x",
-        "jshint": "2.4.1",
+        "jshint": "2.5.0",
         "bower": "1.3.x"
     },
     "scripts": {
