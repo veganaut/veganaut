@@ -56,6 +56,7 @@
 
             // Get the node if the target is given
             if (typeof targetId !== 'undefined') {
+                // TODO: when directly entering this page, nodeService has no nodes yet. Need to make this async to allow it to fetch the nodes
                 var nodes = nodeService.getNodes();
                 for (var i = 0; i < nodes.length; i++) {
                     var node = nodes[i];

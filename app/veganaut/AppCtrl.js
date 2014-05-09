@@ -25,6 +25,9 @@
             // Holds the logged in user data
             $scope.me = playerService.getMe();
 
+            // Expose the activity verb method
+            $scope.getActivityVerb = playerService.getActivityVerb;
+
             // Expose alerts
             $scope.getAlerts = alertService.getAlerts;
             $scope.closeAlert = alertService.removeAlert;

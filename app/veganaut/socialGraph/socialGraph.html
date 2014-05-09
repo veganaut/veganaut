@@ -1,5 +1,22 @@
 <div ng-include="'veganaut/match/match.html'"></div>
 
+<div class="spacedForm">
+    <!-- TODO: This is too complicated, create a directive -->
+    <!-- TODO: Create integration tests for all that -->
+    <button type="button" class="addActivity btn btn-block btnTeam" ng-click="createActivityOnNode(selectedNode)">
+        <span class="glyphicon glyphicon-play"></span>
+        <span ng-switch="canCreateActivityWith(selectedNode)">
+            <span ng-switch-when="true">
+                <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|trans"></span>
+                <span ng-bind="selectedNode.fullName"></span>
+            </span>
+            <span ng-switch-default>
+                <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|trans"></span>
+            </span>
+        </span>
+    </button>
+</div>
+
 <g id="viewport">
     <social-graph class="socialGraph" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
 </g>
@@ -31,17 +48,12 @@
         <span class="glyphicon glyphicon-asterisk"></span>
         <span ng-bind="'person.captured'|trans"></span>
     </span>
-
+    <br />
     <span ng-show="selectedNode.hasBalance()">
         <span ng-bind="'person.balance'|trans"></span>:
         <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
         <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
     </span>
-
-    <button type="button" ng-hide="selectedNode.isMe() || selectedNode.isFriendOfFriend()" class="addActivity btn btn-default" ng-click="createActivityOnNode(selectedNode)">
-        <span class="glyphicon glyphicon-plus"></span>
-        <span ng-bind="'action.socialGraph.createActivityLink'|trans"></span>
-    </button>
 </div>
 <div class="linkInfo" ng-show="selectedLink">
     <!-- TODO: translate -->

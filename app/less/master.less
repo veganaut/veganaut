@@ -1,3 +1,5 @@
+@import 'bootstrapHelpers.less';
+
 @greenBaseColour: #49b34c;
 @blueBaseColour: #4444b3;
 
@@ -48,6 +50,21 @@
 // Forms
 .spacedForm > * {
     margin-bottom: 5px;
+}
+
+// Create button that changes colour depending on the team
+.btnTeam {
+    .button-variant(#fff; #333; darken(#333, 5%));
+}
+.greenPlayer {
+    .btnTeam {
+        .button-variant(#fff; @greenBaseColour; darken(@greenBaseColour, 5%));
+    }
+}
+.bluePlayer {
+    .btnTeam {
+        .button-variant(#fff; @blueBaseColour; darken(@blueBaseColour, 5%));
+    }
 }
 
 // Social graph
@@ -184,8 +201,9 @@ body.bluePlayer .socialGraph {
 }
 
 .nodeInfo {
-    position: absolute;
-    margin: -45px 0 0 15px;
+    margin-top: 5px;
+    text-align: center;
+    line-height: 25px;
 }
 
 .badge {
@@ -202,7 +220,7 @@ body.bluePlayer .socialGraph {
     padding-bottom: 5px;
     padding-top: 10px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .scoreElement {
     font-size: 24px;

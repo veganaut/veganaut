@@ -49,7 +49,12 @@
         action: {
             register: 'Registrieren',
             socialGraph: {
-                createActivityLink: 'Aktivität erstellen'
+                createActivityLink: {
+                    attract: 'Attract',
+                    support: 'Support',
+                    tempt: 'Tempt',
+                    unspecified: 'Make a move'
+                }
             }
         },
         activityLink: {
@@ -58,7 +63,7 @@
                 targetName: 'Mit / Für'
             },
             form: {
-                targetName: 'Mit wem? / Für wen?',
+                targetName: 'Wen?',
                 choose: 'Was?',
                 submit: 'Speichern und Weiter'
             }

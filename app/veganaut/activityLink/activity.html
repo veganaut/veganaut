@@ -1,8 +1,15 @@
 <form novalidate name="activityLinkForm" class="activityLinkForm spacedForm" ng-controller="ActivityLinkCtrl">
-    <input type="text" required class="form-control" ng-if="!target" ng-model="form.targetName"
-     placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
+    <div ng-if="!target">
+        <span ng-bind="'action.socialGraph.createActivityLink.attract'|trans"></span>
+        <input type="text" required class="form-control" ng-model="form.targetName"
+         placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
+    </div>
     <span ng-if="target">
-        <span ng-bind="'activityLink.label.targetName' | trans"></span>: <span ng-bind="target.fullName"></span>
+        <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(target))|trans"></span>:
+        <span ng-bind="target.fullName"></span>
+        <span ng-show="target.nickName">
+            (<span ng-bind="target.nickName"></span>)
+        </span>
     </span>
     <select required class="form-control" ng-model="form.selectedActivity" ng-options="v.name for (k, v) in activities">
         <option value="">{{ 'activityLink.form.choose' | trans }}</option>
