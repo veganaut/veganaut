@@ -13,6 +13,20 @@ describe('register.', function() {
         // Go to the app
         browser.get('app/index.html#/');
         ptor = protractor.getInstance();
+
+        // TODO: not so great to logout before every test
+        var menuButton = element(by.css('button.menuButton'));
+        menuButton.click();
+        browser.sleep(helpers.MENU_DELAY);
+        var logoutButton = element(by.css('button.navLogout'));
+        logoutButton.isDisplayed().then(function(isDisplayed) {
+            if (isDisplayed) {
+                logoutButton.click();
+            }
+            else {
+                menuButton.click();
+            }
+        });
     });
 
     it('should have a link to the register form.', function() {
