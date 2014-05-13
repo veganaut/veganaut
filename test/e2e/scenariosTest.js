@@ -1,42 +1,11 @@
 /* global protractor, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
-describe('scenarios', function() {
-    var MENU_DELAY = 100;
-    var GRAPH_DELAY = 800;
+var helpers = require('./helpers');
+
+describe('scenarios.', function() {
     var menuButton;
     var ptor;
-
-    /**
-     * Helper for selecting an item in a drop down by text
-     * Taken from https://coderwall.com/p/tjx5zg
-     * @param selector
-     * @param item
-     */
-    function selectOption(selector, item) {
-        var selectList, desiredOption;
-
-        selectList = ptor.findElement(selector);
-        selectList.click();
-
-        selectList.findElements(by.tagName('option'))
-            .then(function findMatchingOption(options) {
-                options.some(function(option) {
-                    option.getText().then(function(text) {
-                        if (item === text) {
-                            desiredOption = option;
-                            return true;
-                        }
-                    });
-                });
-            })
-            .then(function() {
-                if (desiredOption) {
-                    desiredOption.click();
-                }
-            })
-        ;
-    }
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
@@ -46,11 +15,12 @@ describe('scenarios', function() {
         // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('app/index.html#/login');
         ptor = protractor.getInstance();
+        helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
         menuButton = element(by.css('button.menuButton'));
         menuButton.click();
-        browser.sleep(MENU_DELAY);
+        browser.sleep(helpers.MENU_DELAY);
         var logoutButton = element(by.css('button.navLogout'));
         logoutButton.isDisplayed().then(function(isDisplayed) {
             if (isDisplayed) {
@@ -62,7 +32,7 @@ describe('scenarios', function() {
         });
     });
 
-    it('should redirect to /login for pages needing authentication', function() {
+    it('should redirect to /login for pages needing authentication.', function() {
         browser.get('app/index.html#/socialGraph');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
@@ -70,36 +40,36 @@ describe('scenarios', function() {
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
-    describe('login', function() {
+    describe('login.', function() {
         beforeEach(function() {
             browser.get('app/index.html#/login');
         });
 
-        it('should render login form when navigating to /login', function() {
+        it('should render login form when navigating to /login.', function() {
             expect(element(by.css('[ng-view] form')).isPresent()).toBe(true);
             expect(element(by.css('[ng-view] form input[type=password]')).isPresent()).toBe(true);
         });
 
-        describe('authenticated user', function() {
+        describe('authenticated user.', function() {
             beforeEach(function() {
                 element(by.model('form.email')).sendKeys('foo@bar.baz');
                 element(by.model('form.password')).sendKeys('foobar\n');
             });
 
-            it('should be possible to login with correct username and pw', function() {
+            it('should be possible to login with correct username and pw.', function() {
                 expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
             });
 
-            it('should mark the current player\'s team', function() {
+            it('should mark the current player\'s team.', function() {
                 expect(element(by.css('body.bluePlayer')).isPresent()).toBe(true);
             });
 
-            describe('socialGraph', function() {
+            describe('socialGraph.', function() {
                 beforeEach(function() {
                     browser.get('app/index.html#/socialGraph');
                 });
 
-                it('should render socialGraph with nodes and links', function() {
+                it('should render socialGraph with nodes and links.', function() {
                     expect(element(by.css('social-graph')).isPresent()).toBe(true);
                     expect(element(by.css('social-graph svg')).isPresent()).toBe(true);
 
@@ -117,13 +87,13 @@ describe('scenarios', function() {
                     // TODO: describe other link types
                 });
 
-                it('nodes should have teams', function() {
+                it('nodes should have teams.', function() {
                     // Check that the graph has the correct elements
                     expect(element(by.css('social-graph .node.team-blue')).isPresent()).toBe(true);
                     expect(element(by.css('social-graph .node.team-green')).isPresent()).toBe(true);
                 });
 
-                describe('createActivity link form', function() {
+                describe('createActivity link form.', function() {
                     var someDummy;
                     var inviteButton;
                     beforeEach(function() {
@@ -133,8 +103,8 @@ describe('scenarios', function() {
                         inviteButton = element(by.css('button.addActivity'));
                     });
 
-                    it('should deselect node when clicking dummy node twice', function() {
-                        ptor.sleep(GRAPH_DELAY);
+                    it('should deselect node when clicking dummy node twice.', function() {
+                        ptor.sleep(helpers.GRAPH_DELAY);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
                         expect(element.all(by.css('social-graph .node.selected')).count()).toBe(1, 'Dummy Node should be selected');
@@ -144,9 +114,9 @@ describe('scenarios', function() {
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/,'We should now still be on SocialGraph Page');
                     });
 
-                    it('should go to /createActivity when selecting dummy node and click invite', function() {
+                    it('should go to /createActivity when selecting dummy node and click invite.', function() {
                         // On the first click, stay on socialGraph
-                        ptor.sleep(GRAPH_DELAY);
+                        ptor.sleep(helpers.GRAPH_DELAY);
                         someDummy.click();
                         expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
 
@@ -156,9 +126,9 @@ describe('scenarios', function() {
                         expect(ptor.getCurrentUrl()).toMatch(/\/createActivity/, 'We should now be on Activity Page');
                     });
 
-                    it('should be possible to add a new activity link with a dummy node', function() {
+                    it('should be possible to add a new activity link with a dummy node.', function() {
                         // Verify the number of nodes before adding new activity link
-                        ptor.sleep(GRAPH_DELAY);
+                        ptor.sleep(helpers.GRAPH_DELAY);
                         expect(element.all(by.css('social-graph .node')).count()).toBe(7, 'total nodes');
                         expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(2, 'maybe nodes');
 
@@ -167,7 +137,7 @@ describe('scenarios', function() {
                         // On the click addActivity Button, go to createActivity
                         inviteButton.click();
 
-                        selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
+                        helpers.selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
                         element(by.model('form.targetName')).sendKeys('Hans\n');
 
                         // Should have a success message
@@ -187,12 +157,12 @@ describe('scenarios', function() {
                 });
             });
 
-            describe('list of open activity links', function() {
+            describe('list of open activity links.', function() {
                 beforeEach(function() {
                     browser.get('app/index.html#/openActivities');
                 });
 
-                it('shows the list of open activities when browsing to /openActivities', function() {
+                it('shows the list of open activities when browsing to /openActivities.', function() {
                     expect(ptor.getCurrentUrl()).toMatch(/\/openActivities/);
 
                     expect(element.all(by.css('.referenceCodeList li')).count()).toBeGreaterThan(0);
@@ -202,34 +172,6 @@ describe('scenarios', function() {
                 });
             });
             // TODO: describe the /createActivity form more
-        });
-    });
-
-    describe('register', function() {
-        it('should have a link to the register form', function() {
-            menuButton.click();
-            browser.sleep(MENU_DELAY);
-            var button = element.all(by.css('.navRegister'));
-            expect(button.count()).toBe(1);
-
-            button.first().click();
-            expect(ptor.getCurrentUrl()).toMatch(/\/register/);
-        });
-
-        it('should be possible to register as a new user', function() {
-            browser.get('app/index.html#/register');
-
-            element(by.model('form.email')).sendKeys('cody@testerburger.com');
-            element(by.model('form.fullName')).sendKeys('Cody Testerburger');
-            selectOption(by.model('form.role'), 'Scout');
-            element(by.model('form.password')).sendKeys('so secure brah');
-            element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
-            expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
-
-            // Should show a social graph with me and two dummies and no connections
-            expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-            expect(element.all(by.css('social-graph .node')).count()).toBe(3, 'total nodes');
-            expect(element.all(by.css('social-graph .link')).count()).toBe(0, 'total links');
         });
     });
 });

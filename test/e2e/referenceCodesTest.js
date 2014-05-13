@@ -1,8 +1,9 @@
 /* global protractor, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
-describe('referenceCodes', function() {
-    var MENU_DELAY = 100;
+var helpers = require('./helpers');
+
+describe('referenceCodes.', function() {
     var menuButton;
     var ptor;
 
@@ -18,7 +19,7 @@ describe('referenceCodes', function() {
         // TODO: not so great to logout before every test
         menuButton = element(by.css('button.menuButton'));
         menuButton.click();
-        browser.sleep(MENU_DELAY);
+        browser.sleep(helpers.MENU_DELAY);
         var logoutButton = element(by.css('button.navLogout'));
         logoutButton.isDisplayed().then(function(isDisplayed) {
             if (isDisplayed) {
@@ -30,10 +31,10 @@ describe('referenceCodes', function() {
         });
     });
 
-    describe('enter reference code when logged out', function() {
-        it('should have a page to enter the reference code', function() {
+    describe('enter reference code when logged out.', function() {
+        it('should have a page to enter the reference code.', function() {
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navRefCode')).click();
             expect(ptor.getCurrentUrl()).toMatch(/\/referenceCode/);
 
@@ -42,9 +43,9 @@ describe('referenceCodes', function() {
             expect(refInput.getText()).toBe('');
         });
 
-        it('should show the graph when entering a valid reference code', function() {
+        it('should show the graph when entering a valid reference code.', function() {
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navRefCode')).click('bla');
 
             var refInput = element(by.model('form.referenceCode'));
@@ -64,8 +65,8 @@ describe('referenceCodes', function() {
         });
     });
 
-    describe('enter reference code when logged in', function() {
-        it('should be possible to enter reference code as logged in user', function() {
+    describe('enter reference code when logged in.', function() {
+        it('should be possible to enter reference code as logged in user.', function() {
             // Login as Alice
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('foo@bar.baz');
@@ -77,7 +78,7 @@ describe('referenceCodes', function() {
             });
 
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navRefCode')).click();
 
             var refInput = element(by.model('form.referenceCode'));
@@ -95,7 +96,7 @@ describe('referenceCodes', function() {
 
             // Logout and back in as Bob
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navLogout')).click();
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
@@ -115,15 +116,15 @@ describe('referenceCodes', function() {
         });
     });
 
-    describe('enter reference code from new friend when logged in', function() {
-        it('should be possible to enter reference code as logged in user', function() {
+    describe('enter reference code from new friend when logged in.', function() {
+        it('should be possible to enter reference code as logged in user.', function() {
             // Login as Frank, he doesn't know anyone yet
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
 
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navRefCode')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
@@ -142,21 +143,21 @@ describe('referenceCodes', function() {
 
             // Logout and back in as Bob
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navLogout')).click();
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
 
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navActivities')).click();
             expect(element.all(by.css('.referenceCodeList li')).count())
                 .toBe(0, 'should have no more open activities')
             ;
 
             menuButton.click();
-            browser.sleep(MENU_DELAY);
+            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.navGraph')).click();
             expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count())
                 .toBe(3, 'should have three completed links')

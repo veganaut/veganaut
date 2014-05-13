@@ -3,7 +3,7 @@
     "private": true,
     "repository": "https://github.com/OperationMonkey/monkey-face",
     "devDependencies": {
-        "protractor" : "0.19.x",
+        "protractor" : "0.22.0",
         "phantomjs" : "1.9.x",
         "karma" : "0.10.x",
         "karma-jasmine" : "0.1.x",
@@ -13,6 +13,6 @@
         "bower": "1.3.x"
     },
     "scripts": {
-        "postinstall": "./node_modules/.bin/bower install"
+        "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update"
     }
 }

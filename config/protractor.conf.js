@@ -9,9 +9,17 @@ exports.config = {
         'browserName': 'chrome'
     },
 
-    // Spec patterns are relative to the current working directly when
-    // protractor is called.
-    specs: ['../test/e2e/**/*Test.js'],
+    // Spec patterns are relative to the location of this config.
+    // Suites may be used. When run without a command line parameter,
+    // all suites will run. If run with --suite=frontPage, only the patterns matched
+    // by that suite will run.
+    suites: {
+        full: '../test/e2e/**/*Test.js',
+        frontPage: '../test/e2e/frontPageTest.js',
+        referenceCodes: '../test/e2e/referenceCodesTest.js',
+        register: '../test/e2e/registerTest.js',
+        scenarios: '../test/e2e/scenariosTest.js'
+    },
 
     baseUrl: 'http://127.0.0.1:8000/',
 
