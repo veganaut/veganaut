@@ -32,7 +32,7 @@
             form: {
                 email: 'email@beispiel.com',
                 fullName: 'Vorname und Nachname',
-                role: 'Rolle auswählen',
+                nickname: 'Spitzname (öffentlich)',
                 password: 'Passwort',
                 passwordRepeat: 'Nochmals Passwort',
                 submit: 'Registrieren'

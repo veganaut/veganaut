@@ -80,13 +80,15 @@
          * code, the person from that activity's target will be used.
          * @param email
          * @param fullName
+         * @param nickname
          * @param password
          * @returns {promise}
          */
-        var register = function(email, fullName, password) {
+        var register = function(email, fullName, nickname, password) {
             var postData = {
                 email: email,
                 fullName: fullName,
+                nickname: nickname,
                 password: password
             };
 
