@@ -44,6 +44,7 @@ describe('register.', function() {
 
         element(by.model('form.email')).sendKeys('cody@testerburger.com');
         element(by.model('form.fullName')).sendKeys('Cody Testerburger');
+        element(by.model('form.nickname')).sendKeys('The Cody');
         element(by.model('form.password')).sendKeys('so secure brah');
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
         expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
