@@ -13,7 +13,6 @@ describe('register.', function() {
         // Go to the app
         browser.get('app/index.html#/');
         ptor = protractor.getInstance();
-        helpers.bindProtractor(ptor);
     });
 
     it('should have a link to the register form.', function() {
@@ -31,7 +30,6 @@ describe('register.', function() {
 
         element(by.model('form.email')).sendKeys('cody@testerburger.com');
         element(by.model('form.fullName')).sendKeys('Cody Testerburger');
-        helpers.selectOption(by.model('form.role'), 'Scout');
         element(by.model('form.password')).sendKeys('so secure brah');
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
         expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
