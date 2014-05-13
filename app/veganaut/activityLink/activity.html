@@ -7,8 +7,8 @@
     <span ng-if="target">
         <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(target))|trans"></span>:
         <span ng-bind="target.fullName"></span>
-        <span ng-show="target.nickName">
-            (<span ng-bind="target.nickName"></span>)
+        <span ng-show="target.nickname">
+            (<span ng-bind="target.nickname"></span>)
         </span>
     </span>
     <select required class="form-control" ng-model="form.selectedActivity" ng-options="v.name for (k, v) in activities">

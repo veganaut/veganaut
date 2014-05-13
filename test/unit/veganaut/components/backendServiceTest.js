@@ -106,7 +106,7 @@ describe('backendService', function() {
         $httpBackend.expectGET('/person/me')
             .respond({
                 email: 'foo@bar.baz',
-                nickName: 'Zorg-81201',
+                nickname: 'Zorg-81201',
                 fullName: 'Alice Alison',
                 team: 'blue',
                 role: 'veteran',
