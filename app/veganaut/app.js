@@ -20,6 +20,7 @@
         $routeProvider.when('/createActivity/:target?', {templateUrl: 'veganaut/activityLink/activity.html'});
         $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
+        $routeProvider.when('/me', {templateUrl: 'veganaut/profile/profile.html'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
 

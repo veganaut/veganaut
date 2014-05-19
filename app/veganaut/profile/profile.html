@@ -1,0 +1,39 @@
+<div class="profile">
+    <!-- TODO: make a directive for rendering the rows -->
+    <!-- TODO: make a smart profile display (directive? partial?) to merge this here and the info at the bottom of the social graph -->
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.fullName' | trans"></div>
+        <div class="col-xs-8" ng-bind="me.fullName"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.nickname' | trans"></div>
+        <div class="col-xs-8" ng-bind="me.nickname"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.email' | trans"></div>
+        <div class="col-xs-8" ng-bind="me.email"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.role' | trans"></div>
+        <div class="col-xs-8">
+            <span ng-bind="('person.role.' + me.role)|trans"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.team' | trans"></div>
+        <div class="col-xs-8">
+            <span ng-bind="('person.team.' + me.team)|trans"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" ng-bind="'person.label.balance' | trans"></div>
+        <div class="col-xs-8">
+            <span class="badge badgeOwnPoints-{{me.team}}" ng-bind="me.strength"></span>
+            <span class="badge badgeOtherPoints-{{me.team}}" ng-bind="me.hits"></span>
+            <span ng-if="me.isCaptured" class="badge captured">
+                <span class="glyphicon glyphicon-asterisk"></span>
+                <span ng-bind="'person.label.captured'|trans"></span>
+            </span>
+        </div>
+    </div>
+</div>

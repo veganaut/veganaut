@@ -17,6 +17,7 @@ exports.config = {
         full: '../test/e2e/**/*Test.js',
         authentication: '../test/e2e/authenticationTest.js',
         frontPage: '../test/e2e/frontPageTest.js',
+        profile: '../test/e2e/profileTest.js',
         referenceCodes: '../test/e2e/referenceCodesTest.js',
         register: '../test/e2e/registerTest.js',
         socialGraph: '../test/e2e/socialGraphTest.js'

@@ -22,8 +22,8 @@ describe('socialGraph.', function() {
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
         var logoutButton = element(by.css('button.navLogout'));
-        logoutButton.isDisplayed().then(function(isDisplayed) {
-            if (isDisplayed) {
+        logoutButton.isPresent().then(function(isPresent) {
+            if (isPresent) {
                 logoutButton.click();
             }
             else {

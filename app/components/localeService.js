@@ -13,6 +13,7 @@
             register: 'Registrieren',
             login: 'Login',
             logout: 'Logout',
+            profile: 'Mein Profil',
             avatar: 'Mein Netzwerk',
             openActivities: 'Offene Aktivitäten',
             referenceCode: 'Referenz-Code eingeben'
@@ -85,8 +86,19 @@
                 baby: 'Baby',
                 maybe: 'Maybe'
             },
-            captured: 'Gefangen',
-            balance: 'Balance'
+            team: {
+                blue: 'Blau',
+                green: 'Grün'
+            },
+            label: {
+                email: 'E-Mail Adresse',
+                fullName: 'Name',
+                nickname: 'Spitzname',
+                role: 'Rolle',
+                team: 'Team',
+                balance: 'Balance',
+                captured: 'Gefangen'
+            }
         },
         score: {
             totalScore: 'Punktestand',

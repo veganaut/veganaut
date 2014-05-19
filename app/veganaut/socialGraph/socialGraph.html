@@ -44,15 +44,15 @@
         </span>
     </span>
 
-    <span ng-show="selectedNode.isCaptured" class="badge captured">
-        <span class="glyphicon glyphicon-asterisk"></span>
-        <span ng-bind="'person.captured'|trans"></span>
-    </span>
     <br />
     <span ng-show="selectedNode.hasBalance()">
-        <span ng-bind="'person.balance'|trans"></span>:
+        <span ng-bind="'person.label.balance'|trans"></span>:
         <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
         <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
+    </span>
+    <span ng-show="selectedNode.isCaptured" class="badge captured">
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span ng-bind="'person.label.captured'|trans"></span>
     </span>
 </div>
 <div class="linkInfo" ng-show="selectedLink">
