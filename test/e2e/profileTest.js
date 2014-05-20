@@ -55,4 +55,20 @@ describe('profile.', function() {
             // TODO: add smarter checks that the profile is fine (such as is the balance displayed)
         });
     });
+
+    describe('edit profile.', function() {
+        var editProfile;
+
+        beforeEach(function() {
+            menuButton.click();
+            browser.sleep(helpers.MENU_DELAY);
+            element(by.css('button.navProfile')).click();
+
+            editProfile = element(by.css('button.editProfile'));
+        });
+
+        it('should have an edit profile button.', function() {
+            expect(editProfile.isPresent()).toBe(true);
+        });
+    });
 });

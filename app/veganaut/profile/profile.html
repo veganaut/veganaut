@@ -1,4 +1,4 @@
-<div class="profile">
+<div class="profile pageSection">
     <!-- TODO: make a directive for rendering the rows -->
     <!-- TODO: make a smart profile display (directive? partial?) to merge this here and the info at the bottom of the social graph -->
     <div class="row">
@@ -37,3 +37,8 @@
         </div>
     </div>
 </div>
+
+<button type="button" class="editProfile btn btn-block btn-default" ng-click="">
+    <span class="glyphicon glyphicon-edit"></span>
+    <span ng-bind="'action.profile.edit'|trans"></span>
+</button>

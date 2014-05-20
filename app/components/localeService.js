@@ -56,6 +56,9 @@
                     tempt: 'Tempt',
                     unspecified: 'Make a move'
                 }
+            },
+            profile: {
+                edit: 'Profil Bearbeiten'
             }
         },
         activityLink: {
