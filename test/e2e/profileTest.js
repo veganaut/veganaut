@@ -67,8 +67,11 @@ describe('profile.', function() {
             editProfile = element(by.css('button.editProfile'));
         });
 
-        it('should have an edit profile button.', function() {
-            expect(editProfile.isPresent()).toBe(true);
+        it('should be possible to edit the profile.', function() {
+            expect(editProfile.isPresent()).toBe(true, 'should have an edit profile button');
+            editProfile.click();
+
+            expect(element(by.css('form.editProfileForm')).isDisplayed()).toBe(true, 'should show edit profile form');
         });
     });
 });

@@ -1,8 +1,8 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('AppCtrl', ['$scope', '$location', 'backendService', 'playerService', 'alertService',
-        function($scope, $location, backendService, playerService, alertService) {
+    controllersModule.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService', 'alertService',
+        function($scope, $location, $window, backendService, playerService, alertService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
                 $location.path(view);
@@ -18,12 +18,15 @@
                 backendService.logout()
                     .success(function() {
                         $scope.goToView('');
+                        $window.location.reload();
                     })
                 ;
             };
 
-            // Holds the logged in user data
-            $scope.me = playerService.getMe();
+            // Get the logged in user data
+            playerService.getMe().then(function(me) {
+                $scope.me = me;
+            });
 
             // Expose the activity verb method
             $scope.getActivityVerb = playerService.getActivityVerb;

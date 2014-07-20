@@ -26,7 +26,13 @@
         },
         message: {
             registered: 'Registrierung erfolgreich.',
-            activityLinkCreated: 'Aktivität erstellt.'
+            activityLinkCreated: 'Aktivität erstellt.',
+            profile: {
+                update: {
+                    success: 'Profil wurde erfolgreich aktualisiert.',
+                    fail: 'Profil konnte nicht aktualisiert werden.'
+                }
+            }
         },
         register: {
             title: 'Registrieren',
@@ -49,6 +55,7 @@
         },
         action: {
             register: 'Registrieren',
+            cancel: 'Abbrechen',
             socialGraph: {
                 createActivityLink: {
                     attract: 'Attract',
@@ -58,7 +65,9 @@
                 }
             },
             profile: {
-                edit: 'Profil Bearbeiten'
+                edit: 'Profil bearbeiten',
+                save: 'Profil speichern',
+                changePassword: 'Passwort ändern'
             }
         },
         activityLink: {
@@ -100,7 +109,12 @@
                 role: 'Rolle',
                 team: 'Team',
                 balance: 'Balance',
-                captured: 'Gefangen'
+                captured: 'Gefangen',
+                password: 'Passwort',
+                passwordRepeat: 'Passwort wiederholen'
+            },
+            action: {
+
             }
         },
         score: {

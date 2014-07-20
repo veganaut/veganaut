@@ -1,0 +1,35 @@
+<form novalidate name="editProfileForm" class="editProfileForm spacedForm" ng-controller="EditProfileCtrl">
+    <div class="form-group">
+        <label for="editFullName" ng-bind="'person.label.fullName' | trans"></label>
+        <input type="text" required id="editFullName" class="form-control" ng-model="form.fullName" />
+    </div>
+    <div class="form-group">
+        <label for="editNickname" ng-bind="'person.label.nickname' | trans"></label>
+        <input type="text" required id="editNickname" class="form-control" ng-model="form.nickname" />
+    </div>
+    <div class="form-group">
+        <label for="editEmail" ng-bind="'person.label.email' | trans"></label>
+        <input type="email" required id="editEmail" class="form-control" ng-model="form.email" />
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="changePassword" /><span ng-bind="'action.profile.changePassword' | trans"></span>
+        </label>
+    </div>
+    <div ng-if="changePassword">
+        <div class="form-group">
+            <label for="editPassword" ng-bind="'person.label.password' | trans"></label>
+            <input type="password" required id="editPassword" class="form-control" ng-model="form.password"
+             placeholder="{{ 'register.form.password' | trans }}" />
+        </div>
+        <div class="form-group">
+            <label for="editPasswordRepeat" ng-bind="'person.label.passwordRepeat' | trans"></label>
+            <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat"
+             placeholder="{{ 'register.form.passwordRepeat' | trans }}" />
+        </div>
+    </div>
+    <button class="btn btn-default"
+     ng-click="goToView('me')" ng-bind="'action.cancel' | trans"></button>
+    <button type="submit" class="btn btn-default" ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine"
+     ng-click="submit()" ng-bind="'action.profile.save' | trans"></button>
+</form>

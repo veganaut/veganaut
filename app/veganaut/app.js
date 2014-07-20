@@ -21,8 +21,10 @@
         $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
         $routeProvider.when('/me', {templateUrl: 'veganaut/profile/profile.html'});
+        $routeProvider.when('/me/edit', {templateUrl: 'veganaut/profile/editProfile.html'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
+    // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
 
 
     // Add $onRootScope method for pub/sub

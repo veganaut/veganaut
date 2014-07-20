@@ -234,6 +234,28 @@
             return $http.get(backendUrl + '/person/me');
         };
 
+        /**
+         * Posts the new player data. If password is not given or empty, it is not updated.
+         * @param {string} email
+         * @param {string} fullName
+         * @param {string} nickname
+         * @param {string} [password]
+         * @returns {HttpPromise}
+         */
+        var updateMe = function(email, fullName, nickname, password) {
+            var data = {
+                email: email,
+                fullName: fullName,
+                nickname: nickname
+            };
+
+            if (typeof password !== 'undefined' && password.length > 0) {
+                data.password = password;
+            }
+
+            return $http.put(backendUrl + '/person/me', data);
+        };
+
 
         /**
          * Returns this service
@@ -260,7 +282,8 @@
                 submitReferenceCode: submitReferenceCode,
                 getOpenActivityLinks: getOpenActivityLinks,
                 getMatch: getMatch,
-                getMe: getMe
+                getMe: getMe,
+                updateMe: updateMe
             };
         }];
     });
