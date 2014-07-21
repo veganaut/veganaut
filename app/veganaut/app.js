@@ -5,6 +5,7 @@
     var monkeyFaceModule = angular.module('monkeyFace', [
         'ngRoute',
         'ui.bootstrap',
+        'leaflet-directive',
         'monkeyFace.filters',
         'monkeyFace.services',
         'monkeyFace.directives',
@@ -20,6 +21,7 @@
         $routeProvider.when('/createActivity/:target?', {templateUrl: 'veganaut/activityLink/activity.html'});
         $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
+        $routeProvider.when('/map', {templateUrl: 'veganaut/map/map.html', controller: 'MapCtrl'});
         $routeProvider.when('/me', {templateUrl: 'veganaut/profile/profile.html'});
         $routeProvider.when('/me/edit', {templateUrl: 'veganaut/profile/editProfile.html'});
         $routeProvider.otherwise({redirectTo: '/'});

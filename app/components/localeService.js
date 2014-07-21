@@ -13,6 +13,7 @@
             register: 'Registrieren',
             login: 'Login',
             logout: 'Logout',
+            map: 'Karte',
             profile: 'Mein Profil',
             avatar: 'Mein Netzwerk',
             openActivities: 'Offene Aktivitäten',
