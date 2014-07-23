@@ -1,1 +1,5 @@
 <leaflet class="mainMap" markers="markers" defaults="mapSettings" center="center"></leaflet>
+
+<div ng-show="focusedMarker()">
+    Details of this place: <span ng-bind="focusedMarker().message"></span>
+</div>
