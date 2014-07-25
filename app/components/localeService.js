@@ -69,6 +69,9 @@
                 edit: 'Profil bearbeiten',
                 save: 'Profil speichern',
                 changePassword: 'Passwort ändern'
+            },
+            map: {
+                addLocation: 'Neun Ort hinzufügen'
             }
         },
         activityLink: {

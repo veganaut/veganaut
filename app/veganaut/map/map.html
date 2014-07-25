@@ -1,5 +1,21 @@
-<leaflet class="mainMap" markers="markers" defaults="mapSettings" center="center"></leaflet>
+<div ng-class="{isAddingLocation: isAddingLocation}">
+    <div class="pageSection">
+        <button type="button" class="addLocation btn btn-block btnTeam" ng-click="isAddingLocation = true" ng-hide="isAddingLocation">
+            <span class="glyphicon glyphicon-play"></span>
+            <span ng-bind="'action.map.addLocation'|trans"></span>
+        </button>
 
-<div ng-show="focusedMarker()">
-    Details of this place: <span ng-bind="focusedMarker().message"></span>
+        <button type="button" class="cancelAddLocation btn btn-block btn-default" ng-click="isAddingLocation = false" ng-show="isAddingLocation">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span ng-bind="'action.cancel'|trans"></span>
+        </button>
+    </div>
+
+    <leaflet class="mainMap" markers="locations" defaults="mapSettings" center="center" event-broadcast="events"></leaflet>
+
+    <div ng-show="selectedLocation">
+        Details of this place: {{ selectedLocation.title }}<br />
+        Latitude: {{ selectedLocation.lat }}<br />
+        Longitude: {{ selectedLocation.lng }}<br />
+    </div>
 </div>

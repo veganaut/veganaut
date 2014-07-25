@@ -243,6 +243,42 @@ body.bluePlayer .socialGraph {
     height: 400px;
 }
 
+.isAddingLocation .mainMap {
+    cursor: crosshair;
+}
+
+@markerSize: 16px;
+@markerSizeActive: 18px;
+.leaflet-marker-icon {
+    border-radius: 120px;
+    opacity: 0.5;
+    width: @markerSize;
+    height: @markerSize;
+    margin-left: -@markerSize / 2;
+    margin-top: -@markerSize / 2;
+
+    &.greenMarker {
+        background-color: @greenBaseColour;
+    }
+
+    &.blueMarker {
+        background-color: @blueBaseColour;
+    }
+
+    &:hover, &.selected {
+        opacity: 1;
+        width: @markerSizeActive;
+        height: @markerSizeActive;
+        margin-left: -@markerSizeActive / 2;
+        margin-top: -@markerSizeActive / 2;
+    }
+}
+
+.btn.cancelAddLocation {
+    // Override bootstrap stupid margin TODO: do this differently
+    margin-top: 0;
+}
+
 // Make sure ng-cloak is around even if angular is not loaded yet
 .ng-cloak {
     display: none !important;
