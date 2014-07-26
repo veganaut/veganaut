@@ -2,54 +2,9 @@
     'use strict';
 
     // TODO: refactor, document and add tests!!
-
-    /**
-     * Defines the available icons for the map markers
-     * @type {{}}
-     */
-    var icons = {
-        blue: {
-            type: 'div',
-            iconSize: null, // Will be set in CSS,
-            className: 'blueMarker'
-        },
-        green: {
-            type: 'div',
-            iconSize: null,
-            className: 'greenMarker'
-        }
-    };
-
-    var dummyLocations = [
-        {
-            lat: 46.949,
-            lng: 7.451,
-            icon: icons.blue,
-            title: 'Some place'
-        },
-        {
-            lat: 46.945,
-            lng: 7.456,
-            icon: icons.blue,
-            title: 'Some other place'
-        },
-        {
-            lat: 46.95,
-            lng: 7.459,
-            icon: icons.green,
-            title: 'Great place'
-        },
-        {
-            lat: 46.94,
-            lng: 7.44,
-            icon: icons.green,
-            title: 'Soon to be great place'
-        }
-    ];
-
-    controllersModule.controller('MapCtrl', ['$scope', 'playerService',
+    controllersModule.controller('MapCtrl', ['$scope', 'playerService', 'Location',
         // TODO: this page should only be available when logged in
-        function($scope, playerService) {
+        function($scope, playerService, Location) {
             var player;
 
             $scope.isAddingLocation = false;
@@ -65,18 +20,23 @@
                 zoom: 14
             };
 
-            $scope.locations = dummyLocations;
+            $scope.locations = [
+                new Location(46.949, 7.451, 'blue',  'Some place'),
+                new Location(46.945, 7.456, 'blue',  'Some other place'),
+                new Location(46.95,  7.459, 'green','Great place'),
+                new Location(46.94,  7.44,  'green', 'Soon to be great place')
+            ];
 
             $scope.events = {};
             $scope.$on('leafletDirectiveMap.click', function(event, args) {
                 if ($scope.isAddingLocation) {
                     // Add new marker at the chosen location
-                    var location = {
-                        lat: args.leafletEvent.latlng.lat,
-                        lng: args.leafletEvent.latlng.lng,
-                        title: 'New Location',
-                        icon: icons[player.team]
-                    };
+                    var location = new Location(
+                        args.leafletEvent.latlng.lat,
+                        args.leafletEvent.latlng.lng,
+                        player.team,
+                        'New Location'
+                    );
                     $scope.locations.push(location);
 
                     $scope.selectedLocation = location;
