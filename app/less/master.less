@@ -249,7 +249,7 @@ body.bluePlayer .socialGraph {
 
 @markerSize: 16px;
 @markerSizeActive: 18px;
-.leaflet-marker-icon {
+.mapLocation {
     border-radius: 120px;
     opacity: 0.5;
     width: @markerSize;
@@ -257,15 +257,15 @@ body.bluePlayer .socialGraph {
     margin-left: -@markerSize / 2;
     margin-top: -@markerSize / 2;
 
-    &.greenMarker {
+    &.team-green {
         background-color: @greenBaseColour;
     }
 
-    &.blueMarker {
+    &.team-blue {
         background-color: @blueBaseColour;
     }
 
-    &:hover, &.selected {
+    &:hover, &.active {
         opacity: 1;
         width: @markerSizeActive;
         height: @markerSizeActive;

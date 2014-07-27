@@ -11,11 +11,11 @@
         </button>
     </div>
 
-    <leaflet class="mainMap" markers="locations" defaults="mapSettings" center="center" event-broadcast="events"></leaflet>
+    <leaflet class="mainMap pageSection" markers="locations" defaults="mapSettings" center="center" event-broadcast="events"></leaflet>
 
-    <div ng-show="selectedLocation">
-        Details of this place: {{ selectedLocation.title }}<br />
-        Latitude: {{ selectedLocation.lat }}<br />
-        Longitude: {{ selectedLocation.lng }}<br />
+    <div class="well pageSection locationDetails" ng-show="activeLocation">
+        Details of this place: {{ activeLocation.title }}<br />
+        Latitude: {{ activeLocation.lat }}<br />
+        Longitude: {{ activeLocation.lng }}<br />
     </div>
 </div>

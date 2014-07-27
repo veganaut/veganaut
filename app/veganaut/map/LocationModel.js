@@ -2,23 +2,6 @@
     'use strict';
 
     /**
-     * Defines the available icons for the map markers
-     * @type {{}}
-     */
-    var icons = {
-        blue: {
-            type: 'div',
-            iconSize: null, // Will be set in CSS,
-            className: 'blueMarker'
-        },
-        green: {
-            type: 'div',
-            iconSize: null,
-            className: 'greenMarker'
-        }
-    };
-
-    /**
      * Location Model
      *
      * @param {number} lat
@@ -32,7 +15,42 @@
         this.lng = lng;
         this.team = team;
         this.title = title;
-        this.icon = icons[team];
+
+        this._defaultIconClassList = 'mapLocation team-' + this.team;
+
+        this.icon = {
+            type: 'div',
+            iconSize: null, // Needs to be set to null so it can be specified in CSS
+            className: this._defaultIconClassList
+        };
+
+        this._active = false;
+    };
+
+    /**
+     * Sets the location as active or inactive
+     * @param {boolean} [isActive=true]
+     */
+    Location.prototype.setActive = function(isActive) {
+        if (typeof isActive === 'undefined') {
+            isActive = true;
+        }
+        this._active = isActive;
+
+        // Set the correct icon class
+        this.icon.className = this._defaultIconClassList;
+        if (this._active) {
+            this.icon.className += ' active';
+        }
+
+    };
+
+    /**
+     * Whether the location is active
+     * @returns {boolean}
+     */
+    Location.prototype.isActive = function() {
+        return this._active;
     };
 
 
