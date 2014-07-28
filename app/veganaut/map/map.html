@@ -1,17 +1,22 @@
 <div ng-class="{isAddingLocation: isAddingLocation}">
+    <div class="backdrop" ng-show="isAddingLocation"></div>
     <div class="pageSection">
         <button type="button" class="addLocation btn btn-block btnTeam" ng-click="isAddingLocation = true" ng-hide="isAddingLocation">
             <span class="glyphicon glyphicon-play"></span>
             <span ng-bind="'action.map.addLocation'|trans"></span>
         </button>
 
-        <button type="button" class="cancelAddLocation btn btn-block btn-default" ng-click="isAddingLocation = false" ng-show="isAddingLocation">
+        <button type="button" class="cancelAddLocation btn btn-block btn-default"
+         ng-class="{inFrontOfBackdrop: isAddingLocation}"
+         ng-click="isAddingLocation = false" ng-show="isAddingLocation">
             <span class="glyphicon glyphicon-remove"></span>
             <span ng-bind="'action.cancel'|trans"></span>
         </button>
     </div>
 
-    <leaflet class="mainMap pageSection" markers="locations" defaults="mapSettings" center="center" event-broadcast="events"></leaflet>
+    <leaflet class="mainMap pageSection" ng-class="{inFrontOfBackdrop: isAddingLocation}"
+     markers="locations" defaults="mapSettings" center="center" event-broadcast="events">
+    </leaflet>
 
     <div class="well pageSection locationDetails" ng-show="activeLocation">
         Details of this place: {{ activeLocation.title }}<br />
