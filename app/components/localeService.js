@@ -127,6 +127,13 @@
             captured: 'Gefangen',
             babies: 'Babies'
         },
+        location: {
+            form: {
+                name: 'Name des Ortes',
+                selectOnMap: 'Wähle einen Punkt auf der Karte aus',
+                submit: 'Speichern'
+            }
+        },
         tour: {
             intro: [
                 {

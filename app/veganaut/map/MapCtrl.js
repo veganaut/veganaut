@@ -61,8 +61,38 @@
             $scope.events = {};
 
             /**
+             * Starts adding a new location
+             */
+            $scope.startAddNewLocation = function() {
+                $scope.isAddingLocation = true;
+                $scope.newLocation = new Location(undefined, undefined, player.team, '');
+                // TODO: should only add once lat/lng is set (otherwise error)
+                $scope.locations.push($scope.newLocation);
+                activateLocation($scope.newLocation);
+            };
+
+            /**
+             * Aborts adding a new location
+             */
+            $scope.resetAddNewLocation = function() {
+                activateLocation();
+                $scope.locations = $scope.locations.slice(0, $scope.locations.length - 1);
+                $scope.isAddingLocation = false;
+                $scope.newLocation = undefined;
+            };
+
+            /**
+             * Finalises adding a new location
+             */
+            $scope.addNewLocation = function() {
+                $scope.isAddingLocation = false;
+                $scope.newLocation = undefined;
+                // TODO: submit to backend
+            };
+
+            /**
              * Sets the given location as active deactivates it if it's already active.
-             * @param {Location} location
+             * @param {Location} [location]
              */
             var activateLocation = function(location) {
                 // Deactivate current location
@@ -70,8 +100,9 @@
                     $scope.activeLocation.setActive(false);
                 }
 
-                if ($scope.activeLocation === location) {
-                    // If the given location is already active, deactivate
+                if ($scope.activeLocation === location || typeof location === 'undefined') {
+                    // If the given location is already active
+                    // or the new active location should be undefined, deactivate
                     $scope.activeLocation = undefined;
                 }
                 else {
@@ -88,17 +119,8 @@
              */
             var mapClickHandler = function(event, args) {
                 if ($scope.isAddingLocation) {
-                    // Add new marker at the chosen location
-                    var location = new Location(
-                        args.leafletEvent.latlng.lat,
-                        args.leafletEvent.latlng.lng,
-                        player.team,
-                        'New Location'
-                    );
-                    $scope.locations.push(location);
-
-                    activateLocation(location);
-                    $scope.isAddingLocation = false;
+                    $scope.newLocation.lat = args.leafletEvent.latlng.lat;
+                    $scope.newLocation.lng = args.leafletEvent.latlng.lng;
                 }
             };
 
