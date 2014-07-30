@@ -45,7 +45,7 @@
 
             /**
              * All Locations shown on the map
-             * @type {*[]}
+             * @type {Location[]}
              */
             $scope.locations = [
                 new Location(46.949, 7.451, 'blue',  'Some place'),
@@ -66,8 +66,6 @@
             $scope.startAddNewLocation = function() {
                 $scope.isAddingLocation = true;
                 $scope.newLocation = new Location(undefined, undefined, player.team, '');
-                // TODO: should only add once lat/lng is set (otherwise error)
-                $scope.locations.push($scope.newLocation);
                 activateLocation($scope.newLocation);
             };
 
@@ -76,7 +74,10 @@
              */
             $scope.resetAddNewLocation = function() {
                 activateLocation();
-                $scope.locations = $scope.locations.slice(0, $scope.locations.length - 1);
+                if ($scope.newLocation.isAddedToMap === true) {
+                    // Remove from map if it was added
+                    $scope.locations = $scope.locations.slice(0, $scope.locations.length - 1);
+                }
                 $scope.isAddingLocation = false;
                 $scope.newLocation = undefined;
             };
@@ -121,6 +122,12 @@
                 if ($scope.isAddingLocation) {
                     $scope.newLocation.lat = args.leafletEvent.latlng.lat;
                     $scope.newLocation.lng = args.leafletEvent.latlng.lng;
+
+                    // Push to map if not already there
+                    if ($scope.newLocation.isAddedToMap !== true) {
+                        $scope.locations.push($scope.newLocation);
+                        $scope.newLocation.isAddedToMap = true;
+                    }
                 }
             };
 
