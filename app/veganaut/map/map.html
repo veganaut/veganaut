@@ -1,9 +1,15 @@
 <div ng-class="{isAddingLocation: isAddingLocation}">
     <div class="backdrop" ng-show="isAddingLocation"></div>
     <div class="pageSection">
-        <button type="button" class="addLocation btn btn-block btnTeam" ng-click="startAddNewLocation()">
+        <button ng-hide="activeLocation" type="button" class="addLocation btn btn-block btnTeam"
+         ng-click="startAddNewLocation()">
             <span class="glyphicon glyphicon-play"></span>
             <span ng-bind="'action.map.addLocation'|trans"></span>
+        </button>
+        <button ng-show="activeLocation" type="button" class="viewDetails btn btn-block btnTeam"
+         ng-click="viewDetails(activeLocation)">
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <span ng-bind="'action.map.viewDetails'|trans"></span>
         </button>
     </div>
 
