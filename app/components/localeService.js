@@ -132,6 +132,7 @@
             form: {
                 name: 'Name des Ortes',
                 selectOnMap: 'Wähle einen Punkt auf der Karte aus',
+                chooseType: 'Typ des Ortes auswählen',
                 submit: 'Speichern'
             }
         },
