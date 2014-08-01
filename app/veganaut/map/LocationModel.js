@@ -8,13 +8,15 @@
      * @param {number} lng
      * @param {string} team
      * @param {string} title
+     * @param {string} type
      * @constructor
      */
-    var Location = function(lat, lng, team, title) {
+    var Location = function(lat, lng, team, title, type) {
         this.lat = lat;
         this.lng = lng;
         this.team = team;
         this.title = title;
+        this.type = type;
 
         this._defaultIconClassList = 'mapLocation team-' + this.team;
 
@@ -25,6 +27,17 @@
         };
 
         this._active = false;
+    };
+
+    /**
+     * The possible types of locations
+     * @type {{gastronomy: string, retail: string, event: string, private: string}}
+     */
+    Location.TYPES = {
+        gastronomy: 'gastronomy',
+        retail: 'retail',
+        event: 'event',
+        'private': 'private'
     };
 
     /**

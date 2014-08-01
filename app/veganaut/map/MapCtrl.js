@@ -48,11 +48,17 @@
              * @type {Location[]}
              */
             $scope.locations = [
-                new Location(46.949, 7.451, 'blue',  'Some place'),
-                new Location(46.945, 7.456, 'blue',  'Some other place'),
-                new Location(46.95,  7.459, 'green','Great place'),
-                new Location(46.94,  7.44,  'green', 'Soon to be great place')
+                new Location(46.949, 7.451, 'blue',  'Some place', Location.TYPES.event),
+                new Location(46.945, 7.456, 'blue',  'Some other place', Location.TYPES.gastronomy),
+                new Location(46.95,  7.459, 'green','Great place', Location.TYPES.private),
+                new Location(46.94,  7.44,  'green', 'Soon to be great place', Location.TYPES.retail)
             ];
+
+            /**
+             * Expose the location types
+             * @type {{}}
+             */
+            $scope.locationTypes = Location.TYPES;
 
             /**
              * Empty events object (needed to get the leaflet map to broadcast events)
@@ -65,7 +71,7 @@
              */
             $scope.startAddNewLocation = function() {
                 $scope.isAddingLocation = true;
-                $scope.newLocation = new Location(undefined, undefined, player.team, '');
+                $scope.newLocation = new Location(undefined, undefined, player.team);
                 activateLocation($scope.newLocation);
             };
 
