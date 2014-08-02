@@ -2,14 +2,14 @@
     "name": "monkey-face",
     "private": true,
     "dependencies": {
-        "angular": "1.2.15",
-        "angular-route": "1.2.15",
-        "angular-ui-bootstrap-bower": "0.10.0",
+        "angular": "1.2.21",
+        "angular-route": "1.2.21",
+        "angular-ui-bootstrap-bower": "0.11.0",
         "angular-leaflet-directive": "0.7.7",
         "leaflet": "0.7.3",
-        "d3": "3.4.5",
-        "jquery": "2.1.0",
-        "bootstrap": "3.1.0",
-        "bootstrap-tour": "0.9.1"
+        "d3": "3.4.11",
+        "jquery": "2.1.1",
+        "bootstrap": "3.2.0",
+        "bootstrap-tour": "0.9.3"
     }
 }

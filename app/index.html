@@ -53,7 +53,7 @@
 </header>
 
 <div class="container mainContainer">
-    <alert ng-repeat="alert in getAlerts()" type="alert.type" close="closeAlert(alert)" class="mainAlert">
+    <alert ng-repeat="alert in getAlerts()" type="{{ alert.type }}" close="closeAlert(alert)" class="mainAlert">
         <span ng-bind="alert.message"></span>
     </alert>
 
