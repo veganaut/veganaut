@@ -8,9 +8,9 @@
     var TILE_LAYER_URL = 'https://{s}.tiles.mapbox.com/v3/toebu.ilh4kll0/{z}/{x}/{y}.png';
 
     // TODO: refactor, document and add tests!!
-    controllersModule.controller('MapCtrl', ['$scope', 'playerService', 'Location',
+    controllersModule.controller('MapCtrl', ['$scope', 'playerService', 'alertService', 'Location',
         // TODO: this page should only be available when logged in
-        function($scope, playerService, Location) {
+        function($scope, playerService, alertService, Location) {
             var player;
 
             /**
@@ -48,7 +48,7 @@
              * @type {Location[]}
              */
             $scope.locations = [
-                new Location(46.949, 7.451, 'blue',  'Some place', Location.TYPES.event),
+                new Location(46.955, 7.451, 'blue',  'Some place', Location.TYPES.event),
                 new Location(46.945, 7.456, 'blue',  'Some other place', Location.TYPES.gastronomy),
                 new Location(46.95,  7.459, 'green','Great place', Location.TYPES.private),
                 new Location(46.94,  7.44,  'green', 'Soon to be great place', Location.TYPES.retail)
@@ -93,8 +93,11 @@
              */
             $scope.addNewLocation = function() {
                 $scope.isAddingLocation = false;
+                var name = $scope.newLocation.title;
                 $scope.newLocation = undefined;
                 // TODO: submit to backend
+                // TODO: translate
+                alertService.addAlert('Added new location "' + name + '"', 'success');
             };
 
             /**

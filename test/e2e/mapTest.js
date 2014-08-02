@@ -13,6 +13,7 @@ describe('map.', function() {
         // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('app/index.html#/');
         ptor = protractor.getInstance();
+        helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
         menuButton = element(by.css('button.menuButton'));
@@ -75,6 +76,25 @@ describe('map.', function() {
             location.click();
             expect(details.isDisplayed()).toBe(false, 'details hidden on second click');
             expect(location.getAttribute('class')).toNotMatch(/active/, '.active class removed');
+        });
+
+        describe('add location.', function() {
+            it('should be possible to add a new location.', function() {
+                browser.sleep(helpers.MENU_DELAY); // Wait for menu to go away
+                element(by.css('.addLocation')).click();
+                expect(element(by.css('form.locationForm')).isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
+
+                // Click somewhere on the map
+                element(by.css('.mainMap')).click();
+                helpers.selectOption(by.model('newLocation.type'), 'gastronomy');
+
+                // Enter title and complete form by sending Enter
+                element(by.model('newLocation.title')).sendKeys('New Place\n');
+
+                expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
+
+                // TODO: test that new place is on the map
+            });
         });
     });
 });
