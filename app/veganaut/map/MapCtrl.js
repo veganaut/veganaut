@@ -1,16 +1,10 @@
 (function(controllersModule) {
     'use strict';
 
-    /**
-     * Where to load the map tiles from
-     * @type {string}
-     */
-    var TILE_LAYER_URL = 'https://{s}.tiles.mapbox.com/v3/toebu.ilh4kll0/{z}/{x}/{y}.png';
-
     // TODO: refactor, document and add tests!!
-    controllersModule.controller('MapCtrl', ['$scope', '$location', 'playerService', 'alertService', 'Location', 'locationService',
+    controllersModule.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'alertService', 'Location', 'locationService',
         // TODO: this page should only be available when logged in
-        function($scope, $location, playerService, alertService, Location, locationService) {
+        function($scope, $location, tileLayerUrl, playerService, alertService, Location, locationService) {
             var player;
 
             /**
@@ -30,7 +24,7 @@
              * @type {{}}
              */
             $scope.mapSettings = {
-                tileLayer: TILE_LAYER_URL
+                tileLayer: tileLayerUrl
             };
 
             /**

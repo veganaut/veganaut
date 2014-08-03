@@ -1,3 +1,7 @@
 <div ng-controller="LocationDetailsCtrl">
     <vg-location location="location"></vg-location>
+
+    <leaflet class="locationDetailMap"
+     markers="[location]" defaults="mapSettings" center="center">
+    </leaflet>
 </div>
