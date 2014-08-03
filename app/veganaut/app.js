@@ -21,7 +21,8 @@
         $routeProvider.when('/createActivity/:target?', {templateUrl: 'veganaut/activityLink/activity.html'});
         $routeProvider.when('/openActivities', {templateUrl: 'veganaut/openActivities/openActivities.html', controller: 'OpenActivitiesCtrl'});
         $routeProvider.when('/referenceCode', {templateUrl: 'veganaut/referenceCode/referenceCode.html', controller: 'ReferenceCodeCtrl'});
-        $routeProvider.when('/map', {templateUrl: 'veganaut/map/map.html', controller: 'MapCtrl'});
+        $routeProvider.when('/map', {templateUrl: 'veganaut/map/map.html'});
+        $routeProvider.when('/map/location/:id', {templateUrl: 'veganaut/map/locationDetails.tpl.html'});
         $routeProvider.when('/me', {templateUrl: 'veganaut/profile/profile.html'});
         $routeProvider.when('/me/edit', {templateUrl: 'veganaut/profile/editProfile.html'});
         $routeProvider.otherwise({redirectTo: '/'});

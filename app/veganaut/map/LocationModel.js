@@ -1,6 +1,9 @@
 (function(modelsModule) {
     'use strict';
 
+    // TODO: temporary hack to have a unique id, will be provided by backend
+    var lastId = 0;
+
     /**
      * Location Model
      *
@@ -12,6 +15,8 @@
      * @constructor
      */
     var Location = function(lat, lng, team, title, type) {
+        lastId += 1;
+        this.id = lastId;
         this.lat = lat;
         this.lng = lng;
         this.team = team;
