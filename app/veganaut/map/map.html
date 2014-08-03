@@ -41,18 +41,5 @@
         </form>
     </div>
 
-    <div class="well pageSection infoWell locationDetails" ng-show="activeLocation && !isAddingLocation">
-        <span class="badge team-{{ activeLocation.team }}">
-            {{ activeLocation.title }}
-        </span>
-        <span class="badge">
-            <span ng-switch="activeLocation.type">
-                <span ng-switch-when="gastronomy" class="glyphicon glyphicon-cutlery"></span>
-                <span ng-switch-when="retail" class="glyphicon glyphicon-shopping-cart"></span>
-                <span ng-switch-when="event" class="glyphicon glyphicon-flag"></span>
-                <span ng-switch-when="private" class="glyphicon glyphicon-home"></span>
-            </span>
-            {{ 'location.type.' + activeLocation.type | trans }}
-        </span>
-    </div>
+    <vg-location location="activeLocation" ng-hide="isAddingLocation"></vg-location>
 </div>
