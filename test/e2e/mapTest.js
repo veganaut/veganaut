@@ -86,7 +86,7 @@ describe('map.', function() {
 
                 // Click somewhere on the map
                 element(by.css('.mainMap')).click();
-                helpers.selectOption(by.model('newLocation.type'), 'gastronomy');
+                helpers.selectOption(by.model('newLocation.type'), 'Gastronomy');
 
                 // Enter title and complete form by sending Enter
                 element(by.model('newLocation.title')).sendKeys('New Place\n');

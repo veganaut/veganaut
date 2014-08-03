@@ -134,6 +134,12 @@
                 selectOnMap: 'Wähle einen Punkt auf der Karte aus',
                 chooseType: 'Typ des Ortes auswählen',
                 submit: 'Speichern'
+            },
+            type: {
+                gastronomy: 'Gastronomy',
+                retail: 'Retail',
+                event: 'Event',
+                'private': 'Private'
             }
         },
         tour: {

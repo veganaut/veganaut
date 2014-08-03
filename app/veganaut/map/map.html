@@ -21,9 +21,9 @@
         <form novalidate name="locationForm" class="locationForm spacedForm">
             <input type="text" required class="form-control" ng-model="newLocation.title"
              placeholder="{{ 'location.form.name' | trans }}"/>
-            <select required class="form-control" ng-model="newLocation.type"
-             ng-options="k for (k, v) in locationTypes">
+            <select required class="form-control" ng-model="newLocation.type">
                 <option value="">{{ 'location.form.chooseType' | trans }}</option>
+                <option ng-repeat="type in locationTypes" value="{{ type }}">{{ 'location.type.' + type | trans }}</option>
             </select>
             <input type="hidden" required ng-model="newLocation.lat"/>
             <input type="hidden" required ng-model="newLocation.lng"/>
@@ -41,10 +41,18 @@
         </form>
     </div>
 
-    <div class="well pageSection locationDetails" ng-show="activeLocation">
-        Details of this place: {{ activeLocation.title }}<br />
-        Type: {{ activeLocation.type }}<br />
-        Latitude: {{ activeLocation.lat }}<br />
-        Longitude: {{ activeLocation.lng }}<br />
+    <div class="well pageSection infoWell locationDetails" ng-show="activeLocation && !isAddingLocation">
+        <span class="badge team-{{ activeLocation.team }}">
+            {{ activeLocation.title }}
+        </span>
+        <span class="badge">
+            <span ng-switch="activeLocation.type">
+                <span ng-switch-when="gastronomy" class="glyphicon glyphicon-cutlery"></span>
+                <span ng-switch-when="retail" class="glyphicon glyphicon-shopping-cart"></span>
+                <span ng-switch-when="event" class="glyphicon glyphicon-flag"></span>
+                <span ng-switch-when="private" class="glyphicon glyphicon-home"></span>
+            </span>
+            {{ 'location.type.' + activeLocation.type | trans }}
+        </span>
     </div>
 </div>
