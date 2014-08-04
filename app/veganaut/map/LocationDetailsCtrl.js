@@ -23,6 +23,13 @@
                 zoom: 16
             };
 
+            $scope.questions = {
+                optionsAvailable: {
+                    showing: false,
+                    answer: undefined
+                }
+            };
+
             $scope.location = undefined;
             // TODO: should directly ask for the correct location from the locationService
             locationService.getLocations().then(function(locations) {

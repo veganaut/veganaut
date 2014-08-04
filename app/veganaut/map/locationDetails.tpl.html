@@ -1,6 +1,30 @@
 <div ng-controller="LocationDetailsCtrl">
     <vg-location location="location"></vg-location>
 
+    <!-- TODO: translate, move more stuff to controller -->
+    <div class="pageSection">
+        <div class="actionBlock" ng-hide="questions.optionsAvailable.answer">
+            <button type="button" class="btn btn-block btnTeam locationAction"
+             ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
+                <span class="glyphicon glyphicon-bullhorn"></span>
+                Ask the staff if they have vegan options
+            </button>
+
+            <div class="questionBlock" ng-show="questions.optionsAvailable.showing">
+                <div class="question">Do they have vegan options?</div>
+                <div class="btn-group">
+                    <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
+                    <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="resultBlock">
+            <div ng-show="questions.optionsAvailable.answer === 'Yes'">You say there are vegan options available.</div>
+            <div ng-show="questions.optionsAvailable.answer === 'No'">You say there are no vegan options available.</div>
+        </div>
+    </div>
+
     <leaflet class="locationDetailMap"
      markers="[location]" defaults="mapSettings" center="center">
     </leaflet>

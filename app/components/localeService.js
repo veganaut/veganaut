@@ -103,10 +103,6 @@
                 baby: 'Baby',
                 maybe: 'Maybe'
             },
-            team: {
-                blue: 'Blau',
-                green: 'Grün'
-            },
             label: {
                 email: 'E-Mail Adresse',
                 fullName: 'Name',
@@ -117,10 +113,11 @@
                 captured: 'Gefangen',
                 password: 'Passwort',
                 passwordRepeat: 'Passwort wiederholen'
-            },
-            action: {
-
             }
+        },
+        team: {
+            blue: 'Blau',
+            green: 'Grün'
         },
         score: {
             totalScore: 'Punktestand',
