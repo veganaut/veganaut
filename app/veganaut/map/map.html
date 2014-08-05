@@ -41,5 +41,9 @@
         </form>
     </div>
 
-    <vg-location location="activeLocation" ng-hide="isAddingLocation"></vg-location>
+    <div class="well infoWell locationDetails" ng-show="activeLocation && !isAddingLocation">
+        <div class="locationTitle">{{ activeLocation.title }}</div>
+        <vg-location-type-badge location="activeLocation"></vg-location-type-badge>
+        <vg-team-badge team="activeLocation.team"></vg-team-badge>
+    </div>
 </div>

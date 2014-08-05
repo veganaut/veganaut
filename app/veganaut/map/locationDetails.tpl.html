@@ -1,21 +1,32 @@
 <div ng-controller="LocationDetailsCtrl">
-    <vg-location location="location"></vg-location>
+    <h1>{{ location.title }}</h1>
+    <p>
+        <vg-location-type-badge location="location"></vg-location-type-badge>
+        <vg-team-badge team="location.team"></vg-team-badge>
+    </p>
 
     <!-- TODO: translate, move more stuff to controller -->
-    <div class="pageSection">
-        <div class="actionBlock" ng-hide="questions.optionsAvailable.answer">
-            <button type="button" class="btn btn-block btnTeam locationAction"
-             ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
-                <span class="glyphicon glyphicon-bullhorn"></span>
-                Ask the staff if they have vegan options
-            </button>
+    <div class="pageSection well">
+        <p class="lead">
+            <span class="glyphicon glyphicon-ok" ng-show="!!questions.optionsAvailable.answer"></span>
+            Ask the staff if they have vegan options
+        </p>
+        <div class="actionBlock" ng-hide="!!questions.optionsAvailable.answer">
+            <p>
+                <button type="button" class="btn btn-block btnTeam locationAction"
+                 ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
+                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    Ask
+                </button>
+            </p>
 
             <div class="questionBlock" ng-show="questions.optionsAvailable.showing">
-                <div class="question">Do they have vegan options?</div>
-                <div class="btn-group">
+                <p>Do they have vegan options?</p>
+                <div class="btn-group pull-right">
                     <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
                     <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
 
