@@ -22,9 +22,13 @@
 
             <div class="questionBlock" ng-show="questions.optionsAvailable.showing">
                 <p>Do they have vegan options?</p>
+                <button type="button" class="btn btn-default"
+                 ng-click="questions.optionsAvailable.showing = false">
+                    Cancel
+                </button>
                 <div class="btn-group pull-right">
-                    <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
-                    <label class="btn btn-default" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
+                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
+                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
                 </div>
                 <div class="clearfix"></div>
             </div>
