@@ -27,8 +27,54 @@
                 optionsAvailable: {
                     showing: false,
                     answer: undefined
+                },
+                whatOptions: {
+                    showing: false,
+                    completed: false,
+                    answers: [
+                        { text: '' }
+                    ]
                 }
             };
+
+            $scope.submit = function(question) {
+                question.completed = true;
+                if (angular.isArray(question.answers)) {
+                    var validAnswers = [];
+                    for (var i = 0; i < question.answers.length; i += 1) {
+                        var answer = question.answers[i];
+                        if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
+                            validAnswers.push(answer);
+                        }
+                    }
+                    question.answers = validAnswers;
+                }
+            };
+
+            // Watch the list of answers to add or remove new input fields
+            $scope.$watch('questions.whatOptions.answers', function(answers) {
+                // Once completed, don't change anything
+                if ($scope.questions.whatOptions.completed) {
+                    return;
+                }
+
+                // Check if the last answer is not empty
+                var lastAnswer = answers[answers.length - 1];
+                if (typeof lastAnswer.text !== 'undefined' && lastAnswer.text.length > 0) {
+                    // Add a new answer possibility
+                    answers.push({
+                        text: ''
+                    });
+                }
+                else if (answers.length > 1) {
+                    // If the last answer is not empty, check if the second last is not also empty
+                    var secondLastAnswer = answers[answers.length - 2];
+                    if (typeof secondLastAnswer.text === 'undefined' || secondLastAnswer.text.length === 0) {
+                        // Two empty answers, remove one
+                        answers.pop();
+                    }
+                }
+            }, true);
 
             $scope.location = undefined;
             // TODO: should directly ask for the correct location from the locationService

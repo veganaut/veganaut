@@ -16,7 +16,7 @@
                 <button type="button" class="btn btn-block btnTeam locationAction"
                  ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
                     <span class="glyphicon glyphicon-bullhorn"></span>
-                    Ask
+                    Ask them
                 </button>
             </p>
 
@@ -30,13 +30,53 @@
                     <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
                     <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
                 </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 
         <div class="resultBlock">
             <div ng-show="questions.optionsAvailable.answer === 'Yes'">You say there are vegan options available.</div>
             <div ng-show="questions.optionsAvailable.answer === 'No'">You say there are no vegan options available.</div>
+        </div>
+    </div>
+
+    <div class="pageSection well" ng-show="questions.optionsAvailable.answer === 'Yes'">
+        <p class="lead">
+            <span class="glyphicon glyphicon-ok" ng-show="questions.whatOptions.completed"></span>
+            Tell us what vegan options they have
+        </p>
+        <div class="actionBlock" ng-hide="questions.whatOptions.completed">
+            <p>
+                <button type="button" class="btn btn-block btnTeam locationAction"
+                 ng-click="questions.whatOptions.showing = true" ng-disabled="questions.whatOptions.showing">
+                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    Tell us
+                </button>
+            </p>
+
+            <div class="questionBlock" ng-show="questions.whatOptions.showing">
+                <form novalidate name="whatOptionsForm" class="whatOptionsForm spacedForm">
+                    <input type="text" ng-required="$index === 0" class="form-control"
+                     ng-repeat="answer in questions.whatOptions.answers"
+                     ng-model="answer.text"
+                     placeholder="Vegan Option No. {{ $index + 1 }}"/>
+                    <button type="button" class="btn btn-default"
+                     ng-click="questions.whatOptions.showing = false">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-default btnTeam pull-right"
+                     ng-disabled="whatOptionsForm.$invalid" ng-click="submit(questions.whatOptions)">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Speichern
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="resultBlock" ng-show="questions.whatOptions.completed">
+            You know of the following options:
+            <ul>
+                <li ng-repeat="answer in questions.whatOptions.answers">{{ answer.text }}</li>
+            </ul>
         </div>
     </div>
 

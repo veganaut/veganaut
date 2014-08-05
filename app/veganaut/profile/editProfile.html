@@ -30,6 +30,6 @@
     </div>
     <button class="btn btn-default"
      ng-click="goToView('me')" ng-bind="'action.cancel' | trans"></button>
-    <button type="submit" class="btn btn-default" ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine"
+    <button type="submit" class="btn btn-default pull-right" ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine"
      ng-click="submit()" ng-bind="'action.profile.save' | trans"></button>
 </form>
