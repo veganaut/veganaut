@@ -8,15 +8,15 @@
     <!-- TODO: translate, move more stuff to controller -->
     <div class="pageSection well">
         <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="!!questions.optionsAvailable.answer"></span>
+            <span class="glyphicon glyphicon-ok" ng-show="questions.optionsAvailable.completed"></span>
             Ask the staff if they have vegan options
         </p>
-        <div class="actionBlock" ng-hide="!!questions.optionsAvailable.answer">
+        <div class="actionBlock" ng-hide="questions.optionsAvailable.completed">
             <p>
                 <button type="button" class="btn btn-block btnTeam locationAction"
                  ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
                     <span class="glyphicon glyphicon-bullhorn"></span>
-                    Ask them
+                    Tell us about it
                 </button>
             </p>
 
@@ -26,30 +26,30 @@
                  ng-click="questions.optionsAvailable.showing = false">
                     Cancel
                 </button>
-                <div class="btn-group pull-right">
-                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'Yes'">Yes</label>
-                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="'No'">No</label>
+                <div class="btn-group pull-right" ng-click="submit(questions.optionsAvailable)">
+                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="true">Yes</label>
+                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer" btn-radio="false">No</label>
                 </div>
             </div>
         </div>
 
-        <div class="resultBlock">
-            <div ng-show="questions.optionsAvailable.answer === 'Yes'">You say there are vegan options available.</div>
-            <div ng-show="questions.optionsAvailable.answer === 'No'">You say there are no vegan options available.</div>
+        <div class="resultBlock" ng-show="questions.optionsAvailable.completed">
+            <div ng-show="questions.optionsAvailable.answer">You say there are vegan options available.</div>
+            <div ng-hide="questions.optionsAvailable.answer">You say there are no vegan options available.</div>
         </div>
     </div>
 
-    <div class="pageSection well" ng-show="questions.optionsAvailable.answer === 'Yes'">
+    <div class="pageSection well" ng-show="questions.optionsAvailable.answer">
         <p class="lead">
             <span class="glyphicon glyphicon-ok" ng-show="questions.whatOptions.completed"></span>
-            Tell us what vegan options they have
+            Find out what vegan options they have
         </p>
         <div class="actionBlock" ng-hide="questions.whatOptions.completed">
             <p>
                 <button type="button" class="btn btn-block btnTeam locationAction"
                  ng-click="questions.whatOptions.showing = true" ng-disabled="questions.whatOptions.showing">
                     <span class="glyphicon glyphicon-bullhorn"></span>
-                    Tell us
+                    Tell us about it
                 </button>
             </p>
 

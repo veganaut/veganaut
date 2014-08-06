@@ -26,6 +26,7 @@
             $scope.questions = {
                 optionsAvailable: {
                     showing: false,
+                    completed: false,
                     answer: undefined
                 },
                 whatOptions: {
