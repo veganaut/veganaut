@@ -35,6 +35,14 @@
                     answers: [
                         { text: '' }
                     ]
+                },
+                staffFeedback: {
+                    showing: false,
+                    completed: false,
+                    answer: {
+                        text: '',
+                        didNotDoIt: false
+                    }
                 }
             };
 

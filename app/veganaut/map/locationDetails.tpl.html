@@ -80,6 +80,54 @@
         </div>
     </div>
 
+    <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
+        <p class="lead">
+            <span class="glyphicon glyphicon-ok" ng-show="questions.staffFeedback.completed"></span>
+            Give the staff feedback
+        </p>
+        <div class="actionBlock" ng-hide="questions.staffFeedback.completed">
+            <p>
+                <button type="button" class="btn btn-block btnTeam locationAction"
+                 ng-click="questions.staffFeedback.showing = true" ng-disabled="questions.staffFeedback.showing">
+                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    Tell us about it
+                </button>
+            </p>
+
+            <div class="questionBlock" ng-show="questions.staffFeedback.showing">
+                <form novalidate name="staffFeedbackForm" class="staffFeedback spacedForm">
+                    <textarea class="form-control" required
+                     ng-model="questions.staffFeedback.answer.text"
+                     placeholder="Feedback you gave the staff"></textarea>
+                    <div>
+                        <label>
+                            <input type="checkbox" ng-model="questions.staffFeedback.answer.didNotDoIt" />
+                            I wanted to give this feedback, but then didn't.
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-default"
+                     ng-click="questions.staffFeedback.showing = false">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-default btnTeam pull-right"
+                     ng-disabled="staffFeedbackForm.$invalid" ng-click="submit(questions.staffFeedback)">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Speichern
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="resultBlock" ng-show="questions.staffFeedback.completed">
+            <p>
+                <span ng-show="questions.staffFeedback.answer.didNotDoIt">You wanted to give the following feedback:</span>
+                <span ng-hide="questions.staffFeedback.answer.didNotDoIt">You gave the following feedback:</span>
+                <br />
+                <em>{{ questions.staffFeedback.answer.text }}</em>
+            </p>
+        </div>
+    </div>
+
     <leaflet class="locationDetailMap"
      markers="[location]" defaults="mapSettings" center="center">
     </leaflet>
