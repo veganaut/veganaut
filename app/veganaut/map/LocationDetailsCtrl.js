@@ -27,7 +27,9 @@
                 optionsAvailable: {
                     showing: false,
                     completed: false,
-                    answer: undefined
+                    answer: {
+                        hasVegan: undefined
+                    }
                 },
                 whatOptions: {
                     showing: false,
@@ -42,6 +44,14 @@
                     answer: {
                         text: '',
                         didNotDoIt: false
+                    }
+                },
+                rateLocation: {
+                    showing: false,
+                    completed: false,
+                    maxRating: 4,
+                    answer: {
+                        rating: undefined
                     }
                 }
             };
