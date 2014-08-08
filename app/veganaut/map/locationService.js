@@ -8,10 +8,10 @@
         LocationService.prototype.getLocations = function() {
             // TODO: request from backend
             this._deferredLocations.resolve([
-                new Location(46.955, 7.451, 'blue',  'Some place', Location.TYPES.event),
-                new Location(46.945, 7.456, 'blue',  'Some other place', Location.TYPES.gastronomy),
-                new Location(46.95,  7.459, 'green','Great place', Location.TYPES.private),
-                new Location(46.94,  7.44,  'green', 'Soon to be great place', Location.TYPES.retail)
+                new Location(46.957113, 7.452544, 'blue',  '3dosha', Location.TYPES.gastronomy),
+                new Location(46.946757, 7.441016, 'blue',  'Reformhaus Ruprecht', Location.TYPES.retail),
+                new Location(46.953880, 7.446611, 'green', 'Kremoby Hollow', Location.TYPES.private),
+                new Location(46.952254, 7.445619, 'green', 'Habakuk im Fleuri', Location.TYPES.event)
             ]);
             return this._deferredLocations.promise;
         };

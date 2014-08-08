@@ -5,210 +5,212 @@
         <vg-team-badge team="location.team"></vg-team-badge>
     </p>
 
-    <!-- TODO: translate, move more stuff to controller -->
-    <div class="pageSection well">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="questions.optionsAvailable.completed"></span>
-            Ask the staff if they have vegan options
-        </p>
-        <div class="actionBlock" ng-hide="questions.optionsAvailable.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
-                    <span class="glyphicon glyphicon-bullhorn"></span>
-                    Tell us about it
-                </button>
+    <div ng-if="location.type !== 'private'">
+        <!-- TODO: translate, move more stuff to controller -->
+        <div class="pageSection well">
+            <p class="lead">
+                <span class="glyphicon glyphicon-ok" ng-show="questions.optionsAvailable.completed"></span>
+                Ask the staff if they have vegan options
             </p>
+            <div class="actionBlock" ng-hide="questions.optionsAvailable.completed">
+                <p>
+                    <button type="button" class="btn btn-block btnTeam locationAction"
+                     ng-click="questions.optionsAvailable.showing = true" ng-disabled="questions.optionsAvailable.showing">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Tell us about it
+                    </button>
+                </p>
 
-            <div class="questionBlock" ng-show="questions.optionsAvailable.showing">
-                <p>Do they have vegan options?</p>
-                <button type="button" class="btn btn-default"
-                 ng-click="questions.optionsAvailable.showing = false">
-                    Cancel
-                </button>
-                <div class="btn-group pull-right" ng-click="submit(questions.optionsAvailable)">
-                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer.hasVegan" btn-radio="true">Yes</label>
-                    <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer.hasVegan" btn-radio="false">No</label>
+                <div class="questionBlock" ng-show="questions.optionsAvailable.showing">
+                    <p>Do they have vegan options?</p>
+                    <button type="button" class="btn btn-default"
+                     ng-click="questions.optionsAvailable.showing = false">
+                        Cancel
+                    </button>
+                    <div class="btn-group pull-right" ng-click="submit(questions.optionsAvailable)">
+                        <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer.hasVegan" btn-radio="true">Yes</label>
+                        <label class="btn btn-default btnTeam" ng-model="questions.optionsAvailable.answer.hasVegan" btn-radio="false">No</label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="resultBlock" ng-show="questions.optionsAvailable.completed">
-            <div ng-show="questions.optionsAvailable.answer">You say there are vegan options available.</div>
-            <div ng-hide="questions.optionsAvailable.answer">You say there are no vegan options available.</div>
-        </div>
-    </div>
-
-    <div class="pageSection well" ng-show="questions.optionsAvailable.answer.hasVegan">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="questions.whatOptions.completed"></span>
-            Find out what vegan options they have
-        </p>
-        <div class="actionBlock" ng-hide="questions.whatOptions.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-click="questions.whatOptions.showing = true" ng-disabled="questions.whatOptions.showing">
-                    <span class="glyphicon glyphicon-bullhorn"></span>
-                    Tell us about it
-                </button>
-            </p>
-
-            <div class="questionBlock" ng-show="questions.whatOptions.showing">
-                <form novalidate name="whatOptionsForm" class="whatOptionsForm spacedForm">
-                    <input type="text" ng-required="$index === 0" class="form-control"
-                     ng-repeat="answer in questions.whatOptions.answers"
-                     ng-model="answer.text"
-                     placeholder="Vegan Option No. {{ $index + 1 }}"/>
-                    <button type="button" class="btn btn-default"
-                     ng-click="questions.whatOptions.showing = false">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-default btnTeam pull-right"
-                     ng-disabled="whatOptionsForm.$invalid" ng-click="submit(questions.whatOptions)">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        Speichern
-                    </button>
-                </form>
+            <div class="resultBlock" ng-show="questions.optionsAvailable.completed">
+                <div ng-show="questions.optionsAvailable.answer">You say there are vegan options available.</div>
+                <div ng-hide="questions.optionsAvailable.answer">You say there are no vegan options available.</div>
             </div>
         </div>
 
-        <div class="resultBlock" ng-show="questions.whatOptions.completed">
-            You know of the following options:
-            <ul>
-                <li ng-repeat="answer in questions.whatOptions.answers">{{ answer.text }}</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="pageSection well" ng-show="questions.whatOptions.completed">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="questions.buyOptions.completed"></span>
-            Buy something vegan
-        </p>
-        <div class="actionBlock" ng-hide="questions.buyOptions.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-click="questions.buyOptions.showing = true" ng-disabled="questions.buyOptions.showing">
-                    <span class="glyphicon glyphicon-bullhorn"></span>
-                    Tell us about it
-                </button>
+        <div class="pageSection well" ng-show="questions.optionsAvailable.answer.hasVegan">
+            <p class="lead">
+                <span class="glyphicon glyphicon-ok" ng-show="questions.whatOptions.completed"></span>
+                Find out what vegan options they have
             </p>
+            <div class="actionBlock" ng-hide="questions.whatOptions.completed">
+                <p>
+                    <button type="button" class="btn btn-block btnTeam locationAction"
+                     ng-click="questions.whatOptions.showing = true" ng-disabled="questions.whatOptions.showing">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Tell us about it
+                    </button>
+                </p>
 
-            <div class="questionBlock" ng-show="questions.buyOptions.showing">
-                <form novalidate name="buyOptionsForm" class="buyOptionsForm">
-                    <div class="checkbox" ng-repeat="veganOption in questions.whatOptions.answers">
-                        <label>
-                            <input type="checkbox" ng-model="questions.buyOptions.answers[veganOption.id]" />
-                            {{ veganOption.text }}
-                        </label>
-                    </div>
-                    <button type="button" class="btn btn-default"
-                     ng-click="questions.buyOptions.showing = false">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-default btnTeam pull-right"
-                     ng-disabled="buyOptionsForm.$invalid || getBoughtOptions().length === 0" ng-click="submit(questions.buyOptions)">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        Speichern
-                    </button>
-                </form>
+                <div class="questionBlock" ng-show="questions.whatOptions.showing">
+                    <form novalidate name="whatOptionsForm" class="whatOptionsForm spacedForm">
+                        <input type="text" ng-required="$index === 0" class="form-control"
+                         ng-repeat="answer in questions.whatOptions.answers"
+                         ng-model="answer.text"
+                         placeholder="Vegan Option No. {{ $index + 1 }}"/>
+                        <button type="button" class="btn btn-default"
+                         ng-click="questions.whatOptions.showing = false">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-default btnTeam pull-right"
+                         ng-disabled="whatOptionsForm.$invalid" ng-click="submit(questions.whatOptions)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Speichern
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="resultBlock" ng-show="questions.whatOptions.completed">
+                You know of the following options:
+                <ul>
+                    <li ng-repeat="answer in questions.whatOptions.answers">{{ answer.text }}</li>
+                </ul>
             </div>
         </div>
 
-        <div class="resultBlock" ng-show="questions.buyOptions.completed">
-            You bought the following options:
-            <ul>
-                <li ng-repeat="option in getBoughtOptions()">{{ option.text }}</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="questions.staffFeedback.completed"></span>
-            Give the staff feedback
-        </p>
-        <div class="actionBlock" ng-hide="questions.staffFeedback.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-click="questions.staffFeedback.showing = true" ng-disabled="questions.staffFeedback.showing">
-                    <span class="glyphicon glyphicon-bullhorn"></span>
-                    Tell us about it
-                </button>
+        <div class="pageSection well" ng-show="questions.whatOptions.completed">
+            <p class="lead">
+                <span class="glyphicon glyphicon-ok" ng-show="questions.buyOptions.completed"></span>
+                Buy something vegan
             </p>
+            <div class="actionBlock" ng-hide="questions.buyOptions.completed">
+                <p>
+                    <button type="button" class="btn btn-block btnTeam locationAction"
+                     ng-click="questions.buyOptions.showing = true" ng-disabled="questions.buyOptions.showing">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Tell us about it
+                    </button>
+                </p>
 
-            <div class="questionBlock" ng-show="questions.staffFeedback.showing">
-                <form novalidate name="staffFeedbackForm" class="staffFeedback spacedForm">
-                    <textarea class="form-control" required
-                     ng-model="questions.staffFeedback.answer.text"
-                     placeholder="Feedback you gave the staff"></textarea>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="questions.staffFeedback.answer.didNotDoIt" />
-                            I wanted to give this feedback, but then didn't.
-                        </label>
-                    </div>
-                    <button type="button" class="btn btn-default"
-                     ng-click="questions.staffFeedback.showing = false">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-default btnTeam pull-right"
-                     ng-disabled="staffFeedbackForm.$invalid" ng-click="submit(questions.staffFeedback)">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        Speichern
-                    </button>
-                </form>
+                <div class="questionBlock" ng-show="questions.buyOptions.showing">
+                    <form novalidate name="buyOptionsForm" class="buyOptionsForm">
+                        <div class="checkbox" ng-repeat="veganOption in questions.whatOptions.answers">
+                            <label>
+                                <input type="checkbox" ng-model="questions.buyOptions.answers[veganOption.id]" />
+                                {{ veganOption.text }}
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-default"
+                         ng-click="questions.buyOptions.showing = false">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-default btnTeam pull-right"
+                         ng-disabled="buyOptionsForm.$invalid || getBoughtOptions().length === 0" ng-click="submit(questions.buyOptions)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Speichern
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="resultBlock" ng-show="questions.buyOptions.completed">
+                You bought the following options:
+                <ul>
+                    <li ng-repeat="option in getBoughtOptions()">{{ option.text }}</li>
+                </ul>
             </div>
         </div>
 
-        <div class="resultBlock" ng-show="questions.staffFeedback.completed">
-            <p>
-                <span ng-show="questions.staffFeedback.answer.didNotDoIt">You wanted to give the following feedback:</span>
-                <span ng-hide="questions.staffFeedback.answer.didNotDoIt">You gave the following feedback:</span>
-                <br />
-                <em>{{ questions.staffFeedback.answer.text }}</em>
+        <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
+            <p class="lead">
+                <span class="glyphicon glyphicon-ok" ng-show="questions.staffFeedback.completed"></span>
+                Give the staff feedback
             </p>
-        </div>
-    </div>
-
-    <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="questions.rateLocation.completed"></span>
-            Rate this location
-        </p>
-        <div class="actionBlock" ng-hide="questions.rateLocation.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-click="questions.rateLocation.showing = true" ng-disabled="questions.rateLocation.showing">
-                    <span class="glyphicon glyphicon-star"></span>
-                    Rate it
-                </button>
-            </p>
-
-            <div class="questionBlock" ng-show="questions.rateLocation.showing">
-                <form novalidate name="rateLocationForm" class="rateLocation spacedForm">
-                    <div class="text-center h1">
-                        <rating ng-model="questions.rateLocation.answer.rating"
-                         max="questions.rateLocation.maxRating"></rating>
-                    </div>
-                    <input type="hidden" ng-model="questions.rateLocation.answer.rating" required />
-                    <button type="button" class="btn btn-default"
-                     ng-click="questions.rateLocation.showing = false">
-                        Cancel
+            <div class="actionBlock" ng-hide="questions.staffFeedback.completed">
+                <p>
+                    <button type="button" class="btn btn-block btnTeam locationAction"
+                     ng-click="questions.staffFeedback.showing = true" ng-disabled="questions.staffFeedback.showing">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Tell us about it
                     </button>
-                    <button type="submit" class="btn btn-default btnTeam pull-right"
-                     ng-disabled="rateLocationForm.$invalid" ng-click="submit(questions.rateLocation)">
-                        <span class="glyphicon glyphicon-ok"></span>
-                        Speichern
-                    </button>
-                </form>
+                </p>
+
+                <div class="questionBlock" ng-show="questions.staffFeedback.showing">
+                    <form novalidate name="staffFeedbackForm" class="staffFeedback spacedForm">
+                        <textarea class="form-control" required
+                         ng-model="questions.staffFeedback.answer.text"
+                         placeholder="Feedback you gave the staff"></textarea>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="questions.staffFeedback.answer.didNotDoIt" />
+                                I wanted to give this feedback, but then didn't.
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-default"
+                         ng-click="questions.staffFeedback.showing = false">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-default btnTeam pull-right"
+                         ng-disabled="staffFeedbackForm.$invalid" ng-click="submit(questions.staffFeedback)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Speichern
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="resultBlock" ng-show="questions.staffFeedback.completed">
+                <p>
+                    <span ng-show="questions.staffFeedback.answer.didNotDoIt">You wanted to give the following feedback:</span>
+                    <span ng-hide="questions.staffFeedback.answer.didNotDoIt">You gave the following feedback:</span>
+                    <br />
+                    <em>{{ questions.staffFeedback.answer.text }}</em>
+                </p>
             </div>
         </div>
 
-        <div class="resultBlock" ng-show="questions.rateLocation.completed">
-            You rating:
-            <rating readonly="true" ng-model="questions.rateLocation.answer.rating"
-             max="questions.rateLocation.maxRating"></rating>
+        <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
+            <p class="lead">
+                <span class="glyphicon glyphicon-ok" ng-show="questions.rateLocation.completed"></span>
+                Rate this location
+            </p>
+            <div class="actionBlock" ng-hide="questions.rateLocation.completed">
+                <p>
+                    <button type="button" class="btn btn-block btnTeam locationAction"
+                     ng-click="questions.rateLocation.showing = true" ng-disabled="questions.rateLocation.showing">
+                        <span class="glyphicon glyphicon-star"></span>
+                        Rate it
+                    </button>
+                </p>
+
+                <div class="questionBlock" ng-show="questions.rateLocation.showing">
+                    <form novalidate name="rateLocationForm" class="rateLocation spacedForm">
+                        <div class="text-center h1">
+                            <rating ng-model="questions.rateLocation.answer.rating"
+                             max="questions.rateLocation.maxRating"></rating>
+                        </div>
+                        <input type="hidden" ng-model="questions.rateLocation.answer.rating" required />
+                        <button type="button" class="btn btn-default"
+                         ng-click="questions.rateLocation.showing = false">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-default btnTeam pull-right"
+                         ng-disabled="rateLocationForm.$invalid" ng-click="submit(questions.rateLocation)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Speichern
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="resultBlock" ng-show="questions.rateLocation.completed">
+                You rating:
+                <rating readonly="true" ng-model="questions.rateLocation.answer.rating"
+                 max="questions.rateLocation.maxRating"></rating>
+            </div>
         </div>
     </div>
 
