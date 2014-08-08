@@ -23,6 +23,13 @@
                 zoom: 16
             };
 
+            /**
+             * Id of the last vegan option that was added to the list
+             * TODO: this should probably be given by the backend
+             * @type {number}
+             */
+            var lastOptionId = 1;
+
             $scope.questions = {
                 optionsAvailable: {
                     showing: false,
@@ -35,8 +42,13 @@
                     showing: false,
                     completed: false,
                     answers: [
-                        { text: '' }
+                        { id: lastOptionId, text: '' }
                     ]
+                },
+                buyOptions: {
+                    showing: false,
+                    completed: false,
+                    answers: {}
                 },
                 staffFeedback: {
                     showing: false,
@@ -70,6 +82,21 @@
                 }
             };
 
+            /**
+             * Returns the list of vegan options that the user bought
+             * @returns {Array}
+             */
+            $scope.getBoughtOptions = function() {
+                var boughtOptions = [];
+                var availableOptions = $scope.questions.whatOptions.answers;
+                for (var i = 0; i < availableOptions.length; i += 1) {
+                    if ($scope.questions.buyOptions.answers[availableOptions[i].id] === true) {
+                        boughtOptions.push(availableOptions[i]);
+                    }
+                }
+                return boughtOptions;
+            };
+
             // Watch the list of answers to add or remove new input fields
             $scope.$watch('questions.whatOptions.answers', function(answers) {
                 // Once completed, don't change anything
@@ -81,7 +108,9 @@
                 var lastAnswer = answers[answers.length - 1];
                 if (typeof lastAnswer.text !== 'undefined' && lastAnswer.text.length > 0) {
                     // Add a new answer possibility
+                    lastOptionId += 1;
                     answers.push({
+                        id: lastOptionId,
                         text: ''
                     });
                 }
