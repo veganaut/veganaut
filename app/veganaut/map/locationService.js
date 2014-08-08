@@ -1,8 +1,26 @@
 (function(servicesModule) {
     'use strict';
-    servicesModule.factory('locationService', ['$q', 'Location', function($q, Location) {
+    servicesModule.factory('locationService', ['$q', 'Location', 'tileLayerUrl', function($q, Location, tileLayerUrl) {
         var LocationService = function() {
             this._deferredLocations = $q.defer();
+
+            /**
+             * Main map settings:
+             *  - current center of the map
+             *  - leaflet "defaults" settings
+             * TODO: does this belong in the service?
+             * @type {{}}
+             */
+            this.mapSettings = {
+                center: {
+                    lat: 46.949,
+                    lng: 7.451,
+                    zoom: 14
+                },
+                defaults: {
+                    tileLayer: tileLayerUrl
+                }
+            };
         };
 
         LocationService.prototype.getLocations = function() {

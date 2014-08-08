@@ -19,23 +19,8 @@
              */
             $scope.activeLocation = undefined;
 
-            /**
-             * Leaflet map settings
-             * @type {{}}
-             */
-            $scope.mapSettings = {
-                tileLayer: tileLayerUrl
-            };
-
-            /**
-             * Current center of the map
-             * @type {{lat: number, lng: number, zoom: number}}
-             */
-            $scope.center = {
-                lat: 46.949,
-                lng: 7.451,
-                zoom: 14
-            };
+            // Expose the map settings
+            $scope.mapSettings = locationService.mapSettings;
 
             /**
              * All Locations shown on the map
