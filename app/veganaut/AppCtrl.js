@@ -1,8 +1,8 @@
 (function(controllersModule) {
     'use strict';
 
-    controllersModule.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService', 'alertService',
-        function($scope, $location, $window, backendService, playerService, alertService) {
+    controllersModule.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService',
+        function($scope, $location, $window, backendService, playerService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
                 $location.path(view);
@@ -30,10 +30,6 @@
 
             // Expose the activity verb method
             $scope.getActivityVerb = playerService.getActivityVerb;
-
-            // Expose alerts
-            $scope.getAlerts = alertService.getAlerts;
-            $scope.closeAlert = alertService.removeAlert;
         }
     ]);
 })(window.monkeyFace.controllersModule);

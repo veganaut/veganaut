@@ -10,14 +10,13 @@ module.exports = function(config) {
             'app/lib/angular-route/angular-route.js',
             'test/lib/angular/angular-mocks.js',
             'app/veganaut/app.js',
-            'app/veganaut/**/*.js',
             'app/components/**/*.js',
+            'app/veganaut/**/*.js',
             'test/unit/**/*.js'
         ],
 
         // List of files to exclude
         exclude: [
-            'app/lib/angular/*.min.js'
         ],
 
         // Test results reporter to use

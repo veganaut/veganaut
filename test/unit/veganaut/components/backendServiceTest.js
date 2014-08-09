@@ -6,6 +6,7 @@ describe('backendService', function() {
 
     beforeEach(module(function($provide) {
         $provide.value('backendUrl', '');
+        $provide.value('alertService', {});
     }));
 
     it('should have a isLoggedIn method', inject(function($httpBackend, backendService) {

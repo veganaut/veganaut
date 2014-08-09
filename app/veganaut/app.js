@@ -6,6 +6,7 @@
         'ngRoute',
         'ui.bootstrap',
         'leaflet-directive',
+        'veganaut.alertModule',
         'monkeyFace.filters',
         'monkeyFace.services',
         'monkeyFace.directives',
