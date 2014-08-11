@@ -46,14 +46,14 @@
             $scope.startAddNewLocation = function() {
                 $scope.isAddingLocation = true;
                 $scope.newLocation = new Location(undefined, undefined, player.team);
-                activateLocation($scope.newLocation);
+                locationService.activate($scope.newLocation);
             };
 
             /**
              * Aborts adding a new location
              */
             $scope.resetAddNewLocation = function() {
-                activateLocation();
+                locationService.activate();
                 if ($scope.newLocation.isAddedToMap === true) {
                     // Remove from map if it was added
                     $scope.locations = $scope.locations.slice(0, $scope.locations.length - 1);
@@ -72,28 +72,6 @@
                 // TODO: submit to backend
                 // TODO: translate
                 alertService.addAlert('Added new location "' + name + '"', 'success');
-            };
-
-            /**
-             * Sets the given location as active deactivates it if it's already active.
-             * @param {Location} [location]
-             */
-            var activateLocation = function(location) {
-                // Deactivate current location
-                if (typeof locationService.active !== 'undefined') {
-                    locationService.active.setActive(false);
-                }
-
-                if (locationService.active === location || typeof location === 'undefined') {
-                    // If the given location is already active
-                    // or the new active location should be undefined, deactivate
-                    locationService.active = undefined;
-                }
-                else {
-                    // Otherwise activate the given location
-                    locationService.active = location;
-                    locationService.active.setActive();
-                }
             };
 
             /**
@@ -128,7 +106,7 @@
              * @param args
              */
             var locationClickHandler = function(event, args) {
-                activateLocation($scope.locations[args.markerName]);
+                locationService.activate($scope.locations[args.markerName]);
             };
 
             // Register event handlers

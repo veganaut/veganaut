@@ -40,6 +40,28 @@
             return this._deferredLocations.promise;
         };
 
+        /**
+         * Sets the given location as active deactivates it if it's already active.
+         * @param {Location} [location]
+         */
+        LocationService.prototype.activate = function(location) {
+            // Deactivate current location
+            if (typeof this.active !== 'undefined') {
+                this.active.setActive(false);
+            }
+
+            if (this.active === location || typeof location === 'undefined') {
+                // If the given location is already active
+                // or the new active location should be undefined, deactivate
+                this.active = undefined;
+            }
+            else {
+                // Otherwise activate the given location
+                this.active = location;
+                this.active.setActive();
+            }
+        };
+
         return new LocationService();
     }]);
 })(window.monkeyFace.servicesModule);
