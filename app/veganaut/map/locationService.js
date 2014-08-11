@@ -21,6 +21,12 @@
                     tileLayer: tileLayerUrl
                 }
             };
+
+            /**
+             * The currently active location
+             * @type {Location}
+             */
+            this.active = undefined;
         };
 
         LocationService.prototype.getLocations = function() {

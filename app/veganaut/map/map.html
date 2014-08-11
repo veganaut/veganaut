@@ -1,13 +1,13 @@
 <div ng-class="{isAddingLocation: isAddingLocation}" ng-controller="MapCtrl">
     <div class="backdrop" ng-show="isAddingLocation"></div>
     <div class="pageSection">
-        <button ng-hide="activeLocation" type="button" class="addLocation btn btn-block btnTeam"
+        <button ng-hide="location.active" type="button" class="addLocation btn btn-block btnTeam"
          ng-click="startAddNewLocation()">
             <span class="glyphicon glyphicon-play"></span>
             <span ng-bind="'action.map.addLocation'|trans"></span>
         </button>
-        <button ng-show="activeLocation" type="button" class="viewDetails btn btn-block btnTeam"
-         ng-click="viewDetails(activeLocation)">
+        <button ng-show="location.active" type="button" class="viewDetails btn btn-block btnTeam"
+         ng-click="viewDetails(location.active)">
             <span class="glyphicon glyphicon-eye-open"></span>
             <span ng-bind="'action.map.viewDetails'|trans"></span>
         </button>
@@ -41,9 +41,9 @@
         </form>
     </div>
 
-    <div class="well infoWell locationDetails" ng-show="activeLocation && !isAddingLocation">
-        <div class="locationTitle">{{ activeLocation.title }}</div>
-        <vg-location-type-badge location="activeLocation"></vg-location-type-badge>
-        <vg-team-badge team="activeLocation.team"></vg-team-badge>
+    <div class="well infoWell locationDetails" ng-show="location.active && !isAddingLocation">
+        <div class="locationTitle">{{ location.active.title }}</div>
+        <vg-location-type-badge location="location.active"></vg-location-type-badge>
+        <vg-team-badge team="location.active.team"></vg-team-badge>
     </div>
 </div>

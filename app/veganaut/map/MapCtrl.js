@@ -13,11 +13,8 @@
              */
             $scope.isAddingLocation = false;
 
-            /**
-             * The currently active location
-             * @type {{}}
-             */
-            $scope.activeLocation = undefined;
+            // Expose the location service
+            $scope.location = locationService;
 
             // Expose the map settings
             $scope.mapSettings = locationService.mapSettings;
@@ -83,19 +80,19 @@
              */
             var activateLocation = function(location) {
                 // Deactivate current location
-                if (typeof $scope.activeLocation !== 'undefined') {
-                    $scope.activeLocation.setActive(false);
+                if (typeof locationService.active !== 'undefined') {
+                    locationService.active.setActive(false);
                 }
 
-                if ($scope.activeLocation === location || typeof location === 'undefined') {
+                if (locationService.active === location || typeof location === 'undefined') {
                     // If the given location is already active
                     // or the new active location should be undefined, deactivate
-                    $scope.activeLocation = undefined;
+                    locationService.active = undefined;
                 }
                 else {
                     // Otherwise activate the given location
-                    $scope.activeLocation = location;
-                    $scope.activeLocation.setActive();
+                    locationService.active = location;
+                    locationService.active.setActive();
                 }
             };
 
