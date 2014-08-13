@@ -1,18 +1,5 @@
 <div ng-class="{isAddingLocation: isAddingLocation}" ng-controller="MapCtrl">
     <div class="backdrop" ng-show="isAddingLocation"></div>
-    <div class="pageSection">
-        <button ng-hide="location.active" type="button" class="addLocation btn btn-block btnTeam"
-         ng-click="startAddNewLocation()">
-            <span class="glyphicon glyphicon-play"></span>
-            <span ng-bind="'action.map.addLocation'|trans"></span>
-        </button>
-        <button ng-show="location.active" type="button" class="viewDetails btn btn-block btnTeam"
-         ng-click="viewDetails(location.active)">
-            <span class="glyphicon glyphicon-eye-open"></span>
-            <span ng-bind="'action.map.viewDetails'|trans"></span>
-        </button>
-    </div>
-
     <leaflet class="mainMap pageSection" ng-class="{inFrontOfBackdrop: isAddingLocation}"
      markers="locations" defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
     </leaflet>
@@ -41,9 +28,33 @@
         </form>
     </div>
 
-    <div class="well infoWell locationDetails" ng-show="location.active && !isAddingLocation">
-        <div class="locationTitle">{{ location.active.title }}</div>
-        <vg-location-type-badge location="location.active"></vg-location-type-badge>
-        <vg-team-badge team="location.active.team"></vg-team-badge>
+    <div class="bottom-box container mainContainer">
+        <p ng-hide="location.active">
+            <button type="button" class="addLocation btn btn-block btnTeam"
+             ng-click="startAddNewLocation()">
+                <span class="glyphicon glyphicon-play"></span>
+                <span ng-bind="'action.map.addLocation'|trans"></span>
+            </button>
+        </p>
+
+        <div class="text-center locationDetails" ng-show="location.active && !isAddingLocation">
+            <div class="pull-right clickable" ng-click="location.activate()">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
+            <p class="locationTitle">{{ location.active.title }}</p>
+            <p>
+                <vg-location-type-badge location="location.active"></vg-location-type-badge>
+                <vg-team-badge team="location.active.team"></vg-team-badge>
+            </p>
+
+            <p>
+                <button type="button" class="viewDetails btn btn-block btnTeam"
+                 ng-click="viewDetails(location.active)">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    <span ng-bind="'action.map.viewDetails'|trans"></span>
+                </button>
+            </p>
+        </div>
     </div>
 </div>
