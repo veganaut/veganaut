@@ -2,7 +2,7 @@
 
 /* global describe, beforeEach, it, expect, inject */
 describe('vgAlertModule.', function() {
-    var alertService, $timeout;
+    var alertService, $interval;
     beforeEach(function() {
         angular.module('ui.bootstrap', []);
     });
@@ -10,9 +10,9 @@ describe('vgAlertModule.', function() {
 
 
     describe('alertService.', function() {
-        beforeEach(inject(function(_alertService_, _$timeout_) {
+        beforeEach(inject(function(_alertService_, _$interval_) {
             alertService = _alertService_;
-            $timeout = _$timeout_;
+            $interval = _$interval_;
         }));
 
         it('should be defined.', function() {
@@ -84,9 +84,9 @@ describe('vgAlertModule.', function() {
             alertService.addAlert('Test');
 
             expect(alerts.length).toBe(1);
-            $timeout.flush(2000);
+            $interval.flush(2000);
             expect(alerts.length).toBe(1, 'Should still have the alert after 2 seconds');
-            $timeout.flush(6000);
+            $interval.flush(6000);
             expect(alerts.length).toBe(0, 'Should have no more alerts after a few more seconds');
         });
 
@@ -94,7 +94,11 @@ describe('vgAlertModule.', function() {
             var alerts = alertService.getAlerts();
             alertService.addAlert('Test', 'success', '', false);
             expect(alerts.length).toBe(1);
-            $timeout.verifyNoPendingTasks();
+            // Flush a huge amount of time to make sure the alert sticks around
+            // should use something like $interval.verifyNoPendingTasks();
+            // but it doesn't exist
+            $interval.flush(100000000);
+            expect(alerts.length).toBe(1);
         });
 
         it('should have alert grouping capabilities.', function() {
