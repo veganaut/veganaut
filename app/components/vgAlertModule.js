@@ -40,16 +40,16 @@
 
     /**
      * Main service of the alertModule that manages to alert messages.
-     * @param $timeout
+     * @param $interval
      * @constructor
      */
-    var AlertService = function($timeout) {
+    var AlertService = function($interval) {
         /**
-         * Angular $timeout service
+         * Angular $interval service
          * @type {*}
          * @private
          */
-        this._$timeout = $timeout;
+        this._$interval = $interval;
 
         /**
          * Stores all the alerts handled by this service.
@@ -97,9 +97,12 @@
                 timeout = DEFAULT_ALERT_TIMEOUT;
             }
 
-            this._$timeout(function() {
+            // Why are we using $interval? Because of protractor.
+            // It waits for $timeouts but not for $intervals. And we don't want
+            // it to wait, otherwise it will never find the alerts
+            this._$interval(function() {
                 alert.remove();
-            }, timeout);
+            }, timeout, 1);
         }
     };
 
@@ -138,8 +141,8 @@
     };
 
     // Expose as angular service
-    alertModule.factory('alertService', ['$timeout', function($timeout) {
-        return new AlertService($timeout);
+    alertModule.factory('alertService', ['$interval', function($interval) {
+        return new AlertService($interval);
     }]);
 
 
