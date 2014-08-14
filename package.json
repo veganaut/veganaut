@@ -3,7 +3,7 @@
     "private": true,
     "repository": "https://github.com/OperationMonkey/monkey-face",
     "devDependencies": {
-        "protractor" : "0.22.0",
+        "protractor" : "1.0.0",
         "phantomjs" : "1.9.x",
         "karma" : "0.10.x",
         "karma-jasmine" : "0.1.x",
