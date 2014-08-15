@@ -71,7 +71,7 @@
                 changePassword: 'Passwort ändern'
             },
             map: {
-                addLocation: 'Neun Ort hinzufügen',
+                addLocation: 'Neuen Ort hinzufügen',
                 viewDetails: 'Details anschauen'
             }
         },
