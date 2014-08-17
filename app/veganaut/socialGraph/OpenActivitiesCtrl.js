@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('OpenActivitiesCtrl', ['$scope', 'backendService',
+    module.controller('OpenActivitiesCtrl', ['$scope', 'backendService',
         function($scope, backendService) {
             if (!backendService.canViewGraph()) {
                 $scope.goToView('login');
@@ -17,4 +17,4 @@
             ;
         }]
     );
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.socialGraphModule);

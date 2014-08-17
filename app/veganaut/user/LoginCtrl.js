@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('LoginCtrl', ['$scope', 'backendService', 'alertService',
+    module.controller('LoginCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
             if (backendService.isLoggedIn()) {
                 $scope.goToView('socialGraph');
@@ -22,4 +22,4 @@
             };
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.userModule);

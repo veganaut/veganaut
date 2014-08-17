@@ -3,7 +3,7 @@
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('tourService', function() {
     var TourMock, tourInstanceMock;
-    beforeEach(module('monkeyFace.services'));
+    beforeEach(module('veganaut.app.main'));
 
     beforeEach(module(function($provide) {
         TourMock = jasmine.createSpy('Tour');
@@ -11,6 +11,7 @@ describe('tourService', function() {
         TourMock.andReturn(tourInstanceMock);
 
         $provide.value('Tour', TourMock);
+        $provide.value('translateService', function() {});
     }));
 
     it('should create a Tour on instantiation', inject(function(tourService) {

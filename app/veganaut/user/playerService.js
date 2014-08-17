@@ -1,11 +1,11 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
 
     /**
      * playerService makes the player available. It will automatically request
      * the player from the backend as soon as it makes sense to do so.
      */
-    servicesModule.factory('playerService', ['$rootScope', '$q', 'backendService', function($rootScope, $q, backendService) {
+    module.factory('playerService', ['$rootScope', '$q', 'backendService', function($rootScope, $q, backendService) {
         /**
          * Player object. The object reference will always be kept, only the
          * data on it changes. This allows the view to directly bind to it
@@ -116,4 +116,4 @@
             getActivityVerb: getActivityVerb
         };
     }]);
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.userModule);

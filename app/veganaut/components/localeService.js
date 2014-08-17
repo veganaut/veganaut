@@ -1,10 +1,10 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
 
     /**
      * locale service provides the translation strings
      */
-    servicesModule.value('localeService', {
+    module.value('localeService', {
         app: {
             title: 'veganaut.net'
         },
@@ -168,4 +168,4 @@
             ]
         }
     });
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.mainModule);

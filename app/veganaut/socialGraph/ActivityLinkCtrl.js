@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('ActivityLinkCtrl', ['$scope', '$routeParams', 'backendService', 'alertService', 'nodeService',
+    module.controller('ActivityLinkCtrl', ['$scope', '$routeParams', 'backendService', 'alertService', 'nodeService',
         function($scope, $routeParams, backendService, alertService, nodeService) {
             if (!backendService.canViewGraph()) {
                 $scope.goToView('login');
@@ -68,4 +68,4 @@
             }
         }]
     );
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.socialGraphModule);

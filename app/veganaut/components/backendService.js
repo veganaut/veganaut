@@ -1,11 +1,11 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
 
     /**
      * Interface with the backend
      * TODO: rather return promises for the return object instead of $http promises
      */
-    servicesModule.provider('backendService', function() {
+    module.provider('backendService', function() {
         var $http;
         var $rootScope;
         var backendUrl;
@@ -287,4 +287,4 @@
             };
         }];
     });
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.mainModule);

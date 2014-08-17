@@ -1,4 +1,4 @@
-(function(modelsModule) {
+(function(module) {
     'use strict';
 
     /**
@@ -125,5 +125,5 @@
         return undefined;
     };
 
-    modelsModule.value('Node', Node);
-})(window.monkeyFace.modelsModule);
+    module.value('Node', Node);
+})(window.veganaut.socialGraphModule);

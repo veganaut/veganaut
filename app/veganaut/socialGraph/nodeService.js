@@ -1,10 +1,10 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
 
     /**
      * nodeService provides the nodes and links for the social graph
      */
-    servicesModule.provider('nodeService', function() {
+    module.provider('nodeService', function() {
         var nodes = [];
         var links = [];
         var graphIsStable = false;
@@ -72,4 +72,4 @@
             };
         }];
     });
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.socialGraphModule);

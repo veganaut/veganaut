@@ -1,4 +1,4 @@
-(function(modelsModule) {
+(function(module) {
     'use strict';
 
     // TODO: temporary hack to have a unique id, will be provided by backend
@@ -72,5 +72,5 @@
     };
 
 
-    modelsModule.value('Location', Location);
-})(window.monkeyFace.modelsModule);
+    module.value('Location', Location);
+})(window.veganaut.mapModule);

@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('EditProfileCtrl', ['$scope', 'alertService', 'playerService', 'translateService',
+    module.controller('EditProfileCtrl', ['$scope', 'alertService', 'playerService', 'translateService',
         function($scope, alertService, playerService, trans) {
             playerService.getMe().then(function(me) {
                 $scope.form = {
@@ -32,4 +32,4 @@
             };
         }])
     ;
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.userModule);

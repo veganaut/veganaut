@@ -5,7 +5,7 @@ describe('LoginCtrl', function() {
     var $scope;
     var backendMock;
 
-    beforeEach(module('monkeyFace.controllers'));
+    beforeEach(module('veganaut.app.user'));
 
     beforeEach(inject(function($rootScope, $controller) {
         $scope = $rootScope.$new();

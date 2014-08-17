@@ -1,7 +1,7 @@
-(function(directivesModule) {
+(function(module) {
     'use strict';
 
-    directivesModule.directive('vgLocationTypeBadge', [function() {
+    module.directive('vgLocationTypeBadge', [function() {
         return {
             restrict: 'E',
             scope: {
@@ -10,4 +10,4 @@
             templateUrl: 'veganaut/map/vgLocationTypeBadge.tpl.html'
         };
     }]);
-})(window.monkeyFace.directivesModule);
+})(window.veganaut.mapModule);

@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('SocialGraphCtrl', ['$scope', '$location', 'backendService',
+    module.controller('SocialGraphCtrl', ['$scope', '$location', 'backendService',
         function($scope, $location, backendService) {
             if (!backendService.canViewGraph()) {
                 $scope.goToView('login');
@@ -30,4 +30,4 @@
             };
         }]
     );
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.socialGraphModule);

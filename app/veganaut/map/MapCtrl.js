@@ -1,8 +1,8 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
     // TODO: refactor, document and add tests!!
-    controllersModule.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'alertService', 'Location', 'locationService',
+    module.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'alertService', 'Location', 'locationService',
         // TODO: this page should only be available when logged in
         function($scope, $location, tileLayerUrl, playerService, alertService, Location, locationService) {
             var player;
@@ -119,4 +119,4 @@
             });
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.mapModule);

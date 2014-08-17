@@ -4,7 +4,7 @@
 describe('playerService', function() {
     var $onRootScopeSpy, backendServiceMock;
 
-    beforeEach(module('monkeyFace.services'));
+    beforeEach(module('veganaut.app.user'));
 
     beforeEach(module(function($provide) {
         backendServiceMock = {

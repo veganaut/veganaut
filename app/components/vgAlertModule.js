@@ -7,7 +7,7 @@
      *
      * @type {module}
      */
-    var alertModule = angular.module('veganaut.alertModule', ['ui.bootstrap']);
+    var alertModule = angular.module('veganaut.alert', ['ui.bootstrap']);
 
     /**
      * Default time for which an alert is shown

@@ -4,7 +4,7 @@
 
 /* global describe, beforeEach, it, expect, inject */
 describe('config', function() {
-    beforeEach(module('monkeyFace.services'));
+    beforeEach(module('veganaut.app.main'));
 
     describe('version', function() {
         it('should define valid version', inject(function(version) {

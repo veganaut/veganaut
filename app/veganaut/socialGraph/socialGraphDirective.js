@@ -1,4 +1,4 @@
-(function(directivesModule) {
+(function(module) {
     'use strict';
 
     // TODO: refactor this whole thing, it's a big mess
@@ -6,7 +6,7 @@
     // TODO: should zoom in and out for different screen sizes
     // TODO: redo the way the graph is re-created when the data changes
     // TODO: find a better way to slow down the force animation
-    directivesModule.directive('socialGraph', ['d3', 'nodeService', function(d3, nodeService) {
+    module.directive('socialGraph', ['d3', 'nodeService', function(d3, nodeService) {
 
         /**
          * Makes an arced link between two points.
@@ -328,4 +328,4 @@
             }
         };
     }]);
-})(window.monkeyFace.directivesModule);
+})(window.veganaut.socialGraphModule);

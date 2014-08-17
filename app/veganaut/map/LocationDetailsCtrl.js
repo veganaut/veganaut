@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('LocationDetailsCtrl', ['$scope', '$routeParams', 'tileLayerUrl', 'locationService',
+    module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', 'tileLayerUrl', 'locationService',
         function($scope, $routeParams, tileLayerUrl, locationService) {
             var locationId = parseInt($routeParams.id);
 
@@ -138,4 +138,4 @@
             });
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.mapModule);

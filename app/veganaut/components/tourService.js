@@ -1,8 +1,8 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
 
     // TODO: docu
-    servicesModule.provider('tourService', function() {
+    module.provider('tourService', function() {
         var TOUR_CONFIG = {
             intro: [
                 {},
@@ -63,4 +63,4 @@
             };
         }];
     });
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.mainModule);

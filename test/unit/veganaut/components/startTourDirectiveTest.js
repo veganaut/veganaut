@@ -3,7 +3,7 @@
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('startTourDirective', function() {
     var tourServiceMock;
-    beforeEach(module('monkeyFace.directives'));
+    beforeEach(module('veganaut.app.main'));
 
     // Mock the tour provider
     beforeEach(module(function($provide) {

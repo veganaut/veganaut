@@ -1,6 +1,6 @@
-(function(servicesModule) {
+(function(module) {
     'use strict';
-    servicesModule.factory('locationService', ['$q', 'Location', 'tileLayerUrl', function($q, Location, tileLayerUrl) {
+    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', function($q, Location, tileLayerUrl) {
         var LocationService = function() {
             this._deferredLocations = $q.defer();
 
@@ -64,4 +64,4 @@
 
         return new LocationService();
     }]);
-})(window.monkeyFace.servicesModule);
+})(window.veganaut.mapModule);

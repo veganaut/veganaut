@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('ReferenceCodeCtrl', ['$scope', 'backendService', 'alertService',
+    module.controller('ReferenceCodeCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
             $scope.submitReferenceCode = function() {
                 $scope.menuShown = false;
@@ -25,4 +25,4 @@
             };
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.socialGraphModule);

@@ -1,10 +1,17 @@
-(function(servicesModule) {
+(function() {
     'use strict';
+
+    /**
+     * Module for handling i18n.
+     *
+     * @type {module}
+     */
+    var i18nModule = angular.module('veganaut.i18n', []);
 
     /**
      * translateService provides methods to translate strings
      */
-    servicesModule.provider('translateService', function() {
+    i18nModule.provider('translateService', function() {
         /**
          * Recursively goes through the given dictionary to find the translation.
          *
@@ -64,4 +71,13 @@
             };
         }];
     });
-})(window.monkeyFace.servicesModule);
+
+    /**
+     * Simple filter that translates strings with the help of the translate service
+     */
+    i18nModule.filter('trans', ['translateService', function(translate) {
+        return function(text) {
+            return translate(text);
+        };
+    }]);
+})();

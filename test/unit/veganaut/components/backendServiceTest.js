@@ -2,7 +2,7 @@
 
 /* global describe, beforeEach, it, expect, inject */
 describe('backendService', function() {
-    beforeEach(module('monkeyFace.services'));
+    beforeEach(module('veganaut.app.main'));
 
     beforeEach(module(function($provide) {
         $provide.value('backendUrl', '');

@@ -6,7 +6,7 @@ describe('vgAlertModule.', function() {
     beforeEach(function() {
         angular.module('ui.bootstrap', []);
     });
-    beforeEach(module('veganaut.alertModule'));
+    beforeEach(module('veganaut.alert'));
 
 
     describe('alertService.', function() {

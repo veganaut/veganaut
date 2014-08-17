@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService',
+    module.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
 
             $scope.submit = function() {
@@ -32,4 +32,4 @@
             };
         }])
     ;
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.userModule);

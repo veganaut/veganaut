@@ -1,8 +1,8 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
     // TODO: this should be a directive
-    controllersModule.controller('MatchCtrl', ['$scope', 'backendService',
+    module.controller('MatchCtrl', ['$scope', 'backendService',
         function($scope, backendService) {
             $scope.scoreData = {};
 
@@ -13,4 +13,4 @@
             ;
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.scoreModule);

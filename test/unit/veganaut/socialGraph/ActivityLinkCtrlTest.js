@@ -6,7 +6,7 @@ describe('ActivityLinkCtrl', function() {
     var backendMock;
     var successCb;
 
-    beforeEach(module('monkeyFace.controllers'));
+    beforeEach(module('veganaut.app.socialGraph'));
 
     // TODO: too much mocking is happening here
     beforeEach(inject(function($rootScope, $controller) {

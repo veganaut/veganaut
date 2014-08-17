@@ -1,7 +1,7 @@
-(function(directivesModule) {
+(function(module) {
     'use strict';
 
-    directivesModule.directive('startTour', ['tourService', function(tourService) {
+    module.directive('startTour', ['tourService', function(tourService) {
 
         return {
             restrict: 'A',
@@ -14,4 +14,4 @@
             }
         };
     }]);
-})(window.monkeyFace.directivesModule);
+})(window.veganaut.mainModule);

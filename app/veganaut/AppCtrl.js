@@ -1,7 +1,7 @@
-(function(controllersModule) {
+(function(module) {
     'use strict';
 
-    controllersModule.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService',
+    module.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService',
         function($scope, $location, $window, backendService, playerService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
@@ -32,4 +32,4 @@
             $scope.getActivityVerb = playerService.getActivityVerb;
         }
     ]);
-})(window.monkeyFace.controllersModule);
+})(window.veganaut.mainModule);
