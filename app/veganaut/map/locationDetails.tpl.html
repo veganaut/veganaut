@@ -7,7 +7,7 @@
 
     <div ng-if="location.type !== 'private'">
         <!-- TODO: translate, move more stuff to controller -->
-        <div class="pageSection well">
+        <div class="pageSection well" ng-if="questions.optionsAvailable.isAvailable()">
             <p class="lead">
                 <span class="glyphicon glyphicon-ok" ng-show="questions.optionsAvailable.completed"></span>
                 Ask the staff if they have vegan options
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="pageSection well" ng-show="questions.optionsAvailable.answer.hasVegan">
+        <div class="pageSection well" ng-if="questions.whatOptions.isAvailable()">
             <p class="lead">
                 <span class="glyphicon glyphicon-ok" ng-show="questions.whatOptions.completed"></span>
                 Find out what vegan options they have
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="pageSection well" ng-show="questions.whatOptions.completed">
+        <div class="pageSection well" ng-if="questions.buyOptions.isAvailable()">
             <p class="lead">
                 <span class="glyphicon glyphicon-ok" ng-show="questions.buyOptions.completed"></span>
                 Buy something vegan
@@ -124,7 +124,7 @@
             </div>
         </div>
 
-        <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
+        <div class="pageSection well" ng-if="questions.staffFeedback.isAvailable()">
             <p class="lead">
                 <span class="glyphicon glyphicon-ok" ng-show="questions.staffFeedback.completed"></span>
                 Give the staff feedback
@@ -172,7 +172,7 @@
             </div>
         </div>
 
-        <div class="pageSection well" ng-show="questions.optionsAvailable.completed">
+        <div class="pageSection well" ng-if="questions.rateLocation.isAvailable()">
             <p class="lead">
                 <span class="glyphicon glyphicon-ok" ng-show="questions.rateLocation.completed"></span>
                 Rate this location

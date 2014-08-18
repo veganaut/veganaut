@@ -32,6 +32,10 @@
 
             $scope.questions = {
                 optionsAvailable: {
+                    name: 'optionsAvailable',
+                    isAvailable: function() {
+                        return true;
+                    },
                     showing: false,
                     completed: false,
                     answer: {
@@ -39,6 +43,10 @@
                     }
                 },
                 whatOptions: {
+                    name: 'whatOptions',
+                    isAvailable: function() {
+                        return $scope.questions.optionsAvailable.answer.hasVegan;
+                    },
                     showing: false,
                     completed: false,
                     answers: [
@@ -46,11 +54,19 @@
                     ]
                 },
                 buyOptions: {
+                    name: 'buyOptions',
+                    isAvailable: function() {
+                        return $scope.questions.whatOptions.completed;
+                    },
                     showing: false,
                     completed: false,
                     answers: {}
                 },
                 staffFeedback: {
+                    name: 'staffFeedback',
+                    isAvailable: function() {
+                        return $scope.questions.optionsAvailable.completed;
+                    },
                     showing: false,
                     completed: false,
                     answer: {
@@ -59,6 +75,10 @@
                     }
                 },
                 rateLocation: {
+                    name: 'rateLocation',
+                    isAvailable: function() {
+                        return $scope.questions.optionsAvailable.completed;
+                    },
                     showing: false,
                     completed: false,
                     maxRating: 4,
