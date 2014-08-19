@@ -139,6 +139,34 @@
                 'private': 'Private'
             }
         },
+        map: {
+           mission: {
+               form: {
+                   submit: 'Speichern',
+                   cancel: 'Abbrechen'
+               },
+               optionsAvailable: {
+                   description: 'Ask the staff if they have vegan options',
+                   callToAction: 'Tell us about it'
+               },
+               whatOptions: {
+                   description: 'Find out what vegan options they have',
+                   callToAction: 'Tell us about it'
+               },
+               buyOptions: {
+                   description: 'Buy something vegan',
+                   callToAction: 'Tell us about it'
+               },
+               staffFeedback: {
+                   description: 'Give the staff feedback',
+                   callToAction: 'Tell us about it'
+               },
+               rateLocation: {
+                   description: 'Rate this location',
+                   callToAction: 'Rate it'
+               }
+           }
+        },
         tour: {
             intro: [
                 {

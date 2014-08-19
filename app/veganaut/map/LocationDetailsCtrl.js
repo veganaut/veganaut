@@ -30,97 +30,128 @@
              */
             var lastOptionId = 1;
 
-            $scope.questions = {
-                optionsAvailable: {
-                    name: 'optionsAvailable',
+            $scope.missions = [
+                {
+                    id: 'optionsAvailable',
                     isAvailable: function() {
+                        return true;
+                    },
+                    hasValidAnswer: function() {
                         return true;
                     },
                     showing: false,
                     completed: false,
+                    callToActionIcon: 'bullhorn',
                     answer: {
                         hasVegan: undefined
                     }
                 },
-                whatOptions: {
-                    name: 'whatOptions',
+                {
+                    id: 'whatOptions',
                     isAvailable: function() {
-                        return $scope.questions.optionsAvailable.answer.hasVegan;
+                        var optionsAvailable = $scope.missionById.optionsAvailable;
+                        return optionsAvailable.completed && optionsAvailable.answer.hasVegan;
+                    },
+                    hasValidAnswer: function() {
+                        return true;
                     },
                     showing: false,
                     completed: false,
+                    callToActionIcon: 'bullhorn',
                     answers: [
                         { id: lastOptionId, text: '' }
                     ]
                 },
-                buyOptions: {
-                    name: 'buyOptions',
+                {
+                    id: 'buyOptions',
                     isAvailable: function() {
-                        return $scope.questions.whatOptions.completed;
+                        return $scope.missionById.whatOptions.completed;
+                    },
+                    hasValidAnswer: function() {
+                        return (this.getBoughtOptions().length > 0);
                     },
                     showing: false,
                     completed: false,
-                    answers: {}
+                    callToActionIcon: 'bullhorn',
+                    answers: {},
+
+                    /**
+                     * Returns the list of vegan options that the user bought
+                     * @returns {Array}
+                     */
+                    getBoughtOptions: function() {
+                        var boughtOptions = [];
+                        var availableOptions = $scope.missionById.whatOptions.answers;
+                        for (var i = 0; i < availableOptions.length; i += 1) {
+                            if (this.answers[availableOptions[i].id] === true) {
+                                boughtOptions.push(availableOptions[i]);
+                            }
+                        }
+                        return boughtOptions;
+                    }
                 },
-                staffFeedback: {
-                    name: 'staffFeedback',
+                {
+                    id: 'staffFeedback',
                     isAvailable: function() {
-                        return $scope.questions.optionsAvailable.completed;
+                        return $scope.missionById.optionsAvailable.completed;
+                    },
+                    hasValidAnswer: function() {
+                        return true;
                     },
                     showing: false,
                     completed: false,
+                    callToActionIcon: 'bullhorn',
                     answer: {
                         text: '',
                         didNotDoIt: false
                     }
                 },
-                rateLocation: {
-                    name: 'rateLocation',
+                {
+                    id: 'rateLocation',
                     isAvailable: function() {
-                        return $scope.questions.optionsAvailable.completed;
+                        return $scope.missionById.optionsAvailable.completed;
+                    },
+                    hasValidAnswer: function() {
+                        return this.answer.rating > 0;
                     },
                     showing: false,
                     completed: false,
                     maxRating: 4,
+                    callToActionIcon: 'star',
                     answer: {
                         rating: undefined
                     }
                 }
+            ];
+
+            // Index missions by id
+            $scope.missionById = {
+                optionsAvailable: $scope.missions[0],
+                whatOptions: $scope.missions[1],
+                buyOptions: $scope.missions[2],
+                staffFeedback: $scope.missions[3],
+                rateLocation: $scope.missions[4]
             };
 
-            $scope.submit = function(question) {
-                question.completed = true;
-                if (angular.isArray(question.answers)) {
+            $scope.submit = function(mission) {
+                mission.completed = true;
+                if (angular.isArray(mission.answers)) {
                     var validAnswers = [];
-                    for (var i = 0; i < question.answers.length; i += 1) {
-                        var answer = question.answers[i];
+                    for (var i = 0; i < mission.answers.length; i += 1) {
+                        var answer = mission.answers[i];
                         if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
                             validAnswers.push(answer);
                         }
                     }
-                    question.answers = validAnswers;
+                    mission.answers = validAnswers;
                 }
             };
 
-            /**
-             * Returns the list of vegan options that the user bought
-             * @returns {Array}
-             */
-            $scope.getBoughtOptions = function() {
-                var boughtOptions = [];
-                var availableOptions = $scope.questions.whatOptions.answers;
-                for (var i = 0; i < availableOptions.length; i += 1) {
-                    if ($scope.questions.buyOptions.answers[availableOptions[i].id] === true) {
-                        boughtOptions.push(availableOptions[i]);
-                    }
-                }
-                return boughtOptions;
-            };
-
+            // TODO: make a directive for this
             // Watch the list of answers to add or remove new input fields
-            $scope.$watch('questions.whatOptions.answers', function(answers) {
+            $scope.$watch('missionById.whatOptions.answers', function(answers) {
                 // Once completed, don't change anything
-                if ($scope.questions.whatOptions.completed) {
+                if ($scope.missionById.whatOptions.completed) {
                     return;
                 }
 
