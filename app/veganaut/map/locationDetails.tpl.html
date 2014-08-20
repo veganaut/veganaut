@@ -34,14 +34,14 @@
                             </div>
                             <div ng-switch-when="whatOptions">
                                 <input type="text" ng-required="$index === 0" class="form-control"
-                                 ng-repeat="answer in mission.answers"
+                                 ng-repeat="answer in mission.answer"
                                  ng-model="answer.text"
                                  placeholder="Vegan Option No. {{ $index + 1 }}"/>
                             </div>
                             <div ng-switch-when="buyOptions">
-                                <div class="checkbox" ng-repeat="veganOption in missionById.whatOptions.answers">
+                                <div class="checkbox" ng-repeat="veganOption in missionById.whatOptions.answer">
                                     <label>
-                                        <input type="checkbox" ng-model="mission.answers[veganOption.id]" />
+                                        <input type="checkbox" ng-model="mission.answer[veganOption.id]" />
                                         {{ veganOption.text }}
                                     </label>
                                 </div>
@@ -88,7 +88,7 @@
                     <div ng-switch-when="whatOptions">
                         You know of the following options:
                         <ul>
-                            <li ng-repeat="answer in mission.answers">{{ answer.text }}</li>
+                            <li ng-repeat="answer in mission.answer">{{ answer.text }}</li>
                         </ul>
                     </div>
                     <div ng-switch-when="buyOptions">

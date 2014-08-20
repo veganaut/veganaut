@@ -1,6 +1,22 @@
 (function(module) {
     'use strict';
 
+    var Mission = function(id, answer) {
+        this.id = id;
+        this.showing = false;
+        this.completed = false;
+        this.callToActionIcon = 'bullhorn';
+        this.answer = answer;
+    };
+
+    Mission.prototype.isAvailable = function() {
+        return true;
+    };
+
+    Mission.prototype.hasValidAnswer = function() {
+        return true;
+    };
+
     module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', 'tileLayerUrl', 'locationService',
         function($scope, $routeParams, tileLayerUrl, locationService) {
             var locationId = parseInt($routeParams.id);
@@ -30,99 +46,76 @@
              */
             var lastOptionId = 1;
 
-            $scope.missions = [
-                {
-                    id: 'optionsAvailable',
-                    isAvailable: function() {
-                        return true;
-                    },
-                    hasValidAnswer: function() {
-                        return true;
-                    },
-                    showing: false,
-                    completed: false,
-                    callToActionIcon: 'bullhorn',
-                    answer: {
-                        hasVegan: undefined
-                    }
-                },
-                {
-                    id: 'whatOptions',
-                    isAvailable: function() {
-                        var optionsAvailable = $scope.missionById.optionsAvailable;
-                        return optionsAvailable.completed && optionsAvailable.answer.hasVegan;
-                    },
-                    hasValidAnswer: function() {
-                        return true;
-                    },
-                    showing: false,
-                    completed: false,
-                    callToActionIcon: 'bullhorn',
-                    answers: [
-                        { id: lastOptionId, text: '' }
-                    ]
-                },
-                {
-                    id: 'buyOptions',
-                    isAvailable: function() {
-                        return $scope.missionById.whatOptions.completed;
-                    },
-                    hasValidAnswer: function() {
-                        return (this.getBoughtOptions().length > 0);
-                    },
-                    showing: false,
-                    completed: false,
-                    callToActionIcon: 'bullhorn',
-                    answers: {},
+            $scope.missions = [];
 
-                    /**
-                     * Returns the list of vegan options that the user bought
-                     * @returns {Array}
-                     */
-                    getBoughtOptions: function() {
-                        var boughtOptions = [];
-                        var availableOptions = $scope.missionById.whatOptions.answers;
-                        for (var i = 0; i < availableOptions.length; i += 1) {
-                            if (this.answers[availableOptions[i].id] === true) {
-                                boughtOptions.push(availableOptions[i]);
-                            }
-                        }
-                        return boughtOptions;
-                    }
-                },
-                {
-                    id: 'staffFeedback',
-                    isAvailable: function() {
-                        return $scope.missionById.optionsAvailable.completed;
-                    },
-                    hasValidAnswer: function() {
-                        return true;
-                    },
-                    showing: false,
-                    completed: false,
-                    callToActionIcon: 'bullhorn',
-                    answer: {
-                        text: '',
-                        didNotDoIt: false
-                    }
-                },
-                {
-                    id: 'rateLocation',
-                    isAvailable: function() {
-                        return $scope.missionById.optionsAvailable.completed;
-                    },
-                    hasValidAnswer: function() {
-                        return this.answer.rating > 0;
-                    },
-                    showing: false,
-                    completed: false,
-                    maxRating: 4,
-                    callToActionIcon: 'star',
-                    answer: {
-                        rating: undefined
+
+            var mission = new Mission('optionsAvailable', {
+                hasVegan: undefined
+            });
+            $scope.missions.push(mission);
+
+
+            mission = new Mission('whatOptions', [
+                { id: lastOptionId, text: '' }
+            ]);
+
+            mission.isAvailable = function() {
+                var optionsAvailable = $scope.missionById.optionsAvailable;
+                return optionsAvailable.completed && optionsAvailable.answer.hasVegan;
+            };
+            $scope.missions.push(mission);
+
+
+            mission = new Mission('buyOptions', {});
+
+            mission.isAvailable = function() {
+                return $scope.missionById.whatOptions.completed;
+            };
+
+            mission.hasValidAnswer = function() {
+                return (this.getBoughtOptions().length > 0);
+            };
+
+            mission.getBoughtOptions = function() {
+                var boughtOptions = [];
+                var availableOptions = $scope.missionById.whatOptions.answer;
+                for (var i = 0; i < availableOptions.length; i += 1) {
+                    if (this.answer[availableOptions[i].id] === true) {
+                        boughtOptions.push(availableOptions[i]);
                     }
                 }
-            ];
+                return boughtOptions;
+            };
+            $scope.missions.push(mission);
+
+
+            mission = new Mission('staffFeedback', {
+                text: '',
+                didNotDoIt: false
+            });
+
+            mission.isAvailable = function() {
+                return $scope.missionById.optionsAvailable.completed;
+            };
+            $scope.missions.push(mission);
+
+
+            mission = new Mission('rateLocation', {
+                rating: undefined
+            });
+
+            mission.isAvailable = function() {
+                return $scope.missionById.optionsAvailable.completed;
+            };
+
+            mission.hasValidAnswer = function() {
+                return this.answer.rating > 0;
+            };
+
+            mission.callToActionIcon = 'star';
+            mission.maxRating = 4;
+            $scope.missions.push(mission);
+
 
             // Index missions by id
             $scope.missionById = {
@@ -135,21 +128,21 @@
 
             $scope.submit = function(mission) {
                 mission.completed = true;
-                if (angular.isArray(mission.answers)) {
+                if (angular.isArray(mission.answer)) {
                     var validAnswers = [];
-                    for (var i = 0; i < mission.answers.length; i += 1) {
-                        var answer = mission.answers[i];
+                    for (var i = 0; i < mission.answer.length; i += 1) {
+                        var answer = mission.answer[i];
                         if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
                             validAnswers.push(answer);
                         }
                     }
-                    mission.answers = validAnswers;
+                    mission.answer = validAnswers;
                 }
             };
 
             // TODO: make a directive for this
             // Watch the list of answers to add or remove new input fields
-            $scope.$watch('missionById.whatOptions.answers', function(answers) {
+            $scope.$watch('missionById.whatOptions.answer', function(answers) {
                 // Once completed, don't change anything
                 if ($scope.missionById.whatOptions.completed) {
                     return;
