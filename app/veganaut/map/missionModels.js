@@ -1,6 +1,8 @@
 (function(module) {
     'use strict';
 
+    // TODO: don't use this form of inheritance, it ain't cool (calls constructor of parent before actually constructing the object)
+
     /**
      * Generic Mission Model
      * @param {string} id
@@ -16,25 +18,18 @@
         this.completed = false;
     }
 
-    Mission.prototype.isAvailable = function() {
-        return true;
-    };
-
     Mission.prototype.hasValidAnswer = function() {
         return true;
     };
 
     /**
-     * Concludes this mission and returns true if it was finished successfully.
-     * @returns {boolean}
+     * Concludes this mission. Should only be called once there is a valid answer.
      */
     Mission.prototype.finish = function() {
-        if (!this.hasValidAnswer()) {
-            return false;
-        }
-
         this.completed = true;
-        return true;
+
+        // Tell the mission set we are done
+        this.missionSet.finishedMission(this);
     };
 
 
@@ -67,11 +62,6 @@
         ]
     );
 
-    WhatOptionsMission.prototype.isAvailable = function() {
-        var optionsAvailable = this.missionSet.missionsById.optionsAvailable;
-        return optionsAvailable.completed && optionsAvailable.answer.hasVegan;
-    };
-
     WhatOptionsMission.prototype.hasValidAnswer = function() {
         return (this.answer.length > 0 &&
             typeof this.answer[0].text !== 'undefined' &&
@@ -82,55 +72,37 @@
      * @inherit
      */
     WhatOptionsMission.prototype.finish = function() {
-        var isFinished = Mission.prototype.finish.apply(this);
-        if (isFinished) {
-            // Read out the valid answers
-            var validAnswers = [];
-            for (var i = 0; i < this.answer.length; i += 1) {
-                var answer = this.answer[i];
-                if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
-                    validAnswers.push(answer);
-                }
+        // Read out the valid answers
+        var validAnswers = [];
+        for (var i = 0; i < this.answer.length; i += 1) {
+            var answer = this.answer[i];
+            if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
+                validAnswers.push(answer);
             }
-            this.answer = validAnswers;
         }
+        this.answer = validAnswers;
 
-        return isFinished;
+        // Let the parent do its thing
+        Mission.prototype.finish.apply(this);
     };
 
 
     // BuyOptionsMission //////////////////////////////////////////////////////
-    function BuyOptionsMission(missionSet) {
+    function BuyOptionsMission(missionSet, availableOptions) {
         this.missionSet = missionSet;
+        this.availableOptions = availableOptions;
     }
     BuyOptionsMission.prototype = new Mission('buyOptions', {});
-
-    BuyOptionsMission.prototype.isAvailable = function() {
-        return this.missionSet.missionsById.whatOptions.completed;
-    };
 
     BuyOptionsMission.prototype.hasValidAnswer = function() {
         return (this.getBoughtOptions().length > 0);
     };
 
-    BuyOptionsMission.prototype.getAvailableOptions = function() {
-        var options = this.missionSet.missionsById.whatOptions.answer;
-
-        // TODO: temprorary hack to add ids to the options. This will be provided by the backend
-        if (typeof options[0].id === 'undefined') {
-            for (var i = 0; i < options.length; i++) {
-                options[i].id = i + 1;
-            }
-        }
-        return options;
-    };
-
     BuyOptionsMission.prototype.getBoughtOptions = function() {
         var boughtOptions = [];
-        var availableOptions = this.missionSet.missionsById.whatOptions.answer;
-        for (var i = 0; i < availableOptions.length; i += 1) {
-            if (this.answer[availableOptions[i].id] === true) {
-                boughtOptions.push(availableOptions[i]);
+        for (var i = 0; i < this.availableOptions.length; i += 1) {
+            if (this.answer[this.availableOptions[i].id] === true) {
+                boughtOptions.push(this.availableOptions[i]);
             }
         }
         return boughtOptions;
@@ -150,10 +122,6 @@
         }
     );
 
-    StaffFeedbackMission.prototype.isAvailable = function() {
-        return this.missionSet.missionsById.optionsAvailable.completed;
-    };
-
     StaffFeedbackMission.prototype.hasValidAnswer = function() {
         return (this.answer.text.length > 0);
     };
@@ -172,10 +140,6 @@
         },
         'star'
     );
-
-    RateLocationMission.prototype.isAvailable = function() {
-        return this.missionSet.missionsById.optionsAvailable.completed;
-    };
 
     RateLocationMission.prototype.hasValidAnswer = function() {
         return this.answer.rating > 0;
