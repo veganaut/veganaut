@@ -142,7 +142,7 @@
         map: {
            mission: {
                form: {
-                   submit: 'Speichern',
+                   submit: 'Abschliessen',
                    cancel: 'Abbrechen'
                },
                optionsAvailable: {
