@@ -7,6 +7,7 @@
         'ui.bootstrap',
         'leaflet-directive',
         'veganaut.alert',
+        'veganaut.form',
         'veganaut.i18n',
         'veganaut.app.main',
         'veganaut.app.map',

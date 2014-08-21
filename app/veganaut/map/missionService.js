@@ -7,8 +7,8 @@
     module.factory('missionService', ['MissionSet',
         function(MissionSet) {
 
-            var getMissionSet = function() {
-                return new MissionSet();
+            var getMissionSet = function(location) {
+                return new MissionSet(location);
             };
 
             return {

@@ -63,7 +63,7 @@
     WhatOptionsMission.prototype = new Mission(
         'whatOptions',
         [
-            { id: 1, text: '' }
+            { text: '' }
         ]
     );
 
@@ -114,7 +114,15 @@
     };
 
     BuyOptionsMission.prototype.getAvailableOptions = function() {
-        return this.missionSet.missionsById.whatOptions.answer;
+        var options = this.missionSet.missionsById.whatOptions.answer;
+
+        // TODO: temprorary hack to add ids to the options. This will be provided by the backend
+        if (typeof options[0].id === 'undefined') {
+            for (var i = 0; i < options.length; i++) {
+                options[i].id = i + 1;
+            }
+        }
+        return options;
     };
 
     BuyOptionsMission.prototype.getBoughtOptions = function() {
