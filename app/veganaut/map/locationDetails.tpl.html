@@ -5,6 +5,7 @@
         <vg-team-badge team="location.team"></vg-team-badge>
     </p>
 
+    <h2 ng-if="missionSet.missions">{{ 'map.mission.title' | trans }}</h2>
     <div ng-repeat="mission in missionSet.missions" class="pageSection well">
         <p class="lead">
             <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>

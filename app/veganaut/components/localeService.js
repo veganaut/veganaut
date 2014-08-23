@@ -141,6 +141,7 @@
         },
         map: {
            mission: {
+               title: 'Missionen',
                form: {
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'
