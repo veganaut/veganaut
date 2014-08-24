@@ -170,6 +170,11 @@
                    title: 'Bewerte die veganen Angebote, die es hier gibt.',
                    description: 'Wie bewertest du diese veganen Angebote?',
                    explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.'
+               },
+               veganeed: {
+                   title: 'Gib an, wie viel es hier für Veganaut_innen noch zu tun gibt.',
+                   description: 'Wie viel gibt es hier noch zu tun für Veganaut_innen?',
+                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Auch hier können Veganaut_innen noch viel bewirken. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht, und der Einsatz von Veganaut_innen kann nur noch wenig verbessern. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt. Hier können Veganaut_innen nur noch kommen, um zu geniessen.'
                }
            }
         },
