@@ -154,7 +154,7 @@
                },
                visit: {
                    title: 'Bonus für die erste Mission',
-                   description: 'Für deinen ersten Besuch an einem Ort innerhalb einer Woche (+/-) erhälst du zusätzliche Punkte. Sobald du hier die erste Mission erfüllt hast, werden dir diese Zusatzpunkte gutgeschrieben. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb einer Woche (+/-) ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das schon länger nicht mehr hier war und darum einen Bonus erhalten würde...
+                   description: 'Für deinen ersten Besuch an einem Ort innerhalb einer Woche (+/-) erhälst du zusätzliche Punkte. Sobald du hier die erste Mission erfüllt hast, werden dir diese Zusatzpunkte gutgeschrieben. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb einer Woche (+/-) ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
                },
                optionsAvailable: {
                    title: 'Frag das Personal, ob es hier etwas veganes gibt.',
