@@ -23,15 +23,6 @@ describe('frontPage.', function() {
         expect(element(by.css('button.frontLoginBtn')).isPresent()).toBe(true, 'has a login button');
     });
 
-    it('should show the match score on the front page.', function() {
-        expect(element(by.css('.matchScoreDisplay')).isPresent()).toBe(true, 'has match score display');
-
-        expect(element.all(by.css('.matchScoreDisplay .blueScore')).count()).toBe(4, 'four blue scores');
-        expect(element.all(by.css('.matchScoreDisplay .greenScore')).count()).toBe(4, 'four green scores');
-
-        // TODO: extend this
-    });
-
     it('should show the intro tour on the front page.', function() {
         ptor.sleep(500);
         expect(element(by.css('.tour-intro')).isPresent()).toBe(true, 'has tour-intro');
