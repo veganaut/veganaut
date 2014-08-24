@@ -10,6 +10,7 @@
              * @constructor
              */
             function Visit(location) {
+                this.location = location;
                 this.visitMission = undefined;
                 this.missions = [];
                 this.completed = false;
@@ -31,7 +32,7 @@
              */
             Visit.prototype.finishedMission = function(mission) {
                 if (mission.type === 'optionsAvailable') {
-                    if (mission.outcome.hasVegan) {
+                    if (mission.outcome === true) {
                         this._addMission(new missions.WhatOptionsMission(this));
                     }
                     this._addMission(new missions.StaffFeedbackMission(this));
@@ -71,10 +72,6 @@
                     points += this.visitMission.points;
                 }
                 return points;
-            };
-
-            Visit.prototype.finishVisit = function() {
-                this.completed = true;
             };
 
             return Visit;

@@ -28,6 +28,14 @@
         }
     };
 
+    // TODO: do this more elegantly
+    Mission.prototype.toJson = function() {
+        return {
+            type: this.type,
+            outcome: this.outcome
+        };
+    };
+
     /**
      * Concludes this mission. Should only be called once there is a valid outcome.
      */
@@ -60,14 +68,12 @@
 
     OptionsAvailableMission.prototype = new Mission(
         'optionsAvailable',
-        {
-            hasVegan: undefined
-        },
+        undefined,
         10
     );
 
     OptionsAvailableMission.prototype.hasValidOutcome = function() {
-        return (typeof this.outcome.hasVegan !== 'undefined');
+        return (typeof this.outcome !== 'undefined');
     };
 
 
@@ -108,6 +114,17 @@
         Mission.prototype.finish.apply(this);
     };
 
+    WhatOptionsMission.prototype.toJson = function() {
+        var outcome = [];
+        for (var i = 0; i < this.outcome.length; i += 1) {
+            outcome.push(this.outcome[i].text);
+        }
+        return {
+            type: this.type,
+            outcome: outcome
+        };
+    };
+
 
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit, availableOptions) {
@@ -132,6 +149,18 @@
             }
         }
         return boughtOptions;
+    };
+
+    BuyOptionsMission.prototype.toJson = function() {
+        var outcome = [];
+        var boughtOptions = this.getBoughtOptions();
+        for (var i = 0; i < boughtOptions.length; i += 1) {
+            outcome.push(boughtOptions[i].id);
+        }
+        return {
+            type: this.type,
+            outcome: outcome
+        };
     };
 
 
@@ -162,14 +191,12 @@
 
     RateLocationMission.prototype = new Mission(
         'rateLocation',
-        {
-            rating: undefined
-        },
+        undefined,
         10
     );
 
     RateLocationMission.prototype.hasValidOutcome = function() {
-        return this.outcome.rating > 0;
+        return this.outcome > 0;
     };
 
 

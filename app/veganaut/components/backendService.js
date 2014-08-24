@@ -264,6 +264,19 @@
             return $http.get(backendUrl + '/location/list');
         };
 
+        /**
+         * Submits the given Visit with missions to the backend
+         * @param {Location} location
+         * @param {{}} missionData
+         * @returns {HttpPromise}
+         */
+        var submitVisit = function(location, missionData) {
+            return $http.post(backendUrl + '/visit', {
+                location: location.id,
+                missions: missionData
+            });
+        };
+
 
         /**
          * Returns this service
@@ -292,7 +305,8 @@
                 getMatch: getMatch,
                 getMe: getMe,
                 updateMe: updateMe,
-                getLocations: getLocations
+                getLocations: getLocations,
+                submitVisit: submitVisit
             };
         }];
     });

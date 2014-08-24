@@ -41,10 +41,10 @@
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
                             <div ng-switch-when="optionsAvailable">
                                 <div class="btn-group form-group">
-                                    <label class="btn btn-default" ng-model="mission.outcome.hasVegan" btn-radio="true">
+                                    <label class="btn btn-default" ng-model="mission.outcome" btn-radio="true">
                                         {{ 'map.mission.' + mission.type + '.form.yes' | trans }}
                                     </label>
-                                    <label class="btn btn-default" ng-model="mission.outcome.hasVegan" btn-radio="false">
+                                    <label class="btn btn-default" ng-model="mission.outcome" btn-radio="false">
                                         {{ 'map.mission.' + mission.type + '.form.no' | trans }}
                                     </label>
                                 </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div ng-switch-when="rateLocation">
                                 <div class="text-center h3">
-                                    <rating ng-model="mission.outcome.rating"
+                                    <rating ng-model="mission.outcome"
                                      max="mission.maxRating"></rating>
                                 </div>
                             </div>
@@ -99,10 +99,10 @@
             <div class="resultBlock" ng-show="mission.completed">
                 <div ng-switch="mission.type">
                     <div ng-switch-when="optionsAvailable">
-                        <div ng-show="mission.outcome.hasVegan">
+                        <div ng-show="mission.outcome">
                             {{ 'map.mission.' + mission.type + '.outcome.hasVegan' | trans }}
                         </div>
-                        <div ng-hide="mission.outcome.hasVegan">
+                        <div ng-hide="mission.outcome">
                             {{ 'map.mission.' + mission.type + '.outcome.noVegan' | trans }}
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div ng-switch-when="rateLocation">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
-                        <rating readonly="true" ng-model="mission.outcome.rating"
+                        <rating readonly="true" ng-model="mission.outcome"
                          max="mission.maxRating"></rating>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
         <div class="clearfix"></div>
         <p ng-if="!visit.completed">
             <button class="btn btn-block btnTeam"
-             ng-click="visit.finishVisit()"
+             ng-click="submitVisit()"
              ng-disabled="visit.getTotalPoints() === 0">
                 {{ 'map.mission.visitForm.submit' | trans }}
             </button>
