@@ -1,6 +1,6 @@
 (function(module) {
     'use strict';
-    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', function($q, Location, tileLayerUrl) {
+    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', 'backendService', function($q, Location, tileLayerUrl/*, backendService*/) {
         var LocationService = function() {
             this._deferredLocations = $q.defer();
 
@@ -30,13 +30,22 @@
         };
 
         LocationService.prototype.getLocations = function() {
+            var data = [
+                { id: 'a1', lat: 46.957113, lng: 7.452544, team: 'blue',  name: '3dosha', type: 'gastronomy' },
+                { id: 'a2', lat: 46.946757, lng: 7.441016, team: 'blue',  name: 'Reformhaus Ruprecht', type: 'retail' },
+                { id: 'a3', lat: 46.953880, lng: 7.446611, team: 'green', name: 'Kremoby Hollow', type: 'private' },
+                { id: 'a4', lat: 46.952254, lng: 7.445619, team: 'green', name: 'Habakuk im Fleuri', type: 'event' }
+            ];
             // TODO: request from backend
-            this._deferredLocations.resolve([
-                new Location(46.957113, 7.452544, 'blue',  '3dosha', Location.TYPES.gastronomy),
-                new Location(46.946757, 7.441016, 'blue',  'Reformhaus Ruprecht', Location.TYPES.retail),
-                new Location(46.953880, 7.446611, 'green', 'Kremoby Hollow', Location.TYPES.private),
-                new Location(46.952254, 7.445619, 'green', 'Habakuk im Fleuri', Location.TYPES.event)
-            ]);
+//            backendService.getLocations()
+//                .then(function(data) {
+            var locations = [];
+            for (var i = 0; i < data.length; i++) {
+                locations.push(Location.fromJson(data[i]));
+            }
+//                })
+//            ;
+            this._deferredLocations.resolve(locations);
             return this._deferredLocations.promise;
         };
 

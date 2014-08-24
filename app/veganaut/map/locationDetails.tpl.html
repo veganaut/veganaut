@@ -7,11 +7,14 @@
 
     <div ng-if="visit.missions">
         <h2>{{ 'map.mission.title' | trans }}</h2>
+        <small class="pull-right">{{ 'score.points' | trans }}</small>
+        <div class="clearfix"></div>
         <div ng-if="visit.visitMission && !visit.completed">
             <p class="h4 missionTitle">
                 <span class="pull-right color-team">
                     {{ visit.visitMission.points }}
                 </span>
+                <span class="glyphicon glyphicon-ok" ng-show="visit.visitMission.completed"></span>
                 {{ 'map.mission.' + visit.visitMission.type + '.title' | trans }}
             </p>
             <p class="lead">{{ 'map.mission.' + visit.visitMission.type + '.description' | trans }}</p>
@@ -153,7 +156,7 @@
     </div>
 
     <hr />
-    <leaflet class="locationDetailMap"
+    <leaflet class="locationDetailMap" ng-if="location"
      markers="[location]" defaults="mapSettings" center="center">
     </leaflet>
 </div>

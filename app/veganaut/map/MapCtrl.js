@@ -45,7 +45,7 @@
              */
             $scope.startAddNewLocation = function() {
                 $scope.isAddingLocation = true;
-                $scope.newLocation = new Location(undefined, undefined, player.team);
+                $scope.newLocation = new Location('new', player.team);
                 locationService.activate($scope.newLocation);
             };
 

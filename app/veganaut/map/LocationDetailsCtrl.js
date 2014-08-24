@@ -3,7 +3,7 @@
 
     module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', 'tileLayerUrl', 'locationService', 'missionService',
         function($scope, $routeParams, tileLayerUrl, locationService, missionService) {
-            var locationId = parseInt($routeParams.id);
+            var locationId = $routeParams.id;
 
             /**
              * Leaflet map settings

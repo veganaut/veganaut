@@ -256,6 +256,14 @@
             return $http.put(backendUrl + '/person/me', data);
         };
 
+        /**
+         * Gets the list of locations on the map
+         * @returns {HttpPromise}
+         */
+        var getLocations = function() {
+            return $http.get(backendUrl + '/location/list');
+        };
+
 
         /**
          * Returns this service
@@ -283,7 +291,8 @@
                 getOpenActivityLinks: getOpenActivityLinks,
                 getMatch: getMatch,
                 getMe: getMe,
-                updateMe: updateMe
+                updateMe: updateMe,
+                getLocations: getLocations
             };
         }];
     });

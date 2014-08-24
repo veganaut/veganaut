@@ -120,6 +120,7 @@
             green: 'Grün'
         },
         score: {
+            points: 'Punkte',
             totalScore: 'Punktestand',
             players: 'Spieler',
             captured: 'Gefangen',

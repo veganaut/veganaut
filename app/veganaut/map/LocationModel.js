@@ -1,25 +1,22 @@
 (function(module) {
     'use strict';
 
-    // TODO: temporary hack to have a unique id, will be provided by backend
-    var lastId = 0;
-
     /**
      * Location Model
      *
+     * @param {string} id
+     * @param {string} team
      * @param {number} lat
      * @param {number} lng
-     * @param {string} team
      * @param {string} title
      * @param {string} type
      * @constructor
      */
-    var Location = function(lat, lng, team, title, type) {
-        lastId += 1;
-        this.id = lastId;
+    var Location = function(id, team, lat, lng, title, type) {
+        this.id = id;
+        this.team = team;
         this.lat = lat;
         this.lng = lng;
-        this.team = team;
         this.title = title;
         this.type = type;
 
@@ -43,6 +40,22 @@
         retail: 'retail',
         event: 'event',
         'private': 'private'
+    };
+
+    /**
+     * Creates a new Location object from the given JSON data
+     * @param json
+     * @returns {Location}
+     */
+    Location.fromJson = function(json) {
+        return new Location(
+            json.id,
+            json.team,
+            json.lat,
+            json.lng,
+            json.name,
+            json.type
+        );
     };
 
     /**
