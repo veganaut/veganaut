@@ -40,7 +40,7 @@
                             <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
                             <div ng-switch-when="optionsAvailable">
-                                <div class="btn-group form-group">
+                                <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-model="mission.outcome" btn-radio="true">
                                         {{ 'map.mission.' + mission.type + '.form.yes' | trans }}
                                     </label>
@@ -48,6 +48,7 @@
                                         {{ 'map.mission.' + mission.type + '.form.no' | trans }}
                                     </label>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                             <div ng-switch-when="whatOptions">
                                 <vg-list-input list="mission.outcome" auto-expand="!mission.completed"
