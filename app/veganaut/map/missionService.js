@@ -2,17 +2,17 @@
     'use strict';
 
     /**
-     * The missionService makes MissionSets available
+     * The missionService makes Visits available
      */
-    module.factory('missionService', ['MissionSet',
-        function(MissionSet) {
+    module.factory('missionService', ['Visit',
+        function(Visit) {
 
-            var getMissionSet = function(location) {
-                return new MissionSet(location);
+            var getVisit = function(location) {
+                return new Visit(location);
             };
 
             return {
-                getMissionSet: getMissionSet
+                getVisit: getVisit
             };
         }
     ]);

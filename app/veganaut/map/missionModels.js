@@ -5,35 +5,35 @@
 
     /**
      * Generic Mission Model
-     * @param {string} id
-     * @param {{}|[]} answer
+     * @param {string} type
+     * @param {{}|[]} outcome
      * @constructor
      */
-    function Mission(id, answer) {
-        this.id = id;
-        this.answer = answer;
+    function Mission(type, outcome) {
+        this.type = type;
+        this.outcome = outcome;
         this.started = false;
         this.completed = false;
     }
 
-    Mission.prototype.hasValidAnswer = function() {
+    Mission.prototype.hasValidOutcome = function() {
         return true;
     };
 
     /**
-     * Concludes this mission. Should only be called once there is a valid answer.
+     * Concludes this mission. Should only be called once there is a valid outcome.
      */
     Mission.prototype.finish = function() {
         this.completed = true;
 
-        // Tell the mission set we are done
-        this.missionSet.finishedMission(this);
+        // Tell the visit we are done
+        this.visit.finishedMission(this);
     };
 
 
     // OptionsAvailableMission ////////////////////////////////////////////////
-    function OptionsAvailableMission(missionSet) {
-        this.missionSet = missionSet;
+    function OptionsAvailableMission(visit) {
+        this.visit = visit;
     }
 
     OptionsAvailableMission.prototype = new Mission(
@@ -43,14 +43,14 @@
         }
     );
 
-    OptionsAvailableMission.prototype.hasValidAnswer = function() {
-        return (typeof this.answer.hasVegan !== 'undefined');
+    OptionsAvailableMission.prototype.hasValidOutcome = function() {
+        return (typeof this.outcome.hasVegan !== 'undefined');
     };
 
 
     // WhatOptionsMission /////////////////////////////////////////////////////
-    function WhatOptionsMission(missionSet) {
-        this.missionSet = missionSet;
+    function WhatOptionsMission(visit) {
+        this.visit = visit;
     }
 
     WhatOptionsMission.prototype = new Mission(
@@ -60,25 +60,25 @@
         ]
     );
 
-    WhatOptionsMission.prototype.hasValidAnswer = function() {
-        return (this.answer.length > 0 &&
-            typeof this.answer[0].text !== 'undefined' &&
-            this.answer[0].text.length > 0);
+    WhatOptionsMission.prototype.hasValidOutcome = function() {
+        return (this.outcome.length > 0 &&
+            typeof this.outcome[0].text !== 'undefined' &&
+            this.outcome[0].text.length > 0);
     };
 
     /**
      * @inherit
      */
     WhatOptionsMission.prototype.finish = function() {
-        // Read out the valid answers
-        var validAnswers = [];
-        for (var i = 0; i < this.answer.length; i += 1) {
-            var answer = this.answer[i];
-            if (typeof answer.text !== 'undefined' && answer.text.length > 0) {
-                validAnswers.push(answer);
+        // Read out the valid options
+        var validOptions = [];
+        for (var i = 0; i < this.outcome.length; i += 1) {
+            var option = this.outcome[i];
+            if (typeof option.text !== 'undefined' && option.text.length > 0) {
+                validOptions.push(option);
             }
         }
-        this.answer = validAnswers;
+        this.outcome = validOptions;
 
         // Let the parent do its thing
         Mission.prototype.finish.apply(this);
@@ -86,20 +86,20 @@
 
 
     // BuyOptionsMission //////////////////////////////////////////////////////
-    function BuyOptionsMission(missionSet, availableOptions) {
-        this.missionSet = missionSet;
+    function BuyOptionsMission(visit, availableOptions) {
+        this.visit = visit;
         this.availableOptions = availableOptions;
     }
     BuyOptionsMission.prototype = new Mission('buyOptions', {});
 
-    BuyOptionsMission.prototype.hasValidAnswer = function() {
+    BuyOptionsMission.prototype.hasValidOutcome = function() {
         return (this.getBoughtOptions().length > 0);
     };
 
     BuyOptionsMission.prototype.getBoughtOptions = function() {
         var boughtOptions = [];
         for (var i = 0; i < this.availableOptions.length; i += 1) {
-            if (this.answer[this.availableOptions[i].id] === true) {
+            if (this.outcome[this.availableOptions[i].id] === true) {
                 boughtOptions.push(this.availableOptions[i]);
             }
         }
@@ -108,8 +108,8 @@
 
 
     // StaffFeedbackMission ///////////////////////////////////////////////////
-    function StaffFeedbackMission(missionSet) {
-        this.missionSet = missionSet;
+    function StaffFeedbackMission(visit) {
+        this.visit = visit;
     }
 
     StaffFeedbackMission.prototype = new Mission(
@@ -120,14 +120,14 @@
         }
     );
 
-    StaffFeedbackMission.prototype.hasValidAnswer = function() {
-        return (this.answer.text.length > 0);
+    StaffFeedbackMission.prototype.hasValidOutcome = function() {
+        return (this.outcome.text.length > 0);
     };
 
 
     // RateLocationMission ////////////////////////////////////////////////////
-    function RateLocationMission(missionSet) {
-        this.missionSet = missionSet;
+    function RateLocationMission(visit) {
+        this.visit = visit;
         this.maxRating = 4;
     }
 
@@ -138,8 +138,8 @@
         }
     );
 
-    RateLocationMission.prototype.hasValidAnswer = function() {
-        return this.answer.rating > 0;
+    RateLocationMission.prototype.hasValidOutcome = function() {
+        return this.outcome.rating > 0;
     };
 
 

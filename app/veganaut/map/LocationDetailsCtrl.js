@@ -23,7 +23,7 @@
                 zoom: 16
             };
 
-            $scope.missionSet = undefined;
+            $scope.visit = undefined;
             $scope.location = undefined;
 
             // TODO: should directly ask for the correct location from the locationService
@@ -34,7 +34,7 @@
                         $scope.center.lat = $scope.location.lat;
                         $scope.center.lng = $scope.location.lng;
 
-                        $scope.missionSet = missionService.getMissionSet($scope.location);
+                        $scope.visit = missionService.getVisit($scope.location);
                         break;
                     }
                 }
