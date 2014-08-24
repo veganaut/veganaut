@@ -134,10 +134,10 @@
                 submit: 'Speichern'
             },
             type: {
-                gastronomy: 'Gastronomy',
-                retail: 'Retail',
+                gastronomy: 'Gastro',
+                retail: 'Detailhandel',
                 event: 'Event',
-                'private': 'Private'
+                'private': 'Privat'
             }
         },
         map: {
@@ -174,7 +174,7 @@
                    description: 'Welche veganen Angebote gibt es hier?',
                    explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.',
                    form: {
-                       placeholder: 'Veganes Angebot'
+                       placeholder: 'Hier ein veganes Angebot eintragen'
                    },
                    outcome: {
                        description: 'Du hast diese veganen Angebote eingetragen/bestätigt:'
@@ -183,7 +183,7 @@
                buyOptions: {
                    title: 'Kauf etwas veganes.',
                    description: 'Was hast du gekauft?',
-                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich für das Geschäft lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
+                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
                    outcome: {
                        description: 'Du hast diese veganen Angebote gekauft:'
                    }
@@ -224,7 +224,7 @@
                 },
                 {
                     title: 'Das veganautische Netzwerk',
-                    content: 'Das ist das veganautische Netzwerk. Es umfasst alle Veganautinnen und Veganauten.'
+                    content: '[under construction]'
                 },
                 {
                     title: 'Veganautische Spiele',
