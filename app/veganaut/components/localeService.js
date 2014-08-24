@@ -157,16 +157,16 @@
                    explanation: 'Für deinen ersten Besuch an einem Ort innerhalb einer Woche (+/-) erhälst du zusätzliche Punkte. Sobald du hier die erste Mission erfüllt hast, werden dir diese Zusatzpunkte gutgeschrieben. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb einer Woche (+/-) ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
                },
                optionsAvailable: {
-                   title: 'Frag das Personal, ob es hier etwas veganes gibt.',
-                   description: 'Gibt es hier etwas veganes?',
-                   explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
+                   title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
+                   description: 'Gibt es hier etwas Veganes?',
+                   explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
                    form: {
                        yes: 'Ja',
                        no: 'Nein'
                    },
                    outcome: {
-                       hasVegan: 'Du hast gesagt, es gebe hier etwas veganes.',
-                       noVegan: 'Du hast gesagt, es gebe hier nichts veganes.'
+                       hasVegan: 'Du hast gesagt, es gebe hier etwas Veganes.',
+                       noVegan: 'Du hast gesagt, es gebe hier nichts Veganes.'
                    }
                },
                whatOptions: {
@@ -181,9 +181,9 @@
                    }
                },
                buyOptions: {
-                   title: 'Kauf etwas veganes.',
+                   title: 'Kauf etwas Veganes.',
                    description: 'Was hast du gekauft?',
-                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
+                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
                    outcome: {
                        description: 'Du hast diese veganen Angebote gekauft:'
                    }
@@ -212,7 +212,7 @@
                veganeed: {
                    title: 'Gib an, wie viel es hier für Veganaut_innen noch zu tun gibt.',
                    description: 'Wie viel gibt es hier noch zu tun für Veganaut_innen?',
-                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Auch hier können Veganaut_innen noch viel bewirken. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht, und der Einsatz von Veganaut_innen kann nur noch wenig verbessern. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt. Hier können Veganaut_innen nur noch kommen, um zu geniessen.'
+                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Auch hier können Veganaut_innen noch viel bewirken. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht, und der Einsatz von Veganaut_innen kann nur noch wenig verbessern. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt. Hier können Veganaut_innen nur noch kommen, um zu geniessen.'
                }
            }
         },
