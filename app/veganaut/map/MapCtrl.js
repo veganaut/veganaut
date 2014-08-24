@@ -2,9 +2,9 @@
     'use strict';
 
     // TODO: refactor, document and add tests!!
-    module.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'alertService', 'Location', 'locationService',
+    module.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'Location', 'locationService',
         // TODO: this page should only be available when logged in
-        function($scope, $location, tileLayerUrl, playerService, alertService, Location, locationService) {
+        function($scope, $location, tileLayerUrl, playerService, Location, locationService) {
             var player;
 
             /**
@@ -48,7 +48,7 @@
              */
             $scope.startAddNewLocation = function() {
                 $scope.isAddingLocation = true;
-                $scope.newLocation = new Location('new', player.team);
+                $scope.newLocation = new Location(undefined, player.team);
                 locationService.activate($scope.newLocation);
             };
 
@@ -69,12 +69,9 @@
              * Finalises adding a new location
              */
             $scope.addNewLocation = function() {
+                locationService.submitLocation($scope.newLocation);
                 $scope.isAddingLocation = false;
-                var name = $scope.newLocation.title;
                 $scope.newLocation = undefined;
-                // TODO: submit to backend
-                // TODO: translate
-                alertService.addAlert('Added new location "' + name + '"', 'success');
             };
 
             /**

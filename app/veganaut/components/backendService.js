@@ -277,6 +277,15 @@
             });
         };
 
+        /**
+         * Submits the given Location
+         * @param {Location} location
+         * @returns {HttpPromise}
+         */
+        var submitLocation = function(locationData) {
+            return $http.post(backendUrl + '/location', locationData);
+        };
+
 
         /**
          * Returns this service
@@ -306,7 +315,8 @@
                 getMe: getMe,
                 updateMe: updateMe,
                 getLocations: getLocations,
-                submitVisit: submitVisit
+                submitVisit: submitVisit,
+                submitLocation: submitLocation
             };
         }];
     });

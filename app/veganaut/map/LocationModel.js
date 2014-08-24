@@ -37,9 +37,7 @@
      */
     Location.TYPES = {
         gastronomy: 'gastronomy',
-        retail: 'retail',
-        event: 'event',
-        'private': 'private'
+        retail: 'retail'
     };
 
     /**

@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
-    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', 'backendService',
-        function($q, Location, tileLayerUrl, backendService) {
+    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', 'backendService', 'alertService',
+        function($q, Location, tileLayerUrl, backendService, alertService) {
             var LocationService = function() {
                 this._deferredLocations = $q.defer();
 
@@ -64,6 +64,31 @@
                     this.active = location;
                     this.active.setActive();
                 }
+            };
+
+            /**
+             * Submits the given location to the backend
+             * @param {Location} location
+             * @return {HttpPromise}
+             */
+            LocationService.prototype.submitLocation = function(location) {
+                // TODO: should the promise be handled in the controller?
+                return backendService.submitLocation({
+                    name: location.title,
+                    coordinates: [location.lat, location.lng],
+                    type: location.type
+                })
+                    .success(function(data) {
+                        // TODO: how to update the location from what the backend tells us
+                        // TODO: this should be .id not ._id
+                        location.id = data._id;
+                        alertService.addAlert('Added new location "' + data.name + '"', 'success');
+                    })
+                    .error(function(data) {
+                        // TODO: remove the location from the list
+                        alertService.addAlert('Failed to add location: ' + data.error, 'danger');
+                    })
+                ;
             };
 
             return new LocationService();
