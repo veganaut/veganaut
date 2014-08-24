@@ -219,7 +219,7 @@
             intro: [
                 {
                     title: 'Willkommen!',
-                    content: 'Veganaut.net wünscht dir viel Spass bei der Erkundung des veganen Universums!'
+                    content: 'Veganaut.net wünscht dir viel Spass bei der Erkundung des veganen Universums! Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits brauchen. Es kann sein, dass das eine oder andere noch nicht richtig funktioniert. Dafür bitten wir um Entschuldigung. Wenn du Anregungen oder Rückmeldungen hast, ist das für uns sehr wertvoll. Du kannst dazu das Kontaktformular (im Menu oben) verwenden.'
                 },
                 {
                     title: 'Das veganautische Netzwerk',
