@@ -22,8 +22,8 @@
                 <form novalidate name="outcomeForm" class="{{ mission.type }}Form">
                     <div ng-switch="mission.type">
                         <!-- TODO: translate everything below -->
+                        <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
                         <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
-                        <p>{{ 'map.mission.' + mission.type + '.details' | trans }}</p>
                         <div ng-switch-when="optionsAvailable">
                             <div class="btn-group form-group">
                                 <label class="btn btn-default" ng-model="mission.outcome.hasVegan" btn-radio="true">Yes</label>
