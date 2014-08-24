@@ -1,5 +1,5 @@
 <div ng-class="{isAddingLocation: isAddingLocation}" ng-controller="MapCtrl">
-    <leaflet class="mainMap pageSection" ng-if="locations"
+    <leaflet class="mainMap pageSection" ng-if="locationsLoaded"
      markers="locations" defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
     </leaflet>
 

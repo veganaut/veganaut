@@ -24,8 +24,11 @@
              * @type {Location[]}
              */
             $scope.locations = [];
+
+            $scope.locationsLoaded = false;
             locationService.getLocations().then(function(locations) {
                 $scope.locations = locations;
+                $scope.locationsLoaded = true;
             });
 
             /**
