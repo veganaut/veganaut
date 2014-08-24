@@ -15,8 +15,9 @@
                 {{ 'map.mission.' + visit.visitMission.type + '.title' | trans }}
             </p>
             <p class="lead">{{ 'map.mission.' + visit.visitMission.type + '.description' | trans }}</p>
+            <hr />
         </div>
-        <div ng-if="!visit.completed" ng-repeat="mission in visit.missions" class="pageSection well well-sm">
+        <div ng-if="!visit.completed" ng-repeat="mission in visit.missions" class="pageSection">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 missionTitle">
                     <span class="pull-right color-team">
@@ -31,7 +32,6 @@
             </div>
             <div class="actionBlock" ng-hide="mission.completed">
                 <div class="missionBlock" ng-show="mission.started">
-                    <hr class="hr-sm" />
                     <form novalidate name="outcomeForm" class="{{ mission.type }}Form">
                         <div ng-switch="mission.type">
                             <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
@@ -134,6 +134,7 @@
                     </div>
                 </div>
             </div>
+            <hr />
         </div>
 
         <p class="h4">
@@ -151,6 +152,7 @@
         </p>
     </div>
 
+    <hr />
     <leaflet class="locationDetailMap"
      markers="[location]" defaults="mapSettings" center="center">
     </leaflet>
