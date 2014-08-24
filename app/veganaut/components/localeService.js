@@ -164,8 +164,8 @@
                        no: 'Nein'
                    },
                    outcome: {
-                       hasVegan: 'You say there are vegan options available.',
-                       noVegan: 'You say there are no vegan options available.'
+                       hasVegan: 'Du hast gesagt, es gebe hier etwas veganes.',
+                       noVegan: 'Du hast gesagt, es gebe hier nichts veganes.'
                    }
                },
                whatOptions: {
@@ -176,7 +176,7 @@
                        placeholder: 'Veganes Angebot'
                    },
                    outcome: {
-                       description: 'You know of the following options'
+                       description: 'Du hast diese veganen Angebote eingetragen/bestätigt:'
                    }
                },
                buyOptions: {
@@ -184,7 +184,7 @@
                    description: 'Was hast du gekauft?',
                    explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich für das Geschäft lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
                    outcome: {
-                       description: 'You bought the following options'
+                       description: 'Du hast diese veganen Angebote gekauft:'
                    }
                },
                staffFeedback: {
@@ -193,11 +193,11 @@
                    explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, was du dem Personal gesagt hast. Oder was du dem Personal hättest sagen wollen.',
                    form: {
                        placeholder: 'Rückmeldung',
-                       didNotDoIt: 'I wanted to give this feedback, but then didn\'t.'
+                       didNotDoIt: 'Ich wollte dem Personal diese Rückmeldung geben, habe es dann aber nicht gemacht.'
                    },
                    outcome: {
-                       didIt: 'You gave the following feedback',
-                       didNotDoIt: 'You wanted to give the following feedback'
+                       didIt: 'Du hast dem Personal diese Rückmeldung gegeben:',
+                       didNotDoIt: 'Du wolltest dem Personal diese Rückmeldung geben:'
                    }
                },
                rateLocation: {
@@ -205,7 +205,7 @@
                    description: 'Wie bewertest du diese veganen Angebote?',
                    explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',
                    outcome: {
-                       description: 'You rating'
+                       description: 'Deine Bewertung:'
                    }
                },
                veganeed: {
