@@ -1,17 +1,17 @@
 (function(module) {
     'use strict';
 
-    // TODO: don't use this form of inheritance, it ain't cool (calls constructor of parent before actually constructing the object)
-
     /**
      * Generic Mission Model
      * @param {string} type
+     * @param {Visit} visit
      * @param {{}|[]} outcome
      * @param {number} points
      * @constructor
      */
-    function Mission(type, outcome, points) {
+    function Mission(type, visit, outcome, points) {
         this.type = type;
+        this.visit = visit;
         this.outcome = outcome;
         this.points = points;
         this.started = false;
@@ -51,26 +51,20 @@
 
     // VisitMission ///////////////////////////////////////////////////////////
     function VisitMission(visit) {
-        this.visit = visit;
+        Mission.call(this, 'visit', visit, {}, 100);
     }
 
-    VisitMission.prototype = new Mission(
-        'visit',
-        {},
-        100
-    );
+    VisitMission.prototype = Object.create(Mission.prototype);
+    VisitMission.prototype.constructor = VisitMission;
 
 
     // OptionsAvailableMission ////////////////////////////////////////////////
     function OptionsAvailableMission(visit) {
-        this.visit = visit;
+        Mission.call(this, 'optionsAvailable', visit, undefined, 10);
     }
 
-    OptionsAvailableMission.prototype = new Mission(
-        'optionsAvailable',
-        undefined,
-        10
-    );
+    OptionsAvailableMission.prototype = Object.create(Mission.prototype);
+    OptionsAvailableMission.prototype.constructor = OptionsAvailableMission;
 
     OptionsAvailableMission.prototype.hasValidOutcome = function() {
         return (typeof this.outcome !== 'undefined');
@@ -79,16 +73,13 @@
 
     // WhatOptionsMission /////////////////////////////////////////////////////
     function WhatOptionsMission(visit) {
-        this.visit = visit;
+        Mission.call(this, 'whatOptions', visit, [
+            { text: '' }
+        ], 10);
     }
 
-    WhatOptionsMission.prototype = new Mission(
-        'whatOptions',
-        [
-            { text: '' }
-        ],
-        10
-    );
+    WhatOptionsMission.prototype = Object.create(Mission.prototype);
+    WhatOptionsMission.prototype.constructor = WhatOptionsMission;
 
     WhatOptionsMission.prototype.hasValidOutcome = function() {
         return (this.outcome.length > 0 &&
@@ -128,14 +119,12 @@
 
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit, availableOptions) {
-        this.visit = visit;
+        Mission.call(this, 'buyOptions', visit, {}, 20);
         this.availableOptions = availableOptions;
     }
-    BuyOptionsMission.prototype = new Mission(
-        'buyOptions',
-        {},
-        20
-    );
+
+    BuyOptionsMission.prototype = Object.create(Mission.prototype);
+    BuyOptionsMission.prototype.constructor = BuyOptionsMission;
 
     BuyOptionsMission.prototype.hasValidOutcome = function() {
         return (this.getBoughtOptions().length > 0);
@@ -166,17 +155,15 @@
 
     // StaffFeedbackMission ///////////////////////////////////////////////////
     function StaffFeedbackMission(visit) {
+        Mission.call(this, 'staffFeedback', visit, {
+            text: '',
+            didNotDoIt: false
+        }, 20);
         this.visit = visit;
     }
 
-    StaffFeedbackMission.prototype = new Mission(
-        'staffFeedback',
-        {
-            text: '',
-            didNotDoIt: false
-        },
-        20
-    );
+    StaffFeedbackMission.prototype = Object.create(Mission.prototype);
+    StaffFeedbackMission.prototype.constructor = StaffFeedbackMission;
 
     StaffFeedbackMission.prototype.hasValidOutcome = function() {
         return (this.outcome.text.length > 0);
@@ -185,15 +172,12 @@
 
     // RateLocationMission ////////////////////////////////////////////////////
     function RateLocationMission(visit) {
-        this.visit = visit;
+        Mission.call(this, 'rateLocation', visit, undefined, 10);
         this.maxRating = 10;
     }
 
-    RateLocationMission.prototype = new Mission(
-        'rateLocation',
-        undefined,
-        10
-    );
+    RateLocationMission.prototype = Object.create(Mission.prototype);
+    RateLocationMission.prototype.constructor = RateLocationMission;
 
     RateLocationMission.prototype.hasValidOutcome = function() {
         return this.outcome > 0;

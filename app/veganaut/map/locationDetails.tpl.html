@@ -17,7 +17,7 @@
                 <span class="glyphicon glyphicon-ok" ng-show="visit.visitMission.completed"></span>
                 {{ 'map.mission.' + visit.visitMission.type + '.title' | trans }}
             </p>
-            <p class="lead">{{ 'map.mission.' + visit.visitMission.type + '.description' | trans }}</p>
+            <p>{{ 'map.mission.' + visit.visitMission.type + '.explanation' | trans }}</p>
             <hr />
         </div>
         <div ng-if="!visit.completed" ng-repeat="mission in visit.missions" class="pageSection">
