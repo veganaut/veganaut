@@ -1,60 +1,49 @@
 <div ng-include="'veganaut/score/match.tpl.html'"></div>
 
 <div class="pageSection">
-    <!-- TODO: This is too complicated, create a directive -->
-    <!-- TODO: Create integration tests for all that -->
-    <button type="button" class="addActivity btn btn-block btnTeam" ng-click="createActivityOnNode(selectedNode)">
-        <span class="glyphicon glyphicon-play"></span>
-        <span ng-switch="canCreateActivityWith(selectedNode)">
-            <span ng-switch-when="true">
-                <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|trans"></span>
-                <span ng-bind="selectedNode.fullName"></span>
-            </span>
-            <span ng-switch-default>
-                <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|trans"></span>
-            </span>
-        </span>
-    </button>
+
 </div>
 
 <g id="viewport">
     <social-graph class="socialGraph" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
 </g>
 
-<div class="bottom-box container mainContainer" ng-show="selectedNode">
-    <div class="nodeInfo">
-        <span class="badge team-{{selectedNode.team}}">
-            <span class="glyphicon glyphicon-eye-open"></span>
-            <span ng-bind="selectedNode.fullName"></span>
-            <span ng-show="selectedNode.nickname">
-                (<span ng-bind="selectedNode.nickname"></span>)
+<div class="bottom-box container mainContainer">
+    <div class="text-center" ng-show="selectedNode">
+        <p>
+            <span class="badge team-{{selectedNode.team}}">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span ng-bind="selectedNode.fullName"></span>
+                <span ng-show="selectedNode.nickname">
+                    (<span ng-bind="selectedNode.nickname"></span>)
+                </span>
             </span>
-        </span>
-        <span ng-hide="selectedNode.isDummy()" class="badge">
-            <span ng-show="selectedNode.isUser()">
-                <span class="glyphicon glyphicon-user"></span>
-                <span ng-show="selectedNode.role" ng-bind="('person.role.' + selectedNode.role)|trans"></span>
+        </p>
+        <p>
+            <span ng-hide="selectedNode.isDummy()" class="badge">
+                <span ng-show="selectedNode.isUser()">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span ng-show="selectedNode.role" ng-bind="('person.role.' + selectedNode.role)|trans"></span>
+                </span>
+                <span ng-show="selectedNode.isMaybe()">
+                    <span class="glyphicon glyphicon-question-sign"></span>
+                    <span ng-bind="'person.type.maybe'|trans"></span>
+                </span>
+                <span ng-show="selectedNode.isBaby()" >
+                    <span class="glyphicon glyphicon-heart-empty"></span>
+                    <span ng-bind="'person.type.baby'|trans"></span>
+                </span>
             </span>
-            <span ng-show="selectedNode.isMaybe()">
-                <span class="glyphicon glyphicon-question-sign"></span>
-                <span ng-bind="'person.type.maybe'|trans"></span>
+            <span ng-show="selectedNode.hasBalance()">
+                <span ng-bind="'person.label.balance'|trans"></span>:
+                <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
+                <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
             </span>
-            <span ng-show="selectedNode.isBaby()" >
-                <span class="glyphicon glyphicon-heart-empty"></span>
-                <span ng-bind="'person.type.baby'|trans"></span>
+            <span ng-show="selectedNode.isCaptured" class="badge captured">
+                <span class="glyphicon glyphicon-asterisk"></span>
+                <span ng-bind="'person.label.captured'|trans"></span>
             </span>
-        </span>
-
-        <br />
-        <span ng-show="selectedNode.hasBalance()">
-            <span ng-bind="'person.label.balance'|trans"></span>:
-            <span class="badge badgeOwnPoints-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
-            <span class="badge badgeOtherPoints-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
-        </span>
-        <span ng-show="selectedNode.isCaptured" class="badge captured">
-            <span class="glyphicon glyphicon-asterisk"></span>
-            <span ng-bind="'person.label.captured'|trans"></span>
-        </span>
+        </p>
     </div>
 
     <div class="linkInfo" ng-show="selectedLink">
@@ -64,4 +53,21 @@
         Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
         <span ng-bind="selectedLink.openActivities"></span> open.
     </div>
+
+    <!-- TODO: This is too complicated, create a directive -->
+    <!-- TODO: Create integration tests for all that -->
+    <p>
+        <button type="button" class="addActivity btn btn-block btnTeam" ng-click="createActivityOnNode(selectedNode)">
+            <span class="glyphicon glyphicon-play"></span>
+            <span ng-switch="canCreateActivityWith(selectedNode)">
+                <span ng-switch-when="true">
+                    <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|trans"></span>
+                    <span ng-bind="selectedNode.fullName"></span>
+                </span>
+                <span ng-switch-default>
+                    <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|trans"></span>
+                </span>
+            </span>
+        </button>
+    </p>
 </div>
