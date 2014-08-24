@@ -34,7 +34,6 @@
                         this._addMission(new missions.WhatOptionsMission(this));
                     }
                     this._addMission(new missions.StaffFeedbackMission(this));
-                    this._addMission(new missions.RateLocationMission(this));
                 }
                 else if (mission.id === 'whatOptions') {
                     // TODO: temporary hack to add ids to the options. This will be provided by the backend
@@ -45,6 +44,9 @@
                         }
                     }
                     this._addMission(new missions.BuyOptionsMission(this, options));
+                }
+                else if (mission.id === 'buyOptions') {
+                    this._addMission(new missions.RateLocationMission(this));
                 }
             };
 

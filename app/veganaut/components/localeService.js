@@ -147,24 +147,24 @@
                    cancel: 'Abbrechen'
                },
                optionsAvailable: {
-                   description: 'Ask the staff if they have vegan options',
-                   callToAction: 'Tell us about it'
+                   title: 'Ask the staff if they have vegan options',
+                   description: 'Do they have vegan options?'
                },
                whatOptions: {
-                   description: 'Find out what vegan options they have',
-                   callToAction: 'Tell us about it'
+                   title: 'Find out what vegan options they have',
+                   description: 'List the vegan options they have.'
                },
                buyOptions: {
-                   description: 'Buy something vegan',
-                   callToAction: 'Tell us about it'
+                   title: 'Buy something vegan',
+                   description: 'What did you buy?'
                },
                staffFeedback: {
-                   description: 'Give the staff feedback',
-                   callToAction: 'Tell us about it'
+                   title: 'Give the staff feedback',
+                   description: 'What did you tell the staff?'
                },
                rateLocation: {
-                   description: 'Rate this location',
-                   callToAction: 'Rate it'
+                   title: 'Rate the food at this location',
+                   description: 'How did you like what you ate?'
                }
            }
         },

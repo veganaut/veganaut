@@ -48,6 +48,16 @@
     cursor: pointer;
 }
 
+.wellExpansion {
+    margin-bottom: -6px;
+    font-size: 10px;
+}
+
+.hr-sm {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 // Nav bar styles
 .menuBackdrop {
     z-index: 1020;
@@ -235,16 +245,8 @@ body.bluePlayer .socialGraph {
 }
 
 // Match score display
-.matchScoreDisplay {
-    padding-bottom: 5px;
-    padding-top: 10px;
-    cursor: pointer;
-}
 .scoreElement {
     font-size: 24px;
-}
-.showFullScoreToggle {
-    font-size: 10px;
 }
 .blueScore {
     color: @blueBaseColour;
@@ -290,13 +292,13 @@ body.bluePlayer .socialGraph {
     }
 }
 
-.btn.viewDetails {
-    // Override bootstrap stupid margin TODO: do this differently
-    margin-top: 0;
-}
-
+// Location detail styles
 .locationDetailMap {
     height: 200px;
+}
+
+.missionTitle {
+    margin-top: 5px;
 }
 
 // Make sure ng-cloak is around even if angular is not loaded yet

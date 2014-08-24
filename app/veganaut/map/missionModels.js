@@ -7,14 +7,12 @@
      * Generic Mission Model
      * @param {string} id
      * @param {{}|[]} answer
-     * @param {string} [callToActionIcon='bullhorn']
      * @constructor
      */
-    function Mission(id, answer, callToActionIcon) {
+    function Mission(id, answer) {
         this.id = id;
         this.answer = answer;
-        this.callToActionIcon = callToActionIcon || 'bullhorn';
-        this.showing = false;
+        this.started = false;
         this.completed = false;
     }
 
@@ -137,8 +135,7 @@
         'rateLocation',
         {
             rating: undefined
-        },
-        'star'
+        }
     );
 
     RateLocationMission.prototype.hasValidAnswer = function() {

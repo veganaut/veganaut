@@ -1,5 +1,5 @@
 <div ng-controller="MatchCtrl">
-    <div class="well text-center matchScoreDisplay pageSection" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
+    <div class="well well-sm text-center matchScoreDisplay clickable pageSection" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
         <div class="scoreElement">
             <span ng-bind="'score.totalScore'|trans"></span>:
             <span class="blueScore" ng-bind="scoreData.blue.score"></span> :
@@ -22,7 +22,7 @@
                 <span class="greenScore" ng-bind="scoreData.green.babies"></span>
             </div>
         </div>
-        <div class="showFullScoreToggle">
+        <div class="wellExpansion">
             <span class="glyphicon glyphicon-chevron-down" ng-hide="showFullScore"></span>
             <span class="glyphicon glyphicon-chevron-up" ng-show="showFullScore"></span>
         </div>

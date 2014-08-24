@@ -6,32 +6,24 @@
     </p>
 
     <h2 ng-if="missionSet.missions">{{ 'map.mission.title' | trans }}</h2>
-    <div ng-repeat="mission in missionSet.missions" class="pageSection well">
-        <p class="lead">
-            <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
-            {{ 'map.mission.' + mission.id + '.description' | trans }}
-        </p>
-        <div class="actionBlock" ng-hide="mission.completed">
-            <p>
-                <button type="button" class="btn btn-block btnTeam locationAction"
-                 ng-class="{btnTeam: !mission.showing, 'btn-default': mission.showing}"
-                 ng-click="mission.showing = !mission.showing">
-                    <span ng-hide="mission.showing">
-                        <span class="glyphicon glyphicon-{{ mission.callToActionIcon }}"></span>
-                        {{ 'map.mission.' + mission.id + '.callToAction' | trans }}
-                    </span>
-                    <span ng-show="mission.showing">
-                        {{ 'map.mission.form.cancel' | trans }}
-                    </span>
-                </button>
+    <div ng-repeat="mission in missionSet.missions" class="pageSection well well-sm">
+        <div ng-class="{clickable: !mission.completed}" ng-click="mission.started = !mission.started">
+            <p class="h4 missionTitle">
+                <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
+                {{ 'map.mission.' + mission.id + '.title' | trans }}
             </p>
-
-            <div class="missionBlock" ng-show="mission.showing">
+            <div class="wellExpansion text-center" ng-hide="mission.started">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </div>
+        </div>
+        <div class="actionBlock" ng-hide="mission.completed">
+            <div class="missionBlock" ng-show="mission.started">
+                <hr class="hr-sm" />
                 <form novalidate name="answerForm" class="{{ mission.id }}Form">
                     <div ng-switch="mission.id">
-                        <!--TODO: translate-->
+                        <!-- TODO: translate everything below -->
+                        <p>{{ 'map.mission.' + mission.id + '.description' | trans }}</p>
                         <div ng-switch-when="optionsAvailable">
-                            <p>Do they have vegan options?</p>
                             <div class="btn-group form-group">
                                 <label class="btn btn-default" ng-model="mission.answer.hasVegan" btn-radio="true">Yes</label>
                                 <label class="btn btn-default" ng-model="mission.answer.hasVegan" btn-radio="false">No</label>
@@ -52,7 +44,7 @@
                         <div ng-switch-when="staffFeedback">
                             <textarea class="form-control" required
                              ng-model="mission.answer.text"
-                             placeholder="Feedback you gave the staff"></textarea>
+                             placeholder="Feedback"></textarea>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" ng-model="mission.answer.didNotDoIt" />
@@ -68,11 +60,16 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-default btnTeam btn-block"
+                    <button type="button" class="btn btn-default"
+                     ng-click="mission.started = false">
+                        {{ 'map.mission.form.cancel' | trans }}
+                    </button>
+                    <button type="submit" class="btn btnTeam pull-right"
                      ng-disabled="!mission.hasValidAnswer()" ng-click="mission.finish()">
                         <span class="glyphicon glyphicon-ok"></span>
                         {{ 'map.mission.form.submit' | trans }}
                     </button>
+                    <div class="clearfix"></div>
                 </form>
             </div>
         </div>
