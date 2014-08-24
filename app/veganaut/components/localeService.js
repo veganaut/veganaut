@@ -147,24 +147,29 @@
                    cancel: 'Abbrechen'
                },
                optionsAvailable: {
-                   title: 'Ask the staff if they have vegan options',
-                   description: 'Do they have vegan options?'
+                   title: 'Frag das Personal, ob es hier etwas veganes gibt.',
+                   description: 'Gibt es hier etwas veganes?',
+                   details: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage."'
                },
                whatOptions: {
                    title: 'Find out what vegan options they have',
-                   description: 'List the vegan options they have.'
+                   description: 'List the vegan options they have.',
+                   details: 'Do they have vegan options?'
                },
                buyOptions: {
                    title: 'Buy something vegan',
-                   description: 'What did you buy?'
+                   description: 'What did you buy?',
+                   details: 'Do they have vegan options?'
                },
                staffFeedback: {
                    title: 'Give the staff feedback',
-                   description: 'What did you tell the staff?'
+                   description: 'What did you tell the staff?',
+                   details: 'Do they have vegan options?'
                },
                rateLocation: {
                    title: 'Rate the food at this location',
-                   description: 'How did you like what you ate?'
+                   description: 'How did you like what you ate?',
+                   details: 'Do they have vegan options?'
                }
            }
         },
