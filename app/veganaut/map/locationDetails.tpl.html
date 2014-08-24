@@ -95,7 +95,6 @@
 
             <div class="resultBlock" ng-show="mission.completed">
                 <div ng-switch="mission.type">
-                    <!--TODO: translate-->
                     <div ng-switch-when="optionsAvailable">
                         <div ng-show="mission.outcome.hasVegan">
                             {{ 'map.mission.' + mission.type + '.outcome.hasVegan' | trans }}
@@ -105,13 +104,13 @@
                         </div>
                     </div>
                     <div ng-switch-when="whatOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}:
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <ul>
                             <li ng-repeat="option in mission.outcome">{{ option.text }}</li>
                         </ul>
                     </div>
                     <div ng-switch-when="buyOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}:
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <ul>
                             <li ng-repeat="option in mission.getBoughtOptions()">{{ option.text }}</li>
                         </ul>
@@ -119,17 +118,17 @@
                     <div ng-switch-when="staffFeedback">
                         <p>
                             <span ng-show="mission.outcome.didNotDoIt">
-                                {{ 'map.mission.' + mission.type + '.outcome.didNotDoIt' | trans }}:
+                                {{ 'map.mission.' + mission.type + '.outcome.didNotDoIt' | trans }}
                             </span>
                             <span ng-hide="mission.outcome.didNotDoIt">
-                                {{ 'map.mission.' + mission.type + '.outcome.didIt' | trans }}:
+                                {{ 'map.mission.' + mission.type + '.outcome.didIt' | trans }}
                             </span>
                             <br />
                             <em>{{ mission.outcome.text }}</em>
                         </p>
                     </div>
                     <div ng-switch-when="rateLocation">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}:
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <rating readonly="true" ng-model="mission.outcome.rating"
                          max="mission.maxRating"></rating>
                     </div>
