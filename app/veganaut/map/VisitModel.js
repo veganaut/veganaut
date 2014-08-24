@@ -10,9 +10,12 @@
              * @constructor
              */
             function Visit(location) {
+                this.visitMission = undefined;
                 this.missions = [];
+                this.completed = false;
 
                 if (location.type !== Location.TYPES.private) {
+                    this.visitMission = new missions.VisitMission(this);
                     this._addMission(new missions.OptionsAvailableMission(this));
                 }
             }
@@ -46,6 +49,32 @@
                 else if (mission.type === 'buyOptions') {
                     this._addMission(new missions.RateLocationMission(this));
                 }
+
+                // Finish the visit mission if it's not already finished
+                if (typeof this.visitMission !== 'undefined' && !this.visitMission.completed) {
+                    this.visitMission.finish();
+                }
+            };
+
+            /**
+             * Returns the total number of points made in this visit
+             * @returns {number}
+             */
+            Visit.prototype.getTotalPoints = function() {
+                var points = 0;
+                for (var i = 0; i < this.missions.length; i++) {
+                    if (this.missions[i].completed) {
+                        points += this.missions[i].points;
+                    }
+                }
+                if (typeof this.visitMission !== 'undefined' && this.visitMission.completed) {
+                    points += this.visitMission.points;
+                }
+                return points;
+            };
+
+            Visit.prototype.finishVisit = function() {
+                this.completed = true;
             };
 
             return Visit;

@@ -7,11 +7,13 @@
      * Generic Mission Model
      * @param {string} type
      * @param {{}|[]} outcome
+     * @param {number} points
      * @constructor
      */
-    function Mission(type, outcome) {
+    function Mission(type, outcome, points) {
         this.type = type;
         this.outcome = outcome;
+        this.points = points;
         this.started = false;
         this.completed = false;
     }
@@ -20,15 +22,35 @@
         return true;
     };
 
+    Mission.prototype.toggleStarted = function() {
+        if (!this.completed) {
+            this.started = !this.started;
+        }
+    };
+
     /**
      * Concludes this mission. Should only be called once there is a valid outcome.
      */
     Mission.prototype.finish = function() {
-        this.completed = true;
+        if (!this.completed) {
+            this.completed = true;
 
-        // Tell the visit we are done
-        this.visit.finishedMission(this);
+            // Tell the visit we are done
+            this.visit.finishedMission(this);
+        }
     };
+
+
+    // VisitMission ///////////////////////////////////////////////////////////
+    function VisitMission(visit) {
+        this.visit = visit;
+    }
+
+    VisitMission.prototype = new Mission(
+        'visit',
+        {},
+        100
+    );
 
 
     // OptionsAvailableMission ////////////////////////////////////////////////
@@ -40,7 +62,8 @@
         'optionsAvailable',
         {
             hasVegan: undefined
-        }
+        },
+        10
     );
 
     OptionsAvailableMission.prototype.hasValidOutcome = function() {
@@ -57,7 +80,8 @@
         'whatOptions',
         [
             { text: '' }
-        ]
+        ],
+        10
     );
 
     WhatOptionsMission.prototype.hasValidOutcome = function() {
@@ -90,7 +114,11 @@
         this.visit = visit;
         this.availableOptions = availableOptions;
     }
-    BuyOptionsMission.prototype = new Mission('buyOptions', {});
+    BuyOptionsMission.prototype = new Mission(
+        'buyOptions',
+        {},
+        20
+    );
 
     BuyOptionsMission.prototype.hasValidOutcome = function() {
         return (this.getBoughtOptions().length > 0);
@@ -117,7 +145,8 @@
         {
             text: '',
             didNotDoIt: false
-        }
+        },
+        20
     );
 
     StaffFeedbackMission.prototype.hasValidOutcome = function() {
@@ -128,14 +157,15 @@
     // RateLocationMission ////////////////////////////////////////////////////
     function RateLocationMission(visit) {
         this.visit = visit;
-        this.maxRating = 4;
+        this.maxRating = 10;
     }
 
     RateLocationMission.prototype = new Mission(
         'rateLocation',
         {
             rating: undefined
-        }
+        },
+        10
     );
 
     RateLocationMission.prototype.hasValidOutcome = function() {
@@ -144,6 +174,7 @@
 
 
     module.value('missions', {
+        VisitMission: VisitMission,
         OptionsAvailableMission: OptionsAvailableMission,
         WhatOptionsMission: WhatOptionsMission,
         BuyOptionsMission: BuyOptionsMission,

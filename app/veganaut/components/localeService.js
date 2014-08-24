@@ -142,34 +142,71 @@
         map: {
            mission: {
                title: 'Missionen',
-               form: {
+               pointsForThisVisit: 'Punkte für diesen Besuch',
+               pointsForLastVisit: 'Punkte für den letzen Besuch',
+               missionForm: {
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'
+               },
+               visitForm: {
+                   submit: 'Besuch beenden'
+               },
+               visit: {
+                   title: 'Bonus für die erste Mission',
+                   description: 'Wenn du hier mindestens eine Mission erfüllst bekommst du zusätzliche Punkte, da du schon länger nicht mehr hier warst.'
                },
                optionsAvailable: {
                    title: 'Frag das Personal, ob es hier etwas veganes gibt.',
                    description: 'Gibt es hier etwas veganes?',
-                   explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.'
+                   explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
+                   form: {
+                       yes: 'Ja',
+                       no: 'Nein'
+                   },
+                   outcome: {
+                       hasVegan: 'You say there are vegan options available.',
+                       noVegan: 'You say there are no vegan options available.'
+                   }
                },
                whatOptions: {
                    title: 'Finde heraus, was für vegane Angebote es hier gibt.',
                    description: 'Welche veganen Angebote gibt es hier?',
-                   explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.'
+                   explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.',
+                   form: {
+                       placeholder: 'Veganes Angebot'
+                   },
+                   outcome: {
+                       description: 'You know of the following options'
+                   }
                },
                buyOptions: {
                    title: 'Kauf etwas veganes.',
                    description: 'Was hast du gekauft?',
-                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich für das Geschäft lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.'
+                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich für das Geschäft lohnt, etwas veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
+                   outcome: {
+                       description: 'You bought the following options'
+                   }
                },
                staffFeedback: {
                    title: 'Gib dem Personal eine Rückmeldung.',
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
-                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, was du dem Personal gesagt hast. Oder was du dem Personal hättest sagen wollen.'
+                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, was du dem Personal gesagt hast. Oder was du dem Personal hättest sagen wollen.',
+                   form: {
+                       placeholder: 'Rückmeldung',
+                       didNotDoIt: 'I wanted to give this feedback, but then didn\'t.'
+                   },
+                   outcome: {
+                       didIt: 'You gave the following feedback',
+                       didNotDoIt: 'You wanted to give the following feedback'
+                   }
                },
                rateLocation: {
                    title: 'Bewerte die veganen Angebote, die es hier gibt.',
                    description: 'Wie bewertest du diese veganen Angebote?',
-                   explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.'
+                   explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',
+                   outcome: {
+                       description: 'You rating'
+                   }
                },
                veganeed: {
                    title: 'Gib an, wie viel es hier für Veganaut_innen noch zu tun gibt.',
