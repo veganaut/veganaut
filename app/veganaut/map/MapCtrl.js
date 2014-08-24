@@ -75,10 +75,10 @@
             };
 
             /**
-             * Shows the details of the given location
+             * Goes to the location view
              * @param location
              */
-            $scope.viewDetails = function(location) {
+            $scope.visitLocation = function(location) {
                 $location.path('map/location/' + location.id);
             };
 

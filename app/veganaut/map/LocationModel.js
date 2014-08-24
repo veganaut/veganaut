@@ -51,8 +51,8 @@
         return new Location(
             json.id,
             json.team,
-            json.lat,
-            json.lng,
+            json.coordinates[0],
+            json.coordinates[1],
             json.name,
             json.type
         );

@@ -1,5 +1,5 @@
 <div ng-class="{isAddingLocation: isAddingLocation}" ng-controller="MapCtrl">
-    <leaflet class="mainMap pageSection"
+    <leaflet class="mainMap pageSection" ng-if="locations"
      markers="locations" defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
     </leaflet>
 
@@ -25,9 +25,9 @@
 
             <p>
                 <button type="button" class="btn btn-block btnTeam"
-                 ng-click="viewDetails(location.active)">
+                 ng-click="visitLocation(location.active)">
                     <span class="glyphicon glyphicon-eye-open"></span>
-                    <span ng-bind="'action.map.viewDetails'|trans"></span>
+                    <span ng-bind="'action.map.locationAction'|trans"></span>
                 </button>
             </p>
         </div>
