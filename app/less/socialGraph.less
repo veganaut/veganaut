@@ -1,0 +1,131 @@
+.social-graph {
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.social-graph .graph-svg {
+    overflow: visible;
+}
+body.player-green .social-graph {
+    border-color: @greenBaseColour;
+}
+body.player-blue .social-graph {
+    border-color: @blueBaseColour;
+}
+
+.node {
+    &.type-maybe, &.type-dummy {
+        fill: @passiveColour;
+    }
+
+    &.team-green {
+        &.type-baby {
+            fill: @greenXlowColour;
+        }
+        &.type-user {
+            &.balance-xlow {
+                fill: @greenXlowColour
+            }
+            &.balance-low {
+                fill: @greenLowColour
+            }
+            &.balance-med {
+                fill: @greenMedColour
+            }
+            &.balance-high {
+                fill: @greenHighColour
+            }
+            &.balance-xhigh {
+                fill: @greenXhighColour
+            }
+        }
+    }
+
+    &.team-blue {
+        &.type-baby {
+            fill: @blueXlowColour;
+        }
+        &.type-user {
+            &.balance-xlow {
+                fill: @blueXlowColour
+            }
+            &.balance-low {
+                fill: @blueLowColour
+            }
+            &.balance-med {
+                fill: @blueMedColour
+            }
+            &.balance-high {
+                fill: @blueHighColour
+            }
+            &.balance-xhigh {
+                fill: @blueXhighColour
+            }
+        }
+    }
+
+    &.captured {
+        stroke-width: 7px;
+        &.team-green {
+            stroke: @blueBaseColour;
+            stroke-dasharray: 3,5;
+        }
+        &.team-blue {
+            stroke: @greenBaseColour;
+            stroke-dasharray: 3,5;
+        }
+
+        &.selected {
+            stroke-dasharray: 5,3;
+        }
+    }
+    &.not-captured.selected {
+        stroke: #000;
+        stroke-width: 3px;
+        &.team-green {
+            stroke: @greenDarkColour;
+        }
+        &.team-blue {
+            stroke: @blueDarkColour;
+        }
+    }
+}
+
+.link {
+    fill: none;
+    stroke: #a4b2b3;
+    stroke-dasharray: 3,3;
+
+    &.num-activities-small {
+        stroke-width: 1;
+    }
+    &.num-activities-medium {
+        stroke-width: 3;
+    }
+    &.num-activities-large {
+        stroke-width: 5;
+    }
+    &.highlighted {
+        stroke-width: 8;
+    }
+    &.has-completed-activities {
+        stroke-dasharray: initial;
+    }
+    &.team-green {
+        stroke: @greenBaseColour;
+        &.has-open-activities {
+            stroke: @greenLightColour;
+        }
+    }
+    &.team-blue {
+        stroke: @blueBaseColour;
+        &.has-open-activities {
+            stroke: @blueLightColour;
+        }
+    }
+}
+
+.me-marker {
+    fill: white;
+}

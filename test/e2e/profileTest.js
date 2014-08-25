@@ -17,10 +17,10 @@ describe('profile.', function() {
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
-        menuButton = element(by.css('button.menuButton'));
+        menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.navLogout'));
+        var logoutButton = element(by.css('button.nav-logout'));
         logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 logoutButton.click();
@@ -41,7 +41,7 @@ describe('profile.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
 
-            var profileNavEntry = element(by.css('button.navProfile'));
+            var profileNavEntry = element(by.css('button.new-profile'));
             expect(profileNavEntry.isPresent()).toBe(true, 'nav entry for profile is present');
             profileNavEntry.click();
             expect(ptor.getCurrentUrl()).toMatch(/\/me/);
@@ -62,16 +62,16 @@ describe('profile.', function() {
         beforeEach(function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.navProfile')).click();
+            element(by.css('button.new-profile')).click();
 
-            editProfile = element(by.css('button.editProfile'));
+            editProfile = element(by.css('button.edit-profile'));
         });
 
         it('should be possible to edit the profile.', function() {
             expect(editProfile.isPresent()).toBe(true, 'should have an edit profile button');
             editProfile.click();
 
-            expect(element(by.css('form.editProfileForm')).isDisplayed()).toBe(true, 'should show edit profile form');
+            expect(element(by.css('form.edit-profile-form')).isDisplayed()).toBe(true, 'should show edit profile form');
         });
     });
 });

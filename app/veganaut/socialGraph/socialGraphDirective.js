@@ -53,7 +53,7 @@
                         klass += ' captured';
                     }
                     else {
-                        klass += ' notcaptured';
+                        klass += ' not-captured';
                     }
 
                     var balanceMapping = node.getBalanceMapping();
@@ -96,22 +96,22 @@
                     }
 
                     if (link.completedActivities > 0) {
-                        klass += ' hasCompletedActivities';
+                        klass += ' has-completed-activities';
                     }
                     if (link.openActivities > 0) {
-                        klass += ' hasOpenActivities';
+                        klass += ' has-open-activities';
                     }
 
                     // Set class based on total number of activities
                     var totalActivities = (link.completedActivities || 0) + (link.openActivities || 0);
                     if (totalActivities < 2) {
-                        klass += ' numActivitiesSmall';
+                        klass += ' num-activities-small';
                     }
                     else if (totalActivities < 3) {
-                        klass += ' numActivitiesMedium';
+                        klass += ' num-activities-medium';
                     }
                     else {
-                        klass += ' numActivitiesLarge';
+                        klass += ' num-activities-large';
                     }
 
                     if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
@@ -189,7 +189,7 @@
                         svg = svgContainer.append('svg')
                             .attr('width', size)
                             .attr('height', size)
-                            .attr('class', 'graphSvg')
+                            .attr('class', 'graph-svg')
                             .call(zoom)
                             .append('g');
 
@@ -275,7 +275,7 @@
 
                     // Add an extra circle to mark the me node
                     svg.append('circle')
-                        .attr('class', 'meMarker')
+                        .attr('class', 'me-marker')
                         .attr('r', 4)
                         .attr('cx', size / 2) // The me node is always exactly in the middle
                         .attr('cy', size / 2)

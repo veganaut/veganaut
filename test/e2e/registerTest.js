@@ -4,7 +4,7 @@
 var helpers = require('./helpers');
 
 describe('register.', function() {
-    var ptor;
+    var ptor, menuButton;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
@@ -15,10 +15,10 @@ describe('register.', function() {
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
-        var menuButton = element(by.css('button.menuButton'));
+        menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.navLogout'));
+        var logoutButton = element(by.css('button.nav-logout'));
         logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 logoutButton.click();
@@ -30,9 +30,9 @@ describe('register.', function() {
     });
 
     it('should have a link to the register form.', function() {
-        element(by.css('button.menuButton')).click();
+        menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var button = element.all(by.css('.navRegister'));
+        var button = element.all(by.css('.nav-register'));
         expect(button.count()).toBe(1);
 
         button.first().click();

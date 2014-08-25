@@ -20,7 +20,7 @@
         this.title = title;
         this.type = type;
 
-        this._defaultIconClassList = 'mapLocation team-' + this.team;
+        this._defaultIconClassList = 'map-location team-' + this.team;
 
         this.icon = {
             type: 'div',

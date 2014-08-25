@@ -7,23 +7,23 @@
             intro: [
                 {},
                 {
-                    element: '.frontIllustration',
+                    element: '.front-illustration',
                     placement: 'top'
                 },
                 {
-                    element: '.matchScoreDisplay',
+                    element: '.match-score-display',
                     placement: 'bottom'
                 },
                 {
-                    element: '.matchScoreDisplay',
+                    element: '.match-score-display',
                     placement: 'bottom'
                 },
                 {
-                    element: '.matchScoreDisplay',
+                    element: '.match-score-display',
                     placement: 'bottom'
                 },
                 {
-                    element: '.frontRegisterBtn',
+                    element: '.front-register-btn',
                     placement: 'bottom'
                 }
             ]

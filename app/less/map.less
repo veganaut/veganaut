@@ -1,0 +1,44 @@
+.main-map {
+    height: 400px;
+}
+
+.is-adding-location .main-map {
+    cursor: crosshair;
+}
+
+@markerSize: 16px;
+@markerSizeActive: 20px;
+.map-location {
+    border-radius: @markerSize / 2;
+    opacity: 0.75;
+    width: @markerSize;
+    height: @markerSize;
+    margin-left: -@markerSize / 2;
+    margin-top: -@markerSize / 2;
+
+    &.team-green {
+        background-color: @greenBaseColour;
+    }
+
+    &.team-blue {
+        background-color: @blueBaseColour;
+    }
+
+    &:hover, &.active {
+        opacity: 1;
+        width: @markerSizeActive;
+        height: @markerSizeActive;
+        border-radius: @markerSizeActive / 2;
+        margin-left: -@markerSizeActive / 2;
+        margin-top: -@markerSizeActive / 2;
+    }
+}
+
+// Location detail styles
+.location-detail-map {
+    height: 200px;
+}
+
+.mission-title {
+    margin-top: 5px;
+}

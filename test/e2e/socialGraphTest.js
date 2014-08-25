@@ -18,10 +18,10 @@ describe('socialGraph.', function() {
         helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        var menuButton = element(by.css('button.menuButton'));
+        var menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.navLogout'));
+        var logoutButton = element(by.css('button.nav-logout'));
         logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 logoutButton.click();
@@ -52,7 +52,7 @@ describe('socialGraph.', function() {
         expect(element.all(by.css('social-graph .node.type-dummy')).count()).toBe(2, 'dummy node');
 
         expect(element.all(by.css('social-graph .link')).count()).toBe(4, 'total links');
-        expect(element.all(by.css('social-graph .link.hasCompletedActivities')).count()).toBe(2, 'completed links');
+        expect(element.all(by.css('social-graph .link.has-completed-activities')).count()).toBe(2, 'completed links');
         // TODO: describe other link types
     });
 
@@ -69,7 +69,7 @@ describe('socialGraph.', function() {
             var dummies = element.all(by.css('social-graph .node.type-dummy'));
             expect(dummies.count()).toBeGreaterThan(0, 'should have at least one dummy');
             someDummy = dummies.first();
-            inviteButton = element(by.css('button.addActivity'));
+            inviteButton = element(by.css('button.add-activity'));
         });
 
         it('should deselect node when clicking dummy node twice.', function() {
@@ -121,7 +121,7 @@ describe('socialGraph.', function() {
 
             // Should show the new open activity link
             browser.get('app/index.html#/openActivities');
-            expect(element(by.css('.referenceCodeList')).getText()).toContain('Hans');
+            expect(element(by.css('.reference-code-list')).getText()).toContain('Hans');
         });
     });
 
@@ -133,10 +133,10 @@ describe('socialGraph.', function() {
         it('shows the list of open activities when browsing to /openActivities.', function() {
             expect(ptor.getCurrentUrl()).toMatch(/\/openActivities/);
 
-            expect(element.all(by.css('.referenceCodeList li')).count()).toBeGreaterThan(0);
+            expect(element.all(by.css('.reference-code-list li')).count()).toBeGreaterThan(0);
 
             // Should have the reference code that is unused
-            expect(element(by.css('.referenceCodeList')).getText()).toContain('OiWCrB');
+            expect(element(by.css('.reference-code-list')).getText()).toContain('OiWCrB');
         });
     });
     // TODO: describe the /createActivity form more

@@ -10,7 +10,7 @@
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>
         <div ng-if="visit.visitMission">
-            <p class="h4 missionTitle">
+            <p class="h4 mission-title">
                 <span class="pull-right color-team">
                     {{ visit.visitMission.points }}
                 </span>
@@ -20,22 +20,22 @@
             <p>{{ 'map.mission.' + visit.visitMission.type + '.explanation' | trans }}</p>
             <hr />
         </div>
-        <div ng-repeat="mission in visit.missions|orderBy:'order'" class="pageSection">
+        <div ng-repeat="mission in visit.missions|orderBy:'order'" class="page-section">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
-                <p class="h4 missionTitle">
+                <p class="h4 mission-title">
                     <span class="pull-right color-team">
                         {{ mission.points }}
                     </span>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
                     {{ 'map.mission.' + mission.type + '.title' | trans }}
                 </p>
-                <div class="wellExpansion text-center" ng-hide="mission.started">
+                <div class="well-expansion text-center" ng-hide="mission.started">
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </div>
             </div>
-            <div class="actionBlock" ng-hide="mission.completed">
-                <div class="missionBlock" ng-show="mission.started">
-                    <form novalidate name="outcomeForm" class="{{ mission.type }}Form">
+            <div ng-hide="mission.completed">
+                <div ng-show="mission.started">
+                    <form novalidate name="outcomeForm" class="{{ mission.type }}-form">
                         <div ng-switch="mission.type">
                             <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
@@ -87,7 +87,7 @@
                             <span class="glyphicon glyphicon-remove"></span>
                             {{ 'map.mission.missionForm.cancel' | trans }}
                         </button>
-                        <button type="submit" class="btn btnTeam pull-right"
+                        <button type="submit" class="btn btn-team pull-right"
                          ng-disabled="!mission.hasValidOutcome()" ng-click="mission.finish()">
                             <span class="glyphicon glyphicon-ok"></span>
                             {{ 'map.mission.missionForm.submit' | trans }}
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="resultBlock" ng-show="mission.completed">
+            <div ng-show="mission.completed">
                 <div ng-switch="mission.type">
                     <div ng-switch-when="optionsAvailable">
                         <div ng-show="mission.outcome">
@@ -147,7 +147,7 @@
         </p>
         <div class="clearfix"></div>
         <p>
-            <button class="btn btn-block btnTeam"
+            <button class="btn btn-block btn-team"
              ng-click="submitVisit()"
              ng-disabled="visit.cannotSubmitReason()">
                 <span class="glyphicon glyphicon-log-out"></span>
@@ -160,7 +160,7 @@
     </div>
 
     <hr />
-    <leaflet class="locationDetailMap" ng-if="location"
+    <leaflet class="location-detail-map" ng-if="location"
      markers="[location]" defaults="mapSettings" center="center">
     </leaflet>
 </div>

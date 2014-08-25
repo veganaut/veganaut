@@ -17,10 +17,10 @@ describe('scenarios.', function() {
         helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        var menuButton = element(by.css('button.menuButton'));
+        var menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.navLogout'));
+        var logoutButton = element(by.css('button.nav-logout'));
         logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 logoutButton.click();
@@ -60,7 +60,7 @@ describe('scenarios.', function() {
             });
 
             it('should mark the current player\'s team.', function() {
-                expect(element(by.css('body.bluePlayer')).isPresent()).toBe(true);
+                expect(element(by.css('body.player-blue')).isPresent()).toBe(true);
             });
         });
     });

@@ -16,10 +16,10 @@ describe('map.', function() {
         helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        menuButton = element(by.css('button.menuButton'));
+        menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.navLogout'));
+        var logoutButton = element(by.css('button.nav-logout'));
         logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 logoutButton.click();
@@ -39,7 +39,7 @@ describe('map.', function() {
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
 
-        mapNavEntry = element(by.css('button.navMap'));
+        mapNavEntry = element(by.css('button.nav-map'));
     });
 
     it('should have a button to get to the map.', function() {
@@ -59,16 +59,16 @@ describe('map.', function() {
         });
 
         it('should show some locations on the map.', function() {
-            expect(element.all(by.css('.mapLocation')).count()).toBeGreaterThan(0, 'has at least one location');
-            expect(element.all(by.css('.mapLocation.team-blue')).count()).toBeGreaterThan(0, 'has at least one blue location');
-            expect(element.all(by.css('.mapLocation.team-green')).count()).toBeGreaterThan(0, 'has at least one green location');
+            expect(element.all(by.css('.map-location')).count()).toBeGreaterThan(0, 'has at least one location');
+            expect(element.all(by.css('.map-location.team-blue')).count()).toBeGreaterThan(0, 'has at least one blue location');
+            expect(element.all(by.css('.map-location.team-green')).count()).toBeGreaterThan(0, 'has at least one green location');
         });
 
         it('should toggle showing details when selecting a location.', function() {
-            var location = element(by.css('.mapLocation.team-blue'));
+            var location = element(by.css('.map-location.team-blue'));
             location.click();
 
-            var details = element(by.css('.locationDetails'));
+            var details = element(by.css('.location-details'));
             expect(details.isDisplayed()).toBe(true, 'details shown on first click');
             expect(location.getAttribute('class')).toMatch(/active/, 'location has .active class');
             // TODO: check more that details are displayed
@@ -81,11 +81,11 @@ describe('map.', function() {
         describe('add location.', function() {
             it('should be possible to add a new location.', function() {
                 browser.sleep(helpers.MENU_DELAY); // Wait for menu to go away
-                element(by.css('.addLocation')).click();
-                expect(element(by.css('form.locationForm')).isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
+                element(by.css('.add-location')).click();
+                expect(element(by.css('form.location-form')).isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
 
                 // Click somewhere on the map
-                element(by.css('.mainMap')).click();
+                element(by.css('.main-map')).click();
                 helpers.selectOption(by.model('newLocation.type'), 'Gastronomy');
 
                 // Enter title and complete form by sending Enter
