@@ -74,6 +74,26 @@
                 return points;
             };
 
+            /**
+             * Returns a reason why this visit can not be submitted at the moment.
+             * If the visit can be submitted, undefined is returned.
+             * The reason has to be translated by the translation system before
+             * displaying it.
+             *
+             * @returns {string|undefined}
+             */
+            Visit.prototype.cannotSubmitReason = function() {
+                if (this.getTotalPoints() === 0) {
+                    return 'map.mission.visitForm.validation.noMission';
+                }
+                for (var i = 0; i < this.missions.length; i++) {
+                    if (this.missions[i].started && !this.missions[i].completed) {
+                        return 'map.mission.visitForm.validation.openMission';
+                    }
+                }
+                return undefined;
+            };
+
             return Visit;
         }
     ]);

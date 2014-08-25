@@ -149,10 +149,13 @@
         <p>
             <button class="btn btn-block btnTeam"
              ng-click="submitVisit()"
-             ng-disabled="visit.getTotalPoints() === 0">
+             ng-disabled="visit.cannotSubmitReason()">
                 <span class="glyphicon glyphicon-log-out"></span>
                 {{ 'map.mission.visitForm.submit' | trans }}
             </button>
+            <small ng-if="visit.cannotSubmitReason()">
+                {{ visit.cannotSubmitReason() | trans }}
+            </small>
         </p>
     </div>
 

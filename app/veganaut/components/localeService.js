@@ -149,7 +149,11 @@
                    cancel: 'Abbrechen'
                },
                visitForm: {
-                   submit: 'Besuch beenden'
+                   submit: 'Besuch beenden',
+                   validation: {
+                       noMission: 'Du musst zuerst eine Mission abschliessen.',
+                       openMission: 'Du musst zuerst alle offenen Missionen abschliessen oder abbrechen.'
+                   }
                },
                visit: {
                    title: 'Bonus für die erste Mission',
