@@ -9,7 +9,7 @@
         <h2>{{ 'map.mission.title' | trans }}</h2>
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>
-        <div ng-if="visit.visitMission && !visit.completed">
+        <div ng-if="visit.visitMission">
             <p class="h4 missionTitle">
                 <span class="pull-right color-team">
                     {{ visit.visitMission.points }}
@@ -20,7 +20,7 @@
             <p>{{ 'map.mission.' + visit.visitMission.type + '.explanation' | trans }}</p>
             <hr />
         </div>
-        <div ng-if="!visit.completed" ng-repeat="mission in visit.missions|orderBy:'order'" class="pageSection">
+        <div ng-repeat="mission in visit.missions|orderBy:'order'" class="pageSection">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 missionTitle">
                     <span class="pull-right color-team">
@@ -142,12 +142,11 @@
         </div>
 
         <p class="h4">
-            <span ng-if="!visit.completed">{{ 'map.mission.pointsForThisVisit' | trans }}</span>
-            <span ng-if="visit.completed">{{ 'map.mission.pointsForLastVisit' | trans }}</span>
+            {{ 'map.mission.pointsForThisVisit' | trans }}
             <span class="color-team pull-right">{{ visit.getTotalPoints() }}</span>
         </p>
         <div class="clearfix"></div>
-        <p ng-if="!visit.completed">
+        <p>
             <button class="btn btn-block btnTeam"
              ng-click="submitVisit()"
              ng-disabled="visit.getTotalPoints() === 0">

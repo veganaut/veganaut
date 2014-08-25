@@ -144,7 +144,6 @@
            mission: {
                title: 'Missionen',
                pointsForThisVisit: 'Punkte für diesen Besuch',
-               pointsForLastVisit: 'Punkte für den letzen Besuch',
                missionForm: {
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'

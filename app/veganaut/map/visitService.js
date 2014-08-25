@@ -5,7 +5,7 @@
      * The visitService makes Visits available
      */
     module.factory('visitService', ['Visit', 'backendService', 'alertService',
-        function(Visit, backendService, alertSerice) {
+        function(Visit, backendService, alertService) {
 
             var getVisit = function(location) {
                 return new Visit(location);
@@ -19,15 +19,15 @@
                         missionData.push(mission.toJson());
                     }
                 }
-                visit.completed = true;
 
                 // TODO: translate and handle error properly
                 backendService.submitVisit(visit.location, missionData)
                     .success(function() {
-                        alertSerice.addAlert('Successfully submitted your visit.', 'success');
+                        var points = visit.getTotalPoints();
+                        alertService.addAlert('Successfully submitted your visit. You made ' + points + ' points!', 'success');
                     })
                     .error(function(data) {
-                        alertSerice.addAlert('Failed to submit your visit: ' + data.error, 'danger');
+                        alertService.addAlert('Failed to submit your visit: ' + data.error, 'danger');
                     })
                 ;
             };

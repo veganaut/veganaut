@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', 'tileLayerUrl', 'locationService', 'visitService',
-        function($scope, $routeParams, tileLayerUrl, locationService, visitService) {
+    module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', '$location', 'tileLayerUrl', 'locationService', 'visitService',
+        function($scope, $routeParams, $location, tileLayerUrl, locationService, visitService) {
             var locationId = $routeParams.id;
 
             /**
@@ -28,6 +28,7 @@
 
             $scope.submitVisit = function() {
                 visitService.submitVisit($scope.visit);
+                $location.path('map');
             };
 
             // TODO: should directly ask for the correct location from the locationService
