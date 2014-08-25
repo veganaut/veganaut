@@ -223,11 +223,11 @@
             intro: [
                 {
                     title: 'Willkommen!',
-                    content: 'Veganaut.net wünscht dir viel Spass bei der Erkundung des veganen Universums! Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits brauchen. Es kann sein, dass das eine oder andere noch nicht richtig funktioniert. Dafür bitten wir um Entschuldigung. Wenn du Anregungen oder Rückmeldungen hast, ist das für uns sehr wertvoll. Du kannst dazu das Kontaktformular (im Menu oben) verwenden.'
+                    content: 'Veganaut.net wünscht Dir viel Spass beim Erkunden des veganen Universums. Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits benützen. Es kann sein, dass noch nicht alles richtig funktioniert, bitte entschuldige. Wenn du Anregungen oder Rückmeldungen hast, sind wir dafür sehr dankbar. Das Kontaktformular ist im Menu oben verlinkt.'
                 },
                 {
                     title: 'Registrieren',
-                    content: 'Registriere dich jetzt und mach mit!'
+                    content: 'Wenn du dich jetzt registrierst, kannst du die volle Funktionalität der Platform nützen.'
                 }
             ]
         }
