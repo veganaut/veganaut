@@ -20,7 +20,7 @@
             <p>{{ 'map.mission.' + visit.visitMission.type + '.explanation' | trans }}</p>
             <hr />
         </div>
-        <div ng-if="!visit.completed" ng-repeat="mission in visit.missions" class="pageSection">
+        <div ng-if="!visit.completed" ng-repeat="mission in visit.missions|orderBy:'order'" class="pageSection">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 missionTitle">
                     <span class="pull-right color-team">

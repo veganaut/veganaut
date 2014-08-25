@@ -7,13 +7,15 @@
      * @param {Visit} visit
      * @param {{}|[]} outcome
      * @param {number} points
+     * @param {number} order Missions will be ordered according to this
      * @constructor
      */
-    function Mission(type, visit, outcome, points) {
+    function Mission(type, visit, outcome, points, order) {
         this.type = type;
         this.visit = visit;
         this.outcome = outcome;
         this.points = points;
+        this.order = order;
         this.started = false;
         this.completed = false;
     }
@@ -51,7 +53,7 @@
 
     // VisitMission ///////////////////////////////////////////////////////////
     function VisitMission(visit) {
-        Mission.call(this, 'visit', visit, {}, 100);
+        Mission.call(this, 'visit', visit, {}, 100, 10);
     }
 
     VisitMission.prototype = Object.create(Mission.prototype);
@@ -60,7 +62,7 @@
 
     // OptionsAvailableMission ////////////////////////////////////////////////
     function OptionsAvailableMission(visit) {
-        Mission.call(this, 'optionsAvailable', visit, undefined, 10);
+        Mission.call(this, 'optionsAvailable', visit, undefined, 10, 20);
     }
 
     OptionsAvailableMission.prototype = Object.create(Mission.prototype);
@@ -75,7 +77,7 @@
     function WhatOptionsMission(visit) {
         Mission.call(this, 'whatOptions', visit, [
             { text: '' }
-        ], 10);
+        ], 10, 30);
     }
 
     WhatOptionsMission.prototype = Object.create(Mission.prototype);
@@ -119,7 +121,7 @@
 
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit, availableOptions) {
-        Mission.call(this, 'buyOptions', visit, {}, 20);
+        Mission.call(this, 'buyOptions', visit, {}, 20, 40);
         this.availableOptions = availableOptions;
     }
 
@@ -158,7 +160,7 @@
         Mission.call(this, 'staffFeedback', visit, {
             text: '',
             didNotDoIt: false
-        }, 20);
+        }, 20, 60);
         this.visit = visit;
     }
 
@@ -172,7 +174,7 @@
 
     // RateLocationMission ////////////////////////////////////////////////////
     function RateLocationMission(visit) {
-        Mission.call(this, 'rateLocation', visit, undefined, 10);
+        Mission.call(this, 'rateLocation', visit, undefined, 10, 50);
         this.maxRating = 10;
     }
 
