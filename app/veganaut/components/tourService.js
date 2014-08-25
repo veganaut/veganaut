@@ -7,22 +7,6 @@
             intro: [
                 {},
                 {
-                    element: '.front-illustration',
-                    placement: 'top'
-                },
-                {
-                    element: '.match-score-display',
-                    placement: 'bottom'
-                },
-                {
-                    element: '.match-score-display',
-                    placement: 'bottom'
-                },
-                {
-                    element: '.match-score-display',
-                    placement: 'bottom'
-                },
-                {
                     element: '.front-register-btn',
                     placement: 'bottom'
                 }
