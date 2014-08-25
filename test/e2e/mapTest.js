@@ -9,6 +9,9 @@ describe('map.', function() {
     var ptor;
 
     beforeEach(function() {
+        // Tell backend to reload the fixtures
+        browser.get('test/e2e/bridge.html#/basic');
+
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('app/index.html#/');
@@ -86,7 +89,7 @@ describe('map.', function() {
 
                 // Click somewhere on the map
                 element(by.css('.main-map')).click();
-                helpers.selectOption(by.model('newLocation.type'), 'Gastronomy');
+                helpers.selectOption(by.model('newLocation.type'), 'Gastro');
 
                 // Enter title and complete form by sending Enter
                 element(by.model('newLocation.title')).sendKeys('New Place\n');
