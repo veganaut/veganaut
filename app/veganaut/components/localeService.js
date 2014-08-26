@@ -155,11 +155,11 @@
                        openMission: 'Du musst zuerst alle offenen Missionen abschliessen oder abbrechen.'
                    }
                },
-               visit: {
+               visitBonus: {
                    title: 'Bonus für die erste Mission',
                    explanation: 'Für deinen ersten Besuch an einem Ort innerhalb +/- einer Woche erhälst du zusätzliche Punkte. Sobald du hier die erste Mission erfüllt hast, werden dir diese Zusatzpunkte gutgeschrieben. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb +/- einer Woche ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
                },
-               optionsAvailable: {
+               hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
                    description: 'Gibt es hier etwas Veganes?',
                    explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
@@ -191,7 +191,7 @@
                        description: 'Du hast diese veganen Angebote gekauft:'
                    }
                },
-               staffFeedback: {
+               giveFeedback: {
                    title: 'Gib dem Personal eine Rückmeldung.',
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
                    explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, was du dem Personal gesagt hast. Oder was du dem Personal hättest sagen wollen.',
@@ -204,7 +204,7 @@
                        didNotDoIt: 'Du wolltest dem Personal diese Rückmeldung geben:'
                    }
                },
-               rateLocation: {
+               rateOptions: {
                    title: 'Bewerte die veganen Angebote, die es hier gibt.',
                    description: 'Wie bewertest du diese veganen Angebote?',
                    explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',

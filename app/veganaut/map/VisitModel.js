@@ -11,13 +11,13 @@
              */
             function Visit(location) {
                 this.location = location;
-                this.visitMission = undefined;
+                this.visitBonusMission = undefined;
                 this.missions = [];
                 this.completed = false;
 
                 if (location.type !== Location.TYPES.private) {
-                    this.visitMission = new missions.VisitMission(this);
-                    this._addMission(new missions.OptionsAvailableMission(this));
+                    this.visitBonusMission = new missions.VisitBonusMission(this);
+                    this._addMission(new missions.HasOptionsMission(this));
                 }
             }
 
@@ -31,11 +31,11 @@
              * @param {Mission} mission
              */
             Visit.prototype.finishedMission = function(mission) {
-                if (mission.type === 'optionsAvailable') {
+                if (mission.type === 'hasOptions') {
                     if (mission.outcome === true) {
                         this._addMission(new missions.WhatOptionsMission(this));
                     }
-                    this._addMission(new missions.StaffFeedbackMission(this));
+                    this._addMission(new missions.GiveFeedbackMission(this));
                 }
                 else if (mission.type === 'whatOptions') {
                     // TODO: temporary hack to add ids to the options. This will be provided by the backend
@@ -48,12 +48,12 @@
                     this._addMission(new missions.BuyOptionsMission(this, options));
                 }
                 else if (mission.type === 'buyOptions') {
-                    this._addMission(new missions.RateLocationMission(this));
+                    this._addMission(new missions.RateOptionsMission(this));
                 }
 
-                // Finish the visit mission if it's not already finished
-                if (typeof this.visitMission !== 'undefined' && !this.visitMission.completed) {
-                    this.visitMission.finish();
+                // Finish the visitBonus mission if it's not already finished
+                if (typeof this.visitBonusMission !== 'undefined' && !this.visitBonusMission.completed) {
+                    this.visitBonusMission.finish();
                 }
             };
 
@@ -68,8 +68,8 @@
                         points += this.missions[i].points;
                     }
                 }
-                if (typeof this.visitMission !== 'undefined' && this.visitMission.completed) {
-                    points += this.visitMission.points;
+                if (typeof this.visitBonusMission !== 'undefined' && this.visitBonusMission.completed) {
+                    points += this.visitBonusMission.points;
                 }
                 return points;
             };

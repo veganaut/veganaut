@@ -9,15 +9,15 @@
         <h2>{{ 'map.mission.title' | trans }}</h2>
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>
-        <div ng-if="visit.visitMission">
+        <div ng-if="visit.visitBonusMission">
             <p class="h4 mission-title">
                 <span class="pull-right color-team">
-                    {{ visit.visitMission.points }}
+                    {{ visit.visitBonusMission.points }}
                 </span>
-                <span class="glyphicon glyphicon-ok" ng-show="visit.visitMission.completed"></span>
-                {{ 'map.mission.' + visit.visitMission.type + '.title' | trans }}
+                <span class="glyphicon glyphicon-ok" ng-show="visit.visitBonusMission.completed"></span>
+                {{ 'map.mission.' + visit.visitBonusMission.type + '.title' | trans }}
             </p>
-            <p>{{ 'map.mission.' + visit.visitMission.type + '.explanation' | trans }}</p>
+            <p>{{ 'map.mission.' + visit.visitBonusMission.type + '.explanation' | trans }}</p>
             <hr />
         </div>
         <div ng-repeat="mission in visit.missions|orderBy:'order'" class="page-section">
@@ -39,7 +39,7 @@
                         <div ng-switch="mission.type">
                             <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
-                            <div ng-switch-when="optionsAvailable">
+                            <div ng-switch-when="hasOptions">
                                 <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-model="mission.outcome" btn-radio="true">
                                         {{ 'map.mission.' + mission.type + '.form.yes' | trans }}
@@ -63,7 +63,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div ng-switch-when="staffFeedback">
+                            <div ng-switch-when="giveFeedback">
                                 <textarea class="form-control" required
                                  ng-model="mission.outcome.text"
                                  placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}"></textarea>
@@ -74,7 +74,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div ng-switch-when="rateLocation">
+                            <div ng-switch-when="rateOptions">
                                 <div class="text-center h3">
                                     <rating ng-model="mission.outcome"
                                      max="mission.maxRating"></rating>
@@ -99,7 +99,7 @@
 
             <div ng-show="mission.completed">
                 <div ng-switch="mission.type">
-                    <div ng-switch-when="optionsAvailable">
+                    <div ng-switch-when="hasOptions">
                         <div ng-show="mission.outcome">
                             {{ 'map.mission.' + mission.type + '.outcome.hasVegan' | trans }}
                         </div>
@@ -119,7 +119,7 @@
                             <li ng-repeat="option in mission.getBoughtOptions()">{{ option.text }}</li>
                         </ul>
                     </div>
-                    <div ng-switch-when="staffFeedback">
+                    <div ng-switch-when="giveFeedback">
                         <p>
                             <span ng-show="mission.outcome.didNotDoIt">
                                 {{ 'map.mission.' + mission.type + '.outcome.didNotDoIt' | trans }}
@@ -131,7 +131,7 @@
                             <em>{{ mission.outcome.text }}</em>
                         </p>
                     </div>
-                    <div ng-switch-when="rateLocation">
+                    <div ng-switch-when="rateOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <rating readonly="true" ng-model="mission.outcome"
                          max="mission.maxRating"></rating>

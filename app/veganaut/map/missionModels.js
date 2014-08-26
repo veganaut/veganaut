@@ -51,24 +51,24 @@
     };
 
 
-    // VisitMission ///////////////////////////////////////////////////////////
-    function VisitMission(visit) {
-        Mission.call(this, 'visit', visit, {}, 100, 10);
+    // VisitBonusMission //////////////////////////////////////////////////////
+    function VisitBonusMission(visit) {
+        Mission.call(this, 'visitBonus', visit, {}, 100, 10);
     }
 
-    VisitMission.prototype = Object.create(Mission.prototype);
-    VisitMission.prototype.constructor = VisitMission;
+    VisitBonusMission.prototype = Object.create(Mission.prototype);
+    VisitBonusMission.prototype.constructor = VisitBonusMission;
 
 
-    // OptionsAvailableMission ////////////////////////////////////////////////
-    function OptionsAvailableMission(visit) {
-        Mission.call(this, 'optionsAvailable', visit, undefined, 10, 20);
+    // HasOptionsMission //////////////////////////////////////////////////////
+    function HasOptionsMission(visit) {
+        Mission.call(this, 'hasOptions', visit, undefined, 10, 20);
     }
 
-    OptionsAvailableMission.prototype = Object.create(Mission.prototype);
-    OptionsAvailableMission.prototype.constructor = OptionsAvailableMission;
+    HasOptionsMission.prototype = Object.create(Mission.prototype);
+    HasOptionsMission.prototype.constructor = HasOptionsMission;
 
-    OptionsAvailableMission.prototype.hasValidOutcome = function() {
+    HasOptionsMission.prototype.hasValidOutcome = function() {
         return (typeof this.outcome !== 'undefined');
     };
 
@@ -155,43 +155,43 @@
     };
 
 
-    // StaffFeedbackMission ///////////////////////////////////////////////////
-    function StaffFeedbackMission(visit) {
-        Mission.call(this, 'staffFeedback', visit, {
+    // GiveFeedbackMission ////////////////////////////////////////////////////
+    function GiveFeedbackMission(visit) {
+        Mission.call(this, 'giveFeedback', visit, {
             text: '',
             didNotDoIt: false
         }, 20, 60);
         this.visit = visit;
     }
 
-    StaffFeedbackMission.prototype = Object.create(Mission.prototype);
-    StaffFeedbackMission.prototype.constructor = StaffFeedbackMission;
+    GiveFeedbackMission.prototype = Object.create(Mission.prototype);
+    GiveFeedbackMission.prototype.constructor = GiveFeedbackMission;
 
-    StaffFeedbackMission.prototype.hasValidOutcome = function() {
+    GiveFeedbackMission.prototype.hasValidOutcome = function() {
         return (this.outcome.text.length > 0);
     };
 
 
-    // RateLocationMission ////////////////////////////////////////////////////
-    function RateLocationMission(visit) {
-        Mission.call(this, 'rateLocation', visit, undefined, 10, 50);
+    // RateOptionsMission /////////////////////////////////////////////////////
+    function RateOptionsMission(visit) {
+        Mission.call(this, 'rateOptions', visit, undefined, 10, 50);
         this.maxRating = 10;
     }
 
-    RateLocationMission.prototype = Object.create(Mission.prototype);
-    RateLocationMission.prototype.constructor = RateLocationMission;
+    RateOptionsMission.prototype = Object.create(Mission.prototype);
+    RateOptionsMission.prototype.constructor = RateOptionsMission;
 
-    RateLocationMission.prototype.hasValidOutcome = function() {
+    RateOptionsMission.prototype.hasValidOutcome = function() {
         return this.outcome > 0;
     };
 
 
     module.value('missions', {
-        VisitMission: VisitMission,
-        OptionsAvailableMission: OptionsAvailableMission,
+        VisitBonusMission: VisitBonusMission,
+        HasOptionsMission: HasOptionsMission,
         WhatOptionsMission: WhatOptionsMission,
         BuyOptionsMission: BuyOptionsMission,
-        StaffFeedbackMission: StaffFeedbackMission,
-        RateLocationMission: RateLocationMission
+        GiveFeedbackMission: GiveFeedbackMission,
+        RateOptionsMission: RateOptionsMission
     });
 })(window.veganaut.mapModule);
