@@ -1,7 +1,7 @@
 {
-    "name": "monkey-face",
+    "name": "veganaut",
     "private": true,
-    "repository": "https://github.com/OperationMonkey/monkey-face",
+    "repository": "https://github.com/veganaut/veganaut",
     "devDependencies": {
         "protractor" : "1.0.0",
         "phantomjs" : "1.9.x",

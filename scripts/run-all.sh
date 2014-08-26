@@ -18,11 +18,11 @@ scripts/web-server.js > log/webserver.log 2>&1 &
 
 node_modules/.bin/karma start config/karma-unit.conf.js > log/karma.log 2>&1 &
 
-cd ../monkey-tail
-supervisor app.js > ../monkey-face/log/app.log 2>&1 &
-supervisor e2eBridge.js > ../monkey-face/log/e2eBridge.log 2>&1 &
+cd ../veganaut-backend
+supervisor app.js > ../veganaut/log/app.log 2>&1 &
+supervisor e2eBridge.js > ../veganaut/log/e2eBridge.log 2>&1 &
 
-cd ../monkey-face
+cd ../veganaut
 
 echo "Go to http://localhost:8000/app/index.html"
 wait

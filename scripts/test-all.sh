@@ -17,7 +17,7 @@ fi
 ./node_modules/.bin/protractor config/protractor.conf.js | tee tests.out
 ./node_modules/karma/bin/karma start config/karma-unit.conf.js --single-run --browsers $BROWSERS | tee -a tests.out
 
-cd ../monkey-tail
-./node_modules/.bin/jasmine-node --captureExceptions test/e2e/     | tee -a ../monkey-face/tests.out
-./node_modules/.bin/jasmine-node --captureExceptions test/models/  | tee -a ../monkey-face/tests.out
+cd ../veganaut-backend
+./node_modules/.bin/jasmine-node --captureExceptions test/e2e/     | tee -a ../veganaut/tests.out
+./node_modules/.bin/jasmine-node --captureExceptions test/models/  | tee -a ../veganaut/tests.out
 

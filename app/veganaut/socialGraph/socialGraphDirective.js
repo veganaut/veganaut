@@ -322,7 +322,7 @@
                 nodeService.updateData(setupGraph);
 
                 // Reload the data when it changes
-                scope.$onRootScope('monkey.socialGraph.dataChanged', function() {
+                scope.$onRootScope('veganaut.socialGraph.dataChanged', function() {
                     nodeService.updateData(setupGraph);
                 });
             }

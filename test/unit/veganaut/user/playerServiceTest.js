@@ -36,8 +36,8 @@ describe('playerService', function() {
 
     it('should subscribe to login and logout events', inject(function(playerService) { // jshint ignore:line
         expect($onRootScopeSpy.callCount).toEqual(2);
-        expect($onRootScopeSpy).toHaveBeenCalledWith('monkey.backend.session.login', jasmine.any(Function));
-        expect($onRootScopeSpy).toHaveBeenCalledWith('monkey.backend.session.logout', jasmine.any(Function));
+        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.backend.session.login', jasmine.any(Function));
+        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.backend.session.logout', jasmine.any(Function));
     }));
 
     it('should have a getMe method', inject(function(playerService) {
@@ -51,7 +51,7 @@ describe('playerService', function() {
         var loginListener;
         for (var i = 0; i < $onRootScopeSpy.calls.length; i++) {
             var call = $onRootScopeSpy.calls[i];
-            if (call.args[0] === 'monkey.backend.session.login') {
+            if (call.args[0] === 'veganaut.backend.session.login') {
                 loginListener = call.args[1];
                 break;
             }
@@ -67,7 +67,7 @@ describe('playerService', function() {
 //        var logoutListener;
 //        for (var i = 0; i < $onRootScopeSpy.calls.length; i++) {
 //            var call = $onRootScopeSpy.calls[i];
-//            if (call.args[0] === 'monkey.backend.session.logout') {
+//            if (call.args[0] === 'veganaut.backend.session.logout') {
 //                logoutListener = call.args[1];
 //                break;
 //            }

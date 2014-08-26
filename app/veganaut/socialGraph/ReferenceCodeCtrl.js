@@ -13,7 +13,7 @@
                         $scope.form.referenceCode = '';
 
                         // Publish that the graph data has changed
-                        $scope.$root.$emit('monkey.socialGraph.dataChanged');
+                        $scope.$root.$emit('veganaut.socialGraph.dataChanged');
 
                         // Show the graph
                         $scope.goToView('socialGraph');

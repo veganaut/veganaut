@@ -31,9 +31,9 @@
                 sessionId = sid;
                 personId = undefined;
                 sessionStorage.setItem('sid', sid);
-                $http.defaults.headers.common.Authorization = 'MonkeyBearer ' + sid;
+                $http.defaults.headers.common.Authorization = 'VeganautBearer ' + sid;
 
-                $rootScope.$emit('monkey.backend.session.login');
+                $rootScope.$emit('veganaut.backend.session.login');
             }
         };
 
@@ -48,7 +48,7 @@
 
             alertService.removeAllAlerts();
 
-            $rootScope.$emit('monkey.backend.session.logout');
+            $rootScope.$emit('veganaut.backend.session.logout');
         };
 
         /**
