@@ -3,7 +3,12 @@
     module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', 'backendService', 'alertService',
         function($q, Location, tileLayerUrl, backendService, alertService) {
             var LocationService = function() {
-                this._deferredLocations = $q.defer();
+                /**
+                 * Deferred that stores the locatoins
+                 * @type {Deferred}
+                 * @private
+                 */
+                this._deferredLocations = undefined;
 
                 /**
                  * Main map settings:
@@ -30,8 +35,13 @@
                 this.active = undefined;
             };
 
+            /**
+             * Returns a Promise that will resolve to the locations
+             * @returns {Promise}
+             */
             LocationService.prototype.getLocations = function() {
                 var that = this;
+                that._deferredLocations = $q.defer();
                 backendService.getLocations()
                     .then(function(data) {
                         var locations = [];
@@ -41,7 +51,9 @@
                         that._deferredLocations.resolve(locations);
                     })
                 ;
-                return this._deferredLocations.promise;
+
+                // Return the promise
+                return that._deferredLocations.promise;
             };
 
             /**
