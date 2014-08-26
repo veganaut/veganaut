@@ -13,6 +13,10 @@
 
             var submitVisit = function(visit) {
                 var missionData = [];
+                if (typeof visit.visitBonusMission !== 'undefined' && visit.visitBonusMission.completed) {
+                    missionData.push(visit.visitBonusMission.toJson());
+                }
+
                 for (var i = 0; i < visit.missions.length; i++) {
                     var mission = visit.missions[i];
                     if (mission.completed) {
@@ -22,9 +26,18 @@
 
                 // TODO: translate and handle error properly
                 backendService.submitVisit(visit.location, missionData)
-                    .success(function() {
-                        var points = visit.getTotalPoints();
-                        alertService.addAlert('Successfully submitted your visit. You made ' + points + ' points!', 'success');
+                    .success(function(savedVisit) {
+                        var points = savedVisit.totalPoints;
+                        var pointTexts = [];
+                        for (var team in points) {
+                            if (points.hasOwnProperty(team)) {
+                                pointTexts.push(points[team] + ' (' + team + ')');
+                            }
+                        }
+                        alertService.addAlert(
+                            'Successfully submitted your visit. You made the following points: ' + pointTexts.join(', '),
+                            'success'
+                        );
                     })
                     .error(function(data) {
                         alertService.addAlert('Failed to submit your visit: ' + data.error, 'danger');

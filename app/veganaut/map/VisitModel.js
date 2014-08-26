@@ -53,6 +53,7 @@
 
                 // Finish the visitBonus mission if it's not already finished
                 if (typeof this.visitBonusMission !== 'undefined' && !this.visitBonusMission.completed) {
+                    this.visitBonusMission.outcome = true;
                     this.visitBonusMission.finish();
                 }
             };
