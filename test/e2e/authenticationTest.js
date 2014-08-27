@@ -56,7 +56,7 @@ describe('scenarios.', function() {
             });
 
             it('should be possible to login with correct username and pw.', function() {
-                expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
+                expect(ptor.getCurrentUrl()).toMatch(/\/map/, 'should redirect to map page after login');
             });
 
             it('should mark the current player\'s team.', function() {
