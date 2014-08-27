@@ -4,7 +4,7 @@
         function($q, Location, tileLayerUrl, backendService, alertService) {
             var LocationService = function() {
                 /**
-                 * Deferred that stores the locatoins
+                 * Deferred that stores the locations
                  * @type {Deferred}
                  * @private
                  */
@@ -21,7 +21,7 @@
                     center: {
                         lat: 46.949,
                         lng: 7.451,
-                        zoom: 14
+                        zoom: 13
                     },
                     defaults: {
                         tileLayer: tileLayerUrl
