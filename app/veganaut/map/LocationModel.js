@@ -10,15 +10,17 @@
      * @param {number} lng
      * @param {string} title
      * @param {string} type
+     * @param {{}} [points={}]
      * @constructor
      */
-    var Location = function(id, team, lat, lng, title, type) {
+    var Location = function(id, team, lat, lng, title, type, points) {
         this.id = id;
         this.team = team;
         this.lat = lat;
         this.lng = lng;
         this.title = title;
         this.type = type;
+        this.points = points || {};
 
         this._defaultIconClassList = 'map-location team-' + this.team;
 
@@ -52,7 +54,8 @@
             json.coordinates[0],
             json.coordinates[1],
             json.name,
-            json.type
+            json.type,
+            json.points
         );
     };
 

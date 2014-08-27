@@ -1,8 +1,13 @@
 <div ng-controller="LocationDetailsCtrl">
-    <h1>{{ location.title }}</h1>
+    <h1 class="color-{{ location.team }}">{{ location.title }}</h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
-        <vg-team-badge team="location.team"></vg-team-badge>
+        <vg-team-badge team="location.team">: {{ location.points[location.team]}}</vg-team-badge>
+        <span ng-repeat="(team, points) in location.points" ng-if="team !== location.team">
+            <span class="badge team-{{ team }}">
+                {{ points }}
+            </span>
+        </span>
     </p>
 
     <div ng-if="visit.missions">

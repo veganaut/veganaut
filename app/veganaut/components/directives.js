@@ -6,6 +6,7 @@
     module.directive('vgTeamBadge', [function() {
         return {
             restrict: 'E',
+            transclude: true,
             scope: {
                 team: '='
             },

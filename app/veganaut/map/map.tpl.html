@@ -20,7 +20,7 @@
             <p>{{ location.active.title }}</p>
             <p>
                 <vg-location-type-badge location="location.active"></vg-location-type-badge>
-                <vg-team-badge team="location.active.team"></vg-team-badge>
+                <vg-team-badge team="location.active.team">: {{ location.active.points[location.active.team]}}</vg-team-badge>
             </p>
 
             <p ng-show="location.active.id">
