@@ -71,6 +71,7 @@ describe('referenceCodes.', function() {
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('foo@bar.baz');
             element(by.model('form.password')).sendKeys('foobar\n');
+            browser.get('app/index.html#/socialGraph');
 
             var beforeCompletedLinks;
             element.all(by.css('social-graph .link.has-completed-activities')).count().then(function(count) {
@@ -101,6 +102,7 @@ describe('referenceCodes.', function() {
             browser.get('app/index.html#/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
+            browser.get('app/index.html#/socialGraph');
 
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
