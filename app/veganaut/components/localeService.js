@@ -16,18 +16,18 @@
             map: 'Karte',
             profile: 'Mein Profil',
             avatar: 'Mein Netzwerk',
-            openActivities: 'Offene Aktivitäten',
-            referenceCode: 'Referenz-Code eingeben'
+            openActivities: 'Geplante Einladungen',
+            referenceCode: 'Einladungs-Code eingeben'
         },
         form: {
             referenceCode: {
-                placeholder: 'Referenz-Code eingeben',
+                placeholder: 'Einladungs-Code eingeben',
                 submit: 'Code absenden'
             }
         },
         message: {
             registered: 'Registrierung erfolgreich.',
-            activityLinkCreated: 'Aktivität erstellt.',
+            activityLinkCreated: 'Einladung erstellt.',
             profile: {
                 update: {
                     success: 'Profil wurde erfolgreich aktualisiert.',
@@ -59,10 +59,10 @@
             cancel: 'Abbrechen',
             socialGraph: {
                 createActivityLink: {
-                    attract: 'Attract',
-                    support: 'Support',
-                    tempt: 'Tempt',
-                    unspecified: 'Make a move'
+                    attract: 'Invite',
+                    support: 'Invite',
+                    tempt: 'Invite',
+                    unspecified: 'Jemanden einladen'
                 }
             },
             profile: {
@@ -76,7 +76,7 @@
             }
         },
         activityLink: {
-            title: 'Neue Aktivität',
+            title: 'Neue Einladung',
             label: {
                 targetName: 'Mit / Für'
             },
@@ -90,8 +90,8 @@
             title: 'Mein Netzwerk'
         },
         openActivities: {
-            title: 'Offene Aktivitäten',
-            description: 'Referenz-Codes für alle offenen Aktivitäten.'
+            title: 'Geplante Einladungen',
+            description: 'Codes für alle geplanten Einladungen.'
         },
         person: {
             role: {
