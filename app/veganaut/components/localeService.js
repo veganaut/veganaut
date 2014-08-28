@@ -72,7 +72,7 @@
             },
             map: {
                 addLocation: 'Neuen Ort hinzufügen',
-                locationAction: 'Diesen Ort besuchen'
+                locationAction: 'Diesen Ort jetzt besuchen'
             }
         },
         activityLink: {
