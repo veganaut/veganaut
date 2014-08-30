@@ -17,10 +17,12 @@
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
 
-            <p>{{ location.active.title }}</p>
+            <p class="color-{{ location.active.team }}"><strong>{{ location.active.title }}</strong></p>
             <p>
                 <vg-location-type-badge location="location.active"></vg-location-type-badge>
-                <vg-team-badge team="location.active.team">: {{ location.active.points[location.active.team]}}</vg-team-badge>
+                <vg-available-points-badge available="location.active.availablePoints"></vg-available-points-badge>
+                <vg-score-diff-badge team="me.team" diff="location.active.getRelevantPointDifference(me.team)">
+                </vg-score-diff-badge>
             </p>
 
             <p ng-show="location.active.id">

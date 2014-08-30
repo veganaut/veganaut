@@ -2,10 +2,14 @@
     <h1 class="color-{{ location.team }}">{{ location.title }}</h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
-        <vg-team-badge team="location.team">: {{ location.points[location.team]}}</vg-team-badge>
-        <span ng-repeat="(team, points) in location.points" ng-if="team !== location.team">
-            <span class="badge team-{{ team }}">
-                {{ points }}
+        <vg-available-points-badge available="location.availablePoints"></vg-available-points-badge>
+        <vg-score-diff-badge team="me.team" diff="location.getRelevantPointDifference(me.team)">
+        </vg-score-diff-badge>
+    </p>
+    <p>
+        <span ng-repeat="score in location.getSortedPoints()">
+            <span class="badge team-{{ score.team }}" tooltip="{{ 'location.score.explanation.teamPoints' | trans }}">
+                {{ score.points }}
             </span>
         </span>
     </p>

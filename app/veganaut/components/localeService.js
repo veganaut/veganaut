@@ -138,6 +138,16 @@
                 retail: 'Detailhandel',
                 event: 'Event',
                 'private': 'Privat'
+            },
+            score: {
+                explanation: {
+                    availablePoints: 'Momentan verfügbare Punkte',
+                    scoreDiff: {
+                        positive: 'So viele Punkte ist dein Team voraus',
+                        negative: 'So viele Punkte fehlen deinem Team noch'
+                    },
+                    teamPoints: 'Dieses Team hat so viele Punkte'
+                }
             }
         },
         map: {
