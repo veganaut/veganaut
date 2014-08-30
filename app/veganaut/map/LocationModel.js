@@ -89,6 +89,16 @@
         return this._active;
     };
 
+    /**
+     * Returns whether the user can get a visit bonus at this location
+     * @returns {boolean}
+     */
+    Location.prototype.canGetVisitBonus = function() {
+        // Calculate the diff to the nextVisitBonusDate and consider it ok if it's in up to a minute
+        var untilNextVisitBonusDate = this.nextVisitBonusDate - new Date();
+        return (untilNextVisitBonusDate < 60000);
+    };
+
 
     module.value('Location', Location);
 })(window.veganaut.mapModule);
