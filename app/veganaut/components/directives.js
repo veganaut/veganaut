@@ -10,7 +10,7 @@
             scope: {
                 team: '='
             },
-            templateUrl: 'veganaut/components/vgTeamBadge.tpl.html'
+            templateUrl: '/veganaut/components/vgTeamBadge.tpl.html'
         };
     }]);
 })(window.veganaut.mainModule);

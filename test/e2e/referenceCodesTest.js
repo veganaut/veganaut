@@ -9,11 +9,11 @@ describe('referenceCodes.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/referenceCodes');
+        browser.get('/e2eBridge#/referenceCodes');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html#/login');
+        browser.get('/login');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
@@ -68,10 +68,10 @@ describe('referenceCodes.', function() {
     describe('enter reference code when logged in.', function() {
         it('should be possible to enter reference code as logged in user.', function() {
             // Login as Alice
-            browser.get('app/index.html#/login');
+            browser.get('/login');
             element(by.model('form.email')).sendKeys('foo@bar.baz');
             element(by.model('form.password')).sendKeys('foobar\n');
-            browser.get('app/index.html#/socialGraph');
+            browser.get('/socialGraph');
 
             var beforeCompletedLinks;
             element.all(by.css('social-graph .link.has-completed-activities')).count().then(function(count) {
@@ -99,10 +99,10 @@ describe('referenceCodes.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-logout')).click();
-            browser.get('app/index.html#/login');
+            browser.get('/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
-            browser.get('app/index.html#/socialGraph');
+            browser.get('/socialGraph');
 
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
@@ -121,7 +121,7 @@ describe('referenceCodes.', function() {
     describe('enter reference code from new friend when logged in.', function() {
         it('should be possible to enter reference code as logged in user.', function() {
             // Login as Frank, he doesn't know anyone yet
-            browser.get('app/index.html#/login');
+            browser.get('/login');
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
 
@@ -147,7 +147,7 @@ describe('referenceCodes.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-logout')).click();
-            browser.get('app/index.html#/login');
+            browser.get('/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
 

@@ -90,13 +90,33 @@ StaticServlet.prototype.handleRequest = function(req, res) {
     }
     fs.stat(path, function(err, stat) {
         if (err) {
-            return self.sendMissing_(req, res, path);
+            // If not found, check if the e2e bridge is requested
+            if (path === './e2eBridge') {
+                return self.sendFile_(req, res, '../test/e2e/bridge.html');
+            }
+            // Otherwise, send the index file (rewrites everything not found to index.html)
+            return self.sendIndex_(req, res);
+
+            // In the original web-server.js, this was:
+            //return self.sendMissing_(req, res, path);
         }
         if (stat.isDirectory()) {
+            if (path === './') {
+                // Deliver the index for the root path
+                return self.sendIndex_(req, res);
+            }
             return self.sendDirectory_(req, res, path);
         }
         return self.sendFile_(req, res, path);
     });
+};
+
+StaticServlet.prototype.sendIndex_ = function(req, res) {
+    this.sendFile_(req, res, './index.html');
+};
+
+StaticServlet.prototype.sendE2eBridge_ = function(req, res) {
+    this.sendFile_(req, res, '../test/e2e/bridge.html');
 };
 
 StaticServlet.prototype.sendError_ = function(req, res, error) {

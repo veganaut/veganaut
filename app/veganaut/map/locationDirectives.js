@@ -7,7 +7,7 @@
             scope: {
                 loc: '=location'
             },
-            templateUrl: 'veganaut/map/vgLocationTypeBadge.tpl.html'
+            templateUrl: '/veganaut/map/vgLocationTypeBadge.tpl.html'
         };
     }]);
 })(window.veganaut.mapModule);

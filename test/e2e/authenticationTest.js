@@ -8,11 +8,11 @@ describe('scenarios.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('/e2eBridge#/basic');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html#/login');
+        browser.get('/login');
         ptor = protractor.getInstance();
         helpers.bindProtractor(ptor);
 
@@ -32,16 +32,16 @@ describe('scenarios.', function() {
     });
 
     it('should redirect to /login for pages needing authentication.', function() {
-        browser.get('app/index.html#/socialGraph');
+        browser.get('/socialGraph');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
-        browser.get('app/index.html#/createActivity');
+        browser.get('/createActivity');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
     describe('login.', function() {
         beforeEach(function() {
-            browser.get('app/index.html#/login');
+            browser.get('/login');
         });
 
         it('should render login form when navigating to /login.', function() {

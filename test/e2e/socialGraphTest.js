@@ -9,11 +9,11 @@ describe('socialGraph.', function() {
     // TODO: code duplication with other tests
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('/e2eBridge#/basic');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html#/');
+        browser.get('/');
         ptor = protractor.getInstance();
         helpers.bindProtractor(ptor);
 
@@ -32,10 +32,10 @@ describe('socialGraph.', function() {
         });
 
         // Login and go to social graph
-        browser.get('app/index.html#/login');
+        browser.get('/login');
         element(by.model('form.email')).sendKeys('foo@bar.baz');
         element(by.model('form.password')).sendKeys('foobar\n');
-        browser.get('app/index.html#/socialGraph');
+        browser.get('/socialGraph');
     });
 
     it('should render socialGraph with nodes and links.', function() {
@@ -115,19 +115,19 @@ describe('socialGraph.', function() {
             );
 
             // Check that the social graph has one more node than before
-            browser.get('app/index.html#/socialGraph');
+            browser.get('/socialGraph');
             expect(element.all(by.css('social-graph .node')).count()).toBe(8, 'total nodes after');
             expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(3, 'maybe nodes after');
 
             // Should show the new open activity link
-            browser.get('app/index.html#/openActivities');
+            browser.get('/openActivities');
             expect(element(by.css('.reference-code-list')).getText()).toContain('Hans');
         });
     });
 
     describe('list of open activity links.', function() {
         beforeEach(function() {
-            browser.get('app/index.html#/openActivities');
+            browser.get('/openActivities');
         });
 
         it('shows the list of open activities when browsing to /openActivities.', function() {

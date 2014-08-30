@@ -8,10 +8,10 @@ describe('register.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('/e2eBridge#/basic');
 
         // Go to the app
-        browser.get('app/index.html#/');
+        browser.get('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
@@ -40,7 +40,7 @@ describe('register.', function() {
     });
 
     it('should be possible to register as a new user.', function() {
-        browser.get('app/index.html#/register');
+        browser.get('/register');
 
         element(by.model('form.email')).sendKeys('cody@testerburger.com');
         element(by.model('form.fullName')).sendKeys('Cody Testerburger');

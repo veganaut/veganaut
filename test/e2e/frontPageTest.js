@@ -6,7 +6,7 @@ describe('frontPage.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('/e2eBridge#/basic');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
@@ -15,7 +15,7 @@ describe('frontPage.', function() {
     });
 
     it('should redirect to / when location hash is empty.', function() {
-        expect(ptor.getCurrentUrl()).toMatch(/#\/$/);
+        expect(ptor.getCurrentUrl()).toMatch(/\/$/);
     });
 
     it('should have a register and login button.', function() {
@@ -25,6 +25,14 @@ describe('frontPage.', function() {
 
     it('should show the intro tour on the front page.', function() {
         ptor.sleep(500);
-        expect(element(by.css('.tour-intro')).isPresent()).toBe(true, 'has tour-intro');
+        var tour = element(by.css('.tour-intro'));
+        expect(tour.isPresent()).toBe(true, 'has tour-intro');
+        expect(tour.isDisplayed()).toBe(true, 'tour-intro is displayed');
+
+        var endButton = element(by.css('.tour-intro .btn[data-role="end"]'));
+        expect(endButton.isPresent()).toBe(true, 'has end tour button');
+
+        endButton.click();
+        expect(tour.isPresent()).toBe(false, 'tour-intro hides after clicking on end');
     });
 });

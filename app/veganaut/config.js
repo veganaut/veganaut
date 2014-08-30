@@ -9,7 +9,6 @@
 //    module.value('tileLayerUrl', 'https://{s}.tiles.mapbox.com/v3/toebu.ilh4kll0/{z}/{x}/{y}.png');
     module.value('tileLayerUrl', undefined);
 
-    // Whether to use html5Mode, doesn't work in development where we are in a sub directory
-//    module.constant('useHtml5Mode', true);
-    module.constant('useHtml5Mode', false);
+    // Whether to use html5Mode
+    module.constant('useHtml5Mode', true);
 })(window.veganaut.mainModule);

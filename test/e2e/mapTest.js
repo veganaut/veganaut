@@ -10,11 +10,11 @@ describe('map.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('test/e2e/bridge.html#/basic');
+        browser.get('/e2eBridge#/basic');
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html#/');
+        browser.get('/');
         ptor = protractor.getInstance();
         helpers.bindProtractor(ptor);
 
@@ -33,7 +33,7 @@ describe('map.', function() {
         });
 
         // Login
-        browser.get('app/index.html#/login');
+        browser.get('/login');
         element(by.model('form.email')).sendKeys('foo@bar.baz');
         element(by.model('form.password')).sendKeys('foobar\n');
     });
