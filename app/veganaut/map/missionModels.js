@@ -35,7 +35,8 @@
     Mission.prototype.toJson = function() {
         return {
             type: this.type,
-            outcome: this.outcome
+            outcome: this.outcome,
+            points: this.receivedPoints
         };
     };
 
@@ -91,7 +92,7 @@
             linkedPoints = this._linkedToMission.getCurrentPoints();
         }
         return Math.max(0,
-            Math.min(this.points, this.visit.getRemainingAvailablePoints()) - linkedPoints
+            Math.min(this.points, this.visit.getRemainingAvailablePoints() - linkedPoints)
         );
     };
 
@@ -150,7 +151,8 @@
         }
         return {
             type: this.type,
-            outcome: outcome
+            outcome: outcome,
+            points: this.receivedPoints
         };
     };
 
@@ -186,7 +188,8 @@
         }
         return {
             type: this.type,
-            outcome: outcome
+            outcome: outcome,
+            points: this.receivedPoints
         };
     };
 

@@ -61,7 +61,7 @@
             json.name,
             json.type,
             json.points,
-            100,
+            json.availablePoints,
             new Date(json.nextVisitBonusDate)
         );
     };
