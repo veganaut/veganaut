@@ -16,7 +16,9 @@
                 this.completed = false;
 
                 if (location.type !== Location.TYPES.private) {
-                    this.visitBonusMission = new missions.VisitBonusMission(this);
+                    if (location.canGetVisitBonus()) {
+                        this.visitBonusMission = new missions.VisitBonusMission(this);
+                    }
                     this._addMission(new missions.HasOptionsMission(this));
                 }
             }
