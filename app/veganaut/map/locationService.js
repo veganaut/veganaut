@@ -87,7 +87,8 @@
                 // TODO: should the promise be handled in the controller?
                 return backendService.submitLocation({
                     name: location.title,
-                    coordinates: [location.lat, location.lng],
+                    lat: location.lat,
+                    lng: location.lng,
                     type: location.type
                 })
                     .success(function(data) {

@@ -11,9 +11,10 @@
      * @param {string} title
      * @param {string} type
      * @param {{}} [points={}]
+     * @param {Date} nextVisitBonusDate
      * @constructor
      */
-    var Location = function(id, team, lat, lng, title, type, points) {
+    var Location = function(id, team, lat, lng, title, type, points, nextVisitBonusDate) {
         this.id = id;
         this.team = team;
         this.lat = lat;
@@ -21,6 +22,7 @@
         this.title = title;
         this.type = type;
         this.points = points || {};
+        this.nextVisitBonusDate = nextVisitBonusDate;
 
         this._defaultIconClassList = 'map-location team-' + this.team;
 
@@ -48,14 +50,16 @@
      * @returns {Location}
      */
     Location.fromJson = function(json) {
+        // TODO: this is getting ridiculous
         return new Location(
             json.id,
             json.team,
-            json.coordinates[0],
-            json.coordinates[1],
+            json.lat,
+            json.lng,
             json.name,
             json.type,
-            json.points
+            json.points,
+            new Date(json.nextVisitBonusDate)
         );
     };
 
