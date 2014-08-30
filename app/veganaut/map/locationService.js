@@ -42,11 +42,19 @@
             LocationService.prototype.getLocations = function() {
                 var that = this;
                 that._deferredLocations = $q.defer();
+                var beforeActive = this.active;
+                this.active = undefined;
                 backendService.getLocations()
                     .then(function(data) {
                         var locations = [];
                         for (var i = 0; i < data.data.length; i++) {
                             locations.push(Location.fromJson(data.data[i]));
+                        }
+                        if (beforeActive) {
+                            that.active = _.findWhere(locations, { id: beforeActive.id });
+                            if (that.active) {
+                                that.active.setActive();
+                            }
                         }
                         that._deferredLocations.resolve(locations);
                     })
