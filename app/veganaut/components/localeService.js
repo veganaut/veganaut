@@ -156,8 +156,8 @@
                    }
                },
                visitBonus: {
-                   title: 'Bonus für die erste Mission',
-                   explanation: 'Für deinen ersten Besuch an einem Ort innerhalb +/- einer Woche erhälst du zusätzliche Punkte. Sobald du hier die erste Mission erfüllt hast, werden dir diese Zusatzpunkte gutgeschrieben. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb +/- einer Woche ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
+                   title: 'Bonus für den ersten Besuch',
+                   explanation: 'Für deinen ersten Besuch an einem Ort innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
                },
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
@@ -194,7 +194,7 @@
                giveFeedback: {
                    title: 'Gib dem Personal eine Rückmeldung.',
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
-                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, was du dem Personal gesagt hast. Oder was du dem Personal hättest sagen wollen.',
+                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast. Oder was du dem Personal hättest sagen wollen.',
                    form: {
                        placeholder: 'Rückmeldung',
                        didNotDoIt: 'Ich wollte dem Personal diese Rückmeldung geben, habe es dann aber nicht gemacht.'
@@ -223,7 +223,7 @@
             intro: [
                 {
                     title: 'Willkommen!',
-                    content: 'Veganaut.net wünscht Dir viel Spass beim Erkunden des veganen Universums. Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits benützen. Es kann sein, dass noch nicht alles richtig funktioniert, bitte entschuldige. Wenn du Anregungen oder Rückmeldungen hast, sind wir dafür sehr dankbar. Das Kontaktformular ist im Menu oben verlinkt.'
+                    content: 'Viel Spass beim Erkunden des veganen Universums mit veganaut.net! Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits benützen. Es kann sein, dass noch nicht alles richtig funktioniert, bitte entschuldige. Wenn du Anregungen oder Rückmeldungen hast, sind wir dafür sehr dankbar. Das Kontaktformular ist im Menu oben verlinkt.'
                 },
                 {
                     title: 'Registrieren',
