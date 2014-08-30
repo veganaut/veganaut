@@ -20,9 +20,8 @@
         <div class="clearfix"></div>
         <div class="mission mission-visitBonus" ng-if="visit.visitBonusMission">
             <p class="h4 mission-title">
-                <span class="pull-right color-team">
-                    {{ visit.visitBonusMission.points }}
-                </span>
+                <vg-mission-points current="visit.visitBonusMission.getCurrentPoints()"
+                 potential="visit.visitBonusMission.points"></vg-mission-points>
                 <span class="glyphicon glyphicon-ok" ng-show="visit.visitBonusMission.completed"></span>
                 {{ 'map.mission.' + visit.visitBonusMission.type + '.title' | trans }}
             </p>
@@ -32,9 +31,8 @@
         <div ng-repeat="mission in visit.missions|orderBy:'order'" class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 mission-title">
-                    <span class="pull-right color-team">
-                        {{ mission.points }}
-                    </span>
+                    <vg-mission-points current="mission.getCurrentPoints()"
+                     potential="mission.points"></vg-mission-points>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
                     {{ 'map.mission.' + mission.type + '.title' | trans }}
                 </p>
@@ -152,7 +150,8 @@
 
         <p class="h4">
             {{ 'map.mission.pointsForThisVisit' | trans }}
-            <span class="color-team pull-right">{{ visit.getTotalPoints() }}</span>
+            <vg-mission-points current="visit.getTotalPoints(false)"
+             potential="visit.getTotalPoints(true)"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
         <p>

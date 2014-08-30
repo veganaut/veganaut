@@ -15,6 +15,7 @@
         this.visit = visit;
         this.outcome = outcome;
         this.points = points;
+        this.receivedPoints = 0;
         this.order = order;
         this.started = false;
         this.completed = false;
@@ -43,6 +44,7 @@
      */
     Mission.prototype.finish = function() {
         if (!this.completed) {
+            this.receivedPoints = this.getCurrentPoints();
             this.completed = true;
 
             // Tell the visit we are done
@@ -50,14 +52,48 @@
         }
     };
 
+    /**
+     * Returns the point that the mission would make if it were completed
+     * now, or the actual number of awarded points if its already completed.
+     * @returns {number}
+     */
+    Mission.prototype.getCurrentPoints = function() {
+        if (this.completed) {
+            return this.receivedPoints;
+        }
+        return Math.min(this.points, this.visit.getRemainingAvailablePoints());
+    };
+
 
     // VisitBonusMission //////////////////////////////////////////////////////
-    function VisitBonusMission(visit) {
+    function VisitBonusMission(visit, linkedToMission) {
         Mission.call(this, 'visitBonus', visit, {}, 100, 10);
+        this._linkedToMission = linkedToMission;
     }
 
     VisitBonusMission.prototype = Object.create(Mission.prototype);
     VisitBonusMission.prototype.constructor = VisitBonusMission;
+
+    /**
+     * @inheritdoc
+     */
+    VisitBonusMission.prototype.getCurrentPoints = function() {
+        // If we are done, return the calculated points
+        if (this.completed) {
+            return this.receivedPoints;
+        }
+
+        // Otherwise, check how many points the linked mission gives
+        var linkedPoints = 0;
+        if (!this._linkedToMission.completed) {
+            // We only care when the mission is not completed, otherwise
+            // visit.getRemainingAvailablePoints() will already take this into account
+            linkedPoints = this._linkedToMission.getCurrentPoints();
+        }
+        return Math.max(0,
+            Math.min(this.points, this.visit.getRemainingAvailablePoints()) - linkedPoints
+        );
+    };
 
 
     // HasOptionsMission //////////////////////////////////////////////////////

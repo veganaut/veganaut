@@ -30,6 +30,17 @@
         };
     }]);
 
+    module.directive('vgMissionPoints', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                current: '=',
+                potential: '='
+            },
+            templateUrl: '/veganaut/components/vgMissionPoints.tpl.html'
+        };
+    }]);
+
     module.filter('withSign', [function() {
         return function(value) {
             var sign = (value >= 0) ? '+' : '−'; // This is a minus sign, not a dash. Unicode, yeah

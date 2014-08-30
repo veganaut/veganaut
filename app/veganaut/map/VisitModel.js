@@ -16,10 +16,11 @@
                 this.completed = false;
 
                 if (location.type !== Location.TYPES.private) {
+                    var hasOptionMission = new missions.HasOptionsMission(this);
                     if (location.canGetVisitBonus()) {
-                        this.visitBonusMission = new missions.VisitBonusMission(this);
+                        this.visitBonusMission = new missions.VisitBonusMission(this, hasOptionMission);
                     }
-                    this._addMission(new missions.HasOptionsMission(this));
+                    this._addMission(hasOptionMission);
                 }
             }
 
@@ -62,19 +63,31 @@
 
             /**
              * Returns the total number of points made in this visit
+             * @param {Boolean} [ignoreAvailablePoints=false]
              * @returns {number}
              */
-            Visit.prototype.getTotalPoints = function() {
+            Visit.prototype.getTotalPoints = function(ignoreAvailablePoints) {
+                // TODO: I'm tired and this is getting ugly. refactor.
                 var points = 0;
                 for (var i = 0; i < this.missions.length; i++) {
                     if (this.missions[i].completed) {
-                        points += this.missions[i].points;
+                        points += this.missions[i][ignoreAvailablePoints ? 'points' : 'receivedPoints'];
                     }
                 }
                 if (typeof this.visitBonusMission !== 'undefined' && this.visitBonusMission.completed) {
-                    points += this.visitBonusMission.points;
+                    points += this.visitBonusMission[ignoreAvailablePoints ? 'points' : 'receivedPoints'];
                 }
+
                 return points;
+            };
+
+            /**
+             * Returns the number of points that is still available at this
+             * location taking into account the already completed missions.
+             * @returns {number}
+             */
+            Visit.prototype.getRemainingAvailablePoints = function() {
+                return (this.location.availablePoints - this.getTotalPoints());
             };
 
             /**
