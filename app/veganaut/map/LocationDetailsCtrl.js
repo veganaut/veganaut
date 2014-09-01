@@ -1,8 +1,9 @@
 (function(module) {
     'use strict';
 
-    module.controller('LocationDetailsCtrl', ['$scope', '$routeParams', '$location', 'tileLayerUrl', 'locationService', 'visitService',
-        function($scope, $routeParams, $location, tileLayerUrl, locationService, visitService) {
+    module.controller('LocationDetailsCtrl',
+        ['$scope', '$routeParams', '$location', 'tileLayerUrl', 'locationService', 'visitService', 'playerService',
+        function($scope, $routeParams, $location, tileLayerUrl, locationService, visitService, playerService) {
             var locationId = $routeParams.id;
 
             /**
@@ -38,11 +39,14 @@
                         $scope.location = locations[i];
                         $scope.center.lat = $scope.location.lat;
                         $scope.center.lng = $scope.location.lng;
-
-                        $scope.visit = visitService.getVisit($scope.location);
                         break;
                     }
                 }
+                // TODO: handle location not found
+                // TODO: should do this in parallel with getLocations
+                playerService.getMe().then(function(me) {
+                    $scope.visit = visitService.getVisit($scope.location, me);
+                });
             });
         }
     ]);

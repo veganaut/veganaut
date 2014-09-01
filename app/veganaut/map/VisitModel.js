@@ -7,10 +7,12 @@
              * A Visit is a group of missions that can be done at
              * a location.
              * @param {Location} location
+             * @param {Player} player
              * @constructor
              */
-            function Visit(location) {
+            function Visit(location, player) {
                 this.location = location;
+                this.player = player;
                 this.visitBonusMission = undefined;
                 this.missions = [];
                 this.completed = false;

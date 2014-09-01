@@ -7,8 +7,8 @@
     module.factory('visitService', ['Visit', 'backendService', 'alertService',
         function(Visit, backendService, alertService) {
 
-            var getVisit = function(location) {
-                return new Visit(location);
+            var getVisit = function(location, player) {
+                return new Visit(location, player);
             };
 
             var submitVisit = function(visit) {

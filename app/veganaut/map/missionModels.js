@@ -33,10 +33,12 @@
 
     // TODO: do this more elegantly
     Mission.prototype.toJson = function() {
+        var points = {};
+        points[this.visit.player.team] = this.receivedPoints;
         return {
             type: this.type,
             outcome: this.outcome,
-            points: this.receivedPoints
+            points: points
         };
     };
 
@@ -145,15 +147,13 @@
     };
 
     WhatOptionsMission.prototype.toJson = function() {
+        var json = Mission.prototype.toJson.apply(this);
         var outcome = [];
         for (var i = 0; i < this.outcome.length; i += 1) {
             outcome.push(this.outcome[i].text);
         }
-        return {
-            type: this.type,
-            outcome: outcome,
-            points: this.receivedPoints
-        };
+        json.outcome = outcome;
+        return json;
     };
 
 
@@ -181,16 +181,14 @@
     };
 
     BuyOptionsMission.prototype.toJson = function() {
+        var json = Mission.prototype.toJson.apply(this);
         var outcome = [];
         var boughtOptions = this.getBoughtOptions();
         for (var i = 0; i < boughtOptions.length; i += 1) {
             outcome.push(boughtOptions[i].id);
         }
-        return {
-            type: this.type,
-            outcome: outcome,
-            points: this.receivedPoints
-        };
+        json.outcome = outcome;
+        return json;
     };
 
 
