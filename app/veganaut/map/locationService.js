@@ -101,8 +101,11 @@
                 })
                     .success(function(data) {
                         // TODO: how to update the location from what the backend tells us
-                        // TODO: this should be .id not ._id
-                        location.id = data._id;
+                        location.id = data.id;
+                        location.nextVisitBonusDate = data.nextVisitBonusDate;
+                        location.availablePoints = data.availablePoints;
+                        location.points = data.points;
+                        location.sortedPoints = undefined; // Force new calculation, TODO: should be done differently
                         alertService.addAlert('Added new location "' + data.name + '"', 'success');
                     })
                     .error(function(data) {
