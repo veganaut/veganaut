@@ -7,74 +7,15 @@
 .social-graph .graph-svg {
     overflow: visible;
 }
-body.player-green .social-graph {
-    border-color: @greenBaseColour;
-}
-body.player-blue .social-graph {
-    border-color: @blueBaseColour;
-}
 
 .node {
     &.type-maybe, &.type-dummy {
         fill: @passiveColour;
     }
 
-    &.team-green {
-        &.type-baby {
-            fill: @greenXlowColour;
-        }
-        &.type-user {
-            &.balance-xlow {
-                fill: @greenXlowColour
-            }
-            &.balance-low {
-                fill: @greenLowColour
-            }
-            &.balance-med {
-                fill: @greenMedColour
-            }
-            &.balance-high {
-                fill: @greenHighColour
-            }
-            &.balance-xhigh {
-                fill: @greenXhighColour
-            }
-        }
-    }
-
-    &.team-blue {
-        &.type-baby {
-            fill: @blueXlowColour;
-        }
-        &.type-user {
-            &.balance-xlow {
-                fill: @blueXlowColour
-            }
-            &.balance-low {
-                fill: @blueLowColour
-            }
-            &.balance-med {
-                fill: @blueMedColour
-            }
-            &.balance-high {
-                fill: @blueHighColour
-            }
-            &.balance-xhigh {
-                fill: @blueXhighColour
-            }
-        }
-    }
-
     &.captured {
         stroke-width: 7px;
-        &.team-green {
-            stroke: @blueBaseColour;
-            stroke-dasharray: 3,5;
-        }
-        &.team-blue {
-            stroke: @greenBaseColour;
-            stroke-dasharray: 3,5;
-        }
+        stroke-dasharray: 3,5;
 
         &.selected {
             stroke-dasharray: 5,3;
@@ -83,12 +24,6 @@ body.player-blue .social-graph {
     &.not-captured.selected {
         stroke: #000;
         stroke-width: 3px;
-        &.team-green {
-            stroke: @greenDarkColour;
-        }
-        &.team-blue {
-            stroke: @blueDarkColour;
-        }
     }
 }
 
@@ -112,20 +47,66 @@ body.player-blue .social-graph {
     &.has-completed-activities {
         stroke-dasharray: initial;
     }
-    &.team-green {
-        stroke: @greenBaseColour;
-        &.has-open-activities {
-            stroke: @greenLightColour;
-        }
-    }
-    &.team-blue {
-        stroke: @blueBaseColour;
-        &.has-open-activities {
-            stroke: @blueLightColour;
-        }
-    }
 }
 
 .me-marker {
     fill: white;
 }
+
+// Mixin for making the styles for every team
+.team-graph(@teamName, @baseColour) {
+    @xhighColour: @baseColour;
+    @highColour: lighten(@baseColour, 7%);
+    @medColour: lighten(@baseColour, 14%);
+    @lowColour: lighten(@baseColour, 21%);
+    @xlowColour: lighten(@baseColour, 28%);
+    @darkColour: darken(@baseColour, 20%);
+    @lightColour: lighten(@baseColour, 35%);
+
+    .node {
+        &.team-@{teamName} {
+            &.type-baby {
+                fill: @xlowColour;
+            }
+            &.type-user {
+                &.balance-xlow {
+                    fill: @xlowColour
+                }
+                &.balance-low {
+                    fill: @lowColour
+                }
+                &.balance-med {
+                    fill: @medColour
+                }
+                &.balance-high {
+                    fill: @highColour
+                }
+                &.balance-xhigh {
+                    fill: @xhighColour
+                }
+            }
+        }
+
+        &.captured.team-@{teamName} {
+            stroke: @baseColour;
+        }
+        &.not-captured.selected.team-@{teamName} {
+            stroke: @darkColour;
+        }
+    }
+
+    .link {
+        &.team-@{teamName} {
+            stroke: @baseColour;
+            &.has-open-activities {
+                stroke: @lightColour;
+            }
+        }
+    }
+}
+
+.team-graph(team1, @team1BaseColour);
+.team-graph(team2, @team2BaseColour);
+.team-graph(team3, @team3BaseColour);
+.team-graph(team4, @team4BaseColour);
+.team-graph(team5, @team5BaseColour);

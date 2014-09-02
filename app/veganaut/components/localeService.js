@@ -116,13 +116,16 @@
             }
         },
         team: {
-            blue: 'Blau',
-            green: 'Grün'
+            team1: 'Grün',
+            team2: 'Türkis',
+            team3: 'Blau',
+            team4: 'Rot',
+            team5: 'Braun'
         },
         score: {
             points: 'Punkte',
-            totalScore: 'Punktestand',
-            players: 'Spieler',
+            score: 'Punktestand',
+            users: 'Spieler',
             captured: 'Gefangen',
             babies: 'Babies'
         },

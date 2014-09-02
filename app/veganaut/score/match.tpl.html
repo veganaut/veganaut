@@ -1,25 +1,12 @@
 <div ng-controller="MatchCtrl">
     <div class="well well-sm text-center clickable page-section" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
         <div class="score-element">
-            <span ng-bind="'score.totalScore'|trans"></span>:
-            <span class="color-blue" ng-bind="scoreData.blue.score"></span> :
-            <span class="color-green" ng-bind="scoreData.green.score"></span>
-        </div>
-        <div class="score-element" ng-show="showFullScore">
-            <div>
-                <span ng-bind="'score.players'|trans"></span>:
-                <span class="color-blue" ng-bind="scoreData.blue.users"></span> :
-                <span class="color-green" ng-bind="scoreData.green.users"></span>
-            </div>
-            <div>
-                <span ng-bind="'score.captured'|trans"></span>:
-                <span class="color-blue" ng-bind="scoreData.blue.captured"></span> :
-                <span class="color-green" ng-bind="scoreData.green.captured"></span>
-            </div>
-            <div>
-                <span ng-bind="'score.babies'|trans"></span>:
-                <span class="color-blue" ng-bind="scoreData.blue.babies"></span> :
-                <span class="color-green" ng-bind="scoreData.green.babies"></span>
+            <div ng-repeat="scoreElem in ['score', 'users', 'captured', 'babies']" ng-show="scoreElem === 'score' || showFullScore">
+                <span>{{ 'score.' + scoreElem | trans }}</span>:
+                <span ng-repeat="(team, score) in scoreData">
+                    <span ng-if="$index > 0">:</span>
+                    <span class="color-{{ team }}">{{ score[scoreElem] }}</span>
+                </span>
             </div>
         </div>
         <div class="well-expansion">

@@ -6,13 +6,40 @@
 @import 'map.less';
 @import 'socialGraph.less';
 
+// TODO: these styles should be distributed over different modules
+.team-styles(@teamName, @baseColour) {
+    // Text colour
+    body.player-@{teamName} .color-team, .color-@{teamName} {
+        color: @baseColour;
+    }
 
-body.player-green .color-team, .color-green {
-    color: @greenBaseColour;
+    // Team button
+    body.player-@{teamName} .btn-team {
+        .button-variant(#fff; @baseColour; darken(@baseColour, 5%));
+    }
+
+    // Team badges
+    .badge.team-@{teamName} {
+        background-color: @baseColour;
+    }
+
+    // Map markers
+    .map-location.team-@{teamName} {
+        background-color: @baseColour;
+    }
+
+    // Social graph
+    body.player-@{teamName} .social-graph {
+        border-color: @baseColour;
+    }
 }
-body.player-blue .color-team, .color-blue {
-    color: @blueBaseColour;
-}
+
+.team-styles(team1, @team1BaseColour);
+.team-styles(team2, @team2BaseColour);
+.team-styles(team3, @team3BaseColour);
+.team-styles(team4, @team4BaseColour);
+.team-styles(team5, @team5BaseColour);
+
 
 .clickable {
     cursor: pointer;
@@ -33,29 +60,19 @@ body.player-blue .color-team, .color-blue {
 .btn-team {
     .button-variant(#fff; #333; darken(#333, 5%));
 }
-body.player-green {
-    .btn-team {
-        .button-variant(#fff; @greenBaseColour; darken(@greenBaseColour, 5%));
-    }
-}
-body.player-blue {
-    .btn-team {
-        .button-variant(#fff; @blueBaseColour; darken(@blueBaseColour, 5%));
-    }
-}
 
-.badge {
-    &.team-blue, &.badge-own-points-blue, &.badge-other-points-green {
-        background-color: @blueBaseColour;
-    }
-    &.team-green, &.badge-own-points-green, &.badge-other-points-blue {
-        background-color: @greenBaseColour;
-    }
-}
+//.badge {
+//    &.team-blue, &.badge-own-points-blue, &.badge-other-points-green {
+//        background-color: @blueBaseColour;
+//    }
+//    &.team-green, &.badge-own-points-green, &.badge-other-points-blue {
+//        background-color: @greenBaseColour;
+//    }
+//}
 
 // Match score display
 .score-element {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 // Make sure ng-cloak is around even if angular is not loaded yet
