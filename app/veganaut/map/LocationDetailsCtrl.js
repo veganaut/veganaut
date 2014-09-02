@@ -2,17 +2,15 @@
     'use strict';
 
     module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', '$location', 'tileLayerUrl', 'locationService', 'visitService', 'playerService',
-        function($scope, $routeParams, $location, tileLayerUrl, locationService, visitService, playerService) {
+        ['$scope', '$routeParams', '$location', 'mapDefaults', 'locationService', 'visitService', 'playerService',
+        function($scope, $routeParams, $location, mapDefaults, locationService, visitService, playerService) {
             var locationId = $routeParams.id;
 
             /**
              * Leaflet map settings
              * @type {{}}
              */
-            $scope.mapSettings = {
-                tileLayer: tileLayerUrl
-            };
+            $scope.mapDefaults = mapDefaults;
 
             /**
              * Current center of the map

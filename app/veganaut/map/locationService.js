@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
-    module.factory('locationService', ['$q', 'Location', 'tileLayerUrl', 'backendService', 'alertService',
-        function($q, Location, tileLayerUrl, backendService, alertService) {
+    module.factory('locationService', ['$q', 'Location', 'mapDefaults', 'backendService', 'alertService',
+        function($q, Location, mapDefaults, backendService, alertService) {
             var LocationService = function() {
                 /**
                  * Deferred that stores the locations
@@ -23,9 +23,7 @@
                         lng: 7.451,
                         zoom: 13
                     },
-                    defaults: {
-                        tileLayer: tileLayerUrl
-                    }
+                    defaults: mapDefaults
                 };
 
                 /**

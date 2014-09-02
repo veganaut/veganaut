@@ -2,9 +2,9 @@
     'use strict';
 
     // TODO: refactor, document and add tests!!
-    module.controller('MapCtrl', ['$scope', '$location', 'tileLayerUrl', 'playerService', 'Location', 'locationService',
+    module.controller('MapCtrl', ['$scope', '$location', 'playerService', 'Location', 'locationService',
         // TODO: this page should only be available when logged in
-        function($scope, $location, tileLayerUrl, playerService, Location, locationService) {
+        function($scope, $location, playerService, Location, locationService) {
             var player;
 
             /**

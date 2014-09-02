@@ -11,10 +11,9 @@ describe('config', function() {
         }));
     });
 
-    describe('tileLayerUrl', function() {
-        it('should define the tileLayerUrl', inject(function(tileLayerUrl) { // jshint ignore:line
-            // Dummy test to see if we can inject tileLayerUrl (because it can be undefined or a string)
-            expect(true).toBe(true);
+    describe('mapDefaults', function() {
+        it('should define mapDefaults', inject(function(mapDefaults) {
+            expect(typeof mapDefaults).toBe('object', 'mapDefaults is an object');
         }));
     });
 
