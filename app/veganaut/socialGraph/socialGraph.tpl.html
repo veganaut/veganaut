@@ -11,7 +11,7 @@
 <div class="bottom-box container main-container">
     <div class="text-center" ng-show="selectedNode">
         <p>
-            <span class="badge team-{{selectedNode.team}}">
+            <span class="badge badge-team-{{selectedNode.team}}">
                 <span class="glyphicon glyphicon-eye-open"></span>
                 <span ng-bind="selectedNode.fullName"></span>
                 <span ng-show="selectedNode.nickname">
@@ -36,9 +36,11 @@
             </span>
             <span ng-show="selectedNode.hasBalance()">
                 <span ng-bind="'person.label.balance'|trans"></span>:
-                <span class="badge badge-own-points-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
-                <span class="badge badge-other-points-{{selectedNode.team}}" ng-bind="selectedNode.hits"></span>
+                <span class="badge badge-team-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
+                <span class="badge badge-hits" ng-bind="selectedNode.hits"></span>
             </span>
+        </p>
+        <p>
             <span ng-show="selectedNode.isCaptured" class="badge captured">
                 <span class="glyphicon glyphicon-asterisk"></span>
                 <span ng-bind="'person.label.captured'|trans"></span>

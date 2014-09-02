@@ -8,7 +8,7 @@
     </p>
     <p>
         <span ng-repeat="score in location.getSortedPoints()">
-            <span class="badge team-{{ score.team }}" tooltip="{{ 'location.score.explanation.teamPoints' | trans }}">
+            <span class="badge badge-team-{{ score.team }}" tooltip="{{ 'location.score.explanation.teamPoints' | trans }}">
                 {{ score.points }}
             </span>
         </span>

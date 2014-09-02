@@ -19,7 +19,7 @@
     }
 
     // Team badges
-    .badge.team-@{teamName} {
+    .badge.badge-team-@{teamName} {
         background-color: @baseColour;
     }
 
@@ -56,19 +56,14 @@
     margin-bottom: 5px;
 }
 
-// Create button that changes colour depending on the team
+// Team button if no team is defined (black)
 .btn-team {
     .button-variant(#fff; #333; darken(#333, 5%));
 }
 
-//.badge {
-//    &.team-blue, &.badge-own-points-blue, &.badge-other-points-green {
-//        background-color: @blueBaseColour;
-//    }
-//    &.team-green, &.badge-own-points-green, &.badge-other-points-blue {
-//        background-color: @greenBaseColour;
-//    }
-//}
+.badge.badge-hits {
+    background-color: black;
+}
 
 // Match score display
 .score-element {

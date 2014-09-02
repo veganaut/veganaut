@@ -3,7 +3,7 @@
 
 var helpers = require('./helpers');
 
-describe('scenarios.', function() {
+describe('authentication.', function() {
     var ptor;
 
     beforeEach(function() {
@@ -60,7 +60,7 @@ describe('scenarios.', function() {
             });
 
             it('should mark the current player\'s team.', function() {
-                expect(element(by.css('body.player-blue')).isPresent()).toBe(true);
+                expect(element(by.css('body.player-team1')).isPresent()).toBe(true);
             });
         });
     });

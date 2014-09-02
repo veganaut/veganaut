@@ -58,8 +58,8 @@ describe('socialGraph.', function() {
 
     it('nodes should have teams.', function() {
         // Check that the graph has the correct elements
-        expect(element(by.css('social-graph .node.team-blue')).isPresent()).toBe(true);
-        expect(element(by.css('social-graph .node.team-green')).isPresent()).toBe(true);
+        expect(element(by.css('social-graph .node.team-team1')).isPresent()).toBe(true);
+        expect(element(by.css('social-graph .node.team-team2')).isPresent()).toBe(true);
     });
 
     describe('createActivity link form.', function() {

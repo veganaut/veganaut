@@ -63,12 +63,12 @@ describe('map.', function() {
 
         it('should show some locations on the map.', function() {
             expect(element.all(by.css('.map-location')).count()).toBeGreaterThan(0, 'has at least one location');
-            expect(element.all(by.css('.map-location.team-blue')).count()).toBeGreaterThan(0, 'has at least one blue location');
-            expect(element.all(by.css('.map-location.team-green')).count()).toBeGreaterThan(0, 'has at least one green location');
+            expect(element.all(by.css('.map-location.team-team1')).count()).toBeGreaterThan(0, 'has at least one team1 location');
+            expect(element.all(by.css('.map-location.team-team2')).count()).toBeGreaterThan(0, 'has at least one team2 location');
         });
 
         it('should toggle showing details when selecting a location.', function() {
-            var location = element(by.css('.map-location.team-blue'));
+            var location = element(by.css('.map-location.team-team1'));
             location.click();
 
             var details = element(by.css('.location-details'));

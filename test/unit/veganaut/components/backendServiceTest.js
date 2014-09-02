@@ -74,13 +74,13 @@ describe('backendService', function() {
         // Define our expectations
         $httpBackend.expectGET('/match')
             .respond({
-                blue: {
+                team1: {
                     score: 113,
                     users: 130,
                     babies: 20,
                     captured: 27
                 },
-                green: {
+                team2: {
                     score: 85,
                     users: 105,
                     babies: 18,
@@ -109,7 +109,7 @@ describe('backendService', function() {
                 email: 'foo@bar.baz',
                 nickname: 'Alicster',
                 fullName: 'Alice Alison',
-                team: 'blue',
+                team: 'team1',
                 role: 'veteran',
                 id: '000000000000000000000001',
                 type: 'user',
