@@ -14,10 +14,9 @@
             login: 'Login',
             logout: 'Logout',
             map: 'Karte',
-            profile: 'Mein Profil',
-            avatar: 'Mein Netzwerk',
-            openActivities: 'Geplante Einladungen',
-            referenceCode: 'Einladungs-Code eingeben'
+            profile: 'Profil',
+            avatar: 'Netzwerk',
+            activities: 'Einladungen'
         },
         form: {
             referenceCode: {
@@ -91,7 +90,7 @@
         },
         openActivities: {
             title: 'Geplante Einladungen',
-            description: 'Codes für alle geplanten Einladungen.'
+            description: 'Codes für deine geplanten Einladungen:'
         },
         person: {
             role: {

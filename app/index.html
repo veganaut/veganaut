@@ -27,24 +27,20 @@
             <nav class="collapse" collapse="!menuShown">
                 <button class="btn btn-default btn-block navFront" ng-click="goToView('')"
                  ng-if="!isLoggedIn()" ng-bind="'navigation.front' | trans"></button>
-                <button class="btn btn-default btn-block nav-register" ng-click="goToView('register')"
-                 ng-if="!isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
-
-                <button class="btn btn-default btn-block navLogin" ng-click="goToView('login')"
-                 ng-if="!canViewGraph()" ng-bind="'navigation.login' | trans"></button>
 
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('map')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.map' | trans"></button>
-                <button class="btn btn-default btn-block new-profile" ng-click="goToView('me')"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.profile' | trans"></button>
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
-                <button class="btn btn-default btn-block navActivities" ng-click="goToView('openActivities')"
-                 ng-if="canViewGraph()" ng-bind="'navigation.openActivities' | trans"></button>
+                <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
+                 ng-bind="'navigation.activities' | trans"></button>
+                <button class="btn btn-default btn-block nav-profile" ng-click="goToView('me')"
+                 ng-if="isLoggedIn()" ng-bind="'navigation.profile' | trans"></button>
 
-                <button class="btn btn-default btn-block nav-ref-code" ng-click="goToView('referenceCode')"
-                 ng-bind="'navigation.referenceCode' | trans"></button>
-
+                <button class="btn btn-default btn-block nav-register" ng-click="goToView('register')"
+                 ng-if="!isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
+                <button class="btn btn-default btn-block nav-login" ng-click="goToView('login')"
+                 ng-if="!canViewGraph()" ng-bind="'navigation.login' | trans"></button>
                 <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
                  ng-if="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
             </nav>

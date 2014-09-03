@@ -41,7 +41,7 @@ describe('profile.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
 
-            var profileNavEntry = element(by.css('button.new-profile'));
+            var profileNavEntry = element(by.css('button.nav-profile'));
             expect(profileNavEntry.isPresent()).toBe(true, 'nav entry for profile is present');
             profileNavEntry.click();
             expect(ptor.getCurrentUrl()).toMatch(/\/me/);
@@ -50,7 +50,7 @@ describe('profile.', function() {
             expect(profileText).toContain('Alice Alison');
             expect(profileText).toContain('foo@bar.baz');
             expect(profileText).toContain('Veteran');
-            expect(profileText).toContain('Grün');
+            expect(profileText).toContain('Blau');
 
             // TODO: add smarter checks that the profile is fine (such as is the balance displayed)
         });
@@ -62,7 +62,7 @@ describe('profile.', function() {
         beforeEach(function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.new-profile')).click();
+            element(by.css('button.nav-profile')).click();
 
             editProfile = element(by.css('button.edit-profile'));
         });

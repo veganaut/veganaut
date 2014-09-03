@@ -2,9 +2,11 @@
     'use strict';
 
     // TODO: refactor, document and add tests!!
-    module.controller('MapCtrl', ['$scope', '$location', 'playerService', 'Location', 'locationService',
-        // TODO: this page should only be available when logged in
-        function($scope, $location, playerService, Location, locationService) {
+    module.controller('MapCtrl', ['$scope', '$location', 'playerService', 'Location', 'locationService', 'backendService',
+        function($scope, $location, playerService, Location, locationService, backendService) {
+            if (!backendService.isLoggedIn()) {
+                $scope.goToView('login');
+            }
             var player;
 
             /**

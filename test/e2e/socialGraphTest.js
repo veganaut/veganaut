@@ -120,18 +120,18 @@ describe('socialGraph.', function() {
             expect(element.all(by.css('social-graph .node.type-maybe')).count()).toBe(3, 'maybe nodes after');
 
             // Should show the new open activity link
-            browser.get('/openActivities');
+            browser.get('/activities');
             expect(element(by.css('.reference-code-list')).getText()).toContain('Hans');
         });
     });
 
     describe('list of open activity links.', function() {
         beforeEach(function() {
-            browser.get('/openActivities');
+            browser.get('/activities');
         });
 
-        it('shows the list of open activities when browsing to /openActivities.', function() {
-            expect(ptor.getCurrentUrl()).toMatch(/\/openActivities/);
+        it('shows the list of open activities when browsing to /activities.', function() {
+            expect(ptor.getCurrentUrl()).toMatch(/\/activities/);
 
             expect(element.all(by.css('.reference-code-list li')).count()).toBeGreaterThan(0);
 

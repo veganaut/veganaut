@@ -35,8 +35,8 @@ describe('referenceCodes.', function() {
         it('should have a page to enter the reference code.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.nav-ref-code')).click();
-            expect(ptor.getCurrentUrl()).toMatch(/\/referenceCode/);
+            element(by.css('button.nav-activities')).click();
+            expect(ptor.getCurrentUrl()).toMatch(/\/activities/);
 
             var refInput = element(by.model('form.referenceCode'));
             expect(refInput.isPresent()).toBe(true);
@@ -46,7 +46,7 @@ describe('referenceCodes.', function() {
         it('should show the graph when entering a valid reference code.', function() {
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.nav-ref-code')).click();
+            element(by.css('button.nav-activities')).click();
 
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('OiWCrB\n');
@@ -80,7 +80,7 @@ describe('referenceCodes.', function() {
 
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.nav-ref-code')).click();
+            element(by.css('button.nav-activities')).click();
 
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Alice Eve for this activityLink
@@ -127,7 +127,7 @@ describe('referenceCodes.', function() {
 
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.nav-ref-code')).click();
+            element(by.css('button.nav-activities')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
 
@@ -153,7 +153,7 @@ describe('referenceCodes.', function() {
 
             menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
-            element(by.css('button.navActivities')).click();
+            element(by.css('button.nav-activities')).click();
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
             ;

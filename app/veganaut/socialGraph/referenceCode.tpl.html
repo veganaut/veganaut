@@ -1,7 +1,8 @@
-<form novalidate name="referenceCodeForm" class="reference-code-form spaced-form">
+<form novalidate name="referenceCodeForm" class="reference-code-form spaced-form"  ng-controller="ReferenceCodeCtrl">
     <input type="text" required class="form-control" ng-model="form.referenceCode"
      placeholder="{{ 'form.referenceCode.placeholder' | trans }}"/>
 
-    <button type="submit" class="btn btn-default" ng-disabled="referenceCodeForm.$invalid"
+    <button type="submit" class="btn btn-default pull-right" ng-disabled="referenceCodeForm.$invalid"
      ng-click="submitReferenceCode()" ng-bind="'form.referenceCode.submit' | trans"></button>
+    <div class="clearfix"></div>
 </form>

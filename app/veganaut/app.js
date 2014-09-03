@@ -25,8 +25,7 @@
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
             $routeProvider.when('/socialGraph', {templateUrl: '/veganaut/socialGraph/socialGraph.tpl.html', controller: 'SocialGraphCtrl'});
             $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});
-            $routeProvider.when('/openActivities', {templateUrl: '/veganaut/socialGraph/openActivities.tpl.html', controller: 'OpenActivitiesCtrl'});
-            $routeProvider.when('/referenceCode', {templateUrl: '/veganaut/socialGraph/referenceCode.tpl.html', controller: 'ReferenceCodeCtrl'});
+            $routeProvider.when('/activities', {templateUrl: '/veganaut/socialGraph/activities.tpl.html'});
             $routeProvider.when('/map', {templateUrl: '/veganaut/map/map.tpl.html'});
             $routeProvider.when('/map/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
