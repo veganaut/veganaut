@@ -16,7 +16,8 @@
             map: 'Karte',
             profile: 'Profil',
             avatar: 'Netzwerk',
-            activities: 'Einladungen'
+            activities: 'Einladungen',
+            blog: 'Blog'
         },
         form: {
             referenceCode: {

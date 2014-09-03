@@ -43,6 +43,9 @@
                  ng-if="!canViewGraph()" ng-bind="'navigation.login' | trans"></button>
                 <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
                  ng-if="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
+
+                <button class="btn btn-default btn-block nav-blog" ng-click="goToBlog()"
+                 ng-bind="'navigation.blog' | trans"></button>
             </nav>
         </div>
     </div>

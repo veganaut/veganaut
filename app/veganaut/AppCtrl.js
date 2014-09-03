@@ -8,6 +8,11 @@
                 $location.path(view);
             };
 
+            $scope.goToBlog = function() {
+                $scope.menuShown = false;
+                $window.open('http://blog.veganaut.net');
+            };
+
             // Expose some backend states
             $scope.isLoggedIn = backendService.isLoggedIn;
             $scope.canViewGraph = backendService.canViewGraph;
