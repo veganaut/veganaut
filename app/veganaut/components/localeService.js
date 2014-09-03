@@ -116,9 +116,9 @@
             }
         },
         team: {
-            team1: 'Grün',
-            team2: 'Türkis',
-            team3: 'Blau',
+            team1: 'Blau',
+            team2: 'Grün',
+            team3: 'Türkis',
             team4: 'Rot',
             team5: 'Braun'
         },
