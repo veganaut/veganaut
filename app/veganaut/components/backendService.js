@@ -30,7 +30,7 @@
             if (angular.isString(sid)) {
                 sessionId = sid;
                 personId = undefined;
-                sessionStorage.setItem('sid', sid);
+                localStorage.setItem('sid', sid);
                 $http.defaults.headers.common.Authorization = 'VeganautBearer ' + sid;
 
                 $rootScope.$emit('veganaut.backend.session.login');
@@ -43,7 +43,7 @@
         var handleLogout = function() {
             sessionId = undefined;
             personId = undefined;
-            sessionStorage.removeItem('sid');
+            localStorage.removeItem('sid');
             $http.defaults.headers.common.Authorization = undefined;
 
             alertService.removeAllAlerts();
@@ -298,7 +298,7 @@
             alertService = _alertService_;
 
             // Try to get session sid from storage
-            handleLogin(sessionStorage.getItem('sid'));
+            handleLogin(localStorage.getItem('sid'));
 
             return {
                 isLoggedIn: isLoggedIn,
