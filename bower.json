@@ -5,7 +5,7 @@
         "angular": "1.2.21",
         "angular-route": "1.2.21",
         "angular-ui-bootstrap-bower": "0.11.0",
-        "angular-leaflet-directive": "0.7.7",
+        "angular-leaflet-directive": "0.7.8",
         "leaflet": "0.7.3",
         "d3": "3.4.11",
         "jquery": "2.1.1",
