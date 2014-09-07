@@ -1,5 +1,7 @@
-(function(module) {
+(function() {
     'use strict';
+
+    var module = angular.module('veganaut.app.backend', []);
 
     /**
      * Interface with the backend
@@ -9,12 +11,7 @@
         var $http;
         var $rootScope;
         var backendUrl;
-        var alertService;
-
-        /**
-         * The session id of the current user
-         */
-        var sessionId;
+        var sessionService;
 
         /**
          * Person id is set if the user entered a reference code but is not
@@ -23,40 +20,11 @@
         var personId;
 
         /**
-         * Handles a login with the given session id
-         * @param sid
-         */
-        var handleLogin = function(sid) {
-            if (angular.isString(sid)) {
-                sessionId = sid;
-                personId = undefined;
-                localStorage.setItem('sid', sid);
-                $http.defaults.headers.common.Authorization = 'VeganautBearer ' + sid;
-
-                $rootScope.$emit('veganaut.backend.session.login');
-            }
-        };
-
-        /**
-         * Logs the user out (removes the session)
-         */
-        var handleLogout = function() {
-            sessionId = undefined;
-            personId = undefined;
-            localStorage.removeItem('sid');
-            $http.defaults.headers.common.Authorization = undefined;
-
-            alertService.removeAllAlerts();
-
-            $rootScope.$emit('veganaut.backend.session.logout');
-        };
-
-        /**
          * Returns whether the user is currently logged in
          * @returns {boolean}
          */
         var isLoggedIn = function() {
-            return (angular.isString(sessionId));
+            return sessionService.hasValidSession();
         };
 
         /**
@@ -110,20 +78,19 @@
         var login = function(email, password) {
             return $http.post(backendUrl + '/session', {email: email, password: password})
                 .success(function(data) {
-                    handleLogin(data.sessionId);
+                    sessionService.createSession(data.sessionId);
                 })
-                .error(handleLogout);
+                .error(sessionService.destroySession.bind(sessionService));
         };
 
         /**
          * Sends the logout request to the backend
-         * @returns {promise} promise returned from $http.delete
+         * @returns {promise}
          */
         var logout = function() {
             // TODO: make sure we are logged in first
             return $http.delete(backendUrl + '/session')
-                .success(handleLogout)
-                .error(handleLogout);
+                .finally(sessionService.destroySession.bind(sessionService));
         };
 
         /**
@@ -291,33 +258,40 @@
          * Returns this service
          * @type {*[]}
          */
-        this.$get = ['$http', '$rootScope', 'backendUrl', 'alertService', function(_$http_, _$rootScope_, _backendUrl_, _alertService_) {
-            $http = _$http_;
-            $rootScope = _$rootScope_;
-            backendUrl = _backendUrl_;
-            alertService = _alertService_;
+        this.$get = ['$http', '$rootScope', 'backendUrl', 'sessionService',
+            function(_$http_, _$rootScope_, _backendUrl_, _sessionService_) {
+                $http = _$http_;
+                $rootScope = _$rootScope_;
+                backendUrl = _backendUrl_;
+                sessionService = _sessionService_;
 
-            // Try to get session sid from storage
-            handleLogin(localStorage.getItem('sid'));
+                // Subscribe to session events
+                $rootScope.$onRootScope('veganaut.session.created', function() {
+                    personId = undefined;
+                });
+                $rootScope.$onRootScope('veganaut.session.destroyed', function() {
+                    personId = undefined;
+                });
 
-            return {
-                isLoggedIn: isLoggedIn,
-                canViewGraph: canViewGraph,
-                register: register,
-                login: login,
-                logout: logout,
-                getActivities: getActivities,
-                getGraph: getGraph,
-                addActivityLink: addActivityLink,
-                submitReferenceCode: submitReferenceCode,
-                getOpenActivityLinks: getOpenActivityLinks,
-                getMatch: getMatch,
-                getMe: getMe,
-                updateMe: updateMe,
-                getLocations: getLocations,
-                submitVisit: submitVisit,
-                submitLocation: submitLocation
-            };
-        }];
+                return {
+                    isLoggedIn: isLoggedIn,
+                    canViewGraph: canViewGraph,
+                    register: register,
+                    login: login,
+                    logout: logout,
+                    getActivities: getActivities,
+                    getGraph: getGraph,
+                    addActivityLink: addActivityLink,
+                    submitReferenceCode: submitReferenceCode,
+                    getOpenActivityLinks: getOpenActivityLinks,
+                    getMatch: getMatch,
+                    getMe: getMe,
+                    updateMe: updateMe,
+                    getLocations: getLocations,
+                    submitVisit: submitVisit,
+                    submitLocation: submitLocation
+                };
+            }
+        ];
     });
-})(window.veganaut.mainModule);
+})();

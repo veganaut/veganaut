@@ -100,9 +100,8 @@
             }
         };
 
-        // Subscribe to login and logout events
-        $rootScope.$onRootScope('veganaut.backend.session.login', retrieveFromBackend);
-        $rootScope.$onRootScope('veganaut.backend.session.logout', resetMe);
+        // Subscribe to session created event to get the user data
+        $rootScope.$onRootScope('veganaut.session.created', retrieveFromBackend);
 
         // Check if we are logged in already
         if (backendService.isLoggedIn()) {

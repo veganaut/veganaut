@@ -13,20 +13,17 @@
                 $window.open('http://blog.veganaut.net');
             };
 
-            // Expose some backend states
+            // Expose some backend states and methods
             $scope.isLoggedIn = backendService.isLoggedIn;
             $scope.canViewGraph = backendService.canViewGraph;
+            $scope.logout = backendService.logout;
 
             $scope.menuShown = false;
 
-            $scope.logout = function() {
-                backendService.logout()
-                    .success(function() {
-                        $scope.goToView('');
-                        $window.location.reload();
-                    })
-                ;
-            };
+            // Reload the whole app when the session gets destroyed to clear all data
+            $scope.$onRootScope('veganaut.session.destroyed', function() {
+                $window.location.reload();
+            });
 
             // Get the logged in user data
             playerService.getMe().then(function(me) {

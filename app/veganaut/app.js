@@ -10,6 +10,8 @@
         'veganaut.form',
         'veganaut.i18n',
         'veganaut.app.main',
+        'veganaut.app.session',
+        'veganaut.app.backend',
         'veganaut.app.map',
         'veganaut.app.score',
         'veganaut.app.socialGraph',

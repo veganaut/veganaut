@@ -26,18 +26,18 @@ describe('playerService', function() {
         spyOn(backendServiceMock, 'getMe').andCallThrough();
 
         $onRootScopeSpy = jasmine.createSpy('$onRootScope');
-        $provide.decorator('$rootScope', ['$delegate', function($delegate) {
+        $provide.decorator('$rootScope', function($delegate) {
             $delegate.constructor.prototype.$onRootScope = $onRootScopeSpy;
             return $delegate;
-        }]);
+        });
+
 
         $provide.value('backendService', backendServiceMock);
     }));
 
-    it('should subscribe to login and logout events', inject(function(playerService) { // jshint ignore:line
-        expect($onRootScopeSpy.callCount).toEqual(2);
-        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.backend.session.login', jasmine.any(Function));
-        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.backend.session.logout', jasmine.any(Function));
+    it('should subscribe to session created event', inject(function(playerService) { // jshint ignore:line
+        expect($onRootScopeSpy.callCount).toEqual(1);
+        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.session.created', jasmine.any(Function));
     }));
 
     it('should have a getMe method', inject(function(playerService) {
@@ -51,7 +51,7 @@ describe('playerService', function() {
         var loginListener;
         for (var i = 0; i < $onRootScopeSpy.calls.length; i++) {
             var call = $onRootScopeSpy.calls[i];
-            if (call.args[0] === 'veganaut.backend.session.login') {
+            if (call.args[0] === 'veganaut.session.created') {
                 loginListener = call.args[1];
                 break;
             }
@@ -59,24 +59,5 @@ describe('playerService', function() {
 
         loginListener();
         expect(backendServiceMock.getMe).toHaveBeenCalled();
-    }));
-
-    it('should reset the player data on logout', inject(function(/*playerService*/) {
-        // Find the logout listener
-        // TODO: write this test again with getMe returning a promise
-//        var logoutListener;
-//        for (var i = 0; i < $onRootScopeSpy.calls.length; i++) {
-//            var call = $onRootScopeSpy.calls[i];
-//            if (call.args[0] === 'veganaut.backend.session.logout') {
-//                logoutListener = call.args[1];
-//                break;
-//            }
-//        }
-//
-//        var me = playerService.getMe();
-//        me.test = 'this should be removed after';
-//        logoutListener();
-//
-//        expect(me).toEqual({}, 'should empty the me object');
     }));
 });
