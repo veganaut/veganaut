@@ -46,8 +46,28 @@
                 <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
                  ng-if="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
 
-                <button class="btn btn-default btn-block nav-blog" ng-click="goToBlog()"
-                 ng-bind="'navigation.blog' | trans"></button>
+                <div class="row navbar-footer">
+                    <div class="col-xs-6 col-sm-3 text-center">
+                        <a href="http://blog.veganaut.net/" target="_blank">
+                            {{ 'navigation.blog' | trans }}
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 text-center">
+                        <a href="http://blog.veganaut.net/contact" target="_blank">
+                            {{ 'navigation.contactForm' | trans }}
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 text-center">
+                        <a href="https://twitter.com/veganautnet" target="_blank">
+                            {{ 'navigation.twitter' | trans }}
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 text-center">
+                        <a href="https://www.facebook.com/veganautnetwork" target="_blank">
+                            {{ 'navigation.facebook' | trans }}
+                        </a>
+                    </div>
+                </div>
             </nav>
         </div>
     </div>

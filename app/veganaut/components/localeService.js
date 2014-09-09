@@ -17,7 +17,10 @@
             profile: 'Profil',
             avatar: 'Netzwerk',
             activities: 'Einladungen',
-            blog: 'Blog'
+            blog: 'Blog',
+            contactForm: 'Kontakt',
+            twitter: 'Twitter',
+            facebook: 'Facebook'
         },
         form: {
             referenceCode: {
