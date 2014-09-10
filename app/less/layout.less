@@ -1,9 +1,17 @@
+.full-viewport {
+    position: absolute;
+    top: @navbarHeight;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .main-container {
-    margin-top: 55px;
+    margin-top: @navbarHeight + 10px;
 }
 
 .main-container, .navbar-container {
-    max-width: 550px;
+    max-width: @maxContainerWidth;
 }
 
 .menu-backdrop {
@@ -26,13 +34,13 @@
     margin-bottom: 5px;
 }
 
-.bottom-box {
-    background-color: #f8f8f8;
-    bottom: 0;
-    box-shadow: 0 0 5px black;
-    margin-left: -15px;
+.top-box {
+    background-color: @bootstrapGreyBackground;
+    top: -10px;
+    left: 0;
+    right: 0;
+    border: 1px solid @bootstrapGreyBorder;
     padding-top: 10px;
-    position: absolute;
-    width: 100%;
+    position: fixed;
     z-index: 1000;
 }

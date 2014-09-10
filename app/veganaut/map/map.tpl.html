@@ -1,9 +1,5 @@
 <div ng-class="{'is-adding-location': isAddingLocation}" ng-controller="MapCtrl">
-    <leaflet class="main-map page-section" ng-if="locationsLoaded"
-     markers="locations" defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
-    </leaflet>
-
-    <div class="bottom-box container main-container">
+    <div class="top-box container main-container">
         <p ng-hide="location.active">
             <button type="button" class="add-location btn btn-block btn-team"
              ng-click="startAddNewLocation()">
@@ -56,4 +52,8 @@
             </button>
         </form>
     </div>
+
+    <leaflet class="main-map full-viewport" ng-if="locationsLoaded"
+     markers="locations" defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
+    </leaflet>
 </div>

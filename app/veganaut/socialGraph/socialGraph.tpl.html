@@ -1,14 +1,4 @@
-<div ng-include="'/veganaut/score/match.tpl.html'"></div>
-
-<div class="page-section">
-
-</div>
-
-<g id="viewport">
-    <social-graph class="social-graph" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
-</g>
-
-<div class="bottom-box container main-container">
+<div class="top-box container main-container">
     <div class="text-center" ng-show="selectedNode">
         <p>
             <span class="badge badge-team-{{selectedNode.team}}">
@@ -73,3 +63,9 @@
         </button>
     </p>
 </div>
+
+<div class="page-section">
+    <social-graph class="social-graph" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
+</div>
+
+<div ng-include="'/veganaut/score/match.tpl.html'"></div>
