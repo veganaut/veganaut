@@ -4,7 +4,7 @@
     module.controller('LoginCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
             if (backendService.isLoggedIn()) {
-                $scope.goToView('socialGraph');
+                $scope.goToView('map');
             }
 
             $scope.submit = function() {

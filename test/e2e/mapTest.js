@@ -68,7 +68,7 @@ describe('map.', function() {
         });
 
         it('should toggle showing details when selecting a location.', function() {
-            var location = element(by.css('.map-location.team-team1'));
+            var location = element.all(by.css('.map-location.team-team1')).first();
             location.click();
 
             var details = element(by.css('.location-details'));

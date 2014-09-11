@@ -1,4 +1,4 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, xit, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -31,7 +31,8 @@ describe('authentication.', function() {
         });
     });
 
-    it('should redirect to /login for pages needing authentication.', function() {
+    // Social graph is not active at the moment
+    xit('should redirect to /login for pages needing authentication.', function() {
         browser.get('/socialGraph');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 

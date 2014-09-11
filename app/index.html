@@ -32,10 +32,12 @@
 
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('map')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.map' | trans"></button>
+                <!-- Social graph is not active at the moment
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
                 <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
                  ng-bind="'navigation.activities' | trans"></button>
+                -->
                 <button class="btn btn-default btn-block nav-profile" ng-click="goToView('me')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.profile' | trans"></button>
 
@@ -118,6 +120,7 @@
 
 <script src="/veganaut/score/MatchCtrl.js"></script>
 
+<!-- Social graph is not active at the moment
 <script src="/veganaut/socialGraph/ActivityLinkCtrl.js"></script>
 <script src="/veganaut/socialGraph/NodeModel.js"></script>
 <script src="/veganaut/socialGraph/nodeService.js"></script>
@@ -125,6 +128,7 @@
 <script src="/veganaut/socialGraph/ReferenceCodeCtrl.js"></script>
 <script src="/veganaut/socialGraph/SocialGraphCtrl.js"></script>
 <script src="/veganaut/socialGraph/socialGraphDirective.js"></script>
+-->
 
 <script src="/veganaut/user/EditProfileCtrl.js"></script>
 <script src="/veganaut/user/LoginCtrl.js"></script>

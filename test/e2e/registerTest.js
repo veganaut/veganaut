@@ -49,9 +49,12 @@ describe('register.', function() {
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
         expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
-        // Should show a social graph with me and two dummies and no connections
-        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-        expect(element.all(by.css('social-graph .node')).count()).toBe(3, 'total nodes');
-        expect(element.all(by.css('social-graph .link')).count()).toBe(0, 'total links');
+        expect(ptor.getCurrentUrl()).toMatch(/\/map/);
+
+        // Social graph is not active at the moment
+//        // Should show a social graph with me and two dummies and no connections
+//        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
+//        expect(element.all(by.css('social-graph .node')).count()).toBe(3, 'total nodes');
+//        expect(element.all(by.css('social-graph .link')).count()).toBe(0, 'total links');
     });
 });
