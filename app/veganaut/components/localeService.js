@@ -233,7 +233,8 @@
                        nothingNew: 'Nichts neues'
                    },
                    outcome: {
-                       description: 'Laut dem Personal neu erhältlich:'
+                       description: 'Laut dem Personal neu erhältlich:',
+                       descriptionNothing: 'Laut dem Personal ist nichts neues erhältlich.'
                    }
                },
                whatOptions: {
