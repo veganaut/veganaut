@@ -177,15 +177,50 @@
                },
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
-                   description: 'Gibt es hier etwas Veganes?',
+                   description: 'Gibt es hier laut dem Personal etwas Veganes?',
                    explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
                    form: {
                        yes: 'Ja',
                        no: 'Nein'
                    },
                    outcome: {
-                       hasVegan: 'Du hast gesagt, es gebe hier etwas Veganes.',
-                       noVegan: 'Du hast gesagt, es gebe hier nichts Veganes.'
+                       hasVegan: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
+                       noVegan: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.'
+                   }
+               },
+               wantVegan: {
+                   title: 'Sag dem Personal, dass du an einem veganen Angebot interessiert bist.',
+                   description: 'Welche Ausdrücke hast du gebraucht, um dem Personal dein Interesse an einem veganen Angebot mitzuteilen?',
+                   explanation: 'Bringe irgendwie zum Ausdruck, dass du an einem veganen Angebot interessiert bist. Das Personal soll merken: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." So steigt die Chance, dass das vegane Angebot hier vergrössert und verbessert wird.',
+                   form: {
+                       vegan: 'vegan',
+                       plantbased: '(rein) pflanzlich',
+                       noAnimalproducts: 'ohne Tierprodukte',
+                       noMeat: 'ohne Fleisch',
+                       noMilk: 'ohne Milchprodukte',
+                       noEggs: 'ohne Eier',
+                       noHoney: 'ohne Honig',
+                       noWool: 'ohne Wolle',
+                       noLeather: 'ohne Leder',
+                       noFur: 'ohne Fell',
+                       other: 'Andere:',
+                       placeholder: 'Hier andere Ausdrücke eintragen, die du gebraucht hast',
+                   },
+                   outcome: {
+                       wordsUsed: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
+                   }
+               },
+               particularOption: {
+                   title: 'Frage nach einem bestimmten veganen Produkt.',
+                   description: 'Nach welchen veganen Produkt hast du gefragt?',
+                   explanation: 'Frag das Personal nach einem oder mehreren veganen Produkten, die dich interessieren. Wenn sie sie z.T. noch nicht im Angebot haben, nehmen sie sie vielleicht ins Sortiment auf, wenn genügend Leute danach fragen.',
+                   form: {
+                       placeholder: 'Hier Produkt eintragen, nach dem du gefragt hast',
+                       haveIt: 'Gibt\'s hier',
+                       doNotHaveIt: 'Gibt\'s hier nicht'
+                   },
+                   outcome: {
+                       description: 'Du hast nach diesen veganen Produkten gefragt:'
                    }
                },
                whatOptions: {
