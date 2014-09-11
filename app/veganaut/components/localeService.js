@@ -204,7 +204,7 @@
                        noLeather: 'ohne Leder',
                        noFur: 'ohne Fell',
                        other: 'Andere:',
-                       placeholder: 'Hier andere Ausdrücke eintragen, die du gebraucht hast',
+                       placeholder: 'Hier andere Ausdrücke eintragen, die du gebraucht hast'
                    },
                    outcome: {
                        wordsUsed: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
@@ -221,6 +221,19 @@
                    },
                    outcome: {
                        description: 'Du hast nach diesen veganen Produkten gefragt:'
+                   }
+               },
+               newOption: {
+                   title: 'Frage, ob es neue vegane Produkte im Angebot hat.',
+                   description: 'Hat es laut dem Personal neue vegane Produkte im Angebot?',
+                   explanation: 'Frag das Personal, ob sie hier in letzter Zeit neue vegane Produkte ins Angebot aufgenommen haben.',
+                   form: {
+                       placeholder: 'Hier neues veganes Produkt eintragen',
+                       somethingNew: 'Neu erhältlich',
+                       nothingNew: 'Nichts neues'
+                   },
+                   outcome: {
+                       description: 'Laut dem Personal neu erhältlich:'
                    }
                },
                whatOptions: {
