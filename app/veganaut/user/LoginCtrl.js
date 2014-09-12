@@ -4,14 +4,14 @@
     module.controller('LoginCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
             if (backendService.isLoggedIn()) {
-                $scope.goToView('map');
+                $scope.goToView('');
             }
 
             $scope.submit = function() {
                 backendService.login($scope.form.email, $scope.form.password)
                     .success(function () {
                         if (backendService.isLoggedIn()) {
-                            $scope.goToView('map');
+                            $scope.goToView('');
                         }
                     })
                     .error(function (data) {

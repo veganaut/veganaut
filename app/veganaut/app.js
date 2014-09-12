@@ -22,7 +22,6 @@
         function($routeProvider, $locationProvider, useHtml5Mode) {
             $locationProvider.html5Mode(useHtml5Mode);
 
-            $routeProvider.when('/', {templateUrl: '/veganaut/front/front.tpl.html'});
             $routeProvider.when('/register', {templateUrl: '/veganaut/user/register.tpl.html', controller: 'RegisterCtrl'});
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
 
@@ -31,8 +30,8 @@
 //            $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});
 //            $routeProvider.when('/activities', {templateUrl: '/veganaut/socialGraph/activities.tpl.html'});
 
-            $routeProvider.when('/map', {templateUrl: '/veganaut/map/map.tpl.html'});
-            $routeProvider.when('/map/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
+            $routeProvider.when('/', {templateUrl: '/veganaut/map/map.tpl.html'});
+            $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.otherwise({redirectTo: '/'});

@@ -49,7 +49,7 @@ describe('register.', function() {
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
         expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
-        expect(ptor.getCurrentUrl()).toMatch(/\/map/);
+        expect(ptor.getCurrentUrl()).toMatch(/\//);
 
         // Social graph is not active at the moment
 //        // Should show a social graph with me and two dummies and no connections

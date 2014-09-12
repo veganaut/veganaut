@@ -24,14 +24,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand color-team" href="#" ng-bind="'app.title' | trans"></span>
+                <span class="navbar-brand clickable color-team" ng-click="goToView('')">
+                    {{ 'app.title' | trans }}
+                </span>
             </div>
             <nav class="collapse" collapse="!menuShown">
-                <button class="btn btn-default btn-block navFront" ng-click="goToView('')"
-                 ng-if="!isLoggedIn()" ng-bind="'navigation.front' | trans"></button>
-
-                <button class="btn btn-default btn-block nav-map" ng-click="goToView('map')"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.map' | trans"></button>
+                <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
+                 ng-bind="'navigation.map' | trans"></button>
                 <!-- Social graph is not active at the moment
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>

@@ -48,7 +48,7 @@ describe('map.', function() {
     it('should have a button to get to the map.', function() {
         expect(mapNavEntry.isPresent()).toBe(true, 'nav entry for map is present');
         mapNavEntry.click();
-        expect(ptor.getCurrentUrl()).toMatch(/\/map/);
+        expect(ptor.getCurrentUrl()).toMatch(/\//);
     });
 
     describe('visit map.', function() {
@@ -102,7 +102,7 @@ describe('map.', function() {
 
         describe('visit 3dosha as alice.', function() {
             it('should show title and missions.', function() {
-                browser.get('/map/location/000000000000000000000006');
+                browser.get('/location/000000000000000000000006');
                 expect(element(by.css('h1')).getText()).toMatch(/3dosha/, 'contains location title');
 
                 expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
@@ -112,7 +112,7 @@ describe('map.', function() {
 
         describe('visit ruprecht as alice.', function() {
             it('should show title and missions.', function() {
-                browser.get('/map/location/000000000000000000000007');
+                browser.get('/location/000000000000000000000007');
                 expect(element(by.css('h1')).getText()).toMatch(/Ruprecht/, 'contains location title');
 
                 expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');

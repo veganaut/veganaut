@@ -27,7 +27,7 @@
 
             $scope.submitVisit = function() {
                 visitService.submitVisit($scope.visit);
-                $location.path('map');
+                $location.path('/');
             };
 
             // TODO: should directly ask for the correct location from the locationService

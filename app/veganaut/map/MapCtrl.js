@@ -4,9 +4,6 @@
     // TODO: refactor, document and add tests!!
     module.controller('MapCtrl', ['$scope', '$location', 'playerService', 'Location', 'locationService', 'backendService',
         function($scope, $location, playerService, Location, locationService, backendService) {
-            if (!backendService.isLoggedIn()) {
-                $scope.goToView('login');
-            }
             var player;
 
             /**
@@ -27,11 +24,11 @@
              */
             $scope.locations = [];
 
+            /**
+             * Whether the locations have already been loaded
+             * @type {boolean}
+             */
             $scope.locationsLoaded = false;
-            locationService.getLocations().then(function(locations) {
-                $scope.locations = locations;
-                $scope.locationsLoaded = true;
-            });
 
             /**
              * Expose the location types
@@ -81,7 +78,7 @@
              * @param location
              */
             $scope.visitLocation = function(location) {
-                $location.path('map/location/' + location.id);
+                $location.path('location/' + location.id);
             };
 
             /**
@@ -115,10 +112,22 @@
             $scope.$on('leafletDirectiveMap.click', mapClickHandler);
             $scope.$on('leafletDirectiveMarker.click', locationClickHandler);
 
-            // TODO: this page should only be shown once the player is set
-            playerService.getMe().then(function(me) {
-                player = me;
-            });
+            // Check if we are logged in
+            if (backendService.isLoggedIn()) {
+                // Get the locations
+                locationService.getLocations().then(function(locations) {
+                    $scope.locations = locations;
+                    $scope.locationsLoaded = true;
+                });
+
+                // Get the player
+                playerService.getMe().then(function(me) {
+                    player = me;
+                });
+            }
+            else {
+                $scope.locationsLoaded = true;
+            }
         }
     ]);
 })(window.veganaut.mapModule);

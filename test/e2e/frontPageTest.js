@@ -1,6 +1,8 @@
 /* global protractor, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
+var helpers = require('./helpers');
+
 describe('frontPage.', function() {
     var ptor;
 
@@ -10,8 +12,22 @@ describe('frontPage.', function() {
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('app/index.html');
+        browser.get('/');
         ptor = protractor.getInstance();
+
+        // TODO: not so great to logout before every test
+        var menuButton = element(by.css('button.menu-button'));
+        menuButton.click();
+        browser.sleep(helpers.MENU_DELAY);
+        var logoutButton = element(by.css('button.nav-logout'));
+        logoutButton.isPresent().then(function(isPresent) {
+            if (isPresent) {
+                logoutButton.click();
+            }
+            else {
+                menuButton.click();
+            }
+        });
     });
 
     it('should redirect to / when location hash is empty.', function() {
