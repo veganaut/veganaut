@@ -22,9 +22,10 @@
     <div class="row">
         <div class="col-xs-4" ng-bind="'person.label.team' | trans"></div>
         <div class="col-xs-8">
-            <span ng-bind="'team.' + me.team | trans"></span>
+            <span class="color-team" ng-bind="'team.' + me.team | trans"></span>
         </div>
     </div>
+    <!-- Social graph is not active at the moment
     <div class="row">
         <div class="col-xs-4" ng-bind="'person.label.balance' | trans"></div>
         <div class="col-xs-8">
@@ -36,6 +37,7 @@
             </span>
         </div>
     </div>
+    -->
 </div>
 
 <button type="button" class="edit-profile btn btn-block btn-default" ng-click="goToView('me/edit')">
