@@ -75,9 +75,12 @@
 </header>
 
 <div class="container main-container">
-    <vg-alert-display></vg-alert-display>
-
     <div ng-view></div>
+</div>
+<div class="alert-container">
+    <div class="container main-container">
+        <vg-alert-display></vg-alert-display>
+    </div>
 </div>
 
 <div class="modal-backdrop in menu-backdrop" ng-show="menuShown" ng-click="menuShown = false"></div>

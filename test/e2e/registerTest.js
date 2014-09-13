@@ -47,9 +47,15 @@ describe('register.', function() {
         element(by.model('form.nickname')).sendKeys('The Cody');
         element(by.model('form.password')).sendKeys('so secure brah');
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
-        expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
-
         expect(ptor.getCurrentUrl()).toMatch(/\//);
+
+        // Check if there's an alert and if it can be closed
+        // TODO: this doesn't really belong in this test, should be a separate file
+        var alerts = element.all(by.css('.alert-success'));
+        expect(alerts.count()).toBe(1, 'should have a success message');
+        element.all(by.css('.alert-success button.close')).first().click();
+        expect(alerts.count()).toBe(0, 'can close alert');
+
 
         // Social graph is not active at the moment
 //        // Should show a social graph with me and two dummies and no connections
