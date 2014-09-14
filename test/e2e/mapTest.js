@@ -99,25 +99,5 @@ describe('map.', function() {
                 // TODO: test that new place is on the map
             });
         });
-
-        describe('visit 3dosha as alice.', function() {
-            it('should show title and missions.', function() {
-                browser.get('/location/000000000000000000000006');
-                expect(element(by.css('h1')).getText()).toMatch(/3dosha/, 'contains location title');
-
-                expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
-                expect(element(by.css('.mission.mission-visitBonus')).isDisplayed()).toBe(true, 'visitBonus mission is available');
-            });
-        });
-
-        describe('visit ruprecht as alice.', function() {
-            it('should show title and missions.', function() {
-                browser.get('/location/000000000000000000000007');
-                expect(element(by.css('h1')).getText()).toMatch(/Ruprecht/, 'contains location title');
-
-                expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
-                expect(element(by.css('.mission.mission-visitBonus')).isPresent()).toBe(false, 'visitBonus mission is not available');
-            });
-        });
     });
 });
