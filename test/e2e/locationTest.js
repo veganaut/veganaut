@@ -50,8 +50,13 @@ describe('map.', function() {
             expect(element(by.css('.mission.mission-visitBonus')).isDisplayed()).toBe(true, 'visitBonus mission is available');
         });
 
-        it('shows mission', function() {
-            expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'shows some missions');
+        it('shows missions.', function() {
+            var missions = element.all(by.css('.mission'));
+            var beforeMissionCount;
+            missions.count().then(function(count) {
+                beforeMissionCount = count;
+                expect(beforeMissionCount).toBeGreaterThan(0, 'shows some missions');
+            });
 
             var visitMission = element(by.css('.mission-visitBonus'));
             expect(visitMission.isDisplayed()).toBe(true, 'shows bonus missions');
@@ -59,6 +64,18 @@ describe('map.', function() {
             var hasOptionsMission = element(by.css('.mission-hasOptions'));
             hasOptionsMission.click();
             expect(element(by.css('.mission-hasOptions form')).isDisplayed()).toBe(true, 'shows mission form after click');
+
+            var hasOptionsAnswer = element(by.css('.mission-hasOptions form *[btn-radio=true]'));
+            expect(hasOptionsAnswer.getText()).toBe('Ja', 'correct mission outcome button found');
+
+            var submit = element(by.css('.mission-hasOptions form button[type=submit]'));
+            expect(submit.isEnabled()).toBe(false, 'Submit is not enabled before entering mission outcome');
+            hasOptionsAnswer.click();
+            expect(submit.isEnabled()).toBe(true, 'Submit is enabled after entering mission outcome');
+            submit.click();
+            missions.count().then(function(count) {
+                expect(count).toBeGreaterThan(beforeMissionCount, 'shows more missions than before submitting');
+            });
         });
     });
 
@@ -68,7 +85,6 @@ describe('map.', function() {
             expect(element(by.css('h1')).getText()).toMatch(/Ruprecht/, 'contains location title');
 
             expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
-            expect(element(by.css('.mission.mission-visitBonus')).isPresent()).toBe(false, 'visitBonus mission is not available');
         });
     });
 });
