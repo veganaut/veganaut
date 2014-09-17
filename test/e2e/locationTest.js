@@ -61,6 +61,9 @@ describe('map.', function() {
             var visitMission = element(by.css('.mission-visitBonus'));
             expect(visitMission.isDisplayed()).toBe(true, 'shows bonus missions');
 
+            var submitVisit = element(by.css('button.submit-visit'));
+            expect(submitVisit.isEnabled()).toBe(false, 'Cannot submit visit before completing a mission');
+
             var hasOptionsMission = element(by.css('.mission-hasOptions'));
             hasOptionsMission.click();
             expect(element(by.css('.mission-hasOptions form')).isDisplayed()).toBe(true, 'shows mission form after click');
@@ -68,14 +71,19 @@ describe('map.', function() {
             var hasOptionsAnswer = element(by.css('.mission-hasOptions form *[btn-radio=true]'));
             expect(hasOptionsAnswer.getText()).toBe('Ja', 'correct mission outcome button found');
 
-            var submit = element(by.css('.mission-hasOptions form button[type=submit]'));
-            expect(submit.isEnabled()).toBe(false, 'Submit is not enabled before entering mission outcome');
+            var submitMission = element(by.css('.mission-hasOptions form button[type=submit]'));
+            expect(submitMission.isEnabled()).toBe(false, 'Submit is not enabled before entering mission outcome');
             hasOptionsAnswer.click();
-            expect(submit.isEnabled()).toBe(true, 'Submit is enabled after entering mission outcome');
-            submit.click();
+            expect(submitMission.isEnabled()).toBe(true, 'Submit is enabled after entering mission outcome');
+            submitMission.click();
             missions.count().then(function(count) {
                 expect(count).toBeGreaterThan(beforeMissionCount, 'shows more missions than before submitting');
             });
+
+            expect(submitVisit.isEnabled()).toBe(true, 'Can submit visit after completing a mission');
+            submitVisit.click();
+            expect(ptor.getCurrentUrl()).toMatch(/\//, 'Redirects back to map after submitting visit');
+            expect(element.all(by.css('.alert-success')).count()).toBe(1, 'shows a success message');
         });
     });
 
