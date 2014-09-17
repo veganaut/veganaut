@@ -288,11 +288,11 @@
             intro: [
                 {
                     title: 'Willkommen!',
-                    content: 'Viel Spass beim Erkunden des veganen Universums mit veganaut.net! Wir sind noch daran, diese Platform zu entwickeln, aber du kannst sie bereits benützen. Es kann sein, dass noch nicht alles richtig funktioniert, bitte entschuldige. Wenn du Anregungen oder Rückmeldungen hast, sind wir dafür sehr dankbar. Das Kontaktformular ist im Menu oben verlinkt.'
+                    content: 'Viel Spass beim Erkunden des veganen Universums. Wir sind noch daran, diese Platform zu entwickeln. Es kann sein, dass noch nicht alles richtig funktioniert. Wenn du Anregungen oder Rückmeldungen hast: Das Kontaktformular ist im Menu oben verlinkt.'
                 },
                 {
                     title: 'Registrieren',
-                    content: 'Wenn du dich jetzt registrierst, kannst du die volle Funktionalität der Platform nützen.'
+                    content: 'Registriere dich, um die volle Funktionalität der Platform nützen zu können.'
                 }
             ]
         }
