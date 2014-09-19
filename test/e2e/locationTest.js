@@ -50,7 +50,7 @@ describe('map.', function() {
             expect(element(by.css('.mission.mission-visitBonus')).isDisplayed()).toBe(true, 'visitBonus mission is available');
         });
 
-        it('shows missions.', function() {
+        it('shows correct missions.', function() {
             var missions = element.all(by.css('.mission'));
             var beforeMissionCount;
             missions.count().then(function(count) {
@@ -84,6 +84,10 @@ describe('map.', function() {
             submitVisit.click();
             expect(ptor.getCurrentUrl()).toMatch(/\//, 'Redirects back to map after submitting visit');
             expect(element.all(by.css('.alert-success')).count()).toBe(1, 'shows a success message');
+
+            // Got back to the place to check that the bonus mission is not there any more
+            browser.get('/location/000000000000000000000006');
+            expect(visitMission.isPresent()).toBe(false, 'does not show bonus mission at second visit');
         });
     });
 
