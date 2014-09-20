@@ -52,7 +52,7 @@ if ! node_modules/.bin/jshint .; then
     exit 1
 fi
 
-if grep -r -l --exclude-dir lib --exclude-dir img $'\t' app test; then
+if grep -r -l --exclude-dir lib --include=*.html --include=*.js --include=*.less --include=*.xml $'\t' app test; then
 	echo "Tabs in the above files. Please fix before committing"
 	exit 1
 fi
