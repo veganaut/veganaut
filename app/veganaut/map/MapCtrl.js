@@ -88,6 +88,8 @@
              */
             var mapClickHandler = function(event, args) {
                 if ($scope.isAddingLocation) {
+                    // When adding a new location, take the click
+                    // as the coordinates of this new location
                     $scope.newLocation.lat = args.leafletEvent.latlng.lat;
                     $scope.newLocation.lng = args.leafletEvent.latlng.lng;
 
@@ -96,6 +98,10 @@
                         $scope.locations.push($scope.newLocation);
                         $scope.newLocation.isAddedToMap = true;
                     }
+                }
+                else {
+                    // When not adding a location, deselect currently active location
+                    locationService.activate();
                 }
             };
 
