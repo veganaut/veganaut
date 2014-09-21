@@ -8,6 +8,11 @@ exports.config = {
 
     baseUrl: 'http://127.0.0.1:8000/',
 
+    // Spec patterns are relative to the location of this config.
+    suites: {
+        full: '../test/e2e/**/*Test.js'
+    },
+
     // Options to be passed to Jasmine-node.
     jasmineNodeOpts: {
         showColors: true,
