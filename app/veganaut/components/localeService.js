@@ -203,11 +203,11 @@
                        noWool: 'ohne Wolle',
                        noLeather: 'ohne Leder',
                        noFur: 'ohne Fell',
-                       other: 'Andere:',
-                       placeholder: 'Hier andere Ausdrücke eintragen, die du gebraucht hast'
+                       others: 'Andere:',
+                       placeholder: 'Andere gebrauchte Ausdrücke'
                    },
                    outcome: {
-                       wordsUsed: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
+                       description: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
                    }
                },
                particularOption: {

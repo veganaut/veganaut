@@ -111,51 +111,60 @@
         return (typeof this.outcome !== 'undefined');
     };
 
+    // WantVeganMission //////////////////////////////////////////////////////
+    function WantVeganMission(visit) {
+        Mission.call(this, 'wantVegan', visit, {
+            expressions: {},
+            others: []
+        }, 10, 25);
+        this.test = {};
+        this.expressions = [
+            'vegan',
+            'plantbased',
+            'noAnimalproducts',
+            'noMeat',
+            'noMilk',
+            'noEggs',
+            'noHoney'
+        ];
+    }
+
+    WantVeganMission.prototype = Object.create(Mission.prototype);
+    WantVeganMission.prototype.constructor = HasOptionsMission;
+
+    WantVeganMission.prototype.getSelectedExpressions = function() {
+        var selected = [];
+        _.forOwn(this.outcome.expressions, function(isSelected, expression) {
+            if (isSelected === true) {
+                selected.push(expression);
+            }
+        });
+        return selected;
+    };
+
+    WantVeganMission.prototype.hasValidOutcome = function() {
+        return (this.getSelectedExpressions().length > 0 ||
+            this.outcome.others.length > 0
+        );
+    };
+
+    WantVeganMission.prototype.toJson = function() {
+        var json = Mission.prototype.toJson.apply(this);
+        json.outcome.expressions = this.getSelectedExpressions();
+        return json;
+    };
 
     // WhatOptionsMission /////////////////////////////////////////////////////
     function WhatOptionsMission(visit) {
-        Mission.call(this, 'whatOptions', visit, [
-            { text: '' }
-        ], 10, 30);
+        Mission.call(this, 'whatOptions', visit, [], 10, 30);
     }
 
     WhatOptionsMission.prototype = Object.create(Mission.prototype);
     WhatOptionsMission.prototype.constructor = WhatOptionsMission;
 
     WhatOptionsMission.prototype.hasValidOutcome = function() {
-        return (this.outcome.length > 0 &&
-            typeof this.outcome[0].text !== 'undefined' &&
-            this.outcome[0].text.length > 0);
+        return this.outcome.length > 0;
     };
-
-    /**
-     * @inherit
-     */
-    WhatOptionsMission.prototype.finish = function() {
-        // Read out the valid options
-        var validOptions = [];
-        for (var i = 0; i < this.outcome.length; i += 1) {
-            var option = this.outcome[i];
-            if (typeof option.text !== 'undefined' && option.text.length > 0) {
-                validOptions.push(option);
-            }
-        }
-        this.outcome = validOptions;
-
-        // Let the parent do its thing
-        Mission.prototype.finish.apply(this);
-    };
-
-    WhatOptionsMission.prototype.toJson = function() {
-        var json = Mission.prototype.toJson.apply(this);
-        var outcome = [];
-        for (var i = 0; i < this.outcome.length; i += 1) {
-            outcome.push(this.outcome[i].text);
-        }
-        json.outcome = outcome;
-        return json;
-    };
-
 
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit, availableOptions) {
@@ -226,6 +235,7 @@
     module.value('missions', {
         VisitBonusMission: VisitBonusMission,
         HasOptionsMission: HasOptionsMission,
+        WantVeganMission: WantVeganMission,
         WhatOptionsMission: WhatOptionsMission,
         BuyOptionsMission: BuyOptionsMission,
         GiveFeedbackMission: GiveFeedbackMission,

@@ -23,6 +23,7 @@
                         this.visitBonusMission = new missions.VisitBonusMission(this, hasOptionMission);
                     }
                     this._addMission(hasOptionMission);
+                    this._addMission(new missions.WantVeganMission(this));
                 }
             }
 

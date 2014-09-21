@@ -57,9 +57,21 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
+                            <div ng-switch-when="wantVegan">
+                                <div class="checkbox" ng-repeat="expression in mission.expressions">
+                                    <label>
+                                        <input type="checkbox" ng-model="mission.outcome.expressions[expression]" />
+                                        {{ 'map.mission.' + mission.type + '.form.' + expression | trans }}
+                                    </label>
+                                </div>
+                                {{ 'map.mission.' + mission.type + '.form.others' | trans }}
+                                <vg-list-input list="mission.outcome.others" num-required="0"
+                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
+                                </vg-list-input>
+                            </div>
                             <div ng-switch-when="whatOptions">
-                                <vg-list-input list="mission.outcome" auto-expand="!mission.completed"
-                                 num-required="1" placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
+                                <vg-list-input list="mission.outcome" num-required="1"
+                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
@@ -113,6 +125,17 @@
                         <div ng-hide="mission.outcome">
                             {{ 'map.mission.' + mission.type + '.outcome.noVegan' | trans }}
                         </div>
+                    </div>
+                    <div ng-switch-when="wantVegan">
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        <ul>
+                            <li ng-repeat="expression in mission.getSelectedExpressions()">
+                                {{ 'map.mission.' + mission.type + '.form.' + expression | trans }}
+                            </li>
+                            <li ng-repeat="other in mission.outcome.others">
+                                {{ other }}
+                            </li>
+                        </ul>
                     </div>
                     <div ng-switch-when="whatOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
