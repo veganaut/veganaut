@@ -43,7 +43,7 @@
             form: {
                 email: 'email@beispiel.com',
                 fullName: 'Vorname und Nachname',
-                nickname: 'Spitzname (öffentlich)',
+                nickname: 'Öffentlicher Name',
                 password: 'Passwort',
                 passwordRepeat: 'Nochmals Passwort',
                 submit: 'Registrieren'
@@ -109,7 +109,7 @@
             label: {
                 email: 'E-Mail Adresse',
                 fullName: 'Name',
-                nickname: 'Spitzname',
+                nickname: 'Öffentlicher Name',
                 role: 'Rolle',
                 team: 'Team',
                 balance: 'Balance',
