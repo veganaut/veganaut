@@ -221,7 +221,7 @@
     // RateOptionsMission /////////////////////////////////////////////////////
     function RateOptionsMission(visit) {
         Mission.call(this, 'rateOptions', visit, undefined, 10, 50);
-        this.maxRating = 10;
+        this.maxRating = 5;
     }
 
     RateOptionsMission.prototype = Object.create(Mission.prototype);
@@ -231,6 +231,24 @@
         return this.outcome > 0;
     };
 
+    // OfferQualityMission //////////////////////////////////////////////////////
+    function OfferQualityMission(visit) {
+        Mission.call(this, 'offerQuality', visit, undefined, 10, 70);
+        this.maxRating = 5;
+    }
+
+    OfferQualityMission.prototype = Object.create(Mission.prototype);
+    OfferQualityMission.prototype.constructor = OfferQualityMission;
+
+    // EffortValueMission //////////////////////////////////////////////////////
+    function EffortValueMission(visit) {
+        Mission.call(this, 'effortValue', visit, undefined, 10, 80);
+        this.maxRating = 5;
+    }
+
+    EffortValueMission.prototype = Object.create(Mission.prototype);
+    EffortValueMission.prototype.constructor = EffortValueMission;
+
 
     module.value('missions', {
         VisitBonusMission: VisitBonusMission,
@@ -239,6 +257,8 @@
         WhatOptionsMission: WhatOptionsMission,
         BuyOptionsMission: BuyOptionsMission,
         GiveFeedbackMission: GiveFeedbackMission,
-        RateOptionsMission: RateOptionsMission
+        RateOptionsMission: RateOptionsMission,
+        OfferQualityMission: OfferQualityMission,
+        EffortValueMission: EffortValueMission
     });
 })(window.veganaut.mapModule);

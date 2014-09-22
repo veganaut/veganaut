@@ -78,7 +78,7 @@
                                 <div class="checkbox" ng-repeat="veganOption in mission.availableOptions">
                                     <label>
                                         <input type="checkbox" ng-model="mission.outcome[veganOption.id]" />
-                                        {{ veganOption.text }}
+                                        {{ veganOption.name }}
                                     </label>
                                 </div>
                             </div>
@@ -94,6 +94,18 @@
                                 </div>
                             </div>
                             <div ng-switch-when="rateOptions">
+                                <div class="text-center h3">
+                                    <rating ng-model="mission.outcome"
+                                     max="mission.maxRating"></rating>
+                                </div>
+                            </div>
+                            <div ng-switch-when="offerQuality">
+                                <div class="text-center h3">
+                                    <rating ng-model="mission.outcome"
+                                     max="mission.maxRating"></rating>
+                                </div>
+                            </div>
+                            <div ng-switch-when="effortValue">
                                 <div class="text-center h3">
                                     <rating ng-model="mission.outcome"
                                      max="mission.maxRating"></rating>
@@ -140,13 +152,13 @@
                     <div ng-switch-when="whatOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <ul>
-                            <li ng-repeat="option in mission.outcome">{{ option.text }}</li>
+                            <li ng-repeat="option in mission.outcome">{{ option }}</li>
                         </ul>
                     </div>
                     <div ng-switch-when="buyOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <ul>
-                            <li ng-repeat="option in mission.getBoughtOptions()">{{ option.text }}</li>
+                            <li ng-repeat="option in mission.getBoughtOptions()">{{ option.name }}</li>
                         </ul>
                     </div>
                     <div ng-switch-when="giveFeedback">
@@ -162,6 +174,16 @@
                         </p>
                     </div>
                     <div ng-switch-when="rateOptions">
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        <rating readonly="true" ng-model="mission.outcome"
+                         max="mission.maxRating"></rating>
+                    </div>
+                    <div ng-switch-when="offerQuality">
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        <rating readonly="true" ng-model="mission.outcome"
+                         max="mission.maxRating"></rating>
+                    </div>
+                    <div ng-switch-when="effortValue">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <rating readonly="true" ng-model="mission.outcome"
                          max="mission.maxRating"></rating>

@@ -24,6 +24,8 @@
                     }
                     this._addMission(hasOptionMission);
                     this._addMission(new missions.WantVeganMission(this));
+                    this._addMission(new missions.OfferQualityMission(this));
+                    this._addMission(new missions.EffortValueMission(this));
                 }
             }
 
@@ -45,11 +47,12 @@
                 }
                 else if (mission.type === 'whatOptions') {
                     // TODO: temporary hack to add ids to the options. This will be provided by the backend
-                    var options = mission.outcome;
-                    if (typeof options[0].id === 'undefined') {
-                        for (var i = 0; i < options.length; i++) {
-                            options[i].id = i + 1;
-                        }
+                    var options = [];
+                    for (var i = 0; i < mission.outcome.length; i++) {
+                        options.push({
+                            id: i + 1,
+                            name: mission.outcome[i]
+                        });
                     }
                     this._addMission(new missions.BuyOptionsMission(this, options));
                 }

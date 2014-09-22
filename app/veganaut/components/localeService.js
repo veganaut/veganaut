@@ -277,10 +277,23 @@
                        description: 'Deine Bewertung:'
                    }
                },
-               veganeed: {
-                   title: 'Gib an, wie viel es hier für Veganaut_innen noch zu tun gibt.',
+               offerQuality: {
+                   // TODO: @SebuLeugger: improve these texts
+                   title: 'Gib an, wie gut man als Veganaut_in hier etwas konsumieren kann.',
+                   description: 'Wie bewertest du allgemein das Angebot?',
+                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
+                   outcome: {
+                       description: 'Deine Bewertung:'
+                   }
+               },
+               effortValue: {
+                   // TODO: @SebuLeugger: improve these texts
+                   title: 'Gib an, wie viel Veganaut_innen hier erreichen können.',
                    description: 'Wie viel gibt es hier noch zu tun für Veganaut_innen?',
-                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Auch hier können Veganaut_innen noch viel bewirken. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht, und der Einsatz von Veganaut_innen kann nur noch wenig verbessern. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt. Hier können Veganaut_innen nur noch kommen, um zu geniessen.'
+                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. ...',
+                   outcome: {
+                       description: 'Deine Bewertung:'
+                   }
                }
            }
         },
