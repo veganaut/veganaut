@@ -270,29 +270,28 @@
                    }
                },
                rateOptions: {
-                   title: 'Bewerte die veganen Angebote, die es hier gibt.',
+                   title: 'Bewerte einzelne vegane Angebote, die es hier gibt.',
                    description: 'Wie bewertest du diese veganen Angebote?',
-                   explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht so gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',
+                   explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',
                    outcome: {
                        description: 'Deine Bewertung:'
                    }
                },
                offerQuality: {
-                   // TODO: @SebuLeugger: improve these texts
-                   title: 'Gib an, wie gut man als Veganaut_in hier etwas konsumieren kann.',
-                   description: 'Wie bewertest du allgemein das Angebot?',
-                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
+                   title: 'Beurteile, wie gut dieser Ort veganautische Bedürfnisse befriedigt.',
+                   description: 'Wie gut befriedigt dieser Ort veganautische Bedürfnisse?',
+                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
                    outcome: {
-                       description: 'Deine Bewertung:'
+                       description: 'Dein Urteil:'
                    }
                },
                effortValue: {
                    // TODO: @SebuLeugger: improve these texts
-                   title: 'Gib an, wie viel Veganaut_innen hier erreichen können.',
-                   description: 'Wie viel gibt es hier noch zu tun für Veganaut_innen?',
-                   explanation: 'An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An solchen Orten gibt es für Veganaut_innen am meisten zu tun. ...',
+                   title: 'Schätze ab, wie stark sich das vegane Angebot an diesem Ort vergrössern und verbessern wird, wenn mehr Veganautinnen und Veganauten hierher kommen.',
+                   description: 'Wie stark wird sich das vegane Angebot an diesem Ort deiner Einschätzung nach vergrössern und verbessern, wenn mehr Veganautinnen und Veganauten hierher kommen?',
+                   explanation: 'An manchen Orten hat das Personal, die Chefin oder der Besitzer eine starke Abneigung gegenüber "vegan". Andere Orte sind 100% vegan. An beiden Orten wird sich am Angebot nicht viel ändern, wenn mehr Veganautinnen und Veganauten hingehen. Dann gibt es Orte, wo das Personal, der Chef und die Besitzerin zwar keine Abneigung gegenüber "vegan" haben, aber noch zweifeln, ob sich eine Investition in ein (besseres/grösseres) veganes Angebot lohnt oder nicht. Hier ist die Chance höher, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hingehen. Weiter gibt es Orte, die gerne mehr veganes anbieten möchten, aber nicht wissen, was oder wie genau. Auch hier können Veganautinnen und Veganauten viel bewirken.',
                    outcome: {
-                       description: 'Deine Bewertung:'
+                       description: 'Deine Einschätzung:'
                    }
                }
            }
