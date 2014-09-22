@@ -130,7 +130,7 @@
     }
 
     WantVeganMission.prototype = Object.create(Mission.prototype);
-    WantVeganMission.prototype.constructor = HasOptionsMission;
+    WantVeganMission.prototype.constructor = WantVeganMission;
 
     WantVeganMission.prototype.getSelectedExpressions = function() {
         var selected = [];
