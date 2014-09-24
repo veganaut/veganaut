@@ -233,7 +233,7 @@
 
     // OfferQualityMission //////////////////////////////////////////////////////
     function OfferQualityMission(visit) {
-        Mission.call(this, 'offerQuality', visit, undefined, 10, 70);
+        Mission.call(this, 'offerQuality', visit, undefined, 20, 780);
         this.maxRating = 5;
     }
 
@@ -242,7 +242,7 @@
 
     // EffortValueMission //////////////////////////////////////////////////////
     function EffortValueMission(visit) {
-        Mission.call(this, 'effortValue', visit, undefined, 10, 80);
+        Mission.call(this, 'effortValue', visit, undefined, 20, 80);
         this.maxRating = 5;
     }
 
