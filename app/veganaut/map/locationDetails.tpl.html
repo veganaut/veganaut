@@ -101,10 +101,13 @@
                                 </div>
                             </div>
                             <div ng-switch-when="effortValue">
-                                <div class="text-center h3">
-                                    <rating ng-model="mission.outcome"
-                                     max="mission.maxRating"></rating>
+                                <div class="btn-group form-group pull-right">
+                                    <label class="btn btn-default" ng-repeat="answer in mission.possibleAnswers"
+                                     ng-model="mission.outcome" btn-radio="answer">
+                                        {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
+                                    </label>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
 
@@ -126,8 +129,7 @@
             <div ng-if="mission.completed">
                 <div ng-switch="mission.type">
                     <div ng-switch-when="hasOptions">
-                        {{ mission.getOutcome() }}
-                        <!-- TODO -->
+                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | trans }}
                     </div>
                     <div ng-switch-when="wantVegan">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
@@ -156,8 +158,7 @@
                     </div>
                     <div ng-switch-when="giveFeedback">
                         <p>
-                            {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
-                            <br />
+                            {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}<br />
                             <em>{{ mission.outcome }}</em>
                         </p>
                     </div>
@@ -172,9 +173,7 @@
                          max="mission.maxRating"></rating>
                     </div>
                     <div ng-switch-when="effortValue">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
-                        <rating readonly="true" ng-model="mission.outcome"
-                         max="mission.maxRating"></rating>
+                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | trans }}
                     </div>
                 </div>
             </div>

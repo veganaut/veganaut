@@ -179,14 +179,17 @@
                    form: {
                        theyDoNotKnow: 'Sie wissen es nicht',
                        yes: 'Ja',
+                       no: 'Nein',
                        ratherYes: 'Eher ja',
                        noClue: 'Keine Ahnung',
-                       ratherNo: 'Eher nein',
-                       no: 'Nein'
+                       ratherNo: 'Eher nein'
                    },
                    outcome: {
-                       hasVegan: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
-                       noVegan: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.'
+                       yes: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
+                       no: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.',
+                       ratherYes: 'Eher ja',
+                       noClue: 'Keine Ahnung',
+                       ratherNo: 'Eher nein'
                    }
                },
                wantVegan: {
@@ -289,8 +292,13 @@
                    title: 'Schätze ab, wie stark sich das vegane Angebot an diesem Ort vergrössern und verbessern wird, wenn mehr Veganautinnen und Veganauten hierher kommen.',
                    description: 'Wie stark wird sich das vegane Angebot an diesem Ort deiner Einschätzung nach vergrössern und verbessern, wenn mehr Veganautinnen und Veganauten hierher kommen?',
                    explanation: 'An manchen Orten hat das Personal, die Chefin oder der Besitzer eine starke Abneigung gegenüber "vegan". Andere Orte sind 100% vegan. An beiden Orten wird sich am Angebot nicht viel ändern, wenn mehr Veganautinnen und Veganauten hingehen. Dann gibt es Orte, wo das Personal, der Chef und die Besitzerin zwar keine Abneigung gegenüber "vegan" haben, aber noch zweifeln, ob sich eine Investition in ein (besseres/grösseres) veganes Angebot lohnt oder nicht. Hier ist die Chance höher, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hingehen. Weiter gibt es Orte, die gerne mehr veganes anbieten möchten, aber nicht wissen, was oder wie genau. Auch hier können Veganautinnen und Veganauten viel bewirken.',
+                   form: {
+                       yes: 'Eher ja',
+                       no: 'Eher nein'
+                   },
                    outcome: {
-                       description: 'Deine Einschätzung:'
+                       yes: 'Eher ja.',
+                       no: 'Eher nein.'
                    }
                }
            }

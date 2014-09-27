@@ -73,6 +73,14 @@
     };
 
     /**
+     * Checks whether this mission has a valid outcome.
+     * @returns {boolean}
+     */
+    Mission.prototype.hasValidOutcome = function() {
+        return (typeof this.getOutcome() !== 'undefined');
+    };
+
+    /**
      * Returns the point that the mission would make if it were completed
      * now, or the actual number of awarded points if its already completed.
      * @returns {number}
@@ -116,10 +124,6 @@
             outcome = this.outcome.first;
         }
         return outcome;
-    };
-
-    HasOptionsMission.prototype.hasValidOutcome = function() {
-        return (typeof this.getOutcome() !== 'undefined');
     };
 
     // WantVeganMission //////////////////////////////////////////////////////
@@ -178,7 +182,7 @@
     WhatOptionsMission.prototype.constructor = WhatOptionsMission;
 
     WhatOptionsMission.prototype.hasValidOutcome = function() {
-        return this.outcome.length > 0;
+        return (this.getOutcome().length > 0);
     };
 
     WhatOptionsMission.prototype.getOutcome = function() {
@@ -242,7 +246,7 @@
     GiveFeedbackMission.prototype.constructor = GiveFeedbackMission;
 
     GiveFeedbackMission.prototype.hasValidOutcome = function() {
-        return (this.outcome.length > 0);
+        return (this.getOutcome().length > 0);
     };
 
 
@@ -256,12 +260,12 @@
     RateOptionsMission.prototype.constructor = RateOptionsMission;
 
     RateOptionsMission.prototype.hasValidOutcome = function() {
-        return this.outcome > 0;
+        return (this.getOutcome() > 0);
     };
 
     // OfferQualityMission //////////////////////////////////////////////////////
     function OfferQualityMission(visit) {
-        Mission.call(this, 'offerQuality', visit, undefined, 10, 780);
+        Mission.call(this, 'offerQuality', visit, undefined, 10, 70);
         this.maxRating = 5;
     }
 
@@ -271,7 +275,7 @@
     // EffortValueMission //////////////////////////////////////////////////////
     function EffortValueMission(visit) {
         Mission.call(this, 'effortValue', visit, undefined, 10, 80);
-        this.maxRating = 5;
+        this.possibleAnswers = ['yes', 'no'];
     }
 
     EffortValueMission.prototype = Object.create(Mission.prototype);
