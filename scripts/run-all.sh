@@ -1,5 +1,10 @@
 #!/bin/bash
 
+set -e
+
+ROOT_DIR="$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )"
+cd "$ROOT_DIR"
+
 mkdir -p log
 
 function cleanUp() {
