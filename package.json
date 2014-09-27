@@ -11,6 +11,7 @@
     "less": "1.6.1",
     "phantomjs": "^1.9.0-0",
     "protractor": "1.0.0",
+    "supervisor": "^0.6.0",
     "tmp": "0.0.23"
   },
   "scripts": {

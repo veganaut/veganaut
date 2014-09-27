@@ -19,8 +19,8 @@ fi
 node_modules/.bin/karma start config/karma-unit.conf.js > log/karma.log 2>&1 &
 
 cd ../veganaut-backend
-supervisor app.js > ../veganaut/log/app.log 2>&1 &
-supervisor e2eBridge.js > ../veganaut/log/e2eBridge.log 2>&1 &
+node_modules/.bin/supervisor app.js > ../veganaut/log/app.log 2>&1 &
+node_modules/.bin/supervisor e2eBridge.js > ../veganaut/log/e2eBridge.log 2>&1 &
 
 cd ../veganaut
 
