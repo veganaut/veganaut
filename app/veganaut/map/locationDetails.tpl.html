@@ -38,14 +38,24 @@
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
                             <div ng-switch-when="hasOptions">
                                 <div class="btn-group form-group pull-right">
-                                    <label class="btn btn-default" ng-model="mission.outcome" btn-radio="true">
-                                        {{ 'map.mission.' + mission.type + '.form.yes' | trans }}
-                                    </label>
-                                    <label class="btn btn-default" ng-model="mission.outcome" btn-radio="false">
-                                        {{ 'map.mission.' + mission.type + '.form.no' | trans }}
+                                    <label class="btn btn-default" ng-repeat="answer in mission.firstAnswers"
+                                     ng-model="mission.outcome.first" btn-radio="answer">
+                                        {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
                                     </label>
                                 </div>
                                 <div class="clearfix"></div>
+                                <div ng-show="mission.outcome.first === 'theyDoNotKnow'">
+                                    <p class="lead">
+                                        {{ 'map.mission.' + mission.type + '.description2' | trans }}
+                                    </p>
+                                    <div class="btn-group form-group pull-right">
+                                        <label class="btn btn-default" ng-repeat="answer in mission.secondAnswers"
+                                         ng-model="mission.outcome.second" btn-radio="answer">
+                                            {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
+                                        </label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                             <div ng-switch-when="wantVegan">
                                 <div class="checkbox" ng-repeat="expression in mission.expressions">
@@ -121,12 +131,8 @@
             <div ng-show="mission.completed">
                 <div ng-switch="mission.type">
                     <div ng-switch-when="hasOptions">
-                        <div ng-show="mission.outcome">
-                            {{ 'map.mission.' + mission.type + '.outcome.hasVegan' | trans }}
-                        </div>
-                        <div ng-hide="mission.outcome">
-                            {{ 'map.mission.' + mission.type + '.outcome.noVegan' | trans }}
-                        </div>
+                        {{ mission.getOutcome() }}
+                        <!-- TODO -->
                     </div>
                     <div ng-switch-when="wantVegan">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}

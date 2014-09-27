@@ -31,15 +31,27 @@
         }
     };
 
-    // TODO: do this more elegantly
+    /**
+     * Converts this mission to JSON ready to be sent to the backend
+     * @returns {{type: string, outcome: {}, points: {}}}
+     */
     Mission.prototype.toJson = function() {
         var points = {};
         points[this.visit.player.team] = this.receivedPoints;
         return {
             type: this.type,
-            outcome: this.outcome,
+            outcome: this.getOutcome(),
             points: points
         };
+    };
+
+    /**
+     * Returns the outcome of this mission. To be overwritten
+     * by child classes.
+     * @returns {{}}
+     */
+    Mission.prototype.getOutcome = function() {
+        return this.outcome;
     };
 
     /**
@@ -79,14 +91,27 @@
 
     // HasOptionsMission //////////////////////////////////////////////////////
     function HasOptionsMission(visit) {
-        Mission.call(this, 'hasOptions', visit, undefined, 10, 20);
+        Mission.call(this, 'hasOptions', visit, {}, 10, 20);
+        this.firstAnswers = ['yes', 'no', 'theyDoNotKnow'];
+        this.secondAnswers = ['ratherYes', 'ratherNo', 'noClue'];
     }
 
     HasOptionsMission.prototype = Object.create(Mission.prototype);
     HasOptionsMission.prototype.constructor = HasOptionsMission;
 
+    HasOptionsMission.prototype.getOutcome = function() {
+        var outcome;
+        if (this.outcome.first === 'theyDoNotKnow') {
+            outcome = this.outcome.second;
+        }
+        else {
+            outcome = this.outcome.first;
+        }
+        return outcome;
+    };
+
     HasOptionsMission.prototype.hasValidOutcome = function() {
-        return (typeof this.outcome !== 'undefined');
+        return (typeof this.getOutcome() !== 'undefined');
     };
 
     // WantVeganMission //////////////////////////////////////////////////////
@@ -95,7 +120,6 @@
             expressions: {},
             others: []
         }, 10, 25);
-        this.test = {};
         this.expressions = [
             'vegan',
             'plantbased',
@@ -144,19 +168,17 @@
         return this.outcome.length > 0;
     };
 
-    WhatOptionsMission.prototype.toJson = function() {
-        var json = Mission.prototype.toJson.apply(this);
-        var outcome = json.outcome;
-        json.outcome = [];
-        _.each(outcome, function(o) {
-            json.outcome.push({
+    WhatOptionsMission.prototype.getOutcome = function() {
+        var outcome = [];
+        _.each(this.outcome, function(o) {
+            outcome.push({
                 product: {
                     name: o
                 },
                 info: 'available'
             });
         });
-        return json;
+        return outcome;
     };
 
     // BuyOptionsMission //////////////////////////////////////////////////////
@@ -182,15 +204,13 @@
         return boughtOptions;
     };
 
-    BuyOptionsMission.prototype.toJson = function() {
-        var json = Mission.prototype.toJson.apply(this);
+    BuyOptionsMission.prototype.getOutcome = function() {
         var outcome = [];
         var boughtOptions = this.getBoughtOptions();
         for (var i = 0; i < boughtOptions.length; i += 1) {
             outcome.push(boughtOptions[i].id);
         }
-        json.outcome = outcome;
-        return json;
+        return outcome;
     };
 
 

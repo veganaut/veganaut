@@ -174,9 +174,14 @@
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
                    description: 'Gibt es hier laut dem Personal etwas Veganes?',
+                   description2: 'Was denkst du, gibt es etwas Veganes?',
                    explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
                    form: {
+                       theyDoNotKnow: 'Sie wissen es nicht',
                        yes: 'Ja',
+                       ratherYes: 'Eher ja',
+                       noClue: 'Keine Ahnung',
+                       ratherNo: 'Eher nein',
                        no: 'Nein'
                    },
                    outcome: {
