@@ -262,12 +262,10 @@
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
                    explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast. Oder was du dem Personal hättest sagen wollen.',
                    form: {
-                       placeholder: 'Rückmeldung',
-                       didNotDoIt: 'Ich wollte dem Personal diese Rückmeldung geben, habe es dann aber nicht gemacht.'
+                       placeholder: 'Rückmeldung'
                    },
                    outcome: {
-                       didIt: 'Du hast dem Personal diese Rückmeldung gegeben:',
-                       didNotDoIt: 'Du wolltest dem Personal diese Rückmeldung geben:'
+                       description: 'Du hast dem Personal diese Rückmeldung gegeben:'
                    }
                },
                rateOptions: {

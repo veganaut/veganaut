@@ -235,17 +235,14 @@
 
     // GiveFeedbackMission ////////////////////////////////////////////////////
     function GiveFeedbackMission(visit) {
-        Mission.call(this, 'giveFeedback', visit, {
-            text: '',
-            didNotDoIt: false
-        }, 20, 60);
+        Mission.call(this, 'giveFeedback', visit, '', 20, 60);
     }
 
     GiveFeedbackMission.prototype = Object.create(Mission.prototype);
     GiveFeedbackMission.prototype.constructor = GiveFeedbackMission;
 
     GiveFeedbackMission.prototype.hasValidOutcome = function() {
-        return (this.outcome.text.length > 0);
+        return (this.outcome.length > 0);
     };
 
 

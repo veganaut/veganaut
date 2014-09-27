@@ -83,14 +83,9 @@
                                 </div>
                             </div>
                             <div ng-switch-when="giveFeedback">
-                                <textarea class="form-control" required
-                                 ng-model="mission.outcome.text"
-                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}"></textarea>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" ng-model="mission.outcome.didNotDoIt" />
-                                        {{ 'map.mission.' + mission.type + '.form.didNotDoIt' | trans }}
-                                    </label>
+                                <div class="form-group">
+                                    <textarea class="form-control" required ng-model="mission.outcome"
+                                     placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}"></textarea>
                                 </div>
                             </div>
                             <div ng-switch-when="rateOptions">
@@ -161,14 +156,9 @@
                     </div>
                     <div ng-switch-when="giveFeedback">
                         <p>
-                            <span ng-show="mission.outcome.didNotDoIt">
-                                {{ 'map.mission.' + mission.type + '.outcome.didNotDoIt' | trans }}
-                            </span>
-                            <span ng-hide="mission.outcome.didNotDoIt">
-                                {{ 'map.mission.' + mission.type + '.outcome.didIt' | trans }}
-                            </span>
+                            {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                             <br />
-                            <em>{{ mission.outcome.text }}</em>
+                            <em>{{ mission.outcome }}</em>
                         </p>
                     </div>
                     <div ng-switch-when="rateOptions">
