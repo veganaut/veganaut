@@ -15,6 +15,28 @@
             </div>
         </div>
 
+        <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
+            <div class="pull-right clickable" ng-click="location.activate()">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
+            <p class="color-{{ location.active.team }}"><strong>{{ location.active.title }}</strong></p>
+            <p>
+                <vg-location-type-badge location="location.active"></vg-location-type-badge>
+                <vg-available-points-badge available="location.active.availablePoints"></vg-available-points-badge>
+                <vg-score-diff-badge ng-if="me" team="me.team" diff="location.active.getRelevantPointDifference(me.team)">
+                </vg-score-diff-badge>
+            </p>
+
+            <p ng-show="location.active.id">
+                <button type="button" class="btn btn-block btn-team"
+                 ng-click="visitLocation(location.active)">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    <span ng-bind="'action.map.locationAction'|trans"></span>
+                </button>
+            </p>
+        </div>
+
         <div ng-if="isLoggedIn()">
             <p ng-hide="location.active">
                 <button type="button" class="add-location btn btn-block btn-team"
@@ -23,28 +45,6 @@
                     <span ng-bind="'action.map.addLocation'|trans"></span>
                 </button>
             </p>
-
-            <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
-                <div class="pull-right clickable" ng-click="location.activate()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </div>
-
-                <p class="color-{{ location.active.team }}"><strong>{{ location.active.title }}</strong></p>
-                <p>
-                    <vg-location-type-badge location="location.active"></vg-location-type-badge>
-                    <vg-available-points-badge available="location.active.availablePoints"></vg-available-points-badge>
-                    <vg-score-diff-badge team="me.team" diff="location.active.getRelevantPointDifference(me.team)">
-                    </vg-score-diff-badge>
-                </p>
-
-                <p ng-show="location.active.id">
-                    <button type="button" class="btn btn-block btn-team"
-                     ng-click="visitLocation(location.active)">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                        <span ng-bind="'action.map.locationAction'|trans"></span>
-                    </button>
-                </p>
-            </div>
 
             <form novalidate name="locationForm" class="location-form spaced-form" ng-show="isAddingLocation">
                 <input type="text" required class="form-control" ng-model="newLocation.title"

@@ -118,21 +118,18 @@
             $scope.$on('leafletDirectiveMap.click', mapClickHandler);
             $scope.$on('leafletDirectiveMarker.click', locationClickHandler);
 
+            // Get the locations
+            locationService.getLocations().then(function(locations) {
+                $scope.locations = locations;
+                $scope.locationsLoaded = true;
+            });
+
             // Check if we are logged in
             if (backendService.isLoggedIn()) {
-                // Get the locations
-                locationService.getLocations().then(function(locations) {
-                    $scope.locations = locations;
-                    $scope.locationsLoaded = true;
-                });
-
                 // Get the player
                 playerService.getMe().then(function(me) {
                     player = me;
                 });
-            }
-            else {
-                $scope.locationsLoaded = true;
             }
         }
     ]);

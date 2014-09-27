@@ -62,7 +62,7 @@
             json.type,
             json.points,
             json.availablePoints,
-            new Date(json.nextVisitBonusDate)
+            json.nextVisitBonusDate ? new Date(json.nextVisitBonusDate) : undefined
         );
     };
 
