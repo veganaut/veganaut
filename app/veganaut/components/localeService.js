@@ -20,7 +20,9 @@
             blog: 'Blog',
             contactForm: 'Kontakt',
             twitter: 'Twitter',
-            facebook: 'Facebook'
+            facebook: 'Facebook',
+            github: 'GitHub',
+            bugs: 'Fehler melden'
         },
         form: {
             referenceCode: {
