@@ -3,7 +3,7 @@
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
         <vg-available-points-badge available="location.availablePoints"></vg-available-points-badge>
-        <vg-score-diff-badge team="me.team" diff="location.getRelevantPointDifference(me.team)">
+        <vg-score-diff-badge ng-if="me" team="me.team" diff="location.getRelevantPointDifference(me.team)">
         </vg-score-diff-badge>
     </p>
     <p>
@@ -18,16 +18,6 @@
         <h2>{{ 'map.mission.title' | trans }}</h2>
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>
-        <div class="mission mission-visitBonus" ng-if="visit.visitBonusMission">
-            <p class="h4 mission-title">
-                <vg-mission-points current="visit.visitBonusMission.getCurrentPoints()"
-                 potential="visit.visitBonusMission.points"></vg-mission-points>
-                <span class="glyphicon glyphicon-ok" ng-show="visit.visitBonusMission.completed"></span>
-                {{ 'map.mission.' + visit.visitBonusMission.type + '.title' | trans }}
-            </p>
-            <p>{{ 'map.mission.' + visit.visitBonusMission.type + '.explanation' | trans }}</p>
-            <hr />
-        </div>
         <div ng-repeat="mission in visit.missions|orderBy:'order'" class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 mission-title">
@@ -119,7 +109,7 @@
                             {{ 'map.mission.missionForm.cancel' | trans }}
                         </button>
                         <button type="submit" class="btn btn-team pull-right"
-                         ng-disabled="!mission.hasValidOutcome()" ng-click="mission.finish()">
+                         ng-disabled="!mission.hasValidOutcome()" ng-click="mission.finish(); submitMission(mission)">
                             <span class="glyphicon glyphicon-ok"></span>
                             {{ 'map.mission.missionForm.submit' | trans }}
                         </button>
@@ -199,20 +189,7 @@
              potential="visit.getTotalPoints(true)"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
-        <p>
-            <button class="btn btn-block btn-team submit-visit"
-             ng-click="submitVisit()"
-             ng-disabled="visit.cannotSubmitReason()">
-                <span class="glyphicon glyphicon-log-out"></span>
-                {{ 'map.mission.visitForm.submit' | trans }}
-            </button>
-            <small ng-if="visit.cannotSubmitReason()">
-                {{ visit.cannotSubmitReason() | trans }}
-            </small>
-        </p>
     </div>
-
-    <hr />
     <leaflet class="location-detail-map" ng-if="location"
      markers="[location]" defaults="mapDefaults" center="center">
     </leaflet>

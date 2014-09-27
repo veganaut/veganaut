@@ -166,16 +166,10 @@
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'
                },
-               visitForm: {
-                   submit: 'Besuch beenden',
-                   validation: {
-                       noMission: 'Du musst zuerst eine Mission abschliessen.',
-                       openMission: 'Du musst zuerst alle offenen Missionen abschliessen oder abbrechen.'
-                   }
-               },
                visitBonus: {
                    title: 'Bonus für den ersten Besuch',
-                   explanation: 'Für deinen ersten Besuch an einem Ort innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...'
+                   explanation: 'Für deinen ersten Besuch an einem Ort innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...',
+                   description: 'Besuche diesen Ort'
                },
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',

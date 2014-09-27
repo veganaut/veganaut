@@ -2,8 +2,8 @@
     'use strict';
 
     module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', '$location', 'mapDefaults', 'locationService', 'visitService', 'playerService',
-        function($scope, $routeParams, $location, mapDefaults, locationService, visitService, playerService) {
+        ['$scope', '$routeParams', 'mapDefaults', 'locationService', 'backendService', 'playerService', 'alertService',
+        function($scope, $routeParams, mapDefaults, locationService, backendService, playerService, alertService) {
             var locationId = $routeParams.id;
 
             /**
@@ -25,9 +25,27 @@
             $scope.visit = undefined;
             $scope.location = undefined;
 
-            $scope.submitVisit = function() {
-                visitService.submitVisit($scope.visit);
-                $location.path('/');
+            $scope.submitMission = function(mission) {
+                var missionData = mission.toJson();
+
+                // TODO: translate and handle error properly
+                backendService.submitMission(missionData, $scope.location)
+                    .success(function(savedMission) {
+                        var pointTexts = [];
+                        for (var team in savedMission.points) {
+                            if (savedMission.points.hasOwnProperty(team)) {
+                                pointTexts.push(savedMission.points[team] + ' (' + team + ')');
+                            }
+                        }
+                        alertService.addAlert(
+                            'Successfully submitted your mission. You made the following points: ' + pointTexts.join(', '),
+                            'success'
+                        );
+                    })
+                    .error(function(data) {
+                        alertService.addAlert('Failed to submit your mission: ' + data.error, 'danger');
+                    })
+                ;
             };
 
             // TODO: should directly ask for the correct location from the locationService
@@ -41,9 +59,8 @@
                     }
                 }
                 // TODO: handle location not found
-                // TODO: should do this in parallel with getLocations
                 playerService.getMe().then(function(me) {
-                    $scope.visit = visitService.getVisit($scope.location, me);
+                    $scope.visit = $scope.location.getVisit(me);
                 });
             });
         }

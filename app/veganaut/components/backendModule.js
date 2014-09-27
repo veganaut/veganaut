@@ -232,16 +232,14 @@
         };
 
         /**
-         * Submits the given Visit with missions to the backend
-         * @param {Location} location
+         * Submits the given Mission to the backend
          * @param {{}} missionData
+         * @param {Location} location
          * @returns {HttpPromise}
          */
-        var submitVisit = function(location, missionData) {
-            return $http.post(backendUrl + '/visit', {
-                location: location.id,
-                missions: missionData
-            });
+        var submitMission = function(missionData, location) {
+            missionData.location = location.id;
+            return $http.post(backendUrl + '/mission', missionData);
         };
 
         /**
@@ -288,7 +286,7 @@
                     getMe: getMe,
                     updateMe: updateMe,
                     getLocations: getLocations,
-                    submitVisit: submitVisit,
+                    submitMission: submitMission,
                     submitLocation: submitLocation
                 };
             }

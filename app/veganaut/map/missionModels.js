@@ -69,34 +69,12 @@
 
 
     // VisitBonusMission //////////////////////////////////////////////////////
-    function VisitBonusMission(visit, linkedToMission) {
-        Mission.call(this, 'visitBonus', visit, {}, 100, 10);
-        this._linkedToMission = linkedToMission;
+    function VisitBonusMission(visit) {
+        Mission.call(this, 'visitBonus', visit, true, 50, 10);
     }
 
     VisitBonusMission.prototype = Object.create(Mission.prototype);
     VisitBonusMission.prototype.constructor = VisitBonusMission;
-
-    /**
-     * @inheritdoc
-     */
-    VisitBonusMission.prototype.getCurrentPoints = function() {
-        // If we are done, return the calculated points
-        if (this.completed) {
-            return this.receivedPoints;
-        }
-
-        // Otherwise, check how many points the linked mission gives
-        var linkedPoints = 0;
-        if (!this._linkedToMission.completed) {
-            // We only care when the mission is not completed, otherwise
-            // visit.getRemainingAvailablePoints() will already take this into account
-            linkedPoints = this._linkedToMission.getCurrentPoints();
-        }
-        return Math.max(0,
-            Math.min(this.points, this.visit.getRemainingAvailablePoints() - linkedPoints)
-        );
-    };
 
 
     // HasOptionsMission //////////////////////////////////////////////////////
@@ -166,6 +144,21 @@
         return this.outcome.length > 0;
     };
 
+    WhatOptionsMission.prototype.toJson = function() {
+        var json = Mission.prototype.toJson.apply(this);
+        var outcome = json.outcome;
+        json.outcome = [];
+        _.each(outcome, function(o) {
+            json.outcome.push({
+                product: {
+                    name: o
+                },
+                info: 'available'
+            });
+        });
+        return json;
+    };
+
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit, availableOptions) {
         Mission.call(this, 'buyOptions', visit, {}, 20, 40);
@@ -181,11 +174,11 @@
 
     BuyOptionsMission.prototype.getBoughtOptions = function() {
         var boughtOptions = [];
-        for (var i = 0; i < this.availableOptions.length; i += 1) {
-            if (this.outcome[this.availableOptions[i].id] === true) {
-                boughtOptions.push(this.availableOptions[i]);
-            }
-        }
+        //for (var i = 0; i < this.availableOptions.length; i += 1) {
+        //    if (this.outcome[this.availableOptions[i].id] === true) {
+        //        boughtOptions.push(this.availableOptions[i]);
+        //    }
+        //}
         return boughtOptions;
     };
 
@@ -207,7 +200,6 @@
             text: '',
             didNotDoIt: false
         }, 20, 60);
-        this.visit = visit;
     }
 
     GiveFeedbackMission.prototype = Object.create(Mission.prototype);
