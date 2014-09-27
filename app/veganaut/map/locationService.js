@@ -63,6 +63,24 @@
             };
 
             /**
+             * Returns the Location with the given id
+             * @param id
+             * @returns {Location}
+             */
+            LocationService.prototype.getLocation = function(id) {
+                var that = this;
+                that._deferredLocations = $q.defer();
+                backendService.getLocation(id)
+                    .then(function(res) {
+                        that._deferredLocations.resolve(Location.fromJson(res.data));
+                    })
+                ;
+
+                // Return the promise
+                return that._deferredLocations.promise;
+            };
+
+            /**
              * Sets the given location as active deactivates it if it's already active.
              * @param {Location} [location]
              */

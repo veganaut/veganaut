@@ -22,10 +22,18 @@
         this.finalOutcome = undefined;
     }
 
+    /**
+     * Checks whether this mission has a valid outcome.
+     * @returns {boolean}
+     */
     Mission.prototype.hasValidOutcome = function() {
-        return true;
+        return (typeof this.getOutcome() !== 'undefined');
     };
 
+    /**
+     * Toggle the started flag (except once completed, then
+     * won't change anything any more)
+     */
     Mission.prototype.toggleStarted = function() {
         if (!this.completed) {
             this.started = !this.started;
@@ -70,14 +78,6 @@
             // Tell the visit we are done
             this.visit.finishedMission(this);
         }
-    };
-
-    /**
-     * Checks whether this mission has a valid outcome.
-     * @returns {boolean}
-     */
-    Mission.prototype.hasValidOutcome = function() {
-        return (typeof this.getOutcome() !== 'undefined');
     };
 
     /**
@@ -202,26 +202,15 @@
     };
 
     // BuyOptionsMission //////////////////////////////////////////////////////
-    function BuyOptionsMission(visit, availableOptions) {
+    function BuyOptionsMission(visit) {
         Mission.call(this, 'buyOptions', visit, {}, 20, 40);
-        this.availableOptions = availableOptions;
     }
 
     BuyOptionsMission.prototype = Object.create(Mission.prototype);
     BuyOptionsMission.prototype.constructor = BuyOptionsMission;
 
     BuyOptionsMission.prototype.hasValidOutcome = function() {
-        return (this.getBoughtOptions().length > 0);
-    };
-
-    BuyOptionsMission.prototype.getBoughtOptions = function() {
-        var boughtOptions = [];
-        //for (var i = 0; i < this.availableOptions.length; i += 1) {
-        //    if (this.outcome[this.availableOptions[i].id] === true) {
-        //        boughtOptions.push(this.availableOptions[i]);
-        //    }
-        //}
-        return boughtOptions;
+        return (this.getOutcome().length > 0);
     };
 
     BuyOptionsMission.prototype.getOutcome = function() {
@@ -229,13 +218,15 @@
             return this.finalOutcome;
         }
         var outcome = [];
-        var boughtOptions = this.getBoughtOptions();
-        for (var i = 0; i < boughtOptions.length; i += 1) {
-            outcome.push(boughtOptions[i].id);
-        }
+        _.each(this.outcome, function(isSelected, productId) {
+            if (isSelected) {
+                outcome.push({
+                    product: productId
+                });
+            }
+        });
         return outcome;
     };
-
 
     // GiveFeedbackMission ////////////////////////////////////////////////////
     function GiveFeedbackMission(visit) {
@@ -252,7 +243,7 @@
 
     // RateOptionsMission /////////////////////////////////////////////////////
     function RateOptionsMission(visit) {
-        Mission.call(this, 'rateOptions', visit, undefined, 10, 50);
+        Mission.call(this, 'rateOptions', visit, {}, 10, 50);
         this.maxRating = 5;
     }
 
@@ -260,7 +251,23 @@
     RateOptionsMission.prototype.constructor = RateOptionsMission;
 
     RateOptionsMission.prototype.hasValidOutcome = function() {
-        return (this.getOutcome() > 0);
+        return (this.getOutcome().length > 0);
+    };
+
+    RateOptionsMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
+        var outcome = [];
+        _.each(this.outcome, function(rating, productId) {
+            if (rating > 0) {
+                outcome.push({
+                    product: productId,
+                    info: rating
+                });
+            }
+        });
+        return outcome;
     };
 
     // OfferQualityMission //////////////////////////////////////////////////////

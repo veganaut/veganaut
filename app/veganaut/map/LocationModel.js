@@ -14,10 +14,11 @@
              * @param {string} type
              * @param {{}} [points={}]
              * @param {number} availablePoints
+             * @param {[]} products
              * @param {Date} nextVisitBonusDate
              * @constructor
              */
-            function Location(id, team, lat, lng, title, type, points, availablePoints, nextVisitBonusDate) {
+            function Location(id, team, lat, lng, title, type, points, availablePoints, products, nextVisitBonusDate) {
                 this.id = id;
                 this.team = team;
                 this.lat = lat;
@@ -26,6 +27,7 @@
                 this.type = type;
                 this.points = points || {};
                 this.availablePoints = availablePoints || 0;
+                this.products = products || [];
                 this.nextVisitBonusDate = nextVisitBonusDate;
 
                 this._defaultIconClassList = 'map-location team-' + this.team;
@@ -64,6 +66,7 @@
                     json.type,
                     json.points,
                     json.availablePoints,
+                    json.products,
                     json.nextVisitBonusDate ? new Date(json.nextVisitBonusDate) : undefined
                 );
             };
@@ -156,6 +159,15 @@
                 if (this.type !== Location.TYPES.private) {
                     return new Visit(this, player);
                 }
+            };
+
+            /**
+             * Returns the Product with the given id if it exists
+             * @param {string} productId
+             * @return {Product}
+             */
+            Location.prototype.getProductById = function(productId) {
+                return _.find(this.products, { id: productId });
             };
 
             return Location;

@@ -75,10 +75,10 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
-                                <div class="checkbox" ng-repeat="veganOption in mission.availableOptions">
+                                <div class="checkbox" ng-repeat="product in mission.visit.location.products">
                                     <label>
-                                        <input type="checkbox" ng-model="mission.outcome[veganOption.id]" />
-                                        {{ veganOption.name }}
+                                        <input type="checkbox" ng-model="mission.outcome[product.id]" />
+                                        {{ product.name }}
                                     </label>
                                 </div>
                             </div>
@@ -89,9 +89,13 @@
                                 </div>
                             </div>
                             <div ng-switch-when="rateOptions">
-                                <div class="text-center h3">
-                                    <rating ng-model="mission.outcome"
-                                     max="mission.maxRating"></rating>
+                                <div class="h3" ng-repeat="product in mission.visit.location.products">
+                                    {{ product.name }}
+                                    <span class="pull-right">
+                                        <rating ng-model="mission.outcome[product.id]"
+                                         max="mission.maxRating"></rating>
+                                    </span>
+                                    <span class="clearfix"></span>
                                 </div>
                             </div>
                             <div ng-switch-when="offerQuality">
@@ -153,7 +157,9 @@
                     <div ng-switch-when="buyOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
                         <ul>
-                            <li ng-repeat="option in mission.getBoughtOptions()">{{ option.name }}</li>
+                            <li ng-repeat="outcome in mission.getOutcome()">
+                                {{ location.getProductById(outcome.product).name }}
+                            </li>
                         </ul>
                     </div>
                     <div ng-switch-when="giveFeedback">
@@ -164,8 +170,15 @@
                     </div>
                     <div ng-switch-when="rateOptions">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
-                        <rating readonly="true" ng-model="mission.outcome"
-                         max="mission.maxRating"></rating>
+                        <ul>
+                            <li ng-repeat="outcome in mission.getOutcome()">
+                                {{ location.getProductById(outcome.product).name }}
+                                <span class="pull-right">
+                                    <rating readonly="true" ng-model="mission.outcome[outcome.product]"
+                                     max="mission.maxRating"></rating>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div ng-switch-when="offerQuality">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}

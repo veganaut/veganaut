@@ -232,6 +232,15 @@
         };
 
         /**
+         * Gets the location with the given id
+         * @params {string} id
+         * @returns {HttpPromise}
+         */
+        var getLocation = function(id) {
+            return $http.get(backendUrl + '/location/' + id);
+        };
+
+        /**
          * Submits the given Mission to the backend
          * @param {{}} missionData
          * @param {Location} location
@@ -286,6 +295,7 @@
                     getMe: getMe,
                     updateMe: updateMe,
                     getLocations: getLocations,
+                    getLocation: getLocation,
                     submitMission: submitMission,
                     submitLocation: submitLocation
                 };

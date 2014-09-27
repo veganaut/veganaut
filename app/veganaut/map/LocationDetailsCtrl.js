@@ -48,17 +48,13 @@
                 ;
             };
 
-            // TODO: should directly ask for the correct location from the locationService
-            locationService.getLocations().then(function(locations) {
-                for (var i = 0; i < locations.length; i += 1) {
-                    if (locations[i].id === locationId) {
-                        $scope.location = locations[i];
-                        $scope.center.lat = $scope.location.lat;
-                        $scope.center.lng = $scope.location.lng;
-                        break;
-                    }
-                }
+            // Get the location
+            locationService.getLocation(locationId).then(function(location) {
                 // TODO: handle location not found
+                $scope.location = location;
+                $scope.center.lat = $scope.location.lat;
+                $scope.center.lng = $scope.location.lng;
+
                 playerService.getMe().then(function(me) {
                     $scope.visit = $scope.location.getVisit(me);
                 });
