@@ -18,6 +18,5 @@ fi
 ./node_modules/karma/bin/karma start config/karma-unit.conf.js --single-run --browsers $BROWSERS | tee -a tests.out
 
 cd ../veganaut-backend
-./node_modules/.bin/jasmine-node --captureExceptions test/e2e/     | tee -a ../veganaut/tests.out
-./node_modules/.bin/jasmine-node --captureExceptions test/models/  | tee -a ../veganaut/tests.out
+./node_modules/.bin/jasmine-node --captureExceptions test     | tee -a ../veganaut/tests.out
 
