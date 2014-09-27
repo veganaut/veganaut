@@ -19,6 +19,7 @@
         this.order = order;
         this.started = false;
         this.completed = false;
+        this.finalOutcome = undefined;
     }
 
     Mission.prototype.hasValidOutcome = function() {
@@ -51,6 +52,9 @@
      * @returns {{}}
      */
     Mission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
         return this.outcome;
     };
 
@@ -60,6 +64,7 @@
     Mission.prototype.finish = function() {
         if (!this.completed) {
             this.receivedPoints = this.getCurrentPoints();
+            this.finalOutcome = this.getOutcome();
             this.completed = true;
 
             // Tell the visit we are done
@@ -100,6 +105,9 @@
     HasOptionsMission.prototype.constructor = HasOptionsMission;
 
     HasOptionsMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
         var outcome;
         if (this.outcome.first === 'theyDoNotKnow') {
             outcome = this.outcome.second;
@@ -117,10 +125,11 @@
     // WantVeganMission //////////////////////////////////////////////////////
     function WantVeganMission(visit) {
         Mission.call(this, 'wantVegan', visit, {
-            expressions: {},
-            others: []
+            builtin: {},
+            custom: []
         }, 10, 25);
-        this.expressions = [
+
+        this.builtinExpressions = [
             'vegan',
             'plantbased',
             'noAnimalproducts',
@@ -134,26 +143,30 @@
     WantVeganMission.prototype = Object.create(Mission.prototype);
     WantVeganMission.prototype.constructor = WantVeganMission;
 
-    WantVeganMission.prototype.getSelectedExpressions = function() {
-        var selected = [];
-        _.forOwn(this.outcome.expressions, function(isSelected, expression) {
+    WantVeganMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
+        var outcome = [];
+        _.forOwn(this.outcome.builtin, function(isSelected, exp) {
             if (isSelected === true) {
-                selected.push(expression);
+                outcome.push({
+                    expression: exp,
+                    expressionType: 'builtin'
+                });
             }
         });
-        return selected;
+        _.each(this.outcome.custom, function(exp) {
+            outcome.push({
+                expression: exp,
+                expressionType: 'custom'
+            });
+        });
+        return outcome;
     };
 
     WantVeganMission.prototype.hasValidOutcome = function() {
-        return (this.getSelectedExpressions().length > 0 ||
-            this.outcome.others.length > 0
-        );
-    };
-
-    WantVeganMission.prototype.toJson = function() {
-        var json = Mission.prototype.toJson.apply(this);
-        json.outcome.expressions = this.getSelectedExpressions();
-        return json;
+        return (this.getOutcome().length > 0);
     };
 
     // WhatOptionsMission /////////////////////////////////////////////////////
@@ -169,6 +182,9 @@
     };
 
     WhatOptionsMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
         var outcome = [];
         _.each(this.outcome, function(o) {
             outcome.push({
@@ -205,6 +221,9 @@
     };
 
     BuyOptionsMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this.finalOutcome;
+        }
         var outcome = [];
         var boughtOptions = this.getBoughtOptions();
         for (var i = 0; i < boughtOptions.length; i += 1) {

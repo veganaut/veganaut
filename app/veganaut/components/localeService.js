@@ -204,7 +204,7 @@
                        noWool: 'ohne Wolle',
                        noLeather: 'ohne Leder',
                        noFur: 'ohne Fell',
-                       others: 'Andere:',
+                       custom: 'Andere:',
                        placeholder: 'Andere gebrauchte Ausdrücke'
                    },
                    outcome: {
