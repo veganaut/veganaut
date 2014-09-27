@@ -7,7 +7,7 @@ function cleanUp() {
 }
 
 if ! pgrep "mongod" > /dev/null; then
-    echo "Staring mongod"
+    echo "Starting mongod"
     trap cleanUp EXIT
 
     mkdir -p mongodb

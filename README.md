@@ -7,7 +7,9 @@ vegan/vegetarian movement to grow faster, be more effective and include a more d
 Getting Started
 ---------------
 
-To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and [mongodb](http://www.mongodb.org/).
+To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and
+[mongodb](http://www.mongodb.org/). On a Mac, the easiest way to do so is `brew
+install node mongdb`.
 
 After that checkout veganaut and veganaut-backend:
 
@@ -19,6 +21,10 @@ Install the dependencies using npm:
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
 
+Start all the things:
+
+    cd veganaut; ./scripts/run-all.sh
+
 Load the fixtures:
 
     cd veganaut-backend; node ./test/fixtures/basic.js
@@ -26,10 +32,6 @@ Load the fixtures:
 Compile less:
 
     cd veganaut; ./node_modules/.bin/lessc app/less/master.less > app/css/master.css
-
-Start all the things:
-
-    cd veganaut; ./scripts/run-all.sh
 
 This will do the following:
 
