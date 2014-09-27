@@ -1,5 +1,10 @@
 <div ng-controller="LocationDetailsCtrl">
-    <h1 class="color-{{ location.team }}">{{ location.title }}</h1>
+    <h1 class="color-{{ location.team }}">
+        {{ location.title }}
+        <small class="location-quality-label bg-color-{{ location.team }}" ng-if="location.quality > 0">
+            <span class="icon icon-{{ location.quality }} location-quality-label-icon"></span>
+        </small>
+    </h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
         <vg-available-points-badge available="location.availablePoints"></vg-available-points-badge>

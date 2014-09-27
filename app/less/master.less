@@ -14,6 +14,11 @@
         color: @baseColour;
     }
 
+    // Background colour
+    .bg-color-team, .bg-color-@{teamName} {
+        background-color: @baseColour;
+    }
+
     // Team button
     body.player-@{teamName} .btn-team {
         .button-variant(#fff; @baseColour; darken(@baseColour, 5%));
