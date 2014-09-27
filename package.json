@@ -1,19 +1,19 @@
 {
-    "name": "veganaut",
-    "private": true,
-    "repository": "https://github.com/veganaut/veganaut",
-    "devDependencies": {
-        "protractor" : "1.0.0",
-        "phantomjs" : "^1.9.0-0",
-        "karma" : "0.10.9",
-        "karma-jasmine" : "0.1.5",
-        "karma-ng-scenario" : "0.1.0",
-        "less": "1.6.1",
-        "jshint": "2.5.0",
-        "tmp": "0.0.23",
-        "bower": "1.3.6"
-    },
-    "scripts": {
-        "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update"
-    }
+  "name": "veganaut",
+  "private": true,
+  "repository": "https://github.com/veganaut/veganaut",
+  "devDependencies": {
+    "bower": "1.3.6",
+    "jshint": "2.5.0",
+    "karma": "^0.12.23",
+    "karma-jasmine": "0.1.5",
+    "karma-ng-scenario": "0.1.0",
+    "less": "1.6.1",
+    "phantomjs": "^1.9.0-0",
+    "protractor": "1.0.0",
+    "tmp": "0.0.23"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update"
+  }
 }
