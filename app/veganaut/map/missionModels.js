@@ -2,21 +2,53 @@
     'use strict';
 
     /**
+     * Order that the missions will be shown in
+     * @type {string[]}
+     */
+    var MISSION_ORDER = [
+        'visitBonus',
+        'hasOptions',
+        'wantVegan',
+        'whatOptions',
+        'buyOptions',
+        'rateOptions',
+        'giveFeedback',
+        'offerQuality',
+        'effortValue'
+    ];
+
+    /**
+     * Map of mission types to the number of points it gives
+     * TODO: there is an identical list in the backend, share this code!
+     * @type {{}}
+     */
+    var MISSION_POINTS = {
+        addLocation:  10,
+        visitBonus:   50,
+        hasOptions:   10,
+        wantVegan:    10,
+        whatOptions:  10,
+        buyOptions:   20,
+        rateOptions:  10,
+        giveFeedback: 10,
+        offerQuality: 20,
+        effortValue:  20
+    };
+
+    /**
      * Generic Mission Model
      * @param {string} type
      * @param {Visit} visit
      * @param {{}|[]} outcome
-     * @param {number} points
-     * @param {number} order Missions will be ordered according to this
      * @constructor
      */
-    function Mission(type, visit, outcome, points, order) {
+    function Mission(type, visit, outcome) {
         this.type = type;
         this.visit = visit;
         this.outcome = outcome;
-        this.points = points;
+        this.points = MISSION_POINTS[type];
         this.receivedPoints = 0;
-        this.order = order;
+        this.order = MISSION_ORDER.indexOf(type);
         this.started = false;
         this.completed = false;
         this.finalOutcome = undefined;
@@ -95,7 +127,7 @@
 
     // VisitBonusMission //////////////////////////////////////////////////////
     function VisitBonusMission(visit) {
-        Mission.call(this, 'visitBonus', visit, true, 50, 10);
+        Mission.call(this, 'visitBonus', visit, true);
     }
 
     VisitBonusMission.prototype = Object.create(Mission.prototype);
@@ -104,7 +136,7 @@
 
     // HasOptionsMission //////////////////////////////////////////////////////
     function HasOptionsMission(visit) {
-        Mission.call(this, 'hasOptions', visit, {}, 10, 20);
+        Mission.call(this, 'hasOptions', visit, {});
         this.firstAnswers = ['yes', 'no', 'theyDoNotKnow'];
         this.secondAnswers = ['ratherYes', 'ratherNo', 'noClue'];
     }
@@ -131,7 +163,7 @@
         Mission.call(this, 'wantVegan', visit, {
             builtin: {},
             custom: []
-        }, 10, 25);
+        });
 
         this.builtinExpressions = [
             'vegan',
@@ -175,7 +207,7 @@
 
     // WhatOptionsMission /////////////////////////////////////////////////////
     function WhatOptionsMission(visit) {
-        Mission.call(this, 'whatOptions', visit, [], 10, 30);
+        Mission.call(this, 'whatOptions', visit, []);
     }
 
     WhatOptionsMission.prototype = Object.create(Mission.prototype);
@@ -203,7 +235,7 @@
 
     // BuyOptionsMission //////////////////////////////////////////////////////
     function BuyOptionsMission(visit) {
-        Mission.call(this, 'buyOptions', visit, {}, 20, 40);
+        Mission.call(this, 'buyOptions', visit, {});
     }
 
     BuyOptionsMission.prototype = Object.create(Mission.prototype);
@@ -230,7 +262,7 @@
 
     // GiveFeedbackMission ////////////////////////////////////////////////////
     function GiveFeedbackMission(visit) {
-        Mission.call(this, 'giveFeedback', visit, '', 20, 60);
+        Mission.call(this, 'giveFeedback', visit, '');
     }
 
     GiveFeedbackMission.prototype = Object.create(Mission.prototype);
@@ -243,7 +275,7 @@
 
     // RateOptionsMission /////////////////////////////////////////////////////
     function RateOptionsMission(visit) {
-        Mission.call(this, 'rateOptions', visit, {}, 10, 50);
+        Mission.call(this, 'rateOptions', visit, {});
         this.maxRating = 5;
     }
 
@@ -272,7 +304,7 @@
 
     // OfferQualityMission //////////////////////////////////////////////////////
     function OfferQualityMission(visit) {
-        Mission.call(this, 'offerQuality', visit, undefined, 10, 70);
+        Mission.call(this, 'offerQuality', visit, undefined);
         this.maxRating = 5;
     }
 
@@ -281,7 +313,7 @@
 
     // EffortValueMission //////////////////////////////////////////////////////
     function EffortValueMission(visit) {
-        Mission.call(this, 'effortValue', visit, undefined, 10, 80);
+        Mission.call(this, 'effortValue', visit, undefined);
         this.possibleAnswers = ['yes', 'no'];
     }
 

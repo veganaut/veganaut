@@ -100,8 +100,12 @@
                             </div>
                             <div ng-switch-when="offerQuality">
                                 <div class="text-center h3">
-                                    <rating ng-model="mission.outcome"
-                                     max="mission.maxRating"></rating>
+                                    <div class="btn-group form-group">
+                                        <label class="btn btn-default" ng-repeat="answer in [1,2,3,4,5]"
+                                         ng-model="mission.outcome" btn-radio="answer">
+                                            <span class="icon icon-{{ answer }} h3"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div ng-switch-when="effortValue">
@@ -182,8 +186,7 @@
                     </div>
                     <div ng-switch-when="offerQuality">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
-                        <rating readonly="true" ng-model="mission.outcome"
-                         max="mission.maxRating"></rating>
+                        <span class="icon icon-{{ mission.outcome }} h3"></span>
                     </div>
                     <div ng-switch-when="effortValue">
                         {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | trans }}

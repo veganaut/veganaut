@@ -26,8 +26,8 @@
              * TODO
              * @param {Mission} mission
              */
-            Visit.prototype.finishedMission = function(mission) {
-                console.log(mission);
+            Visit.prototype.finishedMission = function(/*mission*/) {
+                // TODO: what should we do here?
             };
 
             /**

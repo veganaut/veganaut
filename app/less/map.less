@@ -3,7 +3,10 @@
 }
 
 @markerSize: 24px;
-@markerSizeActive: 28px;
+@markerActiveIncrease: 4px;
+@markerSizeActive: @markerSize + @markerActiveIncrease;
+@markerIconFontSize: 22px;
+@markerIconFontSizeActive: @markerIconFontSize + @markerActiveIncrease;
 .map-location {
     border-radius: @markerSize / 2;
     opacity: 0.6;
@@ -12,6 +15,13 @@
     margin-left: -@markerSize / 2;
     margin-top: -@markerSize / 2;
 
+    .map-icon {
+        color: white;
+        font-size: @markerIconFontSize;
+        position: absolute;
+        left: 1px;
+    }
+
     &:hover, &.active {
         opacity: 1;
         width: @markerSizeActive;
@@ -19,6 +29,10 @@
         border-radius: @markerSizeActive / 2;
         margin-left: -@markerSizeActive / 2;
         margin-top: -@markerSizeActive / 2;
+
+        .map-icon {
+            font-size: @markerIconFontSizeActive;
+        }
     }
 }
 

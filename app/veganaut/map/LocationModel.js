@@ -14,11 +14,12 @@
              * @param {string} type
              * @param {{}} [points={}]
              * @param {number} availablePoints
+             * @param {number} quality
              * @param {[]} products
              * @param {Date} nextVisitBonusDate
              * @constructor
              */
-            function Location(id, team, lat, lng, title, type, points, availablePoints, products, nextVisitBonusDate) {
+            function Location(id, team, lat, lng, title, type, points, availablePoints, quality, products, nextVisitBonusDate) {
                 this.id = id;
                 this.team = team;
                 this.lat = lat;
@@ -27,6 +28,7 @@
                 this.type = type;
                 this.points = points || {};
                 this.availablePoints = availablePoints || 0;
+                this.quality = Math.min(5, Math.max(0, Math.round(quality || 0)));
                 this.products = products || [];
                 this.nextVisitBonusDate = nextVisitBonusDate;
 
@@ -37,6 +39,11 @@
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
                     className: this._defaultIconClassList
                 };
+
+                // Add the font icon to the marker icon if the quality is set
+                if (this.quality > 0) {
+                    this.icon.html = '<span class="map-icon icon icon-' + this.quality + '"></span>';
+                }
 
                 this._active = false;
             }
@@ -56,7 +63,7 @@
              * @returns {Location}
              */
             Location.fromJson = function(json) {
-                // TODO: this is getting ridiculous
+                // TODO: this is getting ridiculous, seriously dude
                 return new Location(
                     json.id,
                     json.team,
@@ -66,6 +73,7 @@
                     json.type,
                     json.points,
                     json.availablePoints,
+                    json.quality,
                     json.products,
                     json.nextVisitBonusDate ? new Date(json.nextVisitBonusDate) : undefined
                 );
