@@ -1,7 +1,7 @@
 <div ng-controller="LocationDetailsCtrl">
     <h1 class="color-{{ location.team }}">
         {{ location.title }}
-        <small class="location-quality-label bg-color-{{ location.team }}" ng-if="location.quality > 0">
+        <small class="location-quality-label" ng-if="location.quality > 0">
             <span class="icon icon-{{ location.quality }} location-quality-label-icon"></span>
         </small>
     </h1>
