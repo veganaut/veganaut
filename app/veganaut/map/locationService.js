@@ -2,6 +2,10 @@
     'use strict';
     module.factory('locationService', ['$q', 'Location', 'mapDefaults', 'backendService', 'alertService',
         function($q, Location, mapDefaults, backendService, alertService) {
+            var DEFAULT_ZOOM = 2;
+            var GEO_IP_ZOOM = 10;
+            var MAP_CENTER_STORAGE_ID = 'veganautMapCenter';
+
             var LocationService = function() {
                 /**
                  * Deferred that stores the locations
@@ -11,6 +15,12 @@
                 this._deferredLocations = undefined;
 
                 /**
+                 * The currently active location
+                 * @type {Location}
+                 */
+                this.active = undefined;
+
+                /**
                  * Main map settings:
                  *  - current center of the map
                  *  - leaflet "defaults" settings
@@ -18,19 +28,54 @@
                  * @type {{}}
                  */
                 this.mapSettings = {
-                    center: {
-                        lat: 46.949,
-                        lng: 7.451,
-                        zoom: 13
-                    },
+                    center: {},
                     defaults: mapDefaults
                 };
 
-                /**
-                 * The currently active location
-                 * @type {Location}
-                 */
-                this.active = undefined;
+                this._setMapCenter();
+            };
+
+            /**
+             * Sets the map center either from local storage or
+             * from asking the backend for a location
+             * @private
+             */
+            LocationService.prototype._setMapCenter = function() {
+                // Try to load from center from local storage
+                this.mapSettings.center = JSON.parse(localStorage.getItem(MAP_CENTER_STORAGE_ID) || '{}');
+
+                // Check if we loaded something
+                if (Object.keys(this.mapSettings.center).length === 0) {
+                    // If not, as the backend for a location
+                    var that = this;
+                    backendService.getGeoIP().then(function(res) {
+                        // Check the data and set it
+                        var geo = res.data;
+                        if (angular.isNumber(geo.lat) && angular.isNumber(geo.lng)) {
+                            that.mapSettings.center.lat = geo.lat;
+                            that.mapSettings.center.lng = geo.lng;
+                            that.mapSettings.center.zoom = GEO_IP_ZOOM;
+                            that.saveMapCenter();
+                        }
+                    });
+                }
+
+                // Make sure we already have a valid center now
+                _.defaults(this.mapSettings.center, {
+                    lat: 0,
+                    lng: 0,
+                    zoom: DEFAULT_ZOOM
+                });
+            };
+
+            /**
+             * Saves the map center in local storage
+             */
+            LocationService.prototype.saveMapCenter = function() {
+                // TODO: is this a privacy issue if we don't clear this when the user logs out?
+                localStorage.setItem(MAP_CENTER_STORAGE_ID,
+                    JSON.stringify(this.mapSettings.center)
+                );
             };
 
             /**

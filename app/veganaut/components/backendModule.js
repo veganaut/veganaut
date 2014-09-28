@@ -6,6 +6,7 @@
     /**
      * Interface with the backend
      * TODO: rather return promises for the return object instead of $http promises
+     * TODO: refactor to be a proper class
      */
     module.provider('backendService', function() {
         var $http;
@@ -241,6 +242,14 @@
         };
 
         /**
+         * Requests the lat/lng based on the ip of the user
+         * @returns {HttpPromise}
+         */
+        var getGeoIP = function() {
+            return $http.get(backendUrl + '/geoip');
+        };
+
+        /**
          * Submits the given Mission to the backend
          * @param {{}} missionData
          * @param {Location} location
@@ -296,6 +305,7 @@
                     updateMe: updateMe,
                     getLocations: getLocations,
                     getLocation: getLocation,
+                    getGeoIP: getGeoIP,
                     submitMission: submitMission,
                     submitLocation: submitLocation
                 };

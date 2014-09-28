@@ -131,6 +131,11 @@
                     player = me;
                 });
             }
+
+            // Watch the map center for changes to save it
+            $scope.$watch('mapSettings.center', function() {
+                locationService.saveMapCenter();
+            });
         }
     ]);
 })(window.veganaut.mapModule);
