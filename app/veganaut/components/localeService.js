@@ -76,8 +76,8 @@
                 changePassword: 'Passwort ändern'
             },
             map: {
-                addLocation: 'Neuen Ort hinzufügen',
-                locationAction: 'Diesen Ort jetzt besuchen'
+                addLocation: 'Neue Location hinzufügen',
+                locationAction: 'Diese Location jetzt besuchen'
             }
         },
         activityLink: {
@@ -136,9 +136,9 @@
         },
         location: {
             form: {
-                name: 'Name des Ortes',
+                name: 'Name der Location',
                 selectOnMap: 'Wähle einen Punkt auf der Karte aus',
-                chooseType: 'Typ des Ortes auswählen',
+                chooseType: 'Art der Location auswählen',
                 submit: 'Speichern'
             },
             type: {
@@ -168,8 +168,8 @@
                },
                visitBonus: {
                    title: 'Bonus für den ersten Besuch',
-                   explanation: 'Für deinen ersten Besuch an einem Ort innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...',
-                   description: 'Besuche diesen Ort'
+                   explanation: 'Für deinen ersten Besuch an einer Location innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...',
+                   description: 'Besuche diese Location'
                },
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
@@ -280,18 +280,18 @@
                    }
                },
                offerQuality: {
-                   title: 'Beurteile, wie gut dieser Ort veganautische Bedürfnisse befriedigt.',
-                   description: 'Wie gut befriedigt dieser Ort veganautische Bedürfnisse?',
-                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. An manchen Orten hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. An anderen Orten gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Orte haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Orte, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
+                   title: 'Beurteile, wie gut diese Location veganautische Bedürfnisse befriedigt.',
+                   description: 'Wie gut befriedigt diese Location veganautische Bedürfnisse?',
+                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
                    outcome: {
                        description: 'Dein Urteil:'
                    }
                },
                effortValue: {
                    // TODO: @SebuLeugger: improve these texts
-                   title: 'Schätze ab, wie stark sich das vegane Angebot an diesem Ort vergrössern und verbessern wird, wenn mehr Veganautinnen und Veganauten hierher kommen.',
-                   description: 'Wie stark wird sich das vegane Angebot an diesem Ort deiner Einschätzung nach vergrössern und verbessern, wenn mehr Veganautinnen und Veganauten hierher kommen?',
-                   explanation: 'An manchen Orten hat das Personal, die Chefin oder der Besitzer eine starke Abneigung gegenüber "vegan". Andere Orte sind 100% vegan. An beiden Orten wird sich am Angebot nicht viel ändern, wenn mehr Veganautinnen und Veganauten hingehen. Dann gibt es Orte, wo das Personal, der Chef und die Besitzerin zwar keine Abneigung gegenüber "vegan" haben, aber noch zweifeln, ob sich eine Investition in ein (besseres/grösseres) veganes Angebot lohnt oder nicht. Hier ist die Chance höher, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hingehen. Weiter gibt es Orte, die gerne mehr veganes anbieten möchten, aber nicht wissen, was oder wie genau. Auch hier können Veganautinnen und Veganauten viel bewirken.',
+                   title: 'Schätze ab, wie stark sich das vegane Angebot in dieser Location vergrössern und verbessern wird, wenn mehr Veganautinnen und Veganauten hierher kommen.',
+                   description: 'Wie stark wird sich das vegane Angebot in dieser Location deiner Einschätzung nach vergrössern und verbessern, wenn mehr Veganautinnen und Veganauten hierher kommen?',
+                   explanation: 'In manchen Locations hat das Personal, die Chefin oder der Besitzer eine starke Abneigung gegenüber "vegan". Andere Locations sind 100% vegan. In beiden Locations wird sich am Angebot nicht viel ändern, wenn mehr Veganautinnen und Veganauten hingehen. Dann gibt es Locations, wo das Personal, der Chef und die Besitzerin zwar keine Abneigung gegenüber "vegan" haben, aber noch zweifeln, ob sich eine Investition in ein (besseres/grösseres) veganes Angebot lohnt oder nicht. Hier ist die Chance höher, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hingehen. Weiter gibt es Locations, die gerne mehr veganes anbieten möchten, aber nicht wissen, was oder wie genau. Auch hier können Veganautinnen und Veganauten viel bewirken.',
                    form: {
                        yes: 'Eher ja',
                        no: 'Eher nein'
