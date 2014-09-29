@@ -24,7 +24,7 @@
                 this.team = team;
                 this.lat = lat;
                 this.lng = lng;
-                this.title = title;
+                this.title = title; // TODO: rename to "name"
                 this.type = type;
                 this.points = points || {};
                 this.availablePoints = availablePoints || 0;
@@ -40,12 +40,9 @@
                     className: this._defaultIconClassList
                 };
 
-                // Add the font icon to the marker icon if the quality is set
-                if (this.quality > 0) {
-                    this.icon.html = '<span class="map-icon icon icon-' + this.quality + '"></span>';
-                }
-
                 this._active = false;
+
+                this._setMarkerIcon();
             }
 
             /**
@@ -77,6 +74,18 @@
                     json.products,
                     json.nextVisitBonusDate ? new Date(json.nextVisitBonusDate) : undefined
                 );
+            };
+
+            /**
+             * Sets the icon HTML to display the correct marker icon
+             * @private
+             */
+            Location.prototype._setMarkerIcon = function() {
+                this.icon.html = '';
+                if (this.quality > 0) {
+                    // Add the font icon if quality is set
+                    this.icon.html = '<span class="map-icon icon icon-' + this.quality + '"></span>';
+                }
             };
 
             /**
@@ -176,6 +185,27 @@
              */
             Location.prototype.getProductById = function(productId) {
                 return _.find(this.products, { id: productId });
+            };
+
+            /**
+             * Updates this Location with the new data loaded from the backend
+             * @param {{}} newData
+             */
+            Location.prototype.update = function(newData) {
+                // TODO: should only update what is actually given in the newData
+                // TODO: should be merged somehow with fromJson and just be less ugly
+                this.id = newData.id;
+                this.team = newData.team;
+                this.title = newData.name;
+                this.points = newData.points;
+                this.availablePoints = newData.availablePoints;
+                this.quality = newData.quality;
+                this.products = newData.products;
+                this.nextVisitBonusDate = newData.nextVisitBonusDate;
+                this._setMarkerIcon();
+
+                // Clear points memoiziation
+                this.sortedPoints = undefined;
             };
 
             return Location;

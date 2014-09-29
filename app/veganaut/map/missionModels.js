@@ -121,9 +121,17 @@
         if (this.completed) {
             return this.receivedPoints;
         }
-        return Math.min(this.points, this.visit.getRemainingAvailablePoints());
+        return Math.min(this.points, this.visit.getAvailablePoints());
     };
 
+    /**
+     * Returns whether this mission is available at the moment
+     * at this location for this user.
+     * @returns {boolean}
+     */
+    Mission.prototype.isAvailable = function() {
+        return true;
+    };
 
     // VisitBonusMission //////////////////////////////////////////////////////
     function VisitBonusMission(visit) {
@@ -133,6 +141,12 @@
     VisitBonusMission.prototype = Object.create(Mission.prototype);
     VisitBonusMission.prototype.constructor = VisitBonusMission;
 
+    /**
+     * @inheritDoc
+     */
+    VisitBonusMission.prototype.isAvailable = function() {
+        return this.visit.location.canGetVisitBonus();
+    };
 
     // HasOptionsMission //////////////////////////////////////////////////////
     function HasOptionsMission(visit) {
@@ -260,6 +274,13 @@
         return outcome;
     };
 
+    /**
+     * @inheritDoc
+     */
+    BuyOptionsMission.prototype.isAvailable = function() {
+        return (this.visit.location.products.length > 0);
+    };
+
     // GiveFeedbackMission ////////////////////////////////////////////////////
     function GiveFeedbackMission(visit) {
         Mission.call(this, 'giveFeedback', visit, '');
@@ -300,6 +321,13 @@
             }
         });
         return outcome;
+    };
+
+    /**
+     * @inheritDoc
+     */
+    RateOptionsMission.prototype.isAvailable = function() {
+        return (this.visit.location.products.length > 0);
     };
 
     // OfferQualityMission //////////////////////////////////////////////////////

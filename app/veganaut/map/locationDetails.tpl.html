@@ -23,7 +23,9 @@
         <h2>{{ 'map.mission.title' | trans }}</h2>
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>
-        <div ng-repeat="mission in visit.missions|orderBy:'order'" class="page-section mission mission-{{ mission.type }}">
+        <div ng-repeat="mission in visit.missions|orderBy:'order'"
+         ng-if="mission.completed || mission.isAvailable()"
+         class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 mission-title">
                     <vg-mission-points current="mission.getCurrentPoints()"

@@ -161,13 +161,9 @@
                     type: location.type
                 })
                     .success(function(data) {
-                        // TODO: how to update the location from what the backend tells us
-                        location.id = data.id;
-                        location.nextVisitBonusDate = data.nextVisitBonusDate;
-                        location.availablePoints = data.availablePoints;
-                        location.points = data.points;
-                        location.sortedPoints = undefined; // Force new calculation, TODO: should be done differently
-                        alertService.addAlert('Added new location "' + data.name + '"', 'success');
+                        // Update the location
+                        location.update(data);
+                        alertService.addAlert('Added new location "' + location.title + '"', 'success');
                     })
                     .error(function(data) {
                         // TODO: remove the location from the list

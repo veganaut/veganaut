@@ -31,16 +31,23 @@
                 // TODO: translate and handle error properly
                 backendService.submitMission(missionData, $scope.location)
                     .success(function(savedMission) {
+                        // Prepare success message
                         var pointTexts = [];
                         for (var team in savedMission.points) {
                             if (savedMission.points.hasOwnProperty(team)) {
                                 pointTexts.push(savedMission.points[team] + ' (' + team + ')');
                             }
                         }
+                        // TODO: should we only show this once we reloaded the location?
                         alertService.addAlert(
                             'Successfully submitted your mission. You made the following points: ' + pointTexts.join(', '),
                             'success'
                         );
+
+                        // Request the location again
+                        locationService.getLocation(locationId).then(function(newLocationData) {
+                            $scope.location.update(newLocationData);
+                        });
                     })
                     .error(function(data) {
                         alertService.addAlert('Failed to submit your mission: ' + data.error, 'danger');

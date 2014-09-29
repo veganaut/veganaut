@@ -30,6 +30,7 @@
                 // TODO: what should we do here?
             };
 
+            // TODO: this might get easier now since every mission is submitted separately
             /**
              * Returns the total number of points made in this visit
              * @param {Boolean} [ignoreAvailablePoints=false]
@@ -48,11 +49,11 @@
 
             /**
              * Returns the number of points that is still available at this
-             * location taking into account the already completed missions.
+             * location.
              * @returns {number}
              */
-            Visit.prototype.getRemainingAvailablePoints = function() {
-                return (this.location.availablePoints - this.getTotalPoints());
+            Visit.prototype.getAvailablePoints = function() {
+                return (this.location.availablePoints);
             };
 
             return Visit;
