@@ -161,7 +161,7 @@
         map: {
            mission: {
                title: 'Missionen',
-               pointsForThisVisit: 'Punkte für diesen Besuch',
+               pointsForThisVisit: 'Total gesammelte Punkte', // TODO @toebu: here it's still called "visit", which is not nice semantically
                missionForm: {
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'
