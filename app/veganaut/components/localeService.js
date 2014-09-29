@@ -77,7 +77,7 @@
             },
             map: {
                 addLocation: 'Neue Location hinzufügen',
-                locationAction: 'Diese Location jetzt besuchen'
+                locationAction: 'Diese Location genauer anschauen'
             }
         },
         activityLink: {
@@ -167,15 +167,15 @@
                    cancel: 'Abbrechen'
                },
                visitBonus: {
-                   title: 'Bonus für den ersten Besuch',
-                   explanation: 'Für deinen ersten Besuch an einer Location innerhalb von ein paar Wochen erhälst du zusätzliche Punkte. Falls dies dein zweiter, dritter oder x-ter Besuch innerhalb von ein paar Wochen ist, erhälst du keine Zusatzpunkte mehr. Aber vielleicht kennst du ein anderes Teammitglied, das noch nie oder schon länger nicht mehr hier war und darum einen Bonus erhalten würde...',
-                   description: 'Besuche diese Location'
+                   title: 'Besuche diese Location.',
+                   explanation: 'Für deinen ersten Besuch innerhalb von ein paar Wochen erhälst du Punkte.',
+                   description: 'Schliesse diese Mission ab, wenn du diese Location jetzt besuchst.'
                },
                hasOptions: {
                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
                    description: 'Gibt es hier laut dem Personal etwas Veganes?',
                    description2: 'Was denkst du, gibt es etwas Veganes?',
-                   explanation: 'Das Personal kann nicht Gedanken lesen. Frage darum ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
+                   explanation: 'Frage ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
                    form: {
                        theyDoNotKnow: 'Sie wissen es nicht',
                        yes: 'Ja',
@@ -187,9 +187,9 @@
                    outcome: {
                        yes: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
                        no: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.',
-                       ratherYes: 'Eher ja',
-                       noClue: 'Keine Ahnung',
-                       ratherNo: 'Eher nein'
+                       ratherYes: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl etwas Veganes.',
+                       noClue: 'Das Personal weiss es nicht, und auch du hast keine Ahnung, ob es hier etwas Veganes gibt.',
+                       ratherNo: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl nichts Veganes.'
                    }
                },
                wantVegan: {
@@ -214,7 +214,7 @@
                        description: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
                    }
                },
-               particularOption: {
+               particularOption: { // @toebu was hälst du von dieser Mission?
                    title: 'Frage nach einem bestimmten veganen Produkt.',
                    description: 'Nach welchen veganen Produkt hast du gefragt?',
                    explanation: 'Frag das Personal nach einem oder mehreren veganen Produkten, die dich interessieren. Wenn sie sie z.T. noch nicht im Angebot haben, nehmen sie sie vielleicht ins Sortiment auf, wenn genügend Leute danach fragen.',
@@ -227,7 +227,7 @@
                        description: 'Du hast nach diesen veganen Produkten gefragt:'
                    }
                },
-               newOption: {
+               newOption: { // @toebu was hälst du von dieser Mission?
                    title: 'Frage, ob es neue vegane Produkte im Angebot hat.',
                    description: 'Hat es laut dem Personal neue vegane Produkte im Angebot?',
                    explanation: 'Frag das Personal, ob sie hier in letzter Zeit neue vegane Produkte ins Angebot aufgenommen haben.',
@@ -255,7 +255,7 @@
                buyOptions: {
                    title: 'Kauf etwas Veganes.',
                    description: 'Was hast du gekauft?',
-                   explanation: 'Interessiert dich das eine oder andere vegane Angebot, das es hier gibt? Dann kannst du dem Personal mit einem Kauf zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn es passt, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
+                   explanation: 'Mit einem Kauf kannst du dem Personal zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn du willst, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
                    outcome: {
                        description: 'Du hast diese veganen Angebote gekauft:'
                    }
@@ -263,7 +263,7 @@
                giveFeedback: {
                    title: 'Gib dem Personal eine Rückmeldung.',
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
-                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast. Oder was du dem Personal hättest sagen wollen.',
+                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast.',
                    form: {
                        placeholder: 'Rückmeldung'
                    },
@@ -274,7 +274,7 @@
                rateOptions: {
                    title: 'Bewerte einzelne vegane Angebote, die es hier gibt.',
                    description: 'Wie bewertest du diese veganen Angebote?',
-                   explanation: 'Über Geschmack lässt sich nicht streiten, aber die Chancen stehen gut, dass etwas, was dir gefällt, auch anderen gefallen wird. Umgekehrt ist es auch gut möglich, dass etwas, was dich nicht überzeugt, auch bei anderen nicht gut ankommt. Aber die Meinung der anderen muss dich hier nicht kümmern. Gib einfach deine persönliche Bewertung ab.',
+                   explanation: 'Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab.',
                    outcome: {
                        description: 'Deine Bewertung:'
                    }
@@ -282,16 +282,15 @@
                offerQuality: {
                    title: 'Beurteile, wie gut diese Location veganautische Bedürfnisse befriedigt.',
                    description: 'Wie gut befriedigt diese Location veganautische Bedürfnisse?',
-                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes im Angebot, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren Angebot 100% vegan ist von der Qualität her nichts zu wünschen übrig lässt.',
+                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.',
                    outcome: {
                        description: 'Dein Urteil:'
                    }
                },
                effortValue: {
-                   // TODO: @SebuLeugger: improve these texts
-                   title: 'Schätze ab, wie stark sich das vegane Angebot in dieser Location vergrössern und verbessern wird, wenn mehr Veganautinnen und Veganauten hierher kommen.',
-                   description: 'Wie stark wird sich das vegane Angebot in dieser Location deiner Einschätzung nach vergrössern und verbessern, wenn mehr Veganautinnen und Veganauten hierher kommen?',
-                   explanation: 'In manchen Locations hat das Personal, die Chefin oder der Besitzer eine starke Abneigung gegenüber "vegan". Andere Locations sind 100% vegan. In beiden Locations wird sich am Angebot nicht viel ändern, wenn mehr Veganautinnen und Veganauten hingehen. Dann gibt es Locations, wo das Personal, der Chef und die Besitzerin zwar keine Abneigung gegenüber "vegan" haben, aber noch zweifeln, ob sich eine Investition in ein (besseres/grösseres) veganes Angebot lohnt oder nicht. Hier ist die Chance höher, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hingehen. Weiter gibt es Locations, die gerne mehr veganes anbieten möchten, aber nicht wissen, was oder wie genau. Auch hier können Veganautinnen und Veganauten viel bewirken.',
+                   title: 'Schätze ab, ob Veganautinnen und Veganauten das vegane Angebot hier vergrössern oder verbessern können.',
+                   description: 'Wird sich das vegane Angebot hier vergrössern oder verbessern, wenn mehr Veganautinnen und Veganauten vorbeikommen?',
+                   explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan". Veganautinnen und Veganauten würden da nur ihre Zeit verschwenden. Andererseits gibt es vegane Schlaraffenländer. Hier sind Veganautinnen und Veganauten zwar gut aufgehoben, aber sie können am Angebot kaum etwas verbessern. Zwischen diesen zwei Extremen gibt es Locations, wo die Chancen gut stehen, dass das vegane Angebot umso grösser und besser wird, je mehr Veganautinnen und Veganauten hingehen.',
                    form: {
                        yes: 'Eher ja',
                        no: 'Eher nein'
