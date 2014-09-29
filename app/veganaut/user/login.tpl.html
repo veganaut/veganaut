@@ -1,10 +1,16 @@
-<form novalidate name="loginForm" class="login-form spaced-form">
-    <input type="email" required class="form-control" ng-model="form.email"
-     placeholder="{{ 'login.form.email' | trans}}"/>
-    <input type="password" required class="form-control" ng-model="form.password"
-     placeholder="{{ 'login.form.password' | trans}}" />
+<form novalidate name="loginForm" class="login-form">
+    <div class="form-group">
+        <label for="loginEmail">{{ 'person.label.email' | trans }}</label>
+        <input id="loginEmail" type="email" required class="form-control" ng-model="form.email"
+         placeholder="{{ 'login.form.email' | trans}}"/>
+    </div>
+    <div class="form-group">
+        <label for="loginPassword">{{ 'person.label.password' | trans }}</label>
+        <input id="loginPassword" type="password" required class="form-control" ng-model="form.password"
+         placeholder="{{ 'login.form.password' | trans}}" />
+    </div>
 
     <button type="submit" class="btn btn-default pull-right" ng-disabled="loginForm.$invalid"
-     ng-click="submit()" ng-bind="'login.form.submit' | trans"></button>
+     ng-click="submit()">{{ 'login.form.submit' | trans }}</button>
     <div class="clearfix"></div>
 </form>
