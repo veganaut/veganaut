@@ -196,7 +196,7 @@
                 // TODO: should be merged somehow with fromJson and just be less ugly
                 this.id = newData.id;
                 this.team = newData.team;
-                this.title = newData.name;
+                this.title = newData.name || newData.title; // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
                 this.points = newData.points;
                 this.availablePoints = newData.availablePoints;
                 this.quality = newData.quality;
