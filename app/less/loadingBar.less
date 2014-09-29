@@ -1,0 +1,25 @@
+// Styles adaptations for angular-loading-bar module
+@loadingBarColor: @bootstrapDarkGreyBackground;
+@loadingBarPegShadow: @loadingBarColor 1px 0 6px 1px;
+
+#loading-bar {
+    .bar {
+        background: @loadingBarColor;
+    }
+    .peg {
+        -moz-box-shadow:    @loadingBarPegShadow;
+        -ms-box-shadow:     @loadingBarPegShadow;
+        -webkit-box-shadow: @loadingBarPegShadow;
+        box-shadow:         @loadingBarPegShadow;
+    }
+}
+
+#loading-bar-spinner {
+    left: -8px;
+    top: 19px;
+
+    .spinner-icon {
+        border-top-color:  @loadingBarColor;
+        border-left-color: @loadingBarColor;
+    }
+}

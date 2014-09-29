@@ -5,6 +5,7 @@
     var veganautModule = angular.module('veganaut.app', [
         'ngRoute',
         'ui.bootstrap',
+        'angular-loading-bar',
         'leaflet-directive',
         'veganaut.alert',
         'veganaut.form',
