@@ -306,11 +306,19 @@
             intro: [
                 {
                     title: 'Willkommen!',
-                    content: 'Viel Spass beim Erkunden des veganen Universums. Wir sind noch daran, diese Platform zu entwickeln. Es kann sein, dass noch nicht alles richtig funktioniert. Wenn du Anregungen oder Rückmeldungen hast: Das Kontaktformular ist im Menu oben verlinkt.'
+                    content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen veganen Entdeckungen eintragen.'
+                },
+                {
+                    title: 'Veganaut.net ist eine Baustelle',
+                    content: 'Wir sind noch daran, diese Platform zu entwickeln. Es kann sein, dass noch nicht alles richtig funktioniert. Wenn du Anregungen oder Rückmeldungen hast: Das Kontaktformular ist im Menu oben verlinkt.'
                 },
                 {
                     title: 'Registrieren',
-                    content: 'Registriere dich, um die volle Funktionalität der Platform nützen zu können.'
+                    content: 'Registriere dich, um deine veganen Entdeckungen auf der Karte einzutragen, vegane Angebote zu bewerten und Locations nach ihrer Vegan-Freundlichkeit zu beurteilen.'
+                },
+                {
+                    title: 'Teams',
+                    content: 'Registrierte Benutzerinnen und Benutzer gehören einem von fünf Teams an. Wenn du nicht gerne Spiele spielst, kannst du das einfach ignorieren. Für alle anderen: Es geht darum, möglichst viele Locations für euer Team zu erobern. Solange in einer Location Punkte verfügbar sind, erhält ihr dort Punkte für die Erfüllung von Missionen. Um eine Location zu erobern, muss euer Team mehr Punkte sammeln als jedes andere.'
                 }
             ]
         }
