@@ -1,4 +1,5 @@
 <div ng-controller="LocationDetailsCtrl">
+    <div start-tour="locationAnonymous" ng-if="!isLoggedIn()"></div>
     <h1 class="color-{{ location.team }}">
         {{ location.title }}
         <small class="location-quality-label" ng-if="location.quality > 0">
@@ -19,7 +20,7 @@
         </span>
     </p>
 
-    <div ng-if="visit.missions">
+    <div ng-if="visit.missions" class="location-missions" start-tour="locationUser">
         <h2>{{ 'map.mission.title' | trans }}</h2>
         <small class="pull-right">{{ 'score.points' | trans }}</small>
         <div class="clearfix"></div>

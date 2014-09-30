@@ -4,7 +4,11 @@
     // TODO: docu
     module.provider('tourService', function() {
         var TOUR_CONFIG = {
-            intro: [
+            introBeta: [
+                {},
+                {},
+                {},
+                {},
                 {},
                 {
                     element: '.navbar-header',
@@ -13,8 +17,29 @@
                 {
                     element: '.front-register-btn',
                     placement: 'bottom'
+                }
+            ],
+            locationAnonymous: [
+                {
+                    element: '.menu-button',
+                    placement: 'bottom'
                 },
+                {
+                    element: '.menu-button',
+                    placement: 'bottom'
+                }
+            ],
+            mapUser: [
+                {},
+                {},
+                {},
                 {}
+            ],
+            locationUser: [
+                {
+                    element: '.location-missions',
+                    placement: 'top'
+                }
             ]
         };
 

@@ -1,6 +1,6 @@
 <div ng-class="{'is-adding-location': isAddingLocation}" ng-controller="MapCtrl">
     <div class="top-box container main-container">
-        <div class="row" start-tour="intro" ng-if="!isLoggedIn()">
+        <div class="row" start-tour="introBeta" ng-if="!isLoggedIn()">
             <div class="col-xs-6">
                 <p>
                     <button class="btn btn-default btn-block front-register-btn" ng-click="goToView('register')"
@@ -37,7 +37,7 @@
             </p>
         </div>
 
-        <div ng-if="isLoggedIn()">
+        <div ng-if="isLoggedIn()" start-tour="mapUser">
             <p ng-hide="location.active">
                 <button type="button" class="add-location btn btn-block btn-team"
                  ng-click="startAddNewLocation()">

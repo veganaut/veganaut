@@ -6,7 +6,7 @@
      */
     module.value('localeService', {
         app: {
-            title: 'veganaut.net'
+            title: 'veganaut.net - beta'
         },
         navigation: {
             front: 'Home',
@@ -303,7 +303,7 @@
            }
         },
         tour: {
-            intro: [
+            introBeta: [
                 {
                     title: 'Willkommen!',
                     content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen veganen Entdeckungen eintragen.'
@@ -314,7 +314,9 @@
                 },
                 {
                     title: 'Pflanzen-Symbol',
-                    content: 'Die meisten Locations haben ein Pflanzen-Symbol mit einem bis fünf Zweigen. Je mehr Zweige, desto grösser und besser das vegane Angebot. Locations ohne Pflanzen-Symbol wurden noch nicht bewertet.'
+                    content: 'Die meisten Locations haben ein Pflanzen-Symbol. Je mehr Zweige, desto grösser und besser das vegane Angebot.' +
+                    '<div class="text-center h4"><span class="icon icon-1"></span><span class="icon icon-2"></span><span class="icon icon-3"></span><span class="icon icon-4"></span><span class="icon icon-5"></span></div>' +
+                    'Locations ohne Pflanzen-Symbol wurden noch nicht bewertet.'
                 },
                 {
                     title: 'Klicke eine Location an',
@@ -331,7 +333,9 @@
                 {
                     title: 'Registrieren',
                     content: 'Registriere dich, um deine veganen Entdeckungen auf der Karte einzutragen, vegane Angebote zu bewerten und Locations nach ihrer Vegan-Freundlichkeit zu beurteilen.'
-                },// TODO: make a new tour here, to be started after someone clicked locationAction
+                }
+            ],
+            locationAnonymous: [
                 {
                     title: 'Veganaut.net ist eine Baustelle',
                     content: 'Wir sind noch daran, diese Platform zu entwickeln. Es kann sein, dass noch nicht alles richtig funktioniert. Wenn du Anregungen oder Rückmeldungen hast: Das Kontaktformular ist im Menu oben verlinkt.'
@@ -339,14 +343,21 @@
                 {
                     title: 'Registrieren',
                     content: 'Registriere dich, um deine veganen Entdeckungen auf der Karte einzutragen, vegane Angebote zu bewerten und Locations nach ihrer Vegan-Freundlichkeit zu beurteilen.'
-                },// TODO: make a new tour here, to be started after the registration
+                }
+            ],
+            mapUser: [
                 {
                     title: 'Teams',
-                    content: 'Registrierte Benutzerinnen und Benutzer gehören einem von fünf Teams an: Blau, Grün, Violett, Rot oder Orange. Wenn du nicht gerne Spiele spielst, kannst du das einfach ignorieren. Für alle anderen: Es geht darum, möglichst viele Locations für euer Team zu erobern.'
+                    content: 'Registrierte Benutzerinnen und Benutzer gehören einem von fünf Teams an: ' +
+                    '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>. ' +
+                    'Das Spiel geht darum, als Team möglichst viele Locations zu erobern.'
                 },
                 {
                     title: 'Punkte',
-                    content: 'Solange in einer Location Punkte verfügbar sind, erhält ihr dort Punkte für die Erfüllung von Missionen. Um eine Location zu erobern, muss euer Team mehr Punkte sammeln als jedes andere.'
+                    content: 'Solange in einer Location Punkte verfügbar sind ' +
+                    '(das sieht z.B. so aus: <span class="badge badge-default"><span class="glyphicon glyphicon-stats"></span> 300</span>), ' +
+                    'erhält ihr dort Punkte für die Erfüllung von Missionen. Um eine Location zu erobern, muss euer Team mehr Punkte sammeln als alle anderen: ' +
+                    '<span class="badge bg-color-team"><span class="glyphicon glyphicon-stats"></span> +50</span> (beachte das +).'
                 },
                 {
                     title: 'Missionen',
@@ -355,7 +366,9 @@
                 {
                     title: 'Locations hinzufügen',
                     content: 'Wenn du eine Location kennst, die auf der Karte noch fehlt, kannst du sie hinzufügen. Klicke dazu auf "Neue Location" und folge den Anweisungen.'
-                }, //TODO: make a new tour here, to be started after a registered and logged-in player clicks locationAction for the first time
+                }
+             ],
+             locationUser: [
                 {
                     title: 'Missionen',
                     content: ' Die meisten Missionen kannst du nur erfüllen, wenn du die Location im "real life" besuchst. Viel Spass beim Erkunden des veganen Universums!'
