@@ -22,7 +22,7 @@
             twitter: 'Twitter',
             facebook: 'Facebook',
             github: 'GitHub',
-            bugs: 'Fehler melden'
+            bugs: 'Bugreport'
         },
         form: {
             referenceCode: {
@@ -161,7 +161,7 @@
         map: {
            mission: {
                title: 'Missionen',
-               pointsForThisVisit: 'Total gesammelte Punkte', // TODO @toebu: here it's still called "visit", which is not nice semantically
+               totalPoints: 'Total gesammelte Punkte',
                missionForm: {
                    submit: 'Abschliessen',
                    cancel: 'Abbrechen'
