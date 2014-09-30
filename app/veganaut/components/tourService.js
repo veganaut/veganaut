@@ -7,9 +7,14 @@
             intro: [
                 {},
                 {
+                    element: '.navbar-header',
+                    placement: 'bottom'
+                },
+                {
                     element: '.front-register-btn',
                     placement: 'bottom'
-                }
+                },
+                {}
             ]
         };
 
