@@ -31,18 +31,15 @@
                 this.quality = Math.min(5, Math.max(0, Math.round(quality || 0)));
                 this.products = products || [];
                 this.nextVisitBonusDate = nextVisitBonusDate;
-
-                this._defaultIconClassList = 'map-location team-' + this.team;
+                this._active = false;
 
                 this.icon = {
                     type: 'div',
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: this._defaultIconClassList
+                    className: ''
                 };
 
-                this._active = false;
-
-                this._setMarkerIcon();
+                this._updateMarkerIcon();
             }
 
             /**
@@ -77,14 +74,20 @@
             };
 
             /**
-             * Sets the icon HTML to display the correct marker icon
+             * Sets the icon html and css classes
              * @private
              */
-            Location.prototype._setMarkerIcon = function() {
+            Location.prototype._updateMarkerIcon = function() {
+                // Set the html based on the "quality"
                 this.icon.html = '';
                 if (this.quality > 0) {
-                    // Add the font icon if quality is set
                     this.icon.html = '<span class="map-icon icon icon-' + this.quality + '"></span>';
+                }
+
+                // Set the class list
+                this.icon.className = 'map-location team-' + this.team;
+                if (this._active) {
+                    this.icon.className += ' active';
                 }
             };
 
@@ -98,12 +101,8 @@
                 }
                 this._active = isActive;
 
-                // Set the correct icon class
-                this.icon.className = this._defaultIconClassList;
-                if (this._active) {
-                    this.icon.className += ' active';
-                }
-
+                // Update marker
+                this._updateMarkerIcon();
             };
 
             /**
@@ -202,7 +201,7 @@
                 this.quality = newData.quality;
                 this.products = newData.products;
                 this.nextVisitBonusDate = newData.nextVisitBonusDate;
-                this._setMarkerIcon();
+                this._updateMarkerIcon();
 
                 // Clear points memoiziation
                 this.sortedPoints = undefined;
