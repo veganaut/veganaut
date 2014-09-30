@@ -304,6 +304,7 @@
         },
         tour: {
             intro: [
+                {
                     title: 'Willkommen!',
                     content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen veganen Entdeckungen eintragen.'
                 },

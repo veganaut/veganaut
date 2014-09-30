@@ -16,10 +16,10 @@
              * @param {number} availablePoints
              * @param {number} quality
              * @param {[]} products
-             * @param {Date} nextVisitBonusDate
+             * @param {{}} lastMissionDates
              * @constructor
              */
-            function Location(id, team, lat, lng, title, type, points, availablePoints, quality, products, nextVisitBonusDate) {
+            function Location(id, team, lat, lng, title, type, points, availablePoints, quality, products, lastMissionDates) {
                 this.id = id;
                 this.team = team;
                 this.lat = lat;
@@ -30,7 +30,7 @@
                 this.availablePoints = availablePoints || 0;
                 this.quality = Math.min(5, Math.max(0, Math.round(quality || 0)));
                 this.products = products || [];
-                this.nextVisitBonusDate = nextVisitBonusDate;
+                this.lastMissionDates = lastMissionDates || {};
                 this._active = false;
 
                 this.icon = {
@@ -58,6 +58,10 @@
              */
             Location.fromJson = function(json) {
                 // TODO: this is getting ridiculous, seriously dude
+                var lastMissionDates = {};
+                _.forOwn(json.lastMissionDates, function(date, mission) {
+                    lastMissionDates[mission] = new Date(date);
+                });
                 return new Location(
                     json.id,
                     json.team,
@@ -69,7 +73,7 @@
                     json.availablePoints,
                     json.quality,
                     json.products,
-                    json.nextVisitBonusDate ? new Date(json.nextVisitBonusDate) : undefined
+                    lastMissionDates
                 );
             };
 
@@ -157,16 +161,6 @@
             };
 
             /**
-             * Returns whether the user can get a visit bonus at this location
-             * @returns {boolean}
-             */
-            Location.prototype.canGetVisitBonus = function() {
-                // Calculate the diff to the nextVisitBonusDate and consider it ok if it's in up to a minute
-                var untilNextVisitBonusDate = this.nextVisitBonusDate - new Date();
-                return (untilNextVisitBonusDate < 60000);
-            };
-
-            /**
              * Returns a visit of this location
              * @param {Player} player The player to get the visit for
              * @returns {Visit}
@@ -200,7 +194,7 @@
                 this.availablePoints = newData.availablePoints;
                 this.quality = newData.quality;
                 this.products = newData.products;
-                this.nextVisitBonusDate = newData.nextVisitBonusDate;
+                this.lastMissionDates = newData.lastMissionDates;
                 this._updateMarkerIcon();
 
                 // Clear points memoiziation

@@ -17,6 +17,7 @@ describe('authentication.', function() {
         helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
+        // TODO: could get the session id from local storage, and re-use it in other tests to avoid logging in again
         var menuButton = element(by.css('button.menu-button'));
         menuButton.click();
         browser.sleep(helpers.MENU_DELAY);

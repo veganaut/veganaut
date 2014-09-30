@@ -6,6 +6,7 @@ module.exports = function(config) {
 
         // List of files / patterns to load in the browser
         files: [
+            'app/lib/lodash/dist/lodash.js',
             'app/lib/angular/angular.js',
             'app/lib/angular-route/angular-route.js',
             'app/lib/angular-mocks/angular-mocks.js',

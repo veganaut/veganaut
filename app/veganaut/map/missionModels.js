@@ -36,6 +36,24 @@
     };
 
     /**
+     * Time in ms until a mission is available again
+     * TODO: there should be an identical list in the backend, share this code!
+     * @type {{}}
+     */
+    var MISSION_COOL_DOWN_PERIOD = {
+        addLocation:  0, // none
+        visitBonus:   1000 * 60 * 60 * 24 * 7 * 3, // 3 weeks
+        hasOptions:   1000 * 60 * 60 * 24, // 1 day
+        wantVegan:    1000 * 60 * 60 * 24, // 1 day
+        whatOptions:  1000 * 60 * 60 *  4, // 4 hours
+        buyOptions:   1000 * 60 * 60 *  4, // 4 hours
+        rateOptions:  1000 * 60 * 60 *  4, // 4 hours
+        giveFeedback: 1000 * 60 * 60 * 24, // 1 day
+        offerQuality: 1000 * 60 * 60 * 24 * 7 * 3, // 3 weeks
+        effortValue:  1000 * 60 * 60 * 24 * 7 * 3  // 3 weeks
+    };
+
+    /**
      * Generic Mission Model
      * @param {string} type
      * @param {Visit} visit
@@ -52,6 +70,15 @@
         this.started = false;
         this.completed = false;
         this.finalOutcome = undefined;
+
+        this.nextAvailable = true;
+        var lastDate = this.visit.location.lastMissionDates[type];
+        if (typeof lastDate !== 'undefined') {
+            this.nextAvailable = new Date(
+                lastDate.getTime() +
+                MISSION_COOL_DOWN_PERIOD[this.type]
+            );
+        }
     }
 
     /**
@@ -130,7 +157,7 @@
      * @returns {boolean}
      */
     Mission.prototype.isAvailable = function() {
-        return true;
+        return (this.nextAvailable === true || this.nextAvailable.getTime() < Date.now());
     };
 
     // VisitBonusMission //////////////////////////////////////////////////////
@@ -140,13 +167,6 @@
 
     VisitBonusMission.prototype = Object.create(Mission.prototype);
     VisitBonusMission.prototype.constructor = VisitBonusMission;
-
-    /**
-     * @inheritDoc
-     */
-    VisitBonusMission.prototype.isAvailable = function() {
-        return this.visit.location.canGetVisitBonus();
-    };
 
     // HasOptionsMission //////////////////////////////////////////////////////
     function HasOptionsMission(visit) {
@@ -278,7 +298,8 @@
      * @inheritDoc
      */
     BuyOptionsMission.prototype.isAvailable = function() {
-        return (this.visit.location.products.length > 0);
+        return (Mission.prototype.isAvailable.call(this) &&
+            this.visit.location.products.length > 0);
     };
 
     // GiveFeedbackMission ////////////////////////////////////////////////////
@@ -327,7 +348,8 @@
      * @inheritDoc
      */
     RateOptionsMission.prototype.isAvailable = function() {
-        return (this.visit.location.products.length > 0);
+        return (Mission.prototype.isAvailable.call(this) &&
+            this.visit.location.products.length > 0);
     };
 
     // OfferQualityMission //////////////////////////////////////////////////////
