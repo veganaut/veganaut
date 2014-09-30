@@ -21,7 +21,7 @@ fi
 
 (cd app; ../scripts/web-server.js > ../log/webserver.log 2>&1 &)
 
-node_modules/.bin/karma start config/karma-unit.conf.js > log/karma.log 2>&1 &
+node_modules/karma/bin/karma start config/karma-unit.conf.js > log/karma.log 2>&1 &
 
 cd ../veganaut-backend
 node_modules/.bin/supervisor app.js > ../veganaut/log/app.log 2>&1 &
