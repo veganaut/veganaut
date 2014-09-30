@@ -244,6 +244,7 @@
                whatOptions: {
                    title: 'Finde heraus, was für vegane Angebote es hier gibt.',
                    description: 'Welche veganen Angebote gibt es hier?',
+                   description2: 'Die folgenden musst du nicht mehr eintragen:',
                    explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.',
                    form: {
                        placeholder: 'Hier ein veganes Angebot eintragen'

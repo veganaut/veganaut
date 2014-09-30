@@ -78,6 +78,12 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="whatOptions">
+                                <div ng-if="mission.visit.location.products.length > 0">
+                                    {{ 'map.mission.' + mission.type + '.description2' | trans }}
+                                    <ul>
+                                        <li ng-repeat="product in mission.visit.location.products">{{ product.name }}</li>
+                                    </ul>
+                                </div>
                                 <vg-list-input list="mission.outcome" num-required="1"
                                  placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
                                 </vg-list-input>
