@@ -3,7 +3,7 @@
 
 var helpers = require('./helpers');
 
-describe('map.', function() {
+describe('location.', function() {
     var menuButton;
     var ptor;
 
@@ -50,25 +50,17 @@ describe('map.', function() {
             expect(element(by.css('.mission.mission-visitBonus')).isDisplayed()).toBe(true, 'visitBonus mission is available');
         });
 
-        it('shows correct missions.', function() {
-            var missions = element.all(by.css('.mission'));
-            var beforeMissionCount;
-            missions.count().then(function(count) {
-                beforeMissionCount = count;
-                expect(beforeMissionCount).toBeGreaterThan(0, 'shows some missions');
-            });
+        it('shows missions and can submit missions.', function() {
+            expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'shows some missions');
 
             var visitMission = element(by.css('.mission-visitBonus'));
             expect(visitMission.isDisplayed()).toBe(true, 'shows bonus missions');
-
-            var submitVisit = element(by.css('button.submit-visit'));
-            expect(submitVisit.isEnabled()).toBe(false, 'Cannot submit visit before completing a mission');
 
             var hasOptionsMission = element(by.css('.mission-hasOptions'));
             hasOptionsMission.click();
             expect(element(by.css('.mission-hasOptions form')).isDisplayed()).toBe(true, 'shows mission form after click');
 
-            var hasOptionsAnswer = element(by.css('.mission-hasOptions form *[btn-radio=true]'));
+            var hasOptionsAnswer = element.all(by.css('.mission-hasOptions form *[btn-radio]')).first();
             expect(hasOptionsAnswer.getText()).toBe('Ja', 'correct mission outcome button found');
 
             var submitMission = element(by.css('.mission-hasOptions form button[type=submit]'));
@@ -76,18 +68,11 @@ describe('map.', function() {
             hasOptionsAnswer.click();
             expect(submitMission.isEnabled()).toBe(true, 'Submit is enabled after entering mission outcome');
             submitMission.click();
-            missions.count().then(function(count) {
-                expect(count).toBeGreaterThan(beforeMissionCount, 'shows more missions than before submitting');
-            });
 
-            expect(submitVisit.isEnabled()).toBe(true, 'Can submit visit after completing a mission');
-            submitVisit.click();
-            expect(ptor.getCurrentUrl()).toMatch(/\//, 'Redirects back to map after submitting visit');
+            expect(ptor.getCurrentUrl()).toMatch(/\/location\/000000000000000000000006/, 'Stays on the location page after submitting');
             expect(element.all(by.css('.alert-success')).count()).toBe(1, 'shows a success message');
 
-            // Got back to the place to check that the bonus mission is not there any more
-            browser.get('/location/000000000000000000000006');
-            expect(visitMission.isPresent()).toBe(false, 'does not show bonus mission at second visit');
+            // TODO: add more tests, especially about whether the location info was
         });
     });
 

@@ -18,6 +18,9 @@ describe('map.', function() {
         ptor = protractor.getInstance();
         helpers.bindProtractor(ptor);
 
+        // Set the map center in Bern
+        browser.executeScript('localStorage.setItem(\'veganautMapCenter\', \'{"lat":46.945,"lng":7.449,"zoom":13}\')');
+
         // TODO: not so great to logout before every test
         menuButton = element(by.css('button.menu-button'));
         menuButton.click();
@@ -68,7 +71,7 @@ describe('map.', function() {
         });
 
         it('should toggle showing details when selecting a location.', function() {
-            var location = element.all(by.css('.map-location.team-team1')).first();
+            var location = element(by.css('.map-location.team-team1[title="Reformhaus Ruprecht"]'));
             location.click();
 
             var details = element(by.css('.location-details'));
