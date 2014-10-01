@@ -20,7 +20,7 @@
                 $window.location.reload();
             });
 
-            // Listen to route chagnes to track page views
+            // Listen to route changes to track page views
             $scope.$onRootScope('$routeChangeSuccess', function() {
                 angularPiwik.trackPageView();
             });
