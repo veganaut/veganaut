@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.controller('AppCtrl', ['$scope', '$location', '$window', 'backendService', 'playerService',
-        function($scope, $location, $window, backendService, playerService) {
+    module.controller('AppCtrl', ['$scope', '$location', '$window', 'angularPiwik', 'backendService', 'playerService',
+        function($scope, $location, $window, angularPiwik, backendService, playerService) {
             $scope.goToView = function(view) {
                 $scope.menuShown = false;
                 $location.path(view);
@@ -18,6 +18,11 @@
             // Reload the whole app when the session gets destroyed to clear all data
             $scope.$onRootScope('veganaut.session.destroyed', function() {
                 $window.location.reload();
+            });
+
+            // Listen to route chagnes to track page views
+            $scope.$onRootScope('$routeChangeSuccess', function() {
+                angularPiwik.trackPageView();
             });
 
             // Get the logged in user data

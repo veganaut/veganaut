@@ -31,7 +31,7 @@
         if (this._enabled === true && typeof piwikDomain !== 'undefined' && typeof siteId !== 'undefined') {
             // Set up piwik
             var _paq = this._$window._paq;
-            _paq.push(['trackPageView']);
+            //_paq.push(['trackPageView']); TODO: make it configurable whether this is done by default
             _paq.push(['enableLinkTracking']);
 
             // Slightly angularised piwik tracking code
@@ -65,6 +65,19 @@
             this._$window.document.title,
             action
         ]);
+    };
+
+    /**
+     * Tracks a page view
+     */
+    AngularPiwik.prototype.trackPageView = function() {
+        // Don't do anything if not enabled
+        if (!this._enabled) {
+            return;
+        }
+
+        // Push to the tracking array
+        this._$window._paq.push(['trackPageView']);
     };
 
 
