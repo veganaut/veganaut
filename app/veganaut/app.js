@@ -10,6 +10,7 @@
         'veganaut.alert',
         'veganaut.form',
         'veganaut.i18n',
+        'veganaut.angularPiwik',
         'veganaut.app.main',
         'veganaut.app.session',
         'veganaut.app.backend',
@@ -19,8 +20,8 @@
         'veganaut.app.user'
     ]);
 
-    veganautModule.config(['$routeProvider', '$locationProvider', 'useHtml5Mode',
-        function($routeProvider, $locationProvider, useHtml5Mode) {
+    veganautModule.config(['$routeProvider', '$locationProvider', 'angularPiwikProvider', 'useHtml5Mode', 'piwikSettings',
+        function($routeProvider, $locationProvider, angularPiwikProvider, useHtml5Mode, piwikSettings) {
             $locationProvider.html5Mode(useHtml5Mode);
 
             $routeProvider.when('/register', {templateUrl: '/veganaut/user/register.tpl.html', controller: 'RegisterCtrl'});
@@ -37,6 +38,13 @@
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
+
+            // Configure piwik
+            angularPiwikProvider.enableTracking(piwikSettings.enabled);
+            if (piwikSettings.enabled) {
+                angularPiwikProvider.setPiwikDomain(piwikSettings.domain);
+                angularPiwikProvider.setSiteId(piwikSettings.siteId);
+            }
         }
     ]);
 

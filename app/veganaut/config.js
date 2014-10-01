@@ -36,4 +36,11 @@
 
     // Whether to use html5Mode
     module.constant('useHtml5Mode', true);
+
+    // Piwik settings
+    module.constant('piwikSettings', {
+        enabled: false,
+        domain: 'veganaut.net/piwik',
+        siteId: 7
+    });
 })(window.veganaut.mainModule);
