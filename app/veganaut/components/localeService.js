@@ -307,11 +307,11 @@
             introBeta: [
                 {
                     title: 'Willkommen!',
-                    content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen veganen Entdeckungen eintragen.'
+                    content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen Entdeckungen eintragen.'
                 },
                 {
                     title: 'Gastro und Shopping',
-                    content: 'Es gibt auf der Karte zwei Typen von Locations: Gastro (Restaurant, Take Away,...) und Shopping (Supermarkt, Bioladen, Bäckerei...)'
+                    content: 'Es gibt auf der Karte zwei Typen von Locations: Gastro (Restaurant, Take Away...) und Shopping (Supermarkt, Bioladen, Bäckerei...)'
                 },
                 {
                     title: 'Pflanzen-Symbol',
@@ -325,7 +325,7 @@
                 },
                 {
                     title: 'Schau dir die Location an',
-                    content: 'Im Moment ist hier noch nicht viel zu sehen, wenn du auf "Location anschauen" klickst, aber das kommt noch...'
+                    content: 'Wenn du auf "Location anschauen" klickst, ist im Moment noch nicht viel zu sehen. Aber das kommt noch...'
                 },
                 {
                     title: 'Veganaut.net ist eine Baustelle',
@@ -333,7 +333,7 @@
                 },
                 {
                     title: 'Registrieren',
-                    content: 'Registriere dich, um deine veganen Entdeckungen auf der Karte einzutragen, vegane Angebote zu bewerten und Locations nach ihrer Vegan-Freundlichkeit zu beurteilen.'
+                    content: 'Registriere dich, um deine Entdeckungen auf der Karte einzutragen, vegane Angebote zu bewerten und Locations nach ihrer Vegan-Freundlichkeit zu beurteilen.'
                 }
             ],
             locationAnonymous: [
@@ -355,9 +355,9 @@
                 },
                 {
                     title: 'Punkte',
-                    content: 'Solange in einer Location Punkte verfügbar sind ' +
+                    content: 'Solange an einem Ort Punkte verfügbar sind ' +
                     '(das sieht z.B. so aus: <span class="badge badge-default"><span class="glyphicon glyphicon-stats"></span> 300</span>), ' +
-                    'erhält ihr dort Punkte für die Erfüllung von Missionen. Um eine Location zu erobern, muss euer Team mehr Punkte sammeln als alle anderen: ' +
+                    'erhälst du dort Punkte für die Erfüllung von Missionen. Um eine Location zu erobern, muss dein Team mehr Punkte sammeln als alle anderen: ' +
                     '<span class="badge bg-color-team"><span class="glyphicon glyphicon-stats"></span> +50</span> (beachte das +).'
                 },
                 {
