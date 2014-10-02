@@ -8,22 +8,13 @@
                 {},
                 {},
                 {},
-                {},
-                {},
-                {
-                    element: '.navbar-header',
-                    placement: 'bottom'
-                },
                 {
                     element: '.front-register-btn',
                     placement: 'bottom'
                 }
             ],
             locationAnonymous: [
-                {
-                    element: '.menu-button',
-                    placement: 'bottom'
-                },
+                {},
                 {
                     element: '.menu-button',
                     placement: 'bottom'
@@ -33,7 +24,11 @@
                 {},
                 {},
                 {},
-                {}
+                {},
+                {
+                    element: '.menu-button',
+                    placement: 'bottom'
+                }
             ],
             locationUser: [
                 {
