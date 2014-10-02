@@ -317,9 +317,9 @@
                 },
                 {
                     title: 'Gastro und Shopping',
-                    content: 'Es gibt auf der Karte zwei Typen von Locations: Gastro (Restaurant, Take Away...) und Shopping (Supermarkt, Bioladen, Bäckerei...)'
+                    content: 'Es gibt zwei Typen von Locations: Gastro (Restaurant, Take Away...) und Shopping (Supermarkt, Bioladen, Bäckerei...)'
                 },
-                {//TODO this is the only bubble in this tour which should point at something (the register-button)
+                {
                     title: 'Registrieren',
                     content: 'Als registrierte Benutzerin oder registrierter Benutzer gehörst du einem von fünf Teams an: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>. ' +
@@ -327,7 +327,7 @@
                 }
             ],
             locationAnonymous: [
-                {//TODO this should no longer point to the menu bar.
+                {
                     title: 'Oops!',
                     content: 'Beta-Version halt... Hier wird bald angezeigt, was für vegane Angebote es an diesem Ort gibt.'
                 },
@@ -346,7 +346,7 @@
                     title: 'Pflanzennährstoffe',
                     content: 'Solange an einem Ort auf der Erdoberfläche Pflanzennährstoffe verfügbar sind ' +
                     '(das sieht z.B. so aus: <span class="badge badge-default"><span class="glyphicon glyphicon-stats"></span> 300</span>), ' +
-                    'kannst du dort pflügen, säen und bewässern gehen. Um einen Ort zu erobern und die Ernte einzufahren, muss dein Team dort mindestens 1 mehr pflügen, säen und bewässern als alle anderen: ' +
+                    'kannst du dort pflügen, säen und bewässern. Um einen Ort zu erobern und die Ernte einzufahren, muss dein Team dort mindestens 1 mehr pflügen, säen und bewässern als alle anderen: ' +
                     '<span class="badge bg-color-team"><span class="glyphicon glyphicon-stats"></span> +1</span>'
                 },
                 {
@@ -365,7 +365,7 @@
              locationUser: [
                 {
                     title: 'Missionen',
-                    content: ' Die meisten Missionen kannst du nur erfüllen, wenn du die Location im "real life" besuchst. Viel Spass beim Erkunden des veganen Universums!'
+                    content: ' Die meisten Missionen kannst du nur erfüllen, wenn du die Location im "real life" besuchst.'
                 }
             ]
         }
