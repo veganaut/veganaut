@@ -145,7 +145,8 @@
                 gastronomy: 'Gastro',
                 retail: 'Shopping',
                 event: 'Event',
-                'private': 'Privat'
+                'private': 'Privat',
+                explanation: 'Typ dieser Location'
             },
             score: {
                 explanation: {
@@ -156,6 +157,9 @@
                     },
                     teamPoints: 'Dieses Team hat hier so viele Punkte'
                 }
+            },
+            quality: {
+                explanation: 'Je mehr Zweige, desto grösser und besser das vegane Angebot'
             }
         },
         map: {

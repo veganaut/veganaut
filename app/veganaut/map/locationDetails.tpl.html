@@ -2,7 +2,9 @@
     <div start-tour="locationAnonymous" ng-if="!isLoggedIn()"></div>
     <h1 class="color-{{ location.team }}">
         {{ location.title }}
-        <small class="location-quality-label" ng-if="location.quality > 0">
+        <small class="location-quality-label" ng-if="location.quality > 0"
+         tooltip="{{ 'location.quality.explanation' | trans }}">
+            <!-- TODO: this should go in a directive-->
             <span class="icon icon-{{ location.quality }} location-quality-label-icon"></span>
         </small>
     </h1>
