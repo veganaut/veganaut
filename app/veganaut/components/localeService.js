@@ -139,7 +139,7 @@
                 name: 'Name der Location',
                 selectOnMap: 'Wähle einen Punkt auf der Karte aus',
                 chooseType: 'Art der Location auswählen',
-                submit: 'Speichern'
+                submit: 'Fertig'
             },
             type: {
                 gastronomy: 'Gastro',
@@ -163,7 +163,7 @@
                title: 'Missionen',
                totalPoints: 'Total Punkte aus Missionen',
                missionForm: {
-                   submit: 'Abschliessen',
+                   submit: 'Fertig',
                    cancel: 'Abbrechen'
                },
                visitBonus: {
