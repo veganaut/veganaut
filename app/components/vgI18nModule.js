@@ -65,9 +65,25 @@
             }
         };
 
-        this.$get = ['localeService', function(localeService) {
-            return function(text) {
-                return translate(localeService, text);
+        /**
+         * Translation cache for $sce wrapped expressions
+         * @type {{}}
+         */
+        var sceCache = {};
+
+        this.$get = ['$sce', 'localeService', function($sce, localeService) {
+            return function(text, allowHtml) {
+                var trans = text;
+                if (allowHtml === true) {
+                    if (!sceCache.hasOwnProperty(text)) {
+                        sceCache[text] = $sce.trustAsHtml(translate(localeService, text));
+                    }
+                    trans = sceCache[text];
+                }
+                else {
+                    trans = translate(localeService, text);
+                }
+                return trans;
             };
         }];
     });
@@ -76,8 +92,8 @@
      * Simple filter that translates strings with the help of the translate service
      */
     i18nModule.filter('trans', ['translateService', function(translate) {
-        return function(text) {
-            return translate(text);
+        return function(text, allowHtml) {
+            return translate(text, allowHtml);
         };
     }]);
 })();

@@ -23,7 +23,8 @@
             <p class="color-{{ location.active.team }}"><strong>{{ location.active.title }}</strong></p>
             <p>
                 <vg-location-type-badge location="location.active"></vg-location-type-badge>
-                <vg-available-points-badge available="location.active.availablePoints"></vg-available-points-badge>
+                <vg-available-points-badge available="location.active.availablePoints"
+                 ng-if="isLoggedIn()"></vg-available-points-badge>
                 <vg-score-diff-badge ng-if="me" team="me.team" diff="location.active.getRelevantPointDifference(me.team)">
                 </vg-score-diff-badge>
             </p>

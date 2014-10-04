@@ -13,13 +13,6 @@
                     placement: 'bottom'
                 }
             ],
-            locationAnonymous: [
-                {},
-                {
-                    element: '.menu-button',
-                    placement: 'bottom'
-                }
-            ],
             mapUser: [
                 {},
                 {},

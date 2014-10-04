@@ -43,11 +43,6 @@
         register: {
             title: 'Registrieren',
             form: {
-                email: 'email@beispiel.com',
-                fullName: 'Vorname und Nachname (nicht öffentlich)',
-                nickname: 'Nickname (öffentlich)',
-                password: 'Passwort',
-                passwordRepeat: 'Nochmals Passwort',
                 submit: 'Registrieren'
             }
         },
@@ -78,6 +73,9 @@
             map: {
                 addLocation: 'Neue Location',
                 locationAction: 'Location anschauen'
+            },
+            location: {
+                backToMap: 'Zurück zur Karte'
             }
         },
         activityLink: {
@@ -110,8 +108,8 @@
             },
             label: {
                 email: 'E-Mail Adresse',
-                fullName: 'Name',
-                nickname: 'Öffentlicher Name',
+                fullName: 'Vorname und Nachname (nicht öffentlich)',
+                nickname: 'Nickname (öffentlich)',
                 role: 'Rolle',
                 team: 'Team',
                 balance: 'Balance',
@@ -140,6 +138,14 @@
                 selectOnMap: 'Wähle einen Punkt auf der Karte aus',
                 chooseType: 'Art der Location auswählen',
                 submit: 'Fertig'
+            },
+            products: {
+                title: 'Angebot',
+                description: 'An dieser Location bestehen die folgenden veganen Angebote:',
+                noProducts: {
+                    anonymous: 'Es wurden noch keine Angebote eingetragen. <a href="/register">Registriere</a> dich, um vegane Angebote einzutragen.',
+                    user: 'Es wurden noch keine Angebote eingetragen. Mit einer der Missionen kannst du Angebote eintragen.'
+                }
             },
             type: {
                 gastronomy: 'Gastro',
@@ -330,20 +336,10 @@
                     'Das Spiel geht darum, die Locations der anderen Teams zu erobern und die eigenen Locations zu verteidigen.'
                 }
             ],
-            locationAnonymous: [
-                {
-                    title: 'Oops!',
-                    content: 'Beta-Version halt... Hier wird bald angezeigt, was für vegane Angebote es an diesem Ort gibt.'
-                },
-                {
-                    title: 'Registrieren',
-                    content: 'Registriere dich, um vegane Angebote einzutragen.'
-                }
-            ],
             mapUser: [
                 {
                     title: 'Dein Team',
-                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Während der letzten 5042 Jahren bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist. An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest:' +
+                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Während der letzten 5042 Jahren bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist. An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>.'
                 },
                 {

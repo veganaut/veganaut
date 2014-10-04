@@ -1,5 +1,4 @@
-<div ng-controller="LocationDetailsCtrl">
-    <div start-tour="locationAnonymous" ng-if="!isLoggedIn()"></div>
+<div ng-controller="LocationDetailsCtrl" ng-show="location">
     <h1 class="color-{{ location.team }}">
         {{ location.title }}
         <small class="location-quality-label" ng-if="location.quality > 0"
@@ -10,17 +9,32 @@
     </h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
-        <vg-available-points-badge available="location.availablePoints"></vg-available-points-badge>
+        <vg-available-points-badge available="location.availablePoints"
+         ng-if="isLoggedIn()"></vg-available-points-badge>
         <vg-score-diff-badge ng-if="me" team="me.team" diff="location.getRelevantPointDifference(me.team)">
         </vg-score-diff-badge>
     </p>
-    <p>
+    <p ng-if="isLoggedIn()">
         <span ng-repeat="score in location.getSortedPoints()">
             <span class="badge badge-team-{{ score.team }}" tooltip="{{ 'location.score.explanation.teamPoints' | trans }}">
                 {{ score.points }}
             </span>
         </span>
     </p>
+
+    <div>
+        <h2>{{ 'location.products.title' | trans }}</h2>
+        <div ng-if="location.products.length > 0">
+            <p>{{ 'location.products.description' | trans }}</p>
+            <ul>
+                <li ng-repeat="product in location.products">{{ product.name }}</li>
+            </ul>
+        </div>
+        <p ng-if="location.products.length === 0">
+            <span ng-if="isLoggedIn()">{{ 'location.products.noProducts.user' | trans }}</span>
+            <span ng-if="!isLoggedIn()" ng-bind-html="'location.products.noProducts.anonymous' | trans:true"></span>
+        </p>
+    </div>
 
     <div ng-if="visit.missions" class="location-missions" start-tour="locationUser">
         <h2>{{ 'map.mission.title' | trans }}</h2>
@@ -218,8 +232,13 @@
              potential="visit.getTotalPoints(true)"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
+        <hr />
     </div>
-    <leaflet class="location-detail-map" ng-if="location"
-     markers="[location]" defaults="mapDefaults" center="center">
-    </leaflet>
+    <p>
+        <button type="button" class="to-map btn btn-block btn-default"
+         ng-click="goToView('map')">
+            <span class="glyphicon glyphicon-log-out"></span>
+            {{ 'action.location.backToMap' | trans }}
+        </button>
+    </p>
 </div>
