@@ -1,15 +1,27 @@
-<form novalidate name="registerForm" class="register-form spaced-form">
-    <input type="email" required class="form-control" ng-model="form.email"
-     placeholder="{{ 'register.form.email' | trans}}" />
-    <input type="text" required class="form-control" ng-model="form.fullName"
-     placeholder="{{ 'register.form.fullName' | trans}}" />
-    <input type="text" required class="form-control" ng-model="form.nickname"
-     placeholder="{{ 'register.form.nickname' | trans}}" />
-    <input type="password" required class="form-control" ng-model="form.password"
-     placeholder="{{ 'register.form.password' | trans}}" />
-    <input type="password" required class="form-control" ng-model="form.passwordRepeat"
-     placeholder="{{ 'register.form.passwordRepeat' | trans}}" />
-    <button type="submit" class="btn btn-default pull-right" ng-disabled="registerForm.$invalid"
+<form novalidate name="registerForm" class="register-form">
+    <!-- TODO: merge this with editProfile.tpl.html -->
+    <div class="form-group">
+        <label for="fullName" ng-bind="'person.label.fullName' | trans"></label>
+        <input type="text" required id="fullName" class="form-control" ng-model="form.fullName" />
+    </div>
+    <div class="form-group">
+        <label for="nickname" ng-bind="'person.label.nickname' | trans"></label>
+        <input type="text" required id="nickname" class="form-control" ng-model="form.nickname" />
+    </div>
+    <div class="form-group">
+        <label for="email" ng-bind="'person.label.email' | trans"></label>
+        <input type="email" required id="email" class="form-control" ng-model="form.email" />
+    </div>
+    <div class="form-group">
+        <label for="password" ng-bind="'person.label.password' | trans"></label>
+        <input type="password" required id="password" class="form-control" ng-model="form.password" />
+    </div>
+    <div class="form-group">
+        <label for="passwordRepeat" ng-bind="'person.label.passwordRepeat' | trans"></label>
+        <input type="password" required id="passwordRepeat" class="form-control" ng-model="form.passwordRepeat" />
+    </div>
+    <button type="submit" class="btn btn-default pull-right"
+     ng-disabled="registerForm.$invalid || form.password !== form.passwordRepeat"
      ng-click="submit()" ng-bind="'register.form.submit' | trans"></button>
     <div class="clearfix"></div>
 </form>

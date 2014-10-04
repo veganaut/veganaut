@@ -17,18 +17,16 @@
 
             $scope.submit = function() {
                 var form = $scope.form;
-                if (!$scope.changePassword || form.password === form.passwordRepeat) {
-                    // TODO: get form to validate password and passwordRepeat
-                    playerService.updateMe(form.email, form.fullName, form.nickname, form.password)
-                        .success(function() {
-                            alertService.addAlert(trans('message.profile.update.success'), 'success');
-                        })
-                        .error(function() {
-                            alertService.addAlert(trans('message.profile.update.fail'), 'danger');
-                        })
-                    ;
-                    $scope.goToView('me');
-                }
+                // TODO: improve how the form validates password and passwordRepeat are the same
+                playerService.updateMe(form.email, form.fullName, form.nickname, form.password)
+                    .success(function() {
+                        alertService.addAlert(trans('message.profile.update.success'), 'success');
+                    })
+                    .error(function() {
+                        alertService.addAlert(trans('message.profile.update.fail'), 'danger');
+                    })
+                ;
+                $scope.goToView('me');
             };
         }])
     ;

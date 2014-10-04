@@ -1,4 +1,5 @@
-<form novalidate name="editProfileForm" class="edit-profile-form spaced-form" ng-controller="EditProfileCtrl">
+<form novalidate name="editProfileForm" class="edit-profile-form" ng-controller="EditProfileCtrl">
+    <!-- TODO: merge this with register.tpl.html -->
     <div class="form-group">
         <label for="editFullName" ng-bind="'person.label.fullName' | trans"></label>
         <input type="text" required id="editFullName" class="form-control" ng-model="form.fullName" />
@@ -19,17 +20,16 @@
     <div ng-if="changePassword">
         <div class="form-group">
             <label for="editPassword" ng-bind="'person.label.password' | trans"></label>
-            <input type="password" required id="editPassword" class="form-control" ng-model="form.password"
-             placeholder="{{ 'register.form.password' | trans }}" />
+            <input type="password" required id="editPassword" class="form-control" ng-model="form.password" />
         </div>
         <div class="form-group">
             <label for="editPasswordRepeat" ng-bind="'person.label.passwordRepeat' | trans"></label>
-            <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat"
-             placeholder="{{ 'register.form.passwordRepeat' | trans }}" />
+            <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat" />
         </div>
     </div>
     <button class="btn btn-default"
      ng-click="goToView('me')" ng-bind="'action.cancel' | trans"></button>
-    <button type="submit" class="btn btn-default pull-right" ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine"
+    <button type="submit" class="btn btn-default pull-right"
+     ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine || form.password !== form.passwordRepeat"
      ng-click="submit()" ng-bind="'action.profile.save' | trans"></button>
 </form>
