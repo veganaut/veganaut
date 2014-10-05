@@ -89,7 +89,7 @@
                 }
 
                 // Set the class list
-                this.icon.className = 'map-location team-' + this.team;
+                this.icon.className = 'map-location type-' + this.type + ' team-' + this.team;
                 if (this._active) {
                     this.icon.className += ' active';
                 }
