@@ -14,7 +14,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body class="player-{{ me.team }}">
+<body class="player-{{ me.team }}" ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn() }">
 
 <header class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-inner">
