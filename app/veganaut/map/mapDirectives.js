@@ -16,7 +16,17 @@
                         (($scope.diff >= 0) ? 'positive' : 'negative');
                 };
             }],
-            templateUrl: '/veganaut/components/vgScoreDiffBadge.tpl.html'
+            templateUrl: '/veganaut/map/vgScoreDiffBadge.tpl.html'
+        };
+    }]);
+
+    module.directive('vgTeamPointsDisplay', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                location: '='
+            },
+            templateUrl: '/veganaut/map/vgTeamPointsDisplay.tpl.html'
         };
     }]);
 
@@ -26,7 +36,7 @@
             scope: {
                 available: '='
             },
-            templateUrl: '/veganaut/components/vgAvailablePointsBadge.tpl.html'
+            templateUrl: '/veganaut/map/vgAvailablePointsBadge.tpl.html'
         };
     }]);
 
@@ -37,7 +47,17 @@
                 current: '=',
                 potential: '='
             },
-            templateUrl: '/veganaut/components/vgMissionPoints.tpl.html'
+            templateUrl: '/veganaut/map/vgMissionPoints.tpl.html'
+        };
+    }]);
+
+    module.directive('vgLocationTypeBadge', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                loc: '=location'
+            },
+            templateUrl: '/veganaut/map/vgLocationTypeBadge.tpl.html'
         };
     }]);
 

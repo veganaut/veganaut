@@ -14,12 +14,8 @@
         <vg-score-diff-badge ng-if="me" team="me.team" diff="location.getRelevantPointDifference(me.team)">
         </vg-score-diff-badge>
     </p>
-    <p ng-if="isLoggedIn()">
-        <span ng-repeat="score in location.getSortedPoints()">
-            <span class="badge badge-team-{{ score.team }}" tooltip="{{ 'location.score.explanation.teamPoints' | trans }}">
-                {{ score.points }}
-            </span>
-        </span>
+    <p>
+        <vg-team-points-display location="location"></vg-team-points-display>
     </p>
 
     <div>
