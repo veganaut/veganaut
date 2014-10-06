@@ -21,6 +21,9 @@ describe('map.', function() {
         // Set the map center in Bern
         browser.executeScript('localStorage.setItem(\'veganautMapCenter\', \'{"lat":46.945,"lng":7.449,"zoom":13}\')');
 
+        // Set the mapUser tour to be ended
+        browser.executeScript('localStorage.setItem(\'mapUser_end\', \'yes\')');
+
         // TODO: not so great to logout before every test
         menuButton = element(by.css('button.menu-button'));
         menuButton.click();

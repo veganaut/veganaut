@@ -41,14 +41,14 @@ describe('frontPage.', function() {
 
     it('should show the intro tour on the front page.', function() {
         ptor.sleep(500);
-        var tour = element(by.css('.tour-intro'));
-        expect(tour.isPresent()).toBe(true, 'has tour-intro');
-        expect(tour.isDisplayed()).toBe(true, 'tour-intro is displayed');
+        var tour = element(by.css('.tour-introBeta'));
+        expect(tour.isPresent()).toBe(true, 'has tour-introBeta');
+        expect(tour.isDisplayed()).toBe(true, 'tour-introBeta is displayed');
 
-        var endButton = element(by.css('.tour-intro .btn[data-role="end"]'));
+        var endButton = element(by.css('.tour-introBeta .btn[data-role="end"]'));
         expect(endButton.isPresent()).toBe(true, 'has end tour button');
 
         endButton.click();
-        expect(tour.isPresent()).toBe(false, 'tour-intro hides after clicking on end');
+        expect(tour.isPresent()).toBe(false, 'tour-introBeta hides after clicking on end');
     });
 });
