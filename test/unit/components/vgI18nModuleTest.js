@@ -44,10 +44,10 @@ describe('translateService', function() {
 
         it('should pass translations to the translate service"', inject(function(transFilter) {
             transFilter('test');
-            expect(translateMock).toHaveBeenCalledWith('test');
+            expect(translateMock).toHaveBeenCalledWith('test', undefined);
 
             transFilter('another.test');
-            expect(translateMock).toHaveBeenCalledWith('another.test');
+            expect(translateMock).toHaveBeenCalledWith('another.test', undefined);
 
             expect(translateMock.calls.length).toBe(2, 'called translate twice in total');
         }));
