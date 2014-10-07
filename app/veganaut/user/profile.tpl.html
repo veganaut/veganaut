@@ -1,44 +1,36 @@
 <div class="profile page-section">
-    <!-- TODO: make a directive for rendering the rows -->
+    <!-- TODO: make a directive for rendering the paragraphs ? -->
     <!-- TODO: make a smart profile display (directive? partial?) to merge this here and the info at the bottom of the social graph -->
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.fullName' | trans"></div>
-        <div class="col-xs-8" ng-bind="me.fullName"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.nickname' | trans"></div>
-        <div class="col-xs-8" ng-bind="me.nickname"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.email' | trans"></div>
-        <div class="col-xs-8" ng-bind="me.email"></div>
-    </div>
+    <p>
+        <strong>{{ 'person.label.fullName' | trans }}</strong><br />
+        {{ me.fullName }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.nickname' | trans }}</strong><br />
+        {{ me.nickname }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.email' | trans }}</strong><br />
+        {{ me.email }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.team' | trans }}</strong><br />
+        <vg-team-name team="me.team"></vg-team-name>
+    </p>
     <!-- Social graph is not active at the moment
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.role' | trans"></div>
-        <div class="col-xs-8">
-            <span ng-bind="('person.role.' + me.role)|trans"></span>
-        </div>
-    </div>
-    -->
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.team' | trans"></div>
-        <div class="col-xs-8">
-            <span class="color-team" ng-bind="'team.' + me.team | trans"></span>
-        </div>
-    </div>
-    <!-- Social graph is not active at the moment
-    <div class="row">
-        <div class="col-xs-4" ng-bind="'person.label.balance' | trans"></div>
-        <div class="col-xs-8">
-            <span class="badge badge-team-{{me.team}}" ng-bind="me.strength"></span>
-            <span class="badge badge-hits" ng-bind="me.hits"></span>
-            <span ng-if="me.isCaptured" class="badge captured">
-                <span class="glyphicon glyphicon-asterisk"></span>
-                <span ng-bind="'person.label.captured'|trans"></span>
-            </span>
-        </div>
-    </div>
+    <p>
+        <strong>{{ 'person.label.role' | trans }}</strong><br />
+        {{ 'person.role.' + me.role | trans }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.balance' | trans }}</strong><br />
+        <span class="badge badge-team-{{me.team}}" ng-bind="me.strength"></span>
+        <span class="badge badge-hits" ng-bind="me.hits"></span>
+        <span ng-if="me.isCaptured" class="badge captured">
+            <span class="glyphicon glyphicon-asterisk"></span>
+            <span ng-bind="'person.label.captured'|trans"></span>
+        </span>
+    </p>
     -->
 </div>
 
