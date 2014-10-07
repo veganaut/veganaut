@@ -203,9 +203,9 @@
                    }
                },
                wantVegan: {
-                   title: 'Sag dem Personal, dass du an einem veganen Angebot interessiert bist.',
-                   description: 'Welche Ausdrücke hast du gebraucht, um dem Personal dein Interesse an einem veganen Angebot mitzuteilen?',
-                   explanation: 'Bringe irgendwie zum Ausdruck, dass du an einem veganen Angebot interessiert bist. Das Personal soll merken: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." So steigt die Chance, dass das vegane Angebot hier vergrössert und verbessert wird.',
+                   title: 'Erkläre dem Personal, was "vegan" heisst.',
+                   description: 'Welche Ausdrücke hast du beim Erklären gebraucht?',
+                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es offensichtlich mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist.',
                    form: {
                        vegan: 'vegan',
                        plantbased: '(rein) pflanzlich',
@@ -221,7 +221,7 @@
                        placeholder: 'Andere gebrauchte Ausdrücke'
                    },
                    outcome: {
-                       description: 'Du hast dem Personal gesagt, dass du an einem veganen Angebot interessiert bist, indem du diese Ausdrücke verwendet hast:'
+                       description: 'Du hast dem Personal erklärt, was "vegan" heisst, indem du diese Ausdrücke verwendet hast:'
                    }
                },
                particularOption: { // @toebu was hälst du von dieser Mission?
@@ -274,7 +274,7 @@
                giveFeedback: {
                    title: 'Gib dem Personal eine Rückmeldung.',
                    description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
-                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet. Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast.',
+                   explanation: 'Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast.',
                    form: {
                        placeholder: 'Rückmeldung'
                    },
@@ -299,16 +299,20 @@
                    }
                },
                effortValue: {
-                   title: 'Schätze ab, ob Veganautinnen und Veganauten das vegane Angebot hier vergrössern oder verbessern können.',
-                   description: 'Wird sich das vegane Angebot hier vergrössern oder verbessern, wenn mehr Veganautinnen und Veganauten vorbeikommen?',
-                   explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan". Veganautinnen und Veganauten würden da nur ihre Zeit verschwenden. Andererseits gibt es vegane Schlaraffenländer. Hier sind Veganautinnen und Veganauten zwar gut aufgehoben, aber sie können am Angebot kaum etwas verbessern. Zwischen diesen zwei Extremen gibt es Locations, wo die Chancen gut stehen, dass das vegane Angebot umso grösser und besser wird, je mehr Veganautinnen und Veganauten hingehen.',
-                   form: {
-                       yes: 'Eher ja',
-                       no: 'Eher nein'
+                   title: 'Schätze ab, wie gut die Chancen stehen, dass das vegane Angebot hier vergrössert und verbessert wird.',
+                   description: 'Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?',
+                   explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.',
+                   form: { // TODO @toebu implement the rather yes - rather no options AND change the "yes" and "no" in the code to "good" and "bad" etc. for semantic fit.
+                       rather yes: 'eher gut',
+                       rather no: 'eher schlecht',
+                       yes: 'gut',
+                       no: 'schlecht'
                    },
                    outcome: {
-                       yes: 'Eher ja.',
-                       no: 'Eher nein.'
+                       rather yes: 'eher gut',
+                       rather no: 'eher schlecht',
+                       yes: 'gut.',
+                       no: 'schlecht.'
                    }
                }
            }
