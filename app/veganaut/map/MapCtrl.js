@@ -111,7 +111,9 @@
              * @param args
              */
             var locationClickHandler = function(event, args) {
-                locationService.activate($scope.locations[args.markerName]);
+                if (!$scope.isAddingLocation) {
+                    locationService.activate($scope.locations[args.markerName]);
+                }
             };
 
             // Register event handlers
