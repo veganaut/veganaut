@@ -339,18 +339,15 @@
             mapUser: [
                 {
                     title: 'Dein Team',
-                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Während der letzten 5042 Jahren bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist. An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
+                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Seit dem "Kleinen Weltuntergang" im 2086 (vor 5042 Jahren) bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist. An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>.'
                 },
                 {
-                    title: 'Pflanzennährstoffe',
-                    content: 'Solange an einem Ort auf der Erdoberfläche Pflanzennährstoffe verfügbar sind ' +
-                    '(das sieht z.B. so aus: <span class="badge badge-default"><span class="glyphicon glyphicon-stats"></span> 300</span>), ' +
-                    'kannst du dort pflügen, säen und bewässern. Um einen Ort zu erobern und die Ernte einzufahren, muss dein Team dort mindestens 1 mehr pflügen, säen und bewässern als alle anderen: ' +
-                    '<span class="badge bg-color-team"><span class="glyphicon glyphicon-stats"></span> +1</span>'
+                    title: 'Dein Ziel',
+                    content: 'Im Raumschiff gibt\'s nur "Space Gunk" zu essen: eine graue, geschmacklose Nährstoffmasse. Doch Veganautinnen und Veganauten, die von Erkundungsmissionen zurückkehren, erzählen neuerdings davon, dass auf der Erdoberfläche wieder essbare Pflanzen wachsen. Dein Ziel ist es, diese essbaren Pflanzen zu finden, zu vermehren und für dein Team zu sichern.'
                 },
                 {
-                    title: 'Missionen (pflügen, säen, bewässern)',
+                    title: 'Missionen',
                     content: 'Wähle auf der Karte einen Ort aus und klicke auf "Location anschauen", um die verfügbaren Missionen anzuzeigen.'
                 },
                 {
@@ -365,7 +362,7 @@
              locationUser: [
                 {
                     title: 'Missionen',
-                    content: ' Die meisten Missionen kannst du nur erfüllen, wenn du die Location im "real life" besuchst.'
+                    content: ' Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest.'
                 }
             ]
         }
