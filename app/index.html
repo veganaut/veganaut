@@ -34,6 +34,8 @@
                 <!-- TODO: make a nav component to get rid of duplication here -->
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
                  ng-bind="'navigation.map' | trans"></button>
+                <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
+                 ng-if="isLoggedIn()" ng-bind="'navigation.score' | trans"></button>
                 <!-- Social graph is not active at the moment
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
@@ -133,9 +135,10 @@
 <script src="/veganaut/map/missionModels.js"></script>
 <script src="/veganaut/map/VisitModel.js"></script>
 
-<script src="/veganaut/score/MatchCtrl.js"></script>
+<script src="/veganaut/score/ScoreCtrl.js"></script>
 
 <!-- Social graph is not active at the moment
+<script src="/veganaut/score/MatchCtrl.js"></script>
 <script src="/veganaut/socialGraph/ActivityLinkCtrl.js"></script>
 <script src="/veganaut/socialGraph/NodeModel.js"></script>
 <script src="/veganaut/socialGraph/nodeService.js"></script>

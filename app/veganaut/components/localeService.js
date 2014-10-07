@@ -8,12 +8,17 @@
         app: {
             title: 'veganaut.net - beta'
         },
+        general: {
+            team: 'Team',
+            person: 'VeganautIn'
+        },
         navigation: {
             front: 'Home',
             register: 'Registrieren',
             login: 'Login',
             logout: 'Logout',
             map: 'Karte',
+            score: 'Teams',
             profile: 'Profil',
             avatar: 'Netzwerk',
             activities: 'Einladungen',
@@ -130,7 +135,19 @@
             score: 'Punktestand',
             users: 'Spieler',
             captured: 'Gefangen',
-            babies: 'Babies'
+            babies: 'Babies',
+            teams: {
+                title: 'Teams',
+                locations: '# Locations',
+                people: '# VeganautInnen'
+            },
+            people: {
+                title: 'VeganautInnen',
+                missions: '# Missionen',
+                filter: {
+                    onlyMyTeam: 'Nur mein Team'
+                }
+            }
         },
         location: {
             form: {

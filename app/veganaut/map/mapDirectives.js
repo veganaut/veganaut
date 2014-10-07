@@ -61,6 +61,17 @@
         };
     }]);
 
+    module.directive('vgTeamName', [function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                team: '='
+            },
+            template: '<span class="color-{{ team }}" ng-bind="\'team.\' + team | trans"></span>'
+        };
+    }]);
+
     module.filter('withSign', [function() {
         return function(value) {
             var sign = (value >= 0) ? '+' : '−'; // This is a minus sign, not a dash. Unicode, yeah

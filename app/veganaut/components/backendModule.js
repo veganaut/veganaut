@@ -194,6 +194,14 @@
         };
 
         /**
+         * Gets the score data
+         * @returns {promise}
+         */
+        var getScore = function() {
+            return $http.get(backendUrl + '/score');
+        };
+
+        /**
          * Gets the currently logged in user info
          * @returns {HttpPromise}
          */
@@ -301,6 +309,7 @@
                     submitReferenceCode: submitReferenceCode,
                     getOpenActivityLinks: getOpenActivityLinks,
                     getMatch: getMatch,
+                    getScore: getScore,
                     getMe: getMe,
                     updateMe: updateMe,
                     getLocations: getLocations,
