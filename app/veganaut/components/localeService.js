@@ -113,8 +113,8 @@
             },
             label: {
                 email: 'E-Mail Adresse',
-                fullName: 'Vorname und Nachname (nicht öffentlich)',
-                nickname: 'Nickname (öffentlich)',
+                fullName: 'Vorname und Nachname',
+                nickname: 'Nickname (öffentlich sichtbar)',
                 role: 'Rolle',
                 team: 'Team',
                 balance: 'Balance',
@@ -145,7 +145,7 @@
                 title: 'VeganautInnen',
                 missions: '# Missionen',
                 filter: {
-                    onlyMyTeam: 'Nur mein Team'
+                    onlyMyTeam: 'Nur meine Teammitglieder anzeigen.'
                 }
             }
         },
