@@ -364,7 +364,7 @@
     // EffortValueMission //////////////////////////////////////////////////////
     function EffortValueMission(visit) {
         Mission.call(this, 'effortValue', visit, undefined);
-        this.possibleAnswers = ['yes', 'no'];
+        this.possibleAnswers = ['yes', 'ratherYes', 'ratherNo', 'no'];
     }
 
     EffortValueMission.prototype = Object.create(Mission.prototype);

@@ -302,16 +302,16 @@
                    title: 'Schätze ab, wie gut die Chancen stehen, dass das vegane Angebot hier vergrössert und verbessert wird.',
                    description: 'Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?',
                    explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.',
-                   form: { // TODO @toebu implement the rather yes - rather no options AND change the "yes" and "no" in the code to "good" and "bad" etc. for semantic fit.
-                       rather yes: 'eher gut',
-                       rather no: 'eher schlecht',
+                   form: {
                        yes: 'gut',
+                       ratherYes: 'eher gut',
+                       ratherNo: 'eher schlecht',
                        no: 'schlecht'
                    },
                    outcome: {
-                       rather yes: 'eher gut',
-                       rather no: 'eher schlecht',
                        yes: 'gut.',
+                       ratherYes: 'eher gut',
+                       ratherNo: 'eher schlecht',
                        no: 'schlecht.'
                    }
                }
