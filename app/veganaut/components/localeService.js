@@ -352,9 +352,9 @@
                 },
                 {
                     title: 'Registrieren',
-                    content: 'Als registrierte Benutzerin oder registrierter Benutzer gehörst du einem von fünf Teams an: ' +
-                    '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>. ' +
-                    'Das Spiel geht darum, die Locations der anderen Teams zu erobern und die eigenen Locations zu verteidigen.'
+                    content: 'Nach dem Registrieren gehörst du einem von fünf Teams an: ' +
+                    '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span> ' +
+                    'und kannst beim Orte-Erobern mitspielen. Du kannst das Spiel aber auch einfach ignorieren.'
                 }
             ],
             mapUser: [
