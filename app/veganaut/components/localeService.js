@@ -174,10 +174,6 @@
             score: {
                 explanation: {
                     availablePoints: 'Momentan hier verfügbare Punkte',
-                    scoreDiff: {
-                        positive: 'So viele Punkte ist dein Team hier voraus',
-                        negative: 'So viele Punkte fehlen deinem Team hier noch'
-                    },
                     teamPoints: 'Dieses Team hat hier so viele Punkte'
                 }
             },

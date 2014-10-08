@@ -11,8 +11,6 @@
         <vg-location-type-badge location="location"></vg-location-type-badge>
         <vg-available-points-badge available="location.availablePoints"
          ng-if="isLoggedIn()"></vg-available-points-badge>
-        <vg-score-diff-badge ng-if="me" team="me.team" diff="location.getRelevantPointDifference(me.team)">
-        </vg-score-diff-badge>
     </p>
     <p>
         <vg-team-points-display location="location"></vg-team-points-display>

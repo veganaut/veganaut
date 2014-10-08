@@ -136,31 +136,6 @@
             };
 
             /**
-             * Gets the number of points of the second best team
-             * @returns {number}
-             */
-            Location.prototype.getRunnerUpPoints = function() {
-                var sorted = this.getSortedPoints();
-                if (sorted.length > 1) {
-                    return sorted[1].points;
-                }
-                return 0;
-            };
-
-            /**
-             * Gets the difference in points of the given team to the best team (negative),
-             * or if the given team is the best team, the difference to the runner up (positive)
-             * @param team
-             * @returns {number}
-             */
-            Location.prototype.getRelevantPointDifference = function(team) {
-                if (this.team === team) {
-                    return this.points[team] - this.getRunnerUpPoints();
-                }
-                return (this.points[team] || 0) - (this.points[this.team] || 0);
-            };
-
-            /**
              * Returns a visit of this location
              * @param {Player} player The player to get the visit for
              * @returns {Visit}

@@ -3,23 +3,6 @@
 
     // TODO: not really sure how to treat tiny directives and filters like this
 
-    module.directive('vgScoreDiffBadge', [function() {
-        return {
-            restrict: 'E',
-            scope: {
-                team: '=',
-                diff: '='
-            },
-            controller: ['$scope', function($scope) {
-                $scope.getTooltip = function() {
-                    return 'location.score.explanation.scoreDiff.' +
-                        (($scope.diff >= 0) ? 'positive' : 'negative');
-                };
-            }],
-            templateUrl: '/veganaut/map/vgScoreDiffBadge.tpl.html'
-        };
-    }]);
-
     module.directive('vgTeamPointsDisplay', [function() {
         return {
             restrict: 'E',
