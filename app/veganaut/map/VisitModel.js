@@ -30,30 +30,19 @@
                 // TODO: what should we do here?
             };
 
-            // TODO: this might get easier now since every mission is submitted separately
             /**
              * Returns the total number of points made in this visit
-             * @param {Boolean} [ignoreAvailablePoints=false]
              * @returns {number}
              */
-            Visit.prototype.getTotalPoints = function(ignoreAvailablePoints) {
+            Visit.prototype.getTotalPoints = function() {
                 var points = 0;
                 for (var i = 0; i < this.missions.length; i++) {
                     if (this.missions[i].completed) {
-                        points += this.missions[i][ignoreAvailablePoints ? 'points' : 'receivedPoints'];
+                        points += this.missions[i].points;
                     }
                 }
 
                 return points;
-            };
-
-            /**
-             * Returns the number of points that is still available at this
-             * location.
-             * @returns {number}
-             */
-            Visit.prototype.getAvailablePoints = function() {
-                return (this.location.availablePoints);
             };
 
             return Visit;

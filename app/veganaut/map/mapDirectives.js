@@ -13,22 +13,11 @@
         };
     }]);
 
-    module.directive('vgAvailablePointsBadge', [function() {
-        return {
-            restrict: 'E',
-            scope: {
-                available: '='
-            },
-            templateUrl: '/veganaut/map/vgAvailablePointsBadge.tpl.html'
-        };
-    }]);
-
     module.directive('vgMissionPoints', [function() {
         return {
             restrict: 'E',
             scope: {
-                current: '=',
-                potential: '='
+                points: '='
             },
             templateUrl: '/veganaut/map/vgMissionPoints.tpl.html'
         };

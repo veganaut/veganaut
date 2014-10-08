@@ -9,10 +9,6 @@
     </h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
-        <vg-available-points-badge available="location.availablePoints"
-         ng-if="isLoggedIn()"></vg-available-points-badge>
-    </p>
-    <p>
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
 
@@ -39,8 +35,7 @@
          class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
                 <p class="h4 mission-title">
-                    <vg-mission-points current="mission.getCurrentPoints()"
-                     potential="mission.points"></vg-mission-points>
+                    <vg-mission-points points="mission.points"></vg-mission-points>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
                     {{ 'map.mission.' + mission.type + '.title' | trans }}
                 </p>
@@ -222,8 +217,7 @@
 
         <p class="h4">
             {{ 'map.mission.totalPoints' | trans }}
-            <vg-mission-points current="visit.getTotalPoints(false)"
-             potential="visit.getTotalPoints(true)"></vg-mission-points>
+            <vg-mission-points points="visit.getTotalPoints()"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
         <hr />

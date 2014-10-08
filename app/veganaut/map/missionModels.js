@@ -65,7 +65,6 @@
         this.visit = visit;
         this.outcome = outcome;
         this.points = MISSION_POINTS[type];
-        this.receivedPoints = 0;
         this.order = MISSION_ORDER.indexOf(type);
         this.started = false;
         this.completed = false;
@@ -105,7 +104,7 @@
      */
     Mission.prototype.toJson = function() {
         var points = {};
-        points[this.visit.player.team] = this.receivedPoints;
+        points[this.visit.player.team] = this.points;
         return {
             type: this.type,
             outcome: this.getOutcome(),
@@ -130,25 +129,12 @@
      */
     Mission.prototype.finish = function() {
         if (!this.completed) {
-            this.receivedPoints = this.getCurrentPoints();
             this.finalOutcome = this.getOutcome();
             this.completed = true;
 
             // Tell the visit we are done
             this.visit.finishedMission(this);
         }
-    };
-
-    /**
-     * Returns the point that the mission would make if it were completed
-     * now, or the actual number of awarded points if its already completed.
-     * @returns {number}
-     */
-    Mission.prototype.getCurrentPoints = function() {
-        if (this.completed) {
-            return this.receivedPoints;
-        }
-        return Math.min(this.points, this.visit.getAvailablePoints());
     };
 
     /**

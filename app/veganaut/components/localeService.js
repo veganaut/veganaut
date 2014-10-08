@@ -173,7 +173,6 @@
             },
             score: {
                 explanation: {
-                    availablePoints: 'Momentan hier verfügbare Punkte',
                     teamPoints: 'Dieses Team hat hier so viele Punkte'
                 }
             },

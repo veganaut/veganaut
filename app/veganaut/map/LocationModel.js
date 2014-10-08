@@ -13,13 +13,12 @@
              * @param {string} title
              * @param {string} type
              * @param {{}} [points={}]
-             * @param {number} availablePoints
              * @param {number} quality
              * @param {[]} products
              * @param {{}} lastMissionDates
              * @constructor
              */
-            function Location(id, team, lat, lng, title, type, points, availablePoints, quality, products, lastMissionDates) {
+            function Location(id, team, lat, lng, title, type, points, quality, products, lastMissionDates) {
                 this.id = id;
                 this.team = team;
                 this.lat = lat;
@@ -27,7 +26,6 @@
                 this.title = title; // TODO: rename to "name"
                 this.type = type;
                 this.points = points || {};
-                this.availablePoints = availablePoints || 0;
                 this.quality = Math.min(5, Math.max(0, Math.round(quality || 0)));
                 this.products = products || [];
                 this.lastMissionDates = lastMissionDates || {};
@@ -70,7 +68,6 @@
                     json.name,
                     json.type,
                     json.points,
-                    json.availablePoints,
                     json.quality,
                     json.products,
                     lastMissionDates
@@ -166,7 +163,6 @@
                 this.team = newData.team;
                 this.title = newData.name || newData.title; // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
                 this.points = newData.points;
-                this.availablePoints = newData.availablePoints;
                 this.quality = newData.quality;
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
