@@ -156,6 +156,10 @@
                 chooseType: 'Art der Location auswählen',
                 submit: 'Fertig'
             },
+            rating: {
+                average: 'Sterne',
+                numRatings: 'Bewertungen'
+            },
             products: {
                 title: 'Angebot',
                 description: 'An dieser Location bestehen die folgenden veganen Angebote:',

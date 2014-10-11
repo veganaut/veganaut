@@ -19,11 +19,10 @@
             <ul>
                 <li ng-repeat="product in location.products">
                     {{ product.name }}
-                    <rating ng-if="product.rating" readonly="true"
-                     ng-model="product.rating"
-                     max="5"></rating>
-                    <!-- TODO: don't hard code the 5 -->
-                    <!-- TODO: always rounds up, should round correctly -->
+                    <vg-average-rating
+                     average="product.rating.average"
+                     num-ratings="product.rating.numRatings">
+                    </vg-average-rating>
                 </li>
             </ul>
         </div>

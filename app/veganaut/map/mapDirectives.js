@@ -44,6 +44,25 @@
         };
     }]);
 
+    module.directive('vgAverageRating', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                average: '=',
+                numRatings: '=',
+                maxRating: '@'
+            },
+            templateUrl: '/veganaut/map/vgAverageRating.tpl.html',
+            controller: ['$scope', function($scope) {
+                var maxRating = $scope.maxRating || 5;
+                $scope.range = [];
+                for (var i = 1; i <= maxRating; i++) {
+                    $scope.range.push(i);
+                }
+            }]
+        };
+    }]);
+
     module.filter('withSign', [function() {
         return function(value) {
             var sign = (value >= 0) ? '+' : '−'; // This is a minus sign, not a dash. Unicode, yeah
