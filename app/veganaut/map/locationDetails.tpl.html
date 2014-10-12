@@ -1,10 +1,13 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
     <h1 class="color-{{ location.team }}">
         {{ location.title }}
-        <small class="location-quality-label" ng-if="location.quality > 0"
-         tooltip="{{ 'location.quality.explanation' | trans }}">
+        <small class="location-quality-label" ng-if="location.quality.numRatings > 0"
+         tooltip-placement="bottom"
+         tooltip="{{ 'location.quality.explanation' | trans }}.
+         {{ 'location.rating.average' | trans }}: {{ location.quality.average | number:1 }},
+         {{ 'location.rating.numRatings' | trans }}: {{ location.quality.numRatings }}">
             <!-- TODO: this should go in a directive-->
-            <span class="icon icon-{{ location.quality }} location-quality-label-icon"></span>
+            <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon"></span>
         </small>
     </h1>
     <p>

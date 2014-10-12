@@ -13,7 +13,7 @@
              * @param {string} title
              * @param {string} type
              * @param {{}} [points={}]
-             * @param {number} quality
+             * @param {{}} quality
              * @param {[]} products
              * @param {{}} lastMissionDates
              * @constructor
@@ -26,7 +26,11 @@
                 this.title = title; // TODO: rename to "name"
                 this.type = type;
                 this.points = points || {};
-                this.quality = Math.min(5, Math.max(0, Math.round(quality || 0)));
+                quality = quality || {};
+                this.quality = {
+                    average: quality.average || 0,
+                    numRatings: quality.numRatings || 0
+                };
                 this.products = products || [];
                 this.lastMissionDates = lastMissionDates || {};
                 this._active = false;
@@ -81,8 +85,8 @@
             Location.prototype._updateMarkerIcon = function() {
                 // Set the html based on the "quality"
                 this.icon.html = '';
-                if (this.quality > 0) {
-                    this.icon.html = '<span class="map-icon icon icon-' + this.quality + '"></span>';
+                if (this.quality.numRatings > 0) {
+                    this.icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
                 }
 
                 // Set the class list
@@ -150,6 +154,16 @@
              */
             Location.prototype.getProductById = function(productId) {
                 return _.find(this.products, { id: productId });
+            };
+
+            /**
+             * Returns the average quality rounded to a number between 0 and 5.
+             * 0 means there are no ratings.
+             * @returns {number}
+             */
+            Location.prototype.getRoundedQuality = function() {
+                var avg = this.quality.average || 0;
+                return Math.min(5, Math.max(0, Math.round(avg)));
             };
 
             /**

@@ -157,7 +157,7 @@
                 submit: 'Fertig'
             },
             rating: {
-                average: 'Sterne',
+                average: 'Durchschnitt',
                 numRatings: 'Bewertungen'
             },
             products: {
