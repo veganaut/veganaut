@@ -235,4 +235,8 @@
             {{ 'action.location.backToMap' | trans }}
         </button>
     </p>
+
+    <leaflet class="location-detail-map" ng-if="location"
+     markers="[location]" defaults="mapDefaults" center="center">
+    </leaflet>
 </div>
