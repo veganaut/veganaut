@@ -9,6 +9,7 @@
         'leaflet-directive',
         'veganaut.alert',
         'veganaut.form',
+        'veganaut.geocode',
         'veganaut.i18n',
         'veganaut.angularPiwik',
         'veganaut.app.main',

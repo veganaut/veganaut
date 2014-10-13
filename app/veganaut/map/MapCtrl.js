@@ -2,8 +2,11 @@
     'use strict';
 
     // TODO: refactor, document and add tests!!
-    module.controller('MapCtrl', ['$scope', '$location', 'playerService', 'Location', 'locationService', 'backendService',
-        function($scope, $location, playerService, Location, locationService, backendService) {
+    module.controller('MapCtrl', ['$scope', '$location', '$timeout', 'leafletData',
+        'playerService', 'Location', 'locationService', 'backendService', 'geocodeService',
+        function($scope, $location, $timeout, leafletData,
+            playerService, Location, locationService, backendService, geocodeService)
+        {
             var player;
 
             /**
@@ -82,6 +85,26 @@
             };
 
             /**
+             * Sets the given coordinates as the lat/lng of the location
+             * that is being added.
+             * @param {number} lat
+             * @param {number} lng
+             */
+            var setNewLocationCoordinates = function(lat, lng) {
+                if ($scope.isAddingLocation) {
+                    // Set the coordinates
+                    $scope.newLocation.lat = lat;
+                    $scope.newLocation.lng = lng;
+
+                    // Push to map if not already there
+                    if ($scope.newLocation.isAddedToMap !== true) {
+                        $scope.locations.push($scope.newLocation);
+                        $scope.newLocation.isAddedToMap = true;
+                    }
+                }
+            };
+
+            /**
              * Handler for clicks on the map
              * @param event
              * @param args
@@ -90,14 +113,10 @@
                 if ($scope.isAddingLocation) {
                     // When adding a new location, take the click
                     // as the coordinates of this new location
-                    $scope.newLocation.lat = args.leafletEvent.latlng.lat;
-                    $scope.newLocation.lng = args.leafletEvent.latlng.lng;
-
-                    // Push to map if not already there
-                    if ($scope.newLocation.isAddedToMap !== true) {
-                        $scope.locations.push($scope.newLocation);
-                        $scope.newLocation.isAddedToMap = true;
-                    }
+                    setNewLocationCoordinates(
+                        args.leafletEvent.latlng.lat,
+                        args.leafletEvent.latlng.lng
+                    );
                 }
                 else {
                     // When not adding a location, deselect currently active location
@@ -137,6 +156,64 @@
             // Watch the map center for changes to save it
             $scope.$watch('mapSettings.center', function() {
                 locationService.saveMapCenter();
+            });
+
+            // Geocoding search string model and results
+            $scope.geocoding = {
+                search: '',
+                results: []
+            };
+
+            // Get a reference the the leaflet map object
+            var map;
+            leafletData.getMap().then(function(leafletMap) {
+                map = leafletMap;
+            });
+
+            /**
+             * Selects the given geocode result as the coordinates
+             * for the new location
+             * @param {GeocodeResult} result
+             */
+            $scope.setGeocodeResult = function(result) {
+                // Set coordinates
+                setNewLocationCoordinates(
+                    result.lat,
+                    result.lng
+                );
+
+                // Fit to the bounds of the result
+                if (angular.isObject(map) && angular.isArray(result.bounds)) {
+                    map.fitBounds(result.bounds);
+                }
+            };
+
+            // Watch the geocoding search string
+            var searchTimeout;
+            $scope.$watch('geocoding.search', function(search) {
+                // TODO: move constants somewhere else
+                if (!angular.isString(search) || search.length < 4) {
+                    return;
+                }
+
+                // Cancel timeout if it's already started
+                if (angular.isObject(searchTimeout)) {
+                    $timeout.cancel(searchTimeout);
+                }
+
+                // Start a timeout to look up the search string
+                searchTimeout = $timeout(function() {
+                    // Reset results and timeout
+                    $scope.geocoding.results = [];
+                    searchTimeout = undefined;
+
+                    // Lookup the search string
+                    geocodeService.search($scope.geocoding.search)
+                        .then(function(data) {
+                            $scope.geocoding.results = data;
+                        })
+                    ;
+                }, 500);
             });
         }
     ]);

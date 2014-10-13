@@ -51,9 +51,18 @@
                     <option value="">{{ 'location.form.chooseType' | trans }}</option>
                     <option ng-repeat="type in locationTypes" value="{{ type }}">{{ 'location.type.' + type | trans }}</option>
                 </select>
+                <div ng-hide="newLocation.lat && newLocation.lng">
+                    {{ 'location.form.selectCoordinates' | trans }}
+                </div>
+                <input type="text" class="form-control" ng-model="geocoding.search"
+                 placeholder="{{ 'location.form.search' | trans }}"/>
                 <input type="hidden" required ng-model="newLocation.lat"/>
                 <input type="hidden" required ng-model="newLocation.lng"/>
-                <div ng-bind="'location.form.selectOnMap' | trans" ng-hide="newLocation.lat && newLocation.lng"></div>
+                <div ng-repeat="result in geocoding.results">
+                    <a class="clickable" ng-click="setGeocodeResult(result)">
+                        {{ result.getDisplayName() }}
+                    </a>
+                </div>
                 <button type="button" class="cancel-add-location btn btn-default"
                  ng-click="resetAddNewLocation()">
                     <span class="glyphicon glyphicon-remove"></span>

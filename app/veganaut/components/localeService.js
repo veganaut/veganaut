@@ -152,8 +152,9 @@
         location: {
             form: {
                 name: 'Name der Location',
-                selectOnMap: 'Wähle einen Punkt auf der Karte aus',
+                selectCoordinates: 'Wähle einen Punkt auf der Karte aus oder benutze die Suche:',
                 chooseType: 'Art der Location auswählen',
+                search: 'Nach Name oder Addresse suchen',
                 submit: 'Fertig'
             },
             rating: {
