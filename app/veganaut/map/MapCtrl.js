@@ -15,6 +15,44 @@
              */
             $scope.isAddingLocation = false;
 
+            // TODO: all this addLocation stuff should be separated to a directive or other controller
+            $scope.addLocationStep = 1;
+
+            $scope.nextStep = function() {
+                if ($scope.stepIsValid()) {
+                    if ($scope.isLastStep()) {
+                        $scope.addNewLocation();
+                    }
+                    else {
+                        $scope.addLocationStep += 1;
+                    }
+                }
+            };
+
+            $scope.previousStep = function() {
+                if ($scope.addLocationStep > 1) {
+                    $scope.addLocationStep -= 1;
+                }
+            };
+
+            $scope.stepIsValid = function() {
+                var loc = $scope.newLocation;
+                switch ($scope.addLocationStep) {
+                case 1:
+                    return (angular.isString(loc.title) && loc.title.length > 0);
+                case 2:
+                    return (angular.isString(loc.type) && loc.type.length > 0);
+                case 3:
+                    return (angular.isNumber(loc.lat) && angular.isNumber(loc.lng));
+                default:
+                    return false;
+                }
+            };
+
+            $scope.isLastStep = function() {
+                return ($scope.addLocationStep === 3);
+            };
+
             // Expose the location service
             $scope.location = locationService;
 
@@ -49,6 +87,7 @@
              * Starts adding a new location
              */
             $scope.startAddNewLocation = function() {
+                $scope.addLocationStep = 1;
                 $scope.isAddingLocation = true;
                 $scope.newLocation = new Location(undefined, player.team);
                 locationService.activate($scope.newLocation);

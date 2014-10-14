@@ -44,36 +44,7 @@
                 </button>
             </p>
 
-            <form novalidate name="locationForm" class="location-form spaced-form" ng-show="isAddingLocation">
-                <input type="text" required class="form-control" ng-model="newLocation.title"
-                 placeholder="{{ 'location.form.name' | trans }}"/>
-                <select required class="form-control" ng-model="newLocation.type">
-                    <option value="">{{ 'location.form.chooseType' | trans }}</option>
-                    <option ng-repeat="type in locationTypes" value="{{ type }}">{{ 'location.type.' + type | trans }}</option>
-                </select>
-                <div ng-hide="newLocation.lat && newLocation.lng">
-                    {{ 'location.form.selectCoordinates' | trans }}
-                </div>
-                <input type="text" class="form-control" ng-model="geocoding.search"
-                 placeholder="{{ 'location.form.search' | trans }}"/>
-                <input type="hidden" required ng-model="newLocation.lat"/>
-                <input type="hidden" required ng-model="newLocation.lng"/>
-                <div ng-repeat="result in geocoding.results">
-                    <a class="clickable" ng-click="setGeocodeResult(result)">
-                        {{ result.getDisplayName() }}
-                    </a>
-                </div>
-                <button type="button" class="cancel-add-location btn btn-default"
-                 ng-click="resetAddNewLocation()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span ng-bind="'action.cancel'|trans"></span>
-                </button>
-                <button type="submit" class="btn btn-default btn-team pull-right"
-                 ng-disabled="locationForm.$invalid" ng-click="addNewLocation()">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span ng-bind="'location.form.submit'|trans"></span>
-                </button>
-            </form>
+            <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
         </div>
     </div>
 

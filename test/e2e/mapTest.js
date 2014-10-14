@@ -91,14 +91,28 @@ describe('map.', function() {
             it('should be possible to add a new location.', function() {
                 browser.sleep(helpers.MENU_DELAY); // Wait for menu to go away
                 element(by.css('.add-location')).click();
-                expect(element(by.css('form.location-form')).isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
 
+                var form = element(by.css('form.location-form'));
+                expect(form.isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
+
+                var next = form.element(by.css('.btn-add-location-next'));
+                expect(next.isDisplayed()).toBe(true, 'shows next button');
+                expect(next.isEnabled()).toBe(false, 'next button step 1 is disabled');
+
+                element(by.model('newLocation.title')).sendKeys('New Place');
+                expect(next.isEnabled()).toBe(true, 'next button step 1 is no longer disabled');
+                next.click();
+
+                expect(next.isEnabled()).toBe(false, 'next button step 2 is disabled');
+                form.all(by.model('newLocation.type')).first().click();
+                expect(next.isEnabled()).toBe(true, 'next button step 2 is no longer disabled');
+                next.click();
+
+                expect(next.isEnabled()).toBe(false, 'next button step 3 is disabled');
                 // Click somewhere on the map
                 element(by.css('.main-map')).click();
-                helpers.selectOption(by.model('newLocation.type'), 'Gastro');
-
-                // Enter title and complete form by sending Enter
-                element(by.model('newLocation.title')).sendKeys('New Place\n');
+                expect(next.isEnabled()).toBe(true, 'next button step 3 is no longer disabled');
+                next.click();
 
                 expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
