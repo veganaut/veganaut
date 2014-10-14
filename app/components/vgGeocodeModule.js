@@ -8,7 +8,7 @@
      */
     var module = angular.module('veganaut.geocode', []);
 
-    var BASE_URL = 'http://nominatim.openstreetmap.org';
+    var BASE_URL = '//nominatim.openstreetmap.org';
 
     /**
      * Represents a geocoding results
