@@ -291,14 +291,14 @@
                    }
                },
                giveFeedback: {
-                   title: 'Gib dem Personal eine Rückmeldung.',
-                   description: 'Was für eine Rückmeldung hast du dem Personal gegeben?',
-                   explanation: 'Manchmal kannst du dem Personal einen guten Tipp geben. Manchmal hat das Personal eine Frage, die du beantwortet kannst. Manchmal bist du sehr zufrieden mit dem Angebot, manchmal weniger. Hier kannst du schreiben, worüber du mit dem Personal gesprochen hast.',
+                   title: 'Mission: Impossible',
+                   description: 'Was für eine unmögliche Mission hast du hier versucht?',
+                   explanation: 'Manchmal sind es die unwahrscheinlichsten Dinge, die am meisten bringen. Der Legende nach hat eine einzige Veganautin die Space Gunk Ausgabestelle bei der Startrampe XQR-9 dazu gebracht, vegane Haute-Cuisine anzubieten, indem sie dem Personal sagte: "Stellt doch um auf 100% veganen Food! Ich habe ein 5160 Jahre altes Kochbuch und einen antiken Campingkocher gefunden, das leihe ich euch aus.',
                    form: {
-                       placeholder: 'Rückmeldung'
+                       placeholder: 'Unmögliche Mission'
                    },
                    outcome: {
-                       description: 'Du hast dem Personal diese Rückmeldung gegeben:'
+                       description: 'Du hast diese unmögliche Mission versucht:'
                    }
                },
                rateOptions: {
@@ -361,21 +361,21 @@
             ],
             mapUser: [
                 {
+                    title: 'Bieeeeeeep!',
+                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Seit dem "Kleinen Weltuntergang" im 2086 (vor 5042 Jahren) bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist.'
+                },
+                {
                     title: 'Dein Team',
-                    content: 'Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Seit dem "Kleinen Weltuntergang" im 2086 (vor 5042 Jahren) bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist. An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
+                    content: 'An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>.'
                 },
                 {
+                    title: 'Space Gunk forever?',
+                    content: 'Im Raumschiff gibt\'s nur "Space Gunk" zu essen: eine graue, geschmacklose Nährstoffmasse. Doch Veganautinnen und Veganauten, die von Erkundungsmissionen zurückkehren, erzählen neuerdings, dass auf der Erdoberfläche wieder essbare Pflanzen wachsen.'
+                },
+                {
                     title: 'Dein Ziel',
-                    content: 'Im Raumschiff gibt\'s nur "Space Gunk" zu essen: eine graue, geschmacklose Nährstoffmasse. Doch Veganautinnen und Veganauten, die von Erkundungsmissionen zurückkehren, erzählen neuerdings davon, dass auf der Erdoberfläche wieder essbare Pflanzen wachsen. Dein Ziel ist es, diese essbaren Pflanzen zu finden, zu vermehren und für dein Team zu sichern.'
-                },
-                {
-                    title: 'Missionen',
-                    content: 'Wähle auf der Karte einen Ort aus und klicke auf "Location anschauen", um die verfügbaren Missionen anzuzeigen.'
-                },
-                {
-                    title: 'Locations hinzufügen',
-                    content: 'Wenn du eine Location kennst, die auf der Karte noch fehlt, kannst du sie hinzufügen. Klicke dazu auf "Neue Location" und folge den Anweisungen.'
+                    content: ' Dein Ziel ist es, diese essbaren Pflanzen zu finden, zu vermehren und für dein Team zu sichern.'
                 },
                 {
                     title: 'Sag uns deine Meinung',
