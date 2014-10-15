@@ -375,7 +375,7 @@
                 },
                 {
                     title: 'Dein Ziel',
-                    content: ' Dein Ziel ist es, diese essbaren Pflanzen zu finden, zu vermehren und für dein Team zu sichern.'
+                    content: ' Dein Ziel ist es, die essbaren Pflanzen auf der Erdoberfläche zu finden, zu markieren, zu bewerten, zu vermehren und für dein Team zu sichern.'
                 },
                 {
                     title: 'Sag uns deine Meinung',
