@@ -2,8 +2,8 @@
     'use strict';
 
     module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', 'mapDefaults', 'locationService', 'backendService', 'playerService', 'alertService',
-        function($scope, $routeParams, mapDefaults, locationService, backendService, playerService, alertService) {
+        ['$scope', '$routeParams', 'mapDefaults', 'locationService', 'backendService', 'playerService', 'alertService', 'translateService',
+        function($scope, $routeParams, mapDefaults, locationService, backendService, playerService, alertService, t) {
             var locationId = $routeParams.id;
 
             /**
@@ -40,7 +40,7 @@
                         }
                         // TODO: should we only show this once we reloaded the location?
                         alertService.addAlert(
-                            'Successfully submitted your mission. You made the following points: ' + pointTexts.join(', '),
+                            t('message.mission.success') + pointTexts.join(', '),
                             'success'
                         );
 

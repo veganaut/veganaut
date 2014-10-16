@@ -38,6 +38,9 @@
         message: {
             registered: 'Registrierung erfolgreich.',
             activityLinkCreated: 'Einladung erstellt.',
+            mission: {
+                success: 'Mission erfolgreich abgeschlossen. Du hast die folgenden Punkte gemacht: '
+            },
             profile: {
                 update: {
                     success: 'Profil wurde erfolgreich aktualisiert.',
