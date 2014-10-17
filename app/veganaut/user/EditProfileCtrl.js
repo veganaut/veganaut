@@ -23,7 +23,7 @@
                         alertService.addAlert(trans('message.profile.update.success'), 'success');
                     })
                     .error(function() {
-                        alertService.addAlert(trans('message.profile.update.fail'), 'danger');
+                        alertService.addAlert(trans('message.profile.update.error'), 'danger');
                     })
                 ;
                 $scope.goToView('me');

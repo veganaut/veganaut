@@ -50,7 +50,7 @@
                         });
                     })
                     .error(function(data) {
-                        alertService.addAlert('Failed to submit your mission: ' + data.error, 'danger');
+                        alertService.addAlert(t('message.mission.error') + data.error, 'danger');
                     })
                 ;
             };

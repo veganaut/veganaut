@@ -39,12 +39,13 @@
             registered: 'Registrierung erfolgreich.',
             activityLinkCreated: 'Einladung erstellt.',
             mission: {
-                success: 'Mission erfolgreich abgeschlossen. Du hast die folgenden Punkte gemacht: '
+                success: 'Mission erfolgreich abgeschlossen. Du hast die folgenden Punkte gemacht: ',
+                error: 'Mission konnte nicht gespeichert werden: '
             },
             profile: {
                 update: {
                     success: 'Profil wurde erfolgreich aktualisiert.',
-                    fail: 'Profil konnte nicht aktualisiert werden.'
+                    error: 'Profil konnte nicht aktualisiert werden.'
                 }
             }
         },
