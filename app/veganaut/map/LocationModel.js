@@ -11,6 +11,8 @@
              * @param {number} lat
              * @param {number} lng
              * @param {string} title
+             * @param {string} description
+             * @param {string} link
              * @param {string} type
              * @param {{}} [points={}]
              * @param {{}} quality
@@ -18,12 +20,14 @@
              * @param {{}} lastMissionDates
              * @constructor
              */
-            function Location(id, team, lat, lng, title, type, points, quality, products, lastMissionDates) {
+            function Location(id, team, lat, lng, title, description, link, type, points, quality, products, lastMissionDates) {
                 this.id = id;
                 this.team = team;
                 this.lat = lat;
                 this.lng = lng;
                 this.title = title; // TODO: rename to "name"
+                this.description = description;
+                this.link = link;
                 this.type = type;
                 this.points = points || {};
                 quality = quality || {};
@@ -70,6 +74,8 @@
                     json.lat,
                     json.lng,
                     json.name,
+                    json.description,
+                    json.link,
                     json.type,
                     json.points,
                     json.quality,
@@ -166,6 +172,14 @@
                 return Math.min(5, Math.max(0, Math.round(avg)));
             };
 
+            Location.prototype.getUrl = function(edit) {
+                var url = '/location/' + this.id;
+                if (edit === true) {
+                    url += '/edit';
+                }
+                return url;
+            };
+
             /**
              * Updates this Location with the new data loaded from the backend
              * @param {{}} newData
@@ -176,6 +190,8 @@
                 this.id = newData.id;
                 this.team = newData.team;
                 this.title = newData.name || newData.title; // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
+                this.description = newData.description;
+                this.link = newData.link;
                 this.points = newData.points;
                 this.quality = newData.quality;
                 this.products = newData.products;

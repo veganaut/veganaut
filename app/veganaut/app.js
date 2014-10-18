@@ -35,6 +35,7 @@
 
             $routeProvider.when('/', {templateUrl: '/veganaut/map/map.tpl.html'});
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
+            $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.when('/score', {templateUrl: '/veganaut/score/score.tpl.html'});

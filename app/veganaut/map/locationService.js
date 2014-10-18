@@ -172,6 +172,30 @@
                 ;
             };
 
+            /**
+             * Sends the current location data to the backend.
+             * Updates only title, description and link at the moment.
+             * @param {Location} location
+             * @returns {HttpPromise}
+             */
+            LocationService.prototype.updateLocation = function(location) {
+                return backendService.updateLocation(location.id, {
+                    name: location.title,
+                    description: location.description,
+                    link: location.link
+                })
+                    .success(function(data) {
+                        // Update the location
+                        location.update(data);
+                        alertService.addAlert('Updated location "' + location.title + '"', 'success');
+                    })
+                    .error(function(data) {
+                        // TODO: should reset the location data to what it previsouly was
+                        alertService.addAlert('Failed to update location: ' + data.error, 'danger');
+                    })
+                ;
+            };
+
             return new LocationService();
         }
     ]);

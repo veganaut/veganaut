@@ -277,6 +277,15 @@
             return $http.post(backendUrl + '/location', locationData);
         };
 
+        /**
+         * Updates the given location
+         * @param {string} locationId
+         * @param {{}} locationData
+         * @returns {HttpPromise}
+         */
+        var updateLocation = function(locationId, locationData) {
+            return $http.put(backendUrl + '/location/' + locationId, locationData);
+        };
 
         /**
          * Returns this service
@@ -316,7 +325,8 @@
                     getLocation: getLocation,
                     getGeoIP: getGeoIP,
                     submitMission: submitMission,
-                    submitLocation: submitLocation
+                    submitLocation: submitLocation,
+                    updateLocation: updateLocation
                 };
             }
         ];

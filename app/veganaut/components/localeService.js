@@ -84,6 +84,8 @@
                 locationAction: 'Location anschauen'
             },
             location: {
+                edit: 'Location bearbeiten',
+                save: 'Location speichern',
                 backToMap: 'Zurück zur Karte'
             }
         },
@@ -158,10 +160,20 @@
                 name: 'Name der Location',
                 selectCoordinates: 'Wähle einen Punkt auf der Karte aus oder benutze die Suche',
                 type: 'Art der Location auswählen',
+                description: 'Beschreibung',
+                link: 'Webseite dieser Location',
                 search: 'Nach Name oder Addresse suchen',
+                placeholder: {
+                    description: 'Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.',
+                    link: 'http://beispiel.ch'
+                },
                 next: 'Weiter',
                 previous: 'Zurück',
                 submit: 'Fertig'
+            },
+            label: {
+                description: 'Beschreibung',
+                link: 'Webseite'
             },
             rating: {
                 average: 'Durchschnitt',

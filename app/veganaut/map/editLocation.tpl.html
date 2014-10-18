@@ -1,0 +1,23 @@
+<form novalidate name="editLocationForm" class="edit-location-form" ng-controller="EditLocationCtrl">
+    <div class="form-group">
+        <label for="editTitle" ng-bind="'location.form.name' | trans"></label>
+        <input type="text" required id="editTitle" class="form-control" ng-model="location.title" />
+    </div>
+    <div class="form-group">
+        <label for="editDescription" ng-bind="'location.form.description' | trans"></label>
+        <textarea id="editDescription" class="form-control" rows="5"
+         placeholder="{{ 'location.form.placeholder.description' | trans }}"
+         ng-model="location.description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="editLink" ng-bind="'location.form.link' | trans"></label>
+        <input type="url" id="editLink" class="form-control"
+         placeholder="{{ 'location.form.placeholder.link' | trans }}"
+         ng-model="location.link" />
+    </div>
+    <button class="btn btn-default"
+     ng-click="goToView(location.getUrl())" ng-bind="'action.cancel' | trans"></button>
+    <button type="submit" class="btn btn-default pull-right"
+     ng-disabled="editLocationForm.$invalid || editLocationForm.$pristine"
+     ng-click="saveLocation()" ng-bind="'action.location.save' | trans"></button>
+</form>

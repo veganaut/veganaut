@@ -14,6 +14,20 @@
         <vg-location-type-badge location="location"></vg-location-type-badge>
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
+    <p ng-if="location.description">
+        <strong>{{ 'location.label.description' | trans }}</strong><br />
+        <span class="location-description">{{ location.description }}</span>
+    </p>
+    <p ng-if="location.link">
+        <strong>{{ 'location.label.link' | trans }}</strong><br />
+        <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
+    </p>
+    <button ng-if="isLoggedIn()"
+     type="button" class="edit-location btn btn-block btn-default"
+     ng-click="goToView(location.getUrl(true))">
+        <span class="glyphicon glyphicon-edit"></span>
+        <span ng-bind="'action.location.edit' | trans"></span>
+    </button>
 
     <div>
         <h2>{{ 'location.products.title' | trans }}</h2>
