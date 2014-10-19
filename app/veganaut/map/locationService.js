@@ -91,7 +91,7 @@
                     .then(function(data) {
                         var locations = [];
                         for (var i = 0; i < data.data.length; i++) {
-                            locations.push(Location.fromJson(data.data[i]));
+                            locations.push(new Location(data.data[i]));
                         }
                         if (beforeActive) {
                             that.active = _.findWhere(locations, { id: beforeActive.id });
@@ -117,7 +117,7 @@
                 that._deferredLocations = $q.defer();
                 backendService.getLocation(id)
                     .then(function(res) {
-                        that._deferredLocations.resolve(Location.fromJson(res.data));
+                        that._deferredLocations.resolve(new Location(res.data));
                     })
                 ;
 
@@ -155,7 +155,7 @@
             LocationService.prototype.submitLocation = function(location) {
                 // TODO: should the promise be handled in the controller?
                 return backendService.submitLocation({
-                    name: location.title,
+                    name: location.name,
                     lat: location.lat,
                     lng: location.lng,
                     type: location.type
@@ -163,7 +163,7 @@
                     .success(function(data) {
                         // Update the location
                         location.update(data);
-                        alertService.addAlert('Added new location "' + location.title + '"', 'success');
+                        alertService.addAlert('Added new location "' + location.name + '"', 'success');
                     })
                     .error(function(data) {
                         // TODO: remove the location from the list
@@ -174,20 +174,20 @@
 
             /**
              * Sends the current location data to the backend.
-             * Updates only title, description and link at the moment.
+             * Updates only name, description and link at the moment.
              * @param {Location} location
              * @returns {HttpPromise}
              */
             LocationService.prototype.updateLocation = function(location) {
                 return backendService.updateLocation(location.id, {
-                    name: location.title,
+                    name: location.name,
                     description: location.description,
                     link: location.link
                 })
                     .success(function(data) {
                         // Update the location
                         location.update(data);
-                        alertService.addAlert('Updated location "' + location.title + '"', 'success');
+                        alertService.addAlert('Updated location "' + location.name + '"', 'success');
                     })
                     .error(function(data) {
                         // TODO: should reset the location data to what it previsouly was

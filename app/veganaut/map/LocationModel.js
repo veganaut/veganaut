@@ -4,41 +4,52 @@
     module.service('Location', ['Visit',
         function(Visit) {
             /**
-             * Location Model
+             * Represents a location on the map.
+             * A location has general information (name, type, ...), coordinates
+             * and aggregated data from missions as well as missions themselves.
              *
-             * @param {string} id
-             * @param {string} team
-             * @param {number} lat
-             * @param {number} lng
-             * @param {string} title
-             * @param {string} description
-             * @param {string} link
-             * @param {string} type
-             * @param {{}} [points={}]
-             * @param {{}} quality
-             * @param {[]} products
-             * @param {{}} lastMissionDates
+             * @param {{}} jsonData
              * @constructor
              */
-            function Location(id, team, lat, lng, title, description, link, type, points, quality, products, lastMissionDates) {
-                this.id = id;
-                this.team = team;
-                this.lat = lat;
-                this.lng = lng;
-                this.title = title; // TODO: rename to "name"
-                this.description = description;
-                this.link = link;
-                this.type = type;
-                this.points = points || {};
-                quality = quality || {};
+            function Location(jsonData) {
+                // Explicitly define all the properties
+                this.id = undefined;
+                this.team = undefined;
+                this.lat = undefined;
+                this.lng = undefined;
+                this.name = undefined;
+                this.description = undefined;
+                this.link = undefined;
+                this.type = undefined;
+                this.points = {};
                 this.quality = {
-                    average: quality.average || 0,
-                    numRatings: quality.numRatings || 0
+                    average: 0,
+                    numRatings: 0
                 };
-                this.products = products || [];
-                this.lastMissionDates = lastMissionDates || {};
+                this.products = [];
+                this.lastMissionDates = {};
+
+                // Apply the given data
+                angular.extend(this, jsonData);
+
+                // TODO: this is needed for leaflet since it sets that on the marker as HTML title
+                this.title = this.name;
+
+                /**
+                 * Whether this location is shows as active on the map
+                 * @type {boolean}
+                 * @private
+                 */
                 this._active = false;
 
+                // Instantiate the dates
+                // TODO: this should already have been done elsewhere
+                var that = this;
+                _.forOwn(this.lastMissionDates, function(date, mission) {
+                    that.lastMissionDates[mission] = new Date(date);
+                });
+
+                // Set up the icon used by leaflet on the map
                 this.icon = {
                     type: 'div',
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
@@ -50,38 +61,11 @@
 
             /**
              * The possible types of locations
-             * @type {{gastronomy: string, retail: string, event: string, private: string}}
+             * @type {{gastronomy: string, retail: string}}
              */
             Location.TYPES = {
                 gastronomy: 'gastronomy',
                 retail: 'retail'
-            };
-
-            /**
-             * Creates a new Location object from the given JSON data
-             * @param json
-             * @returns {Location}
-             */
-            Location.fromJson = function(json) {
-                // TODO: this is getting ridiculous, seriously dude
-                var lastMissionDates = {};
-                _.forOwn(json.lastMissionDates, function(date, mission) {
-                    lastMissionDates[mission] = new Date(date);
-                });
-                return new Location(
-                    json.id,
-                    json.team,
-                    json.lat,
-                    json.lng,
-                    json.name,
-                    json.description,
-                    json.link,
-                    json.type,
-                    json.points,
-                    json.quality,
-                    json.products,
-                    lastMissionDates
-                );
             };
 
             /**
@@ -172,6 +156,12 @@
                 return Math.min(5, Math.max(0, Math.round(avg)));
             };
 
+            /**
+             * Returns the URL of this location
+             * @param {boolean} [edit=false] Whether to return the URL to edit
+             *      this location
+             * @returns {string}
+             */
             Location.prototype.getUrl = function(edit) {
                 var url = '/location/' + this.id;
                 if (edit === true) {
@@ -186,10 +176,11 @@
              */
             Location.prototype.update = function(newData) {
                 // TODO: should only update what is actually given in the newData
-                // TODO: should be merged somehow with fromJson and just be less ugly
+                // TODO: should be merged with the constructor and just be less ugly
+                // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
                 this.id = newData.id;
                 this.team = newData.team;
-                this.title = newData.name || newData.title; // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
+                this.name = newData.name;
                 this.description = newData.description;
                 this.link = newData.link;
                 this.points = newData.points;
@@ -197,6 +188,9 @@
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
                 this._updateMarkerIcon();
+
+                // See comment in constructor
+                this.title = this.name;
 
                 // Clear points memoiziation
                 this.sortedPoints = undefined;

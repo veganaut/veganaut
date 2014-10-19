@@ -39,7 +39,7 @@
                 var loc = $scope.newLocation;
                 switch ($scope.addLocationStep) {
                 case 1:
-                    return (angular.isString(loc.title) && loc.title.length > 0);
+                    return (angular.isString(loc.name) && loc.name.length > 0);
                 case 2:
                     return (angular.isString(loc.type) && loc.type.length > 0);
                 case 3:
@@ -89,7 +89,7 @@
             $scope.startAddNewLocation = function() {
                 $scope.addLocationStep = 1;
                 $scope.isAddingLocation = true;
-                $scope.newLocation = new Location(undefined, player.team);
+                $scope.newLocation = new Location({team: player.team});
                 locationService.activate($scope.newLocation);
             };
 

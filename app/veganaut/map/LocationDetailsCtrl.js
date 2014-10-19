@@ -28,13 +28,14 @@
             $scope.submitMission = function(mission) {
                 var missionData = mission.toJson();
 
-                // TODO: translate and handle error properly
+                // TODO: handle error properly
                 backendService.submitMission(missionData, $scope.location)
                     .success(function(savedMission) {
                         // Prepare success message
                         var pointTexts = [];
                         for (var team in savedMission.points) {
                             if (savedMission.points.hasOwnProperty(team)) {
+                                // TODO: translate team
                                 pointTexts.push(savedMission.points[team] + ' (' + team + ')');
                             }
                         }

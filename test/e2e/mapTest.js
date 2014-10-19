@@ -99,7 +99,7 @@ describe('map.', function() {
                 expect(next.isDisplayed()).toBe(true, 'shows next button');
                 expect(next.isEnabled()).toBe(false, 'next button step 1 is disabled');
 
-                element(by.model('newLocation.title')).sendKeys('New Place');
+                element(by.model('newLocation.name')).sendKeys('New Place');
                 expect(next.isEnabled()).toBe(true, 'next button step 1 is no longer disabled');
                 next.click();
 

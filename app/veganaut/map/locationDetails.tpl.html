@@ -1,6 +1,6 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
     <h1 class="color-{{ location.team }}">
-        {{ location.title }}
+        {{ location.name }}
         <small class="location-quality-label" ng-if="location.quality.numRatings > 0"
          tooltip-placement="bottom"
          tooltip="{{ 'location.quality.explanation' | trans }}.

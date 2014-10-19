@@ -1,9 +1,9 @@
 <form novalidate name="locationForm" class="location-form">
     <div ng-switch="addLocationStep">
         <div ng-switch-when="1" class="form-group">
-            <label for="addLocationTitle">{{ 'location.form.name' | trans }}</label>
-            <input type="text" required class="form-control" id="addLocationTitle"
-             ng-model="newLocation.title" />
+            <label for="addLocationName">{{ 'location.form.name' | trans }}</label>
+            <input type="text" required class="form-control" id="addLocationName"
+             ng-model="newLocation.name" />
         </div>
         <div ng-switch-when="2" class="form-group">
             <label>{{ 'location.form.type' | trans }}</label>

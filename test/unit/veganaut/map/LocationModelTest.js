@@ -15,8 +15,13 @@ describe('LocationModel.', function() {
     });
 
     it('can be created from json.', function() {
-        expect(typeof Location.fromJson).toBe('function', 'fromJson is a static function');
-        var loc = Location.fromJson({});
-        expect(loc instanceof Location).toBe(true, 'returns a Location object');
+        var loc = new Location({});
+        expect(loc instanceof Location).toBe(true, 'created a Location object');
+    });
+
+    it('getUrl returns the correct URL', function() {
+        var loc = new Location({id: 'test1234'});
+        expect(loc.getUrl()).toBe('/location/test1234', 'correct url');
+        expect(loc.getUrl(true)).toBe('/location/test1234/edit', 'correct edit url');
     });
 });
