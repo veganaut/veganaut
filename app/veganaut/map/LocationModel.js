@@ -8,7 +8,7 @@
              * A location has general information (name, type, ...), coordinates
              * and aggregated data from missions as well as missions themselves.
              *
-             * @param {{}} jsonData
+             * @param {{}} [jsonData={}]
              * @constructor
              */
             function Location(jsonData) {
@@ -30,7 +30,8 @@
                 this.lastMissionDates = {};
 
                 // Apply the given data
-                angular.extend(this, jsonData);
+                // TODO: this should deep copy, otherwise quality might not have a valid value
+                angular.extend(this, jsonData || {});
 
                 // TODO: this is needed for leaflet since it sets that on the marker as HTML title
                 this.title = this.name;
