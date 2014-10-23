@@ -137,4 +137,43 @@ describe('LocationModel.', function() {
 
         // TODO: test memoization?
     });
+
+    describe('getProductById.', function() {
+        it('has method', function() {
+            var loc = new Location();
+            expect(typeof loc.getProductById).toBe('function', 'getProductById is a function');
+            expect(typeof loc.getProductById('something')).toBe('undefined', 'returns undefined by default');
+        });
+
+        it('returns products by id', function() {
+            var prod1 = {
+                id: '123',
+                name: 'thing'
+            };
+            var loc = new Location({
+                products: [prod1]
+            });
+
+            expect(loc.getProductById('123')).toBe(prod1, 'finds product by id');
+            expect(typeof loc.getProductById(123)).toBe('undefined', 'does strict matches');
+            expect(typeof loc.getProductById('1234')).toBe('undefined', 'really checks id');
+        });
+
+        it('returns correct product with multiple products', function() {
+            var prod1 = {
+                id: '123',
+                name: 'thing'
+            };
+            var prod2 = {
+                id: '456',
+                name: 'other'
+            };
+            var loc = new Location({
+                products: [prod1, prod2]
+            });
+
+            expect(loc.getProductById('123')).toBe(prod1, 'finds prod1');
+            expect(loc.getProductById('456')).toBe(prod2, 'finds prod2');
+        });
+    });
 });
