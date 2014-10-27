@@ -356,7 +356,7 @@
             introBeta: [
                 {
                     title: 'Willkommen!',
-                    content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst deine eigenen Entdeckungen eintragen.'
+                    content: 'Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst (wenn du dich registrierst) deine eigenen Entdeckungen eintragen.'
                 },
                 {
                     title: 'Pflanzen-Symbol',
@@ -372,7 +372,7 @@
                     title: 'Registrieren',
                     content: 'Nach dem Registrieren gehörst du einem von fünf Teams an: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span> ' +
-                    'und kannst beim Orte-Erobern mitspielen. Du kannst das Spiel aber auch einfach ignorieren.'
+                    'und kannst beim Orte-Erobern mitspielen.'
                 }
             ],
             mapUser: [
@@ -382,7 +382,7 @@
                 },
                 {
                     title: 'Dein Team',
-                    content: 'An der Farbe der Knöpfe auf deinem Interface siehst du, in welchem Raumschiff du dich befindest: ' +
+                    content: 'An der Farbe des "Neue Location"-Knopfes siehst du, in welchem Raumschiff du dich befindest: ' +
                     '<span class="color-team1">Blau</span>, <span class="color-team2">Grün</span>, <span class="color-team3">Violett</span>, <span class="color-team4">Rot</span> oder <span class="color-team5">Orange</span>.'
                 },
                 {
