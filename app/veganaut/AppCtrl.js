@@ -9,9 +9,9 @@
             };
 
             // Expose some backend states and methods
-            $scope.isLoggedIn = backendService.isLoggedIn;
-            $scope.canViewGraph = backendService.canViewGraph;
-            $scope.logout = backendService.logout;
+            $scope.isLoggedIn = backendService.isLoggedIn.bind(backendService);
+            $scope.canViewGraph = backendService.canViewGraph.bind(backendService);
+            $scope.logout = backendService.logout.bind(backendService);
 
             $scope.menuShown = false;
 
