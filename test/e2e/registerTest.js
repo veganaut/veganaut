@@ -12,7 +12,7 @@ describe('register.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/');
+        helpers.loadApp('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
@@ -21,7 +21,6 @@ describe('register.', function() {
 
     it('should have a link to the register form.', function() {
         elements.menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
         var button = element.all(by.css('.nav-register'));
         expect(button.count()).toBe(1);
 

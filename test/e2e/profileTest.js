@@ -1,4 +1,4 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, expect, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -12,7 +12,7 @@ describe('profile.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/');
+        helpers.loadApp('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
@@ -23,7 +23,6 @@ describe('profile.', function() {
     describe('visit profile.', function() {
         it('should have a page that shows the profile.', function() {
             elements.menuButton.click();
-            browser.sleep(helpers.MENU_DELAY);
 
             var profileNavEntry = element(by.css('button.nav-profile'));
             expect(profileNavEntry.isPresent()).toBe(true, 'nav entry for profile is present');
@@ -44,7 +43,6 @@ describe('profile.', function() {
 
         beforeEach(function() {
             elements.menuButton.click();
-            browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-profile')).click();
 
             editProfile = element(by.css('button.edit-profile'));

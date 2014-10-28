@@ -11,7 +11,7 @@ describe('authentication.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/login');
+        helpers.loadApp('/login');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test

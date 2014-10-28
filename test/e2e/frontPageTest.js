@@ -1,4 +1,4 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, expect, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -11,7 +11,7 @@ describe('frontPage.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/');
+        helpers.loadApp('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test

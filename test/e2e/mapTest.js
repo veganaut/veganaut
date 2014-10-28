@@ -1,4 +1,4 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, expect, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -13,7 +13,7 @@ describe('map.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/login');
+        helpers.loadApp('/login');
         ptor = protractor.getInstance();
 
         // Set up environment
@@ -26,7 +26,6 @@ describe('map.', function() {
 
         // Open the menu
         elements.menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
 
         mapNavEntry = element(by.css('button.nav-map'));
     });
@@ -69,7 +68,6 @@ describe('map.', function() {
 
         describe('add location.', function() {
             it('should be possible to add a new location.', function() {
-                browser.sleep(helpers.MENU_DELAY); // Wait for menu to go away
                 element(by.css('.add-location')).click();
 
                 var form = element(by.css('form.location-form'));

@@ -11,7 +11,6 @@ var elements = {
 };
 
 var helpers = {
-    MENU_DELAY: 100,
     GRAPH_DELAY: 800,
 
     /**
@@ -47,6 +46,19 @@ var helpers = {
     },
 
     /**
+     * Loads the app at the given initial URL
+     * @param {string} [initialUrl='/']
+     */
+    loadApp: function(initialUrl) {
+        // Go to the app
+        initialUrl = initialUrl || '/';
+        browser.get(initialUrl);
+
+        // Add style rule to have all transitions have no duration
+        browser.executeScript('document.styleSheets[0].insertRule("* { transition-duration: initial !important; }", 1);');
+    },
+
+    /**
      * Logs into the app as Alice
      */
     login: function() {
@@ -62,7 +74,6 @@ var helpers = {
         elements.logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
                 elements.menuButton.click();
-                browser.sleep(helpers.MENU_DELAY);
                 elements.logoutButton.click();
             }
         });

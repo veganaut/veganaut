@@ -13,7 +13,7 @@ xdescribe('socialGraph.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        browser.get('/');
+        helpers.loadApp('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
