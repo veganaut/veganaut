@@ -2,39 +2,27 @@
 'use strict';
 
 var helpers = require('./helpers');
+var elements = helpers.elements;
 
 // Social graph is not active at the moment
 xdescribe('referenceCodes.', function() {
-    var menuButton;
     var ptor;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/referenceCodes');
+        helpers.loadFixtures('referenceCodes');
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('/login');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
-        menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
     });
 
     describe('enter reference code when logged out.', function() {
         it('should have a page to enter the reference code.', function() {
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-activities')).click();
             expect(ptor.getCurrentUrl()).toMatch(/\/activities/);
@@ -45,7 +33,7 @@ xdescribe('referenceCodes.', function() {
         });
 
         it('should show the graph when entering a valid reference code.', function() {
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-activities')).click();
 
@@ -69,9 +57,7 @@ xdescribe('referenceCodes.', function() {
     describe('enter reference code when logged in.', function() {
         it('should be possible to enter reference code as logged in user.', function() {
             // Login as Alice
-            browser.get('/login');
-            element(by.model('form.email')).sendKeys('foo@bar.baz');
-            element(by.model('form.password')).sendKeys('foobar\n');
+            helpers.login();
             browser.get('/socialGraph');
 
             var beforeCompletedLinks;
@@ -79,7 +65,7 @@ xdescribe('referenceCodes.', function() {
                 beforeCompletedLinks = count;
             });
 
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-activities')).click();
 
@@ -97,7 +83,7 @@ xdescribe('referenceCodes.', function() {
             ;
 
             // Logout and back in as Bob
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-logout')).click();
             browser.get('/login');
@@ -126,7 +112,7 @@ xdescribe('referenceCodes.', function() {
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
 
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-activities')).click();
             var refInput = element(by.model('form.referenceCode'));
@@ -145,21 +131,21 @@ xdescribe('referenceCodes.', function() {
 
 
             // Logout and back in as Bob
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-logout')).click();
             browser.get('/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
 
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-activities')).click();
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
             ;
 
-            menuButton.click();
+            elements.menuButton.click();
             browser.sleep(helpers.MENU_DELAY);
             element(by.css('button.nav-graph')).click();
             expect(element.all(by.css('social-graph .link.has-completed-activities')).count())

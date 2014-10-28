@@ -11,7 +11,6 @@ describe('frontPage.', function() {
         helpers.loadFixtures();
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('/');
         ptor = protractor.getInstance();
 

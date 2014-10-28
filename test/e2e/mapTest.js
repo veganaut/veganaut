@@ -2,50 +2,30 @@
 'use strict';
 
 var helpers = require('./helpers');
+var elements = helpers.elements;
 
 describe('map.', function() {
-    var menuButton;
     var mapNavEntry;
     var ptor;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('/login');
         ptor = protractor.getInstance();
-        helpers.bindProtractor(ptor);
 
-        // Set the map center in Bern
-        browser.executeScript('localStorage.setItem(\'veganautMapCenter\', \'{"lat":46.945,"lng":7.449,"zoom":13}\')');
-
-        // Set the mapUser tour to be ended
-        browser.executeScript('localStorage.setItem(\'mapUser_end\', \'yes\')');
+        // Set up environment
+        helpers.setMapCenter();
+        helpers.setTourEnded('mapUser');
 
         // TODO: not so great to logout before every test
-        menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
+        helpers.login();
 
-        // Login
-        browser.get('/login');
-        element(by.model('form.email')).sendKeys('foo@bar.baz');
-        element(by.model('form.password')).sendKeys('foobar\n');
-    });
-
-    beforeEach(function() {
-        menuButton.click();
+        // Open the menu
+        elements.menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
 
         mapNavEntry = element(by.css('button.nav-map'));

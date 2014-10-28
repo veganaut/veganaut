@@ -8,28 +8,14 @@ describe('authentication.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('/login');
         ptor = protractor.getInstance();
-        helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        // TODO: could get the session id from local storage, and re-use it in other tests to avoid logging in again
-        var menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
     });
 
     // Social graph is not active at the moment

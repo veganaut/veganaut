@@ -2,10 +2,9 @@
 'use strict';
 
 /**
- * Holds the protractor instance we are currently bound to
+ * Selectors for commonly used elements
+ * @type {{}}
  */
-var ptor;
-
 var elements = {
     menuButton: element(by.css('button.menu-button')),
     logoutButton: element(by.css('button.nav-logout'))
@@ -16,20 +15,13 @@ var helpers = {
     GRAPH_DELAY: 800,
 
     /**
-     * Binds the helpers to the given protractor instance
-     * @param ptorInstance
-     */
-    bindProtractor: function(ptorInstance) {
-        ptor = ptorInstance;
-    },
-
-    /**
      * Helper for selecting an item in a drop down by text
      * Taken from https://coderwall.com/p/tjx5zg
+     * @param ptor Reference to the protractor instance
      * @param selector
      * @param item
      */
-    selectOption: function(selector, item) {
+    selectOption: function(ptor, selector, item) {
         var selectList, desiredOption;
 
         selectList = ptor.findElement(selector);
@@ -55,6 +47,15 @@ var helpers = {
     },
 
     /**
+     * Logs into the app as Alice
+     */
+    login: function() {
+        browser.get('/login');
+        element(by.model('form.email')).sendKeys('foo@bar.baz');
+        element(by.model('form.password')).sendKeys('foobar\n');
+    },
+
+    /**
      * Checks if we are logged in and if yes logs out
      */
     logoutIfLoggedIn: function() {
@@ -68,10 +69,28 @@ var helpers = {
     },
 
     /**
+     * Adds an entry to local storage to make the map
+     * load zoomed in on Bern
+     */
+    setMapCenter: function() {
+        browser.executeScript('localStorage.setItem(\'veganautMapCenter\', \'{"lat":46.945,"lng":7.449,"zoom":13}\')');
+    },
+
+    /**
+     * Adds and entry to local storage to set the given tour
+     * as ended
+     * @param {string} tourName
+     */
+    setTourEnded: function(tourName) {
+        browser.executeScript('localStorage.setItem(\'' + tourName + '_end\', \'yes\')');
+    },
+
+    /**
      * Tells the backend to load the given fixtures
      * @param {string} [fixtureName='basic']
      */
     loadFixtures: function(fixtureName) {
+        // TODO: this completely reloads the angular app before every test, takes forever
         fixtureName = fixtureName || 'basic';
         browser.get('/e2eBridge#/' + fixtureName);
     },

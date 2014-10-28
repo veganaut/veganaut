@@ -4,38 +4,19 @@
 var helpers = require('./helpers');
 
 describe('location.', function() {
-    var menuButton;
     var ptor;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
-        browser.get('/login');
+        browser.get('/');
         ptor = protractor.getInstance();
-        helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        // TODO: dude, this code duplication in different tests is getting ridiculous
-        menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
-
-        // Login
-        browser.get('/login');
-        element(by.model('form.email')).sendKeys('foo@bar.baz');
-        element(by.model('form.password')).sendKeys('foobar\n');
+        helpers.logoutIfLoggedIn();
+        helpers.login();
     });
 
     describe('visit 3dosha as alice.', function() {

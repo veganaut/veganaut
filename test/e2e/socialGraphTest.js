@@ -10,32 +10,17 @@ xdescribe('socialGraph.', function() {
     // TODO: code duplication with other tests
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
-        // TODO: this completely reloads the angular app before every test, takes forever
         browser.get('/');
         ptor = protractor.getInstance();
-        helpers.bindProtractor(ptor);
 
         // TODO: not so great to logout before every test
-        var menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
+        helpers.login();
 
-        // Login and go to social graph
-        browser.get('/login');
-        element(by.model('form.email')).sendKeys('foo@bar.baz');
-        element(by.model('form.password')).sendKeys('foobar\n');
+        // Go to social graph
         browser.get('/socialGraph');
     });
 
@@ -107,7 +92,7 @@ xdescribe('socialGraph.', function() {
             // On the click addActivity Button, go to createActivity
             inviteButton.click();
 
-            helpers.selectOption(by.model('form.selectedActivity'), 'Buy something vegan for ...');
+            helpers.selectOption(ptor, by.model('form.selectedActivity'), 'Buy something vegan for ...');
             element(by.model('form.targetName')).sendKeys('Hans\n');
 
             // Should have a success message

@@ -2,35 +2,25 @@
 'use strict';
 
 var helpers = require('./helpers');
+var elements = helpers.elements;
 
 describe('register.', function() {
-    var ptor, menuButton;
+    var ptor;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
         browser.get('/');
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
-        menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
     });
 
     it('should have a link to the register form.', function() {
-        menuButton.click();
+        elements.menuButton.click();
         browser.sleep(helpers.MENU_DELAY);
         var button = element.all(by.css('.nav-register'));
         expect(button.count()).toBe(1);
