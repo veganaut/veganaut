@@ -8,7 +8,7 @@ describe('frontPage.', function() {
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
-        browser.get('/e2eBridge#/basic');
+        helpers.loadFixtures();
 
         // Go to the app
         // TODO: this completely reloads the angular app before every test, takes forever
@@ -16,18 +16,7 @@ describe('frontPage.', function() {
         ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
-        var menuButton = element(by.css('button.menu-button'));
-        menuButton.click();
-        browser.sleep(helpers.MENU_DELAY);
-        var logoutButton = element(by.css('button.nav-logout'));
-        logoutButton.isPresent().then(function(isPresent) {
-            if (isPresent) {
-                logoutButton.click();
-            }
-            else {
-                menuButton.click();
-            }
-        });
+        helpers.logoutIfLoggedIn();
     });
 
     it('should redirect to / when location hash is empty.', function() {

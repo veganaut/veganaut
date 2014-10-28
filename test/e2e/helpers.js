@@ -1,10 +1,15 @@
-/* global by */
+/* global by, element, browser */
 'use strict';
 
 /**
  * Holds the protractor instance we are currently bound to
  */
 var ptor;
+
+var elements = {
+    menuButton: element(by.css('button.menu-button')),
+    logoutButton: element(by.css('button.nav-logout'))
+};
 
 var helpers = {
     MENU_DELAY: 100,
@@ -47,7 +52,34 @@ var helpers = {
                 }
             })
         ;
-    }
+    },
+
+    /**
+     * Checks if we are logged in and if yes logs out
+     */
+    logoutIfLoggedIn: function() {
+        elements.logoutButton.isPresent().then(function(isPresent) {
+            if (isPresent) {
+                elements.menuButton.click();
+                browser.sleep(helpers.MENU_DELAY);
+                elements.logoutButton.click();
+            }
+        });
+    },
+
+    /**
+     * Tells the backend to load the given fixtures
+     * @param {string} [fixtureName='basic']
+     */
+    loadFixtures: function(fixtureName) {
+        fixtureName = fixtureName || 'basic';
+        browser.get('/e2eBridge#/' + fixtureName);
+    },
+
+    /**
+     * Exposes commonly used elements on the page
+     */
+    elements: elements
 };
 
 // Protractor runs in Node, so use module syntax to export functionality
