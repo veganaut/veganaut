@@ -49,6 +49,7 @@ describe('frontPage.', function() {
         expect(endButton.isPresent()).toBe(true, 'has end tour button');
 
         endButton.click();
+        ptor.sleep(100); // This is probably needed because of a transition to hide the element
         expect(tour.isPresent()).toBe(false, 'tour-introBeta hides after clicking on end');
     });
 });
