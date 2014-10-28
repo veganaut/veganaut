@@ -297,7 +297,8 @@
     GiveFeedbackMission.prototype.constructor = GiveFeedbackMission;
 
     GiveFeedbackMission.prototype.hasValidOutcome = function() {
-        return (this.getOutcome().length > 0);
+        var outcome = this.getOutcome() || '';
+        return (outcome.length > 0);
     };
 
 
