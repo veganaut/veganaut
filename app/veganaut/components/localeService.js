@@ -142,6 +142,7 @@
             users: 'Spieler',
             captured: 'Gefangen',
             babies: 'Babies',
+            total: 'Total',
             teams: {
                 title: 'Teams',
                 locations: '# Locations',

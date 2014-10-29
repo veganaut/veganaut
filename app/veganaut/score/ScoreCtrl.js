@@ -40,6 +40,26 @@
                 return true;
             };
 
+            /**
+             * Sum the given array of score objects with the given score name
+             * @param {Array} scoreArray
+             * @param {String} scoreName
+             * @param {Function} [filter]
+             * @returns {number}
+             */
+            $scope.sum = function(scoreArray, scoreName, filter) {
+                var sum = 0;
+
+                // Sum them up
+                _.each(scoreArray, function(score) {
+                    // Check if we got a filter function, if yes, check if it matches
+                    if (!angular.isFunction(filter) || filter(score)) {
+                        sum += score[scoreName];
+                    }
+                });
+                return sum;
+            };
+
             // Get the scores
             backendService.getScore()
                 .success(function(scores) {
