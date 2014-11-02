@@ -1,9 +1,12 @@
+/*
 (function(module) {
     'use strict';
+*/
 
     /**
      * locale service provides the translation strings
      */
+    /*
     module.value('localeService', {
         app: {
             title: 'veganaut.net'
@@ -233,3 +236,4 @@
         }
     });
 })(window.veganaut.mainModule);
+*/

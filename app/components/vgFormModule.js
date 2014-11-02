@@ -29,7 +29,7 @@
                 numRequired: '@',
                 placeholder: '@'
             },
-            controller: function($scope) {
+            controller: ['$scope', function($scope) {
                 $scope.numRequired = parseInt($scope.numRequired);
 
                 $scope.inputFields = [];
@@ -77,7 +77,7 @@
                         }
                     }
                 }, true);
-            },
+            }],
             template: '<div class="form-group" ng-repeat="elem in inputFields">' +
                 '<input type="text" ng-required="$index < numRequired" class="form-control" ' +
                 'ng-model="elem.text" placeholder="{{ placeholder }}"/> ' +

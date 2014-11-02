@@ -54,7 +54,7 @@
 
     // Add $onRootScope method for pub/sub
     // See https://github.com/angular/angular.js/issues/4574
-    veganautModule.config(function($provide) {
+    veganautModule.config(['$provide', function($provide) {
         $provide.decorator('$rootScope', ['$delegate', function($delegate) {
 
             $delegate.constructor.prototype.$onRootScope = function(name, listener) {
@@ -64,7 +64,7 @@
 
             return $delegate;
         }]);
-    });
+    }]);
 
     // Main module for components that don't belong anywhere particular
     var mainModule = angular.module('veganaut.app.main', []);
