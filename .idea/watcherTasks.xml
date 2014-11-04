@@ -9,7 +9,7 @@
       <option name="fileExtension" value="less" />
       <option name="immediateSync" value="true" />
       <option name="name" value="LESS" />
-      <option name="output" value="../css/master.css" />
+      <option name="output" value="../build/master.min.css" />
       <option name="outputFilters">
         <array>
           <FilterInfo>

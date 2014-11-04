@@ -19,6 +19,8 @@ if ! pgrep "mongod" > /dev/null; then
     mongod --dbpath mongodb --pidfilepath log/mongodb.pid > log/mongodb.log 2>&1 &
 fi
 
+node_modules/.bin/gulp dev
+
 (cd app; ../scripts/web-server.js > ../log/webserver.log 2>&1 &)
 
 node_modules/karma/bin/karma start config/karma-unit.conf.js > log/karma.log 2>&1 &

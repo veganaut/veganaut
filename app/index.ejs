@@ -100,8 +100,13 @@
 
 <div class="modal-backdrop in menu-backdrop" ng-show="menuShown" ng-click="menuShown = false"></div>
 
+<% if (jsFiles.length === 0) { -%>
 <script src="/build/lib.min.js"></script>
 <script src="/build/app.min.js"></script>
-
+<% } else { -%>
+<% for (var i = 0; i < jsFiles.length; i += 1) { -%>
+<script src="<%= jsFiles[i] %>"></script>
+<% } -%>
+<% } %>
 </body>
 </html>

@@ -1,3 +1,4 @@
 node_modules/
 test/lib/
+app/build/
 app/lib/

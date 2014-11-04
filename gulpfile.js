@@ -50,6 +50,7 @@ gulp.task('jsLib', function() {
     ;
 });
 
+// TODO: include all the vendor css files to built css
 gulp.task('less', function() {
     return gulp.src(files.less)
         .pipe(less({
@@ -60,7 +61,12 @@ gulp.task('less', function() {
     ;
 });
 
+// TODO: find better way to pass results between tasks
 var webPathJsFiles = [];
+
+/**
+ * Creates a list of all js files with their full web path
+ */
 gulp.task('listJsFiles', function() {
     var basePath = __dirname + '/app';
     return gulp.src([].concat(files.jsLib, files.js))
@@ -73,15 +79,26 @@ gulp.task('listJsFiles', function() {
     ;
 });
 
-gulp.task('index', ['listJsFiles'], function() {
+// TODO: find a better way to create dev and prod index
+var createIndex = function(jsFiles) {
     return gulp.src(files.index)
         .pipe(ejs({
-            jsFiles: webPathJsFiles
+            jsFiles: jsFiles || []
         }))
         .pipe(gulp.dest('app/'))
     ;
+};
+
+gulp.task('indexDev', ['listJsFiles'], function() {
+    return createIndex(webPathJsFiles);
+});
+
+gulp.task('indexProduction', function() {
+    return createIndex();
 });
 
 
+// TODO: create watch task for dev
+gulp.task('dev', ['less', 'indexDev']);
 
-gulp.task('default', ['js', 'jsLib', 'less', 'index']);
+gulp.task('production', ['js', 'jsLib', 'less', 'indexProduction']);
