@@ -50,7 +50,6 @@ gulp.task('jsLib', function() {
     ;
 });
 
-// TODO: include all the vendor css files to built css
 gulp.task('less', function() {
     return gulp.src(files.less)
         .pipe(less({
