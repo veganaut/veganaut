@@ -75,7 +75,7 @@
     // Make bootstrap-tour available as angular service
     mainModule.value('Tour', window.Tour);
 
-    // TODO: should they correctly depend on each other?
+    // Define the different modules of the app
     var mapModule = angular.module('veganaut.app.map', []);
     var scoreModule = angular.module('veganaut.app.score', []);
     var socialGraphModule = angular.module('veganaut.app.socialGraph', []);

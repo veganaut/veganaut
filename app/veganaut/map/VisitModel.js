@@ -23,14 +23,6 @@
             }
 
             /**
-             * TODO
-             * @param {Mission} mission
-             */
-            Visit.prototype.finishedMission = function(/*mission*/) {
-                // TODO: what should we do here?
-            };
-
-            /**
              * Returns the total number of points made in this visit
              * @returns {number}
              */

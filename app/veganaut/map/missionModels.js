@@ -131,9 +131,6 @@
         if (!this.completed) {
             this.finalOutcome = this.getOutcome();
             this.completed = true;
-
-            // Tell the visit we are done
-            this.visit.finishedMission(this);
         }
     };
 
