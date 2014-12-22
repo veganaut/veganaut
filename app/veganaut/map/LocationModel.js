@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.service('Location', ['Visit',
-        function(Visit) {
+    module.service('Location', ['Leaflet', 'Visit',
+        function(L, Visit) {
             /**
              * Represents a location on the map.
              * A location has general information (name, type, ...), coordinates
@@ -33,9 +33,6 @@
                 // TODO: this should deep copy, otherwise quality might not have a valid value
                 angular.extend(this, jsonData || {});
 
-                // TODO: this is needed for leaflet since it sets that on the marker as HTML title
-                this.title = this.name;
-
                 /**
                  * Whether this location is shows as active on the map
                  * @type {boolean}
@@ -43,19 +40,23 @@
                  */
                 this._active = false;
 
+                /**
+                 * Leaflet Marker representing this location
+                 * @type {L.Marker}
+                 */
+                this.marker = L.marker([this.lat, this.lng], {
+                    title: this.name
+                });
+
+                // Make sure the marker now which location it belongs to
+                this.marker.locationId = this.id;
+
                 // Instantiate the dates
                 // TODO: this should already have been done elsewhere
                 var that = this;
                 _.forOwn(this.lastMissionDates, function(date, mission) {
                     that.lastMissionDates[mission] = new Date(date);
                 });
-
-                // Set up the icon used by leaflet on the map
-                this.icon = {
-                    type: 'div',
-                    iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: ''
-                };
 
                 this._updateMarkerIcon();
             }
@@ -74,17 +75,38 @@
              * @private
              */
             Location.prototype._updateMarkerIcon = function() {
+                // Create the basic icon settings
+                var icon = {
+                    iconSize: null, // Needs to be set to null so it can be specified in CSS
+                    className: 'map-location type-' + this.type + ' team-' + this.team,
+                    html: ''
+                };
+
                 // Set the html based on the "quality"
-                this.icon.html = '';
                 if (this.quality.numRatings > 0) {
-                    this.icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
+                    icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
                 }
 
-                // Set the class list
-                this.icon.className = 'map-location type-' + this.type + ' team-' + this.team;
+                // Add active class if active
                 if (this._active) {
-                    this.icon.className += ' active';
+                    icon.className += ' active';
                 }
+
+                // TODO: only do this if something actually changed
+                this.marker.setIcon(L.divIcon(icon));
+            };
+
+            /**
+             * Sets the lat/lng of this location and updates the
+             * leaflet marker.
+             * @param {number} lat
+             * @param {number} lng
+             */
+            Location.prototype.setLatLng = function(lat, lng) {
+                // TODO: make lat/lng private
+                this.lat = lat;
+                this.lng = lng;
+                this.marker.setLatLng([this.lat, this.lng]);
             };
 
             /**
@@ -189,12 +211,12 @@
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
                 this._updateMarkerIcon();
-
-                // See comment in constructor
-                this.title = this.name;
+                this.setLatLng(newData.lat, newData.lng);
 
                 // Clear points memoiziation
                 this.sortedPoints = undefined;
+
+                // TODO: update the marker 'title'
             };
 
             return Location;

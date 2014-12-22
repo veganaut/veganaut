@@ -74,25 +74,56 @@ describe('LocationModel.', function() {
         });
     });
 
-    describe('icon.', function() {
-        it('sets correct default value.', function() {
+    describe('marker.', function() {
+        it('instantiates a marker.', function() {
             var loc = new Location();
-            var icon = loc.icon;
-            expect(typeof icon).toBe('object', 'is an object');
-            expect(icon.type).toBe('div', 'correct type');
+            var marker = loc.marker;
+            expect(typeof marker).toBe('object', 'marker is an object');
+
+            var icon = marker.options.icon.options;
+            expect(typeof icon).toBe('object', 'icon is an object');
             expect(icon.iconSize).toBe(null, 'correct iconSize');
             expect(typeof icon.html).toBe('string', 'correct html type');
             expect(icon.className).toMatch(/map-location/, 'className contains "map-location"');
         });
 
-        it('updates icon className when changing active state.', function() {
+        it('added the location it on the marker.', function() {
+            var loc = new Location({
+                id: 'test123'
+            });
+            expect(loc.marker.locationId).toBe('test123');
+        });
+
+        it('updates marker icon className when changing active state.', function() {
             var loc = new Location();
-            var icon = loc.icon;
+            var icon = loc.marker.options.icon.options;
             expect(icon.className).toNotMatch(/active/, 'does not have "active" class');
             loc.setActive();
+            icon = loc.marker.options.icon.options;
             expect(icon.className).toMatch(/active/, 'has "active" class when setting active');
             loc.setActive(false);
+            icon = loc.marker.options.icon.options;
             expect(icon.className).toNotMatch(/active/, '"active" class removed when setting inactive');
+        });
+    });
+
+    describe('setLatLng.', function() {
+        it('method is defined.', function() {
+            var loc = new Location();
+            expect(typeof loc.setLatLng).toBe('function');
+        });
+
+        it('updates lat/lng of location and of marker.', function() {
+            var loc = new Location({
+                lat: 1,
+                lng: 2
+            });
+            loc.setLatLng(3, 4);
+            expect(loc.lat).toBe(3, 'set correct lat');
+            expect(loc.lng).toBe(4, 'set correct lng');
+            var markerLatLng = loc.marker.getLatLng();
+            expect(markerLatLng.lat).toBe(3, 'set correct marker lat');
+            expect(markerLatLng.lng).toBe(4, 'set correct marker lng');
         });
     });
 

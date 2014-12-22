@@ -6,7 +6,6 @@ describe('config', function() {
 
     describe('backendUrl', function() {
         it('should define backend url', inject(function(backendUrl) {
-            // Version must be in the format x.y.z with an optional "-something", e.g. "-beta1"
             expect(backendUrl).toMatch(/https?:\/\//);
         }));
     });

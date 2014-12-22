@@ -81,6 +81,9 @@
     var socialGraphModule = angular.module('veganaut.app.socialGraph', []);
     var userModule = angular.module('veganaut.app.user', []);
 
+    // Make Leaflet available as angular service
+    mapModule.value('Leaflet', window.L);
+
     window.veganaut = {
         mainModule: mainModule,
         mapModule: mapModule,

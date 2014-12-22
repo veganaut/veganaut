@@ -10,6 +10,12 @@
             var player;
 
             /**
+             * Locations loaded from the backend indexed by id
+             * @type {{}}
+             */
+            var locations = {};
+
+            /**
              * Whether the user is currently adding a new location
              * @type {boolean}
              */
@@ -60,18 +66,6 @@
             $scope.mapSettings = locationService.mapSettings;
 
             /**
-             * All Locations shown on the map
-             * @type {Location[]}
-             */
-            $scope.locations = [];
-
-            /**
-             * Whether the locations have already been loaded
-             * @type {boolean}
-             */
-            $scope.locationsLoaded = false;
-
-            /**
              * Expose the location types
              * @type {{}}
              */
@@ -82,6 +76,18 @@
              * @type {{}}
              */
             $scope.events = {};
+
+            /**
+             * Location that is currently being added
+             * @type {Location}
+             */
+            $scope.newLocation = undefined;
+
+            /**
+             * Whether the newLocation has already been added to the map
+             * @type {boolean}
+             */
+            var newLocationIsAddedToMap = false;
 
             /**
              * Starts adding a new location
@@ -98,12 +104,16 @@
              */
             $scope.resetAddNewLocation = function() {
                 locationService.activate();
-                if ($scope.newLocation.isAddedToMap === true) {
-                    // Remove from map if it was added
-                    $scope.locations = $scope.locations.slice(0, $scope.locations.length - 1);
+                // Remove from map if it was added
+                if (newLocationIsAddedToMap === true) {
+                    var markerToRemove = $scope.newLocation.marker;
+                    mapPromise.then(function(map) {
+                        map.removeLayer(markerToRemove);
+                    });
                 }
                 $scope.isAddingLocation = false;
                 $scope.newLocation = undefined;
+                newLocationIsAddedToMap = false;
             };
 
             /**
@@ -113,6 +123,7 @@
                 locationService.submitLocation($scope.newLocation);
                 $scope.isAddingLocation = false;
                 $scope.newLocation = undefined;
+                newLocationIsAddedToMap = false;
             };
 
             /**
@@ -132,13 +143,15 @@
             var setNewLocationCoordinates = function(lat, lng) {
                 if ($scope.isAddingLocation) {
                     // Set the coordinates
-                    $scope.newLocation.lat = lat;
-                    $scope.newLocation.lng = lng;
+                    $scope.newLocation.setLatLng(lat, lng);
 
                     // Push to map if not already there
-                    if ($scope.newLocation.isAddedToMap !== true) {
-                        $scope.locations.push($scope.newLocation);
-                        $scope.newLocation.isAddedToMap = true;
+                    if (newLocationIsAddedToMap !== true) {
+                        mapPromise.then(function(map) {
+                            $scope.newLocation.marker.on('click', locationClickHandler);
+                            $scope.newLocation.marker.addTo(map);
+                        });
+                        newLocationIsAddedToMap = true;
                     }
                 }
             };
@@ -165,23 +178,34 @@
 
             /**
              * Handler for clicks on map markers (Locations)
-             * @param event
-             * @param args
+             * @param event Event coming directly from leaflet
+             *      (not angular-leaflet-directive)
              */
-            var locationClickHandler = function(event, args) {
+            var locationClickHandler = function(event) {
                 if (!$scope.isAddingLocation) {
-                    locationService.activate($scope.locations[args.markerName]);
+                    var clickedLocation = locations[event.target.locationId];
+                    if (clickedLocation) {
+                        // Run it through $apply since we are coming directly from Leaflet
+                        $scope.$apply(function() {
+                            locationService.activate(clickedLocation);
+                        });
+                    }
                 }
             };
 
             // Register event handlers
             $scope.$on('leafletDirectiveMap.click', mapClickHandler);
-            $scope.$on('leafletDirectiveMarker.click', locationClickHandler);
 
             // Get the locations
-            locationService.getLocations().then(function(locations) {
-                $scope.locations = locations;
-                $scope.locationsLoaded = true;
+            locationService.getLocations().then(function(loadedLocations) {
+                locations = loadedLocations;
+                mapPromise.then(function(map) {
+                    // Go through all the locations and add the marker to the map
+                    angular.forEach(locations, function(location) {
+                        location.marker.on('click', locationClickHandler);
+                        location.marker.addTo(map);
+                    });
+                });
             });
 
             // Check if we are logged in
@@ -204,10 +228,7 @@
             };
 
             // Get a reference the the leaflet map object
-            var map;
-            leafletData.getMap().then(function(leafletMap) {
-                map = leafletMap;
-            });
+            var mapPromise = leafletData.getMap();
 
             /**
              * Selects the given geocode result as the coordinates
@@ -222,8 +243,10 @@
                 );
 
                 // Fit to the bounds of the result
-                if (angular.isObject(map) && angular.isArray(result.bounds)) {
-                    map.fitBounds(result.bounds);
+                if (angular.isArray(result.bounds)) {
+                    mapPromise.then(function(map) {
+                        map.fitBounds(result.bounds);
+                    });
                 }
             };
 

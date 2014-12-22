@@ -89,12 +89,15 @@
                 this.active = undefined;
                 backendService.getLocations()
                     .then(function(data) {
-                        var locations = [];
+                        var locations = {};
+                        var location;
                         for (var i = 0; i < data.data.length; i++) {
-                            locations.push(new Location(data.data[i]));
+                            // Instantiate the locations and index them by id
+                            location = new Location(data.data[i]);
+                            locations[location.id] = location;
                         }
                         if (beforeActive) {
-                            that.active = _.findWhere(locations, { id: beforeActive.id });
+                            that.active = locations[beforeActive.id];
                             if (that.active) {
                                 that.active.setActive();
                             }
