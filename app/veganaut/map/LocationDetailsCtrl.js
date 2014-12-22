@@ -2,8 +2,11 @@
     'use strict';
 
     module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', 'mapDefaults', 'locationService', 'backendService', 'playerService', 'alertService', 'translateService',
-        function($scope, $routeParams, mapDefaults, locationService, backendService, playerService, alertService, t) {
+        ['$scope', '$routeParams', '$timeout', 'leafletData', 'mapDefaults', 'locationService',
+            'backendService', 'playerService', 'alertService', 'translateService',
+        function($scope, $routeParams, $timeout, leafletData, mapDefaults, locationService,
+            backendService, playerService, alertService, t)
+        {
             var locationId = $routeParams.id;
 
             /**
@@ -66,6 +69,18 @@
                 playerService.getMe().then(function(me) {
                     $scope.visit = $scope.location.getVisit(me);
                 });
+
+                // Add the marker to the map
+                leafletData.getMap().then(function(map) {
+                    location.marker.addTo(map);
+                });
+
+                // Show the map in the next cycle. This needs to be done
+                // because leaflet somehow doesn't like to be initialised
+                // while the page is still hidden.
+                $timeout(function() {
+                    $scope.showMap = true;
+                }, 0);
             });
         }
     ]);
