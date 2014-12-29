@@ -57,11 +57,23 @@
         },
         login: {
             title: 'Login',
+            forgotPassword: 'Passwort vergessen?',
             form: {
                 email: 'email@beispiel.com',
                 password: 'Passwort',
                 submit: 'Login'
             }
+        },
+        forgot: {
+            form: {
+                submit: 'Abschicken'
+            }
+        },
+        reset: {
+            form: {
+                save: 'Speichern'
+            }
+
         },
         action: {
             register: 'Registrieren',

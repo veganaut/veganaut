@@ -293,6 +293,28 @@
                 return $http.put(backendUrl + '/location/' + locationId, locationData);
             };
 
+            /**
+             * Send a password reset email
+             * @param {string} email
+             * @returns {HttpPromise}
+             *
+             */
+            BackendService.prototype.sendPasswordResetMail = function(email) {
+                return $http.post(backendUrl + '/passwordresetemail',  {email: email});
+            };
+            BackendService.prototype.isValidToken = function(token) {
+                 return $http.get(backendUrl + '/person/validToken/'+token);
+            };
+
+            BackendService.prototype.resetPassword = function(token, password) {
+                var postData = {
+                    token: token,
+                    password: password
+                };
+
+                return $http.post(backendUrl + '/reset', postData);
+            };
+
             // Instantiate and return the service
             return new BackendService();
         }]
