@@ -1,0 +1,17 @@
+<form novalidate name="resetForm"  ng-controller="ResetCtrl" ng-init="init()">
+
+
+        <div class="form-group">
+            <label for="editPassword" ng-bind="'person.label.password' | trans"></label>
+            <input type="password" required id="editPassword" required class="form-control" ng-model="form.password" />
+        </div>
+        <div class="form-group">
+            <label for="editPasswordRepeat" ng-bind="'person.label.passwordRepeat' | trans"></label>
+            <input type="password" required id="editPasswordRepeat" required class="form-control" ng-model="form.passwordRepeat" />
+        </div>
+    <div ng-if="validToken">
+    <button type="submit" class="btn btn-default pull-right"
+            ng-disabled="resetForm.$invalid || form.password !== form.passwordRepeat"
+            ng-click="submit()" ng-bind="'reset.form.save' | trans"></button>
+    </div>
+</form>
