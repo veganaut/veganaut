@@ -300,12 +300,24 @@
              *
              */
             BackendService.prototype.sendPasswordResetMail = function(email) {
-                return $http.post(backendUrl + '/passwordresetemail',  {email: email});
+                return $http.post(backendUrl + '/passwordResetEmail',  {email: email});
             };
+
+            /**
+             * Checks whether the given password reset token is valid
+             * @param {string} token
+             * @returns {HttpPromise}
+             */
             BackendService.prototype.isValidToken = function(token) {
                  return $http.get(backendUrl + '/person/validToken/'+token);
             };
 
+            /**
+             * Tries to reset the password with the given token.
+             * @param {string} token
+             * @param {string} password
+             * @returns {HttpPromise}
+             */
             BackendService.prototype.resetPassword = function(token, password) {
                 var postData = {
                     token: token,
