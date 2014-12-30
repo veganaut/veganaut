@@ -25,10 +25,11 @@
         function($routeProvider, $locationProvider, angularPiwikProvider, useHtml5Mode, piwikSettings) {
             $locationProvider.html5Mode(useHtml5Mode);
 
+            // TODO: get rid of all the controllers here and define them in the tempalte
             $routeProvider.when('/register', {templateUrl: '/veganaut/user/register.tpl.html', controller: 'RegisterCtrl'});
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
-            $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html', controller: 'ForgotCtrl'});
-            $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html', controller: 'ResetCtrl'});
+            $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
+            $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
             // Social graph is not active at the moment
 //            $routeProvider.when('/socialGraph', {templateUrl: '/veganaut/socialGraph/socialGraph.tpl.html', controller: 'SocialGraphCtrl'});
 //            $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});

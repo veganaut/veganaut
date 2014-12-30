@@ -47,6 +47,11 @@
                     success: 'Profil wurde erfolgreich aktualisiert.',
                     error: 'Profil konnte nicht aktualisiert werden.'
                 }
+            },
+            resetPassword: {
+                invalidToken: 'Der Passwort-Token ist ungültig oder abgelaufen. Bitte fordere einen neuen Token an.',
+                emailSent: 'E-Mail erfolgreich gesendet.',
+                success: 'Dein Passwort wurde erfolgreich gesetzt. Du kannst dich jetzt einloggen.'
             }
         },
         register: {
