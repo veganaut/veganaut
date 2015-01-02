@@ -1,0 +1,12 @@
+<form novalidate name="filterForm" class="filter-form">
+    <div class="pull-right clickable" ng-click="showFilters(false)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <div><label>{{ 'map.filters.recent.title' | trans }}</label></div>
+    <div class="btn-group form-group">
+        <label class="btn btn-default" ng-repeat="filter in possibleFilters.recent"
+         ng-model="activeFilters.recent" btn-radio="filter">
+            {{ 'map.filters.recent.form.' + filter | trans }}
+        </label>
+    </div>
+</form>

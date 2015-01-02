@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    // TODO: refactor, document and add tests!!
+    // TODO: refactor (it's getting way too big!), document and add tests!!
     module.controller('MapCtrl', ['$scope', '$location', '$timeout', 'leafletData',
         'playerService', 'Location', 'locationService', 'backendService', 'geocodeService',
         function($scope, $location, $timeout, leafletData,
@@ -84,6 +84,57 @@
             $scope.newLocation = undefined;
 
             /**
+             * Whether to show the location filters
+             * @type {boolean}
+             */
+            $scope.filtersShown = false;
+
+            /**
+             * List of active filters
+             * @type {{}}
+             */
+            $scope.activeFilters = {
+                recent: 'anytime'
+            };
+
+            /**
+             * Possible filter options for all the available filters
+             * @type {{recent: string[]}}
+             */
+            $scope.possibleFilters = {
+                recent: [
+                    'anytime',
+                    'month',
+                    'week',
+                    'day'
+                ]
+            };
+
+            /**
+             * Sets whether the filters are shown
+             * @param {boolean} [show=true]
+             */
+            $scope.showFilters = function(show) {
+                if (typeof show === 'undefined') {
+                    show = true;
+                }
+
+                $scope.filtersShown = !!show;
+            };
+
+            /**
+             * Returns the number of currently active filters
+             * @returns {number}
+             */
+            $scope.numActiveFilters = function() {
+                var active = 0;
+                if ($scope.activeFilters.recent !== 'anytime') {
+                    active += 1;
+                }
+                return active;
+            };
+
+            /**
              * Whether the newLocation has already been added to the map
              * @type {boolean}
              */
@@ -120,10 +171,17 @@
              * Finalises adding a new location
              */
             $scope.addNewLocation = function() {
-                locationService.submitLocation($scope.newLocation);
+                var newLocation = $scope.newLocation;
                 $scope.isAddingLocation = false;
                 $scope.newLocation = undefined;
                 newLocationIsAddedToMap = false;
+
+                // Submit the location and add it to the list once done
+                locationService.submitLocation(newLocation)
+                    .then(function() {
+                        locations[newLocation.id] = newLocation;
+                    })
+                ;
             };
 
             /**
@@ -173,6 +231,9 @@
                 else {
                     // When not adding a location, deselect currently active location
                     locationService.activate();
+
+                    // And hide the filters
+                    $scope.showFilters(false);
                 }
             };
 
@@ -188,6 +249,9 @@
                         // Run it through $apply since we are coming directly from Leaflet
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
+
+                            // Hide the filters
+                            $scope.showFilters(false);
                         });
                     }
                 }
@@ -276,6 +340,33 @@
                         })
                     ;
                 }, 500);
+            });
+
+            // TODO: move the filter stuff to a separate controller
+            /**
+             * Map of recent filter values to the period of
+             * time for which to show the locations.
+             * @type {{month: number, week: number, day: number}}
+             */
+            var RECENT_FILTER_PERIOD = {
+                month: 4 * 7 * 24 * 3600000,
+                week:      7 * 24 * 3600000,
+                day:           24 * 3600000
+            };
+
+            // Watch the active filters
+            $scope.$watch('activeFilters.recent', function(recentFilter) {
+                var showAll = (recentFilter === 'anytime');
+                var recentDate;
+                if (!showAll) {
+                    recentDate = new Date(Date.now() - RECENT_FILTER_PERIOD[recentFilter]);
+                }
+
+                // Go through all the locations and filter them
+                angular.forEach(locations, function(location) {
+                    var hideIt = (!showAll && location.updatedAt < recentDate);
+                    location.setHidden(hideIt);
+                });
             });
         }
     ]);

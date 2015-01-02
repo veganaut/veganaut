@@ -98,6 +98,8 @@
             },
             map: {
                 addLocation: 'Neue Location',
+                editFiltersWith: 'Locations filtern',
+                editFiltersWithActive: 'Filter',
                 locationAction: 'Location anschauen'
             },
             location: {
@@ -222,153 +224,164 @@
             }
         },
         map: {
-           mission: {
-               title: 'Missionen',
-               totalPoints: 'Total Punkte aus Missionen',
-               missionForm: {
-                   submit: 'Fertig',
-                   cancel: 'Abbrechen'
-               },
-               visitBonus: {
-                   title: 'Besuche diese Location.',
-                   explanation: 'Für deinen ersten Besuch innerhalb von ein paar Wochen erhälst du Punkte.',
-                   description: 'Schliesse diese Mission nur ab, wenn du diese Location jetzt besuchst.'
-               },
-               hasOptions: {
-                   title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
-                   description: 'Gibt es hier laut dem Personal etwas Veganes?',
-                   description2: 'Was denkst du, gibt es etwas Veganes?',
-                   explanation: 'Frage ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
-                   form: {
-                       theyDoNotKnow: 'Sie wissen es nicht',
-                       yes: 'Ja',
-                       no: 'Nein',
-                       ratherYes: 'Eher ja',
-                       noClue: 'Keine Ahnung',
-                       ratherNo: 'Eher nein'
-                   },
-                   outcome: {
-                       yes: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
-                       no: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.',
-                       ratherYes: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl etwas Veganes.',
-                       noClue: 'Das Personal weiss es nicht, und auch du hast keine Ahnung, ob es hier etwas Veganes gibt.',
-                       ratherNo: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl nichts Veganes.'
-                   }
-               },
-               wantVegan: {
-                   title: 'Erkläre dem Personal, was "vegan" heisst.',
-                   description: 'Welche Ausdrücke hast du beim Erklären gebraucht?',
-                   explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es offensichtlich mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist.',
-                   form: {
-                       vegan: 'vegan',
-                       plantbased: '(rein) pflanzlich',
-                       noAnimalproducts: 'ohne Tierprodukte',
-                       noMeat: 'ohne Fleisch',
-                       noMilk: 'ohne Milchprodukte',
-                       noEggs: 'ohne Eier',
-                       noHoney: 'ohne Honig',
-                       noWool: 'ohne Wolle',
-                       noLeather: 'ohne Leder',
-                       noFur: 'ohne Fell',
-                       custom: 'Andere:',
-                       placeholder: 'Andere gebrauchte Ausdrücke'
-                   },
-                   outcome: {
-                       description: 'Du hast dem Personal erklärt, was "vegan" heisst, indem du diese Ausdrücke verwendet hast:'
-                   }
-               },
-               particularOption: { // @toebu was hälst du von dieser Mission?
-                   title: 'Frage nach einem bestimmten veganen Produkt.',
-                   description: 'Nach welchen veganen Produkt hast du gefragt?',
-                   explanation: 'Frag das Personal nach einem oder mehreren veganen Produkten, die dich interessieren. Wenn sie sie z.T. noch nicht im Angebot haben, nehmen sie sie vielleicht ins Sortiment auf, wenn genügend Leute danach fragen.',
-                   form: {
-                       placeholder: 'Hier Produkt eintragen, nach dem du gefragt hast',
-                       haveIt: 'Gibt\'s hier',
-                       doNotHaveIt: 'Gibt\'s hier nicht'
-                   },
-                   outcome: {
-                       description: 'Du hast nach diesen veganen Produkten gefragt:'
-                   }
-               },
-               newOption: { // @toebu was hälst du von dieser Mission?
-                   title: 'Frage, ob es neue vegane Produkte im Angebot hat.',
-                   description: 'Hat es laut dem Personal neue vegane Produkte im Angebot?',
-                   explanation: 'Frag das Personal, ob sie hier in letzter Zeit neue vegane Produkte ins Angebot aufgenommen haben.',
-                   form: {
-                       placeholder: 'Hier neues veganes Produkt eintragen',
-                       somethingNew: 'Neu erhältlich',
-                       nothingNew: 'Nichts neues'
-                   },
-                   outcome: {
-                       description: 'Laut dem Personal neu erhältlich:',
-                       descriptionNothing: 'Laut dem Personal ist nichts neues erhältlich.'
-                   }
-               },
-               whatOptions: {
-                   title: 'Finde heraus, was für vegane Angebote es hier gibt.',
-                   description: 'Welche veganen Angebote gibt es hier?',
-                   description2: 'Die folgenden musst du nicht mehr eintragen:',
-                   explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.',
-                   form: {
-                       placeholder: 'Hier ein veganes Angebot eintragen'
-                   },
-                   outcome: {
-                       description: 'Du hast diese veganen Angebote eingetragen/bestätigt:'
-                   }
-               },
-               buyOptions: {
-                   title: 'Kauf etwas Veganes.',
-                   description: 'Was hast du gekauft?',
-                   explanation: 'Mit einem Kauf kannst du dem Personal zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn du willst, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
-                   outcome: {
-                       description: 'Du hast diese veganen Angebote gekauft:'
-                   }
-               },
-               giveFeedback: {
-                   title: 'Mission: Impossible',
-                   description: 'Was für eine unmögliche Mission hast du hier versucht?',
-                   explanation: 'Manchmal sind es die unwahrscheinlichsten Dinge, die am meisten bringen. Der Legende nach hat eine einzige Veganautin die Space Gunk Ausgabestelle bei der Startrampe XQR-9 dazu gebracht, vegane Haute-Cuisine anzubieten, indem sie dem Personal sagte: "Stellt doch um auf 100% veganen Food! Ich habe ein 5160 Jahre altes Kochbuch und einen antiken Campingkocher gefunden, das leihe ich euch aus.',
-                   form: {
-                       placeholder: 'Unmögliche Mission'
-                   },
-                   outcome: {
-                       description: 'Du hast diese unmögliche Mission versucht:'
-                   }
-               },
-               rateOptions: {
-                   title: 'Bewerte einzelne vegane Angebote, die es hier gibt.',
-                   description: 'Wie bewertest du diese veganen Angebote?',
-                   explanation: 'Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab.',
-                   outcome: {
-                       description: 'Deine Bewertung:'
-                   }
-               },
-               offerQuality: {
-                   title: 'Beurteile, wie gut diese Location veganautische Bedürfnisse befriedigt.',
-                   description: 'Wie gut befriedigt diese Location veganautische Bedürfnisse?',
-                   explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.',
-                   outcome: {
-                       description: 'Dein Urteil:'
-                   }
-               },
-               effortValue: {
-                   title: 'Schätze ab, wie gut die Chancen stehen, dass das vegane Angebot hier vergrössert und verbessert wird.',
-                   description: 'Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?',
-                   explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.',
-                   form: {
-                       yes: 'gut',
-                       ratherYes: 'eher gut',
-                       ratherNo: 'eher schlecht',
-                       no: 'schlecht'
-                   },
-                   outcome: {
-                       yes: 'gut.',
-                       ratherYes: 'eher gut',
-                       ratherNo: 'eher schlecht',
-                       no: 'schlecht.'
-                   }
-               }
-           }
+            filters: {
+                recent: {
+                    title: 'Filtern nach letzter Aktivität',
+                    form: {
+                        anytime: 'Irgendwann',
+                        month: 'Monat',
+                        week: 'Woche',
+                        day: 'Tag'
+                    }
+                }
+            },
+            mission: {
+                title: 'Missionen',
+                totalPoints: 'Total Punkte aus Missionen',
+                missionForm: {
+                    submit: 'Fertig',
+                    cancel: 'Abbrechen'
+                },
+                visitBonus: {
+                    title: 'Besuche diese Location.',
+                    explanation: 'Für deinen ersten Besuch innerhalb von ein paar Wochen erhälst du Punkte.',
+                    description: 'Schliesse diese Mission nur ab, wenn du diese Location jetzt besuchst.'
+                },
+                hasOptions: {
+                    title: 'Frag das Personal, ob es hier etwas Veganes gibt.',
+                    description: 'Gibt es hier laut dem Personal etwas Veganes?',
+                    description2: 'Was denkst du, gibt es etwas Veganes?',
+                    explanation: 'Frage ausdrücklich nach etwas Veganem und benutze dazu das Wort "vegan". So stellst du sicher, dass das Personal merkt: "Unsere Kundschaft ist interessiert an veganen Produkten, es besteht eine Nachfrage." Das erhöht die Chance, dass das vegane Angebot vergrössert und verbessert wird.',
+                    form: {
+                        theyDoNotKnow: 'Sie wissen es nicht',
+                        yes: 'Ja',
+                        no: 'Nein',
+                        ratherYes: 'Eher ja',
+                        noClue: 'Keine Ahnung',
+                        ratherNo: 'Eher nein'
+                    },
+                    outcome: {
+                        yes: 'Du hast gesagt, es gebe hier laut dem Personal etwas Veganes.',
+                        no: 'Du hast gesagt, es gebe hier laut dem Personal nichts Veganes.',
+                        ratherYes: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl etwas Veganes.',
+                        noClue: 'Das Personal weiss es nicht, und auch du hast keine Ahnung, ob es hier etwas Veganes gibt.',
+                        ratherNo: 'Das Personal weiss es nicht, aber du denkst, es gibt hier wohl nichts Veganes.'
+                    }
+                },
+                wantVegan: {
+                    title: 'Erkläre dem Personal, was "vegan" heisst.',
+                    description: 'Welche Ausdrücke hast du beim Erklären gebraucht?',
+                    explanation: 'Manchmal weiss das Personal nicht, was "vegan" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es offensichtlich mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist.',
+                    form: {
+                        vegan: 'vegan',
+                        plantbased: '(rein) pflanzlich',
+                        noAnimalproducts: 'ohne Tierprodukte',
+                        noMeat: 'ohne Fleisch',
+                        noMilk: 'ohne Milchprodukte',
+                        noEggs: 'ohne Eier',
+                        noHoney: 'ohne Honig',
+                        noWool: 'ohne Wolle',
+                        noLeather: 'ohne Leder',
+                        noFur: 'ohne Fell',
+                        custom: 'Andere:',
+                        placeholder: 'Andere gebrauchte Ausdrücke'
+                    },
+                    outcome: {
+                        description: 'Du hast dem Personal erklärt, was "vegan" heisst, indem du diese Ausdrücke verwendet hast:'
+                    }
+                },
+                particularOption: { // @toebu was hälst du von dieser Mission?
+                    title: 'Frage nach einem bestimmten veganen Produkt.',
+                    description: 'Nach welchen veganen Produkt hast du gefragt?',
+                    explanation: 'Frag das Personal nach einem oder mehreren veganen Produkten, die dich interessieren. Wenn sie sie z.T. noch nicht im Angebot haben, nehmen sie sie vielleicht ins Sortiment auf, wenn genügend Leute danach fragen.',
+                    form: {
+                        placeholder: 'Hier Produkt eintragen, nach dem du gefragt hast',
+                        haveIt: 'Gibt\'s hier',
+                        doNotHaveIt: 'Gibt\'s hier nicht'
+                    },
+                    outcome: {
+                        description: 'Du hast nach diesen veganen Produkten gefragt:'
+                    }
+                },
+                newOption: { // @toebu was hälst du von dieser Mission?
+                    title: 'Frage, ob es neue vegane Produkte im Angebot hat.',
+                    description: 'Hat es laut dem Personal neue vegane Produkte im Angebot?',
+                    explanation: 'Frag das Personal, ob sie hier in letzter Zeit neue vegane Produkte ins Angebot aufgenommen haben.',
+                    form: {
+                        placeholder: 'Hier neues veganes Produkt eintragen',
+                        somethingNew: 'Neu erhältlich',
+                        nothingNew: 'Nichts neues'
+                    },
+                    outcome: {
+                        description: 'Laut dem Personal neu erhältlich:',
+                        descriptionNothing: 'Laut dem Personal ist nichts neues erhältlich.'
+                    }
+                },
+                whatOptions: {
+                    title: 'Finde heraus, was für vegane Angebote es hier gibt.',
+                    description: 'Welche veganen Angebote gibt es hier?',
+                    description2: 'Die folgenden musst du nicht mehr eintragen:',
+                    explanation: 'Hilf mit, dass die Liste der veganen Angebote hier möglichst aktuell und vollständig ist. Füge vegane Angebote hinzu, die noch nicht auf der Liste sind, bestätige vegane Angebote, die bereits da stehen, und gib an, welche Angebote auf der Liste (im Moment) nicht mehr verfügbar sind.',
+                    form: {
+                        placeholder: 'Hier ein veganes Angebot eintragen'
+                    },
+                    outcome: {
+                        description: 'Du hast diese veganen Angebote eingetragen/bestätigt:'
+                    }
+                },
+                buyOptions: {
+                    title: 'Kauf etwas Veganes.',
+                    description: 'Was hast du gekauft?',
+                    explanation: 'Mit einem Kauf kannst du dem Personal zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn du willst, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort "vegan" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.',
+                    outcome: {
+                        description: 'Du hast diese veganen Angebote gekauft:'
+                    }
+                },
+                giveFeedback: {
+                    title: 'Mission: Impossible',
+                    description: 'Was für eine unmögliche Mission hast du hier versucht?',
+                    explanation: 'Manchmal sind es die unwahrscheinlichsten Dinge, die am meisten bringen. Der Legende nach hat eine einzige Veganautin die Space Gunk Ausgabestelle bei der Startrampe XQR-9 dazu gebracht, vegane Haute-Cuisine anzubieten, indem sie dem Personal sagte: "Stellt doch um auf 100% veganen Food! Ich habe ein 5160 Jahre altes Kochbuch und einen antiken Campingkocher gefunden, das leihe ich euch aus.',
+                    form: {
+                        placeholder: 'Unmögliche Mission'
+                    },
+                    outcome: {
+                        description: 'Du hast diese unmögliche Mission versucht:'
+                    }
+                },
+                rateOptions: {
+                    title: 'Bewerte einzelne vegane Angebote, die es hier gibt.',
+                    description: 'Wie bewertest du diese veganen Angebote?',
+                    explanation: 'Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab.',
+                    outcome: {
+                        description: 'Deine Bewertung:'
+                    }
+                },
+                offerQuality: {
+                    title: 'Beurteile, wie gut diese Location veganautische Bedürfnisse befriedigt.',
+                    description: 'Wie gut befriedigt diese Location veganautische Bedürfnisse?',
+                    explanation: 'Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.',
+                    outcome: {
+                        description: 'Dein Urteil:'
+                    }
+                },
+                effortValue: {
+                    title: 'Schätze ab, wie gut die Chancen stehen, dass das vegane Angebot hier vergrössert und verbessert wird.',
+                    description: 'Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?',
+                    explanation: 'In manchen Locations hat das Personal Null Interesse an "vegan", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.',
+                    form: {
+                        yes: 'gut',
+                        ratherYes: 'eher gut',
+                        ratherNo: 'eher schlecht',
+                        no: 'schlecht'
+                    },
+                    outcome: {
+                        yes: 'gut.',
+                        ratherYes: 'eher gut',
+                        ratherNo: 'eher schlecht',
+                        no: 'schlecht.'
+                    }
+                }
+            }
         },
         tour: {
             introBeta: [
@@ -415,8 +428,8 @@
                     title: 'Sag uns deine Meinung',
                     content: 'Wenn du Anregungen oder Rückmeldungen hast, wie wir veganaut.net verbessern können: Das Kontaktformular ist im Menu oben verlinkt.'
                 }
-             ],
-             locationUser: [
+            ],
+            locationUser: [
                 {
                     title: 'Missionen',
                     content: ' Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest.'

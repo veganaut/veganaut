@@ -36,15 +36,37 @@
         </div>
 
         <div ng-if="isLoggedIn()" start-tour="mapUser">
-            <p ng-hide="location.active">
-                <button type="button" class="add-location btn btn-block btn-team"
-                 ng-click="startAddNewLocation()">
-                    <span class="glyphicon glyphicon-plus-sign"></span>
-                    <span ng-bind="'action.map.addLocation'|trans"></span>
-                </button>
-            </p>
+            <div class="row" ng-hide="location.active || filtersShown">
+                <div class="col-xs-6">
+                    <p>
+                        <button type="button" class="add-location btn btn-block btn-team"
+                         ng-click="startAddNewLocation()">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            <span ng-bind="'action.map.addLocation'|trans"></span>
+                        </button>
+                    </p>
+                </div>
+                <div class="col-xs-6">
+                    <p>
+                        <button type="button" class="btn-show-location-filters btn btn-block btn-default"
+                         ng-click="showFilters(true)">
+                            <span class="glyphicon glyphicon-filter"></span>
+                            <span ng-hide="numActiveFilters() > 0">
+                                {{ 'action.map.editFilters' | trans }}
+                            </span>
+                            <span ng-show="numActiveFilters() > 0">
+                                {{ 'action.map.editFiltersWithActive' | trans }}
+                                <span class="badge" tooltip="{{ 'map.filter.activeFilters.explanation' | trans }}">
+                                    {{ numActiveFilters() }}
+                                </span>
+                            </span>
+                        </button>
+                    </p>
+                </div>
+            </div>
 
             <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
+            <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
         </div>
     </div>
 
