@@ -21,6 +21,10 @@ Install the dependencies using npm:
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
 
+Create a backend config file from the example:
+
+    cp veganaut-backend/app/config-example.js veganaut-backend/app/config.js
+
 Start all the things:
 
     cd veganaut; ./scripts/run-all.sh

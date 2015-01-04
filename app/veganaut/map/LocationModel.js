@@ -28,17 +28,25 @@
                 };
                 this.products = [];
                 this.lastMissionDates = {};
+                this.updatedAt = undefined;
 
                 // Apply the given data
                 // TODO: this should deep copy, otherwise quality might not have a valid value
                 angular.extend(this, jsonData || {});
 
                 /**
-                 * Whether this location is shows as active on the map
+                 * Whether this location shows as active on the map
                  * @type {boolean}
                  * @private
                  */
                 this._active = false;
+
+                /**
+                 * Whether this location is currently displayed on the map
+                 * @type {boolean}
+                 * @private
+                 */
+                this._hidden = false;
 
                 /**
                  * Leaflet Marker representing this location
@@ -48,17 +56,15 @@
                     title: this.name
                 });
 
-                // Make sure the marker now which location it belongs to
-                this.marker.locationId = this.id;
-
                 // Instantiate the dates
                 // TODO: this should already have been done elsewhere
                 var that = this;
                 _.forOwn(this.lastMissionDates, function(date, mission) {
                     that.lastMissionDates[mission] = new Date(date);
                 });
+                this.updatedAt = new Date(this.updatedAt);
 
-                this._updateMarkerIcon();
+                this._updateMarker();
             }
 
             /**
@@ -71,10 +77,12 @@
             };
 
             /**
-             * Sets the icon html and css classes
+             * Makes sure the Leaflet marker is up to date with the current
+             * model state. Sets the icon html and the css as well as the
+             * locationId on the marker.
              * @private
              */
-            Location.prototype._updateMarkerIcon = function() {
+            Location.prototype._updateMarker = function() {
                 // Create the basic icon settings
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
@@ -92,8 +100,17 @@
                     icon.className += ' active';
                 }
 
+                // Add hidden class if hidden
+                if (this._hidden) {
+                    // TODO: better to just remove it from the map entirely?
+                    icon.className += ' hidden';
+                }
+
                 // TODO: only do this if something actually changed
                 this.marker.setIcon(L.divIcon(icon));
+
+                // Make sure the marker still hast the correct location id set
+                this.marker.locationId = this.id;
             };
 
             /**
@@ -117,10 +134,15 @@
                 if (typeof isActive === 'undefined') {
                     isActive = true;
                 }
-                this._active = isActive;
+                isActive = !!isActive;
 
-                // Update marker
-                this._updateMarkerIcon();
+                // Update active state if it changed
+                if (this._active !== isActive) {
+                    this._active = isActive;
+
+                    // Update marker
+                    this._updateMarker();
+                }
             };
 
             /**
@@ -129,6 +151,25 @@
              */
             Location.prototype.isActive = function() {
                 return this._active;
+            };
+
+            /**
+             * Sets the location to be hidden or shown on the map
+             * @param {boolean} isHidden
+             */
+            Location.prototype.setHidden = function(isHidden) {
+                if (typeof isHidden === 'undefined') {
+                    isHidden = true;
+                }
+                isHidden = !!isHidden;
+
+                // Update hidden state if it changed
+                if (this._hidden !== isHidden) {
+                    this._hidden = isHidden;
+
+                    // Update marker
+                    this._updateMarker();
+                }
             };
 
             /**
@@ -210,7 +251,7 @@
                 this.quality = newData.quality;
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
-                this._updateMarkerIcon();
+                this._updateMarker();
                 this.setLatLng(newData.lat, newData.lng);
 
                 // Clear points memoiziation
