@@ -303,7 +303,7 @@
                 return $http.post(backendUrl + '/passwordresetemail',  {email: email});
             };
             BackendService.prototype.isValidToken = function(token) {
-                 return $http.get(backendUrl + '/person/validToken/'+token);
+                 return $http.get(backendUrl + '/person/isValidToken/'+token);
             };
 
             BackendService.prototype.resetPassword = function(token, password) {
@@ -312,7 +312,7 @@
                     password: password
                 };
 
-                return $http.post(backendUrl + '/reset', postData);
+                return $http.post(backendUrl + '/person/reset', postData);
             };
 
             // Instantiate and return the service
