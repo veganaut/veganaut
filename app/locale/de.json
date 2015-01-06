@@ -33,8 +33,8 @@
     "registered": "Registrierung erfolgreich.",
     "activityLinkCreated": "Einladung erstellt.",
     "mission": {
-      "success": "Mission erfolgreich abgeschlossen. Du hast die folgenden Punkte gemacht: ",
-      "error": "Mission konnte nicht gespeichert werden: "
+      "success": "Mission erfolgreich abgeschlossen. Du hast so viele Punkte gemacht: ",
+      "error": "Sorry, die Mission konnte nicht gespeichert werden: "
     },
     "profile": {
       "update": {
@@ -91,7 +91,7 @@
     },
     "map": {
       "addLocation": "Neue Location",
-      "editFilters": "Locations filtern",
+      "editFilters": "Karte filtern",
       "editFiltersWithActive": "Filter",
       "locationAction": "Location anschauen"
     },
@@ -113,7 +113,7 @@
     }
   },
   "socialGraph": {
-    "title": "Mein Netzwerk"
+    "title": "Netzwerk"
   },
   "openActivities": {
     "title": "Geplante Einladungen",
@@ -174,11 +174,11 @@
       "selectCoordinates": "Wähle einen Punkt auf der Karte aus oder benutze die Suche",
       "type": "Art der Location auswählen",
       "description": "Beschreibung",
-      "link": "Webseite dieser Location",
+      "link": "Webseite",
       "search": "Nach Name oder Addresse suchen",
       "placeholder": {
         "description": "Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.",
-        "link": "http://beispiel.ch"
+        "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
       },
       "next": "Weiter",
       "previous": "Zurück",
@@ -209,7 +209,7 @@
     },
     "score": {
       "explanation": {
-        "teamPoints": "Dieses Team hat hier so viele Punkte"
+        "teamPoints": "Das Team mit dieser Farbe hat hier so viele Punkte"
       }
     },
     "quality": {
@@ -264,7 +264,7 @@
       "wantVegan": {
         "title": "Erkläre dem Personal, was \"vegan\" heisst.",
         "description": "Welche Ausdrücke hast du beim Erklären gebraucht?",
-        "explanation": "Manchmal weiss das Personal nicht, was \"vegan\" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es offensichtlich mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist.",
+        "explanation": "Manchmal weiss das Personal nicht, was \"vegan\" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es scheinbar mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist.",
         "form": {
           "vegan": "vegan",
           "plantbased": "(rein) pflanzlich",
@@ -350,7 +350,7 @@
         }
       },
       "offerQuality": {
-        "title": "Beurteile, wie gut diese Location veganautische Bedürfnisse befriedigt.",
+        "title": "Beurteile diese Location aus veganautischer Sicht.",
         "description": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
         "explanation": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.",
         "outcome": {
@@ -358,14 +358,14 @@
         }
       },
       "effortValue": {
-        "title": "Schätze ab, wie gut die Chancen stehen, dass das vegane Angebot hier vergrössert und verbessert wird.",
+        "title": "Gib eine veganautische Wetterprognose für diese Location ab.",
         "description": "Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?",
         "explanation": "In manchen Locations hat das Personal Null Interesse an \"vegan\", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.",
         "form": {
-          "yes": "gut",
-          "ratherYes": "eher gut",
-          "ratherNo": "eher schlecht",
-          "no": "schlecht"
+          "yes": "Gut",
+          "ratherYes": "Eher gut",
+          "ratherNo": "Eher schlecht",
+          "no": "Schlecht"
         },
         "outcome": {
           "yes": "gut.",
@@ -410,7 +410,7 @@
       },
       {
         "title": "Dein Ziel",
-        "content": " Dein Ziel ist es, die essbaren Pflanzen auf der Erdoberfläche zu finden, zu markieren, zu bewerten, zu vermehren und für dein Team zu sichern."
+        "content": "Dein Ziel ist es, die essbaren Pflanzen auf der Erdoberfläche zu finden, zu markieren, zu bewerten, zu vermehren und für dein Team zu sichern."
       },
       {
         "title": "Sag uns deine Meinung",
@@ -420,7 +420,7 @@
     "locationUser": [
       {
         "title": "Missionen",
-        "content": " Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest."
+        "content": "Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest."
       }
     ]
   }

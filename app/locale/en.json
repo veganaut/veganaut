@@ -1,6 +1,10 @@
 {
   "app": {
-    "title": "veganaut.net"
+    "title": "veganaut.net - beta"
+  },
+  "general": {
+    "team": "Team",
+    "person": "Veganaut"
   },
   "navigation": {
     "front": "Home",
@@ -8,10 +12,16 @@
     "login": "Login",
     "logout": "Logout",
     "map": "Map",
-    "profile": "My Profile",
-    "avatar": "My Network",
-    "openActivities": "Planned Invitations",
-    "referenceCode": "Enter Invitation-Code"
+    "score": "Teams",
+    "profile": "Profile",
+    "avatar": "Network",
+    "activities": "Invitations",
+    "blog": "Blog",
+    "contactForm": "Contact",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "github": "GitHub",
+    "bugs": "Bugreport"
   },
   "form": {
     "referenceCode": {
@@ -22,34 +32,49 @@
   "message": {
     "registered": "Registered successfully.",
     "activityLinkCreated": "Invitation created.",
+    "mission": {
+      "success": "Mission completed. You made this many points: ",
+      "error": "Sorry, mission could not be saved: "
+    },
     "profile": {
       "update": {
         "success": "Profile updated successfully.",
         "fail": "Sorry, your profile couldn't be updated."
       }
+    },
+    "resetPassword": {
+      "invalidToken": "Your password reset token has expired. Please request a new token.",
+      "emailSent": "E-mail has been sent.",
+      "success": "Password reset successful. You can now log in."
     }
   },
   "register": {
     "title": "Register",
     "form": {
-      "email": "email@example.com",
-      "fullName": "First name and last name",
-      "nickname": "Nickname (publicly visible)",
-      "password": "Password",
-      "passwordRepeat": "Password again",
       "submit": "Register"
     }
   },
   "login": {
     "title": "Login",
+    "forgotPassword": "Password forgotten?",
     "form": {
       "email": "email@example.com",
       "password": "Password",
       "submit": "Login"
     }
   },
+  "forgot": {
+    "form": {
+      "submit": "Submit"
+    }
+  },
+  "reset": {
+    "form": {
+      "save": "Save"
+    }
+  },
   "action": {
-    "register": "Registrieren",
+    "register": "Register",
     "cancel": "Cancel",
     "socialGraph": {
       "createActivityLink": {
@@ -66,7 +91,14 @@
     },
     "map": {
       "addLocation": "Add new location",
-      "locationAction": "Visit this place now"
+      "editFilters": "Filter map",
+      "editFiltersWithActive": "Filter",
+      "locationAction": "Check out location"
+    },
+    "location": {
+      "edit": "Edit location",
+      "save": "Save location",
+      "backToMap": "Back to map"
     }
   },
   "activityLink": {
@@ -81,7 +113,7 @@
     }
   },
   "socialGraph": {
-    "title": "My network"
+    "title": "Network"
   },
   "openActivities": {
     "title": "Planned invitations",
@@ -100,7 +132,7 @@
     "label": {
       "email": "Email",
       "fullName": "Name",
-      "nickname": "Nickname",
+      "nickname": "Nickname (publicly visible)",
       "role": "Role",
       "team": "Team",
       "balance": "Balance",
@@ -110,65 +142,178 @@
     }
   },
   "team": {
-    "blue": "Blue",
-    "green": "Green"
+    "team1": "Blue",
+    "team2": "Green",
+    "team3": "Purple",
+    "team4": "Red",
+    "team5": "Orange"
   },
   "score": {
     "points": "Points",
     "totalScore": "Score",
     "players": "Players",
     "captured": "Captures",
-    "babies": "Babies"
+    "babies": "Babies",
+    "total": "Total",
+    "teams": {
+      "title": "Teams",
+      "locations": "# Locations",
+      "people": "# Veganauts"
+    },
+    "people": {
+      "title": "Veganauts",
+      "missions": "# Missions",
+      "filter": {
+        "onlyMyTeam": "Show only my teammates."
+      }
+    }
   },
   "location": {
     "form": {
       "name": "Name of the location",
-      "selectOnMap": "Choose a point on the map",
-      "chooseType": "Choose location type",
-      "submit": "Save"
+      "selectCoordinates": "Choose a point on the map or use the search field",
+      "type": "Choose location type",
+      "description": "Description",
+      "link": "Website",
+      "search": "Search name or address",
+      "placeholder": {
+        "description": "Short description of this location, e.g. type of offer and opening hours.",
+        "link": "This location's website, e.g. http://example.com"
+      },
+      "next": "Next",
+      "previous": "Back",
+      "submit": "Done"
+    },
+    "label": {
+      "description": "Description",
+      "link": "Website"
+    },
+    "rating": {
+      "average": "Average",
+      "numRatings": "Ratings"
+    },
+    "products": {
+      "title": "Offer",
+      "description": "This location offers these vegan options:",
+      "noProducts": {
+        "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
+        "user": "No options have been entered yet. You can enter vegan options by completing one of the missions below."
+      }
     },
     "type": {
       "gastronomy": "Restaurant/Take-Away",
       "retail": "Retail",
       "event": "Event",
-      "private": "Private"
+      "private": "Private",
+      "explanation": "Location type"
+    },
+    "score": {
+      "explanation": {
+        "teamPoints": "The team with this colour has this many points here "
+      }
+    },
+    "quality": {
+      "explanation": "The more twigs the bigger and better the vegan offer here"
     }
   },
   "map": {
+    "filters": {
+      "recent": {
+        "title": "Filter for last activity",
+        "form": {
+          "anytime": "Anytime",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day"
+        }
+      }
+    },
     "mission": {
       "title": "Missions",
-      "pointsForThisVisit": "Points for this visit",
+      "totalPoints": "Total points from missions",
       "missionForm": {
         "submit": "Complete",
         "cancel": "Cancel"
       },
-      "visitForm": {
-        "submit": "End visit",
-        "validation": {
-          "noMission": "You have to complete a mission first.",
-          "openMission": "You have to cancel or complete all open missions first."
-        }
-      },
       "visitBonus": {
-        "title": "Bonus for this visit",
-        "explanation": "For you first visit at a location within a few weeks you get additional points. If this is your second, third or one-hundredth visit within a few weeks you don't get anything extra. But maybe you know a teammate who hasn't been here yet, or who wasn't here for a long time. They'd get the bonus points..."
+        "title": "Visit this location.",
+        "explanation": "For you first visit at a location within a few weeks you get points.",
+        "description": "Only complete this mission if you are currently visiting this location."
       },
       "hasOptions": {
         "title": "Ask the staff whether there are any vegan options available here.",
-        "description": "Are there any vegan options available here?",
-        "explanation": "The staff can't read minds. Therefore, ask explicitly for something vegan and use the word \"vegan\" in doing so. In this way you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
+        "description": "According to the staff, are there any vegan options available here?",
+        "description2": "What do you think: are there any vegan options available here?",
+        "explanation": "Explicitly ask for something vegan and use the word \"vegan\" in doing so. By doing so you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
         "form": {
+          "theyDoNotKnow": "They do not know",
           "yes": "Yes",
-          "no": "No"
+          "no": "No",
+          "ratherYes": "Rather yes",
+          "noClue": "No idea",
+          "ratherNo": "Rather no"
         },
         "outcome": {
-          "hasVegan": "You said that there are vegan options available here.",
-          "noVegan": "You said that there are no vegan options available here."
+          "yes": "You said that according to the staff there are vegan options here.",
+          "no": "You said that according to the staff there are no vegan options here.",
+          "ratherYes": "The staff doesn't know but you think that they probably have vegan options here.",
+          "noClue": "The staff doesn't know and you also have no idea whether they have any vegan options here.",
+          "ratherNo": "The staff doesn't know but you think that they probably don't have any vegan options here."
+        }
+      },
+      "wantVegan": {
+        "title": "Explain to the staff what \"vegan\" means.",
+        "description": "What expressions did you use in your explanation?",
+        "explanation": "Sometimes the staff doesn't know what \"vegan\" means, or you are unsure whether they know. Sometimes they think they know, but they seem to confuse it with something else, or they forget that e.g. butter isn't vegan.",
+        "form": {
+          "vegan": "vegan",
+          "plantbased": "(purely) plant-based",
+          "noAnimalproducts": "no animal products",
+          "noMeat": "no meat",
+          "noMilk": "no dairy products",
+          "noEggs": "no eggs",
+          "noHoney": "no honey",
+          "noWool": "no wool",
+          "noLeather": "no leather",
+          "noFur": "no fur",
+          "custom": "Ohter:",
+          "placeholder": "Other expressions you used"
+        },
+        "outcome": {
+          "description": "You explained to the staff what \"vegan\" means and you used the following expressions to do so:"
+        }
+      },
+      "particularOption": {
+        "title": "Ask for a specific vegan product.",
+        "description": "Which specific vegan product did you ask for?",
+        "explanation": "Ask the staff for one or several specific vegan products that you are interested in. If they don't sell them yet they might do so in the future, given enough people ask for them.",
+        "form": {
+          "placeholder": "Enter the product which you asked for",
+          "haveIt": "They have it here",
+          "doNotHaveIt": "They don't have it here"
+        },
+        "outcome": {
+          "description": "You asked for these vegan products:"
+        }
+      },
+      "newOption": {
+        "title": "Ask whether there are any new vegan products on offer.",
+        "description": "According to the staff, are there any new vegan products on offer?",
+        "explanation": "Ask the staff whether they recently introduced any new vegan products.",
+        "form": {
+          "placeholder": "Enter new vegan products here",
+          "somethingNew": "Newly available",
+          "nothingNew": "Nothing new"
+        },
+        "outcome": {
+          "description": "Newly available according to the staff:",
+          "descriptionNothing": "According to the staff, there aren't any new vegan products available here."
         }
       },
       "whatOptions": {
         "title": "Find out what vegan options are available here.",
         "description": "What vegan options are available here?",
+        "description2": "You don't have to re-enter the following options:",
         "explanation": "The goal is to make the list of vegan options as complete and as up-to-date as possible. Add vegan options that aren't on the list yet, confirm vegan options that are already listed and indicate which vegan options on the list are not available (at the moment).",
         "form": {
           "placeholder": "Enter a vegan option here"
@@ -186,16 +331,14 @@
         }
       },
       "giveFeedback": {
-        "title": "Give the staff feedback.",
-        "description": "What feedback did you give the staff?",
-        "explanation": "Sometimes the staff doesn't know what \"vegan\" means. Sometimes you can provide them with tips or suggestions. Sometimes you are very happy with what you got, sometimes less so. Write here what you talked about with the staff. Or what you'd have wanted to talk about.",
+        "title": "Mission: Impossible.",
+        "description": "What kind of impossible mission did you attempt here?",
+        "explanation": "Sometimes it's the most improbably things that work the best. According to legend, a sinlge veganaut got the space gunk dispenser near launch pad XQR-9 to offer vegan Haute Cuisine by just telling the staff: \"Why don't you guys switch to a 100% vegan menu? Here's a 5160 year old cookbook and an antique camping stove that I found on the surface, feel free to use them!\" ",
         "form": {
-          "placeholder": "Feedback",
-          "didNotDoIt": "I wanted to give the staff this feedback but then I didn't."
+          "placeholder": "Enter your mission impossible here"
         },
         "outcome": {
-          "didIt": "You gave the staff this feedback:",
-          "didNotDoIt": "You wanted to give the staff this feedback:"
+          "description": "You tried this mission impossible here:"
         }
       },
       "rateOptions": {
@@ -206,22 +349,78 @@
           "description": "Your rating:"
         }
       },
-      "veganeed": {
-        "title": "Indicate how much there is still to do for veganauts here.",
-        "description": "How much is there still to do for veganauts here?",
-        "explanation": "At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At places like these veganauts still have most to do. At other places there already are a few vegan options, some of which are satisfying. Veganauts still have quite something to do at such places. Yet other places have a quite remarkable range of vegan options, many of which are great. Here, veganauts have almost nothing left to do. Finally, there are places where there are only vegan options and they are all fantastic, so there's nothing left for veganauts to do except relax and enjoy."
+      "offerQuality": {
+        "title": "Evaluate this location from a veganautic standpoint.",
+        "description": "How well does this location satisfy veganautic needs?",
+        "explanation": "Veganauts want to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are only vegan options and they are all fantastic.",
+        "outcome": {
+          "description": "Your evaluation:"
+        }
+      },
+      "effortValue": {
+        "title": "Make a veganautic weather forecast for this location.",
+        "description": "Is the vegan offer likely to grow and prosper at this location?",
+        "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
+        "form": {
+          "yes": "Yes",
+          "ratherYes": "Rather yes",
+          "ratherNo": "Rather no",
+          "no": "No"
+        },
+        "outcome": {
+          "yes": "The weather for the vegan offer looks good here.",
+          "ratherYes": "The weather for the vegan offer looks rather good here.",
+          "ratherNo": "The weather for the vegan offer looks rather bad here.",
+          "no": "The weather for the vegan offer looks bad here."
+        }
       }
     }
   },
   "tour": {
-    "intro": [
+    "introBeta": [
       {
         "title": "Welcome!",
-        "content": "Have fun exploring the vegan universe with veganaut.net. We're still developing this platform, but you can already use it. It's possible that not everything works perfeclty, so please excuse us. If you have suggestions or feedback we're grateful. The contact form is linked in the menu."
+        "content": "Are you interested in vegan food? On veganaut.net you can see where other people have found something vegan to eat, and (if you register) you can enter your own discoveries."
+      },
+      {
+        "title": "Plant Symbols",
+        "content": "Most of the locations have a plant symbol. The more twigs the bigger and better the vegan offer. <div class=\"text-center h4\"><span class=\"icon icon-1\"></span><span class=\"icon icon-2\"></span><span class=\"icon icon-3\"></span><span class=\"icon icon-4\"></span><span class=\"icon icon-5\"></span></div>Locations without a plant symbol have not been evaluated yet."
+      },
+      {
+        "title": "Gastronomy and Shopping",
+        "content": "There are two types of locations: gastronomy (restaurants, take-aways...) and shopping (supermarket, health food store, bakery...)"
       },
       {
         "title": "Register",
-        "content": "If you register now you can use the full functionality of the platform."
+        "content": "As a registered user you belong to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span> or <span class=\"color-team5\">Orange</span> and you can join the location conquering game."
+      }
+    ],
+    "mapUser": [
+      {
+        "title": "Beeeeeeep!",
+        "content": "You have just been woken from cryogenic space-sleep. Since \"Armageddon Minor\" in the year 2086 (i.e. 5042 years ago) you have been orbiting the earth in one of five huge spaceships as one of many deep-frozen passengers."
+      },
+      {
+        "title": "Your Team",
+        "content": "The colour of the \"New location\"-button reveals in which spaceship you find yourself: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purlple</span>, <span class=\"color-team4\">Red</span> or <span class=\"color-team5\">Orange</span>."
+      },
+      {
+        "title": "Space Gunk forever?",
+        "content": "In the spaceship the only thing to eat is \"Space Gunk\": a grey, tasteles substance. However, there are reports from veganauts who have recently returned from exploration missions, that edible plants have been started to grow again on the surface of the earth."
+      },
+      {
+        "title": "Your Goal",
+        "content": "Your goal is to find the edible plants on the surface of the earth, to chart them on the map, to evaluate them, to make them grow and multiply, and to claim them for your team."
+      },
+      {
+        "title": "Give us a feedback",
+        "content": "If you have feedback or suggestions about how we can improve veganaut.net: there's a link to the contact form in the menu above."
+      }
+    ],
+    "locationUser": [
+      {
+        "title": "Missions",
+        "content": "Most of the missions can only be completed if you are at this location in real life."
       }
     ]
   }
