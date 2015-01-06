@@ -32,7 +32,7 @@ describe('profile.', function() {
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Alice Alison');
             expect(profileText).toContain('foo@bar.baz');
-            expect(profileText).toContain('Blau');
+            expect(profileText).toContain('Blue');
 
             // TODO: add smarter checks that the profile is fine (such as is the balance displayed)
         });

@@ -65,15 +65,12 @@
         };
 
         /**
-         * Updates the current player info
+         * Updates the current player info.
          *
-         * @param email
-         * @param fullName
-         * @param nickname
-         * @param password
+         * @param {{}} newPlayerData
          */
-        var updateMe = function(email, fullName, nickname, password) {
-            return backendService.updateMe(email, fullName, nickname, password)
+        var updateMe = function(newPlayerData) {
+            return backendService.updateMe(newPlayerData)
                 .success(setPlayerData)
             ;
         };

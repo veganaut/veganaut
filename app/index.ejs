@@ -80,6 +80,11 @@
                             {{ 'navigation.bugs' | translate }}
                         </a>
                     </div>
+                    <div class="col-xs-12 text-center" ng-controller="ChangeLocaleCtrl">
+                        <a href="#" ng-click="changeLocale(); closeMenu()">
+                            {{ 'navigation.changeLanguage' | translate }}
+                        </a>
+                    </div>
                 </div>
             </nav>
         </div>

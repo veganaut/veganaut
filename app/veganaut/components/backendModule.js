@@ -217,25 +217,15 @@
             };
 
             /**
-             * Posts the new player data. If password is not given or empty, it is not updated.
-             * @param {string} email
-             * @param {string} fullName
-             * @param {string} nickname
-             * @param {string} [password]
+             * Posts the new player data. Only the fields that are
+             * given are updated. Possible fields are:
+             * email, fullName, nickname, password, locale
+             * @param {{}} newData
              * @returns {HttpPromise}
              */
-            BackendService.prototype.updateMe = function(email, fullName, nickname, password) {
-                var data = {
-                    email: email,
-                    fullName: fullName,
-                    nickname: nickname
-                };
-
-                if (typeof password !== 'undefined' && password.length > 0) {
-                    data.password = password;
-                }
-
-                return $http.put(backendUrl + '/person/me', data);
+            BackendService.prototype.updateMe = function(newPlayerData) {
+                newPlayerData = _.pick(newPlayerData, 'email', 'fullName', 'nickname', 'password', 'locale');
+                return $http.put(backendUrl + '/person/me', newPlayerData);
             };
 
             /**

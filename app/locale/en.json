@@ -21,7 +21,8 @@
     "twitter": "Twitter",
     "facebook": "Facebook",
     "github": "GitHub",
-    "bugs": "Bugreport"
+    "bugs": "Bugreport",
+    "changeLanguage": "Auf Deutsch wechseln"
   },
   "form": {
     "referenceCode": {
@@ -90,7 +91,7 @@
       "changePassword": "Change password"
     },
     "map": {
-      "addLocation": "Add new location",
+      "addLocation": "New location",
       "editFilters": "Filter map",
       "editFiltersWithActive": "Filter",
       "locationAction": "Check out location"
@@ -201,7 +202,7 @@
       }
     },
     "type": {
-      "gastronomy": "Restaurant/Take-Away",
+      "gastronomy": "Gastronomy",
       "retail": "Retail",
       "event": "Event",
       "private": "Private",

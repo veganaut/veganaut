@@ -18,7 +18,7 @@
             $scope.submit = function() {
                 var form = $scope.form;
                 // TODO: improve how the form validates password and passwordRepeat are the same
-                playerService.updateMe(form.email, form.fullName, form.nickname, form.password)
+                playerService.updateMe(form)
                     .success(function() {
                         alertService.addAlert($translate.instant('message.profile.update.success'), 'success');
                     })

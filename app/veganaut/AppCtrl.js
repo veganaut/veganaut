@@ -3,8 +3,12 @@
 
     module.controller('AppCtrl', ['$scope', '$location', '$window', 'angularPiwik', 'backendService', 'playerService',
         function($scope, $location, $window, angularPiwik, backendService, playerService) {
-            $scope.goToView = function(view) {
+            $scope.closeMenu = function() {
                 $scope.menuShown = false;
+            };
+
+            $scope.goToView = function(view) {
+                $scope.closeMenu();
                 $location.path(view);
             };
 

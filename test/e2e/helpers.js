@@ -46,6 +46,14 @@ var helpers = {
     },
 
     /**
+     * Adds style rules for easier testing
+     */
+    loadTestStylesheet: function() {
+        // Add style rule to have all transitions have no duration
+        browser.executeScript('document.styleSheets[0].insertRule("* { transition-duration: initial !important; }", 1);');
+    },
+
+    /**
      * Loads the app at the given initial URL
      * @param {string} [initialUrl='/']
      */
@@ -53,9 +61,7 @@ var helpers = {
         // Go to the app
         initialUrl = initialUrl || '/';
         browser.get(initialUrl);
-
-        // Add style rule to have all transitions have no duration
-        browser.executeScript('document.styleSheets[0].insertRule("* { transition-duration: initial !important; }", 1);');
+        helpers.loadTestStylesheet();
     },
 
     /**
@@ -65,6 +71,9 @@ var helpers = {
         browser.get('/login');
         element(by.model('form.email')).sendKeys('foo@bar.baz');
         element(by.model('form.password')).sendKeys('foobar\n');
+
+        // TODO: not sure why this has to be loaded again, but otherwise it doesn't work everywhere
+        helpers.loadTestStylesheet();
     },
 
     /**

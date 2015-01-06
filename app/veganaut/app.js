@@ -24,9 +24,9 @@
 
     veganautModule.config([
         '$routeProvider', '$locationProvider', '$translateProvider', 'angularPiwikProvider',
-        'useHtml5Mode', 'piwikSettings',
+        'useHtml5Mode', 'piwikSettings', 'i18nSettings',
         function($routeProvider, $locationProvider, $translateProvider, angularPiwikProvider,
-            useHtml5Mode, piwikSettings)
+            useHtml5Mode, piwikSettings, i18nSettings)
         {
             $locationProvider.html5Mode(useHtml5Mode);
 
@@ -54,7 +54,7 @@
                 prefix: 'locale/',
                 suffix: '.json'
             });
-            $translateProvider.registerAvailableLanguageKeys(['en', 'de']);
+            $translateProvider.registerAvailableLanguageKeys(i18nSettings.availableLocales);
             $translateProvider.determinePreferredLanguage();
 
             // Configure piwik

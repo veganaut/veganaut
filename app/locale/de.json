@@ -21,7 +21,8 @@
     "twitter": "Twitter",
     "facebook": "Facebook",
     "github": "GitHub",
-    "bugs": "Bugreport"
+    "bugs": "Bugreport",
+    "changeLanguage": "Switch to English"
   },
   "form": {
     "referenceCode": {

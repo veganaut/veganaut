@@ -43,4 +43,10 @@
         domain: 'veganaut.net/piwik',
         siteId: 7
     });
+
+    // Translation settings
+    module.constant('i18nSettings', {
+        defaultLocale: 'en',
+        availableLocales: ['en', 'de']
+    });
 })(window.veganaut.mainModule);
