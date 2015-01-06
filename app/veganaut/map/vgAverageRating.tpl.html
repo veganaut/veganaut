@@ -1,6 +1,6 @@
 <span ng-if="average"
- tooltip="{{ 'location.rating.average' | trans }}: {{ average | number:1 }},
- {{ 'location.rating.numRatings' | trans }}: {{ numRatings }}">
+ tooltip="{{ 'location.rating.average' | translate }}: {{ average | number:1 }},
+ {{ 'location.rating.numRatings' | translate }}: {{ numRatings }}">
     <i ng-repeat="r in range" class="glyphicon"
      ng-class="r <= (average + 0.5) ? 'glyphicon-star' : 'glyphicon-star-empty'">
     </i>

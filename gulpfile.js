@@ -24,9 +24,12 @@ var files = {
         'app/lib/d3/d3.js',
         'app/lib/leaflet/dist/leaflet-src.js',
         'app/lib/angular-route/angular-route.js',
+        'app/lib/angular-sanitize/angular-sanitize.js',
         'app/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
         'app/lib/angular-loading-bar/build/loading-bar.js',
         'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+        'app/lib/angular-translate/angular-translate.js',
+        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
         'app/lib/bootstrap-tour/build/js/bootstrap-tour-standalone.js'
     ],
     less: 'app/less/master.less',

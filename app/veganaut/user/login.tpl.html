@@ -1,17 +1,17 @@
 <form novalidate name="loginForm" class="login-form">
     <div class="form-group">
-        <label for="loginEmail">{{ 'person.label.email' | trans }}</label>
+        <label for="loginEmail">{{ 'person.label.email' | translate }}</label>
         <input id="loginEmail" type="email" required class="form-control" ng-model="form.email"
-         placeholder="{{ 'login.form.email' | trans}}"/>
+         placeholder="{{ 'login.form.email' | translate}}"/>
     </div>
     <div class="form-group">
-        <label for="loginPassword">{{ 'person.label.password' | trans }}</label>
+        <label for="loginPassword">{{ 'person.label.password' | translate }}</label>
         <input id="loginPassword" type="password" required class="form-control" ng-model="form.password"
-         placeholder="{{ 'login.form.password' | trans}}" />
+         placeholder="{{ 'login.form.password' | translate}}" />
     </div>
 
     <button type="submit" class="btn btn-default pull-right" ng-disabled="loginForm.$invalid"
-     ng-click="submit()">{{ 'login.form.submit' | trans }}</button>
-    <a href="forgot">{{ 'login.forgotPassword' | trans }}</a>
+     ng-click="submit()">{{ 'login.form.submit' | translate }}</button>
+    <a href="forgot">{{ 'login.forgotPassword' | translate }}</a>
     <div class="clearfix"></div>
 </form>

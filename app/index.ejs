@@ -24,60 +24,60 @@
                     <span class="icon-bar"></span>
                 </button>
                 <span class="navbar-brand clickable color-team" ng-click="goToView('')">
-                    {{ 'app.title' | trans }}
+                    {{ 'app.title' | translate }}
                 </span>
             </div>
             <nav class="collapse" collapse="!menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
-                 ng-bind="'navigation.map' | trans"></button>
+                 ng-bind="'navigation.map' | translate"></button>
                 <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.score' | trans"></button>
+                 ng-if="isLoggedIn()" ng-bind="'navigation.score' | translate"></button>
                 <!-- Social graph is not active at the moment
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
-                 ng-if="canViewGraph()" ng-bind="'navigation.avatar' | trans"></button>
+                 ng-if="canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>
                 <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
-                 ng-bind="'navigation.activities' | trans"></button>
+                 ng-bind="'navigation.activities' | translate"></button>
                 -->
                 <button class="btn btn-default btn-block nav-profile" ng-click="goToView('me')"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.profile' | trans"></button>
+                 ng-if="isLoggedIn()" ng-bind="'navigation.profile' | translate"></button>
 
                 <button class="btn btn-default btn-block nav-register" ng-click="goToView('register')"
-                 ng-if="!isLoggedIn()" ng-bind="'navigation.register' | trans"></button>
+                 ng-if="!isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
                 <button class="btn btn-default btn-block nav-login" ng-click="goToView('login')"
-                 ng-if="!canViewGraph()" ng-bind="'navigation.login' | trans"></button>
+                 ng-if="!canViewGraph()" ng-bind="'navigation.login' | translate"></button>
                 <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.logout' | trans"></button>
+                 ng-if="isLoggedIn()" ng-bind="'navigation.logout' | translate"></button>
 
                 <div class="row navbar-footer">
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="http://blog.veganaut.net/" target="_blank">
-                            {{ 'navigation.blog' | trans }}
+                            {{ 'navigation.blog' | translate }}
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="http://blog.veganaut.net/contact" target="_blank">
-                            {{ 'navigation.contactForm' | trans }}
+                            {{ 'navigation.contactForm' | translate }}
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="https://twitter.com/veganautnet" target="_blank">
-                            {{ 'navigation.twitter' | trans }}
+                            {{ 'navigation.twitter' | translate }}
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="https://www.facebook.com/veganautnet" target="_blank">
-                            {{ 'navigation.facebook' | trans }}
+                            {{ 'navigation.facebook' | translate }}
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="https://github.com/veganaut/" target="_blank">
-                            {{ 'navigation.github' | trans }}
+                            {{ 'navigation.github' | translate }}
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 text-center">
                         <a href="https://github.com/veganaut/veganaut/issues/new" target="_blank">
-                            {{ 'navigation.bugs' | trans }}
+                            {{ 'navigation.bugs' | translate }}
                         </a>
                     </div>
                 </div>

@@ -2,8 +2,8 @@
     'use strict';
 
     module.controller('ResetCtrl', [
-        '$scope', '$routeParams', '$location', 'backendService', 'alertService', 'translateService',
-        function ($scope, $routeParams, $location, backendService, alertService, t) {
+        '$scope', '$routeParams', '$location', '$translate', 'backendService', 'alertService',
+        function ($scope, $routeParams, $location, $translate, backendService, alertService) {
             if (backendService.isLoggedIn()) {
                 $scope.goToView('');
             }
@@ -21,7 +21,7 @@
                 .success(function() {
                     $scope.validToken = true;
                 }).error(function() {
-                    alertService.addAlert(t('message.resetPassword.invalidToken'), 'danger');
+                    alertService.addAlert($translate.instant('message.resetPassword.invalidToken'), 'danger');
                     $location.path('/forgot');
                 })
             ;
@@ -29,7 +29,7 @@
             $scope.submit = function () {
                 backendService.resetPassword(token, $scope.form.password)
                     .success(function() {
-                        alertService.addAlert(t('message.resetPassword.success'), 'success');
+                        alertService.addAlert($translate.instant('message.resetPassword.success'), 'success');
                         $location.path('/login');
                     })
                     .error(function(response) {

@@ -4,13 +4,14 @@
     // Declare the main module taking all other modules together
     var veganautModule = angular.module('veganaut.app', [
         'ngRoute',
+        'ngSanitize',
         'ui.bootstrap',
         'angular-loading-bar',
         'leaflet-directive',
+        'pascalprecht.translate',
         'veganaut.alert',
         'veganaut.form',
         'veganaut.geocode',
-        'veganaut.i18n',
         'veganaut.angularPiwik',
         'veganaut.app.main',
         'veganaut.app.session',
@@ -21,8 +22,12 @@
         'veganaut.app.user'
     ]);
 
-    veganautModule.config(['$routeProvider', '$locationProvider', 'angularPiwikProvider', 'useHtml5Mode', 'piwikSettings',
-        function($routeProvider, $locationProvider, angularPiwikProvider, useHtml5Mode, piwikSettings) {
+    veganautModule.config([
+        '$routeProvider', '$locationProvider', '$translateProvider', 'angularPiwikProvider',
+        'useHtml5Mode', 'piwikSettings',
+        function($routeProvider, $locationProvider, $translateProvider, angularPiwikProvider,
+            useHtml5Mode, piwikSettings)
+        {
             $locationProvider.html5Mode(useHtml5Mode);
 
             // TODO: get rid of all the controllers here and define them in the tempalte
@@ -43,6 +48,14 @@
             $routeProvider.when('/score', {templateUrl: '/veganaut/score/score.tpl.html'});
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
+
+            // Set up translations
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'locale/',
+                suffix: '.json'
+            });
+            $translateProvider.registerAvailableLanguageKeys(['en', 'de']);
+            $translateProvider.determinePreferredLanguage();
 
             // Configure piwik
             angularPiwikProvider.enableTracking(piwikSettings.enabled);

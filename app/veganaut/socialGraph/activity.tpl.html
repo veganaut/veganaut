@@ -1,20 +1,20 @@
 <form novalidate name="activityLinkForm" class="activity-link-form spaced-form" ng-controller="ActivityLinkCtrl">
     <div ng-if="!target">
-        <span ng-bind="'action.socialGraph.createActivityLink.attract'|trans"></span>
+        <span ng-bind="'action.socialGraph.createActivityLink.attract'|translate"></span>
         <input type="text" required class="form-control" ng-model="form.targetName"
-         placeholder="{{ 'activityLink.form.targetName' | trans }}"/>
+         placeholder="{{ 'activityLink.form.targetName' | translate }}"/>
     </div>
     <span ng-if="target">
-        <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(target))|trans"></span>:
+        <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(target))|translate"></span>:
         <span ng-bind="target.fullName"></span>
         <span ng-show="target.nickname">
             (<span ng-bind="target.nickname"></span>)
         </span>
     </span>
     <select required class="form-control" ng-model="form.selectedActivity" ng-options="v.name for (k, v) in activities">
-        <option value="">{{ 'activityLink.form.choose' | trans }}</option>
+        <option value="">{{ 'activityLink.form.choose' | translate }}</option>
     </select>
 
     <button type="submit" class="btn btn-default" ng-disabled="activityLinkForm.$invalid"
-     ng-click="submit()" ng-bind="'activityLink.form.submit' | trans"></button>
+     ng-click="submit()" ng-bind="'activityLink.form.submit' | translate"></button>
 </form>

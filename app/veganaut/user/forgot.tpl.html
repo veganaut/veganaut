@@ -1,11 +1,11 @@
 <form novalidate name="forgotForm" ng-controller="ForgotCtrl">
     <div class="form-group">
-        <label for="loginEmail">{{ 'person.label.email' | trans }}</label>
+        <label for="loginEmail">{{ 'person.label.email' | translate }}</label>
         <input id="loginEmail" type="email" required class="form-control" ng-model="form.email"
-               placeholder="{{ 'login.form.email' | trans}}"/>
+               placeholder="{{ 'login.form.email' | translate}}"/>
     </div>
 
     <button type="submit" class="btn btn-default pull-right" ng-disabled="forgotForm.$invalid"
-            ng-click="submit()">{{ 'forgot.form.submit' | trans }}</button>
+            ng-click="submit()">{{ 'forgot.form.submit' | translate }}</button>
     <div class="clearfix"></div>
 </form>

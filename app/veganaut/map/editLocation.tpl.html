@@ -1,23 +1,23 @@
 <form novalidate name="editLocationForm" class="edit-location-form" ng-controller="EditLocationCtrl">
     <div class="form-group">
-        <label for="editName" ng-bind="'location.form.name' | trans"></label>
+        <label for="editName" ng-bind="'location.form.name' | translate"></label>
         <input type="text" required id="editName" class="form-control" ng-model="location.name" />
     </div>
     <div class="form-group">
-        <label for="editDescription" ng-bind="'location.form.description' | trans"></label>
+        <label for="editDescription" ng-bind="'location.form.description' | translate"></label>
         <textarea id="editDescription" class="form-control" rows="5"
-         placeholder="{{ 'location.form.placeholder.description' | trans }}"
+         placeholder="{{ 'location.form.placeholder.description' | translate }}"
          ng-model="location.description"></textarea>
     </div>
     <div class="form-group">
-        <label for="editLink" ng-bind="'location.form.link' | trans"></label>
+        <label for="editLink" ng-bind="'location.form.link' | translate"></label>
         <input type="url" id="editLink" class="form-control"
-         placeholder="{{ 'location.form.placeholder.link' | trans }}"
+         placeholder="{{ 'location.form.placeholder.link' | translate }}"
          ng-model="location.link" />
     </div>
     <button class="btn btn-default"
-     ng-click="goToView(location.getUrl())" ng-bind="'action.cancel' | trans"></button>
+     ng-click="goToView(location.getUrl())" ng-bind="'action.cancel' | translate"></button>
     <button type="submit" class="btn btn-default pull-right"
      ng-disabled="editLocationForm.$invalid || editLocationForm.$pristine"
-     ng-click="saveLocation()" ng-bind="'action.location.save' | trans"></button>
+     ng-click="saveLocation()" ng-bind="'action.location.save' | translate"></button>
 </form>

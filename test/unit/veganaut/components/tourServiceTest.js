@@ -11,7 +11,7 @@ describe('tourService', function() {
         TourMock.andReturn(tourInstanceMock);
 
         $provide.value('Tour', TourMock);
-        $provide.value('translateService', function() {});
+        $provide.value('$translate', { instant: function() {}});
     }));
 
     it('should create a Tour on instantiation', inject(function(tourService) {

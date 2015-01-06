@@ -31,7 +31,7 @@
             ]
         };
 
-        this.$get = ['Tour', 'translateService', function(Tour, t) {
+        this.$get = ['$translate', 'Tour', function($translate, Tour) {
             var tours = {};
 
             // Create all the tours
@@ -41,8 +41,8 @@
 
                     // Add the title and content to the steps
                     for (var i = 0; i < steps.length; i++) {
-                        steps[i].title = t('tour.' + tourName + '.' + i + '.title');
-                        steps[i].content = t('tour.' + tourName + '.' + i + '.content');
+                        steps[i].title = $translate.instant('tour.' + tourName + '.' + i + '.title');
+                        steps[i].content = $translate.instant('tour.' + tourName + '.' + i + '.content');
                     }
 
                     // Instantiate the tour

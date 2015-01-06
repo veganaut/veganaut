@@ -13,19 +13,19 @@
             <span ng-hide="selectedNode.isDummy()" class="badge">
                 <span ng-show="selectedNode.isUser()">
                     <span class="glyphicon glyphicon-user"></span>
-                    <span ng-show="selectedNode.role" ng-bind="('person.role.' + selectedNode.role)|trans"></span>
+                    <span ng-show="selectedNode.role" ng-bind="('person.role.' + selectedNode.role)|translate"></span>
                 </span>
                 <span ng-show="selectedNode.isMaybe()">
                     <span class="glyphicon glyphicon-question-sign"></span>
-                    <span ng-bind="'person.type.maybe'|trans"></span>
+                    <span ng-bind="'person.type.maybe'|translate"></span>
                 </span>
                 <span ng-show="selectedNode.isBaby()" >
                     <span class="glyphicon glyphicon-heart-empty"></span>
-                    <span ng-bind="'person.type.baby'|trans"></span>
+                    <span ng-bind="'person.type.baby'|translate"></span>
                 </span>
             </span>
             <span ng-show="selectedNode.hasBalance()">
-                <span ng-bind="'person.label.balance'|trans"></span>:
+                <span ng-bind="'person.label.balance'|translate"></span>:
                 <span class="badge badge-team-{{selectedNode.team}}" ng-bind="selectedNode.strength"></span>
                 <span class="badge badge-hits" ng-bind="selectedNode.hits"></span>
             </span>
@@ -33,7 +33,7 @@
         <p>
             <span ng-show="selectedNode.isCaptured" class="badge captured">
                 <span class="glyphicon glyphicon-asterisk"></span>
-                <span ng-bind="'person.label.captured'|trans"></span>
+                <span ng-bind="'person.label.captured'|translate"></span>
             </span>
         </p>
     </div>
@@ -53,11 +53,11 @@
             <span class="glyphicon glyphicon-play"></span>
             <span ng-switch="canCreateActivityWith(selectedNode)">
                 <span ng-switch-when="true">
-                    <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|trans"></span>
+                    <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|translate"></span>
                     <span ng-bind="selectedNode.fullName"></span>
                 </span>
                 <span ng-switch-default>
-                    <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|trans"></span>
+                    <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|translate"></span>
                 </span>
             </span>
         </button>

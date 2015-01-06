@@ -2,10 +2,10 @@
     'use strict';
 
     module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', '$timeout', 'leafletData', 'mapDefaults', 'locationService',
-            'backendService', 'playerService', 'alertService', 'translateService',
-        function($scope, $routeParams, $timeout, leafletData, mapDefaults, locationService,
-            backendService, playerService, alertService, t)
+        ['$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
+            'locationService', 'backendService', 'playerService', 'alertService',
+        function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults,
+            locationService, backendService, playerService, alertService)
         {
             var locationId = $routeParams.id;
 
@@ -44,7 +44,7 @@
                         }
                         // TODO: should we only show this once we reloaded the location?
                         alertService.addAlert(
-                            t('message.mission.success') + pointTexts.join(', '),
+                            $translate.instant('message.mission.success') + pointTexts.join(', '),
                             'success'
                         );
 
@@ -54,7 +54,7 @@
                         });
                     })
                     .error(function(data) {
-                        alertService.addAlert(t('message.mission.error') + data.error, 'danger');
+                        alertService.addAlert($translate.instant('message.mission.error') + data.error, 'danger');
                     })
                 ;
             };

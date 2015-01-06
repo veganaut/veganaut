@@ -40,7 +40,7 @@
             scope: {
                 team: '='
             },
-            template: '<span class="color-{{ team }}" ng-bind="\'team.\' + team | trans"></span>'
+            template: '<span class="color-{{ team }}" ng-bind="\'team.\' + team | translate"></span>'
         };
     }]);
 

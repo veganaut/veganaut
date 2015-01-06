@@ -1,27 +1,27 @@
 <form novalidate name="locationForm" class="location-form">
     <div ng-switch="addLocationStep">
         <div ng-switch-when="1" class="form-group">
-            <label for="addLocationName">{{ 'location.form.name' | trans }}</label>
+            <label for="addLocationName">{{ 'location.form.name' | translate }}</label>
             <input type="text" required class="form-control" id="addLocationName"
              ng-model="newLocation.name" />
         </div>
         <div ng-switch-when="2" class="form-group">
-            <label>{{ 'location.form.type' | trans }}</label>
+            <label>{{ 'location.form.type' | translate }}</label>
             <div>
                 <div class="btn-group">
                     <label class="btn btn-default" ng-repeat="type in locationTypes"
                      ng-model="newLocation.type" btn-radio="type">
-                        {{ 'location.type.' + type | trans }}
+                        {{ 'location.type.' + type | translate }}
                     </label>
                 </div>
             </div>
         </div>
         <div ng-switch-when="3">
             <div class="form-group">
-                <label for="addLocationSearch">{{ 'location.form.selectCoordinates' | trans }}</label>
+                <label for="addLocationSearch">{{ 'location.form.selectCoordinates' | translate }}</label>
                 <input type="text" class="form-control" id="addLocationSearch"
                  ng-model="geocoding.search"
-                 placeholder="{{ 'location.form.search' | trans }}"/>
+                 placeholder="{{ 'location.form.search' | translate }}"/>
             </div>
             <ul>
                 <li ng-repeat="result in geocoding.results">
@@ -36,25 +36,25 @@
         <button type="button" class="cancel-add-location btn btn-default"
          ng-click="resetAddNewLocation()">
             <span class="glyphicon glyphicon-remove"></span>
-            {{ 'action.cancel' | trans }}
+            {{ 'action.cancel' | translate }}
         </button>
         <span class="pull-right">
             <button type="button" class="btn btn-default btn-add-location-previous"
              ng-show="addLocationStep > 1"
              ng-click="previousStep()">
                 <span class="glyphicon glyphicon-arrow-left"></span>
-                <span>{{ 'location.form.previous' | trans }}</span>
+                <span>{{ 'location.form.previous' | translate }}</span>
             </button>
             <button type="submit" class="btn btn-team btn-add-location-next"
              ng-disabled="!stepIsValid()"
              ng-click="nextStep()">
                 <span ng-hide="isLastStep()">
                     <span class="glyphicon glyphicon-arrow-right"></span>
-                    {{ 'location.form.next' | trans }}
+                    {{ 'location.form.next' | translate }}
                 </span>
                 <span ng-show="isLastStep()">
                     <span class="glyphicon glyphicon-ok"></span>
-                    {{ 'location.form.submit' | trans }}
+                    {{ 'location.form.submit' | translate }}
                 </span>
             </button>
         </span>

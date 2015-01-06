@@ -2,7 +2,7 @@
     <div class="well well-sm text-center clickable page-section" ng-if="scoreData" ng-click="showFullScore = !showFullScore">
         <div class="score-element">
             <div ng-repeat="scoreElem in ['score', 'users', 'captured', 'babies']" ng-show="scoreElem === 'score' || showFullScore">
-                <span>{{ 'score.' + scoreElem | trans }}</span>:
+                <span>{{ 'score.' + scoreElem | translate }}</span>:
                 <span ng-repeat="(team, score) in scoreData">
                     <span ng-if="$index > 0">:</span>
                     <span class="color-{{ team }}">{{ score[scoreElem] }}</span>

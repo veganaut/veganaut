@@ -3,9 +3,9 @@
         {{ location.name }}
         <small class="location-quality-label" ng-if="location.quality.numRatings > 0"
          tooltip-placement="bottom"
-         tooltip="{{ 'location.quality.explanation' | trans }}.
-         {{ 'location.rating.average' | trans }}: {{ location.quality.average | number:1 }},
-         {{ 'location.rating.numRatings' | trans }}: {{ location.quality.numRatings }}">
+         tooltip="{{ 'location.quality.explanation' | translate }}.
+         {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
+         {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
             <!-- TODO: this should go in a directive-->
             <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon"></span>
         </small>
@@ -15,24 +15,24 @@
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
     <p ng-if="location.description">
-        <strong>{{ 'location.label.description' | trans }}</strong><br />
+        <strong>{{ 'location.label.description' | translate }}</strong><br />
         <span class="location-description">{{ location.description }}</span>
     </p>
     <p ng-if="location.link">
-        <strong>{{ 'location.label.link' | trans }}</strong><br />
+        <strong>{{ 'location.label.link' | translate }}</strong><br />
         <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
     </p>
     <button ng-if="isLoggedIn()"
      type="button" class="edit-location btn btn-block btn-default"
      ng-click="goToView(location.getUrl(true))">
         <span class="glyphicon glyphicon-edit"></span>
-        <span ng-bind="'action.location.edit' | trans"></span>
+        <span ng-bind="'action.location.edit' | translate"></span>
     </button>
 
     <div>
-        <h2>{{ 'location.products.title' | trans }}</h2>
+        <h2>{{ 'location.products.title' | translate }}</h2>
         <div ng-if="location.products.length > 0">
-            <p>{{ 'location.products.description' | trans }}</p>
+            <p>{{ 'location.products.description' | translate }}</p>
             <ul>
                 <li ng-repeat="product in location.products">
                     {{ product.name }}
@@ -44,14 +44,14 @@
             </ul>
         </div>
         <p ng-if="location.products.length === 0">
-            <span ng-if="isLoggedIn()">{{ 'location.products.noProducts.user' | trans }}</span>
-            <span ng-if="!isLoggedIn()" ng-bind-html="'location.products.noProducts.anonymous' | trans:true"></span>
+            <span ng-if="isLoggedIn()">{{ 'location.products.noProducts.user' | translate }}</span>
+            <span ng-if="!isLoggedIn()" ng-bind-html="'location.products.noProducts.anonymous' | translate"></span>
         </p>
     </div>
 
     <div ng-if="visit.missions" class="location-missions" start-tour="locationUser">
-        <h2>{{ 'map.mission.title' | trans }}</h2>
-        <small class="pull-right">{{ 'score.points' | trans }}</small>
+        <h2>{{ 'map.mission.title' | translate }}</h2>
+        <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
         <div ng-repeat="mission in visit.missions|orderBy:'order'"
          ng-if="mission.completed || mission.isAvailable()"
@@ -60,7 +60,7 @@
                 <p class="h4 mission-title">
                     <vg-mission-points points="mission.points"></vg-mission-points>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
-                    {{ 'map.mission.' + mission.type + '.title' | trans }}
+                    {{ 'map.mission.' + mission.type + '.title' | translate }}
                 </p>
                 <div class="well-expansion text-center" ng-hide="mission.started">
                     <span class="glyphicon glyphicon-chevron-down"></span>
@@ -70,24 +70,24 @@
                 <div ng-show="mission.started">
                     <form novalidate name="outcomeForm" class="{{ mission.type }}-form">
                         <div ng-switch="mission.type">
-                            <p>{{ 'map.mission.' + mission.type + '.explanation' | trans }}</p>
-                            <p class="lead">{{ 'map.mission.' + mission.type + '.description' | trans }}</p>
+                            <p>{{ 'map.mission.' + mission.type + '.explanation' | translate }}</p>
+                            <p class="lead">{{ 'map.mission.' + mission.type + '.description' | translate }}</p>
                             <div ng-switch-when="hasOptions">
                                 <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-repeat="answer in mission.firstAnswers"
                                      ng-model="mission.outcome.first" btn-radio="answer">
-                                        {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
+                                        {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
                                     </label>
                                 </div>
                                 <div class="clearfix"></div>
                                 <div ng-show="mission.outcome.first === 'theyDoNotKnow'">
                                     <p class="lead">
-                                        {{ 'map.mission.' + mission.type + '.description2' | trans }}
+                                        {{ 'map.mission.' + mission.type + '.description2' | translate }}
                                     </p>
                                     <div class="btn-group form-group pull-right">
                                         <label class="btn btn-default" ng-repeat="answer in mission.secondAnswers"
                                          ng-model="mission.outcome.second" btn-radio="answer">
-                                            {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
+                                            {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
                                         </label>
                                     </div>
                                     <div class="clearfix"></div>
@@ -97,23 +97,23 @@
                                 <div class="checkbox" ng-repeat="expression in mission.builtinExpressions">
                                     <label>
                                         <input type="checkbox" ng-model="mission.outcome.builtin[expression]" />
-                                        {{ 'map.mission.' + mission.type + '.form.' + expression | trans }}
+                                        {{ 'map.mission.' + mission.type + '.form.' + expression | translate }}
                                     </label>
                                 </div>
-                                {{ 'map.mission.' + mission.type + '.form.custom' | trans }}
+                                {{ 'map.mission.' + mission.type + '.form.custom' | translate }}
                                 <vg-list-input list="mission.outcome.custom" num-required="0"
-                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
+                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="whatOptions">
                                 <div ng-if="mission.visit.location.products.length > 0">
-                                    {{ 'map.mission.' + mission.type + '.description2' | trans }}
+                                    {{ 'map.mission.' + mission.type + '.description2' | translate }}
                                     <ul>
                                         <li ng-repeat="product in mission.visit.location.products">{{ product.name }}</li>
                                     </ul>
                                 </div>
                                 <vg-list-input list="mission.outcome" num-required="1"
-                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}">
+                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
@@ -127,7 +127,7 @@
                             <div ng-switch-when="giveFeedback">
                                 <div class="form-group">
                                     <textarea class="form-control" required ng-model="mission.outcome"
-                                     placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | trans }}"></textarea>
+                                     placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}"></textarea>
                                 </div>
                             </div>
                             <div ng-switch-when="rateOptions">
@@ -154,7 +154,7 @@
                                 <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-repeat="answer in mission.possibleAnswers"
                                      ng-model="mission.outcome" btn-radio="answer">
-                                        {{ 'map.mission.' + mission.type + '.form.' + answer | trans }}
+                                        {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
                                     </label>
                                 </div>
                                 <div class="clearfix"></div>
@@ -164,12 +164,12 @@
                         <button type="button" class="btn btn-default"
                          ng-click="mission.toggleStarted()">
                             <span class="glyphicon glyphicon-remove"></span>
-                            {{ 'map.mission.missionForm.cancel' | trans }}
+                            {{ 'map.mission.missionForm.cancel' | translate }}
                         </button>
                         <button type="submit" class="btn btn-team pull-right"
                          ng-disabled="!mission.hasValidOutcome()" ng-click="mission.finish(); submitMission(mission)">
                             <span class="glyphicon glyphicon-ok"></span>
-                            {{ 'map.mission.missionForm.submit' | trans }}
+                            {{ 'map.mission.missionForm.submit' | translate }}
                         </button>
                         <div class="clearfix"></div>
                     </form>
@@ -179,14 +179,14 @@
             <div ng-if="mission.completed">
                 <div ng-switch="mission.type">
                     <div ng-switch-when="hasOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | translate }}
                     </div>
                     <div ng-switch-when="wantVegan">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
                         <ul>
                             <li ng-repeat="outcome in mission.getOutcome()">
                                 <span ng-if="outcome.expressionType === 'builtin'">
-                                    {{ 'map.mission.' + mission.type + '.form.' + outcome.expression | trans }}
+                                    {{ 'map.mission.' + mission.type + '.form.' + outcome.expression | translate }}
                                 </span>
                                 <span ng-if="outcome.expressionType === 'custom'">
                                     {{ outcome.expression }}
@@ -195,13 +195,13 @@
                         </ul>
                     </div>
                     <div ng-switch-when="whatOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
                         <ul>
                             <li ng-repeat="option in mission.outcome">{{ option }}</li>
                         </ul>
                     </div>
                     <div ng-switch-when="buyOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
                         <ul>
                             <li ng-repeat="outcome in mission.getOutcome()">
                                 {{ location.getProductById(outcome.product).name }}
@@ -210,12 +210,12 @@
                     </div>
                     <div ng-switch-when="giveFeedback">
                         <p>
-                            {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}<br />
+                            {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}<br />
                             <em>{{ mission.outcome }}</em>
                         </p>
                     </div>
                     <div ng-switch-when="rateOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
                         <ul>
                             <li ng-repeat="outcome in mission.getOutcome()">
                                 {{ location.getProductById(outcome.product).name }}
@@ -227,11 +227,11 @@
                         </ul>
                     </div>
                     <div ng-switch-when="offerQuality">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
                         <span class="icon icon-{{ mission.outcome }} h3"></span>
                     </div>
                     <div ng-switch-when="effortValue">
-                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | trans }}
+                        {{ 'map.mission.' + mission.type + '.outcome.' + mission.getOutcome() | translate }}
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@
         </div>
 
         <p class="h4">
-            {{ 'map.mission.totalPoints' | trans }}
+            {{ 'map.mission.totalPoints' | translate }}
             <vg-mission-points points="visit.getTotalPoints()"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
@@ -249,7 +249,7 @@
         <button type="button" class="to-map btn btn-block btn-default"
          ng-click="goToView('map')">
             <span class="glyphicon glyphicon-log-out"></span>
-            {{ 'action.location.backToMap' | trans }}
+            {{ 'action.location.backToMap' | translate }}
         </button>
     </p>
 

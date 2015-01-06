@@ -4,8 +4,11 @@
     "dependencies": {
         "angular": "1.3.0",
         "angular-route": "1.3.0",
+        "angular-sanitize": "1.3.0",
         "angular-ui-bootstrap-bower": "0.11.2",
         "angular-loading-bar": "0.6.0",
+        "angular-translate": "2.5.2",
+        "angular-translate-loader-static-files": "2.5.2",
         "angular-leaflet-directive": "0.7.9",
         "leaflet": "0.7.3",
         "d3": "3.4.13",

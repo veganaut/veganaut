@@ -2,33 +2,33 @@
     <!-- TODO: make a directive for rendering the paragraphs ? -->
     <!-- TODO: make a smart profile display (directive? partial?) to merge this here and the info at the bottom of the social graph -->
     <p>
-        <strong>{{ 'person.label.fullName' | trans }}</strong><br />
+        <strong>{{ 'person.label.fullName' | translate }}</strong><br />
         {{ me.fullName }}
     </p>
     <p>
-        <strong>{{ 'person.label.nickname' | trans }}</strong><br />
+        <strong>{{ 'person.label.nickname' | translate }}</strong><br />
         {{ me.nickname }}
     </p>
     <p>
-        <strong>{{ 'person.label.email' | trans }}</strong><br />
+        <strong>{{ 'person.label.email' | translate }}</strong><br />
         {{ me.email }}
     </p>
     <p>
-        <strong>{{ 'person.label.team' | trans }}</strong><br />
+        <strong>{{ 'person.label.team' | translate }}</strong><br />
         <vg-team-name team="me.team"></vg-team-name>
     </p>
     <!-- Social graph is not active at the moment
     <p>
-        <strong>{{ 'person.label.role' | trans }}</strong><br />
-        {{ 'person.role.' + me.role | trans }}
+        <strong>{{ 'person.label.role' | translate }}</strong><br />
+        {{ 'person.role.' + me.role | translate }}
     </p>
     <p>
-        <strong>{{ 'person.label.balance' | trans }}</strong><br />
+        <strong>{{ 'person.label.balance' | translate }}</strong><br />
         <span class="badge badge-team-{{me.team}}" ng-bind="me.strength"></span>
         <span class="badge badge-hits" ng-bind="me.hits"></span>
         <span ng-if="me.isCaptured" class="badge captured">
             <span class="glyphicon glyphicon-asterisk"></span>
-            <span ng-bind="'person.label.captured'|trans"></span>
+            <span ng-bind="'person.label.captured'|translate"></span>
         </span>
     </p>
     -->
@@ -36,5 +36,5 @@
 
 <button type="button" class="edit-profile btn btn-block btn-default" ng-click="goToView('me/edit')">
     <span class="glyphicon glyphicon-edit"></span>
-    <span ng-bind="'action.profile.edit'|trans"></span>
+    <span ng-bind="'action.profile.edit'|translate"></span>
 </button>

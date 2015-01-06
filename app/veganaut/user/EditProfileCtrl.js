@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.controller('EditProfileCtrl', ['$scope', 'alertService', 'playerService', 'translateService',
-        function($scope, alertService, playerService, trans) {
+    module.controller('EditProfileCtrl', ['$scope', '$translate', 'alertService', 'playerService',
+        function($scope, $translate, alertService, playerService) {
             playerService.getMe().then(function(me) {
                 $scope.form = {
                     fullName: me.fullName,
@@ -20,10 +20,10 @@
                 // TODO: improve how the form validates password and passwordRepeat are the same
                 playerService.updateMe(form.email, form.fullName, form.nickname, form.password)
                     .success(function() {
-                        alertService.addAlert(trans('message.profile.update.success'), 'success');
+                        alertService.addAlert($translate.instant('message.profile.update.success'), 'success');
                     })
                     .error(function() {
-                        alertService.addAlert(trans('message.profile.update.error'), 'danger');
+                        alertService.addAlert($translate.instant('message.profile.update.error'), 'danger');
                     })
                 ;
                 $scope.goToView('me');
