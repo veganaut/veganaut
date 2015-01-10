@@ -28,6 +28,12 @@
             $scope.visit = undefined;
             $scope.location = undefined;
 
+            /**
+             * List of people that have recently been active at this location
+             * @type {Array}
+             */
+            $scope.recentlyActiveVeganauts = [];
+
             $scope.submitMission = function(mission) {
                 var missionData = mission.toJson();
 
@@ -82,6 +88,20 @@
                     $scope.showMap = true;
                 }, 0);
             });
+
+            // If we are logged in, retrieve the recent missions
+            if (backendService.isLoggedIn()) {
+                backendService.getLocationMissionList(locationId).then(function(response) {
+                    // We only want a list of the people, no details
+                    var addedVeganauts = {};
+                    angular.forEach(response.data, function(mission) {
+                        if (addedVeganauts[mission.person.id] !== true) {
+                            $scope.recentlyActiveVeganauts.push(mission.person);
+                            addedVeganauts[mission.person.id] = true;
+                        }
+                    });
+                });
+            }
         }
     ]);
 })(window.veganaut.mapModule);

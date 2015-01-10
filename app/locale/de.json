@@ -187,7 +187,9 @@
     },
     "label": {
       "description": "Beschreibung",
-      "link": "Webseite"
+      "link": "Webseite",
+      "updatedAt": "Letzte Mission",
+      "recentMissionsBy": "Vor kurzem aktiv"
     },
     "rating": {
       "average": "Durchschnitt",
@@ -425,8 +427,7 @@
       }
     ]
   },
-  "mapSearch":
-  {
+  "mapSearch": {
     "form": {
       "title": "Verwende das Suchefeld um die gewünschte Location zu finden."
     }

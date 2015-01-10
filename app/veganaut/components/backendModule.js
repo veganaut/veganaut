@@ -284,6 +284,15 @@
             };
 
             /**
+             * Retrieves the recent missions at the given location
+             * @param {string} locationId
+             * @returns {HttpPromise}
+             */
+            BackendService.prototype.getLocationMissionList = function(locationId) {
+                return $http.get(backendUrl + '/location/' + locationId + '/mission/list');
+            };
+
+            /**
              * Send a password reset email
              * @param {string} email
              * @returns {HttpPromise}

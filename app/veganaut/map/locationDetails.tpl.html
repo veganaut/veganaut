@@ -15,11 +15,11 @@
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
     <p ng-if="location.description">
-        <strong>{{ 'location.label.description' | translate }}</strong><br />
+        <strong>{{ 'location.label.description' | translate }}</strong>:
         <span class="location-description">{{ location.description }}</span>
     </p>
     <p ng-if="location.link">
-        <strong>{{ 'location.label.link' | translate }}</strong><br />
+        <strong>{{ 'location.label.link' | translate }}</strong>:
         <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
     </p>
     <button ng-if="isLoggedIn()"
@@ -51,6 +51,16 @@
 
     <div ng-if="visit.missions" class="location-missions" start-tour="locationUser">
         <h2>{{ 'map.mission.title' | translate }}</h2>
+        <p ng-if="location.updatedAt">
+            <strong>{{ 'location.label.updatedAt' | translate }}</strong>:
+            {{ location.updatedAt | date:'dd.MM.yyyy' }}
+        </p>
+        <p ng-if="recentlyActiveVeganauts.length > 0">
+            <strong>{{ 'location.label.recentMissionsBy' | translate }}</strong>:
+        <span ng-repeat="person in recentlyActiveVeganauts">
+            <span class="color-{{ person.team }}">{{ person.nickname }}</span><span ng-hide="$last">,</span>
+        </span>
+        </p>
         <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
         <div ng-repeat="mission in visit.missions|orderBy:'order'"
