@@ -60,3 +60,8 @@ body {
     position: fixed;
     z-index: 1000;
 }
+
+// Make Bootstrap tour go behind the main menu
+.popover[class*="tour-"] {
+    z-index: 1025;
+}

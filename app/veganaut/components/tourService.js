@@ -37,29 +37,44 @@
             // Create all the tours
             for (var tourName in TOUR_CONFIG) {
                 if (TOUR_CONFIG.hasOwnProperty(tourName)) {
-                    var steps = angular.copy(TOUR_CONFIG[tourName]);
-
-                    // Add the title and content to the steps
-                    for (var i = 0; i < steps.length; i++) {
-                        steps[i].title = $translate.instant('tour.' + tourName + '.' + i + '.title');
-                        steps[i].content = $translate.instant('tour.' + tourName + '.' + i + '.content');
-                    }
-
                     // Instantiate the tour
                     tours[tourName] = new Tour({
                         name: tourName,
-                        orphan: true,
-                        steps: steps
+                        orphan: true
                     });
                 }
             }
 
             return {
                 startTour: function(tourName) {
-                    if (tours.hasOwnProperty(tourName)) {
-                        // Initialise and start the tour
-                        tours[tourName].init();
-                        tours[tourName].start();
+                    // Check if the tour exists and hasn't already been started
+                    if (tours.hasOwnProperty(tourName) && angular.isUndefined(tours[tourName].getCurrentStep())) {
+                        // Set up the steps
+                        var steps = angular.copy(TOUR_CONFIG[tourName]);
+
+                        // Prepare translation keys
+                        var toTranslate = [];
+                        for (var i = 0; i < steps.length; i++) {
+                            toTranslate.push('tour.' + tourName + '.' + i + '.title');
+                            toTranslate.push('tour.' + tourName + '.' + i + '.content');
+                        }
+
+                        // Wait for the translations
+                        $translate(toTranslate).then(function(translations) {
+                            // Add the title and content to the steps
+                            for (var i = 0; i < steps.length; i++) {
+                                steps[i].title = translations['tour.' + tourName + '.' + i + '.title'];
+                                steps[i].content = translations['tour.' + tourName + '.' + i + '.content'];
+                            }
+
+                            // Add the steps
+                            tours[tourName].addSteps(steps);
+
+                            // Initialise and start the tour
+                            tours[tourName].init();
+                            tours[tourName].start();
+                        });
+
                     }
                 }
             };

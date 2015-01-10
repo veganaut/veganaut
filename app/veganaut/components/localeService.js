@@ -93,7 +93,9 @@
              * @returns {string}
              */
             LocaleService.prototype.getLocale = function() {
-                return $translate.use();
+                // Return the proposed language if it exists (meaning it hasn't been loaded)
+                // or otherwise the actual used one
+                return $translate.proposedLanguage() || $translate.use();
             };
 
             return new LocaleService();
