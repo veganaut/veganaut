@@ -424,5 +424,10 @@
         "content": "Most of the missions can only be completed if you are at this location in real life."
       }
     ]
+  },
+  "mapSearch": {
+    "form": {
+      "title": "Use the search field to find your desired location."
+    }
   }
 }

@@ -424,5 +424,11 @@
         "content": "Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest."
       }
     ]
+  },
+  "mapSearch":
+  {
+    "form": {
+      "title": "Verwende das Suchefeld um die gewünschte Location zu finden."
+    }
   }
 }

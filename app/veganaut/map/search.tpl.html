@@ -3,10 +3,10 @@
         <span class="glyphicon glyphicon-remove"></span>
     </div>
     <div class="form-group">
-        <label for="addLocationSearch">{{ 'location.form.selectCoordinates' | translate }}</label>
+        <label for="addLocationSearch">{{ 'mapSearch.form.title' | translate }}</label>
         <input type="text" class="form-control" id="addLocationSearch"
-               ng-model="geocoding.search"
-               placeholder="{{ 'location.form.search' | translate }}"/>
+         ng-model="geocoding.search" ng-model-options="debounce: 500"
+         placeholder="{{ 'location.form.search' | translate }}"/>
     </div>
     <ul>
         <li ng-repeat="result in geocoding.results">

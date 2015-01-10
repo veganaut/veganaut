@@ -3,10 +3,9 @@
 
     // TODO: refactor (it's getting way too big!), document and add tests!!
     module.controller('MapCtrl', ['$scope', '$location', '$timeout', 'leafletData',
-        'playerService', 'Location', 'locationService', 'backendService', 'geocodeService',
+        'playerService', 'Location', 'locationService', 'backendService',
         function($scope, $location, $timeout, leafletData,
-            playerService, Location, locationService, backendService, geocodeService)
-        {
+            playerService, Location, locationService, backendService) {
             var player;
 
             /**
@@ -241,7 +240,7 @@
                 if ($scope.isAddingLocation) {
                     // When adding a new location, take the click
                     // as the coordinates of this new location
-                    setNewLocationCoordinates(
+                    $scope.setNewLocationCoordinates(
                         args.leafletEvent.latlng.lat,
                         args.leafletEvent.latlng.lng
                     );
@@ -307,7 +306,6 @@
             });
 
 
-
             // TODO: move the filter stuff to a separate controller
             /**
              * Map of recent filter values to the period of
@@ -316,8 +314,8 @@
              */
             var RECENT_FILTER_PERIOD = {
                 month: 4 * 7 * 24 * 3600000,
-                week:      7 * 24 * 3600000,
-                day:           24 * 3600000
+                week: 7 * 24 * 3600000,
+                day: 24 * 3600000
             };
 
             // Watch the active filters
