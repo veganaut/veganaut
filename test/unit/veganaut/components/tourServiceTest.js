@@ -7,11 +7,17 @@ describe('tourService', function() {
 
     beforeEach(module(function($provide) {
         TourMock = jasmine.createSpy('Tour');
-        tourInstanceMock = jasmine.createSpyObj('tour', ['init', 'start']);
+        tourInstanceMock = jasmine.createSpyObj('tour', ['init', 'start', 'getCurrentStep', 'addSteps']);
         TourMock.andReturn(tourInstanceMock);
 
         $provide.value('Tour', TourMock);
-        $provide.value('$translate', { instant: function() {}});
+        $provide.value('$translate', function() {
+            return {
+                then: function(cb) {
+                    cb({});
+                }
+            };
+        });
     }));
 
     it('should create a Tour on instantiation', inject(function(tourService) {
