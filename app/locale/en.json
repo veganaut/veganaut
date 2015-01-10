@@ -429,7 +429,7 @@
   },
   "mapSearch": {
     "form": {
-      "title": "Use the search field to find your desired location."
+      "title": "Search for locations on the map"
     }
   }
 }

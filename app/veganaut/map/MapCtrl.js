@@ -249,8 +249,9 @@
                     // When not adding a location, deselect currently active location
                     locationService.activate();
 
-                    // And hide the filters
+                    // And hide filters and search
                     $scope.showFilters(false);
+                    $scope.showSearch(false);
                 }
             };
 
