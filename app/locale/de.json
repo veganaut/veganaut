@@ -92,8 +92,6 @@
     },
     "map": {
       "addLocation": "Neue Location",
-      "editFilters": "Karte filtern",
-      "editFiltersWithActive": "Filter",
       "locationAction": "Location anschauen"
     },
     "location": {
