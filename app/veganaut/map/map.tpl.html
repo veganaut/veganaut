@@ -4,13 +4,13 @@
             <div class="col-xs-6">
                 <p>
                     <button class="btn btn-default btn-block front-register-btn" ng-click="goToView('register')"
-                     ng-hide="isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
+                            ng-hide="isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
                 </p>
             </div>
             <div class="col-xs-6">
                 <p>
                     <button class="btn btn-default btn-block front-login-btn" ng-click="goToView('login')"
-                     ng-hide="canViewGraph()" ng-bind="'navigation.login' | translate"></button>
+                            ng-hide="canViewGraph()" ng-bind="'navigation.login' | translate"></button>
                 </p>
             </div>
         </div>
@@ -21,6 +21,7 @@
             </div>
 
             <p class="color-{{ location.active.team }}"><strong>{{ location.active.name }}</strong></p>
+
             <p>
                 <vg-location-type-badge location="location.active"></vg-location-type-badge>
                 <vg-team-points-display location="location.active"></vg-team-points-display>
@@ -28,7 +29,7 @@
 
             <p ng-show="location.active.id">
                 <button type="button" class="btn btn-block btn-team"
-                 ng-click="visitLocation(location.active)">
+                        ng-click="visitLocation(location.active)">
                     <span class="glyphicon glyphicon-log-in"></span>
                     <span ng-bind="'action.map.locationAction'|translate"></span>
                 </button>
@@ -36,41 +37,41 @@
         </div>
 
         <div ng-if="isLoggedIn()" start-tour="mapUser">
-            <div class="row" ng-hide="location.active || filtersShown">
+            <div class="row" ng-hide="location.active || filtersShown || searchShown">
                 <div class="col-xs-6">
                     <p>
                         <button type="button" class="add-location btn btn-block btn-team"
-                         ng-click="startAddNewLocation()">
+                                ng-click="startAddNewLocation()">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <span ng-bind="'action.map.addLocation'|translate"></span>
                         </button>
                     </p>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-3">
+                    <p>
+                        <button type="button" class="search btn btn-block btn-default" ng-click="showSearch(true)">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+
+                    </p>
+                </div>
+                <div class="col-xs-3">
                     <p>
                         <button type="button" class="btn-show-location-filters btn btn-block btn-default"
-                         ng-click="showFilters(true)">
+                                ng-click="showFilters(true)">
                             <span class="glyphicon glyphicon-filter"></span>
-                            <span ng-hide="numActiveFilters() > 0">
-                                {{ 'action.map.editFilters' | translate }}
-                            </span>
-                            <span ng-show="numActiveFilters() > 0">
-                                {{ 'action.map.editFiltersWithActive' | translate }}
-                                <span class="badge" tooltip="{{ 'map.filter.activeFilters.explanation' | translate }}">
-                                    {{ numActiveFilters() }}
-                                </span>
-                            </span>
                         </button>
                     </p>
                 </div>
             </div>
 
             <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
+            <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>
             <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
         </div>
     </div>
 
     <leaflet class="main-map full-viewport"
-     defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
+             defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
     </leaflet>
 </div>

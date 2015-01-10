@@ -90,6 +90,12 @@
             $scope.filtersShown = false;
 
             /**
+             * whether to show search
+             * @type {boolean}
+             */
+            $scope.searchShown = false;
+
+            /**
              * List of active filters
              * @type {{}}
              */
@@ -120,6 +126,18 @@
                 }
 
                 $scope.filtersShown = !!show;
+            };
+
+            /**
+             * Sets whether the search is shown
+             * @param {boolean} [show=true]
+             */
+            $scope.showSearch = function(show) {
+                if (typeof show === 'undefined') {
+                    show = true;
+                }
+
+                $scope.searchShown = !!show;
             };
 
             /**
@@ -198,7 +216,7 @@
              * @param {number} lat
              * @param {number} lng
              */
-            var setNewLocationCoordinates = function(lat, lng) {
+            $scope.setNewLocationCoordinates = function(lat, lng) {
                 if ($scope.isAddingLocation) {
                     // Set the coordinates
                     $scope.newLocation.setLatLng(lat, lng);
@@ -257,6 +275,9 @@
                 }
             };
 
+            // Get a reference the the leaflet map object
+            var mapPromise = leafletData.getMap();
+
             // Register event handlers
             $scope.$on('leafletDirectiveMap.click', mapClickHandler);
 
@@ -285,62 +306,7 @@
                 locationService.saveMapCenter();
             });
 
-            // Geocoding search string model and results
-            $scope.geocoding = {
-                search: '',
-                results: []
-            };
 
-            // Get a reference the the leaflet map object
-            var mapPromise = leafletData.getMap();
-
-            /**
-             * Selects the given geocode result as the coordinates
-             * for the new location
-             * @param {GeocodeResult} result
-             */
-            $scope.setGeocodeResult = function(result) {
-                // Set coordinates
-                setNewLocationCoordinates(
-                    result.lat,
-                    result.lng
-                );
-
-                // Fit to the bounds of the result
-                if (angular.isArray(result.bounds)) {
-                    mapPromise.then(function(map) {
-                        map.fitBounds(result.bounds);
-                    });
-                }
-            };
-
-            // Watch the geocoding search string
-            var searchTimeout;
-            $scope.$watch('geocoding.search', function(search) {
-                // TODO: move constants somewhere else
-                if (!angular.isString(search) || search.length < 4) {
-                    return;
-                }
-
-                // Cancel timeout if it's already started
-                if (angular.isObject(searchTimeout)) {
-                    $timeout.cancel(searchTimeout);
-                }
-
-                // Start a timeout to look up the search string
-                searchTimeout = $timeout(function() {
-                    // Reset results and timeout
-                    $scope.geocoding.results = [];
-                    searchTimeout = undefined;
-
-                    // Lookup the search string
-                    geocodeService.search($scope.geocoding.search)
-                        .then(function(data) {
-                            $scope.geocoding.results = data;
-                        })
-                    ;
-                }, 500);
-            });
 
             // TODO: move the filter stuff to a separate controller
             /**
