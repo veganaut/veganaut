@@ -61,8 +61,10 @@
             // Expose the location service
             $scope.location = locationService;
 
-            // Expose the map settings
+            // Expose map settings and filters from the service
             $scope.mapSettings = locationService.mapSettings;
+            $scope.activeFilters = locationService.activeFilters;
+            $scope.POSSIBLE_FILTERS = locationService.POSSIBLE_FILTERS;
 
             /**
              * Expose the location types
@@ -93,27 +95,6 @@
              * @type {boolean}
              */
             $scope.searchShown = false;
-
-            /**
-             * List of active filters
-             * @type {{}}
-             */
-            $scope.activeFilters = {
-                recent: 'anytime'
-            };
-
-            /**
-             * Possible filter options for all the available filters
-             * @type {{recent: string[]}}
-             */
-            $scope.possibleFilters = {
-                recent: [
-                    'anytime',
-                    'month',
-                    'week',
-                    'day'
-                ]
-            };
 
             /**
              * Sets whether the filters are shown
@@ -291,6 +272,9 @@
                         location.marker.on('click', locationClickHandler);
                         location.marker.addTo(map);
                     });
+
+                    // Apply the current filter value
+                    applyRecentFilter($scope.activeFilters.recent);
                 });
             });
 
@@ -317,11 +301,14 @@
             var RECENT_FILTER_PERIOD = {
                 month: 4 * 7 * 24 * 3600000,
                 week: 7 * 24 * 3600000,
-                day: 24 * 3600000
+                day: 24 * 3600000 * 0.001
             };
 
-            // Watch the active filters
-            $scope.$watch('activeFilters.recent', function(recentFilter) {
+            /**
+             * Runs the locations through the given recent filter
+             * @param recentFilter
+             */
+            var applyRecentFilter = function(recentFilter) {
                 var showAll = (recentFilter === 'anytime');
                 var recentDate;
                 if (!showAll) {
@@ -333,7 +320,10 @@
                     var hideIt = (!showAll && location.updatedAt < recentDate);
                     location.setHidden(hideIt);
                 });
-            });
+            };
+
+            // Watch the active filters
+            $scope.$watch('activeFilters.recent', applyRecentFilter);
         }
     ]);
 })(window.veganaut.mapModule);

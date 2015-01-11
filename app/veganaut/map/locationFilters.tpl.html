@@ -4,7 +4,7 @@
     </div>
     <div><label>{{ 'map.filters.recent.title' | translate }}</label></div>
     <div class="btn-group form-group">
-        <label class="btn btn-default" ng-repeat="filter in possibleFilters.recent"
+        <label class="btn btn-default" ng-repeat="filter in POSSIBLE_FILTERS.recent"
          ng-model="activeFilters.recent" btn-radio="filter">
             {{ 'map.filters.recent.form.' + filter | translate }}
         </label>

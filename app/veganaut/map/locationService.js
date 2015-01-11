@@ -6,6 +6,11 @@
             var GEO_IP_ZOOM = 10;
             var MAP_CENTER_STORAGE_ID = 'veganautMapCenter';
 
+            /**
+             * Service to handle all things related to locations on the map
+             * and the map itself.
+             * @constructor
+             */
             var LocationService = function() {
                 /**
                  * Deferred that stores the locations
@@ -21,6 +26,14 @@
                 this.active = undefined;
 
                 /**
+                 * List of active filters
+                 * @type {{}}
+                 */
+                this.activeFilters = {
+                    recent: 'anytime'
+                };
+
+                /**
                  * Main map settings:
                  *  - current center of the map
                  *  - leaflet "defaults" settings
@@ -33,6 +46,19 @@
                 };
 
                 this._setMapCenter();
+            };
+
+            /**
+             * Possible filter options for all the available filters
+             * @type {{recent: string[]}}
+             */
+            LocationService.prototype.POSSIBLE_FILTERS = {
+                recent: [
+                    'anytime',
+                    'month',
+                    'week',
+                    'day'
+                ]
             };
 
             /**
