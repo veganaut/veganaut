@@ -268,8 +268,9 @@
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
 
-                            // Hide the filters
+                            // Hide the filters and search
                             $scope.showFilters(false);
+                            $scope.showSearch(false);
                         });
                     }
                 }

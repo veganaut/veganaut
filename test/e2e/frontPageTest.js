@@ -24,7 +24,7 @@ describe('frontPage.', function() {
 
     it('should have a register and login button.', function() {
         expect(element(by.css('button.front-register-btn')).isPresent()).toBe(true, 'has a register button');
-        expect(element(by.css('button.front-login-btn')).isPresent()).toBe(true, 'has a login button');
+        expect(element(by.css('button.navbar-btn-login')).isPresent()).toBe(true, 'has a login button');
     });
 
     it('should show the intro tour on the front page.', function() {
