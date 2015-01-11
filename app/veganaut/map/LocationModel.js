@@ -251,6 +251,7 @@
                 this.quality = newData.quality;
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
+                this.updatedAt = newData.updatedAt;
                 this._updateMarker();
                 this.setLatLng(newData.lat, newData.lng);
 

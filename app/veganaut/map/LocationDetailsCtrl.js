@@ -34,6 +34,12 @@
              */
             $scope.recentlyActiveVeganauts = [];
 
+            /**
+             * Whether the current user is already on the recently active list
+             * @type {boolean}
+             */
+            var currentUserIsRecentlyActive = false;
+
             $scope.submitMission = function(mission) {
                 var missionData = mission.toJson();
 
@@ -58,6 +64,25 @@
                         locationService.getLocation(locationId).then(function(newLocationData) {
                             $scope.location.update(newLocationData);
                         });
+
+                        // Make sure the user is in the list of active Veganauts
+                        if (!currentUserIsRecentlyActive) {
+                            playerService.getMe().then(function(me) {
+                                // Check if the user is already in the list
+                                for (var i = 0; i < $scope.recentlyActiveVeganauts.length; i++) {
+                                    if (me.id === $scope.recentlyActiveVeganauts[i].id) {
+                                        currentUserIsRecentlyActive = true;
+                                        break;
+                                    }
+                                }
+
+                                // If the user is not in the list, add him/her
+                                if (!currentUserIsRecentlyActive) {
+                                    $scope.recentlyActiveVeganauts.unshift(me);
+                                    currentUserIsRecentlyActive = true;
+                                }
+                            });
+                        }
                     })
                     .error(function(data) {
                         alertService.addAlert($translate.instant('message.mission.error') + data.error, 'danger');
