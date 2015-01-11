@@ -16,52 +16,45 @@
             <p ng-show="location.active.id">
                 <button type="button" class="btn btn-block btn-team"
                  ng-click="visitLocation(location.active)">
-                    <span class="glyphicon glyphicon-log-in"></span>
+                    <span class="glyphicon glyphicon-hand-right"></span>
                     <span ng-bind="'action.map.locationAction'|translate"></span>
                 </button>
             </p>
         </div>
 
-
         <div class="row" ng-hide="location.active || filtersShown || searchShown">
-            <div start-tour="introBeta" ng-if="!isLoggedIn()">
-                <div class="col-xs-6">
-                    <p>
-                        <button class="btn btn-default btn-block front-register-btn" ng-click="goToView('register')"
-                         ng-hide="isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
-                    </p>
-                </div>
+            <div ng-if="!isLoggedIn()" start-tour="introBeta" class="col-xs-6">
+                <p>
+                    <button class="btn btn-default btn-block front-register-btn"ng-click="goToView('register')"
+                     ng-hide="isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
+                </p>
             </div>
-
-            <div ng-if="isLoggedIn()" start-tour="mapUser">
-                <div class="col-xs-6">
-                    <p>
-                        <button type="button" class="add-location btn btn-block btn-team "
-                         ng-click="startAddNewLocation()">
-                            <span class="glyphicon glyphicon-plus-sign"></span>
-                            <span ng-bind="'action.map.addLocation'|translate"></span>
-                        </button>
-                    </p>
-                </div>
+            <div ng-if="isLoggedIn()" start-tour="mapUser" class="col-xs-6">
+                <p>
+                    <button type="button" class="add-location btn btn-block btn-team "
+                     ng-click="startAddNewLocation()">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        <span ng-bind="'action.map.addLocation'|translate"></span>
+                    </button>
+                </p>
             </div>
             <div class="col-xs-3">
                 <p>
-                    <button type="button" class="search btn btn-block btn-default" ng-click="showSearch(true)">
+                    <button type="button" class="search btn btn-block btn-default" ng-click="showSearch(true)"
+                     title="{{ 'action.map.searchMap' | translate }}">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
-
                 </p>
             </div>
             <div class="col-xs-3">
                 <p>
                     <button type="button" class="btn-show-location-filters btn btn-block btn-default"
-                     ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}">
+                     ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
+                     title="{{ 'action.map.filterMap' | translate }}">
                         <span class="glyphicon glyphicon-filter"></span>
                     </button>
                 </p>
             </div>
-
-
         </div>
         <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
         <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>

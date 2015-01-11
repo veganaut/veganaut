@@ -1,12 +1,15 @@
 <form novalidate name="locationForm" class="location-form">
+    <div class="close-top-box clickable" ng-click="resetAddNewLocation()">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
     <div ng-switch="addLocationStep">
         <div ng-switch-when="1" class="form-group">
-            <label for="addLocationName">{{ 'location.form.name' | translate }}</label>
+            <label class="top-box-first-line" for="addLocationName">{{ 'location.form.name' | translate }}</label>
             <input type="text" required class="form-control" id="addLocationName"
              ng-model="newLocation.name" />
         </div>
         <div ng-switch-when="2" class="form-group">
-            <label>{{ 'location.form.type' | translate }}</label>
+            <label class="top-box-first-line">{{ 'location.form.type' | translate }}</label>
             <div>
                 <div class="btn-group">
                     <label class="btn btn-default" ng-repeat="type in locationTypes"
@@ -18,7 +21,9 @@
         </div>
         <div ng-switch-when="3" ng-controller="SearchCtrl">
             <div class="form-group">
-                <label for="addLocationSearch">{{ 'location.form.selectCoordinates' | translate }}</label>
+                <label class="top-box-first-line" for="addLocationSearch">
+                    {{ 'location.form.selectCoordinates' | translate }}
+                </label>
                 <input type="text" class="form-control" id="addLocationSearch"
                  ng-model="geocoding.search"
                  placeholder="{{ 'location.form.search' | translate }}"/>
@@ -33,11 +38,6 @@
         </div>
     </div>
     <p>
-        <button type="button" class="cancel-add-location btn btn-default"
-         ng-click="resetAddNewLocation()">
-            <span class="glyphicon glyphicon-remove"></span>
-            {{ 'action.cancel' | translate }}
-        </button>
         <span class="pull-right">
             <button type="button" class="btn btn-default btn-add-location-previous"
              ng-show="addLocationStep > 1"
@@ -58,5 +58,6 @@
                 </span>
             </button>
         </span>
+        <span class="clearfix"></span>
     </p>
 </form>

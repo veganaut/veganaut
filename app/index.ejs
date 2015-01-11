@@ -23,6 +23,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <button type="button" class="btn btn-link navbar-btn-login"
+                 ng-click="goToView('login')" ng-if="!isLoggedIn()" title="{{ 'navigation.login' | translate }}">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                </button>
                 <span class="navbar-brand clickable color-team" ng-click="goToView('')">
                     {{ 'app.title' | translate }}
                 </span>
@@ -45,9 +49,15 @@
                 <button class="btn btn-default btn-block nav-register" ng-click="goToView('register')"
                  ng-if="!isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
                 <button class="btn btn-default btn-block nav-login" ng-click="goToView('login')"
-                 ng-if="!canViewGraph()" ng-bind="'navigation.login' | translate"></button>
+                 ng-if="!canViewGraph()">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    {{ 'navigation.login' | translate }}
+                </button>
                 <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.logout' | translate"></button>
+                 ng-if="isLoggedIn()">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    {{ 'navigation.logout' | translate }}
+                </button>
 
                 <div class="row navbar-footer">
                     <div class="col-xs-6 col-sm-4 text-center">

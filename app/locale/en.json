@@ -92,6 +92,8 @@
     },
     "map": {
       "addLocation": "New location",
+      "searchMap": "Search on the map",
+      "filterMap": "Filter locations on the map",
       "locationAction": "Check out location"
     },
     "location": {

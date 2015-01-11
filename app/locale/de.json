@@ -92,6 +92,8 @@
     },
     "map": {
       "addLocation": "Neue Location",
+      "searchMap": "Auf der Karte suchen",
+      "filterMap": "Orte auf der Karte filtern",
       "locationAction": "Location anschauen"
     },
     "location": {
