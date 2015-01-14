@@ -136,8 +136,10 @@
                 };
 
 
-                // Get the available width and set it as size of the square
-                var size = element[0].clientWidth;
+                // Get the available width and height for the svg
+                // TODO: should resize when browser window is resized
+                var width = element[0].clientWidth;
+                var height = element[0].clientHeight;
 
                 var svgContainer = d3.select(element[0]);
                 var svg;
@@ -153,10 +155,10 @@
                     for (var i = 0; i < nodes.length; i++) {
                         var node = nodes[i];
                         if (angular.isNumber(node.coordX) && !angular.isNumber(node.x)) {
-                            node.x = node.coordX * size;
+                            node.x = node.coordX * width;
                         }
                         if (angular.isNumber(node.coordY) && !angular.isNumber(node.y)) {
-                            node.y = node.coordY * size;
+                            node.y = node.coordY * height;
                         }
 
                         // The 'me' node should never move
@@ -168,7 +170,7 @@
                     var force = d3.layout.force()
                         .charge(-800)
                         .linkDistance(100)
-                        .size([size, size]);
+                        .size([width, height]);
 
                     var zoom = d3.behavior.zoom()
                         .on('zoom', function() {
@@ -187,13 +189,14 @@
                     if (typeof svg === 'undefined') {
                         // Setup the svg for the first time
                         svg = svgContainer.append('svg')
-                            .attr('width', size)
-                            .attr('height', size)
+                            .attr('width', width)
+                            .attr('height', height)
                             .attr('class', 'graph-svg')
                             .call(zoom)
                             .append('g');
 
                         // Add some end-marker style
+                        // TODO: these are not working
                         svg.append('defs').selectAll('marker')
                             .data(['pointerToSmall', 'pointerToBig'])
                             .enter().append('marker')
@@ -277,8 +280,8 @@
                     svg.append('circle')
                         .attr('class', 'me-marker')
                         .attr('r', 4)
-                        .attr('cx', size / 2) // The me node is always exactly in the middle
-                        .attr('cy', size / 2)
+                        .attr('cx', width / 2) // The me node is always exactly in the middle
+                        .attr('cy', height / 2)
                         .on('click', function() {
                             // Pass clicks through to the me node
                             onNodeClick(meNode.data()[0]);

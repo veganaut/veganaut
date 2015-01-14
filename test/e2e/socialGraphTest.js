@@ -1,10 +1,9 @@
-/* global protractor, describe, xdescribe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 
-// Social graph is not active at the moment
-xdescribe('socialGraph.', function() {
+describe('socialGraph.', function() {
     var ptor;
 
     // TODO: code duplication with other tests

@@ -46,7 +46,7 @@ describe('register.', function() {
         expect(alerts.count()).toBe(0, 'can close alert');
 
 
-        // Social graph is not active at the moment
+        // TODO: uncomment this now that we have social graph again?
 //        // Should show a social graph with me and two dummies and no connections
 //        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
 //        expect(element.all(by.css('social-graph .node')).count()).toBe(3, 'total nodes');

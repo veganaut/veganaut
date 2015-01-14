@@ -1,11 +1,10 @@
-/* global protractor, describe, xdescribe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 var elements = helpers.elements;
 
-// Social graph is not active at the moment
-xdescribe('referenceCodes.', function() {
+describe('referenceCodes.', function() {
     var ptor;
 
     beforeEach(function() {

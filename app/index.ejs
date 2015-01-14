@@ -35,14 +35,13 @@
                 <!-- TODO: make a nav component to get rid of duplication here -->
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
                  ng-bind="'navigation.map' | translate"></button>
-                <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
-                 ng-if="isLoggedIn()" ng-bind="'navigation.score' | translate"></button>
-                <!-- Social graph is not active at the moment
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>
                 <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
                  ng-bind="'navigation.activities' | translate"></button>
-                -->
+
+                <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
+                 ng-if="isLoggedIn()" ng-bind="'navigation.score' | translate"></button>
                 <button class="btn btn-default btn-block nav-profile" ng-click="goToView('me')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.profile' | translate"></button>
 

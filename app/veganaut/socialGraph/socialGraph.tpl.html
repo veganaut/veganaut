@@ -1,13 +1,15 @@
 <div class="top-box container main-container">
     <div class="text-center" ng-show="selectedNode">
-        <p>
-            <span class="badge badge-team-{{selectedNode.team}}">
-                <span class="glyphicon glyphicon-eye-open"></span>
-                <span ng-bind="selectedNode.fullName"></span>
+        <div class="pull-right clickable" ng-click="selectedNode = undefined">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <p class="color-{{ selectedNode.team }}">
+            <strong>
+                {{ selectedNode.fullName }}
                 <span ng-show="selectedNode.nickname">
-                    (<span ng-bind="selectedNode.nickname"></span>)
+                    ({{ selectedNode.nickname }})
                 </span>
-            </span>
+            </strong>
         </p>
         <p>
             <span ng-hide="selectedNode.isDummy()" class="badge">
@@ -50,7 +52,7 @@
     <!-- TODO: Create integration tests for all that -->
     <p>
         <button type="button" class="add-activity btn btn-block btn-team" ng-click="createActivityOnNode(selectedNode)">
-            <span class="glyphicon glyphicon-play"></span>
+            <span class="glyphicon glyphicon-hand-right"></span>
             <span ng-switch="canCreateActivityWith(selectedNode)">
                 <span ng-switch-when="true">
                     <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|translate"></span>
@@ -64,8 +66,6 @@
     </p>
 </div>
 
-<div class="page-section">
-    <social-graph class="social-graph" selected-node="selectedNode" selected-link="selectedLink"></social-graph>
-</div>
-
-<div ng-include="'/veganaut/score/match.tpl.html'"></div>
+<social-graph class="social-graph full-viewport"
+ selected-node="selectedNode"
+ selected-link="selectedLink"></social-graph>
