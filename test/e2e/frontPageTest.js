@@ -27,7 +27,8 @@ describe('frontPage.', function() {
         expect(element(by.css('button.navbar-btn-login')).isPresent()).toBe(true, 'has a login button');
     });
 
-    it('should show the intro tour on the front page.', function() {
+    // TODO: temporarily disabled all tours
+    xit('should show the intro tour on the front page.', function() { // jshint ignore:line
         ptor.sleep(500);
         var tour = element(by.css('.tour-introBeta'));
         expect(tour.isPresent()).toBe(true, 'has tour-introBeta');

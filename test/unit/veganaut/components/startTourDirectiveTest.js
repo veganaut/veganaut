@@ -1,6 +1,6 @@
 'use strict';
 
-/* global describe, beforeEach, it, expect, inject, jasmine */
+/* global describe, beforeEach, xit, expect, inject, jasmine */
 describe('startTourDirective', function() {
     var tourServiceMock;
     beforeEach(module('veganaut.app.main'));
@@ -11,7 +11,8 @@ describe('startTourDirective', function() {
         $provide.value('tourService', tourServiceMock);
     }));
 
-    it('should tell the tourService to start the tour', inject(function($compile, $rootScope) {
+    // TODO: temporarily disabled all tours
+    xit('should tell the tourService to start the tour', inject(function($compile, $rootScope) { // jshint ignore:line
         $compile('<span start-tour="testTour"></span>')($rootScope);
 
         expect(tourServiceMock.startTour).toHaveBeenCalled();
