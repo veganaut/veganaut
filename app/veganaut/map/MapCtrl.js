@@ -129,6 +129,10 @@
                 if ($scope.activeFilters.recent !== 'anytime') {
                     active += 1;
                 }
+                if ($scope.activeFilters.type !== 'anytype') {
+                    active += 1;
+                }
+
                 return active;
             };
 
@@ -275,6 +279,7 @@
 
                     // Apply the current filter value
                     applyRecentFilter($scope.activeFilters.recent);
+                    applyTypeFilter($scope.activeFilters.type);
                 });
             });
 
@@ -322,8 +327,19 @@
                 });
             };
 
+            var applyTypeFilter = function(typeFilter) {
+                var showAll = (typeFilter === 'anytype');
+                
+                // Go through all the locations and filter them
+                angular.forEach(locations, function(location) {
+                    var hideIt = (!showAll && location.type !== typeFilter);
+                    location.setHidden(hideIt);
+                });
+            };
+
             // Watch the active filters
             $scope.$watch('activeFilters.recent', applyRecentFilter);
+            $scope.$watch('activeFilters.type', applyTypeFilter);
         }
     ]);
 })(window.veganaut.mapModule);

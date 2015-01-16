@@ -30,7 +30,8 @@
                  * @type {{}}
                  */
                 this.activeFilters = {
-                    recent: 'anytime'
+                    recent: 'anytime',
+                    type: 'anytype'
                 };
 
                 /**
@@ -58,7 +59,13 @@
                     'month',
                     'week',
                     'day'
+                ],
+                type: [
+                    'anytype',
+                    'gastronomy',
+                    'retail'
                 ]
+
             };
 
             /**
