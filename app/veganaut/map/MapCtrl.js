@@ -329,7 +329,7 @@
 
             /**
              * Runs the locations through the given type filter
-             * @param recentFilter
+             * @param typeFilter
              */
             var applyTypeFilter = function(typeFilter) {
                 var showAll = (typeFilter === 'anytype');
