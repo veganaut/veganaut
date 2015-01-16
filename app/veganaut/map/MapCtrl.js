@@ -327,9 +327,12 @@
                 });
             };
 
+            /**
+             * Runs the locations through the given type filter
+             * @param recentFilter
+             */
             var applyTypeFilter = function(typeFilter) {
                 var showAll = (typeFilter === 'anytype');
-                
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
                     var hideIt = (!showAll && location.type !== typeFilter);
