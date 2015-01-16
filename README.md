@@ -16,30 +16,27 @@ After that checkout veganaut and veganaut-backend:
     git clone https://github.com/veganaut/veganaut.git
     git clone https://github.com/veganaut/veganaut-backend.git
 
-Install the dependencies using npm:
+Install the dependencies using npm and let the post install script create a config
+file for the backend in `veganaut-backend/app/config.js`:
 
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
-
-Create a backend config file from the example:
-
-    cp veganaut-backend/app/config-example.js veganaut-backend/app/config.js
-
-Start all the things:
-
-    cd veganaut; ./scripts/run-all.sh
 
 Load the fixtures:
 
     cd veganaut-backend; node ./test/fixtures/basic.js
 
-Compile less:
+Start all the things:
 
-    cd veganaut; ./node_modules/.bin/lessc app/less/master.less > app/css/master.css
+    cd veganaut; ./scripts/run-all.sh
 
 This will do the following:
 
 * Start MongoDB if it isn't already started
+* Run `gulp dev` which creates the index.html file from index.ejs and compiles the less files
+    * Note that at the moment there is no gulp watch task, so if you change index.ejs or any of the less files,
+      you have to run `./node_modules/.bin/gulp dev` manually. If you use PHP/WebStorm,
+      there is also a file watcher that recompiles the less files.
 * Start the frontend web server: [http://localhost:8000/](http://localhost:8000/)
 * Start the backend. [Supervisor](https://github.com/isaacs/node-supervisor) will automatically restart
 the backend when the code is edited.
