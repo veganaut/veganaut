@@ -173,6 +173,16 @@
             };
 
             /**
+             * Returns whether the current location is hidden
+             * @returns boolean
+             */
+
+            Location.prototype.isHidden = function() {
+                return this._hidden;
+            };
+
+
+            /**
              * Returns an array of all the points starting with the highest:
              * { team: 'color', points: 100 }
              * @returns {{}}
