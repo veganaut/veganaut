@@ -321,9 +321,11 @@
 
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
-                    var hideIt = (!showAll && location.updatedAt < recentDate);
-                    if(!location.isHidden())
+                    // Only apply the filter if the location is not already hidden
+                    if (!location.isHidden()) {
+                        var hideIt = (!showAll && location.updatedAt < recentDate);
                         location.setHidden(hideIt);
+                    }
                 });
             };
 
@@ -335,9 +337,11 @@
                 var showAll = (typeFilter === 'anytype');
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
-                    var hideIt = (!showAll && location.type !== typeFilter);
-                    if(!location.isHidden())
+                    // Only apply the filter if the location is not already hidden
+                    if (!location.isHidden()) {
+                        var hideIt = (!showAll && location.type !== typeFilter);
                         location.setHidden(hideIt);
+                    }
                 });
             };
 
@@ -346,13 +350,17 @@
              * Add new filters to this function
              * @param typeFilter
              */
-            var applyFilters = function(filters){
+            var applyFilters = function(filters) {
+                // First show all the locations
+                // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
                 angular.forEach(locations, function(location) {
                     location.setHidden(false);
                 });
+
+                // Then run the filters
                 _applyRecentFilter(filters.recent);
                 _applyTypeFilter(filters.type);
-            }
+            };
 
             // Watch the active filters
             $scope.$watch('activeFilters', applyFilters, true);
