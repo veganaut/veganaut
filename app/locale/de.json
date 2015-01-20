@@ -229,6 +229,14 @@
           "week": "Woche",
           "day": "Tag"
         }
+      },
+      "type": {
+        "title": "Filter for location type",
+        "form": {
+          "anytype": "Anytype",
+          "gastronomy": "Gastronomy",
+          "retail": "Retail"
+        }
       }
     },
     "mission": {

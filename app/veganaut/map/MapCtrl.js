@@ -129,6 +129,10 @@
                 if ($scope.activeFilters.recent !== 'anytime') {
                     active += 1;
                 }
+                if ($scope.activeFilters.type !== 'anytype') {
+                    active += 1;
+                }
+
                 return active;
             };
 
@@ -274,7 +278,7 @@
                     });
 
                     // Apply the current filter value
-                    applyRecentFilter($scope.activeFilters.recent);
+                    applyFilters($scope.activeFilters);
                 });
             });
 
@@ -308,7 +312,7 @@
              * Runs the locations through the given recent filter
              * @param recentFilter
              */
-            var applyRecentFilter = function(recentFilter) {
+            var _applyRecentFilter = function(recentFilter) {
                 var showAll = (recentFilter === 'anytime');
                 var recentDate;
                 if (!showAll) {
@@ -317,13 +321,49 @@
 
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
-                    var hideIt = (!showAll && location.updatedAt < recentDate);
-                    location.setHidden(hideIt);
+                    // Only apply the filter if the location is not already hidden
+                    if (!location.isHidden()) {
+                        var hideIt = (!showAll && location.updatedAt < recentDate);
+                        location.setHidden(hideIt);
+                    }
                 });
             };
 
+            /**
+             * Runs the locations through the given type filter
+             * @param typeFilter
+             */
+            var _applyTypeFilter = function(typeFilter) {
+                var showAll = (typeFilter === 'anytype');
+                // Go through all the locations and filter them
+                angular.forEach(locations, function(location) {
+                    // Only apply the filter if the location is not already hidden
+                    if (!location.isHidden()) {
+                        var hideIt = (!showAll && location.type !== typeFilter);
+                        location.setHidden(hideIt);
+                    }
+                });
+            };
+
+            /**
+             * Runs the locations through all the filters
+             * Add new filters to this function
+             * @param typeFilter
+             */
+            var applyFilters = function(filters) {
+                // First show all the locations
+                // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
+                angular.forEach(locations, function(location) {
+                    location.setHidden(false);
+                });
+
+                // Then run the filters
+                _applyRecentFilter(filters.recent);
+                _applyTypeFilter(filters.type);
+            };
+
             // Watch the active filters
-            $scope.$watch('activeFilters.recent', applyRecentFilter);
+            $scope.$watch('activeFilters', applyFilters, true);
         }
     ]);
 })(window.veganaut.mapModule);
