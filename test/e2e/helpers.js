@@ -65,12 +65,19 @@ var helpers = {
     },
 
     /**
-     * Logs into the app as Alice
+     * Logs into the app
+     * @param {string} [email='foo@bar.baz']
+     * @param {string} [password='foobar']
      */
-    login: function() {
+    login: function(email, password) {
+        email = email || 'foo@bar.baz';
+        password = password || 'foobar';
         browser.get('/login');
-        element(by.model('form.email')).sendKeys('foo@bar.baz');
-        element(by.model('form.password')).sendKeys('foobar\n');
+        element(by.model('form.email')).sendKeys(email);
+        element(by.model('form.password')).sendKeys(password + '\n');
+
+        // Login doesn't always work if we don't wait a tiny bit...
+        browser.sleep(1);
 
         // TODO: not sure why this has to be loaded again, but otherwise it doesn't work everywhere
         helpers.loadTestStylesheet();
@@ -82,10 +89,19 @@ var helpers = {
     logoutIfLoggedIn: function() {
         elements.logoutButton.isPresent().then(function(isPresent) {
             if (isPresent) {
-                elements.menuButton.click();
+                helpers.openMenu();
                 elements.logoutButton.click();
             }
         });
+    },
+
+    /**
+     * Opens the main menu
+     */
+    openMenu: function() {
+        // Make sure the stylesheet is loaded to disable animations
+        helpers.loadTestStylesheet();
+        elements.menuButton.click();
     },
 
     /**

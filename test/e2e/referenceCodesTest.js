@@ -2,7 +2,6 @@
 'use strict';
 
 var helpers = require('./helpers');
-var elements = helpers.elements;
 
 describe('referenceCodes.', function() {
     var ptor;
@@ -21,7 +20,7 @@ describe('referenceCodes.', function() {
 
     describe('enter reference code when logged out.', function() {
         it('should have a page to enter the reference code.', function() {
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-activities')).click();
             expect(ptor.getCurrentUrl()).toMatch(/\/activities/);
 
@@ -31,7 +30,7 @@ describe('referenceCodes.', function() {
         });
 
         it('should show the graph when entering a valid reference code.', function() {
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-activities')).click();
 
             var refInput = element(by.model('form.referenceCode'));
@@ -62,9 +61,7 @@ describe('referenceCodes.', function() {
                 beforeCompletedLinks = count;
             });
 
-            elements.menuButton.click();
-            element(by.css('button.nav-activities')).click();
-
+            browser.get('/activities');
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Alice Eve for this activityLink
 
@@ -79,17 +76,15 @@ describe('referenceCodes.', function() {
             ;
 
             // Logout and back in as Bob
-            elements.menuButton.click();
-            element(by.css('button.nav-logout')).click();
-            browser.get('/login');
-            element(by.model('form.email')).sendKeys('im@stoop.id');
-            element(by.model('form.password')).sendKeys('bestpasswordever\n');
-            browser.get('/socialGraph');
+            helpers.logoutIfLoggedIn();
+            helpers.login('im@stoop.id', 'bestpasswordever');
+            browser.get('/activities');
 
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
             ;
 
+            browser.get('/socialGraph');
             expect(element.all(by.css('social-graph .link.has-completed-activities')).count())
                 .toBe(3, 'should have three completed links')
             ;
@@ -107,7 +102,7 @@ describe('referenceCodes.', function() {
             element(by.model('form.email')).sendKeys('frank@frank.fr');
             element(by.model('form.password')).sendKeys('frank\n');
 
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-activities')).click();
             var refInput = element(by.model('form.referenceCode'));
             refInput.sendKeys('AK92oj\n'); // Bob called Frank Eve for this activityLink
@@ -125,19 +120,19 @@ describe('referenceCodes.', function() {
 
 
             // Logout and back in as Bob
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-logout')).click();
             browser.get('/login');
             element(by.model('form.email')).sendKeys('im@stoop.id');
             element(by.model('form.password')).sendKeys('bestpasswordever\n');
 
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-activities')).click();
             expect(element.all(by.css('.reference-code-list li')).count())
                 .toBe(0, 'should have no more open activities')
             ;
 
-            elements.menuButton.click();
+            helpers.openMenu();
             element(by.css('button.nav-graph')).click();
             expect(element.all(by.css('social-graph .link.has-completed-activities')).count())
                 .toBe(3, 'should have three completed links')
