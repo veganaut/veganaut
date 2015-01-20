@@ -121,12 +121,8 @@
     "description": "Codes für deine geplanten Einladungen:"
   },
   "person": {
-    "role": {
-      "veteran": "Veteran",
-      "scout": "Scout",
-      "rookie": "Rookie"
-    },
     "type": {
+      "user": "Veganaut_in",
       "baby": "Baby",
       "maybe": "Maybe"
     },
@@ -134,9 +130,7 @@
       "email": "E-Mail Adresse",
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname (öffentlich sichtbar)",
-      "role": "Rolle",
       "team": "Team",
-      "balance": "Balance",
       "captured": "Gefangen",
       "password": "Passwort",
       "passwordRepeat": "Passwort wiederholen"

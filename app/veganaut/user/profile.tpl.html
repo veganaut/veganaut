@@ -18,14 +18,7 @@
         <vg-team-name team="me.team"></vg-team-name>
     </p>
     <p>
-        <strong>{{ 'person.label.role' | translate }}</strong><br />
-        {{ 'person.role.' + me.role | translate }}
-    </p>
-    <p>
-        <strong>{{ 'person.label.balance' | translate }}</strong><br />
-        <span class="badge badge-team-{{me.team}}" ng-bind="me.strength"></span>
-        <span class="badge badge-hits" ng-bind="me.hits"></span>
-        <span ng-if="me.isCaptured" class="badge captured">
+        <span ng-if="me.capture.active" class="badge captured">
             <span class="glyphicon glyphicon-asterisk"></span>
             <span ng-bind="'person.label.captured'|translate"></span>
         </span>

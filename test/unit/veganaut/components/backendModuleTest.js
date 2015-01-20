@@ -123,12 +123,11 @@ describe('backendModule', function() {
                 nickname: 'Alicster',
                 fullName: 'Alice Alison',
                 team: 'team1',
-                role: 'veteran',
                 id: '000000000000000000000001',
                 type: 'user',
-                strength: 12,
-                hits: 0,
-                isCaptured: false
+                capture: {
+                    active: false
+                }
             })
         ;
 

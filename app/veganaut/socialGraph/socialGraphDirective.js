@@ -49,16 +49,11 @@
                         klass += ' team-' + node.team;
                     }
 
-                    if (node.isCaptured === true) {
-                        klass += ' captured';
+                    if (node.capture && node.capture.active === true) {
+                        klass += ' captured captured-' + node.capture.team;
                     }
                     else {
                         klass += ' not-captured';
-                    }
-
-                    var balanceMapping = node.getBalanceMapping();
-                    if (typeof balanceMapping !== 'undefined') {
-                        klass += ' balance-' + balanceMapping;
                     }
 
                     if (node === scope.selectedNode) {

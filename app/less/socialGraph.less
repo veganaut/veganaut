@@ -49,39 +49,21 @@
 
 // Mixin for making the styles for every team
 .team-graph(@teamName, @baseColour) {
-    @xhighColour: @baseColour;
-    @highColour: lighten(@baseColour, 7%);
-    @medColour: lighten(@baseColour, 14%);
-    @lowColour: lighten(@baseColour, 21%);
-    @xlowColour: lighten(@baseColour, 28%);
     @darkColour: darken(@baseColour, 20%);
-    @lightColour: lighten(@baseColour, 35%);
+    @lightColour: lighten(@baseColour, 20%);
+    @xLightColour: lighten(@baseColour, 35%);
 
     .node {
         &.team-@{teamName} {
             &.type-baby {
-                fill: @xlowColour;
+                fill: @lightColour;
             }
             &.type-user {
-                &.balance-xlow {
-                    fill: @xlowColour
-                }
-                &.balance-low {
-                    fill: @lowColour
-                }
-                &.balance-med {
-                    fill: @medColour
-                }
-                &.balance-high {
-                    fill: @highColour
-                }
-                &.balance-xhigh {
-                    fill: @xhighColour
-                }
+                fill: @baseColour;
             }
         }
 
-        &.captured.team-@{teamName} {
+        &.captured.captured-@{teamName} {
             stroke: @baseColour;
         }
         &.not-captured.selected.team-@{teamName} {
@@ -93,7 +75,7 @@
         &.team-@{teamName} {
             stroke: @baseColour;
             &.has-open-activities {
-                stroke: @lightColour;
+                stroke: @xLightColour;
             }
         }
     }
