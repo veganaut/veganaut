@@ -1,8 +1,14 @@
 (function(module) {
     'use strict';
 
-    module.controller('AppCtrl', ['$scope', '$location', '$window', 'angularPiwik', 'backendService', 'playerService',
-        function($scope, $location, $window, angularPiwik, backendService, playerService) {
+    module.controller('AppCtrl', [
+        '$scope', '$location', '$window',
+        'angularPiwik', 'featureToggle',
+        'backendService', 'playerService',
+        function($scope, $location, $window, angularPiwik, featureToggle, backendService, playerService) {
+            // Expose feature toggle settings
+            $scope.featureToggle = featureToggle;
+
             $scope.closeMenu = function() {
                 $scope.menuShown = false;
             };

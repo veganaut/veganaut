@@ -49,4 +49,10 @@
         defaultLocale: 'en',
         availableLocales: ['en', 'de']
     });
+
+    // Toggle features that aren't ready yet
+    // TODO: those should be turned off in production
+    module.constant('featureToggle', {
+        socialGraph: true
+    });
 })(window.veganaut.mainModule);

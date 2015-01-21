@@ -24,9 +24,9 @@
 
     veganautModule.config([
         '$routeProvider', '$locationProvider', '$translateProvider', 'angularPiwikProvider',
-        'useHtml5Mode', 'piwikSettings', 'i18nSettings',
+        'featureToggle', 'useHtml5Mode', 'piwikSettings', 'i18nSettings',
         function($routeProvider, $locationProvider, $translateProvider, angularPiwikProvider,
-            useHtml5Mode, piwikSettings, i18nSettings)
+            featureToggle, useHtml5Mode, piwikSettings, i18nSettings)
         {
             $locationProvider.html5Mode(useHtml5Mode);
 
@@ -35,9 +35,12 @@
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
             $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
             $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
-            $routeProvider.when('/socialGraph', {templateUrl: '/veganaut/socialGraph/socialGraph.tpl.html', controller: 'SocialGraphCtrl'});
-            $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});
-            $routeProvider.when('/activities', {templateUrl: '/veganaut/socialGraph/activities.tpl.html'});
+
+            if (featureToggle.socialGraph) {
+                $routeProvider.when('/socialGraph', {templateUrl: '/veganaut/socialGraph/socialGraph.tpl.html', controller: 'SocialGraphCtrl'});
+                $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});
+                $routeProvider.when('/activities', {templateUrl: '/veganaut/socialGraph/activities.tpl.html'});
+            }
 
             $routeProvider.when('/', {templateUrl: '/veganaut/map/map.tpl.html'});
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});

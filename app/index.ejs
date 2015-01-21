@@ -36,9 +36,9 @@
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
                  ng-bind="'navigation.map' | translate"></button>
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
-                 ng-if="canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>
+                 ng-if="featureToggle.socialGraph && canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>
                 <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
-                 ng-bind="'navigation.activities' | translate"></button>
+                 ng-if="featureToggle.socialGraph" ng-bind="'navigation.activities' | translate"></button>
 
                 <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.score' | translate"></button>
