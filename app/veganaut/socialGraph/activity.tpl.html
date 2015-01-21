@@ -6,10 +6,7 @@
     </div>
     <span ng-if="target">
         <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(target))|translate"></span>:
-        <span ng-bind="target.fullName"></span>
-        <span ng-show="target.nickname">
-            (<span ng-bind="target.nickname"></span>)
-        </span>
+        <span ng-bind="target.nickname"></span>
     </span>
     <select required class="form-control" ng-model="form.selectedActivity" ng-options="v.name for (k, v) in activities">
         <option value="">{{ 'activityLink.form.choose' | translate }}</option>

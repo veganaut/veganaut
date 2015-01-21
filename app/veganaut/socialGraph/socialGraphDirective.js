@@ -266,7 +266,7 @@
                     ;
 
                     svgNodes.append('title').text(function(d) {
-                        return d.fullName;
+                        return d.nickname;
                     });
 
                     var breakTicks = 0;

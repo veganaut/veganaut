@@ -59,7 +59,7 @@ describe('backendModule', function() {
         // Define our expectations
         var expectedPostData = {
             target: {
-                fullName: 'Tester'
+                nickname: 'Tester'
             },
             activity: {
                 id: '1'

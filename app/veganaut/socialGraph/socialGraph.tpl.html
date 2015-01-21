@@ -4,12 +4,7 @@
             <span class="glyphicon glyphicon-remove"></span>
         </div>
         <p class="color-{{ selected.node.team }}">
-            <strong>
-                {{ selected.node.fullName }}
-                <span ng-show="selected.node.nickname">
-                    ({{ selected.node.nickname }})
-                </span>
-            </strong>
+            <strong>{{ selected.node.nickname }}</strong>
         </p>
         <p>
             <span ng-hide="selected.node.isDummy()" class="badge">
@@ -35,8 +30,8 @@
 
     <div class="link-info" ng-show="selected.link">
         <!-- TODO: translate -->
-        Activities links from <span ng-bind="selected.link.source.fullName"></span>
-        to <span ng-bind="selected.link.target.fullName"></span>.
+        Activities links from <span ng-bind="selected.link.source.nickname"></span>
+        to <span ng-bind="selected.link.target.nickname"></span>.
         Number of activities: <span ng-bind="selected.link.completedActivities"></span> completed.
         <span ng-bind="selected.link.openActivities"></span> open.
     </div>
@@ -49,7 +44,7 @@
             <span ng-switch="canCreateActivityWith(selected.node)">
                 <span ng-switch-when="true">
                     <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selected.node))|translate"></span>
-                    <span ng-bind="selected.node.fullName"></span>
+                    <span ng-bind="selected.node.nickname"></span>
                 </span>
                 <span ng-switch-default>
                     <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|translate"></span>

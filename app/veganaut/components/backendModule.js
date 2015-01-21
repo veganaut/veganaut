@@ -140,7 +140,7 @@
                 var target = {};
                 if (angular.isString(person)) {
                     // Create a person object
-                    target.fullName = person;
+                    target.nickname = person;
                 }
                 else {
                     target.id = person.id;
