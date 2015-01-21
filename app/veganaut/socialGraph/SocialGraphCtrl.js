@@ -8,6 +8,15 @@
             }
 
             /**
+             * Currently selected elements on the social graph
+             * @type {{node: {}, link: {}}}
+             */
+            $scope.selected = {
+                node: undefined,
+                link: undefined
+            };
+
+            /**
              * Goes to the activity link creation form
              * @param node
              */

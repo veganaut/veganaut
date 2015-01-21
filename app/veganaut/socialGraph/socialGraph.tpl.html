@@ -1,57 +1,55 @@
 <div class="top-box container main-container">
-    <div class="text-center" ng-show="selectedNode">
-        <div class="pull-right clickable" ng-click="selectedNode = undefined">
+    <div class="text-center" ng-show="selected.node">
+        <div class="pull-right clickable" ng-click="selected.node = undefined">
             <span class="glyphicon glyphicon-remove"></span>
         </div>
-        <p class="color-{{ selectedNode.team }}">
+        <p class="color-{{ selected.node.team }}">
             <strong>
-                {{ selectedNode.fullName }}
-                <span ng-show="selectedNode.nickname">
-                    ({{ selectedNode.nickname }})
+                {{ selected.node.fullName }}
+                <span ng-show="selected.node.nickname">
+                    ({{ selected.node.nickname }})
                 </span>
             </strong>
         </p>
         <p>
-            <span ng-hide="selectedNode.isDummy()" class="badge">
-                <span ng-show="selectedNode.isUser()">
+            <span ng-hide="selected.node.isDummy()" class="badge">
+                <span ng-show="selected.node.isUser()">
                     <span class="glyphicon glyphicon-user"></span>
                     <span ng-bind="'person.type.user'|translate"></span>
                 </span>
-                <span ng-show="selectedNode.isMaybe()">
+                <span ng-show="selected.node.isMaybe()">
                     <span class="glyphicon glyphicon-question-sign"></span>
                     <span ng-bind="'person.type.maybe'|translate"></span>
                 </span>
-                <span ng-show="selectedNode.isBaby()" >
+                <span ng-show="selected.node.isBaby()" >
                     <span class="glyphicon glyphicon-heart-empty"></span>
                     <span ng-bind="'person.type.baby'|translate"></span>
                 </span>
             </span>
-        </p>
-        <p>
-            <span ng-show="selectedNode.capture.active" class="badge captured">
+            <span ng-show="selected.node.capture.active" class="badge captured">
                 <span class="glyphicon glyphicon-asterisk"></span>
                 <span ng-bind="'person.label.captured'|translate"></span>
             </span>
         </p>
     </div>
 
-    <div class="link-info" ng-show="selectedLink">
+    <div class="link-info" ng-show="selected.link">
         <!-- TODO: translate -->
-        Activities links from <span ng-bind="selectedLink.source.fullName"></span>
-        to <span ng-bind="selectedLink.target.fullName"></span>.
-        Number of activities: <span ng-bind="selectedLink.completedActivities"></span> completed.
-        <span ng-bind="selectedLink.openActivities"></span> open.
+        Activities links from <span ng-bind="selected.link.source.fullName"></span>
+        to <span ng-bind="selected.link.target.fullName"></span>.
+        Number of activities: <span ng-bind="selected.link.completedActivities"></span> completed.
+        <span ng-bind="selected.link.openActivities"></span> open.
     </div>
 
     <!-- TODO: This is too complicated, create a directive -->
     <!-- TODO: Create integration tests for all that -->
     <p>
-        <button type="button" class="add-activity btn btn-block btn-team" ng-click="createActivityOnNode(selectedNode)">
+        <button type="button" class="add-activity btn btn-block btn-team" ng-click="createActivityOnNode(selected.node)">
             <span class="glyphicon glyphicon-hand-right"></span>
-            <span ng-switch="canCreateActivityWith(selectedNode)">
+            <span ng-switch="canCreateActivityWith(selected.node)">
                 <span ng-switch-when="true">
-                    <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selectedNode))|translate"></span>
-                    <span ng-bind="selectedNode.fullName"></span>
+                    <span ng-bind="('action.socialGraph.createActivityLink.' + getActivityVerb(selected.node))|translate"></span>
+                    <span ng-bind="selected.node.fullName"></span>
                 </span>
                 <span ng-switch-default>
                     <span ng-bind="'action.socialGraph.createActivityLink.unspecified'|translate"></span>
@@ -62,5 +60,4 @@
 </div>
 
 <social-graph class="social-graph full-viewport"
- selected-node="selectedNode"
- selected-link="selectedLink"></social-graph>
+ selected="selected"></social-graph>

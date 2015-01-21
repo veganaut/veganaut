@@ -25,8 +25,7 @@
         return {
             restrict: 'E',
             scope: {
-                selectedNode: '=',
-                selectedLink: '='
+                selected: '='
             },
             link: function(scope, element) {
                 /**
@@ -56,7 +55,7 @@
                         klass += ' not-captured';
                     }
 
-                    if (node === scope.selectedNode) {
+                    if (node === scope.selected.node) {
                         klass += ' selected';
                     }
 
@@ -109,7 +108,7 @@
                         klass += ' num-activities-large';
                     }
 
-                    if (link.target === scope.selectedNode || link.source === scope.selectedNode) {
+                    if (link.target === scope.selected.node || link.source === scope.selected.node) {
                         klass += ' highlighted';
                     }
                     return klass;
@@ -223,11 +222,11 @@
                         }
 
                         scope.$apply(function() {
-                            if (node === scope.selectedNode) {
-                                scope.selectedNode = undefined;
+                            if (node === scope.selected.node) {
+                                scope.selected.node = undefined;
                             }
                             else {
-                                scope.selectedNode = node;
+                                scope.selected.node = node;
                             }
                         });
 
@@ -242,11 +241,11 @@
 
                     var onLinkClick = function(link) {
                         scope.$apply(function() {
-                            if (link === scope.selectedLink) {
-                                scope.selectedLink = undefined;
+                            if (link === scope.selected.link) {
+                                scope.selected.link = undefined;
                             }
                             else {
-                                scope.selectedLink = link;
+                                scope.selected.link = link;
                             }
                         });
                     };
