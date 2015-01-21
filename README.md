@@ -9,7 +9,7 @@ Getting Started
 
 To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and
 [mongodb](http://www.mongodb.org/). On a Mac, the easiest way to do so is `brew
-install node mongdb`.
+install node mongodb`.
 
 After that checkout veganaut and veganaut-backend:
 
