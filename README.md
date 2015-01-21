@@ -9,7 +9,7 @@ Getting Started
 
 To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and
 [mongodb](http://www.mongodb.org/). On a Mac, the easiest way to do so is `brew
-install node mongdb`.
+install node mongodb`.
 
 After that checkout veganaut and veganaut-backend:
 
@@ -22,15 +22,15 @@ file for the backend in `veganaut-backend/app/config.js`:
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
 
-Load the fixtures:
-
-    cd veganaut-backend; node ./test/fixtures/basic.js
-
 Start all the things:
 
     cd veganaut; ./scripts/run-all.sh
 
-This will do the following:
+Load the fixtures:
+
+    cd veganaut-backend; node ./test/fixtures/basic.js
+
+The starting script does the following:
 
 * Start MongoDB if it isn't already started
 * Run `gulp dev` which creates the index.html file from index.ejs and compiles the less files
