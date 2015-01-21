@@ -6,9 +6,44 @@
 @passiveColour: #dbdbdb;
 @teamColourOpacity: 0.67;
 
-@bootstrapGreyBackground: #f8f8f8;
-@bootstrapDarkGreyBackground: #777;
-@bootstrapGreyBorder: #e7e7e7;
+
+// gray collection:
+@colorDark: #3c4048;
+@colorDarkLink: #3c80a8;
+@colorMedium: #7f8095;
+@colorLighter: #bfc0d5;
+@colorLight: #ffffff;
+
+@bootstrapGreyBackground: @colorLight;
+@bootstrapDarkGreyBackground: @colorDark;
+@bootstrapGreyBorder: multiply(@colorLight, #dddddd);
+
 
 @maxContainerWidth: 550px;
 @navbarHeight: 50px;
+
+// FONTS
+@font-face {
+    font-family: 'SourceSansPro_Regular';
+    src: url('../fonts/sourcesanspro-regular-webfont.eot');
+    src: url('../fonts/sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/sourcesanspro-regular-webfont.woff2') format('woff2'),
+    url('../fonts/sourcesanspro-regular-webfont.woff') format('woff'),
+    url('../fonts/sourcesanspro-regular-webfont.ttf') format('truetype'),
+    url('../fonts/sourcesanspro-regular-webfont.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SourceSansPro_Bold';
+    src: url('../fonts/sourcesanspro-bold-webfont.eot');
+    src: url('../fonts/sourcesanspro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/sourcesanspro-bold-webfont.woff2') format('woff2'),
+    url('../fonts/sourcesanspro-bold-webfont.woff') format('woff'),
+    url('../fonts/sourcesanspro-bold-webfont.ttf') format('truetype'),
+    url('../fonts/sourcesanspro-bold-webfont.svg#source_sans_probold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
