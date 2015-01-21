@@ -96,18 +96,6 @@
                         klass += ' has-open-activities';
                     }
 
-                    // Set class based on total number of activities
-                    var totalActivities = (link.completedActivities || 0) + (link.openActivities || 0);
-                    if (totalActivities < 2) {
-                        klass += ' num-activities-small';
-                    }
-                    else if (totalActivities < 3) {
-                        klass += ' num-activities-medium';
-                    }
-                    else {
-                        klass += ' num-activities-large';
-                    }
-
                     if (link.target === scope.selected.node || link.source === scope.selected.node) {
                         klass += ' highlighted';
                     }
@@ -121,14 +109,8 @@
                  */
                 var getMarkerEnd = function(link) {
                     // This needs to be an absolute URL because we have a <base href='/'> in the body
-                    var markerUrl = 'url(' + $location.absUrl() + '#';
-                    if (link.target.isSmallNode()) {
-                        markerUrl += 'pointerToSmall';
-                    }
-                    else {
-                        markerUrl += 'pointerToBig';
-                    }
-                    return markerUrl + ')';
+                    var markerName = link.target.isSmallNode() ? 'pointerToSmall' : 'pointerToBig';
+                    return 'url(' + $location.absUrl() + '#' + markerName + ')';
                 };
 
 
