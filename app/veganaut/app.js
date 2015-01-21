@@ -54,6 +54,7 @@
                 suffix: '.json'
             });
             $translateProvider.registerAvailableLanguageKeys(i18nSettings.availableLocales);
+            $translateProvider.fallbackLanguage(i18nSettings.defaultLocale);
             $translateProvider.determinePreferredLanguage();
 
             // Configure piwik
