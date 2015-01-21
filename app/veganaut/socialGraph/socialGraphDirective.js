@@ -6,7 +6,7 @@
     // TODO: should zoom in and out for different screen sizes
     // TODO: redo the way the graph is re-created when the data changes
     // TODO: find a better way to slow down the force animation
-    module.directive('socialGraph', ['d3', 'nodeService', function(d3, nodeService) {
+    module.directive('socialGraph', ['$location', 'd3', 'nodeService', function($location, d3, nodeService) {
 
         /**
          * Makes an arced link between two points.
@@ -121,13 +121,15 @@
                  * @returns {string}
                  */
                 var getMarkerEnd = function(link) {
-                    var node = link.target;
-                    if (node.isSmallNode()) {
-                        return 'url(#pointerToSmall)';
+                    // This needs to be an absolute URL because we have a <base href='/'> in the body
+                    var markerUrl = 'url(' + $location.absUrl() + '#';
+                    if (link.target.isSmallNode()) {
+                        markerUrl += 'pointerToSmall';
                     }
                     else {
-                        return 'url(#pointerToBig)';
+                        markerUrl += 'pointerToBig';
                     }
+                    return markerUrl + ')';
                 };
 
 
@@ -191,7 +193,6 @@
                             .append('g');
 
                         // Add some end-marker style
-                        // TODO: these are not working
                         svg.append('defs').selectAll('marker')
                             .data(['pointerToSmall', 'pointerToBig'])
                             .enter().append('marker')
