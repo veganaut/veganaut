@@ -4,13 +4,16 @@
 
 @import (less) 'iconFont.css';
 @import 'variables.less';
-@import 'bootstrapHelpers.less';
+@import 'buttons.less';
 
 @import 'layout.less';
 
 @import 'loadingBar.less';
 @import 'map.less';
 @import 'socialGraph.less';
+@import 'icons.less';
+@import 'navbar.less';
+@import 'typography.less';
 
 // TODO: these styles should be distributed over different modules
 .team-styles(@teamName, @baseColour) {
@@ -54,11 +57,6 @@
 .well-expansion {
     margin-bottom: -6px;
     font-size: 10px;
-}
-
-// Team button if no team is defined (black)
-.btn-team {
-    .button-variant(#fff; #333; darken(#333, 5%));
 }
 
 .badge.badge-hits {

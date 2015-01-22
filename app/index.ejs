@@ -12,6 +12,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body class="player-{{ me.team }}" ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn() }">
+
+<!-- VEGANAUT LOGO -->
+<ng-include src="'img/veganaut.svg'" class="hidden"></ng-include>
+
 <base href="/">
 <header class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-inner">
@@ -27,9 +31,9 @@
                  ng-click="goToView('login')" ng-if="!isLoggedIn()" title="{{ 'navigation.login' | translate }}">
                     <span class="glyphicon glyphicon-log-in"></span>
                 </button>
-                <span class="navbar-brand clickable color-team" ng-click="goToView('')">
-                    {{ 'app.title' | translate }}
-                </span>
+                <svg class="main-logo color-team">
+                    <use xlink:href="#veganaut"/>
+                </svg>
             </div>
             <nav class="collapse" collapse="!menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->

@@ -1,13 +1,13 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
-    <h1 class="color-{{ location.team }}">
+    <h1>
         {{ location.name }}
-        <small class="location-quality-label" ng-if="location.quality.numRatings > 0"
+        <small class="location-quality-label bg-color-{{ location.team }}"
          tooltip-placement="bottom"
          tooltip="{{ 'location.quality.explanation' | translate }}.
          {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
          {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
             <!-- TODO: this should go in a directive-->
-            <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon"></span>
+            <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon">&nbsp;</span>
         </small>
     </h1>
     <p>
@@ -15,11 +15,9 @@
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
     <p ng-if="location.description">
-        <strong>{{ 'location.label.description' | translate }}</strong>:
         <span class="location-description">{{ location.description }}</span>
     </p>
     <p ng-if="location.link">
-        <strong>{{ 'location.label.link' | translate }}</strong>:
         <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
     </p>
     <button ng-if="isLoggedIn()"
