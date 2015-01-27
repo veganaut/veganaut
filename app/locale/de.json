@@ -190,8 +190,8 @@
       "numRatings": "Bewertungen"
     },
     "products": {
-      "title": "Angebot",
-      "description": "An dieser Location bestehen die folgenden veganen Angebote:",
+      "title": "Veganes Angebot",
+      "description": "An dieser Location werden folgende vegane Produkte angeboten:",
       "noProducts": {
         "anonymous": "Es wurden noch keine Angebote eingetragen. <a href=\"/register\">Registriere</a> dich, um vegane Angebote einzutragen.",
         "user": "Es wurden noch keine Angebote eingetragen. Mit einer der Missionen kannst du Angebote eintragen."
@@ -225,11 +225,11 @@
         }
       },
       "type": {
-        "title": "Filter for location type",
+        "title": "Filtern nach Art der Location",
         "form": {
-          "anytype": "Anytype",
-          "gastronomy": "Gastronomy",
-          "retail": "Retail"
+          "anytype": "Beide",
+          "gastronomy": "Gastro",
+          "retail": "Shopping"
         }
       }
     },
@@ -324,7 +324,7 @@
           "placeholder": "Hier ein veganes Angebot eintragen"
         },
         "outcome": {
-          "description": "Du hast diese veganen Angebote eingetragen/bestätigt:"
+          "description": "Du hast diese veganen Angebote eingetragen:"
         }
       },
       "buyOptions": {
