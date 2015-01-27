@@ -1,5 +1,8 @@
 <form novalidate name="registerForm" class="register-form">
     <!-- TODO: merge this with editProfile.tpl.html -->
+    <p class="lead">
+        {{ 'register.description' | translate }}
+    </p>
     <div class="form-group">
         <label for="fullName" ng-bind="'person.label.fullName' | translate"></label>
         <input type="text" required id="fullName" class="form-control" ng-model="form.fullName" />
