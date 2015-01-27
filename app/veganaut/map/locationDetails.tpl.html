@@ -31,13 +31,16 @@
         <h2>{{ 'location.products.title' | translate }}</h2>
         <div ng-if="location.products.length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
-            <ul>
-                <li ng-repeat="product in location.products">
+            <ul class="list-group">
+                <li ng-repeat="product in location.products" class="list-group-item">
                     {{ product.name }}
-                    <vg-average-rating
-                     average="product.rating.average"
-                     num-ratings="product.rating.numRatings">
-                    </vg-average-rating>
+                    <span class="pull-right">
+                        <vg-average-rating
+                         average="product.rating.average"
+                         num-ratings="product.rating.numRatings">
+                        </vg-average-rating>
+                    </span>
+                    <span class="clearfix"></span>
                 </li>
             </ul>
         </div>
