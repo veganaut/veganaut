@@ -23,18 +23,29 @@
         </div>
 
         <div class="row" ng-hide="location.active || filtersShown || searchShown">
-            <div ng-if="!isLoggedIn()" start-tour="introBeta" class="col-xs-6">
+            <div ng-if="!isLoggedIn()" start-tour="introBeta" class="col-xs-3">
                 <p>
-                    <button class="btn btn-default btn-block front-register-btn"ng-click="goToView('register')"
-                     ng-hide="isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
+                    <button class="front-register-btn btn btn-block btn-team"
+                     ng-click="goToView('register')"
+                     title="{{ 'navigation.register' | translate }}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
                 </p>
             </div>
-            <div ng-if="isLoggedIn()" start-tour="mapUser" class="col-xs-6">
+            <div ng-if="isLoggedIn()" start-tour="mapUser" class="col-xs-3">
                 <p>
-                    <button type="button" class="add-location btn btn-block btn-team "
-                     ng-click="startAddNewLocation()">
+                    <button type="button" class="add-location btn btn-block btn-team"
+                     ng-click="startAddNewLocation()"
+                     title="{{ 'action.map.addLocation' | translate }}">
                         <span class="glyphicon glyphicon-plus-sign"></span>
-                        <span ng-bind="'action.map.addLocation'|translate"></span>
+                    </button>
+                </p>
+            </div>
+            <div class="col-xs-3">
+                <p>
+                    <button type="button" class="btn-show-location-filters btn btn-block btn-default"
+                     ng-click="">
+                        <span class="glyphicon glyphicon-leaf"></span>
                     </button>
                 </p>
             </div>
