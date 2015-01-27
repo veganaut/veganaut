@@ -190,7 +190,7 @@
       "numRatings": "Ratings"
     },
     "products": {
-      "title": "Offer",
+      "title": "Vegan Offer",
       "description": "This location offers these vegan options:",
       "noProducts": {
         "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
@@ -242,14 +242,14 @@
       },
       "visitBonus": {
         "title": "Visit this location.",
-        "explanation": "For you first visit at a location within a few weeks you get points.",
+        "explanation": "For your first visit at a location within a few weeks you get points.",
         "description": "Only complete this mission if you are currently visiting this location."
       },
       "hasOptions": {
         "title": "Ask the staff whether there are any vegan options available here.",
         "description": "According to the staff, are there any vegan options available here?",
         "description2": "What do you think: are there any vegan options available here?",
-        "explanation": "Explicitly ask for something vegan and use the word \"vegan\" in doing so. By doing so you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
+        "explanation": "Explicitly ask for something vegan using the word \"vegan\". By doing so you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
         "form": {
           "theyDoNotKnow": "They do not know",
           "yes": "Yes",
@@ -281,7 +281,7 @@
           "noWool": "no wool",
           "noLeather": "no leather",
           "noFur": "no fur",
-          "custom": "Ohter:",
+          "custom": "Other:",
           "placeholder": "Other expressions you used"
         },
         "outcome": {
@@ -324,7 +324,7 @@
           "placeholder": "Enter a vegan option here"
         },
         "outcome": {
-          "description": "You entered/confirmed these vegan options:"
+          "description": "You entered these vegan options:"
         }
       },
       "buyOptions": {
@@ -338,7 +338,7 @@
       "giveFeedback": {
         "title": "Mission: Impossible.",
         "description": "What kind of impossible mission did you attempt here?",
-        "explanation": "Sometimes it's the most improbably things that work the best. According to legend, a sinlge veganaut got the space gunk dispenser near launch pad XQR-9 to offer vegan Haute Cuisine by just telling the staff: \"Why don't you guys switch to a 100% vegan menu? Here's a 5160 year old cookbook and an antique camping stove that I found on the surface, feel free to use them!\" ",
+        "explanation": "Sometimes it's the most improbable things that work the best. According to legend, a sinlge veganaut got the space gunk dispenser near launch pad XQR-9 to offer vegan Haute Cuisine by just telling the staff: \"Why don't you guys switch to a 100% vegan menu? Here's a 5160 year old cookbook and an antique camping stove that I found on the surface, feel free to use them!\" ",
         "form": {
           "placeholder": "Enter your mission impossible here"
         },
@@ -357,7 +357,7 @@
       "offerQuality": {
         "title": "Evaluate this location from a veganautic standpoint.",
         "description": "How well does this location satisfy veganautic needs?",
-        "explanation": "Veganauts want to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are only vegan options and they are all fantastic.",
+        "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
         "outcome": {
           "description": "Your evaluation:"
         }
