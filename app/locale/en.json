@@ -51,7 +51,7 @@
   },
   "register": {
     "title": "Register",
-    "description": "To edit anything on Veganaut, please register.",
+    "description": "To edit anything on Veganaut.net, please register.",
     "form": {
       "submit": "Register"
     }
