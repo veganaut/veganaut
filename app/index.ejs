@@ -31,9 +31,15 @@
                  ng-click="goToView('login')" ng-if="!isLoggedIn()" title="{{ 'navigation.login' | translate }}">
                     <span class="glyphicon glyphicon-log-in"></span>
                 </button>
-                <svg class="main-logo color-team">
-                    <use xlink:href="#veganaut"/>
-                </svg>
+                <a href="/">
+                    <svg class="main-logo color-team">
+                        <% /*
+                        Because of the <base href="/"> we need to bind this to the absolute url when the app is started.
+                        Once the app is started and the SVG loaded, it's fine, so we use a one time binding.
+                        */ -%>
+                        <use xlink:href="" ng-href="{{:: $location.absUrl() + '#veganaut' }}"/>
+                    </svg>
+                </a>
             </div>
             <nav class="collapse" collapse="!menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->

@@ -9,6 +9,9 @@
             // Expose feature toggle settings
             $scope.featureToggle = featureToggle;
 
+            // Expose the location service
+            $scope.$location = $location;
+
             $scope.closeMenu = function() {
                 $scope.menuShown = false;
             };
