@@ -382,54 +382,6 @@
       }
     }
   },
-  "tour": {
-    "introBeta": [
-      {
-        "title": "Willkommen!",
-        "content": "Interessierst du dich für veganes Essen? Auf Veganaut.net siehst du, wo andere etwas Veganes gefunden haben, und kannst (wenn du dich registrierst) deine eigenen Entdeckungen eintragen."
-      },
-      {
-        "title": "Pflanzen-Symbol",
-        "content": "Die meisten Locations haben ein Pflanzen-Symbol. Je mehr Zweige, desto grösser und besser das vegane Angebot. <div class=\"text-center h4\"><span class=\"icon icon-1\"></span><span class=\"icon icon-2\"></span><span class=\"icon icon-3\"></span><span class=\"icon icon-4\"></span><span class=\"icon icon-5\"></span></div>Locations ohne Pflanzen-Symbol wurden noch nicht bewertet."
-      },
-      {
-        "title": "Gastro und Shopping",
-        "content": "Es gibt zwei Typen von Locations: Gastro (Restaurant, Take Away...) und Shopping (Supermarkt, Bioladen, Bäckerei...)"
-      },
-      {
-        "title": "Registrieren",
-        "content": "Nach dem Registrieren gehörst du einem von fünf Teams an: <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span> oder <span class=\"color-team5\">Orange</span> und kannst beim Orte-Erobern mitspielen."
-      }
-    ],
-    "mapUser": [
-      {
-        "title": "Bieeeeeeep!",
-        "content": "Du wurdest eben aus dem Weltraumschlaf aufgeweckt. Seit dem \"Kleinen Weltuntergang\" im 2086 (vor 5042 Jahren) bist du tiefgefroren in einem von fünf riesigen Raumschiffen um die Erde gekreist."
-      },
-      {
-        "title": "Dein Team",
-        "content": "An der Farbe des \"Neue Location\"-Knopfes siehst du, in welchem Raumschiff du dich befindest: <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span> oder <span class=\"color-team5\">Orange</span>."
-      },
-      {
-        "title": "Space Gunk forever?",
-        "content": "Im Raumschiff gibt's nur \"Space Gunk\" zu essen: eine graue, geschmacklose Nährstoffmasse. Doch Veganautinnen und Veganauten, die von Erkundungsmissionen zurückkehren, erzählen neuerdings, dass auf der Erdoberfläche wieder essbare Pflanzen wachsen."
-      },
-      {
-        "title": "Dein Ziel",
-        "content": "Dein Ziel ist es, die essbaren Pflanzen auf der Erdoberfläche zu finden, zu markieren, zu bewerten, zu vermehren und für dein Team zu sichern."
-      },
-      {
-        "title": "Sag uns deine Meinung",
-        "content": "Wenn du Anregungen oder Rückmeldungen hast, wie wir veganaut.net verbessern können: Das Kontaktformular ist im Menu oben verlinkt."
-      }
-    ],
-    "locationUser": [
-      {
-        "title": "Missionen",
-        "content": "Die meisten Missionen kannst du nur erfüllen, wenn du dich an diesem Ort befindest."
-      }
-    ]
-  },
   "mapSearch": {
     "form": {
       "title": "Suche nach Orten auf der Karte"
