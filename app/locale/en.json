@@ -382,54 +382,6 @@
       }
     }
   },
-  "tour": {
-    "introBeta": [
-      {
-        "title": "Welcome!",
-        "content": "Are you interested in vegan food? On veganaut.net you can see where other people have found something vegan to eat, and (if you register) you can enter your own discoveries."
-      },
-      {
-        "title": "Plant Symbols",
-        "content": "Most of the locations have a plant symbol. The more twigs the bigger and better the vegan offer. <div class=\"text-center h4\"><span class=\"icon icon-1\"></span><span class=\"icon icon-2\"></span><span class=\"icon icon-3\"></span><span class=\"icon icon-4\"></span><span class=\"icon icon-5\"></span></div>Locations without a plant symbol have not been evaluated yet."
-      },
-      {
-        "title": "Gastronomy and Shopping",
-        "content": "There are two types of locations: gastronomy (restaurants, take-aways...) and shopping (supermarket, health food store, bakery...)"
-      },
-      {
-        "title": "Register",
-        "content": "As a registered user you belong to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span> or <span class=\"color-team5\">Orange</span> and you can join the location conquering game."
-      }
-    ],
-    "mapUser": [
-      {
-        "title": "Beeeeeeep!",
-        "content": "You have just been woken from cryogenic space-sleep. Since \"Armageddon Minor\" in the year 2086 (i.e. 5042 years ago) you have been orbiting the earth in one of five huge spaceships as one of many deep-frozen passengers."
-      },
-      {
-        "title": "Your Team",
-        "content": "The colour of the \"New location\"-button reveals in which spaceship you find yourself: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purlple</span>, <span class=\"color-team4\">Red</span> or <span class=\"color-team5\">Orange</span>."
-      },
-      {
-        "title": "Space Gunk forever?",
-        "content": "In the spaceship the only thing to eat is \"Space Gunk\": a grey, tasteles substance. However, there are reports from veganauts who have recently returned from exploration missions, that edible plants have been started to grow again on the surface of the earth."
-      },
-      {
-        "title": "Your Goal",
-        "content": "Your goal is to find the edible plants on the surface of the earth, to chart them on the map, to evaluate them, to make them grow and multiply, and to claim them for your team."
-      },
-      {
-        "title": "Give us a feedback",
-        "content": "If you have feedback or suggestions about how we can improve veganaut.net: there's a link to the contact form in the menu above."
-      }
-    ],
-    "locationUser": [
-      {
-        "title": "Missions",
-        "content": "Most of the missions can only be completed if you are at this location in real life."
-      }
-    ]
-  },
   "mapSearch": {
     "form": {
       "title": "Search for locations on the map"
