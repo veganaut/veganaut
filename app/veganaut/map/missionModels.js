@@ -68,7 +68,10 @@
         this.order = MISSION_ORDER.indexOf(type);
         this.started = false;
         this.completed = false;
-        this.finalOutcome = undefined;
+        this._finalOutcome = undefined;
+
+        // Store a deep copy of the initial outcome to be able to reset
+        this._initalOutcome = angular.copy(outcome);
 
         this.nextAvailable = true;
         var lastDate = this.visit.location.lastMissionDates[type];
@@ -89,12 +92,24 @@
     };
 
     /**
-     * Toggle the started flag (except once completed, then
-     * won't change anything any more)
+     * Starts the mission
      */
-    Mission.prototype.toggleStarted = function() {
+    Mission.prototype.start = function() {
         if (!this.completed) {
-            this.started = !this.started;
+            this.started = true;
+        }
+    };
+
+    /**
+     * Aborts the mission and resets the outcome.
+     * Once the mission is completed, it won't change anything anymore
+     */
+    Mission.prototype.abort = function() {
+        if (!this.completed) {
+            this.started = false;
+
+            // Reset the outcome
+            this.outcome = this._initalOutcome;
         }
     };
 
@@ -119,7 +134,7 @@
      */
     Mission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         return this.outcome;
     };
@@ -129,7 +144,7 @@
      */
     Mission.prototype.finish = function() {
         if (!this.completed) {
-            this.finalOutcome = this.getOutcome();
+            this._finalOutcome = this.getOutcome();
             this.completed = true;
         }
     };
@@ -163,7 +178,7 @@
 
     HasOptionsMission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         var outcome;
         if (this.outcome.first === 'theyDoNotKnow') {
@@ -198,7 +213,7 @@
 
     WantVeganMission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         var outcome = [];
         _.forOwn(this.outcome.builtin, function(isSelected, exp) {
@@ -236,7 +251,7 @@
 
     WhatOptionsMission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         var outcome = [];
         _.each(this.outcome, function(o) {
@@ -264,7 +279,7 @@
 
     BuyOptionsMission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         var outcome = [];
         _.each(this.outcome, function(isSelected, productId) {
@@ -314,7 +329,7 @@
 
     RateOptionsMission.prototype.getOutcome = function() {
         if (this.completed) {
-            return this.finalOutcome;
+            return this._finalOutcome;
         }
         var outcome = [];
         _.each(this.outcome, function(rating, productId) {

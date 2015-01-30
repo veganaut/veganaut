@@ -104,8 +104,14 @@
              * @param mission
              */
             $scope.toggleMissionStarted = function(mission) {
+                // Start or abort the mission
                 var isStartedBefore = mission.started;
-                mission.toggleStarted();
+                if (mission.started) {
+                    mission.abort();
+                }
+                else {
+                    mission.start();
+                }
 
                 // Track if the mission started status changed
                 if (mission.started !== isStartedBefore) {
