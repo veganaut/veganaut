@@ -67,7 +67,8 @@
         <div ng-repeat="mission in visit.missions|orderBy:'order'"
          ng-if="mission.completed || mission.isAvailable()"
          class="page-section mission mission-{{ mission.type }}">
-            <div ng-class="{clickable: !mission.completed}" ng-click="mission.toggleStarted()">
+            <div ng-class="{clickable: !mission.completed}"
+             ng-click="toggleMissionStarted(mission)">
                 <p class="h4 mission-title">
                     <vg-mission-points points="mission.points"></vg-mission-points>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
@@ -173,12 +174,13 @@
                         </div>
 
                         <button type="button" class="btn btn-default"
-                         ng-click="mission.toggleStarted()">
+                         ng-click="toggleMissionStarted(mission)">
                             <span class="glyphicon glyphicon-remove"></span>
                             {{ 'map.mission.missionForm.cancel' | translate }}
                         </button>
                         <button type="submit" class="btn btn-team pull-right"
-                         ng-disabled="!mission.hasValidOutcome()" ng-click="mission.finish(); submitMission(mission)">
+                         ng-disabled="!mission.hasValidOutcome()"
+                         ng-click="finishMission(mission)">
                             <span class="glyphicon glyphicon-ok"></span>
                             {{ 'map.mission.missionForm.submit' | translate }}
                         </button>

@@ -1,11 +1,11 @@
 (function(module) {
     'use strict';
 
-    module.controller('LocationDetailsCtrl',
-        ['$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
-            'locationService', 'backendService', 'playerService', 'alertService',
+    module.controller('LocationDetailsCtrl', [
+        '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
+        'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService',
         function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults,
-            locationService, backendService, playerService, alertService)
+            angularPiwik, locationService, backendService, playerService, alertService)
         {
             var locationId = $routeParams.id;
 
@@ -40,8 +40,17 @@
              */
             var currentUserIsRecentlyActive = false;
 
-            $scope.submitMission = function(mission) {
+            /**
+             * Finishes the given mission and submits it to the backend
+             * @param mission
+             */
+            $scope.finishMission = function(mission) {
+                // Finish the mission and get the data
+                mission.finish();
                 var missionData = mission.toJson();
+
+                // Track the finish of the mission
+                angularPiwik.track('location.mission', 'finish', mission.type);
 
                 // TODO: handle error properly
                 backendService.submitMission(missionData, $scope.location)
@@ -88,6 +97,24 @@
                         alertService.addAlert($translate.instant('message.mission.error') + data.error, 'danger');
                     })
                 ;
+            };
+
+            /**
+             * Start or abort the given mission
+             * @param mission
+             */
+            $scope.toggleMissionStarted = function(mission) {
+                var isStartedBefore = mission.started;
+                mission.toggleStarted();
+
+                // Track if the mission started status changed
+                if (mission.started !== isStartedBefore) {
+                    angularPiwik.track(
+                        'location.mission',
+                        mission.started ? 'start' : 'abort',
+                        mission.type
+                    );
+                }
             };
 
             // Get the location

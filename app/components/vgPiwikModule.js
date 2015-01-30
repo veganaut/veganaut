@@ -3,14 +3,21 @@
 
     /**
      * AngularPiwik class exposed to angular with the angularPiwik module.
+     * @param $q
      * @param $window
-     * @param $locatoin
+     * @param $location
      * @param piwikDomain
      * @param siteId
      * @param enableTracking
      * @constructor
      */
-    var AngularPiwik = function($window, $location, piwikDomain, siteId, enableTracking) {
+    var AngularPiwik = function($q, $window, $location, piwikDomain, siteId, enableTracking) {
+        /**
+         * Reference to $q
+         * @private
+         */
+        this._$q = $q;
+
         /**
          * The window object
          * @type {{}}
@@ -41,6 +48,7 @@
             var _paq = this._$window._paq;
             //_paq.push(['trackPageView']); TODO: make it configurable whether this is done by default
             _paq.push(['enableLinkTracking']);
+            _paq.push(['storeCustomVariablesInCookie']);
 
             // Slightly angularised piwik tracking code
             var doc = $window.document;
@@ -58,21 +66,21 @@
     };
 
     /**
-     * Tracks the given action
+     * Tracks the given action.
+     * Wrapper of the Piwik trackEvent method
+     * @param {string} category Category of action
      * @param {string} action Short identifier of the action to be tracked
+     * @param {string} [name] Name of the item that the action was done on
+     * @param {number} [value] A numerical value to associate with the event
      */
-    AngularPiwik.prototype.track = function(action) {
+    AngularPiwik.prototype.track = function(category, action, name, value) {
         // Don't do anything if not enabled
         if (!this._enabled) {
             return;
         }
 
         // Push to the tracking array
-        this._$window._paq.push([
-            'trackEvent',
-            this._$window.document.title,
-            action
-        ]);
+        this._$window._paq.push(['trackEvent', category, action, name, value]);
     };
 
     /**
@@ -87,6 +95,38 @@
         // Set url to the correct one and track the page view
         this._$window._paq.push(['setCustomUrl', this._$location.absUrl()]);
         this._$window._paq.push(['trackPageView']);
+    };
+
+    /**
+     * Wrapper of the Piwik setCustomVariable method.
+     * Call this before trackPageView!
+     * @param {number} index Variable index (between 1 - 5)
+     * @param {string} name Name of the variable
+     * @param {string} value Value to set
+     * @param {string} scope 'visit' or 'page'
+     */
+    AngularPiwik.prototype.setCustomVariable = function(index, name, value, scope) {
+        // Don't do anything if not enabled
+        if (!this._enabled) {
+            return;
+        }
+
+        // Push to Piwik
+        this._$window._paq.push(['setCustomVariable', index, name, value, scope]);
+    };
+
+    /**
+     * Wrapper of the Piwik getCustomVariable method.
+     * @param {number} index Variable index (between 1 - 5)
+     * @param {string} scope 'visit' or 'page'
+     * @returns {promise}
+     */
+    AngularPiwik.prototype.getCustomVariable = function(index, scope) {
+        var def = this._$q.defer();
+        this._$window._paq.push([function() {
+            def.resolve(this.getCustomVariable(index, scope));
+        }]);
+        return def.promise;
     };
 
 
@@ -145,8 +185,8 @@
             siteId = id;
         };
 
-        this.$get = ['$window', '$location', function($window, $location) {
-            return new AngularPiwik($window, $location, piwikDomain, siteId, enable);
+        this.$get = ['$q', '$window', '$location', function($q, $window, $location) {
+            return new AngularPiwik($q, $window, $location, piwikDomain, siteId, enable);
         }];
     };
 
@@ -155,8 +195,8 @@
      * @memberof angularPiwik
      */
     var piwikFilter = function(piwik) {
-        return function(input, action) {
-            piwik.track(action);
+        return function(input, category, action, name, value) {
+            piwik.track(category, action, name, value);
         };
     };
 
@@ -167,8 +207,8 @@
     // Register a track function to root scope
     angularPiwikModule.run(['$rootScope', 'angularPiwik', function($rootScope, piwik) {
         // Need to wrap it, otherwise 'this' is not set correctly
-        $rootScope.track = function(action) {
-            piwik.track(action);
+        $rootScope.track = function(category, action, name, value) {
+            piwik.track(category, action, name, value);
         };
     }]);
 })();

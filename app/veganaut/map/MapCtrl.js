@@ -2,9 +2,10 @@
     'use strict';
 
     // TODO: refactor (it's getting way too big!), document and add tests!!
-    module.controller('MapCtrl', ['$scope', '$location', '$timeout', 'leafletData',
+    module.controller('MapCtrl', [
+        '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik',
         'playerService', 'Location', 'locationService', 'backendService',
-        function($scope, $location, $timeout, leafletData,
+        function($scope, $location, $timeout, leafletData, angularPiwik,
             playerService, Location, locationService, backendService) {
             var player;
 
@@ -27,9 +28,11 @@
                 if ($scope.stepIsValid()) {
                     if ($scope.isLastStep()) {
                         $scope.addNewLocation();
+                        angularPiwik.track('map.addLocation', 'finish');
                     }
                     else {
                         $scope.addLocationStep += 1;
+                        angularPiwik.track('map.addLocation', 'nextStep', $scope.addLocationStep);
                     }
                 }
             };
@@ -37,6 +40,7 @@
             $scope.previousStep = function() {
                 if ($scope.addLocationStep > 1) {
                     $scope.addLocationStep -= 1;
+                    angularPiwik.track('map.addLocation', 'previousStep', $scope.addLocationStep);
                 }
             };
 
@@ -104,8 +108,13 @@
                 if (typeof show === 'undefined') {
                     show = true;
                 }
+                show = !!show;
 
-                $scope.filtersShown = !!show;
+                // Update and track if it changed
+                if ($scope.filtersShown !== show) {
+                    $scope.filtersShown = show;
+                    angularPiwik.track('map.filter', show ? 'open' : 'close');
+                }
             };
 
             /**
@@ -116,8 +125,13 @@
                 if (typeof show === 'undefined') {
                     show = true;
                 }
+                show = !!show;
 
-                $scope.searchShown = !!show;
+                // Update and track if it changed
+                if ($scope.searchShown !== show) {
+                    $scope.searchShown = show;
+                    angularPiwik.track('map.search', show ? 'open' : 'close');
+                }
             };
 
             /**
@@ -150,6 +164,8 @@
                 $scope.isAddingLocation = true;
                 $scope.newLocation = new Location({team: player.team});
                 locationService.activate($scope.newLocation);
+
+                angularPiwik.track('map.addLocation', 'start');
             };
 
             /**
@@ -229,6 +245,8 @@
                         args.leafletEvent.latlng.lat,
                         args.leafletEvent.latlng.lng
                     );
+
+                    angularPiwik.track('map.addLocation', 'mapClick');
                 }
                 else {
                     // When not adding a location, deselect currently active location
@@ -350,12 +368,22 @@
              * Add new filters to this function
              * @param typeFilter
              */
-            var applyFilters = function(filters) {
+            var applyFilters = function(filters, filtersBefore) {
                 // First show all the locations
                 // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
                 angular.forEach(locations, function(location) {
                     location.setHidden(false);
                 });
+
+                // Track filter usage
+                if (angular.isDefined(filtersBefore)) {
+                    if (filters.recent !== filtersBefore.recent) {
+                        angularPiwik.track('map.filters', 'applyFilter.recent', filters.recent);
+                    }
+                    if (filters.type !== filtersBefore.type) {
+                        angularPiwik.track('map.filters', 'applyFilter.type', filters.type);
+                    }
+                }
 
                 // Then run the filters
                 _applyRecentFilter(filters.recent);

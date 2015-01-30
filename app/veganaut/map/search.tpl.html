@@ -10,7 +10,7 @@
     </div>
     <ul>
         <li ng-repeat="result in geocoding.results">
-            <a class="clickable" ng-click="setGeocodeResult(result)">
+            <a class="clickable" ng-click="setGeocodeResult(result) | track:'map.search':'selectResult'">
                 {{ result.getDisplayName() }}
             </a>
         </li>

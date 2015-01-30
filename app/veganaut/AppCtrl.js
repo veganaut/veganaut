@@ -4,8 +4,11 @@
     module.controller('AppCtrl', [
         '$scope', '$location', '$window',
         'angularPiwik', 'featureToggle',
-        'backendService', 'playerService',
-        function($scope, $location, $window, angularPiwik, featureToggle, backendService, playerService) {
+        'backendService', 'playerService', 'localeService',
+        function($scope, $location, $window,
+            angularPiwik, featureToggle,
+            backendService, playerService, localService)
+        {
             // Expose feature toggle settings
             $scope.featureToggle = featureToggle;
 
@@ -35,7 +38,29 @@
 
             // Listen to route changes to track page views
             $scope.$onRootScope('$routeChangeSuccess', function() {
-                angularPiwik.trackPageView();
+                // Get the current value of the accountType piwik custom variable
+                angularPiwik.getCustomVariable(1, 'visit').then(function(customVar) {
+                    // Check what we previously stored as account type
+                    var previousAccountType;
+                    if (angular.isArray(customVar)) {
+                        previousAccountType = customVar[1];
+                    }
+
+                    // Check what we now would store as account type
+                    var newAccountType = $scope.isLoggedIn() ? 'user' : 'none';
+
+                    // Set the account type if it wasn't set already or if it's now a user
+                    // (meaning we never want to go back from 'user' to 'none'
+                    if (angular.isUndefined(previousAccountType) || newAccountType === 'user') {
+                        angularPiwik.setCustomVariable(1, 'accountType', newAccountType, 'visit');
+                    }
+
+                    // Set the current locale
+                    angularPiwik.setCustomVariable(2, 'locale', localService.getLocale(), 'visit');
+
+                    // Finally, track the page view
+                    angularPiwik.trackPageView();
+                });
             });
 
             // Get the logged in user data
