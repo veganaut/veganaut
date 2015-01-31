@@ -14,7 +14,6 @@
         "d3": "3.4.13",
         "jquery": "2.1.1",
         "bootstrap": "3.2.0",
-        "bootstrap-tour": "0.10.1",
         "lodash": "2.4.1"
     },
     "devDependencies": {

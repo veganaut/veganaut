@@ -90,9 +90,6 @@
     // Make d3js available as angular service
     mainModule.value('d3', window.d3);
 
-    // Make bootstrap-tour available as angular service
-    mainModule.value('Tour', window.Tour);
-
     // Define the different modules of the app
     var mapModule = angular.module('veganaut.app.map', []);
     var scoreModule = angular.module('veganaut.app.score', []);

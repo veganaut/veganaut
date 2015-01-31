@@ -29,8 +29,7 @@ var files = {
         'app/lib/angular-loading-bar/build/loading-bar.js',
         'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
         'app/lib/angular-translate/angular-translate.js',
-        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-        'app/lib/bootstrap-tour/build/js/bootstrap-tour-standalone.js'
+        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
     ],
     less: 'app/less/master.less',
     index: 'app/index.ejs',

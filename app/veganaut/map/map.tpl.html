@@ -23,18 +23,16 @@
         </div>
 
         <div class="row" ng-hide="location.active || filtersShown || searchShown">
-            <div ng-if="!isLoggedIn()" start-tour="introBeta" class="col-xs-3">
+            <div class="col-xs-3">
                 <p>
-                    <button class="front-register-btn btn btn-block btn-team"
+                    <button type="button" class="front-register-btn btn btn-block btn-team"
+                     ng-if="!isLoggedIn()"
                      ng-click="goToView('register')"
                      title="{{ 'navigation.register' | translate }}">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
-                </p>
-            </div>
-            <div ng-if="isLoggedIn()" start-tour="mapUser" class="col-xs-3">
-                <p>
                     <button type="button" class="add-location btn btn-block btn-team"
+                     ng-if="isLoggedIn()"
                      ng-click="startAddNewLocation()"
                      title="{{ 'action.map.addLocation' | translate }}">
                         <span class="glyphicon glyphicon-plus-sign"></span>

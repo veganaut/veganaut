@@ -18,7 +18,6 @@ describe('map.', function() {
 
         // Set up environment
         helpers.setMapCenter();
-        helpers.setTourEnded('mapUser');
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();

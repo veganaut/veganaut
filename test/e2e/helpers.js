@@ -113,15 +113,6 @@ var helpers = {
     },
 
     /**
-     * Adds and entry to local storage to set the given tour
-     * as ended
-     * @param {string} tourName
-     */
-    setTourEnded: function(tourName) {
-        browser.executeScript('localStorage.setItem(\'' + tourName + '_end\', \'yes\')');
-    },
-
-    /**
      * Tells the backend to load the given fixtures
      * @param {string} [fixtureName='basic']
      */
