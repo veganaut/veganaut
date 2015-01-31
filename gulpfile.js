@@ -18,7 +18,7 @@ var files = {
         'app/veganaut/**/*.js'
     ],
     jsLib: [
-        'app/lib/lodash/dist/lodash.js',
+        'app/lib/lodash/lodash.js',
         'app/lib/jquery/dist/jquery.js',
         'app/lib/angular/angular.js',
         'app/lib/d3/d3.js',
