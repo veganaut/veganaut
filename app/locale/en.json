@@ -247,10 +247,10 @@
         "description": "Only complete this mission if you are currently visiting this location."
       },
       "hasOptions": {
-        "title": "Ask the staff whether there are any vegan options available here.",
+        "title": "Ask the staff for vegan options.",
         "description": "According to the staff, are there any vegan options available here?",
         "description2": "What do you think: are there any vegan options available here?",
-        "explanation": "Explicitly ask for something vegan using the word \"vegan\". By doing so you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
+        "explanation": "Explicitly ask for something vegan, or ask whether something is vegan, using the word \"vegan\". By doing so you can make sure that the staff realises: \"Our customers are interested in vegan options, there's a demand.\" This improves the chances that they'll supply more and better vegan options in future.",
         "form": {
           "theyDoNotKnow": "They do not know",
           "yes": "Yes",
@@ -268,9 +268,9 @@
         }
       },
       "wantVegan": {
-        "title": "Explain to the staff what \"vegan\" means.",
-        "description": "What expressions did you use in your explanation?",
-        "explanation": "Sometimes the staff doesn't know what \"vegan\" means, or you are unsure whether they know. Sometimes they think they know, but they seem to confuse it with something else, or they forget that e.g. butter isn't vegan.",
+        "title": "Talk to the staff about vegan options.",
+        "description": "What expressions did you or the staff use while talking about vegan options?",
+        "explanation": "Sometimes the staff doesn't know what \"vegan\" means, or you are unsure whether they know. Sometimes they think they know, but they seem to confuse it with something else, or they forget that e.g. butter isn't vegan. At other times, the staff explains how their vegan options are produced, or what they contain.",
         "form": {
           "vegan": "vegan",
           "plantbased": "(purely) plant-based",
@@ -286,7 +286,7 @@
           "placeholder": "Other expressions you used"
         },
         "outcome": {
-          "description": "You explained to the staff what \"vegan\" means and you used the following expressions to do so:"
+          "description": "You talked to the staff about vegan options and the following expressions were used:"
         }
       },
       "particularOption": {
