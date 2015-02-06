@@ -6,6 +6,7 @@
         'ngRoute',
         'ngSanitize',
         'ui.bootstrap',
+        'vgbootstrap.accordion',
         'angular-loading-bar',
         'leaflet-directive',
         'pascalprecht.translate',

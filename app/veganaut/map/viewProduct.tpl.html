@@ -5,9 +5,9 @@
     <div>
         <label>Products available at the location visible on the map</label>
     </div>
-    <accordion close-others="true">
-        <accordion-group ng-repeat="product in products">
-            <accordion-heading ng-click="toggleShow()">
+    <vgaccordion close-others="true">
+        <vgaccordion-group ng-repeat="product in products">
+            <vgaccordion-heading ng-click="toggleShow()">
                 <span class="glyphicon glyphicon-cutlery"></span>
                 {{product.name}}
                 <span class="pull-right">
@@ -16,8 +16,8 @@
                      num-ratings="product.rating.numRatings">
                     </vg-average-rating>
                 </span>
-            </accordion-heading>
-                <span ng-show="show">{{product.location.name}}</span>
+            </vgaccordion-heading>
+                <span>{{product.location.name}}</span>
                 <span class="glyphicon glyphicon-cutlery"></span>
                 {{product.name}}
                 <span class="pull-right">
@@ -25,14 +25,14 @@
                      average="product.rating.average"
                      num-ratings="product.rating.numRatings">
                     </vg-average-rating>
-                    <span ng-show="show">{{product.rating.average}}, {{product.rating.numRatings}} ratings</span>
+                    <span>{{product.rating.average}}, {{product.rating.numRatings}} ratings</span>
                 </span>
                 <span class="clearfix"></span>
-                <span ng-show="show"><button type="button" class="btn btn-block btn-team" ng-click="visitLocation(product.location)">
+                <span><button type="button" class="btn btn-block btn-team" ng-click="visitLocation(product.location)">
                     <span class="glyphicon glyphicon-hand-right"></span>
                     <span ng-bind="'action.map.locationAction'|translate"></span>
                 </button></span>
             </li>
-        </accordion-group>
-    </accordion>
+        </vgaccordion-group>
+    </vgaccordion>
 </div>
