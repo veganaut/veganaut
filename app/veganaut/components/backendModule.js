@@ -229,6 +229,15 @@
             };
 
             /**
+             * Gets the list of products on the map
+             * @query {bounds, limit, skip}
+             * @returns {HttpPromise}
+            */
+             BackendService.prototype.getProducts = function(bounds, limit, skip) {
+                return $http.get(backendUrl + '/product/list?bound=' + bounds + '&limit=' + limit + '&skip=' + skip);
+             };
+
+            /**
              * Gets the list of locations on the map
              * @returns {HttpPromise}
              */

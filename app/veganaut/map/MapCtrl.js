@@ -89,6 +89,12 @@
             $scope.newLocation = undefined;
 
             /**
+             * Whether to show the location products
+             * @type {boolean}
+             */
+            $scope.productShown = false;
+
+            /**
              * Whether to show the location filters
              * @type {boolean}
              */
@@ -99,6 +105,23 @@
              * @type {boolean}
              */
             $scope.searchShown = false;
+
+            /**
+             * Sets whether the product is shown
+             * @param {boolean} [show=true]
+             */
+            $scope.showProducts = function(show) {
+                if (typeof show === 'undefined') {
+                    show = true;
+                }
+                show = !!show;
+
+                // Update and track if it changed
+                if ($scope.productShown !== show) {
+                    $scope.productShown = show;
+                    // angularPiwik.track('map.product', show ? 'open' : 'close');
+                }
+            };
 
             /**
              * Sets whether the filters are shown
@@ -253,6 +276,7 @@
                     locationService.activate();
 
                     // And hide filters and search
+                    $scope.showProducts(false);
                     $scope.showFilters(false);
                     $scope.showSearch(false);
                 }
@@ -272,6 +296,7 @@
                             locationService.activate(clickedLocation);
 
                             // Hide the filters and search
+                            $scope.showProducts(false);
                             $scope.showFilters(false);
                             $scope.showSearch(false);
                         });
