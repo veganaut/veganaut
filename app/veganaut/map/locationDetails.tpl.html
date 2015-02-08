@@ -9,6 +9,12 @@
             <!-- TODO: this should go in a directive-->
             <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon">&nbsp;</span>
         </small>
+        <small tooltip-placement="bottom"
+         tooltip="{{ 'location.effort.explanation' | translate }}.
+         {{ 'location.rating.average' | translate }}: {{ location.effort.average | number:1 }},
+         {{ 'location.rating.numRatings' | translate }}: {{ location.effort.numRatings }}">
+            <span class="wi {{getEffortAverageIcon(location.effort.average)}} ">&nbsp;</span>
+        </small>
     </h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>
@@ -108,7 +114,7 @@
                             <div ng-switch-when="wantVegan">
                                 <div class="checkbox" ng-repeat="expression in mission.builtinExpressions">
                                     <label>
-                                        <input type="checkbox" ng-model="mission.outcome.builtin[expression]" />
+                                        <input type="checkbox" ng-model="mission.outcome.builtin[expression]"/>
                                         {{ 'map.mission.' + mission.type + '.form.' + expression | translate }}
                                     </label>
                                 </div>
@@ -121,7 +127,8 @@
                                 <div ng-if="mission.visit.location.products.length > 0">
                                     {{ 'map.mission.' + mission.type + '.description2' | translate }}
                                     <ul>
-                                        <li ng-repeat="product in mission.visit.location.products">{{ product.name }}</li>
+                                        <li ng-repeat="product in mission.visit.location.products">{{ product.name }}
+                                        </li>
                                     </ul>
                                 </div>
                                 <vg-list-input list="mission.outcome" num-required="1"
@@ -131,7 +138,7 @@
                             <div ng-switch-when="buyOptions">
                                 <div class="checkbox" ng-repeat="product in mission.visit.location.products">
                                     <label>
-                                        <input type="checkbox" ng-model="mission.outcome[product.id]" />
+                                        <input type="checkbox" ng-model="mission.outcome[product.id]"/>
                                         {{ product.name }}
                                     </label>
                                 </div>
@@ -163,11 +170,14 @@
                                 </div>
                             </div>
                             <div ng-switch-when="effortValue">
-                                <div class="btn-group form-group pull-right">
-                                    <label class="btn btn-default" ng-repeat="answer in mission.possibleAnswers"
-                                     ng-model="mission.outcome" btn-radio="answer">
-                                        {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
-                                    </label>
+                                <div class="text-center h3">
+                                    <div class="btn-group form-group">
+                                        <label class="btn btn-default"
+                                         ng-repeat="answer in [{value: 'yes', class: 'wi-day-sunny'},{value: 'ratherYes', class: 'wi-day-cloudy'}, {value: 'ratherNo', class: 'wi-cloudy'}, {value: 'no', class: 'wi-thunderstorm'}]"
+                                         ng-model="mission.outcome" btn-radio="answer.value">
+                                            <span class="wi {{ answer.class }} h4"></span>
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -223,7 +233,7 @@
                     </div>
                     <div ng-switch-when="giveFeedback">
                         <p>
-                            {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}<br />
+                            {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}<br/>
                             <em>{{ mission.outcome }}</em>
                         </p>
                     </div>
@@ -248,7 +258,7 @@
                     </div>
                 </div>
             </div>
-            <hr />
+            <hr/>
         </div>
 
         <p class="h4">
@@ -256,7 +266,7 @@
             <vg-mission-points points="visit.getTotalPoints()"></vg-mission-points>
         </p>
         <div class="clearfix"></div>
-        <hr />
+        <hr/>
     </div>
     <p>
         <button type="button" class="to-map btn btn-block btn-default"
