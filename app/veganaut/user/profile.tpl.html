@@ -18,6 +18,26 @@
         <vg-team-name team="me.team"></vg-team-name>
     </p>
     <p>
+        <strong>{{ 'person.label.completedMissions' | translate }}</strong><br />
+        {{ me.completedMissions }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.pioneer' | translate }}</strong><br />
+        {{ me.attributes.pioneer }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.diplomat' | translate }}</strong><br />
+        {{ me.attributes.diplomat }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.evaluator' | translate }}</strong><br />
+        {{ me.attributes.evaluator }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.gourmet' | translate }}</strong><br />
+        {{ me.attributes.gourmet }}
+    </p>
+    <p>
         <span ng-if="me.capture.active" class="badge captured">
             <span class="glyphicon glyphicon-asterisk"></span>
             <span ng-bind="'person.label.captured'|translate"></span>

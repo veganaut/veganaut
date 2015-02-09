@@ -48,6 +48,9 @@
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.when('/score', {templateUrl: '/veganaut/score/score.tpl.html'});
+
+            $routeProvider.when('/veganaut/:personId', {templateUrl: '/veganaut/user/person.tpl.html', controller: 'PersonCtrl'});
+
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
 

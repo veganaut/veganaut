@@ -326,6 +326,15 @@
                 return $http.post(backendUrl + '/person/reset', postData);
             };
 
+            /**
+             * Gets the person information with the given id
+             * @params {string} id
+             * @returns {HttpPromise}
+             */
+            BackendService.prototype.getPerson = function(id) {
+                return $http.get(backendUrl + '/person/' + id);
+            };
+
             // Instantiate and return the service
             return new BackendService();
         }]

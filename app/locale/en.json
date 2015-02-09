@@ -134,7 +134,13 @@
       "team": "Team",
       "captured": "Captured",
       "password": "Password",
-      "passwordRepeat": "Repeat password"
+      "passwordRepeat": "Repeat password",
+      "attributes":"Attributes",
+      "pioneer":"Pioneer",
+      "diplomat":"Diplomat",
+      "evaluator":"Evaluator",
+      "gourmet":"Gourmet",
+      "completedMissions":"Completed Missions"
     }
   },
   "team": {

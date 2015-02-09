@@ -1,0 +1,32 @@
+<div class="profile page-section" ng-controller="PersonCtrl">
+
+    <p>
+        <strong>{{ 'person.label.nickname' | translate }}</strong><br />
+        {{ person.nickname }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.team' | translate }}</strong><br />
+        <vg-team-name team="person.team"></vg-team-name>
+    </p>
+    <p>
+        <strong>{{ 'person.label.completedMissions' | translate }}</strong><br />
+        {{ person.completedMissions }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.pioneer' | translate }}</strong><br />
+        {{ person.attributes.pioneer }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.diplomat' | translate }}</strong><br />
+        {{ person.attributes.diplomat }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.evaluator' | translate }}</strong><br />
+        {{ person.attributes.evaluator }}
+    </p>
+    <p>
+        <strong>{{ 'person.label.gourmet' | translate }}</strong><br />
+        {{ person.attributes.gourmet }}
+    </p>
+</div>
+
