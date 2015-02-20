@@ -2,6 +2,7 @@
 'use strict';
 
 var helpers = require('./helpers');
+var elements = helpers.elements;
 
 describe('location.', function() {
     var ptor;
@@ -64,5 +65,40 @@ describe('location.', function() {
 
             expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
         });
+    });
+
+
+});
+
+describe('visit recently active players.', function() {
+    var ptor;
+    beforeEach(function() {
+        // Tell backend to reload the fixtures
+        helpers.loadFixtures();
+
+        // Go to the app
+        helpers.loadApp('/');
+        ptor = protractor.getInstance();
+
+        // TODO: not so great to logout before every test
+        helpers.logoutIfLoggedIn();
+        helpers.login();
+    });
+    it('should show name and missions.', function() {
+        browser.get('/location/000000000000000000000006');
+
+        var personLink = element(by.id('Bob'));
+        personLink.click();
+
+        //expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
+
+        var profileText = element(by.css('.profile')).getText();
+        expect(profileText).toContain('Nickname');
+        expect(profileText).toContain('Team');
+        expect(profileText).toContain('Completed Missions');
+        expect(profileText).toContain('Pioneer');
+        expect(profileText).toContain('Diplomat');
+        expect(profileText).toContain('Evaluator');
+        expect(profileText).toContain('Gourmet');
     });
 });
