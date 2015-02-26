@@ -59,11 +59,9 @@
         <p ng-if="recentlyActiveVeganauts.length > 0">
             <strong>{{ 'location.label.recentMissionsBy' | translate }}</strong>:
         <span ng-repeat="person in recentlyActiveVeganauts">
-            <span >
-                <a id="{{ person.nickname }}" href="/veganaut/{{person.id}}"  class="color-{{ person.team }}">
-                    {{ person.nickname }}
-                </a>
-            </span><span ng-hide="$last">,</span>
+            <a href="/veganaut/{{person.id}}"
+             class="color-{{ person.team }} player-recently-active"
+             >{{ person.nickname }}</a><span ng-hide="$last">,</span>
         </span>
         </p>
         <small class="pull-right">{{ 'score.points' | translate }}</small>

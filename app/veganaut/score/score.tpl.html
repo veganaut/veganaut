@@ -59,8 +59,10 @@
         </thead>
         <tbody>
         <tr ng-repeat="score in scores.people.missions | filter:filterPeopleByTeam">
-            <td >
-                <a href="/veganaut/{{score.person.id}}"  class="color-{{ score.person.team }}">{{ score.person.nickname }}</a>
+            <td>
+                <a href="/veganaut/{{score.person.id}}" class="color-{{ score.person.team }} player-score">
+                    {{ score.person.nickname }}
+                </a>
             </td>
             <td>{{ score.missions }}</td>
         </tr>

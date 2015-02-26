@@ -135,12 +135,12 @@
       "captured": "Gefangen",
       "password": "Passwort",
       "passwordRepeat": "Passwort wiederholen",
-      "attributes":"Attribute",
-      "pioneer":"Pionier",
-      "diplomat":"Diplomat",
-      "evaluator":"Evaluator",
-      "gourmet":"Gourmet",
-      "completedMissions":"Abgeschlossene Missionen"
+      "attributes": "Attribute",
+      "pioneer": "Pionier",
+      "diplomat": "Diplomat",
+      "evaluator": "Evaluator",
+      "gourmet": "Gourmet",
+      "completedMissions": "Abgeschlossene Missionen"
     }
   },
   "team": {

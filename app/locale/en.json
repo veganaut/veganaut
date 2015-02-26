@@ -135,12 +135,12 @@
       "captured": "Captured",
       "password": "Password",
       "passwordRepeat": "Repeat password",
-      "attributes":"Attributes",
-      "pioneer":"Pioneer",
-      "diplomat":"Diplomat",
-      "evaluator":"Evaluator",
-      "gourmet":"Gourmet",
-      "completedMissions":"Completed Missions"
+      "attributes": "Attributes",
+      "pioneer": "Pioneer",
+      "diplomat": "Diplomat",
+      "evaluator": "Evaluator",
+      "gourmet": "Gourmet",
+      "completedMissions": "Completed Missions"
     }
   },
   "team": {

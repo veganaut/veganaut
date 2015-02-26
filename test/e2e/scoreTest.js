@@ -29,10 +29,10 @@ describe('score.', function() {
             scoreNavEntry.click();
             expect(ptor.getCurrentUrl()).toMatch(/\/score/);
 
-            var scoreLink = element(by.css('a.color-team2'));
+            var scoreLink = element.all(by.css('a.player-score')).first();
             scoreLink.click();
 
-            //expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
+            expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
 
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Nickname');
