@@ -26,6 +26,10 @@
                     average: 0,
                     numRatings: 0
                 };
+                this.effort = {
+                    average: 0,
+                    numRatings: 0
+                };
                 this.products = [];
                 this.lastMissionDates = {};
                 this.updatedAt = undefined;
@@ -191,7 +195,7 @@
                 // TODO: should be possible to clear the memoiziation
                 this.sortedPoints = this.sortedPoints || _.chain(this.points)
                     .map(function(value, key) {
-                        return { team: key, points: value };
+                        return {team: key, points: value};
                     })
                     .sortBy('points')
                     .reverse()
@@ -217,7 +221,7 @@
              * @return {Product}
              */
             Location.prototype.getProductById = function(productId) {
-                return _.find(this.products, { id: productId });
+                return _.find(this.products, {id: productId});
             };
 
             /**
@@ -259,6 +263,7 @@
                 this.link = newData.link;
                 this.points = newData.points;
                 this.quality = newData.quality;
+                this.effort = newData.effort;
                 this.products = newData.products;
                 this.lastMissionDates = newData.lastMissionDates;
                 this.updatedAt = newData.updatedAt;

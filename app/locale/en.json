@@ -218,6 +218,9 @@
     },
     "quality": {
       "explanation": "The more twigs the bigger and better the vegan offer here"
+    },
+    "effort": {
+      "explanation": "The fairer the whether the better the chances that the vegan offer will improve if more veganauts come here"
     }
   },
   "map": {
@@ -373,12 +376,6 @@
         "title": "Make a veganautic weather forecast for this location.",
         "description": "Is the vegan offer likely to grow and prosper at this location?",
         "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
-        "form": {
-          "yes": "Yes",
-          "ratherYes": "Rather yes",
-          "ratherNo": "Rather no",
-          "no": "No"
-        },
         "outcome": {
           "yes": "The weather for the vegan offer looks good here.",
           "ratherYes": "The weather for the vegan offer looks rather good here.",

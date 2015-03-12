@@ -5,8 +5,7 @@
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService',
         function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults,
-            angularPiwik, locationService, backendService, playerService, alertService)
-        {
+            angularPiwik, locationService, backendService, playerService, alertService) {
             var locationId = $routeParams.id;
 
             /**
@@ -39,6 +38,30 @@
              * @type {boolean}
              */
             var currentUserIsRecentlyActive = false;
+
+            /**
+             * Returns the icon name matching an average effortValue
+             *
+             * @param effortAverage
+             * @returns iconName
+             */
+            $scope.getEffortAverageIcon = function(effortAverage) {
+                var iconName = 'wi-day-sunny';
+                if (effortAverage > 0.5) {
+                    iconName = 'wi-day-sunny';
+                }
+                else if (effortAverage > 0) {
+                    iconName = 'wi-day-cloudy';
+                }
+                else if (effortAverage >= -0.5) {
+                    iconName = 'wi-cloudy';
+                }
+                else {
+                    iconName = 'wi-thunderstorm';
+                }
+                return iconName;
+            };
+
 
             /**
              * Finishes the given mission and submits it to the backend

@@ -218,6 +218,9 @@
     },
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot"
+    },
+    "effort": {
+      "explanation": "Je besser das Wetter, desto grösser die Chance, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hierher kommen"
     }
   },
   "map": {
@@ -373,12 +376,6 @@
         "title": "Gib eine veganautische Wetterprognose für diese Location ab.",
         "description": "Wie gut stehen die Chancen, dass das vegane Angebot hier vergrössert und verbessert wird?",
         "explanation": "In manchen Locations hat das Personal Null Interesse an \"vegan\", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.",
-        "form": {
-          "yes": "Gut",
-          "ratherYes": "Eher gut",
-          "ratherNo": "Eher schlecht",
-          "no": "Schlecht"
-        },
         "outcome": {
           "yes": "gut.",
           "ratherYes": "eher gut",
