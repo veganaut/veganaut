@@ -34,6 +34,18 @@
             $scope.recentlyActiveVeganauts = [];
 
             /**
+             * List of possible answers (and class names for the icon)
+             * for the effort value mission.
+             * @type {{value: string, class: string}[]}
+             */
+            $scope.possibleEffortValueAnswers = [
+                {value: 'yes', class: 'wi-day-sunny'},
+                {value: 'ratherYes', class: 'wi-day-cloudy'},
+                {value: 'ratherNo', class: 'wi-cloudy'},
+                {value: 'no', class: 'wi-thunderstorm'}
+            ];
+
+            /**
              * Whether the current user is already on the recently active list
              * @type {boolean}
              */
@@ -46,14 +58,14 @@
              * @returns iconName
              */
             $scope.getEffortAverageIcon = function(effortAverage) {
-                var iconName = 'wi-day-sunny';
-                if (effortAverage > 0.5) {
+                var iconName;
+                if (effortAverage >= 0.75) {
                     iconName = 'wi-day-sunny';
                 }
-                else if (effortAverage > 0) {
+                else if (effortAverage >= 0) {
                     iconName = 'wi-day-cloudy';
                 }
-                else if (effortAverage >= -0.5) {
+                else if (effortAverage >= -0.75) {
                     iconName = 'wi-cloudy';
                 }
                 else {
