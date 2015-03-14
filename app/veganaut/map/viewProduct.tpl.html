@@ -1,0 +1,38 @@
+<div ng-controller="productsCtrl">
+    <div class="pull-right clickable" ng-click="showProducts(false)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <div>
+        <label>Products available at the location visible on the map</label>
+    </div>
+    <vgaccordion close-others="true">
+        <vgaccordion-group ng-repeat="product in products">
+            <vgaccordion-heading ng-click="toggleShow()">
+                <span class="glyphicon glyphicon-cutlery"></span>
+                {{product.name}}
+                <span class="pull-right">
+                    <vg-average-rating
+                     average="product.rating.average"
+                     num-ratings="product.rating.numRatings">
+                    </vg-average-rating>
+                </span>
+            </vgaccordion-heading>
+                <span>{{product.location.name}}</span>
+                <span class="glyphicon glyphicon-cutlery"></span>
+                {{product.name}}
+                <span class="pull-right">
+                    <vg-average-rating
+                     average="product.rating.average"
+                     num-ratings="product.rating.numRatings">
+                    </vg-average-rating>
+                    <span>{{product.rating.average}}, {{product.rating.numRatings}} ratings</span>
+                </span>
+                <span class="clearfix"></span>
+                <span><button type="button" class="btn btn-block btn-team" ng-click="visitLocation(product.location)">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    <span ng-bind="'action.map.locationAction'|translate"></span>
+                </button></span>
+            </li>
+        </vgaccordion-group>
+    </vgaccordion>
+</div>
