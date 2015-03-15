@@ -229,13 +229,21 @@
             };
 
             /**
-             * Gets the list of products on the map
-             * @query {bounds, limit, skip}
+             * Gets the list of products within the given bounds, ordered by rating.
+             * @param {string} [bounds] 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
+             * @param {number} [limit] number of products to return
+             * @param {number} [skip] number of products to skip from the beginning of the list
              * @returns {HttpPromise}
-            */
-             BackendService.prototype.getProducts = function(bounds, limit, skip) {
-                return $http.get(backendUrl + '/product/list?bound=' + bounds + '&limit=' + limit + '&skip=' + skip);
-             };
+             */
+            BackendService.prototype.getProducts = function(bounds, limit, skip) {
+                return $http.get(backendUrl + '/product/list', {
+                    params: {
+                        bounds: bounds,
+                        limit: limit,
+                        skip: skip
+                    }
+                });
+            };
 
             /**
              * Gets the list of locations on the map
@@ -317,7 +325,7 @@
              * @returns {HttpPromise}
              */
             BackendService.prototype.isValidToken = function(token) {
-                 return $http.get(backendUrl + '/person/isValidToken/'+token);
+                 return $http.get(backendUrl + '/person/isValidToken/' + token);
             };
 
             /**

@@ -243,6 +243,9 @@
         }
       }
     },
+    "productList": {
+      "title": "Produkte, die es hier in der Nähe gibt"
+    },
     "mission": {
       "title": "Missionen",
       "totalPoints": "Total Punkte aus Missionen",
@@ -383,6 +386,11 @@
           "no": "schlecht."
         }
       }
+    }
+  },
+  "product": {
+    "rating": {
+      "summary": "{{numRatings}} Bewertungen"
     }
   },
   "mapSearch": {

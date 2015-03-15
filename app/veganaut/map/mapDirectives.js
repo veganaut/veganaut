@@ -27,7 +27,8 @@
         return {
             restrict: 'E',
             scope: {
-                loc: '=location'
+                loc: '=location',
+                onlyIcon: '='
             },
             templateUrl: '/veganaut/map/vgLocationTypeBadge.tpl.html'
         };
@@ -41,6 +42,16 @@
                 team: '='
             },
             template: '<span class="color-{{ team }}" ng-bind="\'team.\' + team | translate"></span>'
+        };
+    }]);
+
+    module.directive('vgLocationQualityIcon', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                location: '='
+            },
+            templateUrl: '/veganaut/map/vgLocationQualityIcon.tpl.html'
         };
     }]);
 

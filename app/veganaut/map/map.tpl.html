@@ -6,7 +6,8 @@
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
 
-            <p class="color-{{ location.active.team }}"><strong>{{ location.active.name }}</strong></p>
+            <strong>{{ location.active.name }}</strong>
+            <vg-location-quality-icon location="location.active"></vg-location-quality-icon>
 
             <p>
                 <vg-location-type-badge location="location.active"></vg-location-type-badge>
@@ -66,7 +67,7 @@
             </div>
         </div>
         <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
-        <ng-include src="'/veganaut/map/viewProduct.tpl.html'" ng-if="productShown"></ng-include>
+        <ng-include src="'/veganaut/map/productList.tpl.html'" ng-if="productShown"></ng-include>
         <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>
         <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
     </div>

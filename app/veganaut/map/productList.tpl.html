@@ -1,0 +1,40 @@
+<div ng-controller="ProductListCtrl">
+    <div class="close-top-box clickable" ng-click="showProducts(false)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <label class="top-box-first-line">
+        {{ 'map.productList.title' | translate }}
+    </label>
+    <ul class="list-group">
+        <li ng-repeat="product in products" class="list-group-item clickable"
+         ng-click="openProduct(product)">
+            <div ng-show="openedProduct === product">
+                <p class="text-center">
+                    <strong>{{ product.location.name }}</strong>
+                    <vg-location-quality-icon location="product.location"></vg-location-quality-icon>
+                </p>
+            </div>
+            <vg-location-type-badge location="product.location" only-icon="true"></vg-location-type-badge>
+            {{ product.name }}
+            <span class="pull-right product-list-rating" ng-show="product.rating.numRatings > 0">
+                <vg-average-rating
+                 average="product.rating.average"
+                 num-ratings="product.rating.numRatings">
+                </vg-average-rating>
+                <span class="product-list-rating-text" ng-show="openedProduct === product">
+                    {{ product.rating.average | number:1 }},
+                    <span translate="product.rating.summary"
+                     translate-values="{ numRatings: product.rating.numRatings }">
+                    </span>
+                </span>
+            </span>
+            <span class="clearfix"></span>
+            <button type="button" class="btn btn-block btn-team"
+             ng-show="openedProduct === product"
+             ng-click="visitLocation(product.location)">
+                <span class="glyphicon glyphicon-hand-right"></span>
+                <span ng-bind="'action.map.locationAction' | translate"></span>
+            </button>
+        </li>
+    </ul>
+</div>

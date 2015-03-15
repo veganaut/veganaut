@@ -107,7 +107,7 @@
             $scope.searchShown = false;
 
             /**
-             * Sets whether the product is shown
+             * Sets whether the product list is shown
              * @param {boolean} [show=true]
              */
             $scope.showProducts = function(show) {
@@ -119,7 +119,7 @@
                 // Update and track if it changed
                 if ($scope.productShown !== show) {
                     $scope.productShown = show;
-                    // angularPiwik.track('map.product', show ? 'open' : 'close');
+                    angularPiwik.track('map.productList', show ? 'open' : 'close');
                 }
             };
 

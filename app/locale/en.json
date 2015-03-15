@@ -243,6 +243,9 @@
         }
       }
     },
+    "productList": {
+      "title": "Products available around here"
+    },
     "mission": {
       "title": "Missions",
       "totalPoints": "Total points from missions",
@@ -383,6 +386,11 @@
           "no": "The weather for the vegan offer looks bad here."
         }
       }
+    }
+  },
+  "product": {
+    "rating": {
+      "summary": "{{numRatings}} ratings"
     }
   },
   "mapSearch": {

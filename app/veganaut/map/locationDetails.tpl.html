@@ -1,14 +1,7 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
     <h1>
         {{ location.name }}
-        <small class="location-quality-label bg-color-{{ location.team }}"
-         tooltip-placement="bottom"
-         tooltip="{{ 'location.quality.explanation' | translate }}.
-         {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
-         {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
-            <!-- TODO: this should go in a directive-->
-            <span class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon">&nbsp;</span>
-        </small>
+        <vg-location-quality-icon location="location"></vg-location-quality-icon>
         <small tooltip-placement="bottom" ng-show="location.effort.numRatings > 0"
          tooltip="{{ 'location.effort.explanation' | translate }}.
          {{ 'location.rating.average' | translate }}: {{ location.effort.average | number:1 }},

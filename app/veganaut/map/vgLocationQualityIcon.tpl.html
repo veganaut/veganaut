@@ -1,0 +1,9 @@
+<span class="location-quality-label bg-color-{{ location.team }}"
+ tooltip-placement="bottom"
+ tooltip="{{ 'location.quality.explanation' | translate }}.
+ {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
+ {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
+    <span ng-show="location.getRoundedQuality() > 0"
+     class="icon icon-{{ location.getRoundedQuality() }} location-quality-label-icon">&nbsp;
+    </span>
+</span>
