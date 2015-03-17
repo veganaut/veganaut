@@ -1,56 +1,58 @@
 <div ng-controller="ProductListCtrl">
-    <div class="close-top-box clickable" ng-click="showProducts(false)">
+    <div class="close-top-box clickable" ng-click="showProductList(false)">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
     <label class="top-box-first-line">
         {{ 'map.productList.title' | translate }}
     </label>
-    <p ng-show="products.length === 0">
-        {{ 'map.productList.noProducts' | translate }}
-    </p>
-    <ul class="list-group" ng-show="products.length > 0">
-        <li ng-repeat="product in products" class="list-group-item clickable"
-         ng-class="{ opened: openedProduct === product }"
-         ng-click="openProduct(product)">
-            <div ng-show="openedProduct === product">
-                <p class="text-center">
-                    <strong>{{ product.location.name }}</strong>
-                    <vg-location-quality-icon location="product.location"></vg-location-quality-icon>
-                </p>
-            </div>
-            <vg-location-type-badge location="product.location" only-icon="true"></vg-location-type-badge>
-            {{ product.name }}
-            <span class="pull-right product-list-rating" ng-show="product.rating.numRatings > 0">
-                <vg-average-rating
-                 average="product.rating.average"
-                 num-ratings="product.rating.numRatings">
-                </vg-average-rating>
-                <span class="product-list-rating-text" ng-show="openedProduct === product">
-                    {{ product.rating.average | number:1 }},
-                    <span translate="product.rating.summary"
-                     translate-values="{ numRatings: product.rating.numRatings }">
+    <div ng-show="productsLoaded">
+        <p ng-show="products.length === 0">
+            {{ 'map.productList.noProducts' | translate }}
+        </p>
+        <ul class="list-group" ng-show="products.length > 0">
+            <li ng-repeat="product in products" class="list-group-item clickable"
+             ng-class="{ opened: openedProduct === product }"
+             ng-click="openProduct(product)">
+                <div ng-show="openedProduct === product">
+                    <p class="text-center">
+                        <strong>{{ product.location.name }}</strong>
+                        <vg-location-quality-icon location="product.location"></vg-location-quality-icon>
+                    </p>
+                </div>
+                <vg-location-type-badge location="product.location" only-icon="true"></vg-location-type-badge>
+                {{ product.name }}
+                <span class="pull-right product-list-rating" ng-show="product.rating.numRatings > 0">
+                    <vg-average-rating
+                     average="product.rating.average"
+                     num-ratings="product.rating.numRatings">
+                    </vg-average-rating>
+                    <span class="product-list-rating-text" ng-show="openedProduct === product">
+                        {{ product.rating.average | number:1 }},
+                        <span translate="product.rating.summary"
+                         translate-values="{ numRatings: product.rating.numRatings }">
+                        </span>
                     </span>
                 </span>
-            </span>
-            <span class="clearfix"></span>
-            <button type="button" class="btn btn-block btn-team"
-             ng-show="openedProduct === product"
-             ng-click="visitLocation(product.location)">
-                <span class="glyphicon glyphicon-hand-right"></span>
-                <span ng-bind="'action.map.locationAction' | translate"></span>
-            </button>
-        </li>
-    </ul>
-    <div ng-show="totalProducts > products.length">
-        <p>
-            {{ 'map.productList.moreProductsAvailable' | translate:{ available: totalProducts - products.length} }}
-        </p>
-        <p>
-            <button type="button" class="btn btn-block btn-default"
-             ng-click="loadMore()">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span ng-bind="'map.productList.showMore' | translate"></span>
-            </button>
-        </p>
+                <span class="clearfix"></span>
+                <button type="button" class="btn btn-block btn-team"
+                 ng-show="openedProduct === product"
+                 ng-click="visitLocation(product.location)">
+                    <span class="glyphicon glyphicon-hand-right"></span>
+                    <span ng-bind="'action.map.locationAction' | translate"></span>
+                </button>
+            </li>
+        </ul>
+        <div ng-show="totalProducts > products.length">
+            <p>
+                {{ 'map.productList.moreProductsAvailable' | translate:{ available: totalProducts - products.length} }}
+            </p>
+            <p>
+                <button type="button" class="btn btn-block btn-default"
+                 ng-click="loadMore()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span ng-bind="'map.productList.showMore' | translate"></span>
+                </button>
+            </p>
+        </div>
     </div>
 </div>

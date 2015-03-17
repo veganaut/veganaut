@@ -93,7 +93,7 @@
     },
     "map": {
       "addLocation": "New location",
-      "showProducts": "Show products available in this map section",
+      "showProductList": "Show products available in this map section",
       "searchMap": "Search on the map",
       "filterMap": "Filter locations on the map",
       "locationAction": "Check out location"

@@ -32,6 +32,12 @@
             $scope.openedProduct = undefined;
 
             /**
+             * Whether the products have been loaded
+             * @type {boolean}
+             */
+            $scope.productsLoaded = false;
+
+            /**
              * Shows the details of the given product.
              * If the it's already shown, it's hidden.
              * @param {{}} product
@@ -80,6 +86,9 @@
                         }
                         // If we couldn't find the location, don't show the product
                     });
+
+                    // The products are now loaded
+                    $scope.productsLoaded = true;
                 });
             }
 

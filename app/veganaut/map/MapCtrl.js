@@ -110,7 +110,7 @@
              * Sets whether the product list is shown
              * @param {boolean} [show=true]
              */
-            $scope.showProducts = function(show) {
+            $scope.showProductList = function(show) {
                 if (typeof show === 'undefined') {
                     show = true;
                 }
@@ -275,8 +275,8 @@
                     // When not adding a location, deselect currently active location
                     locationService.activate();
 
-                    // And hide filters and search
-                    $scope.showProducts(false);
+                    // And hide product list, filters and search
+                    $scope.showProductList(false);
                     $scope.showFilters(false);
                     $scope.showSearch(false);
                 }
@@ -295,8 +295,8 @@
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
 
-                            // Hide the filters and search
-                            $scope.showProducts(false);
+                            // Hide the product list, filters and search
+                            $scope.showProductList(false);
                             $scope.showFilters(false);
                             $scope.showSearch(false);
                         });

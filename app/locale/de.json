@@ -93,7 +93,7 @@
     },
     "map": {
       "addLocation": "Neue Location",
-      "showProducts": "Verfügbare Produkte im Kartenausschnitt anzeigen",
+      "showProductList": "Verfügbare Produkte im Kartenausschnitt anzeigen",
       "searchMap": "Auf der Karte suchen",
       "filterMap": "Orte auf der Karte filtern",
       "locationAction": "Location anschauen"
