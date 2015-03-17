@@ -231,11 +231,11 @@
             /**
              * Gets the list of products within the given bounds, ordered by rating.
              * @param {string} [bounds] 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
-             * @param {number} [limit] number of products to return
              * @param {number} [skip] number of products to skip from the beginning of the list
+             * @param {number} [limit] number of products to return
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getProducts = function(bounds, limit, skip) {
+            BackendService.prototype.getProducts = function(bounds, skip, limit) {
                 return $http.get(backendUrl + '/product/list', {
                     params: {
                         bounds: bounds,

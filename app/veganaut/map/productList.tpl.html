@@ -5,8 +5,12 @@
     <label class="top-box-first-line">
         {{ 'map.productList.title' | translate }}
     </label>
-    <ul class="list-group">
+    <p ng-show="products.length === 0">
+        {{ 'map.productList.noProducts' | translate }}
+    </p>
+    <ul class="list-group" ng-show="products.length > 0">
         <li ng-repeat="product in products" class="list-group-item clickable"
+         ng-class="{ opened: openedProduct === product }"
          ng-click="openProduct(product)">
             <div ng-show="openedProduct === product">
                 <p class="text-center">
@@ -37,4 +41,16 @@
             </button>
         </li>
     </ul>
+    <div ng-show="totalProducts > products.length">
+        <p>
+            {{ 'map.productList.moreProductsAvailable' | translate:{ available: totalProducts - products.length} }}
+        </p>
+        <p>
+            <button type="button" class="btn btn-block btn-default"
+             ng-click="loadMore()">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span ng-bind="'map.productList.showMore' | translate"></span>
+            </button>
+        </p>
+    </div>
 </div>

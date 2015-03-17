@@ -93,6 +93,7 @@
     },
     "map": {
       "addLocation": "Neue Location",
+      "showProducts": "Verfügbare Produkte im Kartenausschnitt anzeigen",
       "searchMap": "Auf der Karte suchen",
       "filterMap": "Orte auf der Karte filtern",
       "locationAction": "Location anschauen"
@@ -244,7 +245,10 @@
       }
     },
     "productList": {
-      "title": "Produkte, die es hier in der Nähe gibt"
+      "title": "Produkte, die es hier in der Nähe gibt",
+      "noProducts": "Keine Produkte gefunden.",
+      "showMore": "Weitere Produkte anzeigen",
+      "moreProductsAvailable": "{{ available }} weitere Produkte verfügbar."
     },
     "mission": {
       "title": "Missionen",

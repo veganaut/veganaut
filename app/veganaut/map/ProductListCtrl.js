@@ -3,39 +3,27 @@
     module.controller('ProductListCtrl', [
         '$scope', 'locationService', '$location', 'backendService', 'leafletData',
         function($scope, locationService, $location, backendService, leafletData) {
-            $scope.products = [];
-            $scope.totalProducts = 0;
+            // Bounds used to show the products
+            var bounds;
 
-            // Get a reference the the leaflet map object
+            // Get the locations (to set them in the products)
+            // TODO: get locations should be cached
+            var locationPromise = locationService.getLocations();
+
+            // Get a reference to the leaflet map object
             var mapPromise = leafletData.getMap();
-            mapPromise.then(function(map) {
-                // Get the bound of the map
-                var bounds = map.getBounds();
-                var coords = bounds.toBBoxString();
-
-                //Get products from the backend
-                backendService.getProducts(coords, 10, 0).then(function(data) {
-                    $scope.products = data.data.products;
-                    $scope.totalProducts = data.data.totalProducts;
-                    populateLocations();
-                });
-            });
 
             /**
-             * Check if a location id matches id in product and populate the locationId
-             * in product with the location object
+             * Loaded products
+             * @type {Array}
              */
-            function populateLocations() {
-                locationService.getLocations().then(function(locations) {
-                    // TODO: get locations should be cached
-                    angular.forEach($scope.products, function(product) {
-                        if (angular.isObject(locations[product.location])) {
-                            product.location = locations[product.location];
-                        }
-                        // TODO: else what?
-                    });
-                });
-            }
+            $scope.products = [];
+
+            /**
+             * Total products available with the current query
+             * @type {number}
+             */
+            $scope.totalProducts = 0;
 
             /**
              * Which product is currently shown
@@ -56,6 +44,51 @@
                     $scope.openedProduct = product;
                 }
             };
+
+            /**
+             * Load the next batch of products
+             */
+            $scope.loadMore = function() {
+                loadProducts(bounds, $scope.products.length);
+            };
+
+            /**
+             * Load products withing the given bounds
+             * @param {string} bounds
+             * @param {number} [skip=0]
+             */
+            function loadProducts(bounds, skip) {
+                // Get products from the backend
+                backendService.getProducts(bounds, skip || 0).then(function(data) {
+                    $scope.totalProducts = data.data.totalProducts;
+                    populateLocations(data.data.products);
+                });
+            }
+
+            /**
+             * Check if a location id matches id in product and populate the locationId
+             * in product with the location object
+             * @param {array} products
+             */
+            function populateLocations(products) {
+                locationPromise.then(function(locations) {
+                    // Go through all the products to find its location
+                    angular.forEach(products, function(product) {
+                        if (angular.isObject(locations[product.location])) {
+                            product.location = locations[product.location];
+                            $scope.products.push(product);
+                        }
+                        // If we couldn't find the location, don't show the product
+                    });
+                });
+            }
+
+            // When we get the map, load the products
+            mapPromise.then(function(map) {
+                // Get the bound of the map and load the products for the first time
+                bounds = map.getBounds().toBBoxString();
+                loadProducts(bounds);
+            });
         }
     ]);
 })(window.veganaut.mapModule);
