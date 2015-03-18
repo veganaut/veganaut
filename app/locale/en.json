@@ -51,7 +51,7 @@
   },
   "register": {
     "title": "Register",
-    "description": "To edit anything on Veganaut.net, please register.",
+    "description": "To add, rate or edit anything on Veganaut.net, please register.",
     "form": {
       "submit": "Register"
     }
@@ -93,7 +93,7 @@
     },
     "map": {
       "addLocation": "New location",
-      "showProductList": "Show products available in this map section",
+      "showProductList": "Show vegan options in this map section",
       "searchMap": "Search on the map",
       "filterMap": "Filter locations on the map",
       "locationAction": "Check out location"
@@ -173,9 +173,9 @@
   },
   "location": {
     "form": {
-      "name": "Name of the location",
-      "selectCoordinates": "Choose a point on the map or use the search field",
-      "type": "Choose location type",
+      "name": "Add new location: enter the location's name",
+      "selectCoordinates": "Add new location: Place the dot to indicate precisely where the location is at (you can use the search field to e.g. find an exact address)",
+      "type": "Add new location: Choose location type",
       "description": "Description",
       "link": "Website",
       "search": "Search name or address",
@@ -245,10 +245,10 @@
       }
     },
     "productList": {
-      "title": "Products available around here",
-      "noProducts": "No products were found.",
-      "showMore": "Show more products",
-      "moreProductsAvailable": "Another {{ available }} products are available."
+      "title": "Vegan options found in this map section",
+      "noProducts": "No options were found.",
+      "showMore": "Show more options",
+      "moreProductsAvailable": "Another {{ available }} options were found."
     },
     "mission": {
       "title": "Missions",
@@ -381,13 +381,13 @@
       },
       "effortValue": {
         "title": "Make a veganautic weather forecast for this location.",
-        "description": "Is the vegan offer likely to grow and prosper at this location?",
+        "description": "How good is the wheather at this location for the vegan offer to grow and prosper?",
         "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
         "outcome": {
-          "yes": "The weather for the vegan offer looks good here.",
-          "ratherYes": "The weather for the vegan offer looks rather good here.",
-          "ratherNo": "The weather for the vegan offer looks rather bad here.",
-          "no": "The weather for the vegan offer looks bad here."
+          "yes": "The weather looks good for the future growth of the vegan offer here.",
+          "ratherYes": "The weather looks rather good for the future growth of the vegan offer here.",
+          "ratherNo": "The weather looks rather bad for the future growth of the vegan offerhere.",
+          "no": "The weather looks bad for the future growth of the vegan offer here."
         }
       }
     }
