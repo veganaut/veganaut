@@ -3,7 +3,7 @@ Veganaut Changelog
 
 0.5.0: Public Panda (2015-03-17)
 -------------------------------------------
-* New feature: Map filters: filter locations for recent activity and for location type (gastronomy/shopping)
+* New feature: filter map based on location type (gastronomy/shopping)
 * New feature: Product Browser: push button to show list of products available at the locations in the currently visible map section (ordered by rating)
 * New feature: completing missions now affects four newly added profile attributes (pioneer, diplomat, evaluator, gourmet) depending on type of mission and, in case of the pioneer attribute, on whether you're the first to complete certain missions at that location
 * New feature: every player now has a public profile (nickname, number of missions completed, scores for pioneer, diplomat, evaluator and gourmet attributes) that can be accessed by clicking on that player's name in the teams view
