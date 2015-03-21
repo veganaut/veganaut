@@ -96,9 +96,7 @@
       "showProductList": "Vegane Angebote im Kartenausschnitt anzeigen",
       "searchMap": "Auf der Karte suchen",
       "filterMap": "Orte auf der Karte filtern",
-      "locationAction": "Location anschauen",
-      "and": "und",
-      "otherOfferings": "andere Angebote"
+      "locationAction": "Location anschauen"
     },
     "location": {
       "edit": "Location bearbeiten",
@@ -205,14 +203,14 @@
       "noProducts": {
         "anonymous": "Es wurden noch keine Angebote eingetragen. <a href=\"/register\">Registriere</a> dich, um vegane Angebote einzutragen.",
         "user": "Es wurden noch keine Angebote eingetragen. Mit einer der Missionen kannst du Angebote eintragen."
-      }
+      },
+      "summary": "{{ product }} und {{ number }} weitere Angebote"
     },
     "type": {
       "gastronomy": "Gastro",
       "retail": "Shopping",
       "event": "Event",
-      "private": "Privat",
-      "explanation": "Typ dieser Location"
+      "private": "Privat"
     },
     "score": {
       "explanation": {

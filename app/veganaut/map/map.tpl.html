@@ -1,4 +1,4 @@
-<div ng-class="{'is-adding-location': isAddingLocation}" ng-controller="MapCtrl">
+ <div ng-class="{'is-adding-location': isAddingLocation}" ng-controller="MapCtrl">
     <div class="top-box container main-container">
 
         <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
@@ -10,9 +10,9 @@
             <strong>{{ location.active.name }}</strong>
             <vg-location-quality-icon location="location.active"></vg-location-quality-icon>
             <vg-location-effort-icon location="location.active"></vg-location-effort-icon>
-            <p ng-show="location.active.products.length>0">
-                {{location.active.products[0].name}} {{ 'action.map.and' | translate }} {{location.active.products.length-1}} {{ 'action.map.otherOfferings' | translate }}
-            </p>
+            <div ng-show="location.active.products.length > 0">
+                {{ 'location.products.summary' | translate:{product: location.active.products[0].name, number: location.active.products.length - 1} }}
+            </div>
 
             <p>
                 <vg-team-points-display location="location.active"></vg-team-points-display>

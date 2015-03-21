@@ -13,13 +13,6 @@
              */
             var LocationService = function() {
                 /**
-                 * Deferred that stores the locations
-                 * @type {Deferred}
-                 * @private
-                 */
-                this._deferredLocations = undefined;
-
-                /**
                  * The currently active location
                  * @type {Location}
                  */
@@ -117,9 +110,9 @@
              */
             LocationService.prototype.getLocations = function() {
                 var that = this;
-                that._deferredLocations = $q.defer();
+                var deferredLocations = $q.defer();
                 var beforeActive = this.active;
-                this.active = undefined;
+                that.active = undefined;
                 backendService.getLocations()
                     .then(function(data) {
                         var locations = {};
@@ -129,18 +122,15 @@
                             location = new Location(data.data[i]);
                             locations[location.id] = location;
                         }
-                        if (beforeActive) {
-                            that.active = locations[beforeActive.id];
-                            if (that.active) {
-                                that.active.setActive();
-                            }
+                        if (beforeActive && locations[beforeActive.id]) {
+                            that.activate(locations[beforeActive.id]);
                         }
-                        that._deferredLocations.resolve(locations);
+                        deferredLocations.resolve(locations);
                     })
                 ;
 
                 // Return the promise
-                return that._deferredLocations.promise;
+                return deferredLocations.promise;
             };
 
             /**
@@ -149,16 +139,15 @@
              * @returns {Location}
              */
             LocationService.prototype.getLocation = function(id) {
-                var that = this;
-                that._deferredLocations = $q.defer();
+                var deferredLocation = $q.defer();
                 backendService.getLocation(id)
                     .then(function(res) {
-                        that._deferredLocations.resolve(new Location(res.data));
+                        deferredLocation.resolve(new Location(res.data));
                     })
                 ;
 
                 // Return the promise
-                return that._deferredLocations.promise;
+                return deferredLocation.promise;
             };
 
             /**
@@ -171,12 +160,6 @@
                     this.active.setActive(false);
                 }
 
-                //get details (products)
-                this.getLocation(location.id).then(function(newLocationData) {
-                    location.update(newLocationData);
-                });
-
-
                 if (this.active === location || typeof location === 'undefined') {
                     // If the given location is already active
                     // or the new active location should be undefined, deactivate
@@ -186,6 +169,11 @@
                     // Otherwise activate the given location
                     this.active = location;
                     this.active.setActive();
+
+                    // Get details (products)
+                    this.getLocation(location.id).then(function(newLocationData) {
+                        location.update(newLocationData);
+                    });
                 }
             };
 

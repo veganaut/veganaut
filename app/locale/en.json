@@ -96,9 +96,7 @@
       "showProductList": "Show vegan options in this map section",
       "searchMap": "Search on the map",
       "filterMap": "Filter locations on the map",
-      "locationAction": "Check out location",
-      "and": "and",
-      "otherOfferings": "other offerings"
+      "locationAction": "Check out location"
 
     },
     "location": {
@@ -206,14 +204,14 @@
       "noProducts": {
         "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
         "user": "No options have been entered yet. You can enter vegan options by completing one of the missions below."
-      }
+      },
+      "summary": "{{ product }} and {{ number }} other options."
     },
     "type": {
       "gastronomy": "Gastronomy",
       "retail": "Retail",
       "event": "Event",
-      "private": "Private",
-      "explanation": "Location type"
+      "private": "Private"
     },
     "score": {
       "explanation": {
