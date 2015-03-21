@@ -18,6 +18,9 @@ describe('playerService', function() {
                     },
                     error: function() {
                         return promise;
+                    },
+                    finally: function() {
+                        return promise;
                     }
                 };
                 return promise;
