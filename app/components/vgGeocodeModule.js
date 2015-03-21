@@ -52,7 +52,7 @@
         }
 
         // Add other parts
-        _.each(['road', 'house_number', 'village', 'city', 'country'], function(partName) {
+        _.each(['road', 'house_number', 'village', 'town', 'city', 'country'], function(partName) {
             if (angular.isString(that.address[partName])) {
                 parts.push(that.address[partName]);
             }
