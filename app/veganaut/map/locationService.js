@@ -171,6 +171,12 @@
                     this.active.setActive(false);
                 }
 
+                //get details (products)
+                this.getLocation(location.id).then(function(newLocationData) {
+                    location.update(newLocationData);
+                });
+
+
                 if (this.active === location || typeof location === 'undefined') {
                     // If the given location is already active
                     // or the new active location should be undefined, deactivate

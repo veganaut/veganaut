@@ -96,7 +96,9 @@
       "showProductList": "Vegane Angebote im Kartenausschnitt anzeigen",
       "searchMap": "Auf der Karte suchen",
       "filterMap": "Orte auf der Karte filtern",
-      "locationAction": "Location anschauen"
+      "locationAction": "Location anschauen",
+      "and": "und",
+      "otherOfferings": "andere Angebote"
     },
     "location": {
       "edit": "Location bearbeiten",

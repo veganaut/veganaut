@@ -96,7 +96,10 @@
       "showProductList": "Show vegan options in this map section",
       "searchMap": "Search on the map",
       "filterMap": "Filter locations on the map",
-      "locationAction": "Check out location"
+      "locationAction": "Check out location",
+      "and": "and",
+      "otherOfferings": "other offerings"
+
     },
     "location": {
       "edit": "Edit location",
