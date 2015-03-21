@@ -63,7 +63,7 @@
     };
 
     // Define the geocodeService
-    module.factory('geocodeService', ['$http', '$q', function($http, $q) {
+    module.factory('geocodeService', ['$http', '$q', 'localeService', function($http, $q, localeService) {
         /**
          * Geocode service provides an interface to OSM Nominatim API
          * @constructor
@@ -78,12 +78,13 @@
          * @returns {promise}
          */
         GeocodeService.prototype.search = function(searchString, limit) {
+            var locale = localeService.getLocale();
             var deferred = $q.defer();
             $http.get(BASE_URL + '/search', {
                 params: {
                     q: searchString,
                     limit: limit || 3,
-                    'accept-language': 'de',
+                    'accept-language': locale,
                     addressdetails: true,
                     format: 'json'
                 }
