@@ -1,0 +1,25 @@
+<div class="top-box top-box--home">
+    <div class="container--home container--offset-navbar">
+        <div class="container" ng-bind-html="'home.text.beforeMap' | translate"></div>
+    </div>
+    <div class="home-window-to-map clickable" ng-click="goToView('map')"></div>
+    <div class="container--home">
+        <div class="container">
+            <div ng-bind-html="'home.text.afterMap' | translate"></div>
+            <p>
+                <button type="button" class="btn-register btn btn-block btn-team"
+                 ng-if="!isLoggedIn()"
+                 ng-click="goToView('register')"
+                 title="{{ 'navigation.register' | translate }}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    {{ 'navigation.register' | translate }}
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
+<div ng-controller="MapCtrl">
+    <leaflet class="main-map full-viewport"
+     defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
+    </leaflet>
+</div>

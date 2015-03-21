@@ -43,7 +43,9 @@
             </div>
             <nav class="collapse" collapse="!menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->
-                <button class="btn btn-default btn-block nav-map" ng-click="goToView('')"
+                <button class="btn btn-default btn-block nav-home" ng-click="goToView('')"
+                 ng-bind="'navigation.home' | translate"></button>
+                <button class="btn btn-default btn-block nav-map" ng-click="goToView('map')"
                  ng-bind="'navigation.map' | translate"></button>
                 <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
                  ng-if="featureToggle.socialGraph && canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>

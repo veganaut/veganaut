@@ -57,7 +57,7 @@ body {
 }
 
 .top-box {
-    background-color: fade(@colorLight, 85%);
+    background-color: @colorLightTranslucent;
     top: -10px;
     left: 0;
     right: 0;
@@ -74,6 +74,24 @@ body {
 
 .top-box-first-line {
     margin-right: 20px;
+}
+
+// Styles for the home page
+.top-box--home {
+    background: none;
+}
+
+.container--offset-navbar {
+    margin-top: @navbarHeight;
+}
+
+.container--home {
+    background-color: @colorLightTranslucent;
+    padding-top: 10px;
+}
+
+.home-window-to-map {
+    height: 150px;
 }
 
 // No background on list-group-items, except if they are opened
