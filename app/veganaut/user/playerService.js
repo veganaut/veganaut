@@ -6,29 +6,67 @@
      * the player from the backend as soon as it makes sense to do so.
      */
     module.factory('playerService', ['$rootScope', '$q', 'backendService', function($rootScope, $q, backendService) {
-        /**
-         * Player object. The object reference will always be kept, only the
-         * data on it changes. This allows the view to directly bind to it
-         * and get all updates.
-         * @type {{}}
-         */
-        var me = {};
+        var PlayerService = function() {
+            /**
+             * Player object. The object reference will always be kept, only the
+             * data on it changes. This allows the view to directly bind to it
+             * and get all updates.
+             * @type {{}}
+             * @private
+             */
+            this._me = {};
 
-        /**
-         * Deferred for the player object
-         * @type {Deferred}
-         */
-        var deferredMe = $q.defer();
+            /**
+             * Deferred for the player object
+             * @type {Deferred}
+             * @private
+             */
+            this._deferredMe = $q.defer();
 
-        var getMe = function() {
-            return deferredMe.promise;
+            /**
+             * Whether we are currently able to reload the data
+             * (this means we must have already loaded it once and it
+             * must not currently be loading it)
+             * @type {boolean}
+             * @private
+             */
+            this._canReloadData = false;
+
+            // Subscribe to session created event to get the user data
+            $rootScope.$onRootScope('veganaut.session.created', this._retrieveFromBackend.bind(this));
+
+            // Check if we are logged in already
+            if (backendService.isLoggedIn()) {
+                this._retrieveFromBackend();
+            }
         };
 
-        var resetMe = function() {
+
+        /**
+         * Gets the player data
+         * @param {boolean} [forceReload=false] Reload the data from the backend
+         * @returns {promise}
+         */
+        PlayerService.prototype.getMe = function(forceReload) {
+            if (forceReload === true && this._canReloadData) {
+                // Create a new deferred
+                this._deferredMe = $q.defer();
+
+                // Get th data
+                this._retrieveFromBackend();
+            }
+            return this._deferredMe.promise;
+        };
+
+        /**
+         * Removes all properties from the stored player
+         * @private
+         */
+        PlayerService.prototype._resetMe = function() {
             // Remove all the properties from the object
-            for (var key in me) {
-                if (me.hasOwnProperty(key)) {
-                    me[key] = undefined;
+            for (var key in this._me) {
+                if (this._me.hasOwnProperty(key)) {
+                    this._me[key] = undefined;
                 }
             }
         };
@@ -36,30 +74,40 @@
         /**
          * Sets the given data as the new player data
          * @param data
+         * @private
          */
-        var setPlayerData = function(data) {
+        PlayerService.prototype._setPlayerData = function(data) {
             // Reset the current player data
-            resetMe();
+            this._resetMe();
 
             // Add all the received properties to the me object. Don't
             // replace the whole object, so that the reference stays.
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
-                    me[key] = data[key];
+                    this._me[key] = data[key];
                 }
             }
 
             // Resolve the promise
-            deferredMe.resolve(me);
+            this._deferredMe.resolve(this._me);
         };
 
-        var retrieveFromBackend = function() {
+        /**
+         * Retrieves the player data from the backend
+         * @private
+         */
+        PlayerService.prototype._retrieveFromBackend = function() {
             // Request the player from the backend
+            var that = this;
+            that._canReloadData = false;
             backendService.getMe()
-                .success(setPlayerData)
+                .success(that._setPlayerData.bind(that))
                 .error(function() {
-                    resetMe();
+                    that._resetMe();
                     // TODO: handle error
+                })
+                .finally(function() {
+                    that._canReloadData = true;
                 })
             ;
         };
@@ -69,9 +117,9 @@
          *
          * @param {{}} newPlayerData
          */
-        var updateMe = function(newPlayerData) {
+        PlayerService.prototype.updateMe = function(newPlayerData) {
             return backendService.updateMe(newPlayerData)
-                .success(setPlayerData)
+                .success(this._setPlayerData.bind(this))
             ;
         };
 
@@ -82,12 +130,12 @@
          * @param target
          * @returns {string}
          */
-        var getActivityVerb = function(target) {
+        PlayerService.prototype.getActivityVerb = function(target) {
             if (target.isDummy() || target.isMaybe() || target.isBaby()) {
                 // Attract new players
                 return 'attract';
             }
-            else if (me.team === target.team) {
+            else if (this._me.team === target.team) {
                 // Support your own team
                 return 'support';
             }
@@ -97,19 +145,7 @@
             }
         };
 
-        // Subscribe to session created event to get the user data
-        $rootScope.$onRootScope('veganaut.session.created', retrieveFromBackend);
-
-        // Check if we are logged in already
-        if (backendService.isLoggedIn()) {
-            retrieveFromBackend();
-        }
-
-        // Expose methods
-        return {
-            getMe: getMe,
-            updateMe: updateMe,
-            getActivityVerb: getActivityVerb
-        };
+        // Returns singleton instance
+        return new PlayerService();
     }]);
 })(window.veganaut.userModule);
