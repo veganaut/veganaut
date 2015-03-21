@@ -2,12 +2,7 @@
     <h1>
         {{ location.name }}
         <vg-location-quality-icon location="location"></vg-location-quality-icon>
-        <small tooltip-placement="bottom" ng-show="location.effort.numRatings > 0"
-         tooltip="{{ 'location.effort.explanation' | translate }}.
-         {{ 'location.rating.average' | translate }}: {{ location.effort.average | number:1 }},
-         {{ 'location.rating.numRatings' | translate }}: {{ location.effort.numRatings }}">
-            <span class="wi {{getEffortAverageIcon(location.effort.average)}} ">&nbsp;</span>
-        </small>
+        <vg-location-effort-icon location="location"></vg-location-effort-icon>
     </h1>
     <p>
         <vg-location-type-badge location="location"></vg-location-type-badge>

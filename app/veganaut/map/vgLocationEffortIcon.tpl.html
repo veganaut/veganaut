@@ -1,0 +1,6 @@
+<small tooltip-placement="bottom" ng-show="location.effort.numRatings > 0"
+ tooltip="{{ 'location.effort.explanation' | translate }}.
+         {{ 'location.rating.average' | translate }}: {{ location.effort.average | number:1 }},
+         {{ 'location.rating.numRatings' | translate }}: {{ location.effort.numRatings }}">
+    <span class="wi {{getEffortAverageIcon(location.effort.average)}} ">&nbsp;</span>
+</small>
