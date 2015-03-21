@@ -1,0 +1,22 @@
+.top-box--home {
+    background: none;
+}
+
+.container--home {
+    background-color: @colorLightTranslucent;
+}
+
+.home-window-to-map {
+    height: 150px;
+    color: black;
+    text-shadow: 1px 1px 1px white, 1px 1px 1px white;
+
+    // Add some padding to the first following sibling
+    & + * {
+        padding-top: 10px;
+    }
+}
+
+.home-story p {
+    font-style: italic;
+}

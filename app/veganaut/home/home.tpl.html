@@ -1,20 +1,36 @@
 <div class="top-box top-box--home">
     <div class="container--home container--offset-navbar">
-        <div class="container" ng-bind-html="'home.text.beforeMap' | translate"></div>
+        <div class="container">
+            <h1 class="h2">{{ 'home.lead.title' | translate }}</h1>
+            <h2 class="h4">{{ 'home.lead.subtitle' | translate }}</h2>
+            <div ng-bind-html="'home.lead.textBeforeMap' | translate"></div>
+        </div>
     </div>
-    <div class="home-window-to-map clickable" ng-click="goToView('map')"></div>
+    <button type="button" class="btn-register btn btn-block btn-link home-window-to-map"
+     ng-click="goToView('map')">
+        <span class="glyphicon glyphicon-hand-right"></span>
+        {{ 'home.action.visitMap' | translate }}
+    </button>
     <div class="container--home">
         <div class="container">
-            <div ng-bind-html="'home.text.afterMap' | translate"></div>
-            <p>
-                <button type="button" class="btn-register btn btn-block btn-team"
-                 ng-if="!isLoggedIn()"
-                 ng-click="goToView('register')"
-                 title="{{ 'navigation.register' | translate }}">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    {{ 'navigation.register' | translate }}
-                </button>
-            </p>
+            <div ng-bind-html="'home.lead.textAfterMap' | translate"></div>
+            <div class="home-game">
+                <h3>{{ 'home.game.title' | translate }}</h3>
+                <div ng-bind-html="'home.game.text' | translate"></div>
+                <p>
+                    <button type="button" class="btn-register btn btn-block btn-team"
+                     ng-if="!isLoggedIn()"
+                     ng-click="goToView('register')"
+                     title="{{ 'navigation.register' | translate }}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        {{ 'navigation.register' | translate }}
+                    </button>
+                </p>
+            </div>
+            <div class="home-story">
+                <h2>{{ 'home.story.title' | translate }}</h2>
+                <div ng-bind-html="'home.story.text' | translate"></div>
+            </div>
         </div>
     </div>
 </div>
