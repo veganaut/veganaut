@@ -190,6 +190,8 @@
         "type": "Location type",
         "description": "Description",
         "link": "Website",
+        "selectCoordinates": "Click in the map below to select the new location",
+        "changeCoordinates": "Change coordinates",
         "placeholder": {
           "description": "Short description of this location, e.g. type of offer and opening hours.",
           "link": "This location's website, e.g. http://example.com"

@@ -216,7 +216,9 @@
                     name: location.name,
                     description: location.description,
                     type: location.type,
-                    link: location.link
+                    link: location.link,
+                    lat: location.lat,
+                    lng: location.lng
                 })
                     .success(function(data) {
                         // Update the location

@@ -190,6 +190,8 @@
         "type": "Art der Location",
         "description": "Beschreibung",
         "link": "Webseite",
+        "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
+        "changeCoordinates": "Ändere die Position",
         "placeholder": {
           "description": "Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.",
           "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
