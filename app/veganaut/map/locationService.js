@@ -170,10 +170,13 @@
                     this.active = location;
                     this.active.setActive();
 
-                    // Get details (products)
-                    this.getLocation(location.id).then(function(newLocationData) {
-                        location.update(newLocationData);
-                    });
+                    // Check if this is a location that has an id (= not one that is being added right now)
+                    if (angular.isDefined(location.id)) {
+                        // Get details (for the products)
+                        this.getLocation(location.id).then(function(newLocationData) {
+                            location.update(newLocationData);
+                        });
+                    }
                 }
             };
 

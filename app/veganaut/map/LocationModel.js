@@ -33,6 +33,7 @@
                 this.products = [];
                 this.lastMissionDates = {};
                 this.updatedAt = undefined;
+                this._isBeingEdited = false;
 
                 // Apply the given data
                 // TODO: this should deep copy, otherwise quality might not have a valid value
@@ -104,6 +105,11 @@
                     icon.className += ' active';
                 }
 
+                // Add editing class
+                if (this._isBeingEdited) {
+                    icon.className += ' editing';
+                }
+
                 // Add hidden class if hidden
                 if (this._hidden) {
                     // TODO: better to just remove it from the map entirely?
@@ -143,6 +149,25 @@
                 // Update active state if it changed
                 if (this._active !== isActive) {
                     this._active = isActive;
+
+                    // Update marker
+                    this._updateMarker();
+                }
+            };
+
+            /**
+             * Sets whether this location is currently being edited
+             * @param {boolean} [isEditing=true]
+             */
+            Location.prototype.setEditing = function(isEditing) {
+                if (typeof isEditing === 'undefined') {
+                    isEditing = true;
+                }
+                isEditing = !!isEditing;
+
+                // Update active state if it changed
+                if (this._isBeingEdited !== isEditing) {
+                    this._isBeingEdited = isEditing;
 
                     // Update marker
                     this._updateMarker();

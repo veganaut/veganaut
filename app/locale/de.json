@@ -173,20 +173,28 @@
   },
   "location": {
     "form": {
-      "add": "Neue Location hinzufügen:",
-      "name": "Gib den Namen der Location an",
-      "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet (Du kannst die Suche benützen, um z.B. eine genaue Adresse zu finden)",
-      "type": "Wähle die Art der Location aus",
-      "description": "Beschreibung",
-      "link": "Webseite",
-      "search": "Nach Name oder Addresse suchen",
-      "placeholder": {
-        "description": "Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.",
-        "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
+      "new": {
+        "type": "What type of location would you like to add?",
+        "name": {
+          "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
+          "retail": "What is the name of the shop / supermarket that you would like to add?"
+        },
+        "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet.",
+        "search": "Nach Name oder Addresse suchen",
+        "next": "Weiter",
+        "previous": "Zurück",
+        "submit": "Fertig"
       },
-      "next": "Weiter",
-      "previous": "Zurück",
-      "submit": "Fertig"
+      "edit": {
+        "name": "Name der Location",
+        "type": "Art der Location",
+        "description": "Beschreibung",
+        "link": "Webseite",
+        "placeholder": {
+          "description": "Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.",
+          "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
+        }
+      }
     },
     "label": {
       "description": "Beschreibung",
@@ -400,7 +408,8 @@
   },
   "mapSearch": {
     "form": {
-      "title": "Suche nach Orten auf der Karte"
+      "title": "Suche nach Orten auf der Karte",
+      "placeholder": "Nach Name oder Addresse suchen"
     }
   },
   "home": {

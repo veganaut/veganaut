@@ -23,11 +23,21 @@
         };
     }]);
 
-    module.directive('vgLocationTypeIcon', [function() {
+    module.directive('vgLocationTypeBadge', [function() {
         return {
             restrict: 'E',
             scope: {
                 loc: '=location'
+            },
+            templateUrl: '/veganaut/map/vgLocationTypeBadge.tpl.html'
+        };
+    }]);
+
+    module.directive('vgLocationTypeIcon', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                type: '='
             },
             templateUrl: '/veganaut/map/vgLocationTypeIcon.tpl.html'
         };

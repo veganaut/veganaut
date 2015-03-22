@@ -1,30 +1,28 @@
 <form novalidate name="editLocationForm" class="edit-location-form" ng-controller="EditLocationCtrl">
     <div class="form-group">
-        <label for="editName" ng-bind="'location.form.name' | translate"></label>
+        <label for="editName" ng-bind="'location.form.edit.name' | translate"></label>
         <input type="text" required id="editName" class="form-control" ng-model="location.name" />
     </div>
     <div class="form-group">
-        <label for="editDescription" ng-bind="'location.form.description' | translate"></label>
+        <label for="editDescription" ng-bind="'location.form.edit.description' | translate"></label>
         <textarea id="editDescription" class="form-control" rows="5"
-         placeholder="{{ 'location.form.placeholder.description' | translate }}"
+         placeholder="{{ 'location.form.edit.placeholder.description' | translate }}"
          ng-model="location.description"></textarea>
     </div>
     <div class="form-group">
-        <label for="editLink" ng-bind="'location.form.link' | translate"></label>
+        <label for="editLink" ng-bind="'location.form.edit.link' | translate"></label>
         <input type="url" id="editLink" class="form-control"
-         placeholder="{{ 'location.form.placeholder.link' | translate }}"
+         placeholder="{{ 'location.form.edit.placeholder.link' | translate }}"
          ng-model="location.link" />
     </div>
     <div class="form-group">
-        <label class="top-box-first-line">{{ 'location.form.type' | translate }}</label>
-
-        <div>
-            <div class="btn-group">
-                <label class="btn btn-default" ng-repeat="type in locationTypes"
-                 ng-model="location.type" btn-radio="type">
-                    {{ 'location.type.' + type | translate }}
-                </label>
-            </div>
+        <label class="top-box-first-line">{{ 'location.form.edit.type' | translate }}</label>
+        <div class="btn-group form-group">
+            <button class="btn btn-default" ng-repeat="type in locationTypes"
+             ng-model="location.type" btn-radio="type">
+                <vg-location-type-icon type="type"></vg-location-type-icon>
+                {{ 'location.type.' + type | translate }}
+            </button>
         </div>
     </div>
     <button class="btn btn-default"

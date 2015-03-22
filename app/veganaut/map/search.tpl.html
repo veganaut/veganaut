@@ -6,7 +6,7 @@
         <label for="addLocationSearch">{{ 'mapSearch.form.title' | translate }}</label>
         <input type="text" class="form-control" id="addLocationSearch"
          ng-model="geocoding.search" ng-model-options="{ debounce: 500 }"
-         placeholder="{{ 'location.form.search' | translate }}"/>
+         placeholder="{{ 'mapSearch.form.placeholder' | translate }}"/>
     </div>
     <ul>
         <li ng-repeat="result in geocoding.results">

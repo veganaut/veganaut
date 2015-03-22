@@ -48,9 +48,9 @@
                 var loc = $scope.newLocation;
                 switch ($scope.addLocationStep) {
                 case 1:
-                    return (angular.isString(loc.name) && loc.name.length > 0);
-                case 2:
                     return (angular.isString(loc.type) && loc.type.length > 0);
+                case 2:
+                    return (angular.isString(loc.name) && loc.name.length > 0);
                 case 3:
                     return (angular.isNumber(loc.lat) && angular.isNumber(loc.lng));
                 default:
@@ -186,6 +186,7 @@
                 $scope.addLocationStep = 1;
                 $scope.isAddingLocation = true;
                 $scope.newLocation = new Location({team: player.team});
+                $scope.newLocation.setEditing(true);
                 locationService.activate($scope.newLocation);
 
                 angularPiwik.track('map.addLocation', 'start');
@@ -213,6 +214,7 @@
              */
             $scope.addNewLocation = function() {
                 var newLocation = $scope.newLocation;
+                newLocation.setEditing(false);
                 $scope.isAddingLocation = false;
                 $scope.newLocation = undefined;
                 newLocationIsAddedToMap = false;

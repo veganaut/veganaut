@@ -8,7 +8,8 @@
             // Geocoding search string model and results
             $scope.geocoding = {
                 search: '',
-                results: []
+                results: [],
+                resultsShown: true
             };
 
             // Get a reference the the leaflet map object
@@ -20,6 +21,9 @@
              * @param {GeocodeResult} result
              */
             $scope.setGeocodeResult = function (result) {
+                // Hide the results
+                $scope.geocoding.resultsShown = false;
+
                 // Set coordinates
                 $scope.setNewLocationCoordinates(
                     result.lat,
@@ -37,12 +41,13 @@
             // Watch the geocoding search string
             $scope.$watch('geocoding.search', function (search) {
                 // TODO: move constants somewhere else
+                // Reset results
+                $scope.geocoding.results = [];
+
+                // Only start new query if the string is long enough
                 if (!angular.isString(search) || search.length < 4) {
                     return;
                 }
-
-
-                $scope.geocoding.results = [];
 
                 // Lookup the search string
                 geocodeService.search($scope.geocoding.search)

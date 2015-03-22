@@ -97,7 +97,6 @@
       "searchMap": "Search on the map",
       "filterMap": "Filter locations on the map",
       "locationAction": "Check out location"
-
     },
     "location": {
       "edit": "Edit location",
@@ -174,20 +173,28 @@
   },
   "location": {
     "form": {
-      "add": "Add new location:",
-      "name": "enter the location's name",
-      "selectCoordinates": "Place the dot to indicate precisely where the location is at (you can use the search field to e.g. find an exact address)",
-      "type": "Choose location type",
-      "description": "Description",
-      "link": "Website",
-      "search": "Search name or address",
-      "placeholder": {
-        "description": "Short description of this location, e.g. type of offer and opening hours.",
-        "link": "This location's website, e.g. http://example.com"
+      "new": {
+        "type": "What type of location would you like to add?",
+        "name": {
+          "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
+          "retail": "What is the name of the shop / supermarket that you would like to add?"
+        },
+        "selectCoordinates": "Place the dot to indicate where the location is or use the search.",
+        "search": "Search name or address",
+        "next": "Next",
+        "previous": "Back",
+        "submit": "Done"
       },
-      "next": "Next",
-      "previous": "Back",
-      "submit": "Done"
+      "edit": {
+        "name": "Name of the location",
+        "type": "Location type",
+        "description": "Description",
+        "link": "Website",
+        "placeholder": {
+          "description": "Short description of this location, e.g. type of offer and opening hours.",
+          "link": "This location's website, e.g. http://example.com"
+        }
+      }
     },
     "label": {
       "description": "Description",
@@ -401,7 +408,8 @@
   },
   "mapSearch": {
     "form": {
-      "title": "Search for locations on the map"
+      "title": "Search for locations on the map",
+      "placeholder": "Search name or address"
     }
   },
   "home": {
