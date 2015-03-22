@@ -1,18 +1,32 @@
-<form novalidate name="searchForm" class="search-form" ng-controller="SearchCtrl">
-    <div class="pull-right clickable" ng-click="showSearch(false)">
+<form novalidate name="searchForm" class="search-form clearfix" ng-controller="SearchCtrl">
+    <a href="" class="link-unstyled pull-left top-box__minimise"
+     ng-click="searchComponent.minimised = !searchComponent.minimised">
+        <span class="glyphicon glyphicon-chevron-up"
+         ng-hide="searchComponent.minimised"></span>
+        <span ng-show="searchComponent.minimised">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            {{ 'mapSearch.form.showForm' | translate }}
+        </span>
+    </a>
+    <div class="top-box__close clickable" ng-click="showSearch(false)">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
-    <div class="form-group">
-        <label for="addLocationSearch">{{ 'mapSearch.form.title' | translate }}</label>
-        <input type="text" class="form-control" id="addLocationSearch"
-         ng-model="geocoding.search" ng-model-options="{ debounce: 500 }"
-         placeholder="{{ 'mapSearch.form.placeholder' | translate }}"/>
+    <div ng-hide="searchComponent.minimised">
+        <div class="form-group">
+            <label for="addLocationSearch" class="top-box__first-line">
+                {{ 'mapSearch.form.title' | translate }}
+            </label>
+            <input type="text" class="form-control" id="addLocationSearch"
+             ng-model="geocoding.search" ng-model-options="{ debounce: 500 }"
+             placeholder="{{ 'mapSearch.form.placeholder' | translate }}"/>
+        </div>
+        <ul class="list-unstyled list-spaced">
+            <li ng-repeat="result in geocoding.results">
+                <a href=""
+                 ng-click="searchComponent.minimised = true; setGeocodeResult(result) | track:'map.search':'selectResult'">
+                    {{ result.getDisplayName() }}
+                </a>
+            </li>
+        </ul>
     </div>
-    <ul>
-        <li ng-repeat="result in geocoding.results">
-            <a class="clickable" ng-click="setGeocodeResult(result) | track:'map.search':'selectResult'">
-                {{ result.getDisplayName() }}
-            </a>
-        </li>
-    </ul>
 </form>

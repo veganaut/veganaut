@@ -181,6 +181,7 @@
         },
         "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet.",
         "search": "Nach Name oder Addresse suchen",
+        "showForm": "Suche anzeigen",
         "next": "Weiter",
         "previous": "Zurück",
         "submit": "Fertig"
@@ -411,7 +412,8 @@
   "mapSearch": {
     "form": {
       "title": "Suche nach Orten auf der Karte",
-      "placeholder": "Nach Name oder Addresse suchen"
+      "placeholder": "Nach Name oder Addresse suchen",
+      "showForm": "Suche anzeigen"
     }
   },
   "home": {

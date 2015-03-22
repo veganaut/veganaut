@@ -8,8 +8,7 @@
             // Geocoding search string model and results
             $scope.geocoding = {
                 search: '',
-                results: [],
-                resultsShown: true
+                results: []
             };
 
             // Get a reference the the leaflet map object
@@ -21,20 +20,21 @@
              * @param {GeocodeResult} result
              */
             $scope.setGeocodeResult = function (result) {
-                // Hide the results
-                $scope.geocoding.resultsShown = false;
-
                 // Set coordinates
-                $scope.setNewLocationCoordinates(
+                // TODO: don't access method of other controller
+                var setCoordinates = $scope.setNewLocationCoordinates(
                     result.lat,
                     result.lng
                 );
 
-                // Fit to the bounds of the result
-                if (angular.isArray(result.bounds)) {
-                    mapPromise.then(function (map) {
-                        map.fitBounds(result.bounds);
-                    });
+                // If the coordinates of the new location where not set, zoom to the result
+                if (!setCoordinates) {
+                    // Fit to the bounds of the result
+                    if (angular.isArray(result.bounds)) {
+                        mapPromise.then(function (map) {
+                            map.fitBounds(result.bounds);
+                        });
+                    }
                 }
             };
 

@@ -7,6 +7,13 @@
         'playerService', 'Location', 'locationService', 'backendService',
         function($scope, $location, $timeout, leafletData, angularPiwik,
             playerService, Location, locationService, backendService) {
+            /**
+             * Max zoom level supported by leaflet
+             * TODO: move elsewhere
+             * @type {number}
+             */
+            var MAX_LEAFLET_ZOOM = 18;
+
             var player;
 
             /**
@@ -32,6 +39,7 @@
                     }
                     else {
                         $scope.addLocationStep += 1;
+                        $scope.addLocationComponent.minimised = false;
                         angularPiwik.track('map.addLocation', 'nextStep', $scope.addLocationStep);
                     }
                 }
@@ -40,6 +48,7 @@
             $scope.previousStep = function() {
                 if ($scope.addLocationStep > 1) {
                     $scope.addLocationStep -= 1;
+                    $scope.addLocationComponent.minimised = false;
                     angularPiwik.track('map.addLocation', 'previousStep', $scope.addLocationStep);
                 }
             };
@@ -105,6 +114,19 @@
              * @type {boolean}
              */
             $scope.searchShown = false;
+
+            /**
+             * Whether the add location form is minimised
+             * TODO: should probably go elsewhere
+             * @type {{minimised: boolean}}
+             */
+            $scope.addLocationComponent = {
+                minimised: false
+            };
+
+            $scope.searchComponent = {
+                minimised: false
+            };
 
             /**
              * Sets whether the product list is shown
@@ -180,6 +202,14 @@
             var newLocationIsAddedToMap = false;
 
             /**
+             * Whether we are currently placing a location on the map
+             * @returns {boolean}
+             */
+            $scope.isPlacingLocation = function() {
+                return ($scope.isAddingLocation && $scope.addLocationStep === 3);
+            };
+
+            /**
              * Starts adding a new location
              */
             $scope.startAddNewLocation = function() {
@@ -240,6 +270,7 @@
              * that is being added.
              * @param {number} lat
              * @param {number} lng
+             * @return {boolean} Whether the coordinates where set on the new location
              */
             $scope.setNewLocationCoordinates = function(lat, lng) {
                 if ($scope.isAddingLocation) {
@@ -254,7 +285,20 @@
                         });
                         newLocationIsAddedToMap = true;
                     }
+
+                    // Hide the component
+                    $scope.addLocationComponent.minimised = true;
+
+                    mapPromise.then(function(map) {
+                        var zoomTo = [lat, lng];
+                        if (map.getZoom() < MAX_LEAFLET_ZOOM || !map.getBounds().contains(zoomTo)) {
+                            map.setView(zoomTo, MAX_LEAFLET_ZOOM);
+                        }
+                    });
+
+                    return true;
                 }
+                return false;
             };
 
             /**
@@ -264,14 +308,16 @@
              */
             var mapClickHandler = function(event, args) {
                 if ($scope.isAddingLocation) {
-                    // When adding a new location, take the click
-                    // as the coordinates of this new location
-                    $scope.setNewLocationCoordinates(
-                        args.leafletEvent.latlng.lat,
-                        args.leafletEvent.latlng.lng
-                    );
+                    if ($scope.addLocationStep === 3) {
+                        // When adding a new location, take the click
+                        // as the coordinates of this new location
+                        $scope.setNewLocationCoordinates(
+                            args.leafletEvent.latlng.lat,
+                            args.leafletEvent.latlng.lng
+                        );
 
-                    angularPiwik.track('map.addLocation', 'mapClick');
+                        angularPiwik.track('map.addLocation', 'mapClick');
+                    }
                 }
                 else {
                     // When not adding a location, deselect currently active location

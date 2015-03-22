@@ -1,8 +1,8 @@
 <div ng-controller="ProductListCtrl">
-    <div class="close-top-box clickable" ng-click="showProductList(false)">
+    <div class="top-box__close clickable" ng-click="showProductList(false)">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
-    <label class="top-box-first-line">
+    <label class="top-box__first-line">
         {{ 'map.productList.title' | translate }}
     </label>
     <div ng-show="productsLoaded">

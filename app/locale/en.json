@@ -181,6 +181,7 @@
         },
         "selectCoordinates": "Place the dot to indicate where the location is or use the search.",
         "search": "Search name or address",
+        "showForm": "Show search",
         "next": "Next",
         "previous": "Back",
         "submit": "Done"
@@ -411,7 +412,8 @@
   "mapSearch": {
     "form": {
       "title": "Search for locations on the map",
-      "placeholder": "Search name or address"
+      "placeholder": "Search name or address",
+      "showForm": "Show search"
     }
   },
   "home": {

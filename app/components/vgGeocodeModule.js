@@ -83,7 +83,7 @@
             $http.get(BASE_URL + '/search', {
                 params: {
                     q: searchString,
-                    limit: limit || 3,
+                    limit: limit || 5,
                     'accept-language': locale,
                     addressdetails: true,
                     format: 'json'
