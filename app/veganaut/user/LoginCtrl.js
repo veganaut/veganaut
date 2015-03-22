@@ -11,7 +11,7 @@
                 backendService.login($scope.form.email, $scope.form.password)
                     .success(function () {
                         if (backendService.isLoggedIn()) {
-                            $scope.goToView('');
+                            $scope.goToView('map');
                         }
                     })
                     .error(function (data) {
