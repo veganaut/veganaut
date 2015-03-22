@@ -88,6 +88,10 @@ Backend unit tests:
 
     cd veganaut-backend; ./node_modules/.bin/jasmine-node --captureExceptions --verbose test/models/
 
+Run tests automatically when any file changes:
+
+    cd veganaut-backend; ./node_modules/.bin/jasmine-node --watch app.js --watch app/ --watch test/ --captureExceptions --autotest test/
+
 ### Frontend Tests
 The frontend unit tests use [Karma](https://github.com/karma-runner/karma) which is automatically
 started by the `./scripts/run-all.sh` script. Run the tests by accessing
