@@ -4,12 +4,12 @@
     </div>
     <div ng-switch="addLocationStep">
         <div ng-switch-when="1" class="form-group">
-            <label class="top-box-first-line" for="addLocationName">{{ 'location.form.name' | translate }}</label>
+            <label class="top-box-first-line" for="addLocationName">{{ 'location.form.add' | translate }} {{ 'location.form.name' | translate }}</label>
             <input type="text" required class="form-control" id="addLocationName"
              ng-model="newLocation.name" />
         </div>
         <div ng-switch-when="2" class="form-group">
-            <label class="top-box-first-line">{{ 'location.form.type' | translate }}</label>
+            <label class="top-box-first-line">{{ 'location.form.add' | translate }} {{ 'location.form.type' | translate }}</label>
             <div>
                 <div class="btn-group">
                     <label class="btn btn-default" ng-repeat="type in locationTypes"
@@ -22,7 +22,7 @@
         <div ng-switch-when="3" ng-controller="SearchCtrl">
             <div class="form-group">
                 <label class="top-box-first-line" for="addLocationSearch">
-                    {{ 'location.form.selectCoordinates' | translate }}
+                    {{ 'location.form.add' | translate }} {{ 'location.form.selectCoordinates' | translate }}
                 </label>
                 <input type="text" class="form-control" id="addLocationSearch"
                  ng-model="geocoding.search"

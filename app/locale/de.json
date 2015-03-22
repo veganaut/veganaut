@@ -173,9 +173,10 @@
   },
   "location": {
     "form": {
-      "name": "Neue Location hinzufügen: Gib den Namen der Location an",
-      "selectCoordinates": "Neue Location hinzufügen: Platziere den Punkt genau an dem Ort, wo sich die Location befindet (Du kannst die Suche benützen, um z.B. eine genaue Adresse zu finden)",
-      "type": "Neue Location hinzufügen: Wähle die Art der Location aus",
+      "add": "Neue Location hinzufügen:",
+      "name": "Gib den Namen der Location an",
+      "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet (Du kannst die Suche benützen, um z.B. eine genaue Adresse zu finden)",
+      "type": "Wähle die Art der Location aus",
       "description": "Beschreibung",
       "link": "Webseite",
       "search": "Nach Name oder Addresse suchen",

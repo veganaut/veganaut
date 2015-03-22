@@ -174,9 +174,10 @@
   },
   "location": {
     "form": {
-      "name": "Add new location: enter the location's name",
-      "selectCoordinates": "Add new location: Place the dot to indicate precisely where the location is at (you can use the search field to e.g. find an exact address)",
-      "type": "Add new location: Choose location type",
+      "add": "Add new location:",
+      "name": "enter the location's name",
+      "selectCoordinates": "Place the dot to indicate precisely where the location is at (you can use the search field to e.g. find an exact address)",
+      "type": "Choose location type",
       "description": "Description",
       "link": "Website",
       "search": "Search name or address",

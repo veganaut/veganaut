@@ -2,11 +2,17 @@
     'use strict';
 
     module.controller('EditLocationCtrl',
-        ['$scope', '$routeParams', 'locationService',
-            function($scope, $routeParams, locationService) {
+        ['$scope', '$routeParams', 'locationService', 'Location',
+            function($scope, $routeParams, locationService, Location) {
                 var locationId = $routeParams.id;
 
                 $scope.location = undefined;
+
+                /**
+                 * Expose the location types
+                 * @type {{}}
+                 */
+                $scope.locationTypes = Location.TYPES;
 
                 $scope.saveLocation = function() {
                     locationService.updateLocation($scope.location);

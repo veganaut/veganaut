@@ -212,6 +212,7 @@
                 return backendService.updateLocation(location.id, {
                     name: location.name,
                     description: location.description,
+                    type: location.type,
                     link: location.link
                 })
                     .success(function(data) {
