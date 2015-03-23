@@ -50,6 +50,7 @@
              * Save the location
              */
             $scope.saveLocation = function() {
+                location.setEditing(false);
                 locationService.updateLocation($scope.location);
                 $scope.goToView($scope.location.getUrl());
             };
@@ -60,6 +61,7 @@
                 $scope.location = location;
                 $scope.center.lat = $scope.location.lat;
                 $scope.center.lng = $scope.location.lng;
+                location.setEditing(true);
 
                 // Add the marker to the map
                 mapPromise.then(function(map) {

@@ -22,6 +22,15 @@
         left: 1px;
     }
 
+    &.editing {
+        border: 4px solid black;
+
+        .map-icon {
+            top: -4px;
+            left: -3px;
+        }
+    }
+
     &.hidden {
         display: none;
     }
@@ -37,10 +46,6 @@
         .map-icon {
             font-size: @markerIconFontSizeActive;
         }
-    }
-
-    &.editing {
-        border: 4px solid black;
     }
 }
 
