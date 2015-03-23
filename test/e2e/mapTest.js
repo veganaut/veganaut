@@ -74,14 +74,14 @@ describe('map.', function() {
 
                 var next = form.element(by.css('.btn-add-location-next'));
                 expect(next.isDisplayed()).toBe(true, 'shows next button');
-                expect(next.isEnabled()).toBe(false, 'next button step 1 is disabled');
 
-                element(by.model('newLocation.name')).sendKeys('New Place');
+                expect(next.isEnabled()).toBe(false, 'next button step 1 is disabled');
+                form.all(by.model('newLocation.type')).first().click();
                 expect(next.isEnabled()).toBe(true, 'next button step 1 is no longer disabled');
                 next.click();
 
                 expect(next.isEnabled()).toBe(false, 'next button step 2 is disabled');
-                form.all(by.model('newLocation.type')).first().click();
+                element(by.model('newLocation.name')).sendKeys('New Place');
                 expect(next.isEnabled()).toBe(true, 'next button step 2 is no longer disabled');
                 next.click();
 
@@ -94,6 +94,7 @@ describe('map.', function() {
                 expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
                 // TODO: test that new place is on the map
+                // TODO: add test that uses the search
             });
         });
     });
