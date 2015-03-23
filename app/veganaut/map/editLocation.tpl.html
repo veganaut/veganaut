@@ -17,12 +17,14 @@
     </div>
     <div class="form-group">
         <label>{{ 'location.form.edit.type' | translate }}</label>
-        <div class="btn-group">
-            <button class="btn btn-default" ng-repeat="type in locationTypes"
-             ng-model="location.type" btn-radio="type">
-                <vg-location-type-icon type="type"></vg-location-type-icon>
-                {{ 'location.type.' + type | translate }}
-            </button>
+        <div>
+            <div class="btn-group">
+                <button class="btn btn-default" ng-repeat="type in locationTypes"
+                 ng-model="location.type" btn-radio="type">
+                    <vg-location-type-icon type="type"></vg-location-type-icon>
+                    {{ 'location.type.' + type | translate }}
+                </button>
+            </div>
         </div>
     </div>
     <div class="checkbox" ng-hide="changeCoordinates">
