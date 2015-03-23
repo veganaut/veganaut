@@ -174,10 +174,10 @@
   "location": {
     "form": {
       "new": {
-        "type": "What type of location would you like to add?",
+        "type": "Welche Art von Location möchtest du hinzufügen?",
         "name": {
-          "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
-          "retail": "What is the name of the shop / supermarket that you would like to add?"
+          "gastronomy": "Wie heisst das Restaurant / Take-Away / Kantine, die du hinzufügen möchtest?",
+          "retail": "Wie heisst der Laden / Supermarkt, den du hinzufügen möchtest?"
         },
         "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet.",
         "search": "Nach Name oder Addresse suchen",
