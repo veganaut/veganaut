@@ -7,13 +7,6 @@
         'playerService', 'Location', 'locationService', 'backendService',
         function($scope, $location, $timeout, leafletData, angularPiwik,
             playerService, Location, locationService, backendService) {
-            /**
-             * Max zoom level supported by leaflet
-             * TODO: move elsewhere
-             * @type {number}
-             */
-            var MAX_LEAFLET_ZOOM = 18;
-
             var player;
 
             /**
@@ -289,10 +282,13 @@
                     // Hide the component
                     $scope.addLocationComponent.minimised = true;
 
+                    // Zoom in all the way to make sure users place it precisely
+                    // TODO: duplication with EditLocationCtrl
                     mapPromise.then(function(map) {
+                        var maxZoom = map.getMaxZoom();
                         var zoomTo = [lat, lng];
-                        if (map.getZoom() < MAX_LEAFLET_ZOOM || !map.getBounds().contains(zoomTo)) {
-                            map.setView(zoomTo, MAX_LEAFLET_ZOOM);
+                        if (map.getZoom() < maxZoom || !map.getBounds().contains(zoomTo)) {
+                            map.setView(zoomTo, maxZoom);
                         }
                     });
 

@@ -1,4 +1,4 @@
- <div ng-class="{'is-placing-location': isPlacingLocation()}" ng-controller="MapCtrl">
+ <div ng-controller="MapCtrl">
     <div class="top-box container main-container">
 
         <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
@@ -78,6 +78,7 @@
     </div>
 
     <leaflet class="main-map full-viewport"
+     ng-class="{'map--placing-location': isPlacingLocation()}"
      defaults="mapSettings.defaults" center="mapSettings.center" event-broadcast="events">
     </leaflet>
 </div>
