@@ -50,7 +50,7 @@
              * Save the location
              */
             $scope.saveLocation = function() {
-                location.setEditing(false);
+                $scope.location.setEditing(false);
                 locationService.updateLocation($scope.location);
                 $scope.goToView($scope.location.getUrl());
             };
