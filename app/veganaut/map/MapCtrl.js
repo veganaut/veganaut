@@ -117,6 +117,11 @@
                 minimised: false
             };
 
+            /**
+             * Whether the search form is minimised
+             * TODO: should probably go elsewhere
+             * @type {{minimised: boolean}}
+             */
             $scope.searchComponent = {
                 minimised: false
             };
@@ -314,6 +319,7 @@
 
                         angularPiwik.track('map.addLocation', 'mapClick');
                     }
+                    // TODO: else what? We are adding a location but clicked one -> should show some info of the clicked place
                 }
                 else {
                     // When not adding a location, deselect currently active location

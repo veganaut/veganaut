@@ -40,11 +40,11 @@
 
             // Watch the geocoding search string
             $scope.$watch('geocoding.search', function (search) {
-                // TODO: move constants somewhere else
                 // Reset results
                 $scope.geocoding.results = [];
 
                 // Only start new query if the string is long enough
+                // TODO: move constants somewhere else
                 if (!angular.isString(search) || search.length < 4) {
                     return;
                 }

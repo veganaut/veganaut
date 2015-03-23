@@ -72,6 +72,7 @@
             // Show the map in the next cycle. This needs to be done
             // because leaflet somehow doesn't like to be initialised
             // while the page is still hidden.
+            // TODO: this shouldn't be necessary
             $timeout(function() {
                 $scope.showMap = true;
             }, 0);

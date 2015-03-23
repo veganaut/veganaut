@@ -107,6 +107,7 @@
                     // TODO: handle error
                 })
                 .finally(function() {
+                    // Got the response, could request again
                     that._canReloadData = true;
                 })
             ;

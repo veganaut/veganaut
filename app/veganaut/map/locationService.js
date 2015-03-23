@@ -212,6 +212,7 @@
              * @returns {HttpPromise}
              */
             LocationService.prototype.updateLocation = function(location) {
+                // TODO: should find out what has been edited and only send that
                 return backendService.updateLocation(location.id, {
                     name: location.name,
                     description: location.description,
@@ -226,7 +227,7 @@
                         alertService.addAlert('Updated location "' + location.name + '"', 'success');
                     })
                     .error(function(data) {
-                        // TODO: should reset the location data to what it previsouly was
+                        // TODO: should reset the location data to what it previously was
                         alertService.addAlert('Failed to update location: ' + data.error, 'danger');
                     })
                 ;
