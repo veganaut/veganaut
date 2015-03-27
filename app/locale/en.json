@@ -423,7 +423,7 @@
     "lead": {
       "title": "Veganaut - The Game",
       "subtitle": "Explore the vegan universe!",
-      "textBeforeMap": "<p>Where can I get something vegan to eat nearby? Which restaurants and shops have a broad vegan offer and which vegan products are especially good? - On veganaut.net we collect answers to such questions.</p>",
+      "textBeforeMap": "<p>Where can I get something vegan to eat nearby? How broad is the vegan offer at which restaurants and shops and which vegan products are especially good? - On veganaut.net we collect answers to such questions.</p>",
       "textAfterMap": "<p>Browse the map. Do you find vegan options that you didn't know of? At some places a lot of veganauts have already gathered intel, at other places we have no or hardly any infos. What's missing? Do you know e.g. a takeaway somewhere that makes a great vegan falafel, or a shop with a few vegan things? As a veganaut you can record these infos on the map and thereby make them accessible to everybody else.</p>"
     },
     "game": {
