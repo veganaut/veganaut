@@ -44,7 +44,11 @@
             }
 
             $routeProvider.when('/', {templateUrl: '/veganaut/home/home.tpl.html'});
-            $routeProvider.when('/map', {templateUrl: '/veganaut/map/map.tpl.html'});
+            $routeProvider.when('/map', {
+                templateUrl: '/veganaut/map/map.tpl.html',
+                // Don't reload when get params or hash changes
+                reloadOnSearch: false
+            });
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});

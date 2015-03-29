@@ -70,6 +70,15 @@
 
             // Expose the activity verb method
             $scope.getActivityVerb = playerService.getActivityVerb;
+
+            // Calculate the logo url, see the template for more explanation
+            // Cannot use $location.absUrl() because we need the URL without search & hash
+            $scope.logoUrl = $location.protocol() + '://' + $location.host();
+            var port = $location.port();
+            if (port !== 80) {
+                $scope.logoUrl += ':' + port;
+            }
+            $scope.logoUrl += $location.path() + '#veganaut';
         }
     ]);
 })(window.veganaut.mainModule);

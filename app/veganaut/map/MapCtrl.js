@@ -467,6 +467,18 @@
 
             // Watch the active filters
             $scope.$watch('activeFilters', applyFilters, true);
+
+            // Listen to location changes to update the map center
+            // (if the user changes the hash manually)
+            $scope.$onRootScope('$locationChangeSuccess', function() {
+                locationService.setMapCenterFromUrl();
+            });
+
+            // When we go away from this page, reset the url
+            $scope.$onRootScope('$routeChangeStart', function() {
+                // Remove the search and hash params
+                $location.url($location.path());
+            });
         }
     ]);
 })(window.veganaut.mapModule);

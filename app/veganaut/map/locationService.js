@@ -1,7 +1,8 @@
 (function(module) {
     'use strict';
-    module.factory('locationService', ['$q', 'Location', 'mapDefaults', 'backendService', 'alertService',
-        function($q, Location, mapDefaults, backendService, alertService) {
+    module.factory('locationService', [
+        '$q', '$location', 'Location', 'mapDefaults', 'backendService', 'alertService',
+        function($q, $location, Location, mapDefaults, backendService, alertService) {
             var DEFAULT_ZOOM = 2;
             var GEO_IP_ZOOM = 10;
             var MAP_CENTER_STORAGE_ID = 'veganautMapCenter';
@@ -35,11 +36,15 @@
                  * @type {{}}
                  */
                 this.mapSettings = {
-                    center: {},
+                    center: {
+                        lat: 0,
+                        lng: 0,
+                        zoom: DEFAULT_ZOOM
+                    },
                     defaults: mapDefaults
                 };
 
-                this._setMapCenter();
+                this._initialiseMapCenter();
             };
 
             /**
@@ -62,45 +67,95 @@
             };
 
             /**
-             * Sets the map center either from local storage or
+             * Sets the map center either from the url hash, local storage or
              * from asking the backend for a location
              * @private
              */
-            LocationService.prototype._setMapCenter = function() {
-                // Try to load from center from local storage
-                this.mapSettings.center = JSON.parse(localStorage.getItem(MAP_CENTER_STORAGE_ID) || '{}');
+            LocationService.prototype._initialiseMapCenter = function() {
+                var that = this;
 
-                // Check if we loaded something
-                if (Object.keys(this.mapSettings.center).length === 0) {
-                    // If not, as the backend for a location
-                    var that = this;
-                    backendService.getGeoIP().then(function(res) {
-                        // Check the data and set it
-                        var geo = res.data;
-                        if (angular.isNumber(geo.lat) && angular.isNumber(geo.lng)) {
-                            that.mapSettings.center.lat = geo.lat;
-                            that.mapSettings.center.lng = geo.lng;
-                            that.mapSettings.center.zoom = GEO_IP_ZOOM;
-                            that.saveMapCenter();
-                        }
-                    });
+                // Try setting from the URL hash
+                var centerSet = that.setMapCenterFromUrl();
+
+                // Try to load from center from local storage
+                if (!centerSet) {
+                    centerSet = that._setMapCenterFromLocalStorage();
                 }
 
-                // Make sure we already have a valid center now
-                _.defaults(this.mapSettings.center, {
-                    lat: 0,
-                    lng: 0,
-                    zoom: DEFAULT_ZOOM
-                });
+                // Finally, ask the backend for a center
+                if (!centerSet) {
+                    backendService.getGeoIP().then(function(res) {
+                        // Try to set the received center
+                        that._setMapCenterIfValid(res.data.lat, res.data.lng, GEO_IP_ZOOM);
+                    });
+                }
             };
 
             /**
-             * Saves the map center in local storage
+             * Checks if the given center and zoom coordinates are valid
+             * and sets them if they are.
+             * @param {number} lat
+             * @param {number} lng
+             * @param {number} zoom
+             * @returns {boolean} Whether the center was set
+             * @private
+             */
+            LocationService.prototype._setMapCenterIfValid = function(lat, lng, zoom) {
+                if (angular.isNumber(lat) && isFinite(lat) &&
+                    angular.isNumber(lng) && isFinite(lat) &&
+                    angular.isNumber(zoom) && isFinite(lat))
+                {
+                    this.mapSettings.center.lat = lat;
+                    this.mapSettings.center.lng = lng;
+                    this.mapSettings.center.zoom = zoom;
+
+                    this.saveMapCenter();
+                    return true;
+                }
+                return false;
+            };
+
+            /**
+             * Try to read the map center from local storage
+             * @returns {boolean} Whether the center was set
+             * @private
+             */
+            LocationService.prototype._setMapCenterFromLocalStorage = function() {
+                var center = JSON.parse(localStorage.getItem(MAP_CENTER_STORAGE_ID) || '{}');
+                return this._setMapCenterIfValid(center.lat, center.lng, center.zoom);
+            };
+
+            /**
+             * Try to read the map center from the url hash
+             * @returns {boolean} Whether the center was set
+             */
+            LocationService.prototype.setMapCenterFromUrl = function() {
+                var hashArgs = $location.hash().split(',');
+                if (hashArgs.length === 3) {
+                    return this._setMapCenterIfValid(
+                        parseFloat(hashArgs[0]),
+                        parseFloat(hashArgs[1]),
+                        parseInt(hashArgs[2], 10)
+                    );
+                }
+                return false;
+            };
+
+            /**
+             * Saves the map center in local storage and in the url
              */
             LocationService.prototype.saveMapCenter = function() {
-                // TODO: is this a privacy issue if we don't clear this when the user logs out?
+                // Store it in local storage
                 localStorage.setItem(MAP_CENTER_STORAGE_ID,
                     JSON.stringify(this.mapSettings.center)
+                );
+
+                // Store it in the url hash (without adding a new history item)
+                $location.replace();
+                $location.hash(
+                    this.mapSettings.center.lat.toFixed(7) + ',' +
+                    this.mapSettings.center.lng.toFixed(7) + ',' +
+                    this.mapSettings.center.zoom
                 );
             };
 
