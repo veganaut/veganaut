@@ -1,6 +1,16 @@
 Veganaut Changelog
 ==================
 
+0.6.0: Cartwheelbarrow (2015-03-29)
+-------------------------------------------
+* New feature: homepage which explains the basics about the site and the game and the game's background story
+* Enhancement: location preview now features the top-rated vegan option and the number of additional options available; also, it now shows the location's average effortValue rating
+* Enhancement: search is now responsive to chosen language and always shows the city/town/village of suggested search results
+* Enhancement: add location workflow is now more intuitive and less error-prone
+* Enhancement: exact position and type of location can now be edited
+* Enhancement: website field in location edit form now accepts urls without "http://"
+
+
 0.5.0: Public Panda (2015-03-17)
 -------------------------------------------
 * New feature: filter map based on location type (gastronomy/shopping)
