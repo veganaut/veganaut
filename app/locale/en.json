@@ -250,7 +250,7 @@
       "type": {
         "title": "Filter for location type",
         "form": {
-          "anytype": "Anytype",
+          "anytype": "Both",
           "gastronomy": "Gastronomy",
           "retail": "Retail"
         }
