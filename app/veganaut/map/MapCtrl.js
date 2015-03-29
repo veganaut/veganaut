@@ -3,11 +3,17 @@
 
     // TODO: refactor (it's getting way too big!), document and add tests!!
     module.controller('MapCtrl', [
-        '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik',
-        'playerService', 'Location', 'locationService', 'backendService',
-        function($scope, $location, $timeout, leafletData, angularPiwik,
-            playerService, Location, locationService, backendService) {
+        '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik', 'mapDefaults',
+        'playerService', 'Location', 'locationService', 'mainMapService', 'backendService',
+        function($scope, $location, $timeout, leafletData, angularPiwik, mapDefaults,
+            playerService, Location, locationService, mainMapService, backendService) {
             var player;
+
+            /**
+             * Leaflet map settings
+             * @type {{}}
+             */
+            $scope.mapDefaults = mapDefaults;
 
             /**
              * Locations loaded from the backend indexed by id
@@ -68,7 +74,7 @@
             $scope.location = locationService;
 
             // Expose map settings and filters from the service
-            $scope.mapSettings = locationService.mapSettings;
+            $scope.mainMap = mainMapService;
             $scope.activeFilters = locationService.activeFilters;
             $scope.POSSIBLE_FILTERS = locationService.POSSIBLE_FILTERS;
 
@@ -384,8 +390,8 @@
             }
 
             // Watch the map center for changes to save it
-            $scope.$watch('mapSettings.center', function() {
-                locationService.saveMapCenter();
+            $scope.$watch('mainMap.center', function() {
+                mainMapService.saveCenter();
             });
 
 
@@ -471,7 +477,7 @@
             // Listen to location changes to update the map center
             // (if the user changes the hash manually)
             $scope.$onRootScope('$locationChangeSuccess', function() {
-                locationService.setMapCenterFromUrl();
+                mainMapService.setMapCenterFromUrl();
             });
 
             // When we go away from this page, reset the url
