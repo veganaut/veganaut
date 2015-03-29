@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>veganaut.net</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/build/master.min.css"/>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css?v=<%= bust %>"/>
+    <link rel="stylesheet" href="/build/master.min.css?v=<%= bust %>"/>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
@@ -124,12 +124,15 @@
 <div class="modal-backdrop in menu-backdrop" ng-show="menuShown" ng-click="menuShown = false"></div>
 
 <% if (jsFiles.length === 0) { -%>
-<script src="/build/lib.min.js"></script>
-<script src="/build/app.min.js"></script>
+<script src="/build/lib.min.js?v=<%= bust %>"></script>
+<script src="/build/app.min.js?v=<%= bust %>"></script>
 <% } else { -%>
 <% for (var i = 0; i < jsFiles.length; i += 1) { -%>
 <script src="<%= jsFiles[i] %>"></script>
 <% } -%>
+<script type="text/javascript">
+    angular.module('veganaut.app.templates', []);
+</script>
 <% } %>
 </body>
 </html>

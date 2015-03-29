@@ -10,6 +10,8 @@ var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var ejs = require('gulp-ejs');
 var tap = require('gulp-tap');
+var ngHtml2Js = require('gulp-ng-html2js');
+var minifyHtml = require('gulp-minify-html');
 
 var files = {
     js: [
@@ -32,11 +34,12 @@ var files = {
         'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
     ],
     less: 'app/less/master.less',
+    templates: 'app/**/*.tpl.html',
     index: 'app/index.ejs',
     watch: 'app/**/*'
 };
 
-gulp.task('js', function() {
+gulp.task('js', ['ngTemplateConcat'], function() {
     return gulp.src(files.js)
         .pipe(concat('app.min.js'))
         .pipe(uglify())
@@ -44,6 +47,7 @@ gulp.task('js', function() {
     ;
 });
 
+// TODO: don't minify libs ourselves, use the provided min versions (when available)
 gulp.task('jsLib', function() {
     return gulp.src(files.jsLib)
         .pipe(concat('lib.min.js'))
@@ -56,8 +60,47 @@ gulp.task('less', function() {
     return gulp.src(files.less)
         .pipe(less({
             compress: true
+            // TODO: add urlArgs, but need to split up the vendor css from our own
         }))
         .pipe(rename('master.min.css'))
+        .pipe(gulp.dest('app/build/'))
+    ;
+});
+
+gulp.task('ngTemplateConcat', function() {
+    // Name of the angular module that we'll create
+    var moduleName = 'veganaut.app.templates';
+
+    // Add the file we create to the list of js files
+    files.js.push('app/build/templates.js');
+    return gulp.src(files.templates)
+        // First minify the html
+        .pipe(minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true
+        }))
+
+        // Then convert to js with a custom template, to only have the angular.module definition once
+        .pipe(ngHtml2Js({
+            template: '$templateCache.put(\'<%= template.url %>\',\'<%= template.prettyEscapedContent %>\');',
+            moduleName: moduleName,
+            prefix: '/'
+        }))
+
+        // Put it all in one file
+        .pipe(concat('templates.js'))
+
+        // Surround it with the angular.module definition
+        .pipe(tap(function(file) {
+            file.contents = Buffer.concat([
+                new Buffer('angular.module(\'' + moduleName + '\', []).run([\'$templateCache\', function($templateCache) {'),
+                file.contents,
+                new Buffer('}]);')
+            ]);
+        }))
+
+        // Save it. TODO: would be better to pass it directly to the 'js' task
         .pipe(gulp.dest('app/build/'))
     ;
 });
@@ -84,7 +127,8 @@ gulp.task('listJsFiles', function() {
 var createIndex = function(jsFiles) {
     return gulp.src(files.index)
         .pipe(ejs({
-            jsFiles: jsFiles || []
+            jsFiles: jsFiles || [],
+            bust: Date.now() % 100000 // TODO: make a better bust
         }))
         .pipe(gulp.dest('app/'))
     ;

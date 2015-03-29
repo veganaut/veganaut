@@ -13,6 +13,7 @@
         'veganaut.form',
         'veganaut.geocode',
         'veganaut.angularPiwik',
+        'veganaut.app.templates',
         'veganaut.app.main',
         'veganaut.app.session',
         'veganaut.app.backend',
