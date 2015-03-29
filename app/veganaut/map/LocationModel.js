@@ -274,6 +274,19 @@
             };
 
             /**
+             * Makes sure the currently link is valid
+             * (starts with http:// or https://)
+             */
+            Location.prototype.sanitiseLink = function() {
+                if (angular.isString(this.link) &&
+                    this.link.length > 0 &&
+                    !/^https?:\/\//.test(this.link))
+                {
+                    this.link = 'http://' + this.link;
+                }
+            };
+
+            /**
              * Updates this Location with the new data loaded from the backend
              * @param {{}} newData
              */

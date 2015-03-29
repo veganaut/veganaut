@@ -207,4 +207,49 @@ describe('LocationModel.', function() {
             expect(loc.getProductById('456')).toBe(prod2, 'finds prod2');
         });
     });
+
+    describe('sanitiseLink.', function() {
+        var loc;
+        beforeEach(function() {
+            loc = new Location();
+        });
+
+        it('method exists', function() {
+            expect(typeof loc.sanitiseLink).toBe('function');
+        });
+
+        it('does not modify a valid link', function() {
+            loc.link = 'http://example.com';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('http://example.com', 'http link not modified');
+
+            loc.link = 'https://www.bla.ch';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('https://www.bla.ch', 'https link not modified');
+        });
+
+        it('adds http:// if not already there', function() {
+            loc.link = 'example.com';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('http://example.com', 'test 1');
+
+            loc.link = 'a';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('http://a', 'test 2');
+
+            loc.link = 'ablahttp://';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('http://ablahttp://', 'test 3');
+        });
+
+        it('does not modify empty link', function() {
+            // Don't set any value
+            loc.sanitiseLink();
+            expect(typeof loc.link).toBe('undefined', 'test 1');
+
+            loc.link = '';
+            loc.sanitiseLink();
+            expect(loc.link).toBe('', 'test 2');
+        });
+    });
 });

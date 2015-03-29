@@ -212,6 +212,9 @@
              * @returns {HttpPromise}
              */
             LocationService.prototype.updateLocation = function(location) {
+                // Sanitise the link before saving
+                location.sanitiseLink();
+
                 // TODO: should find out what has been edited and only send that
                 return backendService.updateLocation(location.id, {
                     name: location.name,

@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         <label for="editLink" ng-bind="'location.form.edit.link' | translate"></label>
-        <input type="url" id="editLink" class="form-control"
+        <input type="text" id="editLink" class="form-control"
          placeholder="{{ 'location.form.edit.placeholder.link' | translate }}"
          ng-model="location.link"/>
     </div>
@@ -43,6 +43,6 @@
          ng-click="goToView(location.getUrl())" ng-bind="'action.cancel' | translate"></button>
         <button type="submit" class="btn btn-default pull-right"
          ng-disabled="editLocationForm.$invalid || editLocationForm.$pristine"
-         ng-click="saveLocation()" ng-bind="'action.location.save' | translate"></button>
+         ng-click="saveLocation()">{{ 'action.location.save' | translate }}</button>
     </p>
 </form>
