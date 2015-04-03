@@ -39,7 +39,7 @@ describe('mainMapService.', function() {
 
     describe('constructor.', function() {
         it('loads the center from the url hash.', function() {
-            hash = '46.5,7.3,12';
+            hash = 'zoom:12,coords:46.5-7.3';
             inject(function(mainMapService) {
                 expect($location.hash).toHaveBeenCalledWith();
                 expect(localStorage.getItem).not.toHaveBeenCalled();
@@ -52,7 +52,7 @@ describe('mainMapService.', function() {
 
                 // Stored the value in the local storage and url hash
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":46.5,"lng":7.3,"zoom":12}');
-                expect($location.hash).toHaveBeenCalledWith('46.5000000,7.3000000,12');
+                expect($location.hash).toHaveBeenCalledWith('zoom:12,coords:46.5000000-7.3000000');
             });
         });
 
@@ -68,7 +68,7 @@ describe('mainMapService.', function() {
                 });
 
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":10.5,"lng":20.1,"zoom":3}');
-                expect($location.hash).toHaveBeenCalledWith('10.5000000,20.1000000,3');
+                expect($location.hash).toHaveBeenCalledWith('zoom:3,coords:10.5000000-20.1000000');
             });
         });
 
@@ -100,7 +100,7 @@ describe('mainMapService.', function() {
                 }, 'takes values from backend');
 
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":15.2,"lng":22.5,"zoom":10}');
-                expect($location.hash).toHaveBeenCalledWith('15.2000000,22.5000000,10');
+                expect($location.hash).toHaveBeenCalledWith('zoom:10,coords:15.2000000-22.5000000');
             });
         });
 
@@ -121,8 +121,8 @@ describe('mainMapService.', function() {
         }));
 
         it('reads the center from the url.', inject(function(mainMapService) {
-            hash = '1,2,3';
-            mainMapService.setMapCenterFromUrl();
+            hash = 'zoom:3,coords:1-2';
+            expect(mainMapService.setMapCenterFromUrl()).toBe(true, 'set the map center');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -130,7 +130,19 @@ describe('mainMapService.', function() {
             });
 
             expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":1,"lng":2,"zoom":3}');
-            expect($location.hash).toHaveBeenCalledWith('1.0000000,2.0000000,3');
+            expect($location.hash).toHaveBeenCalledWith('zoom:3,coords:1.0000000-2.0000000');
+
+            // Order shouldn't matter
+            hash = 'coords:4.1-5,zoom:6';
+            expect(mainMapService.setMapCenterFromUrl()).toBe(true, 'set the map center with reverse params');
+            expect(mainMapService.center).toEqual({
+                lat: 4.1,
+                lng: 5,
+                zoom: 6
+            });
+
+            expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":4.1,"lng":5,"zoom":6}');
+            expect($location.hash).toHaveBeenCalledWith('zoom:6,coords:4.1000000-5.0000000');
         }));
 
         it('ignores faulty values.', inject(function(mainMapService) {
@@ -140,8 +152,8 @@ describe('mainMapService.', function() {
                 zoom: 3
             };
 
-            hash = 'a,b,c';
-            mainMapService.setMapCenterFromUrl();
+            hash = 'zoom:a,coords:b-c';
+            expect(mainMapService.setMapCenterFromUrl()).toBe(false, 'did not set first faulty params');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -149,8 +161,8 @@ describe('mainMapService.', function() {
             });
             expect(localStorage.setItem).not.toHaveBeenCalled();
 
-            hash = '10,20';
-            mainMapService.setMapCenterFromUrl();
+            hash = 'zoom:3;coords:10';
+            expect(mainMapService.setMapCenterFromUrl()).toBe(false, 'did not set second faulty params');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -174,7 +186,7 @@ describe('mainMapService.', function() {
 
             mainMapService.saveCenter();
             expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":7.1234567890123,"lng":2.123456789012,"zoom":15}');
-            expect($location.hash).toHaveBeenCalledWith('7.1234568,2.1234568,15');
+            expect($location.hash).toHaveBeenCalledWith('zoom:15,coords:7.1234568-2.1234568');
         }));
     });
 });

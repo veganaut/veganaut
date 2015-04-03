@@ -43,7 +43,7 @@ describe('authentication.', function() {
             });
 
             it('should be possible to login with correct username and pw.', function() {
-                expect(ptor.getCurrentUrl()).toMatch(/\/map#0\.0000000,0\.0000000,2$/, 'should redirect to the map after login');
+                expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:2,coords:0\.0000000-0\.0000000$/, 'should redirect to the map after login');
             });
 
             it('should mark the current player\'s team.', function() {

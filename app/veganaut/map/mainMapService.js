@@ -105,15 +105,28 @@
              * @returns {boolean} Whether the center was set
              */
             MainMapService.prototype.setMapCenterFromUrl = function() {
+                // Hash is in the form: zoom:11,coords:46.9767388-7.6516342
                 var hashArgs = $location.hash().split(',');
-                if (hashArgs.length === 3) {
-                    return this._setMapCenterIfValid(
-                        parseFloat(hashArgs[0]),
-                        parseFloat(hashArgs[1]),
-                        parseInt(hashArgs[2], 10)
-                    );
+                var zoom, lat, lng;
+
+                // Go through all the arguments
+                for (var i = 0; i < hashArgs.length; i++) {
+                    var arg = hashArgs[i].split(':');
+                    if (arg[0] === 'zoom') {
+                        // Found zoom value
+                        zoom = parseInt(arg[1], 10);
+                    }
+                    else if (arg[0] === 'coords') {
+                        // Found coordinates
+                        var coords = arg[1].split('-');
+                        if (coords.length === 2) {
+                            lat = parseFloat(coords[0]);
+                            lng = parseFloat(coords[1]);
+                        }
+                    }
                 }
-                return false;
+
+                return this._setMapCenterIfValid(lat, lng, zoom);
             };
 
             /**
@@ -128,9 +141,11 @@
                 // Store it in the url hash (without adding a new history item)
                 $location.replace();
                 $location.hash(
-                    this.center.lat.toFixed(7) + ',' +
-                    this.center.lng.toFixed(7) + ',' +
-                    this.center.zoom
+                    'zoom:' +
+                    this.center.zoom +
+                    ',coords:' +
+                    this.center.lat.toFixed(7) + '-' +
+                    this.center.lng.toFixed(7)
                 );
             };
 
