@@ -162,7 +162,7 @@
                 // Update and track if it changed
                 if ($scope.filtersShown !== show) {
                     $scope.filtersShown = show;
-                    angularPiwik.track('map.filter', show ? 'open' : 'close');
+                    angularPiwik.track('map.filters', show ? 'open' : 'close');
                 }
             };
 
