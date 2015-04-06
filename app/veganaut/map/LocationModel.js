@@ -51,7 +51,7 @@
                  * @type {boolean}
                  * @private
                  */
-                this._hidden = false;
+                this._disabled = false;
 
                 /**
                  * Leaflet Marker representing this location
@@ -91,10 +91,13 @@
                 // Create the basic icon settings
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: 'map-location type-' + this.type + ' team-' + this.team + ' quality-' + this.getRoundedQuality(),
+                    className: 'map-location type-' + this.type +
+                        ' team-' + this.team +
+                        ' quality-' + this.getRoundedQuality(),
                     html: ''
                 };
 
+                // TODO: cleanup and set correct type class
                 // Set the html based on the "quality"
                 //if (this.quality.numRatings > 0) {
                 //    icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
@@ -117,11 +120,8 @@
                     icon.className += ' editing';
                 }
 
-                // Add hidden class if hidden
-                if (this._hidden) {
-                    // TODO: better to just remove it from the map entirely?
-                    icon.className += ' filtered-out';
-                }
+                // Add disabled or enabled class
+                icon.className += this._disabled ? ' map-location--disabled' : ' map-location--enabled';
 
                 // TODO: only do this if something actually changed
                 this.marker.setIcon(L.divIcon(icon));
@@ -190,18 +190,19 @@
             };
 
             /**
-             * Sets the location to be hidden or shown on the map
-             * @param {boolean} isHidden
+             * Sets the location to be disabled or enabled on the map.
+             * Disabled locations are shown greyed out.
+             * @param {boolean} isDisabled
              */
-            Location.prototype.setHidden = function(isHidden) {
-                if (typeof isHidden === 'undefined') {
-                    isHidden = true;
+            Location.prototype.setDisabled = function(isDisabled) {
+                if (typeof isDisabled === 'undefined') {
+                    isDisabled = true;
                 }
-                isHidden = !!isHidden;
+                isDisabled = !!isDisabled;
 
-                // Update hidden state if it changed
-                if (this._hidden !== isHidden) {
-                    this._hidden = isHidden;
+                // Update disabled state if it changed
+                if (this._disabled !== isDisabled) {
+                    this._disabled = isDisabled;
 
                     // Update marker
                     this._updateMarker();
@@ -209,12 +210,11 @@
             };
 
             /**
-             * Returns whether the current location is hidden
+             * Returns whether the location is diabled
              * @returns boolean
              */
-
-            Location.prototype.isHidden = function() {
-                return this._hidden;
+            Location.prototype.isDisabled = function() {
+                return this._disabled;
             };
 
 

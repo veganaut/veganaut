@@ -74,6 +74,33 @@ describe('LocationModel.', function() {
         });
     });
 
+    describe('setDisabled and isDisabled.', function() {
+        it('returns correct default value.', function() {
+            var loc = new Location();
+            expect(typeof loc.isDisabled).toBe('function', 'isDisabled is a function');
+            expect(typeof loc.setDisabled).toBe('function', 'setDisabled is a function');
+            expect(loc.isDisabled()).toBe(false);
+        });
+
+        it('can be set to hidden.', function() {
+            var loc = new Location();
+            loc.setDisabled();
+            expect(loc.isDisabled()).toBe(true, 'default is to set hidden');
+
+            loc = new Location();
+            loc.setDisabled(true);
+            expect(loc.isDisabled()).toBe(true, 'can explicitly set hidden');
+        });
+
+        it('can be hidden and shown.', function() {
+            var loc = new Location();
+            loc.setDisabled();
+            expect(loc.isDisabled()).toBe(true, 'set hidden');
+            loc.setDisabled(false);
+            expect(loc.isDisabled()).toBe(false, 'set shown');
+        });
+    });
+
     describe('marker.', function() {
         it('instantiates a marker.', function() {
             var loc = new Location();
@@ -97,13 +124,31 @@ describe('LocationModel.', function() {
         it('updates marker icon className when changing active state.', function() {
             var loc = new Location();
             var icon = loc.marker.options.icon.options;
-            expect(icon.className).toNotMatch(/active/, 'does not have "active" class');
+            var classRegex = /\bactive\b/;
+            expect(icon.className).toNotMatch(classRegex, 'does not have "active" class');
             loc.setActive();
             icon = loc.marker.options.icon.options;
-            expect(icon.className).toMatch(/active/, 'has "active" class when setting active');
+            expect(icon.className).toMatch(classRegex, 'has "active" class when setting active');
             loc.setActive(false);
             icon = loc.marker.options.icon.options;
-            expect(icon.className).toNotMatch(/active/, '"active" class removed when setting inactive');
+            expect(icon.className).toNotMatch(classRegex, '"active" class removed when setting inactive');
+        });
+
+        it('updates marker icon className when changing disabled state.', function() {
+            var loc = new Location();
+            var icon = loc.marker.options.icon.options;
+            var disabledClass = /\bmap-location--disabled\b/;
+            var enabledClass = /\bmap-location--enabled\b/;
+            expect(icon.className).toNotMatch(disabledClass, 'does not have the disabled class');
+            expect(icon.className).toMatch(enabledClass, 'has the enabled class');
+            loc.setDisabled();
+            icon = loc.marker.options.icon.options;
+            expect(icon.className).toMatch(disabledClass, 'has the disabled class when setting disabled');
+            expect(icon.className).toNotMatch(enabledClass, 'does not have the enabled class when setting disabled');
+            loc.setDisabled(false);
+            icon = loc.marker.options.icon.options;
+            expect(icon.className).toNotMatch(disabledClass, 'disabled class removed when setting enabled');
+            expect(icon.className).toMatch(enabledClass, 'enabled class added when setting enabled');
         });
     });
 

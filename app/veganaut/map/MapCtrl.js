@@ -346,7 +346,7 @@
             var locationClickHandler = function(event) {
                 if (!$scope.isAddingLocation) {
                     var clickedLocation = locations[event.target.locationId];
-                    if (clickedLocation && !clickedLocation.isHidden()) {
+                    if (clickedLocation && !clickedLocation.isDisabled()) {
                         // Run it through $apply since we are coming directly from Leaflet
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
@@ -422,9 +422,9 @@
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
                     // Only apply the filter if the location is not already hidden
-                    if (!location.isHidden()) {
-                        var hideIt = (!showAll && location.updatedAt < recentDate);
-                        location.setHidden(hideIt);
+                    if (!location.isDisabled()) {
+                        var disableIt = (!showAll && location.updatedAt < recentDate);
+                        location.setDisabled(disableIt);
                     }
                 });
             };
@@ -438,9 +438,9 @@
                 // Go through all the locations and filter them
                 angular.forEach(locations, function(location) {
                     // Only apply the filter if the location is not already hidden
-                    if (!location.isHidden()) {
-                        var hideIt = (!showAll && location.type !== typeFilter);
-                        location.setHidden(hideIt);
+                    if (!location.isDisabled()) {
+                        var disableIt = (!showAll && location.type !== typeFilter);
+                        location.setDisabled(disableIt);
                     }
                 });
             };
@@ -454,7 +454,7 @@
                 // First show all the locations
                 // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
                 angular.forEach(locations, function(location) {
-                    location.setHidden(false);
+                    location.setDisabled(false);
                 });
 
                 // Track filter usage
