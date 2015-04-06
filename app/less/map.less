@@ -3,23 +3,109 @@
 }
 
 @markerSize: 24px;
-@markerActiveIncrease: 4px;
+@markerSizeFilteredOut: 16px;
+@markerSize1: 22px;
+@markerSize2: 23px;
+@markerSize3: 25px;
+@markerSize4: 27px;
+@markerSize5: 28px;
+@opacity1: 0.4;
+@opacity2: 0.48;
+@opacity3: 0.56;
+@opacity4: 0.64;
+@opacity5: 0.72;
+@zindex1: 1000; // should add the rank * 10 or so
+@zindex2: 1100;
+@zindex3: 1200;
+@zindex4: 1300;
+@zindex5: 1400;
+@markerActiveIncrease: 8px;
 @markerSizeActive: @markerSize + @markerActiveIncrease;
 @markerIconFontSize: 22px;
 @markerIconFontSizeActive: @markerIconFontSize + @markerActiveIncrease;
 .map-location {
-    border-radius: @markerSize / 2;
-    opacity: @teamColourOpacity;
-    width: @markerSize;
-    height: @markerSize;
-    margin-left: -@markerSize / 2;
-    margin-top: -@markerSize / 2;
+    border-radius: @markerSize1 / 2;
+    opacity: @opacity1;
+    width: @markerSize1;
+    height: @markerSize1;
+    margin-left: -@markerSize1 / 2;
+    margin-top: -@markerSize1 / 2;
+    border: 1px solid white;
+    color: white;
+
+    &.quality-1 {
+        opacity: @opacity1;
+        border-radius: @markerSize1 / 2;
+        width: @markerSize1;
+        height: @markerSize1;
+        margin-left: -@markerSize1 / 2;
+        margin-top: -@markerSize1 / 2;
+        z-index: @zindex1 !important;
+        .type-icon-test {
+            top: 3px;
+        }
+    }
+    &.quality-2 {
+        opacity: @opacity2;
+        border-radius: @markerSize2 / 2;
+        width: @markerSize2;
+        height: @markerSize2;
+        margin-left: -@markerSize2 / 2;
+        margin-top: -@markerSize2 / 2;
+        z-index: @zindex2 !important;
+        .type-icon-test {
+            top: 4px;
+        }
+    }
+    &.quality-3 {
+        opacity: @opacity3;
+        border-radius: @markerSize3 / 2;
+        width: @markerSize3;
+        height: @markerSize3;
+        margin-left: -@markerSize3 / 2;
+        margin-top: -@markerSize3 / 2;
+        z-index: @zindex3 !important;
+        .type-icon-test {
+            top: 5px;
+        }
+    }
+    &.quality-4 {
+        opacity: @opacity4;
+        border-radius: @markerSize4 / 2;
+        width: @markerSize4;
+        height: @markerSize4;
+        margin-left: -@markerSize4 / 2;
+        margin-top: -@markerSize4 / 2;
+        z-index: @zindex4 !important;
+        .type-icon-test {
+            top: 6px;
+        }
+    }
+    &.quality-5 {
+        opacity: @opacity5;
+        border-radius: @markerSize5 / 2;
+        width: @markerSize5;
+        height: @markerSize5;
+        margin-left: -@markerSize5 / 2;
+        margin-top: -@markerSize5 / 2;
+        z-index: @zindex5 !important;
+        .type-icon-test {
+            top: 6px;
+        }
+    }
 
     .map-icon {
         color: white;
         font-size: @markerIconFontSize;
         position: absolute;
         left: 1px;
+    }
+
+    .type-icon-test {
+        width: 100%;
+        text-align: center;
+        top: 3px;
+        left: -1px;
     }
 
     &.editing {
@@ -31,8 +117,20 @@
         }
     }
 
-    &.hidden {
-        display: none;
+    &.filtered-out, &.filtered-out:hover, &.filtered-out.active {
+        background-color: grey !important;
+        opacity: 0.4;
+        border-radius: @markerSizeFilteredOut / 2;
+        width: @markerSizeFilteredOut;
+        height: @markerSizeFilteredOut;
+        margin-left: -@markerSizeFilteredOut / 2;
+        margin-top: -@markerSizeFilteredOut / 2;
+        z-index: 500 !important;
+        border: 1px solid white;
+        cursor: inherit;
+        .type-icon-test {
+            display: none;
+        }
     }
 
     &:hover, &.active {
@@ -42,9 +140,15 @@
         border-radius: @markerSizeActive / 2;
         margin-left: -@markerSizeActive / 2;
         margin-top: -@markerSizeActive / 2;
+        z-index: 10000 !important;
+        border: 4px solid white;
 
         .map-icon {
             font-size: @markerIconFontSizeActive;
+        }
+
+        .type-icon-test {
+            top: 5px;
         }
     }
 }

@@ -91,13 +91,20 @@
                 // Create the basic icon settings
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: 'map-location type-' + this.type + ' team-' + this.team,
+                    className: 'map-location type-' + this.type + ' team-' + this.team + ' quality-' + this.getRoundedQuality(),
                     html: ''
                 };
 
                 // Set the html based on the "quality"
-                if (this.quality.numRatings > 0) {
-                    icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
+                //if (this.quality.numRatings > 0) {
+                //    icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
+                //}
+
+                if (this.type === 'gastronomy') {
+                    icon.html = '<span class="type-icon-test glyphicon glyphicon-cutlery"></span>';
+                }
+                else {
+                    icon.html = '<span class="type-icon-test glyphicon glyphicon-shopping-cart"></span>';
                 }
 
                 // Add active class if active
@@ -113,7 +120,7 @@
                 // Add hidden class if hidden
                 if (this._hidden) {
                     // TODO: better to just remove it from the map entirely?
-                    icon.className += ' hidden';
+                    icon.className += ' filtered-out';
                 }
 
                 // TODO: only do this if something actually changed

@@ -346,7 +346,7 @@
             var locationClickHandler = function(event) {
                 if (!$scope.isAddingLocation) {
                     var clickedLocation = locations[event.target.locationId];
-                    if (clickedLocation) {
+                    if (clickedLocation && !clickedLocation.isHidden()) {
                         // Run it through $apply since we are coming directly from Leaflet
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
@@ -358,6 +358,7 @@
                         });
                     }
                 }
+                // TODO: if not handled, should pass on the click to the map
             };
 
             // Get a reference the the leaflet map object
