@@ -55,9 +55,9 @@ describe('map when logged out.', function() {
     });
 
     it('should show some locations on the map.', function() {
-        expect(element.all(by.css('.map-location')).count()).toBeGreaterThan(0, 'has at least one location');
-        expect(element.all(by.css('.map-location.team-team1')).count()).toBeGreaterThan(0, 'has at least one team1 location');
-        expect(element.all(by.css('.map-location.team-team2')).count()).toBeGreaterThan(0, 'has at least one team2 location');
+        expect(element.all(by.css('.marker')).count()).toBeGreaterThan(0, 'has at least one location');
+        expect(element.all(by.css('.marker.marker--team-team1')).count()).toBeGreaterThan(0, 'has at least one team1 location');
+        expect(element.all(by.css('.marker.marker--team-team2')).count()).toBeGreaterThan(0, 'has at least one team2 location');
     });
 
     describe('map center loaded in local storage', function() {
@@ -68,7 +68,7 @@ describe('map when logged out.', function() {
 
             expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
 
-            element.all(by.css('.map-location')).each(function(location) {
+            element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
             });
         });
@@ -80,7 +80,7 @@ describe('map when logged out.', function() {
 
             expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
 
-            element.all(by.css('.map-location')).each(function(location) {
+            element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');
             });
         });
@@ -92,7 +92,7 @@ describe('map when logged out.', function() {
 
             expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
 
-            element.all(by.css('.map-location')).each(function(location) {
+            element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
             });
         });
@@ -102,7 +102,7 @@ describe('map when logged out.', function() {
 
             expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
 
-            element.all(by.css('.map-location')).each(function(location) {
+            element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');
             });
         });
@@ -111,17 +111,17 @@ describe('map when logged out.', function() {
     describe('interaction with locations on the map', function() {
         it('should toggle showing details when selecting a location.', function() {
             browser.get('/map#zoom:13,coords:46.945-7.449');
-            var location = element(by.css('.map-location.team-team1[title="Reformhaus Ruprecht"]'));
+            var location = element(by.css('.marker.marker--team-team1[title="Reformhaus Ruprecht"]'));
             location.click();
 
             var details = element(by.css('.location-details'));
             expect(details.isDisplayed()).toBe(true, 'details shown on first click');
-            expect(location.getAttribute('class')).toMatch(/active/, 'location has .active class');
+            expect(location.getAttribute('class')).toMatch(/\bmarker--active\b/, 'location has .marker--active class');
             // TODO: check more that details are displayed
 
             location.click();
             expect(details.isDisplayed()).toBe(false, 'details hidden on second click');
-            expect(location.getAttribute('class')).toNotMatch(/active/, '.active class removed');
+            expect(location.getAttribute('class')).toNotMatch(/\bmarker--active\b/, '.marker--active class removed');
         });
     });
 
@@ -130,9 +130,9 @@ describe('map when logged out.', function() {
         var quality0, quality3, quality4;
 
         beforeEach(function() {
-            allQuality0 = element.all(by.css('.map-location.quality-0'));
-            allQuality3 = element.all(by.css('.map-location.quality-3'));
-            allQuality4 = element.all(by.css('.map-location.quality-4'));
+            allQuality0 = element.all(by.css('.marker.marker--quality-0'));
+            allQuality3 = element.all(by.css('.marker.marker--quality-3'));
+            allQuality4 = element.all(by.css('.marker.marker--quality-4'));
             quality0 = allQuality0.first();
             quality3 = allQuality3.first();
             quality4 = allQuality4.first();

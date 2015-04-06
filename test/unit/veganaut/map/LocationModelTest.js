@@ -111,7 +111,7 @@ describe('LocationModel.', function() {
             expect(typeof icon).toBe('object', 'icon is an object');
             expect(icon.iconSize).toBe(null, 'correct iconSize');
             expect(typeof icon.html).toBe('string', 'correct html type');
-            expect(icon.className).toMatch(/map-location/, 'className contains "map-location"');
+            expect(icon.className).toMatch(/\bmarker\b/, 'className contains "marker"');
         });
 
         it('added the location it on the marker.', function() {
@@ -124,21 +124,21 @@ describe('LocationModel.', function() {
         it('updates marker icon className when changing active state.', function() {
             var loc = new Location();
             var icon = loc.marker.options.icon.options;
-            var classRegex = /\bactive\b/;
-            expect(icon.className).toNotMatch(classRegex, 'does not have "active" class');
+            var classRegex = /\bmarker--active\b/;
+            expect(icon.className).toNotMatch(classRegex, 'does not have active class');
             loc.setActive();
             icon = loc.marker.options.icon.options;
-            expect(icon.className).toMatch(classRegex, 'has "active" class when setting active');
+            expect(icon.className).toMatch(classRegex, 'has active class when setting active');
             loc.setActive(false);
             icon = loc.marker.options.icon.options;
-            expect(icon.className).toNotMatch(classRegex, '"active" class removed when setting inactive');
+            expect(icon.className).toNotMatch(classRegex, 'active class removed when setting inactive');
         });
 
         it('updates marker icon className when changing disabled state.', function() {
             var loc = new Location();
             var icon = loc.marker.options.icon.options;
-            var disabledClass = /\bmap-location--disabled\b/;
-            var enabledClass = /\bmap-location--enabled\b/;
+            var disabledClass = /\bmarker--disabled\b/;
+            var enabledClass = /\bmarker--enabled\b/;
             expect(icon.className).toNotMatch(disabledClass, 'does not have the disabled class');
             expect(icon.className).toMatch(enabledClass, 'has the enabled class');
             loc.setDisabled();

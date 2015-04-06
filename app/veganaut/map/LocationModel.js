@@ -91,9 +91,9 @@
                 // Create the basic icon settings
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: 'map-location type-' + this.type +
-                        ' team-' + this.team +
-                        ' quality-' + this.getRoundedQuality(),
+                    className: 'marker marker--type-' + this.type +
+                        ' marker--team-' + this.team +
+                        ' marker--quality-' + this.getRoundedQuality(),
                     html: ''
                 };
 
@@ -104,24 +104,24 @@
                 //}
 
                 if (this.type === 'gastronomy') {
-                    icon.html = '<span class="type-icon-test glyphicon glyphicon-cutlery"></span>';
+                    icon.html = '<span class="marker__icon marker__icon--type glyphicon glyphicon-cutlery"></span>';
                 }
                 else {
-                    icon.html = '<span class="type-icon-test glyphicon glyphicon-shopping-cart"></span>';
+                    icon.html = '<span class="marker__icon marker__icon--type glyphicon glyphicon-shopping-cart"></span>';
                 }
 
                 // Add active class if active
                 if (this._active) {
-                    icon.className += ' active';
+                    icon.className += ' marker--active';
                 }
 
                 // Add editing class
                 if (this._isBeingEdited) {
-                    icon.className += ' editing';
+                    icon.className += ' marker--editing';
                 }
 
                 // Add disabled or enabled class
-                icon.className += this._disabled ? ' map-location--disabled' : ' map-location--enabled';
+                icon.className += this._disabled ? ' marker--disabled' : ' marker--enabled';
 
                 // TODO: only do this if something actually changed
                 this.marker.setIcon(L.divIcon(icon));
