@@ -105,14 +105,6 @@ var helpers = {
     },
 
     /**
-     * Adds an entry to local storage to make the map
-     * load zoomed in on Bern
-     */
-    setMapCenter: function() {
-        browser.executeScript('localStorage.setItem(\'veganautMapCenter\', \'{"lat":46.945,"lng":7.449,"zoom":13}\')');
-    },
-
-    /**
      * Tells the backend to load the given fixtures
      * @param {string} [fixtureName='basic']
      */
