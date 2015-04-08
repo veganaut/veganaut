@@ -1,6 +1,10 @@
+// Mixing to create a marker with the given size, opacity and z-index
 .marker-style(@size, @opacity, @zIndex) {
     opacity: @opacity;
-//    z-index: @zIndex !important;
+    // TODO: the z-index should depend on the average quality, not just the rounded quality.
+    // This is not easily possible, because leaflet sets the z-index on the element
+    // That's alwo why we have to use !important to be able to overwrite it from here
+    z-index: @zIndex !important;
     border-radius: @size / 2;
     width: @size;
     height: @size;
@@ -13,53 +17,58 @@
     }
 }
 
-@size0: 22px;
-@size1: 22px;
-@size2: 23px;
-@size3: 25px;
-@size4: 27px;
-@size5: 28px;
-@opacity0: 0.4;
-@opacity1: 0.4;
-@opacity2: 0.48;
-@opacity3: 0.56;
-@opacity4: 0.64;
-@opacity5: 0.72;
-@zIndex0: 900;
-@zIndex1: 1000; // should add the rank * 10 or so
-@zIndex2: 1100;
-@zIndex3: 1200;
-@zIndex4: 1300;
-@zIndex5: 1400;
+// Define all the sizes, opacities and z-indices of the markers for different offer qualities
+@sizeQuality0: 22px;
+@sizeQuality1: 22px;
+@sizeQuality2: 23px;
+@sizeQuality3: 25px;
+@sizeQuality4: 27px;
+@sizeQuality5: 28px;
 @sizeDisabled: 16px;
-@opacityDisabled: 0.4;
-@zIndexDisabled: 500;
 @sizeActive: 32px;
+@opacityQuality0: 0.4;
+@opacityQuality1: 0.4;
+@opacityQuality2: 0.48;
+@opacityQuality3: 0.56;
+@opacityQuality4: 0.64;
+@opacityQuality5: 0.72;
+@opacityDisabled: 0.4;
 @opacityActive: 1;
-@zIndexActive: 10000;
+@zIndexQuality0: 100;
+@zIndexQuality1: 200;
+@zIndexQuality2: 300;
+@zIndexQuality3: 400;
+@zIndexQuality4: 500;
+@zIndexQuality5: 600;
+@zIndexDisabled: 50;
+@zIndexActive: 900;
+
 .marker {
     color: white;
     border: 1px solid #fff;
 
+    // Create all the marker styles based on the location quality
+    // This should be done with a loop, but less makes this less readable than having it copy pasted.
     &.marker--quality-0 {
-        .marker-style(@size0, @opacity0, @zIndex0);
+        .marker-style(@sizeQuality0, @opacityQuality0, @zIndexQuality0);
     }
     &.marker--quality-1 {
-        .marker-style(@size1, @opacity1, @zIndex1);
+        .marker-style(@sizeQuality1, @opacityQuality1, @zIndexQuality1);
     }
     &.marker--quality-2 {
-        .marker-style(@size2, @opacity2, @zIndex2);
+        .marker-style(@sizeQuality2, @opacityQuality2, @zIndexQuality2);
     }
     &.marker--quality-3 {
-        .marker-style(@size3, @opacity3, @zIndex3);
+        .marker-style(@sizeQuality3, @opacityQuality3, @zIndexQuality3);
     }
     &.marker--quality-4 {
-        .marker-style(@size4, @opacity4, @zIndex4);
+        .marker-style(@sizeQuality4, @opacityQuality4, @zIndexQuality4);
     }
     &.marker--quality-5 {
-        .marker-style(@size5, @opacity5, @zIndex5);
+        .marker-style(@sizeQuality5, @opacityQuality5, @zIndexQuality5);
     }
 
+    // Icon representing the location type inside the marker
     .marker__icon--type {
         width: 100%;
         text-align: center;
@@ -72,6 +81,7 @@
     }
 
     &.marker--disabled {
+        display: none; // Not showing disabled markers for now until we figure out how we want to show them
         .marker-style(@sizeDisabled, @opacityDisabled, @zIndexDisabled);
         background-color: grey;
         cursor: inherit;
@@ -81,6 +91,7 @@
         }
     }
 
+    // Create hover and active style for the enabled marker
     &.marker--enabled {
         &:hover, &.marker--active {
             .marker-style(@sizeActive, @opacityActive, @zIndexActive);
