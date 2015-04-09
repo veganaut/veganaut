@@ -82,6 +82,30 @@
             };
 
             /**
+             * Icon CSS classes used for the type of location
+             * @type {{gastronomy: string, retail: string}}
+             * @private
+             */
+            Location._CLASS_FOR_TYPE = {
+                gastronomy: 'glyphicon glyphicon-cutlery',
+                retail: 'glyphicon glyphicon-shopping-cart'
+            };
+
+            /**
+             * Returns the CSS icon class(es) for the given location type.
+             * Returns false if no valid type is given.
+             * @param {string} type
+             * @returns {string|boolean}
+             */
+            Location.getIconClassForType = function(type) {
+                var cls = Location._CLASS_FOR_TYPE[type];
+                if (angular.isString(cls)) {
+                    return cls;
+                }
+                return false;
+            };
+
+            /**
              * Makes sure the Leaflet marker is up to date with the current
              * model state. Sets the icon html and the css as well as the
              * locationId on the marker.
@@ -97,17 +121,10 @@
                     html: ''
                 };
 
-                // TODO: cleanup and set correct type class
-                // Set the html based on the "quality"
-                //if (this.quality.numRatings > 0) {
-                //    icon.html = '<span class="map-icon icon icon-' + this.getRoundedQuality() + '"></span>';
-                //}
-
-                if (this.type === 'gastronomy') {
-                    icon.html = '<span class="marker__icon marker__icon--type glyphicon glyphicon-cutlery"></span>';
-                }
-                else {
-                    icon.html = '<span class="marker__icon marker__icon--type glyphicon glyphicon-shopping-cart"></span>';
+                // Set a marker based on the type of location
+                var typeIcon = Location.getIconClassForType(this.type);
+                if (typeIcon) {
+                    icon.html = '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
                 }
 
                 // Add active class if active
@@ -306,6 +323,7 @@
                 this.name = newData.name;
                 this.description = newData.description;
                 this.link = newData.link;
+                this.type = newData.type;
                 this.points = newData.points;
                 this.quality = newData.quality;
                 this.effort = newData.effort;

@@ -39,7 +39,13 @@
             scope: {
                 type: '='
             },
-            templateUrl: '/veganaut/map/vgLocationTypeIcon.tpl.html'
+            controller: ['$scope', 'Location', function($scope, Location) {
+                this.getClassName = function() {
+                    return Location.getIconClassForType($scope.type);
+                };
+            }],
+            controllerAs: 'vgLocationTypeIconCtrl',
+            template: '<span ng-class="vgLocationTypeIconCtrl.getClassName()"></span>'
         };
     }]);
 
