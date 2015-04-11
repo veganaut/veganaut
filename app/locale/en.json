@@ -206,6 +206,7 @@
       "updatedAt": "Last mission",
       "recentMissionsBy": "Last active Veganauts"
     },
+    "noRecentMissions": "This location has been picked up by sensors on one of the spaceships. Be the first Veganaut to complete a mission here!",
     "rating": {
       "average": "Average",
       "numRatings": "Ratings"

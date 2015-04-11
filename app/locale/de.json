@@ -206,6 +206,7 @@
       "updatedAt": "Letzte Mission",
       "recentMissionsBy": "Zuletzt aktiv"
     },
+    "noRecentMissions": "Diese Location wurde von Sensoren auf einem der Raumschiffe entdeckt.",
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen"

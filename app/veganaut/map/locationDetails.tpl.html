@@ -46,17 +46,20 @@
 
     <div ng-if="visit.missions" class="location-missions">
         <h2>{{ 'map.mission.title' | translate }}</h2>
-        <p ng-if="location.updatedAt">
+        <p ng-if="location.updatedAt && recentlyActiveVeganauts.length > 0">
             <strong>{{ 'location.label.updatedAt' | translate }}</strong>:
             {{ location.updatedAt | date:'dd.MM.yyyy' }}
         </p>
-        <p ng-if="recentlyActiveVeganauts.length > 0">
+        <p>
             <strong>{{ 'location.label.recentMissionsBy' | translate }}</strong>:
-        <span ng-repeat="person in recentlyActiveVeganauts">
-            <a href="/veganaut/{{person.id}}"
-             class="color-{{ person.team }} player-recently-active"
-             >{{ person.nickname }}</a><span ng-hide="$last">,</span>
-        </span>
+            <span ng-repeat="person in recentlyActiveVeganauts">
+                <a href="/veganaut/{{person.id}}"
+                 class="color-{{ person.team }} player-recently-active"
+                 >{{ person.nickname }}</a><span ng-hide="$last">,</span>
+            </span>
+            <span ng-if="recentlyActiveVeganauts.length === 0">
+                {{ 'location.noRecentMissions' | translate }}
+            </span>
         </p>
         <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
