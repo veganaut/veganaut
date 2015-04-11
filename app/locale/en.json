@@ -149,7 +149,8 @@
     "team2": "Green",
     "team3": "Purple",
     "team4": "Red",
-    "team5": "Orange"
+    "team5": "Orange",
+    "npc": "NPC"
   },
   "score": {
     "points": "Points",
