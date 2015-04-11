@@ -83,38 +83,6 @@ describe('backendModule', function() {
         expect(typeof req.finally).toBe('function');
     }));
 
-    it('should have a getMatch method', inject(function($httpBackend, backendService) {
-        // Define our expectations
-        $httpBackend.expectGET('/match')
-            .respond({
-                team1: {
-                    score: 113,
-                    users: 130,
-                    babies: 20,
-                    captured: 27
-                },
-                team2: {
-                    score: 85,
-                    users: 105,
-                    babies: 18,
-                    captured: 29
-                }
-            })
-        ;
-
-
-        expect(typeof backendService.getMatch).toBe('function');
-
-        // Get the match
-        var req = backendService.getMatch();
-        $httpBackend.flush();
-
-        // Make sure we got a $http object
-        expect(typeof req.then).toBe('function');
-        expect(typeof req.catch).toBe('function');
-        expect(typeof req.finally).toBe('function');
-    }));
-
     it('should have a getMe method', inject(function($httpBackend, backendService) {
         // Define our expectations
         $httpBackend.expectGET('/person/me')
@@ -133,7 +101,6 @@ describe('backendModule', function() {
 
         expect(typeof backendService.getMe).toBe('function');
 
-        // Get the match
         var req = backendService.getMe();
         $httpBackend.flush();
 

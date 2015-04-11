@@ -191,15 +191,6 @@
             };
 
             /**
-             * Gets the match data
-             *
-             * @returns {promise}
-             */
-            BackendService.prototype.getMatch = function() {
-                return $http.get(backendUrl + '/match');
-            };
-
-            /**
              * Gets the score data
              * @returns {promise}
              */
