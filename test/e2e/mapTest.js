@@ -56,6 +56,7 @@ describe('map when logged out.', function() {
 
     it('should show some locations on the map.', function() {
         expect(element.all(by.css('.marker')).count()).toBeGreaterThan(0, 'has at least one location');
+        expect(element.all(by.css('.marker.marker--team-npc')).count()).toBeGreaterThan(0, 'has at least one npc location');
         expect(element.all(by.css('.marker.marker--team-team1')).count()).toBeGreaterThan(0, 'has at least one team1 location');
         expect(element.all(by.css('.marker.marker--team-team2')).count()).toBeGreaterThan(0, 'has at least one team2 location');
     });
