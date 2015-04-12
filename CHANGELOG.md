@@ -1,6 +1,12 @@
 Veganaut Changelog
 ==================
 
+0.7.0: Sharing is Caring (2015-04-12)
+-------------------------------------------
+* New feature: current map coordinates and zoom level now included in page url (i.e. users can now share links to specific map sections)
+* New feature: there's now a 6th team with its dedicated colour in addition to the 5 player team: the NPC-team, i.e. a team of non-player characters (currently: admins) who don't get points by completing missions and don't feature in the high scores etc.
+* Enhancement: Locations dots on the map now feature the symbol corresponding to their type (i.e. gastronomy or retail) and appear bigger & more opaque or smaller & less opaque based on their offerQuality. Also, the locations with the higher offerQuality are now on top of the others, which makes them easier to see and click when zoomed out. 
+
 0.6.0: Cartwheelbarrow (2015-03-29)
 -------------------------------------------
 * New feature: homepage which explains the basics about the site and the game and the game's background story
