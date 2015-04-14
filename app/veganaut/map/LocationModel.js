@@ -4,6 +4,24 @@
     module.service('Location', ['Leaflet', 'Visit',
         function(L, Visit) {
             /**
+             * Z-index offset to use for the marker when the location is active
+             * @type {number}
+             */
+            var Z_INDEX_OFFSET_ACTIVE = 600000;
+
+            /**
+             * Z-index offset to use for the marker when the location is hovered
+             * @type {number}
+             */
+            var Z_INDEX_OFFSET_HOVER = 700000;
+
+            /**
+             * Z-index offset to use for the marker when the location is disabled
+             * @type {number}
+             */
+            var Z_INDEX_OFFSET_DISABLED = -1000;
+
+            /**
              * Represents a location on the map.
              * A location has general information (name, type, ...), coordinates
              * and aggregated data from missions as well as missions themselves.
@@ -58,7 +76,9 @@
                  * @type {L.Marker}
                  */
                 this.marker = L.marker([this.lat, this.lng], {
-                    title: this.name
+                    title: this.name,
+                    riseOnHover: true,
+                    riseOffset: Z_INDEX_OFFSET_HOVER
                 });
 
                 // Instantiate the dates
@@ -127,9 +147,26 @@
                     icon.html = '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
                 }
 
+                // Calculate the z-index offset:
+                // Higher quality locations should be more in front. We take 2
+                // decimal places of the average too have more layers than just
+                // the rounded average. We then make sure the last 3 digits are
+                // always 0. Those will be used by Leaflet to set a latitude
+                // based offset.
+                // TODO: add a test for this
+                var zIndexOffset = Math.round((this.quality.average || 0) * 100) * 1000;
+
                 // Add active class if active
                 if (this._active) {
                     icon.className += ' marker--active';
+
+                    // Active markers should be in front of all others (except hover)
+                    zIndexOffset = Z_INDEX_OFFSET_ACTIVE;
+                }
+
+                // Special z-index when disabled
+                if (this._disabled) {
+                    zIndexOffset = Z_INDEX_OFFSET_DISABLED;
                 }
 
                 // Add editing class
@@ -142,6 +179,9 @@
 
                 // TODO: only do this if something actually changed
                 this.marker.setIcon(L.divIcon(icon));
+
+                // Set the z-index offset
+                this.marker.setZIndexOffset(zIndexOffset);
 
                 // Make sure the marker still hast the correct location id set
                 this.marker.locationId = this.id;
