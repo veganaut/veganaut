@@ -154,6 +154,7 @@
                 // always 0. Those will be used by Leaflet to set a latitude
                 // based offset.
                 // TODO: add a test for this
+                // TODO: should use the rank, but isn't in frontend yet
                 var zIndexOffset = Math.round((this.quality.average || 0) * 100) * 1000;
 
                 // Add active class if active
