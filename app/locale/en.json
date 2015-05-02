@@ -100,6 +100,7 @@
     },
     "location": {
       "edit": "Edit location",
+      "editAsAnonymous": "Register to edit",
       "save": "Save location",
       "backToMap": "Back to map"
     }

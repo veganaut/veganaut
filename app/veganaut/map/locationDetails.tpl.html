@@ -20,6 +20,12 @@
         <span class="glyphicon glyphicon-edit"></span>
         <span ng-bind="'action.location.edit' | translate"></span>
     </button>
+    <button ng-if="!isLoggedIn()"
+     type="button" class="register-to-edit btn btn-block btn-default"
+     ng-click="goToView('register')">
+        <span class="glyphicon glyphicon-edit"></span>
+        <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
+    </button>
 
     <div>
         <h2>{{ 'location.products.title' | translate }}</h2>
