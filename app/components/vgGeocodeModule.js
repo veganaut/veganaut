@@ -43,17 +43,19 @@
      * @returns {string}
      */
     GeocodeResult.prototype.getDisplayName = function() {
+        // TODO: add tests for this
         var that = this;
         var parts = [];
 
         // Check if there is a valid type in the address
-        if (angular.isString(this.type) && angular.isString(this.address[this.type])) {
-            parts.push(this.address[this.type]);
+        if (angular.isString(that.type) && angular.isString(that.address[that.type])) {
+            parts.push(that.address[that.type]);
         }
 
         // Add other parts
-        _.each(['road', 'house_number', 'village', 'town', 'city', 'country'], function(partName) {
-            if (angular.isString(that.address[partName])) {
+        _.each(['road', 'pedestrian', 'house_number', 'hamlet', 'village', 'town', 'city', 'country'], function(partName) {
+            // Include the given part if wasn't already added as type and if it actually exists
+            if (partName !== that.type && angular.isString(that.address[partName])) {
                 parts.push(that.address[partName]);
             }
         });
