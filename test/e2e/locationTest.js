@@ -67,7 +67,7 @@ describe('location.', function() {
     });
 
     describe('visit recently active players.', function() {
-        it('should show name and missions.', function() {
+        it('should be able to visit profile of recently active player.', function() {
             browser.get('/location/000000000000000000000006');
 
             var personLink = element(by.css('a.player-recently-active'));

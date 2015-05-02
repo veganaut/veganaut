@@ -259,7 +259,7 @@
       }
     },
     "productList": {
-      "title": "Vegan options found in this map section",
+      "title": "Vegan gastronomy options found in this map section",
       "noProducts": "No options were found.",
       "showMore": "Show more options",
       "moreProductsAvailable": "Another {{ available }} options were found."

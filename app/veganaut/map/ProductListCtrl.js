@@ -6,6 +6,10 @@
             // Bounds used to show the products
             var bounds;
 
+            // Location type for which to show products
+            // At the moment hard-coded to gastronomy
+            var locationType = 'gastronomy';
+
             // Get the locations (to set them in the products)
             // TODO: get locations should be cached
             var locationPromise = locationService.getLocations();
@@ -55,17 +59,18 @@
              * Load the next batch of products
              */
             $scope.loadMore = function() {
-                loadProducts(bounds, $scope.products.length);
+                loadProducts(bounds, locationType, $scope.products.length);
             };
 
             /**
              * Load products withing the given bounds
              * @param {string} bounds
+             * @param {string} [locationType]
              * @param {number} [skip=0]
              */
-            function loadProducts(bounds, skip) {
+            function loadProducts(bounds, locationType, skip) {
                 // Get products from the backend
-                backendService.getProducts(bounds, skip || 0).then(function(data) {
+                backendService.getProducts(bounds, locationType, skip || 0).then(function(data) {
                     $scope.totalProducts = data.data.totalProducts;
                     populateLocations(data.data.products);
                 });
@@ -96,7 +101,7 @@
             mapPromise.then(function(map) {
                 // Get the bound of the map and load the products for the first time
                 bounds = map.getBounds().toBBoxString();
-                loadProducts(bounds);
+                loadProducts(bounds, locationType);
             });
         }
     ]);

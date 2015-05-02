@@ -259,7 +259,7 @@
       }
     },
     "productList": {
-      "title": "Vegane Angebote, die in diesem Kartenausschnitt gefunden wurden",
+      "title": "Vegane Gastronomieangebote, die in diesem Kartenausschnitt gefunden wurden",
       "noProducts": "Keine Angebote gefunden.",
       "showMore": "Weitere Angebote anzeigen",
       "moreProductsAvailable": "{{ available }} weitere Angebote gefunden."
