@@ -1,4 +1,4 @@
-Veganaut Frontend
+Veganaut Frontend [![Code Climate](https://codeclimate.com/github/veganaut/veganaut/badges/gpa.svg)](https://codeclimate.com/github/veganaut/veganaut)
 =================
 
 This is the frontend of Veganaut: a gamified platform (website and phonegap app) helping the international
