@@ -6,16 +6,14 @@
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
 
-            <vg-location-type-badge location="location.active"></vg-location-type-badge>
-            <strong>{{ location.active.name }}</strong>
-            <vg-location-quality-icon location="location.active"></vg-location-quality-icon>
-            <vg-location-effort-icon location="location.active"></vg-location-effort-icon>
-            <div ng-show="location.active.products.length > 0">
-                {{ 'location.products.summary' | translate:{product: location.active.products[0].name, number: location.active.products.length - 1} }}
-            </div>
-
             <p>
-                <vg-team-points-display location="location.active"></vg-team-points-display>
+                <vg-location-type-badge location="location.active"></vg-location-type-badge>
+                <strong>{{ location.active.name }}</strong>
+                <vg-location-quality-icon location="location.active"></vg-location-quality-icon>
+                <vg-location-effort-icon location="location.active"></vg-location-effort-icon>
+                <span ng-show="location.active.products.length > 0">
+                    <br />{{ 'location.products.summary' | translate:{product: location.active.products[0].name, number: location.active.products.length - 1} }}
+                </span>
             </p>
 
             <p ng-show="location.active.id">
