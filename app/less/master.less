@@ -26,7 +26,10 @@
     }
 
     // Background colour
-    body.player-@{teamName} .bg-color-team, .bg-color-@{teamName} {
+    body.player-@{teamName} .bg-color-team,
+    body.logged-in .bg-color-@{teamName}--logged-in,
+    .bg-color-@{teamName}
+    {
         background-color: @baseColour;
     }
 
@@ -41,7 +44,7 @@
     }
 
     // Map markers
-    .marker.marker--enabled.marker--team-@{teamName} {
+    body.logged-in .marker.marker--enabled.marker--team-@{teamName} {
         background-color: @baseColour;
     }
 }

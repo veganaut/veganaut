@@ -1,11 +1,11 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
     <h1>
+        <vg-location-type-badge location="location"></vg-location-type-badge>
         {{ location.name }}
         <vg-location-quality-icon location="location"></vg-location-quality-icon>
         <vg-location-effort-icon location="location"></vg-location-effort-icon>
     </h1>
-    <p>
-        <vg-location-type-badge location="location"></vg-location-type-badge>
+    <p ng-if="isLoggedIn()">
         <vg-team-points-display location="location"></vg-team-points-display>
     </p>
     <p ng-if="location.description">

@@ -32,8 +32,9 @@
 @opacityActive: 1;
 
 .marker {
-    color: white;
-    border: 1px solid #fff;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
 
     // Create all the marker styles based on the location quality
     // This should be done with a loop, but less makes this less readable than having it copy pasted.
@@ -91,6 +92,12 @@
             }
         }
     }
+}
+
+// When logged have white test and border (color is set by team)
+body.logged-in .marker {
+    color: white;
+    border-color: white;
 }
 
 .map--placing-location {
