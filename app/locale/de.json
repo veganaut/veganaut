@@ -233,7 +233,8 @@
       }
     },
     "quality": {
-      "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot"
+      "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
+      "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
     },
     "effort": {
       "explanation": "Je besser das Wetter, desto grösser die Chance, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hierher kommen"

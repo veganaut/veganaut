@@ -126,9 +126,20 @@ body.logged-in .marker {
     font-size: 24px;
 }
 
-.location-quality-label-icon {
+// Place the twig symbol correctly
+.location-quality-label__twig-icon {
     position: relative;
     bottom: -2px;
+}
+
+// For locations with no quality given yet, a glyhpicon question mark is used.
+.location-quality-label__unknown-icon {
+    position: relative;
+    top: 0;
+
+    // The colours of the glyphicon are inverted
+    background-color: white;
+    color: @colorDark;
 }
 
 .location-description {

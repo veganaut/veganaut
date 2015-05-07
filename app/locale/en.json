@@ -233,7 +233,8 @@
       }
     },
     "quality": {
-      "explanation": "The more twigs the bigger and better the vegan offer here"
+      "explanation": "The more twigs the bigger and better the vegan offer here.",
+      "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
     },
     "effort": {
       "explanation": "The fairer the whether the better the chances that the vegan offer will improve if more veganauts come here"

@@ -25,14 +25,6 @@
         color: @baseColour;
     }
 
-    // Background colour
-    body.player-@{teamName} .bg-color-team,
-    body.logged-in .bg-color-@{teamName}--logged-in,
-    .bg-color-@{teamName}
-    {
-        background-color: @baseColour;
-    }
-
     // Team button
     body.player-@{teamName} .btn-team {
         .button-variant(#fff; @baseColour; darken(@baseColour, 5%));
@@ -46,6 +38,16 @@
     // Map markers
     body.logged-in .marker.marker--enabled.marker--team-@{teamName} {
         background-color: @baseColour;
+    }
+
+    // Location quality label
+    body.logged-in .location-quality-label {
+        background-color: @baseColour;
+
+        // The colours of the glyphicon question mark are inverted
+        .location-quality-label__unknown-icon {
+            color: @baseColour;
+        }
     }
 }
 
