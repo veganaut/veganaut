@@ -11,13 +11,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body class="player-{{ me.team }}" ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn() }">
+<body class="player-{{ me.team }}"
+ ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn(), 'embedded': isEmbedded }">
 
 <!-- VEGANAUT LOGO -->
 <ng-include src="'img/veganaut.svg'" class="hidden"></ng-include>
 
 <base href="/">
-<header class="navbar navbar-default navbar-fixed-top">
+<header class="navbar navbar-default navbar-fixed-top" ng-if="!isEmbedded">
     <div class="navbar-inner">
         <div class="container navbar-container">
             <div class="navbar-header">

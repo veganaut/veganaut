@@ -15,6 +15,8 @@
             // Expose the location service
             $scope.$location = $location;
 
+            $scope.isEmbedded = true;
+
             $scope.closeMenu = function() {
                 $scope.menuShown = false;
             };
