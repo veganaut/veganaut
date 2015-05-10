@@ -53,12 +53,14 @@
         }
 
         // Add other parts
-        _.each(['road', 'pedestrian', 'house_number', 'hamlet', 'village', 'town', 'city', 'country'], function(partName) {
-            // Include the given part if wasn't already added as type and if it actually exists
-            if (partName !== that.type && angular.isString(that.address[partName])) {
-                parts.push(that.address[partName]);
+        _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet', 'village', 'town', 'city', 'country'],
+            function(partName) {
+                // Include the given part if wasn't already added as type and if it actually exists
+                if (partName !== that.type && angular.isString(that.address[partName])) {
+                    parts.push(that.address[partName]);
+                }
             }
-        });
+        );
 
         // Join them all by commas
         return parts.join(', ');
