@@ -92,10 +92,26 @@
       "changePassword": "Passwort ändern"
     },
     "map": {
-      "addLocation": "Neue Location",
-      "showProductList": "Vegane Angebote im Kartenausschnitt anzeigen",
-      "searchMap": "Auf der Karte suchen",
-      "filterMap": "Orte auf der Karte filtern",
+      "register": {
+        "name": "Registrieren",
+        "description": "Registrieren um die Karte zu bearbeiten"
+      },
+      "addLocation": {
+        "name": "Neue Location",
+        "description": "Neue Location hinzufügen"
+      },
+      "showProductList": {
+        "name": "Angebote",
+        "description": "Vegane Angebote im Kartenausschnitt anzeigen"
+      },
+      "searchMap": {
+        "name": "Suchen",
+        "description": "Auf der Karte suchen"
+      },
+      "filterMap": {
+        "name": "Filtern",
+        "description": "Orte auf der Karte filtern"
+      },
       "locationAction": "Location anschauen"
     },
     "location": {

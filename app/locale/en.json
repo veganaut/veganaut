@@ -92,10 +92,26 @@
       "changePassword": "Change password"
     },
     "map": {
-      "addLocation": "New location",
-      "showProductList": "Show vegan options in this map section",
-      "searchMap": "Search on the map",
-      "filterMap": "Filter locations on the map",
+      "register": {
+        "name": "Register",
+        "description": "Register to edit the map"
+      },
+      "addLocation": {
+        "name": "New location",
+        "description": "Add new location"
+      },
+      "showProductList": {
+        "name": "Offer",
+        "description": "Show vegan options in this map section"
+      },
+      "searchMap": {
+        "name": "Search",
+        "description": "Search on the map"
+      },
+      "filterMap": {
+        "name": "Filter",
+        "description": "Filter locations on the map"
+      },
       "locationAction": "Check out location"
     },
     "location": {

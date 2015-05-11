@@ -1,6 +1,46 @@
- <div ng-controller="MapCtrl">
-    <div class="top-box container main-container">
+<div ng-controller="MapCtrl">
+    <div class="top-box top-box--full-width container main-container"
+     ng-hide="location.active || productShown || filtersShown || searchShown">
+        <div class="top-box--full-width__border-offset">
+            <div class="btn-group--top-box">
+                <button type="button" class="btn-register btn btn-team"
+                 ng-if="!isLoggedIn()"
+                 ng-click="goToView('register')"
+                 title="{{ 'action.map.register.description' | translate }}">
+                    <span class="glyphicon glyphicon-pencil"></span><br />
+                    <span class="small">{{ 'action.map.register.name' | translate }}</span>
+                </button>
+                <button type="button" class="add-location btn btn-block btn-team"
+                 ng-if="isLoggedIn()"
+                 ng-click="startAddNewLocation()"
+                 title="{{ 'action.map.addLocation.description' | translate }}">
+                    <span class="glyphicon glyphicon-plus-sign"></span><br />
+                    <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
+                </button>
+                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
+                 title="{{ 'action.map.showProductList.description' | translate }}"
+                 ng-click="showProductList(true)">
+                    <span class="glyphicon glyphicon-cutlery"></span><br />
+                    <span class="small">{{ 'action.map.showProductList.name' | translate }}</span>
+                </button>
+                <button type="button" class="search btn btn-default btn-default--transparent" ng-click="showSearch(true)"
+                 title="{{ 'action.map.searchMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-search"></span><br />
+                    <span class="small">{{ 'action.map.searchMap.name' | translate }}</span>
+                </button>
+                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
+                 ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
+                 title="{{ 'action.map.filterMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-filter"></span><br />
+                    <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
+    <!-- TODO: get rid of complicated ng-show in view -->
+    <div class="top-box container main-container"
+     ng-show="location.active || productShown || filtersShown || searchShown">
         <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
             <div class="pull-right clickable" ng-click="location.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -25,50 +65,6 @@
             </p>
         </div>
 
-        <div class="row" ng-hide="location.active || productShown || filtersShown || searchShown">
-            <div class="col-xs-3">
-                <p>
-                    <button type="button" class="btn-register btn btn-block btn-team"
-                     ng-if="!isLoggedIn()"
-                     ng-click="goToView('register')"
-                     title="{{ 'navigation.register' | translate }}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button type="button" class="add-location btn btn-block btn-team"
-                     ng-if="isLoggedIn()"
-                     ng-click="startAddNewLocation()"
-                     title="{{ 'action.map.addLocation' | translate }}">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                    </button>
-                </p>
-            </div>
-            <div class="col-xs-3">
-                <p>
-                    <button type="button" class="btn-show-location-filters btn btn-block btn-default"
-                     title="{{ 'action.map.showProductList' | translate }}"
-                     ng-click="showProductList(true)">
-                        <span class="glyphicon glyphicon-cutlery"></span>
-                    </button>
-                </p>
-            </div>
-            <div class="col-xs-3">
-                <p>
-                    <button type="button" class="search btn btn-block btn-default" ng-click="showSearch(true)"
-                     title="{{ 'action.map.searchMap' | translate }}">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </p>
-            </div>
-            <div class="col-xs-3">
-                <p>
-                    <button type="button" class="btn-show-location-filters btn btn-block btn-default"
-                     ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
-                     title="{{ 'action.map.filterMap' | translate }}">
-                        <span class="glyphicon glyphicon-filter"></span>
-                    </button>
-                </p>
-            </div>
-        </div>
         <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
         <ng-include src="'/veganaut/map/productList.tpl.html'" ng-if="productShown"></ng-include>
         <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>

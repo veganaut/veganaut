@@ -1,4 +1,8 @@
-button.btn.btn {
+.btn {
+    border-radius: 2px;
+}
+
+button.btn {
     font-size: inherit;
 }
 
@@ -21,8 +25,6 @@ button.btn.btn {
     border-color: @border;
     -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
-
-    border-radius: 2px;
 
     &:hover,
     &:focus,
@@ -77,7 +79,11 @@ button.active.active {
 .btn-default {
     .button-variant(@colorDark; @colorLight; @colorLighter);
 }
+.btn-default--transparent {
+    background-color: transparent;
+}
 
-button.menu-button.menu-button {
+button.menu-button {
     .button-variant(@colorDark; @colorLight; @colorLighter);
+    border-radius: 0;
 }

@@ -84,6 +84,42 @@ body {
     display: block;
 }
 
+.top-box--full-width {
+    padding: 2px 0 0; // TODO: this should be "0", it's not because @navbarHeight is 2px too little
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+}
+
+// TODO: This should not be necessary. But it is so that there is no border on small screens
+// and border on bigger screens on the left and right side
+.top-box--full-width__border-offset {
+    margin: 0 -1px;
+}
+
+// TODO: where to put this?
+.btn-group--top-box {
+    width: 100%;
+
+    .btn {
+        width: 25%;
+        float: left;
+        padding: 4px 0;
+        line-height: 1.2;
+        border-radius: 0;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+        &:first-child {
+            border-left-width: 1px;
+        }
+
+        .small {
+            font-size: 12px;
+        }
+    }
+}
+
 // TODO: this shouldn't be needed
 .search-form {
     margin-bottom: 5px;
