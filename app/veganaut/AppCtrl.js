@@ -15,7 +15,10 @@
             // Expose the location service
             $scope.$location = $location;
 
-            $scope.isEmbedded = true;
+            // Whether the app is embedded (in an iframe)
+            // If that is the case, only the map can be used and the navbar is not shown
+            // TODO: Add tests for this mode, it contains quite a few tricky changes
+            $scope.isEmbedded = ($location.search()['mode'] === 'embedded');
 
             $scope.closeMenu = function() {
                 $scope.menuShown = false;
@@ -32,6 +35,22 @@
             $scope.logout = backendService.logout.bind(backendService);
 
             $scope.menuShown = false;
+
+            /**
+             * Helper method to get the current absolute URL without
+             * hash or search parameters
+             * TODO: should be moved elsewhere
+             * @returns {string}
+             */
+            var getAbsUrlWithoutParams = function() {
+                var absUrl = $location.protocol() + '://' + $location.host();
+                var port = $location.port();
+                if (port !== 80) {
+                    absUrl += ':' + port;
+                }
+                absUrl += $location.path();
+                return absUrl;
+            };
 
             // Reload the whole app when the session gets destroyed to clear all data
             $scope.$onRootScope('veganaut.session.destroyed', function() {
@@ -65,6 +84,26 @@
                 });
             });
 
+            // If we're embedded, all links outside the map should open in a new window
+            if ($scope.isEmbedded) {
+                $scope.$onRootScope('$routeChangeStart', function(event, newRoute, oldRoute) {
+                    var currentPath = $location.path();
+                    if (currentPath !== '/map') {
+                        // Check if there was already an old route defined,
+                        if (angular.isDefined(oldRoute)) {
+                            // The user is trying to navigate away from the map.
+                            // We want to open a new window instead
+                            event.preventDefault();
+                            $window.open(getAbsUrlWithoutParams());
+                        }
+                        else {
+                            // App has just loaded but not on the map. Redirect to the map
+                            $location.path('/map');
+                        }
+                    }
+                });
+            }
+
             // Get the logged in user data
             playerService.getMe().then(function(me) {
                 $scope.me = me;
@@ -73,14 +112,15 @@
             // Expose the activity verb method
             $scope.getActivityVerb = playerService.getActivityVerb;
 
-            // Calculate the logo url, see the template for more explanation
-            // Cannot use $location.absUrl() because we need the URL without search & hash
-            $scope.logoUrl = $location.protocol() + '://' + $location.host();
-            var port = $location.port();
-            if (port !== 80) {
-                $scope.logoUrl += ':' + port;
-            }
-            $scope.logoUrl += $location.path() + '#veganaut';
+            /**
+             * Returns the logo URL (svg)
+             * See the main template for more explanation
+             * @returns {string}
+             */
+            $scope.getLogoUrl = function() {
+                // Need to remove the hash from the absolute URL and add the svg id
+                return $location.absUrl().replace(/#.*/, '') + '#veganaut';
+            };
         }
     ]);
 })(window.veganaut.mainModule);

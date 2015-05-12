@@ -95,6 +95,22 @@ body.embedded .main-container {
     border-right: 0;
 }
 
+body.embedded {
+    .top-box--full-width {
+        padding: 0;
+        margin-top: 9px;
+    }
+
+    .btn-group--top-box .btn {
+        width: 20%;
+
+        &.btn-logo {
+            width: 40%;
+            padding: 12px 0 5px;
+        }
+    }
+}
+
 // TODO: This should not be necessary. But it is so that there is no border on small screens
 // and border on bigger screens on the left and right side
 .top-box--full-width__border-offset {

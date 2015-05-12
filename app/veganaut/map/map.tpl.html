@@ -3,20 +3,30 @@
      ng-hide="location.active || productShown || filtersShown || searchShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
-                <button type="button" class="btn-register btn btn-team"
-                 ng-if="!isLoggedIn()"
-                 ng-click="goToView('register')"
-                 title="{{ 'action.map.register.description' | translate }}">
-                    <span class="glyphicon glyphicon-pencil"></span><br />
-                    <span class="small">{{ 'action.map.register.name' | translate }}</span>
-                </button>
-                <button type="button" class="add-location btn btn-block btn-team"
-                 ng-if="isLoggedIn()"
-                 ng-click="startAddNewLocation()"
-                 title="{{ 'action.map.addLocation.description' | translate }}">
-                    <span class="glyphicon glyphicon-plus-sign"></span><br />
-                    <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
-                </button>
+                <div ng-if="isEmbedded">
+                    <a type="button" class="btn-logo btn btn-default btn-default--transparent"
+                     ng-click="goToView('/')">
+                        <svg class="logo logo--top-box color-team">
+                            <use xlink:href="" ng-href="{{:: getLogoUrl() }}"/>
+                        </svg>
+                    </a>
+                </div>
+                <div ng-if="!isEmbedded">
+                    <button type="button" class="btn-register btn btn-team"
+                     ng-if="!isLoggedIn()"
+                     ng-click="goToView('register')"
+                     title="{{ 'action.map.register.description' | translate }}">
+                        <span class="glyphicon glyphicon-pencil"></span><br />
+                        <span class="small">{{ 'action.map.register.name' | translate }}</span>
+                    </button>
+                    <button type="button" class="add-location btn btn-block btn-team"
+                     ng-if="isLoggedIn()"
+                     ng-click="startAddNewLocation()"
+                     title="{{ 'action.map.addLocation.description' | translate }}">
+                        <span class="glyphicon glyphicon-plus-sign"></span><br />
+                        <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
+                    </button>
+                </div>
                 <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
                  title="{{ 'action.map.showProductList.description' | translate }}"
                  ng-click="showProductList(true)">

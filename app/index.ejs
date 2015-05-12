@@ -33,12 +33,12 @@
                     <span class="glyphicon glyphicon-log-in"></span>
                 </button>
                 <a href="/" class="main-logo-link">
-                    <svg class="main-logo color-team">
+                    <svg class="logo logo--main color-team">
                         <% /*
                         Because of the <base href="/"> we need to bind this to the absolute url when the app is started.
                         Once the app is started and the SVG loaded, it's fine, so we use a one time binding.
                         */ -%>
-                        <use xlink:href="" ng-href="{{:: logoUrl }}"/>
+                        <use xlink:href="" ng-href="{{:: getLogoUrl() }}"/>
                     </svg>
                 </a>
             </div>

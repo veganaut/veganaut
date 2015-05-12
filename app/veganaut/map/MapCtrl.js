@@ -482,9 +482,11 @@
             });
 
             // When we go away from this page, reset the url
-            $scope.$onRootScope('$routeChangeStart', function() {
-                // Remove the search and hash params
-                $location.url($location.path());
+            $scope.$onRootScope('$routeChangeStart', function(event) {
+                // Remove the hash if the event is still ongoing
+                if (!event.defaultPrevented) {
+                    $location.hash(null);
+                }
             });
         }
     ]);
