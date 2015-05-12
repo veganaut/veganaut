@@ -4,7 +4,6 @@
     module.controller('ReferenceCodeCtrl', ['$scope', 'backendService', 'alertService',
         function($scope, backendService, alertService) {
             $scope.submitReferenceCode = function() {
-                $scope.menuShown = false;
                 backendService.submitReferenceCode($scope.form.referenceCode)
                     .success(function() {
                         alertService.addAlert('Successfully submitted reference code', 'success');

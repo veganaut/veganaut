@@ -21,7 +21,7 @@
             $scope.isEmbedded = ($location.search()['mode'] === 'embedded');
 
             $scope.closeMenu = function() {
-                $scope.menuShown = false;
+                $scope.menu.shown = false;
             };
 
             $scope.goToView = function(view) {
@@ -34,7 +34,9 @@
             $scope.canViewGraph = backendService.canViewGraph.bind(backendService);
             $scope.logout = backendService.logout.bind(backendService);
 
-            $scope.menuShown = false;
+            $scope.menu = {
+                shown: false
+            };
 
             /**
              * Helper method to get the current absolute URL without

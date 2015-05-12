@@ -22,7 +22,7 @@
     <div class="navbar-inner">
         <div class="container navbar-container">
             <div class="navbar-header">
-                <button class="navbar-toggle menu-button" ng-click="menuShown = !menuShown">
+                <button class="navbar-toggle menu-button" ng-click="menu.shown = !menu.shown">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -42,7 +42,7 @@
                     </svg>
                 </a>
             </div>
-            <nav class="collapse" collapse="!menuShown">
+            <nav class="collapse" collapse="!menu.shown">
                 <!-- TODO: make a nav component to get rid of duplication here -->
                 <button class="btn btn-default btn-block nav-home" ng-click="goToView('')"
                  ng-bind="'navigation.home' | translate"></button>
@@ -122,7 +122,7 @@
     </div>
 </div>
 
-<div class="modal-backdrop in menu-backdrop" ng-show="menuShown" ng-click="menuShown = false"></div>
+<div class="menu-backdrop" ng-show="menu.shown" ng-click="menu.shown = false"></div>
 
 <% if (jsFiles.length === 0) { -%>
 <script src="/build/lib.min.js?v=<%= bust %>"></script>
