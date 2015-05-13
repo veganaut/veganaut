@@ -101,8 +101,8 @@
         "description": "Add new location"
       },
       "showProductList": {
-        "name": "Offer",
-        "description": "Show vegan options in this map section"
+        "name": "Vegan Menu",
+        "description": "Show vegan menu for this map section"
       },
       "searchMap": {
         "name": "Search",
@@ -277,7 +277,7 @@
       }
     },
     "productList": {
-      "title": "Vegan gastronomy options found in this map section",
+      "title": "Vegan menu: food options found at gastronomy locations in this map section",
       "noProducts": "No options were found.",
       "showMore": "Show more options",
       "moreProductsAvailable": "Another {{ available }} options were found."
