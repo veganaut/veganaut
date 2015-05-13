@@ -101,7 +101,7 @@
         "description": "Neue Location hinzufügen"
       },
       "showProductList": {
-        "name": "Angebote",
+        "name": "Veganes Menu",
         "description": "Vegane Angebote im Kartenausschnitt anzeigen"
       },
       "searchMap": {
@@ -277,7 +277,7 @@
       }
     },
     "productList": {
-      "title": "Vegane Gastronomieangebote, die in diesem Kartenausschnitt gefunden wurden",
+      "title": "Vegane Speisekarte: Angebote der Gastronomie-Locations in diesem Kartenausschnitt",
       "noProducts": "Keine Angebote gefunden.",
       "showMore": "Weitere Angebote anzeigen",
       "moreProductsAvailable": "{{ available }} weitere Angebote gefunden."
