@@ -438,21 +438,18 @@
   },
   "home": {
     "action": {
-      "visitMap": "Zur Karte"
+      "visitMap": "Zur Karte",
+      "showMore": "Mehr anzeigen"
     },
     "lead": {
-      "title": "Veganaut.net",
-      "subtitle": "Erkunde das vegane Universum!",
-      "textBeforeMap": "<p>Wo gibt es in der Nähe etwas veganes zu essen? Wie gross ist die vegane Auswahl in welchen Restaurants und Läden und welche veganen Produkte sind besonders gut? - Auf veganaut.net sammeln wir Antworten auf solche Fragen.</p>",
-      "textAfterMap": "<p>Schau dich auf der Karte um. Findest du vegane Angebote, von denen du noch nichts wusstest? An einigen Orten haben schon viele VeganautInnen ihre Geheimtipps eingetragen, an anderen Orten haben wir noch wenig oder gar keine Infos. Was fehlt noch? Kennst du irgendwo z.B. ein Take Away, das einen guten veganen Falafel macht, oder einen Laden mit ein paar veganen Sachen? Als VeganautIn kannst du diese Infos auf der Karte eintragen und allen Interessierten zugänglich machen.</p>"
+      "title": "Erkunde das vegane Universum!",
+      "text1": "Wo gibt es in der Nähe etwas veganes zu essen? Wie gross ist die vegane Auswahl in welchen Restaurants und Läden und welche veganen Produkte sind besonders gut? - Auf veganaut.net sammeln wir Antworten auf solche Fragen.",
+      "text2": "Schau dich auf der Karte um. Findest du vegane Angebote, von denen du noch nichts wusstest? An einigen Orten haben schon viele VeganautInnen ihre Geheimtipps eingetragen, an anderen Orten haben wir noch wenig oder gar keine Infos. Was fehlt noch? Kennst du irgendwo z.B. ein Take Away, das einen guten veganen Falafel macht, oder einen Laden mit ein paar veganen Sachen? Als VeganautIn kannst du diese Infos auf der Karte eintragen und allen Interessierten zugänglich machen."
     },
     "game": {
       "title": "Das Spiel",
-      "text": "<p>Wenn du bei Veganaut mitmachst, gehörst du einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich einen freundschaftlichen Wettkampf. Wer entdeckt am meisten Locations? Dank wem wächst das vegane Angebot in den Locations am schnellsten?</p><p>Wie das Spiel genau funktioniert, merkst du dann beim Spielen. Willst du es ausprobieren? Dann mach einen Account (geht ganz schnell). Willst du es nicht ausprobieren? Easy. Infos über vegane Angebote kannst du dir hier jederzeit holen, auch wenn du nicht mitspielst. Genau dafür sammeln wir sie ja.</p>"
-    },
-    "story": {
-      "title": "",
-      "text": ""
+      "text1": "Wenn du bei Veganaut mitmachst, gehörst du einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich einen freundschaftlichen Wettkampf. Wer entdeckt am meisten Locations? Dank wem wächst das vegane Angebot in den Locations am schnellsten?",
+      "text2": "Wie das Spiel genau funktioniert, merkst du dann beim Spielen. Willst du es ausprobieren? Dann mach einen Account (geht ganz schnell). Willst du es nicht ausprobieren? Easy. Infos über vegane Angebote kannst du dir hier jederzeit holen, auch wenn du nicht mitspielst. Genau dafür sammeln wir sie ja."
     }
   }
 }

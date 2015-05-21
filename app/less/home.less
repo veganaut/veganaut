@@ -1,22 +1,38 @@
 .top-box--home {
     background: none;
+    display: flex;
+    flex-flow: column;
+    bottom: 0;
+
+    .top-box--home__content-size {
+        flex: 0 0 auto;
+    }
+    .top-box--home__expand-size {
+        flex: 1 0 auto;
+    }
 }
 
 .container--home {
     background-color: @colorLightTranslucent;
 }
 
-.home-window-to-map {
-    height: 150px;
-    color: black;
+.title--home {
+    margin-top: 16px;
+}
+
+.btn.home-window-to-map {
+    height: 140px;
+    color: @colorDark;
     text-shadow: 1px 1px 1px white, 1px 1px 1px white;
+    font-weight: bold;
+    font-size: 20px;
+
+    .glyphicon {
+        margin: -5px 10px 0 0;
+    }
 
     // Add some padding to the first following sibling
     & + * {
         padding-top: 10px;
     }
-}
-
-.home-story p {
-    font-style: italic;
 }
