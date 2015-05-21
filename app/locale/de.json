@@ -223,7 +223,7 @@
       "updatedAt": "Letzte Mission",
       "recentMissionsBy": "Zuletzt aktiv"
     },
-    "noRecentMissions": "Diese Location wurde von Sensoren auf einem der Raumschiffe entdeckt.",
+    "noRecentMissions": "Diese Location wurde von Admins eingetragen. Du kannst hier als ersteR eine Mission erfüllen",
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen"
@@ -387,7 +387,7 @@
       "giveFeedback": {
         "title": "Mission: Impossible",
         "description": "Was für eine unmögliche Mission hast du hier versucht?",
-        "explanation": "Manchmal sind es die unwahrscheinlichsten Dinge, die am meisten bringen. Der Legende nach hat eine einzige Veganautin die Space Gunk Ausgabestelle bei der Startrampe XQR-9 dazu gebracht, vegane Haute-Cuisine anzubieten, indem sie dem Personal sagte: \"Stellt doch um auf 100% veganen Food! Ich habe ein 5160 Jahre altes Kochbuch und einen antiken Campingkocher gefunden, das leihe ich euch aus.\"",
+        "explanation": "Manchmal sind es die unwahrscheinlichsten Dinge, die am meisten bringen. Vielleicht setzen sie hier in Zukunft eine vegane Version deines Lieblingsgerichts auf die Speisekarte, wenn du ganz nett fragst, oder sie stellen das ganze Sortiment auf vegan um, wenn du ihnen erzählst, was es alles gibt.",
         "form": {
           "placeholder": "Unmögliche Mission"
         },
@@ -448,11 +448,11 @@
     },
     "game": {
       "title": "Das Spiel",
-      "text": "<p>Wenn du bei Veganaut mitmachst, gehörst du einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich in einem Science-Fiction Szenario einen freundschaftlichen Wettkampf. Wer entdeckt am meisten essbare Pflanzen? Wer pflegt sie am besten, dank wem wachsen sie am schnellsten?</p><p>Wie das Spiel genau funktioniert, merkst du dann beim Spielen. Willst du es ausprobieren? Dann mach einen Account (geht ganz schnell). Willst du es nicht ausprobieren? Easy. Infos über vegane Angebote kannst du dir hier jederzeit holen, auch wenn du nicht mitspielst. Genau dafür sammeln wir sie ja.</p>"
+      "text": "<p>Wenn du bei Veganaut mitmachst, gehörst du einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich einen freundschaftlichen Wettkampf. Wer entdeckt am meisten Locations? Dank wem wächst das vegane Angebot in den Locations am schnellsten?</p><p>Wie das Spiel genau funktioniert, merkst du dann beim Spielen. Willst du es ausprobieren? Dann mach einen Account (geht ganz schnell). Willst du es nicht ausprobieren? Easy. Infos über vegane Angebote kannst du dir hier jederzeit holen, auch wenn du nicht mitspielst. Genau dafür sammeln wir sie ja.</p>"
     },
     "story": {
-      "title": "Die Geschichte",
-      "text": "<p>Wir schreiben das Jahr 5086. Seit dem sog. \"Kleinen Weltuntergang\" im Jahr 2062 ist die Erde unbewohnbar. Auf dem ganzen Planeten wächst nichts essbares mehr.</p><p>Als Mensch lebst du in einem der fünf riesigen, defekten Raumschiffen, die den Planeten antriebslos umkreisen. Seit die Vorratsräume leer sind (d.h. seit 2071, manchen Quellen zufolge auch erst seit 2075), gibt es in den Raumschiffen nur noch \"Space Gunk\" zu essen, eine graue, geschmacklose Masse, die aus Vakuumstaub gewonnen wird.</p><p>Der einzige Hoffnungsschimmer: Abenteuerlustige Entdeckerinnen und Forscher, sog. VeganautInnen, die es wagten, ihr Raumschiff Richtung Erde zu verlassen, kehren neuerdings zurück und erzählen, sie hätten essbare Pflanzen gefunden. Sie haben die Fundstellen klassifiziert und bewertet und auf einer Karte eingezeichnet.</p><p>Viele Leute glauben den VeganautInnen nicht. \"Essbare Pflanzen? Das gibt es doch gar nicht!\" sagen sie. Eine Veganautin hat sich als Antwort \"Bye bye Space Gunk\" tätowieren lassen. Ihr Freund hat sie deswegen ausgelacht, ist dann aber doch mit ihr mitgegangen, als sie auf ihre nächste Entdeckungsreise ging.</p><p>Nach den letzten Berichten sind die beiden im Moment in irgend einem antiken Tunnelsystem unter einer Ruinenstadt und suchen nach essbaren Pilzen.</p>"
+      "title": "",
+      "text": ""
     }
   }
 }
