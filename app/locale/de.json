@@ -212,7 +212,7 @@
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
         "changeCoordinates": "Ändere die Position",
         "placeholder": {
-          "description": "Kurze Beschreibung dieser Location mit z.B. Art des Angebotes und Öffnungszeiten.",
+          "description": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente.",
           "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
         }
       }
@@ -318,7 +318,7 @@
       "wantVegan": {
         "title": "Rede mit dem Personal über vegane Angebote.",
         "description": "Welche Ausdrücke wurden im Gespräch von dir oder dem Personal verwendet?",
-        "explanation": "Manchmal weiss das Personal nicht, was \"vegan\" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal meinen sie, sie wüssten es, aber verwechseln es scheinbar mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist. Bei anderen Gelegenheiten erklärt das Personal, wie ihre veganen Angebote produziert werden, oder was sie enthalten.",
+        "explanation": "Manchmal weiss das Personal nicht, was \"vegan\" bedeutet, oder du bist nicht sicher, ob sie es wissen. Manchmal verwechseln es scheinbar mit etwas anderem, oder sie vergessen, dass z.B. Butter nicht vegan ist. Bei anderen Gelegenheiten erklärt das Personal, wie ihre veganen Angebote produziert werden, oder was sie enthalten.",
         "form": {
           "vegan": "vegan",
           "plantbased": "(rein) pflanzlich",
