@@ -92,10 +92,26 @@
       "changePassword": "Changer le mot de passe"
     },
     "map": {
-      "addLocation": "Nouvel endroit",
-      "showProductList": "Montre options véganes dans ce secteur de la carte.",
-      "searchMap": "Chercher sur la carte",
-      "filterMap": "Filtrer les endroits sur la carte",
+      "register": {
+        "name": "Inscription",
+        "description": "Inscrire pour modifier la carte"
+      },
+      "addLocation": {
+        "name": "Nouvel endroit",
+        "description": "Ajouter nouvel endroit"
+      },
+      "showProductList": {
+        "name": "Menu végan",
+        "description": "Montre le menu végan pour ce secteur de la carte."
+      },
+      "searchMap": {
+        "name": "Recherche",
+        "description": "Chercher sur la carte"
+      },
+      "filterMap": {
+        "name": "Filtrer",
+        "description": "Filtrer les endroits sur la carte"
+      },
       "locationAction": "Voire plus"
     },
     "location": {
