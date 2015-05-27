@@ -1,0 +1,439 @@
+{
+  "app": {
+    "title": "veganaut.net - beta"
+  },
+  "general": {
+    "team": "Equipe",
+    "person": "Véganaute"
+  },
+  "navigation": {
+    "home": "Acceuil",
+    "register": "Inscription",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "map": "Carte",
+    "score": "Equipes",
+    "profile": "Profil",
+    "avatar": "Réseau",
+    "activities": "Invitations",
+    "blog": "Blog",
+    "contactForm": "Contact",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "github": "GitHub",
+    "bugs": "Bugreport",
+    "changeLanguage": "Auf Deutsch wechseln"
+  },
+  "form": {
+    "referenceCode": {
+      "placeholder": "Enter invitation-code",
+      "submit": "Submit code"
+    }
+  },
+  "message": {
+    "registered": "Inscription réussi.",
+    "activityLinkCreated": "Invitation created.",
+    "mission": {
+      "success": "Mission accompli. Tu a gagné autant de points: ",
+      "error": "Excuse-nous, la mission n'a pas pu être entregistrée: "
+    },
+    "profile": {
+      "update": {
+        "success": "Profil changé.",
+        "fail": "Excuse-nous, ton profil n'a pas pu être changé."
+      }
+    },
+    "resetPassword": {
+      "invalidToken": "Ta requête de changement de mot de passe est expiré. S'il te plaît fais une nouvelle requête.",
+      "emailSent": "E-mail envoyé.",
+      "success": "Mot de passe changé. Tu peux entrer dans le système maintenant."
+    }
+  },
+  "register": {
+    "title": "Inscription",
+    "description": "Est-ce que tu veux ajouter, changer ou évaluer quelque chose sur Véganaut.net? - Alors, inscris-toi!",
+    "form": {
+      "submit": "Inscription"
+    }
+  },
+  "login": {
+    "title": "Connexion",
+    "forgotPassword": "Oublié le mot de passe?",
+    "form": {
+      "email": "email@example.com",
+      "password": "Mot de passe",
+      "submit": "Connexion"
+    }
+  },
+  "forgot": {
+    "form": {
+      "submit": "Envoyer"
+    }
+  },
+  "reset": {
+    "form": {
+      "save": "Enregistrer"
+    }
+  },
+  "action": {
+    "register": "Register",
+    "cancel": "Cancel",
+    "socialGraph": {
+      "createActivityLink": {
+        "attract": "Invite",
+        "support": "Invite",
+        "tempt": "Invite",
+        "unspecified": "Invite someone"
+      }
+    },
+    "profile": {
+      "edit": "Changer le profil",
+      "save": "Enregistrer le profil",
+      "changePassword": "Changer le mot de passe"
+    },
+    "map": {
+      "addLocation": "Nouvel endroit",
+      "showProductList": "Montre options véganes dans ce secteur de la carte.",
+      "searchMap": "Chercher sur la carte",
+      "filterMap": "Filtrer les endroits sur la carte",
+      "locationAction": "Voire plus"
+    },
+    "location": {
+      "edit": "Modifier",
+      "editAsAnonymous": "Inscrire pour modifier",
+      "save": "Enregistrer",
+      "backToMap": "Retourner à la carte"
+    }
+  },
+  "activityLink": {
+    "title": "New invitation",
+    "label": {
+      "targetName": "With / For"
+    },
+    "form": {
+      "targetName": "Who?",
+      "choose": "What?",
+      "submit": "Save and continue"
+    }
+  },
+  "socialGraph": {
+    "title": "Network"
+  },
+  "openActivities": {
+    "title": "Planned invitations",
+    "description": "Codes for all planned invitations."
+  },
+  "person": {
+    "type": {
+      "user": "Véganaute",
+      "baby": "Baby",
+      "maybe": "Maybe"
+    },
+    "label": {
+      "email": "Email",
+      "fullName": "Nom",
+      "nickname": "Nickname (visible pour tout le monde)",
+      "team": "Equipe",
+      "captured": "Captured",
+      "password": "Mot de passe",
+      "passwordRepeat": "Répétition mot de passe",
+      "attributes": "Attributes",
+      "pioneer": "Pionnier",
+      "diplomat": "Diplomat",
+      "evaluator": "Evaluateur",
+      "gourmet": "Gourmet",
+      "completedMissions": "Missions accomplies"
+    }
+  },
+  "team": {
+    "team1": "Bleu",
+    "team2": "Vert",
+    "team3": "Violet",
+    "team4": "Rouge",
+    "team5": "Orange",
+    "npc": "NPC"
+  },
+  "score": {
+    "points": "Points",
+    "totalScore": "Score",
+    "players": "Players",
+    "captured": "Captures",
+    "babies": "Babies",
+    "total": "Total",
+    "teams": {
+      "title": "Equipes",
+      "locations": "# Endroits",
+      "people": "# Véganautes"
+    },
+    "people": {
+      "title": "Véganautes",
+      "missions": "# Missions",
+      "filter": {
+        "onlyMyTeam": "Montre mon équipe seulement"
+      }
+    }
+  },
+  "location": {
+    "form": {
+      "new": {
+        "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
+        "name": {
+          "gastronomy": "Comment s'appelle le restaurant / take-away / la cantine que tu veux ajouter?",
+          "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?"
+        },
+        "selectCoordinates": "Place le cercle là où se trouve l'endroit ou utilise la recherche.",
+        "search": "Cherche nom ou adresse",
+        "showForm": "Montre recherche",
+        "next": "Avant",
+        "previous": "Retour",
+        "submit": "Fini"
+      },
+      "edit": {
+        "name": "Nom de l'endroit",
+        "type": "Genre de l'endroit",
+        "description": "Description",
+        "link": "Site web",
+        "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
+        "changeCoordinates": "Changer les coordonnées",
+        "placeholder": {
+          "description": "Description bref de cet endroit, p. ex. les heures d'ouverture ou l'ambiance.",
+          "link": "Le  site web de cet endroit, p. ex. http://example.com"
+        }
+      }
+    },
+    "label": {
+      "description": "Description",
+      "link": "Site web",
+      "updatedAt": "Mission plus récente",
+      "recentMissionsBy": "Véganautes actives en dernier"
+    },
+    "noRecentMissions": "Cet endroit a êté ajouté par nos admins. Tu peux être la première Véganaute a accomplir une mission ici.",
+    "rating": {
+      "average": "Moyenne",
+      "numRatings": "Evaluations"
+    },
+    "products": {
+      "title": "Offre végane",
+      "description": "Cet endroit offre les options véganes suivantes:",
+      "noProducts": {
+        "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
+        "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
+      },
+      "summary": "{{ product }} et {{ number }} autres options."
+    },
+    "type": {
+      "gastronomy": "Gastronomie",
+      "retail": "Shopping",
+      "event": "Evénement",
+      "private": "Privé"
+    },
+    "score": {
+      "explanation": {
+        "teamPoints": "L'équipe avec cette couleur a autant de points ici "
+      }
+    },
+    "quality": {
+      "explanation": "Plus de branches signifie un offre végan plus grand et plus bon.",
+      "noRatingExplanation": "La qualité et quantité de l'offre végan n'a pas encore êté evalué ici. Evalue-la!"
+    },
+    "effort": {
+      "explanation": "S'il fait beau temps l'offre végan va s'améliorer et agrandir si plus de Véganautes viennent ici"
+    }
+  },
+  "map": {
+    "filters": {
+      "recent": {
+        "title": "Filtrer pour activité récente",
+        "form": {
+          "anytime": "N'importe",
+          "month": "Mois",
+          "week": "Semaine",
+          "day": "Jour"
+        }
+      },
+      "type": {
+        "title": "Filtrer pour genre d'endroit",
+        "form": {
+          "anytype": "Tous",
+          "gastronomy": "Gastronomie",
+          "retail": "Shopping"
+        }
+      }
+    },
+    "productList": {
+      "title": "Offres gastronomiques véganes trouvé dans ce secteur de la carte",
+      "noProducts": "Pas d'offres trouvés.",
+      "showMore": "Montre plus d'offres",
+      "moreProductsAvailable": "Encore {{ available }} offres de plus ont êté trouvés."
+    },
+    "mission": {
+      "title": "Missions",
+      "totalPoints": "Points totales des missions",
+      "missionForm": {
+        "submit": "Accompli",
+        "cancel": "Abandonner"
+      },
+      "visitBonus": {
+        "title": "Visite cet endroit.",
+        "explanation": "Pour ta première visite à un endroit au cours de quelques semaines tu reçois des points.",
+        "description": "Accompli cette mission seulement si tu est en train ou tu viens de visiter cet endroit just maintenant."
+      },
+      "hasOptions": {
+        "title": "Demande au personnel après options véganes.",
+        "description": "Selon le personnel y a-t-il des options véganes ici?",
+        "description2": "Quest-ce que tu pense toi même: y a-t-il des options véganes ici?",
+        "explanation": "Explicitement demande après options véganes ou demande si une option particulière est véganes en utilisant le mot \"végan\". Si tu fais ça le personnel réalise: \"Notre clientèle est intéressé aux options véganes, il y a une demande.\" Ça augmente la chance que l'offre végan ici sera plus grand et plus bon à l'avenir.",
+        "form": {
+          "theyDoNotKnow": "Ils ne le savent pas",
+          "yes": "Oui",
+          "no": "Non",
+          "ratherYes": "Plûtot oui",
+          "noClue": "Acune idée",
+          "ratherNo": "Plûtot non"
+        },
+        "outcome": {
+          "yes": "Tu a dis que selon le personnel il-y-a des options véganes ici.",
+          "no": "Tu a dis que selon le personnel il-n'y-a pas d'options véganes ici.",
+          "ratherYes": "Le personnel ne le sait pas mais tu penses que probablement il-y-a des options véganes ici.",
+          "noClue": "Le personnel ne le sait pas et toi aussi tu n'as aucune idée s'il-y-a des options véganes ici.",
+          "ratherNo": "Le personnel ne le sait pas et tu penses que probablement il-n'y-a pas d'options véganes ici."
+        }
+      },
+      "wantVegan": {
+        "title": "Parle d'options véganes avec le personnel.",
+        "description": "Lesquelles expréssion est-ce que tu ou le personnel ont utilisées en parlant d'options véganes?",
+        "explanation": "Parfois le personnel ne sait pas ce que signifie \"végan\", ou tu n'est pas surE s'ils le savent. Parfois ils semblent de le confondre avec quelquechose d'autre, ou ils oublient que p. ex. beurre n'est pas végan. Et parfois le personnel explique comment leurs options végans sont produits, ou ce qu'ils contiennent.",
+        "form": {
+          "vegan": "végan",
+          "plantbased": "(purement) a base de plantes",
+          "noAnimalproducts": "sans produits d'animaux",
+          "noMeat": "sans viande/volaille/poisson/saucissons...",
+          "noMilk": "sans produits laitiers",
+          "noEggs": "sans œufs",
+          "noHoney": "sans miel",
+          "noWool": "sans laine",
+          "noLeather": "sans cuir",
+          "noFur": "sans fourrure",
+          "custom": "Autres:",
+          "placeholder": "Autres expressions utilisées"
+        },
+        "outcome": {
+          "description": "Tu as parlé au personnel d'options végans et les expressions suivantes ont êté utilisées:"
+        }
+      },
+      "particularOption": {
+        "title": "Demande après un produit végan particulier.",
+        "description": "Quel produit végan particulier as-tu demande après?",
+        "explanation": "Demande le personnel après un ou plusieurs produits végans particuliers que t'intéressent. S'ils ne l'offrent pas encore ils vont peut-être le faire à l'avenir si assez de gens demandent.",
+        "form": {
+          "placeholder": "Indique le produit que tu as demandé après",
+          "haveIt": "Ils l'offrent ici.",
+          "doNotHaveIt": "Ils ne l'offren pas ici."
+        },
+        "outcome": {
+          "description": "Tu a demandé après les produits végans suivants:"
+        }
+      },
+      "newOption": {
+        "title": "Ask whether there are any new vegan products on offer.",
+        "description": "According to the staff, are there any new vegan products on offer?",
+        "explanation": "Ask the staff whether they recently introduced any new vegan products.",
+        "form": {
+          "placeholder": "Enter new vegan products here",
+          "somethingNew": "Newly available",
+          "nothingNew": "Nothing new"
+        },
+        "outcome": {
+          "description": "Newly available according to the staff:",
+          "descriptionNothing": "According to the staff, there aren't any new vegan products available here."
+        }
+      },
+      "whatOptions": {
+        "title": "Find out what vegan options are available here.",
+        "description": "What vegan options are available here?",
+        "description2": "You don't have to re-enter the following options:",
+        "explanation": "The goal is to make the list of vegan options as complete and as up-to-date as possible. Add vegan options that aren't on the list yet, confirm vegan options that are already listed and indicate which vegan options on the list are not available (at the moment).",
+        "form": {
+          "placeholder": "Enter a vegan option here"
+        },
+        "outcome": {
+          "description": "You entered these vegan options:"
+        }
+      },
+      "buyOptions": {
+        "title": "Buy something vegan.",
+        "description": "What did you buy?",
+        "explanation": "Do you fancy one or the other vegan option available here? If so, you can show the staff that it pays off to supply vegan options by buying. And while you're paying, why not mention that you chose this option (in part) because it's vegan? The more the staff hears the word \"vegan\" in a positive context, the better.",
+        "outcome": {
+          "description": "You bought these vegan options:"
+        }
+      },
+      "giveFeedback": {
+        "title": "Mission: Impossible.",
+        "description": "What kind of impossible mission did you attempt here?",
+        "explanation": "Sometimes it's the most improbable things that work the best. According to legend, a sinlge veganaut got the space gunk dispenser near launch pad XQR-9 to offer vegan Haute Cuisine by just telling the staff: \"Why don't you guys switch to a 100% vegan menu? Here's a 5160 year old cookbook and an antique camping stove that I found on the surface, feel free to use them!\" ",
+        "form": {
+          "placeholder": "Enter your mission impossible here"
+        },
+        "outcome": {
+          "description": "You tried this mission impossible here:"
+        }
+      },
+      "rateOptions": {
+        "title": "Rate the vegan options available here.",
+        "description": "How do you rate these vegan option?",
+        "explanation": "There's no accounting for taste, but chances are that if you like something other people will like it too. Conversely, if something doesn't convince you then it's quite possible that other people won't fancy it either. But never mind other people's opinion here. Just provide the ratings that are right for you personally.",
+        "outcome": {
+          "description": "Your rating:"
+        }
+      },
+      "offerQuality": {
+        "title": "Evaluate this location from a veganautic standpoint.",
+        "description": "How well does this location satisfy veganautic needs?",
+        "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
+        "outcome": {
+          "description": "Your evaluation:"
+        }
+      },
+      "effortValue": {
+        "title": "Make a veganautic weather forecast for this location.",
+        "description": "How good is the wheather at this location for the vegan offer to grow and prosper?",
+        "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
+        "outcome": {
+          "yes": "The weather looks good for the future growth of the vegan offer here.",
+          "ratherYes": "The weather looks rather good for the future growth of the vegan offer here.",
+          "ratherNo": "The weather looks rather bad for the future growth of the vegan offerhere.",
+          "no": "The weather looks bad for the future growth of the vegan offer here."
+        }
+      }
+    }
+  },
+  "product": {
+    "rating": {
+      "summary": "{{numRatings}} ratings"
+    }
+  },
+  "mapSearch": {
+    "form": {
+      "title": "Search for locations on the map",
+      "placeholder": "Search name or address",
+      "showForm": "Show search"
+    }
+  },
+  "home": {
+    "action": {
+      "visitMap": "Check out the map",
+      "showMore": "Show more"
+    },
+    "lead": {
+      "title": "Explore the vegan universe!",
+      "text1": "Where can I get something vegan to eat nearby? How broad is the vegan offer at which restaurants and shops and which vegan products are especially good? - On veganaut.net we collect answers to such questions.",
+      "text2": "Browse the map. Do you find vegan options that you didn't know of? At some places a lot of veganauts have already gathered intel, at other places we have no or hardly any infos. What's missing? Do you know e.g. a takeaway somewhere that makes a great vegan falafel, or a shop with a few vegan things? As a veganaut you can record these infos on the map and thereby make them accessible to everybody else."
+    },
+    "game": {
+      "title": "The Game",
+      "text1": "As a player you belong to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span>, <span class=\"color-team5\">Orange</span>. The teams are engaged in a friendly competition. Who discovers more locations? Thanks to whom does the vegan offer at those locations grow the fastest?",
+      "text2": "You'll learn more about how the game works by playing it. If you want to join in: go ahead and make an account (takes almost no time). Don't want to join in? Easy. You can come here to get infos about vegan options anytime, whether you play the game or not. That's what veganaut.net is here for."
+    }
+  }
+}
