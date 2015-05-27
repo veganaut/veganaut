@@ -212,7 +212,7 @@
         "selectCoordinates": "Click in the map below to select the new location",
         "changeCoordinates": "Change coordinates",
         "placeholder": {
-          "description": "Short description of this location, e.g. type of offer and opening hours.",
+          "description": "Short description of this location, e.g. opening hours or ambience.",
           "link": "This location's website, e.g. http://example.com"
         }
       }
@@ -318,7 +318,7 @@
       "wantVegan": {
         "title": "Talk to the staff about vegan options.",
         "description": "What expressions did you or the staff use while talking about vegan options?",
-        "explanation": "Sometimes the staff doesn't know what \"vegan\" means, or you are unsure whether they know. Sometimes they think they know, but they seem to confuse it with something else, or they forget that e.g. butter isn't vegan. At other times, the staff explains how their vegan options are produced, or what they contain.",
+        "explanation": "Sometimes the staff doesn't know what \"vegan\" means, or you are unsure whether they know. Sometimes they seem to confuse it with something else, or they forget that e.g. butter isn't vegan. At other times, the staff explains how their vegan options are produced, or what they contain.",
         "form": {
           "vegan": "vegan",
           "plantbased": "(purely) plant-based",
