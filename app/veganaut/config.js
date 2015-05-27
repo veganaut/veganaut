@@ -47,7 +47,12 @@
     // Translation settings
     module.constant('i18nSettings', {
         defaultLocale: 'en',
-        availableLocales: ['en', 'de']
+        availableLocales: ['en', 'de', 'fr'],
+        localeNames: {
+            de: 'Deutsch',
+            en: 'English',
+            fr: 'Français'
+        }
     });
 
     // Toggle features that aren't ready yet

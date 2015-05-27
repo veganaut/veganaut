@@ -1,15 +1,16 @@
 (function(module) {
     'use strict';
 
-    module.controller('ChangeLocaleCtrl', ['$scope', 'localeService',
-        function($scope, localeService) {
-            var CHANGE_MAP = {
-                de: 'en',
-                en: 'de'
-            };
+    module.controller('ChangeLocaleCtrl', ['$scope', 'i18nSettings', 'localeService',
+        function($scope, i18nSettings, localeService) {
+            $scope.availableLocales = i18nSettings.availableLocales;
+            $scope.localeNames = i18nSettings.localeNames;
+            $scope.currentLocale = localeService.getLocale();
 
-            $scope.changeLocale = function() {
-                localeService.changeLocale(CHANGE_MAP[localeService.getLocale()]);
+            $scope.changeLocale = function(newLocale) {
+                if (localeService.changeLocale(newLocale)) {
+                    $scope.currentLocale = newLocale;
+                }
             };
         }])
     ;

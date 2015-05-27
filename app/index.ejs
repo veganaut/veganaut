@@ -103,9 +103,16 @@
                         </a>
                     </div>
                     <div class="col-xs-12 text-center" ng-controller="ChangeLocaleCtrl">
-                        <a href="#" ng-click="changeLocale(); closeMenu()">
-                            {{ 'navigation.changeLanguage' | translate }}
-                        </a>
+                        <span ng-repeat="locale in availableLocales">
+                            <span ng-show="$index > 0">&nbsp;|&nbsp;</span>
+                            <a href="#" ng-hide="locale === currentLocale"
+                             ng-click="changeLocale(locale); closeMenu()">
+                                {{ localeNames[locale] }}
+                            </a>
+                            <span ng-show="locale === currentLocale">
+                                {{ localeNames[locale] }}
+                            </span>
+                        </span>
                     </div>
                 </div>
             </nav>
