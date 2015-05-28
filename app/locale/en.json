@@ -349,20 +349,6 @@
           "description": "You asked for these vegan products:"
         }
       },
-      "newOption": {
-        "title": "Ask whether there are any new vegan products on offer.",
-        "description": "According to the staff, are there any new vegan products on offer?",
-        "explanation": "Ask the staff whether they recently introduced any new vegan products.",
-        "form": {
-          "placeholder": "Enter new vegan products here",
-          "somethingNew": "Newly available",
-          "nothingNew": "Nothing new"
-        },
-        "outcome": {
-          "description": "Newly available according to the staff:",
-          "descriptionNothing": "According to the staff, there aren't any new vegan products available here."
-        }
-      },
       "whatOptions": {
         "title": "Find out what vegan options are available here.",
         "description": "What vegan options are available here?",
