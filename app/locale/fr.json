@@ -349,96 +349,82 @@
           "description": "Tu a demandé après les produits végans suivants:"
         }
       },
-      "newOption": {
-        "title": "Ask whether there are any new vegan products on offer.",
-        "description": "According to the staff, are there any new vegan products on offer?",
-        "explanation": "Ask the staff whether they recently introduced any new vegan products.",
-        "form": {
-          "placeholder": "Enter new vegan products here",
-          "somethingNew": "Newly available",
-          "nothingNew": "Nothing new"
-        },
-        "outcome": {
-          "description": "Newly available according to the staff:",
-          "descriptionNothing": "According to the staff, there aren't any new vegan products available here."
-        }
-      },
       "whatOptions": {
-        "title": "Find out what vegan options are available here.",
-        "description": "What vegan options are available here?",
-        "description2": "You don't have to re-enter the following options:",
-        "explanation": "The goal is to make the list of vegan options as complete and as up-to-date as possible. Add vegan options that aren't on the list yet, confirm vegan options that are already listed and indicate which vegan options on the list are not available (at the moment).",
+        "title": "Découvre quelles options véganes ils offrent ici.",
+        "description": "Quelles options véganes est-ce qu'ils offrent ici?",
+        "description2": "Tu ne dois pas enregistrer ces options une deuxième fois:",
+        "explanation": "Le but c'est d'avoir une liste complète et à jour de tous les options véganes qu'ils offrent ici. Ajoute les options disponibles qui manquent sur la liste, confirme les options disponibles qui sont déja sur la liste et indique lesquelles options ne sont pas ou plus disponibles (en ce moment).",
         "form": {
-          "placeholder": "Enter a vegan option here"
+          "placeholder": "Saisir une option végane ici"
         },
         "outcome": {
-          "description": "You entered these vegan options:"
+          "description": "Tu a saisi ces options véganes:"
         }
       },
       "buyOptions": {
-        "title": "Buy something vegan.",
-        "description": "What did you buy?",
-        "explanation": "Do you fancy one or the other vegan option available here? If so, you can show the staff that it pays off to supply vegan options by buying. And while you're paying, why not mention that you chose this option (in part) because it's vegan? The more the staff hears the word \"vegan\" in a positive context, the better.",
+        "title": "Achète quelquechose végan.",
+        "description": "Qu'est-ce que tu a achèté?",
+        "explanation": "Est-ce que tu aime une ou l'autre option végane qu'ils offrent ici? Si oui tu peux montrer au personnel que c'est rentable d'offrir des options véganes en les achètant. Et quand tu es en train de payer pourquoi pas dire explicitement que tu a choisy cette options (partiellement) parce qu'elle est végane? Le plus souvent que le personnel entend le mot \"végan\" dans un contexte positif, le mieux.",
         "outcome": {
-          "description": "You bought these vegan options:"
+          "description": "Tu as achèté ces options véganes:"
         }
       },
       "giveFeedback": {
         "title": "Mission: Impossible.",
-        "description": "What kind of impossible mission did you attempt here?",
-        "explanation": "Sometimes it's the most improbable things that work the best. According to legend, a sinlge veganaut got the space gunk dispenser near launch pad XQR-9 to offer vegan Haute Cuisine by just telling the staff: \"Why don't you guys switch to a 100% vegan menu? Here's a 5160 year old cookbook and an antique camping stove that I found on the surface, feel free to use them!\" ",
+        "description": "Quelle est la mission impossible que tu as essayé ici?",
+        "explanation": "Parfois c'est les choses les plus improbables qui marchent le mieux. Peut-être ils vont mettre une version végane de ton plat préféré sur le menu si tu demande super cordialement, ou ils échangent tous leur offre pour des produits végans si tu leur parle de tous les options véganes qu'il y a.",
         "form": {
-          "placeholder": "Enter your mission impossible here"
+          "placeholder": "Saisir ta mission impossible ici"
         },
         "outcome": {
-          "description": "You tried this mission impossible here:"
+          "description": "Tu as essayé cette mission impossible ici:"
         }
       },
       "rateOptions": {
-        "title": "Rate the vegan options available here.",
-        "description": "How do you rate these vegan option?",
-        "explanation": "There's no accounting for taste, but chances are that if you like something other people will like it too. Conversely, if something doesn't convince you then it's quite possible that other people won't fancy it either. But never mind other people's opinion here. Just provide the ratings that are right for you personally.",
+        "title": "Evalues les options véganes disponibles ici.",
+        "description": "Comment est-ce que tu évalues ces options véganes?",
+        "explanation": "Le goûts sont differents, mais si tu aimes quelquechose c'est probable que autre gens l'aiment aussi. Inversement, si quelquechose ne te convainc pas c'est possible qu'autre gens ne l'aiment pas beaucoup non plus. Mais peu importent les opinions des autres maintenant. Donne l'évaluation qui est juste pour toi.",
         "outcome": {
-          "description": "Your rating:"
+          "description": "Ton évaluation:"
         }
       },
       "offerQuality": {
-        "title": "Evaluate this location from a veganautic standpoint.",
-        "description": "How well does this location satisfy veganautic needs?",
-        "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
+        "title": "Evalues cet endroit d'un point de vue véganautique.",
+        "description": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
+        "explanation": "Véganautes veulent avoir le choix entre beacoup de bonnes options véganes. A quelques endroits il n'y a pas our presque pas d'options véganes, ou les options véganes ne sont pas encore convaincantes. A autres endroits il-y-a déja deux ou trois options véganes dont une ou deux sont satisfaisant. Autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement il-y-a des endroits ou l'offre végan et énorme et tous les options sont fantastiques.",
         "outcome": {
-          "description": "Your evaluation:"
+          "description": "Ton évaluation:"
         }
       },
       "effortValue": {
-        "title": "Make a veganautic weather forecast for this location.",
-        "description": "How good is the wheather at this location for the vegan offer to grow and prosper?",
-        "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
+        "title": "Fais un météo veganautique pour cet endroit.",
+        "description": "Est-ce qu'il fait beau temps pour l'offre végan de croître et mûrir à cet endroit?",
+        "explanation": "A quelques endroits le personnal n'a nul intérêt  au thème \"végan\", à autres endroits ils sont plus ouvert ou ont déjà fait un ou deux pas dans la direction végane et n'attendend seulement à ce que leur clientèle en demande de plus.",
         "outcome": {
-          "yes": "The weather looks good for the future growth of the vegan offer here.",
-          "ratherYes": "The weather looks rather good for the future growth of the vegan offer here.",
-          "ratherNo": "The weather looks rather bad for the future growth of the vegan offerhere.",
-          "no": "The weather looks bad for the future growth of the vegan offer here."
+          "yes": "Il fait beau temps pour l'offre végan de croître et mûrir ici.",
+          "ratherYes": "Il fait assez beau temps pour l'offre végan de croître et mûrir ici.",
+          "ratherNo": "Il fait assez mauvais temps pour l'offre végan de croître et mûrir ici.",
+          "no": "Il fait mauvais temps pour l'offre végan de croître et mûrir ici."
         }
       }
     }
   },
   "product": {
     "rating": {
-      "summary": "{{numRatings}} ratings"
+      "summary": "{{numRatings}} évaluations"
     }
   },
   "mapSearch": {
     "form": {
-      "title": "Search for locations on the map",
-      "placeholder": "Search name or address",
-      "showForm": "Show search"
+      "title": "Chercher sur la carte",
+      "placeholder": "Chercher nom ou adresse",
+      "showForm": "Montrer la recherche"
     }
   },
   "home": {
     "action": {
-      "visitMap": "Check out the map",
-      "showMore": "Show more"
+      "visitMap": "Voir la carte",
+      "showMore": "Afficher la suite"
     },
     "lead": {
       "title": "Explore the vegan universe!",
