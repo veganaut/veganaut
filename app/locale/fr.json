@@ -374,14 +374,14 @@
         "description": "Quelle est la mission impossible que tu as essayé ici?",
         "explanation": "Parfois c'est les choses les plus improbables qui marchent le mieux. Peut-être ils vont mettre une version végane de ton plat préféré sur le menu si tu demande super cordialement, ou ils échangent tous leur offre pour des produits végans si tu leur parle de tous les options véganes qu'il y a.",
         "form": {
-          "placeholder": "Saisir ta mission impossible ici"
+          "placeholder": "Saisi ta mission impossible ici"
         },
         "outcome": {
           "description": "Tu as essayé cette mission impossible ici:"
         }
       },
       "rateOptions": {
-        "title": "Evalues les options véganes disponibles ici.",
+        "title": "Evalue les options véganes disponibles ici.",
         "description": "Comment est-ce que tu évalues ces options véganes?",
         "explanation": "Le goûts sont differents, mais si tu aimes quelquechose c'est probable que autre gens l'aiment aussi. Inversement, si quelquechose ne te convainc pas c'est possible qu'autre gens ne l'aiment pas beaucoup non plus. Mais peu importent les opinions des autres maintenant. Donne l'évaluation qui est juste pour toi.",
         "outcome": {
@@ -389,7 +389,7 @@
         }
       },
       "offerQuality": {
-        "title": "Evalues cet endroit d'un point de vue véganautique.",
+        "title": "Evalue cet endroit d'un point de vue véganautique.",
         "description": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
         "explanation": "Véganautes veulent avoir le choix entre beacoup de bonnes options véganes. A quelques endroits il n'y a pas our presque pas d'options véganes, ou les options véganes ne sont pas encore convaincantes. A autres endroits il-y-a déja deux ou trois options véganes dont une ou deux sont satisfaisant. Autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement il-y-a des endroits ou l'offre végan et énorme et tous les options sont fantastiques.",
         "outcome": {
@@ -427,14 +427,14 @@
       "showMore": "Afficher la suite"
     },
     "lead": {
-      "title": "Explore the vegan universe!",
-      "text1": "Where can I get something vegan to eat nearby? How broad is the vegan offer at which restaurants and shops and which vegan products are especially good? - On veganaut.net we collect answers to such questions.",
-      "text2": "Browse the map. Do you find vegan options that you didn't know of? At some places a lot of veganauts have already gathered intel, at other places we have no or hardly any infos. What's missing? Do you know e.g. a takeaway somewhere that makes a great vegan falafel, or a shop with a few vegan things? As a veganaut you can record these infos on the map and thereby make them accessible to everybody else."
+      "title": "Explore l'univers végan!",
+      "text1": "Où est-ce que je trouve quelqechose végan à manger près d'ici? Quelles restaurant et magasins offrent le plus grand choix d'options véganes et quels produits végans sont particulierement bons? - Sur veganaut.net nous récoltons des réponses à ce genre de questions.",
+      "text2": "Regarde la carte. Est-ce que tu trouves des endroits avec des options véganes que tu n'a pas connu? Dans certaines régions beaucoup de véganautes ont déjà enregistré des informations, dans d'autres régions nous avons presque rien. Qu'est-ce qui manque? Est-ce que p.ex. tu connais un take-away quelque part qui offre un falafel végan excellent, ou un magasin avec quelques produits végans? Comme véganaute tu peux enregistrer ces informations sur la carte et les faire accessibles à tout le monde."
     },
     "game": {
-      "title": "The Game",
-      "text1": "As a player you belong to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span>, <span class=\"color-team5\">Orange</span>. The teams are engaged in a friendly competition. Who discovers more locations? Thanks to whom does the vegan offer at those locations grow the fastest?",
-      "text2": "You'll learn more about how the game works by playing it. If you want to join in: go ahead and make an account (takes almost no time). Don't want to join in? Easy. You can come here to get infos about vegan options anytime, whether you play the game or not. That's what veganaut.net is here for."
+      "title": "Le Jeu",
+      "text1": "En ce moment, chaque véganaute est dans une de cinque équipes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes se battent dans une compétition amicale. Qui découvre plus d'endroits? Grâce é qui est-ce que l'offre végan a ces endroit croît le plus vite?",
+      "text2": "Si tu veux participer: vas-y et inscris-toi (ça va très vite)! Tu ne veux pas participer? Pas de problème. Tu peux venir ici pour t'informer d'offres végans à tout moment. C'est pour ça que nous récoltons ces informations ici."
     }
   }
 }
