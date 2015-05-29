@@ -7,8 +7,8 @@
      * Interface with the backend
      * TODO: rather return promises for the return object instead of $http promises
      */
-    module.factory('backendService', ['$http', '$rootScope', 'backendUrl', 'sessionService',
-        function($http, $rootScope, backendUrl, sessionService) {
+    module.factory('backendService', ['$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
+        function($http, $rootScope, backendUrl, sessionService, i18nSettings) {
             var BackendService = function() {
                 /**
                  * Person id is set if the user entered a reference code but is not
@@ -53,19 +53,25 @@
             /**
              * Registers a new user. If the user has already entered a reference
              * code, the person from that activity's target will be used.
-             * @param email
-             * @param fullName
-             * @param nickname
-             * @param password
+             * @param {string} email
+             * @param {string} fullName
+             * @param {string} nickname
+             * @param {string} password
+             * @param {string} locale Only submitted if valid
              * @returns {promise}
              */
-            BackendService.prototype.register = function(email, fullName, nickname, password) {
+            BackendService.prototype.register = function(email, fullName, nickname, password, locale) {
                 var postData = {
                     email: email,
                     fullName: fullName,
                     nickname: nickname,
                     password: password
                 };
+
+                // Only submit locale if it's valid
+                if (i18nSettings.availableLocales.indexOf(locale) >= 0) {
+                    postData.locale = locale;
+                }
 
                 // If we already have a person id, register as that person
                 if (this.personId) {

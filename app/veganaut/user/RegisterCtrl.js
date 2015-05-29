@@ -1,23 +1,25 @@
 (function(module) {
     'use strict';
 
-    module.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService',
-        function($scope, backendService, alertService) {
+    module.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService', 'localeService',
+        function($scope, backendService, alertService, localeService) {
 
             // TODO: improve how the form validates password and passwordRepeat are the same
             $scope.submit = function() {
-                backendService.register($scope.form.email, $scope.form.fullName, $scope.form.nickname, $scope.form.password)
+                backendService.register($scope.form.email, $scope.form.fullName, $scope.form.nickname,
+                    $scope.form.password, localeService.getLocale()
+                )
                     .success(function() {
                         alertService.addAlert('Registered successfully', 'success');
 
                         // TODO: code duplication with LoginController
                         backendService.login($scope.form.email, $scope.form.password)
-                            .success(function () {
+                            .success(function() {
                                 if (backendService.isLoggedIn()) {
                                     $scope.goToView('');
                                 }
                             })
-                            .error(function (data) {
+                            .error(function(data) {
                                 alertService.addAlert('Could not log in: ' + data.error, 'danger');
                             })
                         ;
