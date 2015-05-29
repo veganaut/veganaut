@@ -433,7 +433,7 @@
     },
     "game": {
       "title": "The Game",
-      "text1": "As a player you belong to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span>, <span class=\"color-team5\">Orange</span>. The teams are engaged in a friendly competition. Who discovers more locations? Thanks to whom does the vegan offer at those locations grow the fastest?",
+      "text1": "At the moment, every veganaut belongs to one of five teams: <span class=\"color-team1\">Blue</span>, <span class=\"color-team2\">Green</span>, <span class=\"color-team3\">Purple</span>, <span class=\"color-team4\">Red</span>, <span class=\"color-team5\">Orange</span>. The teams are engaged in a friendly competition. Who discovers more locations? Thanks to whom does the vegan offer at those locations grow the fastest?",
       "text2": "You'll learn more about how the game works by playing it. If you want to join in: go ahead and make an account (takes almost no time). Don't want to join in? Easy. You can come here to get infos about vegan options anytime, whether you play the game or not. That's what veganaut.net is here for."
     }
   }
