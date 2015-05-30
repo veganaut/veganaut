@@ -146,7 +146,7 @@
     },
     "label": {
       "email": "Email",
-      "fullName": "Nom",
+      "fullName": "Prénom et nom de famille",
       "nickname": "Nickname (visible pour tout le monde)",
       "team": "Equipe",
       "captured": "Captured",
