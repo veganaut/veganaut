@@ -9,9 +9,9 @@
         <p ng-show="products.length === 0">
             {{ 'map.productList.noProducts' | translate }}
         </p>
-        <ul class="list-group" ng-show="products.length > 0">
+        <ul class="list-group list-group--transparent" ng-show="products.length > 0">
             <li ng-repeat="product in products" class="list-group-item clickable"
-             ng-class="{ opened: openedProduct === product }"
+             ng-class="{ 'list-group-item--opened': openedProduct === product }"
              ng-click="openProduct(product)">
                 <div ng-show="openedProduct === product">
                     <p class="text-center">

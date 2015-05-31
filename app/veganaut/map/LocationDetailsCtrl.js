@@ -51,6 +51,26 @@
              */
             var currentUserIsRecentlyActive = false;
 
+            /**
+             * Which product is currently shown
+             * @type {{}}
+             */
+            $scope.openedProduct = undefined;
+
+            /**
+             * Shows the details of the given product.
+             * @param {{}} product
+             */
+            $scope.openProduct = function(product) {
+                $scope.openedProduct = product;
+            };
+
+            /**
+             * Closes the details of the opened product
+             */
+            $scope.closeProduct = function() {
+                $scope.openedProduct = undefined;
+            };
 
 
             /**

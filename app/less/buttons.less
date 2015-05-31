@@ -11,9 +11,6 @@ button.btn {
     vertical-align: middle;
 }
 
-.btn.btn-icon .glyphicon {
-    margin-right: 0;
-}
 
 
 // Mixins taken directly from bootstrap
@@ -26,19 +23,21 @@ button.btn {
     -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
 
-    &:hover,
-    &:focus,
-    &:active,
-    &.active,
-    .open > .dropdown-toggle & {
-        color: @color;
-        background-color: darken(@background, 3%);
-        border-color: darken(@border, 1%);
+    &:not(.btn-no-styles) {
+        &:hover,
+        &:focus,
+        &:active,
+        &.active,
+        .open > .dropdown-toggle & {
+            color: @color;
+            background-color: darken(@background, 3%);
+            border-color: darken(@border, 1%);
 
-        .glyphicon {
-            -webkit-transition: transform 0.5s easeinout;
-            transition: transform 0.5s easeinout;
-            transform: scale(1.2) translateY(0.5px);
+            .glyphicon {
+                -webkit-transition: transform 0.5s easeinout;
+                transition: transform 0.5s easeinout;
+                transform: scale(1.2) translateY(0.5px);
+            }
         }
     }
     &:active,
@@ -81,6 +80,31 @@ button.active.active {
 }
 .btn-default--transparent {
     background-color: transparent;
+}
+
+.btn-no-styles {
+    .button-variant(@colorDark; transparent; transparent);
+    padding: 0;
+}
+.btn-like-list-group-item {
+    .button-variant(@colorDark; @colorLight; @colorLighter);
+    padding: 10px 15px;
+}
+.btn-like-list-group-item, .btn-no-styles {
+    text-align: left;
+    white-space: normal;
+    border: 0;
+
+    .glyphicon {
+        margin-right: 0;
+    }
+}
+
+
+// TODO: this probably shouldn't go here
+.btn-no-styles h3 {
+    margin-top: 0;
+    display: inline;
 }
 
 button.menu-button {

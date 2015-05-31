@@ -31,16 +31,93 @@
         <h2>{{ 'location.products.title' | translate }}</h2>
         <div ng-if="location.products.length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
+
             <ul class="list-group">
-                <li ng-repeat="product in location.products" class="list-group-item">
-                    {{ product.name }}
-                    <span class="pull-right">
-                        <vg-average-rating
-                         average="product.rating.average"
-                         num-ratings="product.rating.numRatings">
-                        </vg-average-rating>
-                    </span>
-                    <span class="clearfix"></span>
+                <!-- TODO: this should actually be a <button> !-->
+                <li ng-repeat="product in location.products" class="list-group-item"
+                 ng-class="{ 'list-group-item--opened': openedProduct === product,
+                 'list-group-item--no-padding': openedProduct !== product }">
+                    <button class="btn btn-like-list-group-item btn-block"
+                     ng-click="openProduct(product)"
+                     ng-hide="openedProduct === product">
+                        {{ product.name }}
+                        <span class="pull-right product-list-rating" ng-show="product.rating.numRatings > 0">
+                            <vg-average-rating
+                             average="product.rating.average"
+                             num-ratings="product.rating.numRatings">
+                            </vg-average-rating>
+                        </span>
+                    </button>
+
+                    <div ng-show="openedProduct === product">
+                        <!-- TODO: translate everything -->
+                        <button class="btn btn-no-styles btn-block"
+                         ng-click="closeProduct(product)">
+                            <span class="glyphicon glyphicon-remove pull-right"></span>
+                            <h3>{{ product.name }}</h3>
+                        </button>
+
+                        <div>
+                            <h4>Rating</h4>
+                            <div ng-show="product.rating.numRatings > 0">
+                                <vg-average-rating
+                                 average="product.rating.average"
+                                 num-ratings="product.rating.numRatings">
+                                </vg-average-rating><br />
+                                Average of {{ product.rating.average | number:1 }} from {{ product.rating.numRatings }} ratings.
+                            </div>
+                            <div ng-hide="product.rating.numRatings > 0">
+                                No ratings yet.
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4>Your rating</h4>
+                            <div>
+                                <vg-mission-points points="5"></vg-mission-points>
+                                Wie bewertest du dieses Angebot?
+                            </div>
+                            <rating ng-model="product.rating.average"
+                             max="5"></rating>
+                        </div>
+
+                        <div>
+                            <h4>Edit name</h4>
+                            <div>
+                                <vg-mission-points points="5"></vg-mission-points>
+                                Correct or improve the name.
+                            </div>
+                            <form novalidate name="editProductNameForm" class="edit-product-name-form">
+                                <div class="input-group">
+                                    <input type="text" required
+                                     id="editName" class="form-control"
+                                     ng-model="product.name" />
+                                    <div class="input-group-addon">
+                                        <button class="btn btn-no-styles">
+                                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div>
+                            <h4>Product availability</h4>
+                            <div>
+                                <vg-mission-points points="5"></vg-mission-points>
+                                Is this product available?
+                            </div>
+                            <form novalidate name="editProductAvailabilityForm" class="edit-product-availability-form">
+                                <div class="btn-group">
+                                    <button class="btn btn-default"
+                                     ng-repeat="type in ['Yes', 'Curently not', 'No']"
+                                     ng-model="product.availability" btn-radio="type">
+                                        {{ type }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

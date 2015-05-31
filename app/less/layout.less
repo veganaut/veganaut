@@ -152,12 +152,32 @@ body.embedded {
     margin-bottom: 5px;
 }
 
-// No background on list-group-items, except if they are opened
-.list-group-item:not(.opened) {
-    background: none;
+// Style the list-group. Mostly used for product lists
+.list-group {
+    .list-group-item--no-padding {
+        padding: 0;
+    }
+
+    .list-group-item--opened {
+        background: @bootstrapLightGreyBackground;
+    }
+
+    // No background when transparent, except if they are opened
+    &.list-group--transparent {
+        .list-group-item {
+            background: none;
+            &.list-group-item--opened {
+                background: @colorLight;
+            }
+        }
+    }
 }
 
 // Create a list style with some space between the elements
 .list-spaced li {
     margin-top: 5px;
+}
+
+.mission-points {
+    margin-left: 5px;
 }
