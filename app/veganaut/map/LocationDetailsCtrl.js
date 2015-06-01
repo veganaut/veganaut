@@ -58,20 +58,17 @@
             $scope.openedProduct = undefined;
 
             /**
-             * Shows the details of the given product.
+             * Shows or hides details of the given product.
              * @param {{}} product
              */
-            $scope.openProduct = function(product) {
-                $scope.openedProduct = product;
+            $scope.toggleProduct = function(product) {
+                if ($scope.openedProduct === product) {
+                    $scope.openedProduct = undefined;
+                }
+                else {
+                    $scope.openedProduct = product;
+                }
             };
-
-            /**
-             * Closes the details of the opened product
-             */
-            $scope.closeProduct = function() {
-                $scope.openedProduct = undefined;
-            };
-
 
             /**
              * Finishes the given mission and submits it to the backend

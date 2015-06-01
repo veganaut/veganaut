@@ -153,6 +153,7 @@ body.embedded {
 }
 
 // Style the list-group. Mostly used for product lists
+// TODO: move this to it's own file
 .list-group {
     .list-group-item--no-padding {
         padding: 0;
@@ -160,6 +161,7 @@ body.embedded {
 
     .list-group-item--opened {
         background: @bootstrapLightGreyBackground;
+        box-shadow: 0 0 2px;
     }
 
     // No background when transparent, except if they are opened
@@ -170,6 +172,31 @@ body.embedded {
                 background: @colorLight;
             }
         }
+    }
+
+    .list-group-item__content {
+        box-shadow: 0 0 2px inset;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+
+    .list-group-item__description {
+        padding: 10px 15px;
+    }
+
+    .list-group-item__actions {
+        padding: 1px 15px 10px;
+        box-shadow: 0 0 1px inset;
+    }
+
+    .list-group-item__show-more {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    h4 {
+        margin-top: 15px;
+        margin-bottom: 5px;
     }
 }
 
