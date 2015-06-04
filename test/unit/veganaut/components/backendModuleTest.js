@@ -8,6 +8,7 @@ describe('backendModule', function() {
     beforeEach(module(function($provide) {
         $provide.value('backendUrl', '');
         $provide.value('alertService', {});
+        $provide.value('i18nSettings', {});
 
         sessionServiceMock = {
             hasValidSession: jasmine.createSpy('hasValidSession'),
