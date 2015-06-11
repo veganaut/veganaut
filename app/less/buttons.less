@@ -23,6 +23,7 @@ button.btn {
     -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
 
+    // TODO: this :not screws up specificity, get rid of it
     &:not(.btn-no-styles) {
         &:hover,
         &:focus,
@@ -64,12 +65,6 @@ button.btn {
     }
 }
 
-button.active.active {
-    background-color: @colorDark;
-    color: @colorLight;
-    box-shadow: none;
-}
-
 // Team button if no team is defined (black)
 .btn-team {
     .button-variant(#fff; #333; darken(#333, 5%));
@@ -77,6 +72,13 @@ button.active.active {
 
 .btn-default {
     .button-variant(@colorDark; @colorLight; @colorLighter);
+
+    // TODO: using active class twice to get more specificity because of the :not(.btn-no-styles) above
+    &.active.active {
+        background-color: @colorDark;
+        color: @colorLight;
+        box-shadow: none;
+    }
 }
 .btn-default--transparent {
     background-color: transparent;
