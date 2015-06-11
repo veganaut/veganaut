@@ -13,7 +13,7 @@
             <rating ng-model="productMission.mission.outcome"
              readonly="productMission.mission.completed" max="5"></rating>
         </div>
-        <div ng-switch-when="updateProduct">
+        <div ng-switch-when="setProductName">
             <form novalidate name="editProductNameForm" class="edit-product-name-form">
                 <div ng-class="{ 'input-group': productMission.mission.hasValidOutcome() && !productMission.mission.completed }">
                     <input type="text" required

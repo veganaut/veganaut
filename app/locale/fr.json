@@ -405,7 +405,7 @@
         "description": "Comment est-ce que tu évalues cette option végane?",
         "explanation.UNUSED": "Le goûts sont differents, mais si tu aimes quelquechose c'est probable que autre gens l'aiment aussi. Inversement, si quelquechose ne te convainc pas c'est possible qu'autre gens ne l'aiment pas beaucoup non plus. Mais peu importent les opinions des autres maintenant. Donne l'évaluation qui est juste pour toi."
       },
-      "updateProduct": {
+      "setProductName": {
         "title": "Edit name",
         "description": "Correct or improve the name."
       }

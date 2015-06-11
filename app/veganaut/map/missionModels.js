@@ -15,7 +15,7 @@
         'giveFeedback',
         'offerQuality',
         'effortValue',
-        'updateProduct' // TODO: this might not make sense here
+        'setProductName' // TODO: this might not make sense here
     ];
 
     /**
@@ -320,16 +320,16 @@
         return outcome;
     };
 
-    // UpdateProductMission ////////////////////////////////////////////////////
-    function UpdateProductMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
+    // SetProductNameMission //////////////////////////////////////////////////
+    function SetProductNameMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
         var productName = product.name;
-        Mission.call(this, 'updateProduct', productName, location, points, lastCompletedDate, lastCompletedOutcome, product);
+        Mission.call(this, 'setProductName', productName, location, points, lastCompletedDate, lastCompletedOutcome, product);
     }
 
-    UpdateProductMission.prototype = Object.create(Mission.prototype);
-    UpdateProductMission.prototype.constructor = UpdateProductMission;
+    SetProductNameMission.prototype = Object.create(Mission.prototype);
+    SetProductNameMission.prototype.constructor = SetProductNameMission;
 
-    UpdateProductMission.prototype.getOutcome = function() {
+    SetProductNameMission.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
@@ -337,8 +337,7 @@
         if (typeof this.outcome === 'string' && this.outcome.length > 0 && this.outcome !== this.product.name) {
             outcome = {
                 product: this.product.id,
-                field: 'name',
-                value: this.outcome
+                info: this.outcome
             };
         }
         return outcome;
@@ -372,7 +371,7 @@
         buyOptions: BuyOptionsMission,
         giveFeedback: GiveFeedbackMission,
         rateProduct: RateProductMission,
-        updateProduct: UpdateProductMission,
+        setProductName: SetProductNameMission,
         offerQuality: OfferQualityMission,
         effortValue: EffortValueMission
     });

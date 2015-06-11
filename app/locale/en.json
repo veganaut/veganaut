@@ -405,7 +405,7 @@
         "description": "How do you rate this offer?",
         "explanation.UNUSED": "There's no accounting for taste, but chances are that if you like something other people will like it too. Conversely, if something doesn't convince you then it's quite possible that other people won't fancy it either. But never mind other people's opinion here. Just provide the rating that is right for you personally."
       },
-      "updateProduct": {
+      "setProductName": {
         "title": "Edit name",
         "description": "Correct or improve the name."
       }

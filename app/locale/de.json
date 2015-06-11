@@ -405,7 +405,7 @@
         "description": "Wie bewertest du dieses vegane Angebot?",
         "explanation.UNUSED": "Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab."
       },
-      "updateProduct": {
+      "setProductName": {
         "title": "Edit name",
         "description": "Correct or improve the name."
       }
