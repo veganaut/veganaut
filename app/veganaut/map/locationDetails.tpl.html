@@ -83,14 +83,19 @@
                                 </div>
                             </form>
 
-                            <div class="list-group-item__show-more" ng-hide="showAll">
-                                <a ng-click="showAll = !showAll" href="#">Show more</a>
-                            </div>
-                            <div ng-if="showAll">
-                                <vg-product-mission
-                                 ng-repeat="mission in productMissions[product.id]|filter:filterOnlyNonZeroMissions|orderBy:'order'"
-                                 vg-mission="mission">
-                                </vg-product-mission>
+                            <!-- TODO: the filtering should be done in the controller -->
+                            <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
+                                <div class="list-group-item__show-more" ng-hide="showAll">
+                                    <a ng-click="showAll = !showAll" href="#">
+                                        {{ 'map.mission.showAllMissions' | translate}}
+                                    </a>
+                                </div>
+                                <div ng-if="showAll">
+                                    <vg-product-mission
+                                     ng-repeat="mission in productMissions[product.id]|filter:filterOnlyNonZeroMissions|orderBy:'order'"
+                                     vg-mission="mission">
+                                    </vg-product-mission>
+                                </div>
                             </div>
                         </div>
                     </div>

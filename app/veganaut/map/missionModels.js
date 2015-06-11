@@ -283,7 +283,11 @@
 
     // RateProductMission /////////////////////////////////////////////////////
     function RateProductMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
-        Mission.call(this, 'rateProduct', undefined, location, points, lastCompletedDate, lastCompletedOutcome, product);
+        var initialOutcome;
+        if (angular.isObject(lastCompletedOutcome)) {
+            initialOutcome = lastCompletedOutcome.info;
+        }
+        Mission.call(this, 'rateProduct', initialOutcome, location, points, lastCompletedDate, lastCompletedOutcome, product);
         this.maxRating = 5;
     }
 
@@ -299,7 +303,15 @@
             return this._finalOutcome;
         }
         var outcome;
-        if (angular.isNumber(this.outcome) && this.outcome > 0 && this.outcome < this.maxRating) {
+        var lastOutcomeValue;
+        if (angular.isObject(this.lastCompletedOutcome)) {
+            lastOutcomeValue = this.lastCompletedOutcome.info;
+        }
+        if (angular.isNumber(this.outcome) &&
+            this.outcome > 0 &&
+            this.outcome < this.maxRating &&
+            this.outcome !== lastOutcomeValue)
+        {
             outcome = {
                 product: this.product.id,
                 info: this.outcome

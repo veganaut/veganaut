@@ -284,6 +284,7 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totales des missions",
+      "showAllMissions": "Show all missions",
       "missionForm": {
         "submit": "Accompli",
         "cancel": "Abandonner"
