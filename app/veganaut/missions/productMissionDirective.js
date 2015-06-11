@@ -15,7 +15,7 @@
                     $scope.$parent.finishMission(that.mission);
                 };
 
-                if (that.mission instanceof missions.rateOptions) {
+                if (that.mission instanceof missions.rateProduct) {
                     $scope.$watch(function() {
                         return that.mission.outcome;
                     }, function(newValue, oldValue) {

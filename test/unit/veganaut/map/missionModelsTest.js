@@ -13,12 +13,12 @@ describe('missionModels.', function() {
 
     it('is defined.', function() {
         expect(typeof missions).toBe('object');
-        expect(Object.keys(missions).length).toBe(9, 'correct amount of mission models defined');
+        expect(Object.keys(missions).length).toBe(10, 'correct amount of mission models defined');
     });
 
-    describe('RateOptionsMission.', function() {
+    describe('RateProductMission.', function() {
         it('is defined.', function() {
-            expect(typeof missions.RateOptionsMission).toBe('function');
+            expect(typeof missions.rateProduct).toBe('function');
         });
 
         it('resets mission outcome when aborting mission', function() {
@@ -27,16 +27,15 @@ describe('missionModels.', function() {
                     lastMissionDates: {}
                 }
             };
-            var mission = new missions.RateOptionsMission(mockVisit);
+            var mission = new missions.rateProduct(mockVisit);
 
             mission.start();
-            expect(typeof mission.outcome).toBe('object', 'outcome is an object');
-            expect(Object.keys(mission.outcome).length).toBe(0, 'no outcomes defined in the beginning');
+            expect(typeof mission.outcome).toBe('undefined', 'default outcome is undefined');
 
-            mission.outcome.testProduct = 3;
+            mission.outcome = 3;
             mission.abort();
             expect(mission.started).toBe(false, 'stops mission');
-            expect(Object.keys(mission.outcome).length).toBe(0, 'reset the outcome');
+            expect(typeof mission.outcome).toBe('undefined', 'reset the outcome');
         });
     });
 });

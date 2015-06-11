@@ -8,7 +8,7 @@
         {{ 'map.mission.' + productMission.mission.type + '.description' | translate }}
     </div>
     <div ng-switch="productMission.mission.type">
-        <div ng-switch-when="rateOptions" class="font--large text-center"
+        <div ng-switch-when="rateProduct" class="font--large text-center"
          ng-class="{ 'font--greyed-out': productMission.mission.completed }">
             <rating ng-model="productMission.mission.outcome"
              readonly="productMission.mission.completed" max="5"></rating>

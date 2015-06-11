@@ -380,14 +380,6 @@
           "description": "Du hast diese unmögliche Mission versucht:"
         }
       },
-      "rateOptions": {
-        "title": "Bewerte einzelne vegane Angebote, die es hier gibt.",
-        "description": "Wie bewertest du diese veganen Angebote?",
-        "explanation": "Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab.",
-        "outcome": {
-          "description": "Deine Bewertung:"
-        }
-      },
       "offerQuality": {
         "title": "Beurteile diese Location aus veganautischer Sicht.",
         "description": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
@@ -406,6 +398,15 @@
           "ratherNo": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter eher schlecht aus.",
           "no": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter schlecht aus."
         }
+      },
+      "rateProduct": {
+        "title": "Deine Bewertung",
+        "description": "Wie bewertest du dieses vegane Angebot?",
+        "explanation.UNUSED": "Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab."
+      },
+      "updateProduct": {
+        "title": "Edit name",
+        "description": "Correct or improve the name."
       }
     }
   },

@@ -200,16 +200,6 @@
                                      placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}"></textarea>
                                 </div>
                             </div>
-                            <div ng-switch-when="rateOptions">
-                                <div class="h3" ng-repeat="product in mission.location.products">
-                                    {{ product.name }}
-                                    <span class="pull-right">
-                                        <rating ng-model="mission.outcome[product.id]"
-                                         max="mission.maxRating"></rating>
-                                    </span>
-                                    <span class="clearfix"></span>
-                                </div>
-                            </div>
                             <div ng-switch-when="offerQuality">
                                 <div class="text-center h3">
                                     <div class="btn-group form-group">
@@ -287,18 +277,6 @@
                             {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}<br/>
                             <em>{{ mission.outcome }}</em>
                         </p>
-                    </div>
-                    <div ng-switch-when="rateOptions">
-                        {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}
-                        <ul>
-                            <li ng-repeat="outcome in mission.getOutcome()">
-                                {{ location.getProductById(outcome.product).name }}
-                                <span class="pull-right">
-                                    <rating readonly="true" ng-model="mission.outcome[outcome.product]"
-                                     max="mission.maxRating"></rating>
-                                </span>
-                            </li>
-                        </ul>
                     </div>
                     <div ng-switch-when="offerQuality">
                         {{ 'map.mission.' + mission.type + '.outcome.description' | translate }}

@@ -11,11 +11,11 @@
         'wantVegan',
         'whatOptions',
         'buyOptions',
-        'rateOptions',
+        'rateProduct',
         'giveFeedback',
         'offerQuality',
         'effortValue',
-        'updateProduct' // TODO: this might not make sense
+        'updateProduct' // TODO: this might not make sense here
     ];
 
     /**
@@ -62,6 +62,7 @@
      * Starts the mission
      */
     Mission.prototype.start = function() {
+        // TODO: this does not make sense for product missions
         if (!this.completed) {
             this.started = true;
         }
@@ -280,20 +281,20 @@
     };
 
 
-    // RateOptionsMission /////////////////////////////////////////////////////
-    function RateOptionsMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
-        Mission.call(this, 'rateOptions', undefined, location, points, lastCompletedDate, lastCompletedOutcome, product);
+    // RateProductMission /////////////////////////////////////////////////////
+    function RateProductMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
+        Mission.call(this, 'rateProduct', undefined, location, points, lastCompletedDate, lastCompletedOutcome, product);
         this.maxRating = 5;
     }
 
-    RateOptionsMission.prototype = Object.create(Mission.prototype);
-    RateOptionsMission.prototype.constructor = RateOptionsMission;
+    RateProductMission.prototype = Object.create(Mission.prototype);
+    RateProductMission.prototype.constructor = RateProductMission;
 
-    RateOptionsMission.prototype.hasValidOutcome = function() {
+    RateProductMission.prototype.hasValidOutcome = function() {
         return angular.isDefined(this.getOutcome());
     };
 
-    RateOptionsMission.prototype.getOutcome = function() {
+    RateProductMission.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
@@ -305,14 +306,6 @@
             };
         }
         return outcome;
-    };
-
-    /**
-     * @inheritDoc
-     */
-    RateOptionsMission.prototype.isAvailable = function() {
-        return (Mission.prototype.isAvailable.call(this) &&
-            this.location.products.length > 0);
     };
 
     // UpdateProductMission ////////////////////////////////////////////////////
@@ -366,9 +359,9 @@
         whatOptions: WhatOptionsMission,
         buyOptions: BuyOptionsMission,
         giveFeedback: GiveFeedbackMission,
-        rateOptions: RateOptionsMission,
+        rateProduct: RateProductMission,
         updateProduct: UpdateProductMission,
         offerQuality: OfferQualityMission,
-        effortValue: EffortValueMission,
+        effortValue: EffortValueMission
     });
 })(window.veganaut.mapModule);
