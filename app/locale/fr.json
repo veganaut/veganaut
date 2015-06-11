@@ -284,7 +284,7 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totales des missions",
-      "showAllMissions": "Show all missions",
+      "showAllMissions": "Show all editing options",
       "missionForm": {
         "submit": "Accompli",
         "cancel": "Abandonner"
@@ -408,12 +408,25 @@
       "setProductName": {
         "title": "Edit name",
         "description": "Correct or improve the name."
+      },
+      "setProductAvail": {
+        "title": "Availability",
+        "description": "Is this product available?",
+        "outcome": {
+          "available": "Yes",
+          "temporarilyUnavailable": "Currently not",
+          "unavailable": "No"
+        }
       }
     }
   },
   "product": {
     "rating": {
       "summary": "{{numRatings}} évaluations"
+    },
+    "availability": {
+      "temporarilyUnavailable": "This product is currently not available.",
+      "unavailable": "This product is no longer available or was entered by mistake."
     }
   },
   "mapSearch": {

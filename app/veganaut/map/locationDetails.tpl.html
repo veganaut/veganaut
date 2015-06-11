@@ -33,9 +33,13 @@
             <p>{{ 'location.products.description' | translate }}</p>
 
             <ul class="list-group">
-                <!-- TODO: this should actually be a <button> !-->
                 <li ng-repeat="product in location.products track by product.id" class="list-group-item list-group-item--no-padding"
-                 ng-class="{ 'list-group-item--opened': openedProductId === product.id }">
+                 ng-class="{
+                    'list-group-item--opened': openedProductId === product.id,
+                    'list-group-item--inactive': product.availability !== 'available'
+                 }">
+                    <!-- TODO NOW: only show available products by default and the other behind another click or two -->
+                    <!-- TODO NOW: find out how to show the products when not logged in: probably just add a not to register to modify -->
                     <button class="btn btn-like-list-group-item btn-block"
                      ng-click="toggleProduct(product)">
                         {{ product.name }}
@@ -48,17 +52,22 @@
                     </button>
 
                     <div class="list-group-item__content" ng-if="openedProductId === product.id">
-                        <!-- TODO: translate everything -->
+                        <!-- TODO NOW: translate everything -->
                         <div class="list-group-item__description">
                             <button class="btn btn-no-styles pull-right"
                              ng-click="toggleProduct(product)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
-                            <div ng-show="product.rating.numRatings > 0">
-                                Average of {{ product.rating.average | number:1 }} from {{ product.rating.numRatings }} ratings.
+                            <div ng-if="product.availability !== 'available'">
+                                <em>{{ 'product.availability.' + product.availability | translate }}</em>
                             </div>
-                            <div ng-hide="product.rating.numRatings > 0">
-                                No ratings yet.
+                            <div  ng-if="product.availability === 'available'">
+                                <div ng-show="product.rating.numRatings > 0">
+                                    Average of {{ product.rating.average | number:1 }} from {{ product.rating.numRatings }} ratings.
+                                </div>
+                                <div ng-hide="product.rating.numRatings > 0">
+                                    This product hasn't been rated yet.
+                                </div>
                             </div>
                         </div>
 
@@ -68,22 +77,8 @@
                              vg-mission="mission">
                             </vg-product-mission>
 
-                            <h4>Product availability</h4>
-                            <div>
-                                <vg-mission-points points="5"></vg-mission-points>
-                                Is this product available?
-                            </div>
-                            <form novalidate name="editProductAvailabilityForm" class="edit-product-availability-form">
-                                <div class="btn-group">
-                                    <button class="btn btn-default"
-                                     ng-repeat="type in ['Yes', 'Curently not', 'No']"
-                                     ng-model="product.availability" btn-radio="type">
-                                        {{ type }}
-                                    </button>
-                                </div>
-                            </form>
-
-                            <!-- TODO: the filtering should be done in the controller -->
+                            <!-- TODO: the filtering should be done in the controller. also it should be smarter:
+                            it should take into account the availability of the product, not just the points of missions -->
                             <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
                                 <div class="list-group-item__show-more" ng-hide="showAll">
                                     <a ng-click="showAll = !showAll" href="#">

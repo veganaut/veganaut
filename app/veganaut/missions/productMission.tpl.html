@@ -30,5 +30,15 @@
                 </div>
             </form>
         </div>
+        <div ng-switch-when="setProductAvail">
+            <div class="btn-group">
+                <button class="btn btn-default"
+                 ng-repeat="possibleAnswer in productMission.mission.possibleAnswers"
+                 ng-disabled="productMission.mission.completed"
+                 ng-model="productMission.mission.outcome" btn-radio="possibleAnswer">
+                    {{ 'map.mission.' + productMission.mission.type + '.outcome.' + possibleAnswer | translate }}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

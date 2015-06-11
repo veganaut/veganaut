@@ -315,6 +315,14 @@
             };
 
             /**
+             * Returns all the products that are currently available
+             * @return {Product[]}
+             */
+            Location.prototype.getAvailableProducts = function() {
+                return _.filter(this.products, { availability: 'available' });
+            };
+
+            /**
              * Returns the average quality rounded to a number between 0 and 5.
              * 0 means there are no ratings.
              * @returns {number}

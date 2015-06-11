@@ -15,7 +15,10 @@
                     $scope.$parent.finishMission(that.mission);
                 };
 
-                if (that.mission instanceof missions.rateProduct) {
+                // Watch missions that should complete as soon as the outcome is set / changed
+                if (that.mission instanceof missions.rateProduct ||
+                    that.mission instanceof missions.setProductAvail)
+                {
                     $scope.$watch(function() {
                         return that.mission.outcome;
                     }, function(newValue, oldValue) {

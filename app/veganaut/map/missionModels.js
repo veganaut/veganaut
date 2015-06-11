@@ -11,11 +11,14 @@
         'wantVegan',
         'whatOptions',
         'buyOptions',
-        'rateProduct',
         'giveFeedback',
         'offerQuality',
         'effortValue',
-        'setProductName' // TODO: this might not make sense here
+
+        // TODO: should the product missions be separted?
+        'rateProduct',
+        'setProductAvail',
+        'setProductName'
     ];
 
     /**
@@ -343,6 +346,29 @@
         return outcome;
     };
 
+    // SetProductAvailMission /////////////////////////////////////////////////
+    function SetProductAvailMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
+        Mission.call(this, 'setProductAvail', undefined, location, points, lastCompletedDate, lastCompletedOutcome, product);
+        this.possibleAnswers = ['available', 'temporarilyUnavailable', 'unavailable'];
+    }
+
+    SetProductAvailMission.prototype = Object.create(Mission.prototype);
+    SetProductAvailMission.prototype.constructor = SetProductAvailMission;
+
+    SetProductAvailMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this._finalOutcome;
+        }
+        var outcome;
+        if (typeof this.outcome === 'string' && this.possibleAnswers.indexOf(this.outcome) > -1) {
+            outcome = {
+                product: this.product.id,
+                info: this.outcome
+            };
+        }
+        return outcome;
+    };
+
     // OfferQualityMission //////////////////////////////////////////////////////
     function OfferQualityMission(location, points, lastCompletedDate, lastCompletedOutcome) {
         Mission.call(this, 'offerQuality', undefined, location, points,lastCompletedDate, lastCompletedOutcome);
@@ -372,6 +398,7 @@
         giveFeedback: GiveFeedbackMission,
         rateProduct: RateProductMission,
         setProductName: SetProductNameMission,
+        setProductAvail: SetProductAvailMission,
         offerQuality: OfferQualityMission,
         effortValue: EffortValueMission
     });

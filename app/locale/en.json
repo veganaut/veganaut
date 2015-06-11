@@ -284,7 +284,7 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Total points from missions",
-      "showAllMissions": "Show all missions",
+      "showAllMissions": "Show all editing options",
       "missionForm": {
         "submit": "Complete",
         "cancel": "Cancel"
@@ -396,7 +396,7 @@
         "outcome": {
           "yes": "The weather looks good for the future growth of the vegan offer here.",
           "ratherYes": "The weather looks rather good for the future growth of the vegan offer here.",
-          "ratherNo": "The weather looks rather bad for the future growth of the vegan offerhere.",
+          "ratherNo": "The weather looks rather bad for the future growth of the vegan offer here.",
           "no": "The weather looks bad for the future growth of the vegan offer here."
         }
       },
@@ -408,12 +408,25 @@
       "setProductName": {
         "title": "Edit name",
         "description": "Correct or improve the name."
+      },
+      "setProductAvail": {
+        "title": "Availability",
+        "description": "Is this product available?",
+        "outcome": {
+          "available": "Yes",
+          "temporarilyUnavailable": "Currently not",
+          "unavailable": "No"
+        }
       }
     }
   },
   "product": {
     "rating": {
       "summary": "{{numRatings}} ratings"
+    },
+    "availability": {
+      "temporarilyUnavailable": "This product is currently not available.",
+      "unavailable": "This product is no longer available or was entered by mistake."
     }
   },
   "mapSearch": {
