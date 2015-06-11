@@ -34,8 +34,8 @@
 
             <ul class="list-group">
                 <!-- TODO: this should actually be a <button> !-->
-                <li ng-repeat="product in location.products" class="list-group-item list-group-item--no-padding"
-                 ng-class="{ 'list-group-item--opened': openedProduct === product }">
+                <li ng-repeat="product in location.products track by product.id" class="list-group-item list-group-item--no-padding"
+                 ng-class="{ 'list-group-item--opened': openedProductId === product.id }">
                     <button class="btn btn-like-list-group-item btn-block"
                      ng-click="toggleProduct(product)">
                         {{ product.name }}
@@ -47,7 +47,7 @@
                         </span>
                     </button>
 
-                    <div class="list-group-item__content" ng-show="openedProduct === product">
+                    <div class="list-group-item__content" ng-if="openedProductId === product.id">
                         <!-- TODO: translate everything -->
                         <div class="list-group-item__description">
                             <button class="btn btn-no-styles pull-right"
@@ -63,6 +63,11 @@
                         </div>
 
                         <div class="list-group-item__actions">
+                            <vg-product-mission
+                             ng-repeat="mission in productMissions[product.id]|filter:filterOnlyZeroMissions|orderBy:'order'"
+                             vg-mission="mission">
+                            </vg-product-mission>
+
                             <h4>Product availability</h4>
                             <div>
                                 <vg-mission-points points="5"></vg-mission-points>
@@ -78,35 +83,14 @@
                                 </div>
                             </form>
 
-                            <h4>Edit name</h4>
-                            <div>
-                                <vg-mission-points points="5"></vg-mission-points>
-                                Correct or improve the name.
-                            </div>
-                            <form novalidate name="editProductNameForm" class="edit-product-name-form">
-                                <div class="input-group">
-                                    <input type="text" required
-                                     id="editName" class="form-control"
-                                     ng-model="product.name" />
-                                    <div class="input-group-addon">
-                                        <button class="btn btn-no-styles">
-                                            <span class="glyphicon glyphicon-floppy-disk"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-
                             <div class="list-group-item__show-more" ng-hide="showAll">
                                 <a ng-click="showAll = !showAll" href="#">Show more</a>
                             </div>
-                            <div ng-show="showAll">
-                                <h4>Your rating</h4>
-                                <div>
-                                    <vg-mission-points points="5"></vg-mission-points>
-                                    Wie bewertest du dieses Angebot?
-                                </div>
-                                <rating ng-model="product.rating.average"
-                                 max="5"></rating>
+                            <div ng-if="showAll">
+                                <vg-product-mission
+                                 ng-repeat="mission in productMissions[product.id]|filter:filterOnlyNonZeroMissions|orderBy:'order'"
+                                 vg-mission="mission">
+                                </vg-product-mission>
                             </div>
                         </div>
                     </div>
@@ -119,7 +103,7 @@
         </p>
     </div>
 
-    <div ng-if="visit.missions" class="location-missions">
+    <div ng-if="locationMissions" class="location-missions">
         <h2>{{ 'map.mission.title' | translate }}</h2>
         <p ng-if="location.updatedAt && recentlyActiveVeganauts.length > 0">
             <strong>{{ 'location.label.updatedAt' | translate }}</strong>:
@@ -138,7 +122,7 @@
         </p>
         <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
-        <div ng-repeat="mission in visit.missions|orderBy:'order'"
+        <div ng-repeat="mission in locationMissions|orderBy:'order'"
          ng-if="mission.completed || mission.isAvailable()"
          class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}"
@@ -192,10 +176,10 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="whatOptions">
-                                <div ng-if="mission.visit.location.products.length > 0">
+                                <div ng-if="mission.location.products.length > 0">
                                     {{ 'map.mission.' + mission.type + '.description2' | translate }}
                                     <ul>
-                                        <li ng-repeat="product in mission.visit.location.products">{{ product.name }}</li>
+                                        <li ng-repeat="product in mission.location.products">{{ product.name }}</li>
                                     </ul>
                                 </div>
                                 <vg-list-input list="mission.outcome" num-required="1"
@@ -203,7 +187,7 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
-                                <div class="checkbox" ng-repeat="product in mission.visit.location.products">
+                                <div class="checkbox" ng-repeat="product in mission.location.products">
                                     <label>
                                         <input type="checkbox" ng-model="mission.outcome[product.id]"/>
                                         {{ product.name }}
@@ -217,7 +201,7 @@
                                 </div>
                             </div>
                             <div ng-switch-when="rateOptions">
-                                <div class="h3" ng-repeat="product in mission.visit.location.products">
+                                <div class="h3" ng-repeat="product in mission.location.products">
                                     {{ product.name }}
                                     <span class="pull-right">
                                         <rating ng-model="mission.outcome[product.id]"
@@ -327,13 +311,6 @@
             </div>
             <hr/>
         </div>
-
-        <p class="h4">
-            {{ 'map.mission.totalPoints' | translate }}
-            <vg-mission-points points="visit.getTotalPoints()"></vg-mission-points>
-        </p>
-        <div class="clearfix"></div>
-        <hr/>
     </div>
     <p>
         <button type="button" class="to-map btn btn-block btn-default"

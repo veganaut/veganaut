@@ -14,73 +14,40 @@
         'rateOptions',
         'giveFeedback',
         'offerQuality',
-        'effortValue'
+        'effortValue',
+        'updateProduct' // TODO: this might not make sense
     ];
 
     /**
-     * Map of mission types to the number of points it gives
-     * TODO: there is an identical list in the backend, share this code!
-     * @type {{}}
-     */
-    var MISSION_POINTS = {
-        addLocation:  10,
-        visitBonus:   50,
-        hasOptions:   10,
-        wantVegan:    10,
-        whatOptions:  10,
-        buyOptions:   20,
-        rateOptions:  10,
-        giveFeedback: 10,
-        offerQuality: 20,
-        effortValue:  20
-    };
-
-    /**
-     * Time in ms until a mission is available again
-     * TODO: there should be an identical list in the backend, share this code!
-     * @type {{}}
-     */
-    var MISSION_COOL_DOWN_PERIOD = {
-        addLocation:  0, // none
-        visitBonus:   1000 * 60 * 60 * 24 * 7 * 3, // 3 weeks
-        hasOptions:   1000 * 60 * 60 * 24, // 1 day
-        wantVegan:    1000 * 60 * 60 * 24, // 1 day
-        whatOptions:  1000 * 60 * 60 *  4, // 4 hours
-        buyOptions:   1000 * 60 * 60 *  4, // 4 hours
-        rateOptions:  1000 * 60 * 60 *  4, // 4 hours
-        giveFeedback: 1000 * 60 * 60 * 24, // 1 day
-        offerQuality: 1000 * 60 * 60 * 24 * 7 * 3, // 3 weeks
-        effortValue:  1000 * 60 * 60 * 24 * 7 * 3  // 3 weeks
-    };
-
-    /**
      * Generic Mission Model
+     *
      * @param {string} type
-     * @param {Visit} visit
      * @param {{}|[]} outcome
+     * @param {Location} location Where this mission is done
+     * @param {number} points
+     * @param {Date} [lastCompletedDate] When (if ever) the user last
+     *      completed this mission
+     * @param {{}|[]} [lastCompletedOutcome] outcome of the last time
+     *      the user did this mission (if ever)
+     * @param {Product} [product] The product this mission is about
+     *      (if it's a product mission)
      * @constructor
      */
-    function Mission(type, visit, outcome) {
+    function Mission(type, outcome, location, points, lastCompletedDate, lastCompletedOutcome, product) {
         this.type = type;
-        this.visit = visit;
+        this.location = location;
         this.outcome = outcome;
-        this.points = MISSION_POINTS[type];
+        this.points = points;
         this.order = MISSION_ORDER.indexOf(type);
+        this.lastCompletedDate = lastCompletedDate;
+        this.lastCompletedOutcome = lastCompletedOutcome;
+        this.product = product;
         this.started = false;
         this.completed = false;
         this._finalOutcome = undefined;
 
         // Store a deep copy of the initial outcome to be able to reset
         this._initalOutcome = angular.copy(outcome);
-
-        this.nextAvailable = true;
-        var lastDate = this.visit.location.lastMissionDates[type];
-        if (typeof lastDate !== 'undefined') {
-            this.nextAvailable = new Date(
-                lastDate.getTime() +
-                MISSION_COOL_DOWN_PERIOD[this.type]
-            );
-        }
     }
 
     /**
@@ -118,12 +85,10 @@
      * @returns {{type: string, outcome: {}, points: {}}}
      */
     Mission.prototype.toJson = function() {
-        var points = {};
-        points[this.visit.player.team] = this.points;
         return {
             type: this.type,
             outcome: this.getOutcome(),
-            points: points
+            points: this.points // TODO: this is not supported yet by the backend
         };
     };
 
@@ -155,20 +120,21 @@
      * @returns {boolean}
      */
     Mission.prototype.isAvailable = function() {
-        return (this.nextAvailable === true || this.nextAvailable.getTime() < Date.now());
+        // TODO NOW: change the concept of this
+        return true;
     };
 
     // VisitBonusMission //////////////////////////////////////////////////////
-    function VisitBonusMission(visit) {
-        Mission.call(this, 'visitBonus', visit, true);
+    function VisitBonusMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'visitBonus', true, location, points, lastCompletedDate, lastCompletedOutcome);
     }
 
     VisitBonusMission.prototype = Object.create(Mission.prototype);
     VisitBonusMission.prototype.constructor = VisitBonusMission;
 
     // HasOptionsMission //////////////////////////////////////////////////////
-    function HasOptionsMission(visit) {
-        Mission.call(this, 'hasOptions', visit, {});
+    function HasOptionsMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'hasOptions', {}, location, points, lastCompletedDate, lastCompletedOutcome);
         this.firstAnswers = ['yes', 'no', 'theyDoNotKnow'];
         this.secondAnswers = ['ratherYes', 'ratherNo', 'noClue'];
     }
@@ -191,11 +157,11 @@
     };
 
     // WantVeganMission //////////////////////////////////////////////////////
-    function WantVeganMission(visit) {
-        Mission.call(this, 'wantVegan', visit, {
+    function WantVeganMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'wantVegan', {
             builtin: {},
             custom: []
-        });
+        }, location, points, lastCompletedDate, lastCompletedOutcome);
 
         this.builtinExpressions = [
             'vegan',
@@ -238,8 +204,8 @@
     };
 
     // WhatOptionsMission /////////////////////////////////////////////////////
-    function WhatOptionsMission(visit) {
-        Mission.call(this, 'whatOptions', visit, []);
+    function WhatOptionsMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'whatOptions', [], location, points, lastCompletedDate, lastCompletedOutcome);
     }
 
     WhatOptionsMission.prototype = Object.create(Mission.prototype);
@@ -266,8 +232,8 @@
     };
 
     // BuyOptionsMission //////////////////////////////////////////////////////
-    function BuyOptionsMission(visit) {
-        Mission.call(this, 'buyOptions', visit, {});
+    function BuyOptionsMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'buyOptions', {}, location, points, lastCompletedDate, lastCompletedOutcome);
     }
 
     BuyOptionsMission.prototype = Object.create(Mission.prototype);
@@ -297,12 +263,12 @@
      */
     BuyOptionsMission.prototype.isAvailable = function() {
         return (Mission.prototype.isAvailable.call(this) &&
-            this.visit.location.products.length > 0);
+            this.location.products.length > 0);
     };
 
     // GiveFeedbackMission ////////////////////////////////////////////////////
-    function GiveFeedbackMission(visit) {
-        Mission.call(this, 'giveFeedback', visit, '');
+    function GiveFeedbackMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'giveFeedback', '', location, points, lastCompletedDate, lastCompletedOutcome);
     }
 
     GiveFeedbackMission.prototype = Object.create(Mission.prototype);
@@ -315,8 +281,8 @@
 
 
     // RateOptionsMission /////////////////////////////////////////////////////
-    function RateOptionsMission(visit) {
-        Mission.call(this, 'rateOptions', visit, {});
+    function RateOptionsMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
+        Mission.call(this, 'rateOptions', undefined, location, points, lastCompletedDate, lastCompletedOutcome, product);
         this.maxRating = 5;
     }
 
@@ -324,22 +290,20 @@
     RateOptionsMission.prototype.constructor = RateOptionsMission;
 
     RateOptionsMission.prototype.hasValidOutcome = function() {
-        return (this.getOutcome().length > 0);
+        return angular.isDefined(this.getOutcome());
     };
 
     RateOptionsMission.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
-        var outcome = [];
-        _.each(this.outcome, function(rating, productId) {
-            if (rating > 0) {
-                outcome.push({
-                    product: productId,
-                    info: rating
-                });
-            }
-        });
+        var outcome;
+        if (angular.isNumber(this.outcome) && this.outcome > 0 && this.outcome < this.maxRating) {
+            outcome = {
+                product: this.product.id,
+                info: this.outcome
+            };
+        }
         return outcome;
     };
 
@@ -348,12 +312,36 @@
      */
     RateOptionsMission.prototype.isAvailable = function() {
         return (Mission.prototype.isAvailable.call(this) &&
-            this.visit.location.products.length > 0);
+            this.location.products.length > 0);
+    };
+
+    // UpdateProductMission ////////////////////////////////////////////////////
+    function UpdateProductMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
+        var productName = product.name;
+        Mission.call(this, 'updateProduct', productName, location, points, lastCompletedDate, lastCompletedOutcome, product);
+    }
+
+    UpdateProductMission.prototype = Object.create(Mission.prototype);
+    UpdateProductMission.prototype.constructor = UpdateProductMission;
+
+    UpdateProductMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this._finalOutcome;
+        }
+        var outcome;
+        if (typeof this.outcome === 'string' && this.outcome.length > 0 && this.outcome !== this.product.name) {
+            outcome = {
+                product: this.product.id,
+                field: 'name',
+                value: this.outcome
+            };
+        }
+        return outcome;
     };
 
     // OfferQualityMission //////////////////////////////////////////////////////
-    function OfferQualityMission(visit) {
-        Mission.call(this, 'offerQuality', visit, undefined);
+    function OfferQualityMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'offerQuality', undefined, location, points,lastCompletedDate, lastCompletedOutcome);
         this.maxRating = 5;
     }
 
@@ -361,8 +349,8 @@
     OfferQualityMission.prototype.constructor = OfferQualityMission;
 
     // EffortValueMission //////////////////////////////////////////////////////
-    function EffortValueMission(visit) {
-        Mission.call(this, 'effortValue', visit, undefined);
+    function EffortValueMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        Mission.call(this, 'effortValue', undefined, location, points, lastCompletedDate, lastCompletedOutcome);
         this.possibleAnswers = ['yes', 'ratherYes', 'ratherNo', 'no'];
     }
 
@@ -370,15 +358,17 @@
     EffortValueMission.prototype.constructor = EffortValueMission;
 
 
+    // TODO: get rid of the two identifiers for missions ("visitBonus" and "VisitBonusMission")
     module.value('missions', {
-        VisitBonusMission: VisitBonusMission,
-        HasOptionsMission: HasOptionsMission,
-        WantVeganMission: WantVeganMission,
-        WhatOptionsMission: WhatOptionsMission,
-        BuyOptionsMission: BuyOptionsMission,
-        GiveFeedbackMission: GiveFeedbackMission,
-        RateOptionsMission: RateOptionsMission,
-        OfferQualityMission: OfferQualityMission,
-        EffortValueMission: EffortValueMission
+        visitBonus: VisitBonusMission,
+        hasOptions: HasOptionsMission,
+        wantVegan: WantVeganMission,
+        whatOptions: WhatOptionsMission,
+        buyOptions: BuyOptionsMission,
+        giveFeedback: GiveFeedbackMission,
+        rateOptions: RateOptionsMission,
+        updateProduct: UpdateProductMission,
+        offerQuality: OfferQualityMission,
+        effortValue: EffortValueMission,
     });
 })(window.veganaut.mapModule);

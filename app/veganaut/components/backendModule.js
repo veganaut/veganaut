@@ -6,6 +6,7 @@
     /**
      * Interface with the backend
      * TODO: rather return promises for the return object instead of $http promises
+     * TODO: split this up in different semantically grouped services
      */
     module.factory('backendService', ['$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
         function($http, $rootScope, backendUrl, sessionService, i18nSettings) {
@@ -349,6 +350,15 @@
              */
             BackendService.prototype.getPerson = function(id) {
                 return $http.get(backendUrl + '/person/' + id);
+            };
+
+            /**
+             * Gets the list of available missions at a location
+             * @param locationId
+             * @returns {HttpPromise}
+             */
+            BackendService.prototype.getAvailableMissions = function(locationId) {
+                return $http.get(backendUrl + '/location/' + locationId + '/availableMission/list');
             };
 
             // Instantiate and return the service

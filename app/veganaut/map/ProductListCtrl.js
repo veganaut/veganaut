@@ -33,7 +33,7 @@
              * Which product is currently shown
              * @type {{}}
              */
-            $scope.openedProduct = undefined;
+            $scope.openedProductId = undefined;
 
             /**
              * Whether the products have been loaded
@@ -47,11 +47,11 @@
              * @param {{}} product
              */
             $scope.openProduct = function(product) {
-                if ($scope.openedProduct === product) {
-                    $scope.openedProduct = undefined;
+                if ($scope.openedProductId === product.id) {
+                    $scope.openedProductId = undefined;
                 }
                 else {
-                    $scope.openedProduct = product;
+                    $scope.openedProductId = product.id;
                 }
             };
 

@@ -111,5 +111,22 @@ describe('backendModule', function() {
         expect(typeof req.finally).toBe('function');
     }));
 
+    it('should have a getAvailableMissions method', inject(function($httpBackend, backendService) {
+        // Define our expectations
+        $httpBackend.expectGET('/location/1000/availableMission/list')
+            .respond({})
+        ;
+
+        expect(typeof backendService.getAvailableMissions).toBe('function');
+
+        var req = backendService.getAvailableMissions(1000);
+        $httpBackend.flush();
+
+        // Make sure we got a promise
+        expect(typeof req.then).toBe('function');
+        expect(typeof req.catch).toBe('function');
+        expect(typeof req.finally).toBe('function');
+    }));
+
     // TODO: test other backend methods
 });

@@ -1,0 +1,34 @@
+<div ng-if="productMission.mission.completed || productMission.mission.isAvailable()"
+ class="mission mission-{{ productMission.mission.type }}">
+    <h4>{{ 'map.mission.' + productMission.mission.type + '.title' | translate }}</h4>
+    <div>
+        <vg-mission-points points="productMission.mission.points"
+         vg-completed="productMission.mission.completed"
+         ></vg-mission-points>
+        {{ 'map.mission.' + productMission.mission.type + '.description' | translate }}
+    </div>
+    <div ng-switch="productMission.mission.type">
+        <div ng-switch-when="rateOptions" class="font--large text-center"
+         ng-class="{ 'font--greyed-out': productMission.mission.completed }">
+            <rating ng-model="productMission.mission.outcome"
+             readonly="productMission.mission.completed" max="5"></rating>
+        </div>
+        <div ng-switch-when="updateProduct">
+            <form novalidate name="editProductNameForm" class="edit-product-name-form">
+                <div ng-class="{ 'input-group': productMission.mission.hasValidOutcome() && !productMission.mission.completed }">
+                    <input type="text" required
+                     class="form-control"
+                     ng-disabled="productMission.mission.completed"
+                     ng-model="productMission.mission.outcome" />
+                    <div class="input-group-addon"
+                     ng-if="productMission.mission.hasValidOutcome() && !productMission.mission.completed">
+                        <button type="submit" class="btn btn-no-styles"
+                         ng-click="productMission.finishMission()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

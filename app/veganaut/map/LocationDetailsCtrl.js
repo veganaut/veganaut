@@ -3,9 +3,9 @@
 
     module.controller('LocationDetailsCtrl', [
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
-        'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService',
+        'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',
         function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults,
-            angularPiwik, locationService, backendService, playerService, alertService) {
+            angularPiwik, locationService, backendService, playerService, alertService, missionService) {
             var locationId = $routeParams.id;
 
             /**
@@ -24,7 +24,8 @@
                 zoom: 16
             };
 
-            $scope.visit = undefined;
+            $scope.locationMissions = undefined;
+            $scope.productMissions = undefined;
             $scope.location = undefined;
 
             /**
@@ -55,19 +56,27 @@
              * Which product is currently shown
              * @type {{}}
              */
-            $scope.openedProduct = undefined;
+            $scope.openedProductId = undefined;
 
             /**
              * Shows or hides details of the given product.
              * @param {{}} product
              */
             $scope.toggleProduct = function(product) {
-                if ($scope.openedProduct === product) {
-                    $scope.openedProduct = undefined;
+                if ($scope.openedProductId === product.id) {
+                    $scope.openedProductId = undefined;
                 }
                 else {
-                    $scope.openedProduct = product;
+                    $scope.openedProductId = product.id;
                 }
+            };
+
+            $scope.filterOnlyZeroMissions = function(mission) {
+                return (mission.points > 0);
+            };
+
+            $scope.filterOnlyNonZeroMissions = function(mission) {
+                return !$scope.filterOnlyZeroMissions(mission);
             };
 
             /**
@@ -103,6 +112,7 @@
                         locationService.getLocation(locationId).then(function(newLocationData) {
                             $scope.location.update(newLocationData);
                         });
+                        // TODO: might also have to reload the available missions. Especially when whatOptions mission is submitted.
 
                         // Make sure the user is in the list of active Veganauts
                         if (!currentUserIsRecentlyActive) {
@@ -160,9 +170,12 @@
                 $scope.center.lat = $scope.location.lat;
                 $scope.center.lng = $scope.location.lng;
 
-                playerService.getMe().then(function(me) {
-                    $scope.visit = $scope.location.getVisit(me);
-                });
+                if (backendService.isLoggedIn()) {
+                    missionService.getAvailableMissions(location).then(function(availableMissions) {
+                        $scope.locationMissions = availableMissions.locationMissions;
+                        $scope.productMissions = availableMissions.productMissions;
+                    });
+                }
 
                 // Add the marker to the map
                 leafletData.getMap().then(function(map) {
@@ -177,7 +190,7 @@
                 }, 0);
             });
 
-            // If we are logged in, retrieve the recent missions
+            // If we are logged in, retrieve the recent and available missions
             if (backendService.isLoggedIn()) {
                 backendService.getLocationMissionList(locationId).then(function(response) {
                     // We only want a list of the people, no details

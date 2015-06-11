@@ -17,7 +17,8 @@
         return {
             restrict: 'E',
             scope: {
-                points: '='
+                points: '=',
+                completed: '=vgCompleted'
             },
             templateUrl: '/veganaut/map/vgMissionPoints.tpl.html'
         };

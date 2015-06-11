@@ -18,6 +18,7 @@
         'veganaut.app.session',
         'veganaut.app.backend',
         'veganaut.app.map',
+        'veganaut.app.missions',
         'veganaut.app.score',
         'veganaut.app.socialGraph',
         'veganaut.app.user'
@@ -100,6 +101,7 @@
 
     // Define the different modules of the app
     var mapModule = angular.module('veganaut.app.map', []);
+    var missionsModule = angular.module('veganaut.app.missions', []);
     var scoreModule = angular.module('veganaut.app.score', []);
     var socialGraphModule = angular.module('veganaut.app.socialGraph', []);
     var userModule = angular.module('veganaut.app.user', []);
@@ -110,6 +112,7 @@
     window.veganaut = {
         mainModule: mainModule,
         mapModule: mapModule,
+        missionsModule: missionsModule,
         scoreModule: scoreModule,
         socialGraphModule: socialGraphModule,
         userModule: userModule

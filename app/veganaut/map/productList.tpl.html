@@ -11,9 +11,9 @@
         </p>
         <ul class="list-group list-group--transparent" ng-show="products.length > 0">
             <li ng-repeat="product in products" class="list-group-item clickable"
-             ng-class="{ 'list-group-item--opened': openedProduct === product }"
+             ng-class="{ 'list-group-item--opened': openedProductId === product.id }"
              ng-click="openProduct(product)">
-                <div ng-show="openedProduct === product">
+                <div ng-show="openedProductId === product.id">
                     <p class="text-center">
                         <strong>{{ product.location.name }}</strong>
                         <vg-location-quality-icon location="product.location"></vg-location-quality-icon>
@@ -26,7 +26,7 @@
                      average="product.rating.average"
                      num-ratings="product.rating.numRatings">
                     </vg-average-rating>
-                    <span class="product-list-rating-text" ng-show="openedProduct === product">
+                    <span class="product-list-rating-text" ng-show="openedProductId === product.id">
                         {{ product.rating.average | number:1 }},
                         <span translate="product.rating.summary"
                          translate-values="{ numRatings: product.rating.numRatings }">
@@ -35,7 +35,7 @@
                 </span>
                 <span class="clearfix"></span>
                 <button type="button" class="btn btn-block btn-team"
-                 ng-show="openedProduct === product"
+                 ng-show="openedProductId === product.id"
                  ng-click="visitLocation(product.location)">
                     <span class="glyphicon glyphicon-hand-right"></span>
                     <span ng-bind="'action.map.locationAction' | translate"></span>
