@@ -3,9 +3,9 @@
 
     // TOOD: this controller is getting way too big, split it up
     module.controller('LocationDetailsCtrl', [
-        '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
+        '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',
-        function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults,
+        function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults, missions,
             angularPiwik, locationService, backendService, playerService, alertService, missionService) {
             var locationId = $routeParams.id;
 
@@ -25,6 +25,7 @@
                 zoom: 16
             };
 
+            // TODO: the missions should be stored directly on the location model
             $scope.locationMissions = [];
             $scope.productMissions = [];
             $scope.location = undefined;
@@ -123,6 +124,7 @@
 
             /**
              * Finishes the given mission and submits it to the backend
+             * TODO: actually the mission service should submit missions and then know what has to be updated
              * @param mission
              */
             $scope.finishMission = function(mission) {
@@ -154,7 +156,15 @@
                         locationService.getLocation(locationId).then(function(newLocationData) {
                             $scope.location.update(newLocationData);
                         });
-                        // TODO NOW: have to reload the available missions if a whatOptions mission was submitted.
+
+                        if (mission instanceof missions.whatOptions) {
+                            // If new products are added, we have to reload the missions
+                            // TODO: actually, we should not blindly replace the missions, we should merge in the completed ones
+                            missionService.getAvailableMissions($scope.location).then(function(availableMissions) {
+                                $scope.locationMissions = availableMissions.locationMissions;
+                                $scope.productMissions = availableMissions.productMissions;
+                            });
+                        }
 
                         // Make sure the user is in the list of active Veganauts
                         if (!currentUserIsRecentlyActive) {

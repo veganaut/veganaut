@@ -36,6 +36,12 @@
                 );
             };
 
+            /**
+             * Returns a promise that resolves to the list of available
+             * location and product missions at the given location.
+             * @param {Location} location
+             * @returns {promise}
+             */
             MissionService.prototype.getAvailableMissions = function(location) {
                 var that = this;
                 var deferred = $q.defer();
