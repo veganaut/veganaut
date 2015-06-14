@@ -52,9 +52,8 @@
                     </button>
 
                     <div class="list-group-item__content" ng-if="openedProductId === product.id">
-                        <!-- TODO NOW: translate everything -->
                         <div class="list-group-item__description">
-                            <button class="btn btn-no-styles pull-right"
+                            <button class="btn btn-no-styles list-group-item__close"
                              ng-click="toggleProduct(product)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
@@ -62,11 +61,13 @@
                                 <em>{{ 'product.availability.' + product.availability | translate }}</em>
                             </div>
                             <div  ng-if="product.availability === 'available'">
-                                <div ng-show="product.rating.numRatings > 0">
-                                    Average of {{ product.rating.average | number:1 }} from {{ product.rating.numRatings }} ratings.
+                                <div ng-show="product.rating.numRatings > 0"
+                                 translate="product.rating.details"
+                                 translate-values="{ rating: (product.rating.average | number:1),
+                                  numRatings: product.rating.numRatings }">
                                 </div>
                                 <div ng-hide="product.rating.numRatings > 0">
-                                    This product hasn't been rated yet.
+                                    {{ 'product.rating.noRating' | translate }}
                                 </div>
                             </div>
                         </div>

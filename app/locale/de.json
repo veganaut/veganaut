@@ -422,7 +422,9 @@
   },
   "product": {
     "rating": {
-      "summary": "{{numRatings}} Bewertungen"
+      "summary": "{{numRatings}} Bewertungen",
+      "details": "Durchschnitt von {{rating}} von {{numRatings}} Bewertungen.",
+      "noRating": "Dieses Angebot wurde noch nicht bewertet."
     },
     "availability": {
       "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
