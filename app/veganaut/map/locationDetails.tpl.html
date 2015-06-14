@@ -39,21 +39,26 @@
                     'list-group-item--inactive': product.availability !== 'available'
                  }">
                     <!-- TODO NOW: only show available products by default and the other behind another click or two -->
-                    <!-- TODO NOW: find out how to show the products when not logged in: probably just add a not to register to modify -->
+                    <!-- TODO NOW: find out how to show the products when not logged in: probably just add a note to register to modify -->
                     <button class="btn btn-like-list-group-item btn-block"
                      ng-click="toggleProduct(product)">
                         {{ product.name }}
-                        <span class="pull-right product-list-rating" ng-show="product.rating.numRatings > 0">
+                        <span class="pull-right-spaced">
                             <vg-average-rating
+                             ng-show="product.rating.numRatings > 0"
                              average="product.rating.average"
                              num-ratings="product.rating.numRatings">
                             </vg-average-rating>
+                            <vg-mission-points
+                             points="getAvailableProductMissionsPoints(product)"
+                             vg-hide-points="true">
+                            </vg-mission-points>
                         </span>
                     </button>
 
                     <div class="list-group-item__content" ng-if="openedProductId === product.id">
                         <div class="list-group-item__description">
-                            <button class="btn btn-no-styles list-group-item__close"
+                            <button class="btn btn-no-styles pull-right-spaced"
                              ng-click="toggleProduct(product)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>

@@ -1,6 +1,7 @@
 (function(module) {
     'use strict';
 
+    // TOOD: this controller is getting way too big, split it up
     module.controller('LocationDetailsCtrl', [
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',
@@ -24,8 +25,8 @@
                 zoom: 16
             };
 
-            $scope.locationMissions = undefined;
-            $scope.productMissions = undefined;
+            $scope.locationMissions = [];
+            $scope.productMissions = [];
             $scope.location = undefined;
 
             /**
@@ -80,6 +81,22 @@
             };
 
             /**
+             * Returns the number of points that can be made with missions
+             * for the given product.
+             * @param {Product} product
+             * @returns {number}
+             */
+            $scope.getAvailableProductMissionsPoints = function(product) {
+                var points = 0;
+                _.each($scope.productMissions[product.id], function(mission) {
+                    if (!mission.completed) {
+                        points += mission.points;
+                    }
+                });
+                return points;
+            };
+
+            /**
              * Finishes the given mission and submits it to the backend
              * @param mission
              */
@@ -112,7 +129,7 @@
                         locationService.getLocation(locationId).then(function(newLocationData) {
                             $scope.location.update(newLocationData);
                         });
-                        // TODO: might also have to reload the available missions. Especially when whatOptions mission is submitted.
+                        // TODO NOW: have to reload the available missions if a whatOptions mission was submitted.
 
                         // Make sure the user is in the list of active Veganauts
                         if (!currentUserIsRecentlyActive) {
