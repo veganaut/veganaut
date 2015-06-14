@@ -294,7 +294,7 @@
         }
         if (angular.isNumber(this.outcome) &&
             this.outcome > 0 &&
-            this.outcome < this.maxRating &&
+            this.outcome <= this.maxRating &&
             this.outcome !== lastOutcomeValue)
         {
             outcome = {
@@ -306,6 +306,7 @@
     };
 
     // SetProductNameMission //////////////////////////////////////////////////
+    // TODO NOW: there should be a way to just confirm the current name
     function SetProductNameMission(location, points, lastCompletedDate, lastCompletedOutcome, product) {
         var productName = product.name;
         Mission.call(this, 'setProductName', productName, location, points, lastCompletedDate, lastCompletedOutcome, product);
