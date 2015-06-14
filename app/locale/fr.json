@@ -234,6 +234,7 @@
         "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
         "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
       },
+      "showUnavailableProducts": "Show unavailable products",
       "summary": "{{ product }} et {{ number }} autres options."
     },
     "type": {

@@ -29,16 +29,13 @@
 
     <div>
         <h2>{{ 'location.products.title' | translate }}</h2>
-        <div ng-if="location.products.length > 0">
+        <div ng-if="getShownProducts().length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
 
             <ul class="list-group">
-                <li ng-repeat="product in location.products track by product.id" class="list-group-item list-group-item--no-padding"
-                 ng-class="{
-                    'list-group-item--opened': openedProductId === product.id,
-                    'list-group-item--inactive': product.availability !== 'available'
-                 }">
-                    <!-- TODO NOW: only show available products by default and the other behind another click or two -->
+                <li ng-repeat="product in getShownProducts() track by product.id"
+                 class="list-group-item list-group-item--no-padding product-availability--{{ product.availability }}"
+                 ng-class="{ 'list-group-item--opened': openedProductId === product.id }">
                     <!-- TODO NOW: find out how to show the products when not logged in: probably just add a note to register to modify -->
                     <button class="btn btn-like-list-group-item btn-block"
                      ng-click="toggleProduct(product)">
@@ -86,10 +83,10 @@
                             <!-- TODO: the filtering should be done in the controller. also it should be smarter:
                             it should take into account the availability of the product, not just the points of missions -->
                             <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
-                                <div class="list-group-item__show-more" ng-hide="showAll">
-                                    <a ng-click="showAll = !showAll" href="#">
+                                <div class="list-group-item__show-more small" ng-hide="showAll">
+                                    <button ng-click="showAll = !showAll" class="btn btn-xs btn-link btn-block">
                                         {{ 'map.mission.showAllMissions' | translate}}
-                                    </a>
+                                    </button>
                                 </div>
                                 <div ng-if="showAll">
                                     <vg-product-mission
@@ -102,8 +99,16 @@
                     </div>
                 </li>
             </ul>
+            <div class="product-list__show-unavailable small"
+             ng-if="location.getProductsByAvailability('unavailable').length > 0"
+             ng-hide="showUnavailable.products">
+                <button ng-click="showUnavailable.products = true"
+                 class="btn btn-xs btn-link btn-block">
+                    {{ 'location.products.showUnavailableProducts' | translate }}
+                </button>
+            </div>
         </div>
-        <p ng-if="location.products.length === 0">
+        <p ng-if="getShownProducts().length === 0">
             <span ng-if="isLoggedIn()">{{ 'location.products.noProducts.user' | translate }}</span>
             <span ng-if="!isLoggedIn()" ng-bind-html="'location.products.noProducts.anonymous' | translate"></span>
         </p>
@@ -192,7 +197,7 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
-                                <div class="checkbox" ng-repeat="product in mission.location.products">
+                                <div class="checkbox" ng-repeat="product in mission.location.getProductsByAvailability('available')">
                                     <label>
                                         <input type="checkbox" ng-model="mission.outcome[product.id]"/>
                                         {{ product.name }}

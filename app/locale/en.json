@@ -234,6 +234,7 @@
         "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
         "user": "No options have been entered yet. You can enter vegan options by completing one of the missions below."
       },
+      "showUnavailableProducts": "Show unavailable products",
       "summary": "{{ product }} and {{ number }} other options."
     },
     "type": {

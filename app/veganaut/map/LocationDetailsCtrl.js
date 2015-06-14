@@ -97,6 +97,31 @@
             };
 
             /**
+             * Whether to show also the unavailable products
+             * TODO: this is an object because we don't have controller-as so scopes get messed up *fuuu*
+             * @type {boolean}
+             */
+            $scope.showUnavailable = { products: false };
+
+            /**
+             * Returns the list of products to display
+             * @returns {Product[]}
+             */
+            $scope.getShownProducts = function() {
+                if (!angular.isObject($scope.location)) {
+                    return [];
+                }
+                else if ($scope.showUnavailable.products) {
+                    // Show all products
+                    return $scope.location.products;
+                }
+                else {
+                    // Show only available and temporarily unavailable products
+                    return $scope.location.getProductsByAvailability(['available', 'temporarilyUnavailable']);
+                }
+            };
+
+            /**
              * Finishes the given mission and submits it to the backend
              * @param mission
              */

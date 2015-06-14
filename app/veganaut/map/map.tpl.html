@@ -61,11 +61,11 @@
                 <strong>{{ location.active.name }}</strong>
                 <vg-location-quality-icon location="location.active"></vg-location-quality-icon>
                 <vg-location-effort-icon location="location.active"></vg-location-effort-icon>
-                <span ng-show="location.active.getAvailableProducts().length > 0">
+                <span ng-show="location.active.getProductsByAvailability('available').length > 0">
                     <br/>
                     {{ 'location.products.summary' | translate:{
-                        product: location.active.getAvailableProducts()[0].name,
-                        number: location.active.getAvailableProducts().length - 1}
+                        product: location.active.getProductsByAvailability('available')[0].name,
+                        number: location.active.getProductsByAvailability('available').length - 1}
                     }}
                 </span>
             </p>

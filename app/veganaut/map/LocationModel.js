@@ -304,11 +304,18 @@
             };
 
             /**
-             * Returns all the products that are currently available
+             * Returns all products with the given availability
+             * @param {string|string[]} filterBy A string for a single availability
+             *      or an array of strings for multiple.
              * @return {Product[]}
              */
-            Location.prototype.getAvailableProducts = function() {
-                return _.filter(this.products, { availability: 'available' });
+            Location.prototype.getProductsByAvailability = function(filterBy) {
+                if (angular.isString(filterBy)) {
+                    filterBy = [filterBy];
+                }
+                return _.filter(this.products, function(product) {
+                    return (filterBy.indexOf(product.availability) > -1);
+                });
             };
 
             /**
