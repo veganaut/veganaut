@@ -118,16 +118,6 @@
         }
     };
 
-    /**
-     * Returns whether this mission is available at the moment
-     * at this location for this user.
-     * @returns {boolean}
-     */
-    Mission.prototype.isAvailable = function() {
-        // TODO NOW: change the concept of this
-        return true;
-    };
-
     // VisitBonusMission //////////////////////////////////////////////////////
     function VisitBonusMission(location, points, lastCompletedDate, lastCompletedOutcome) {
         Mission.call(this, 'visitBonus', true, location, points, lastCompletedDate, lastCompletedOutcome);
@@ -260,14 +250,6 @@
             }
         });
         return outcome;
-    };
-
-    /**
-     * @inheritDoc
-     */
-    BuyOptionsMission.prototype.isAvailable = function() {
-        return (Mission.prototype.isAvailable.call(this) &&
-            this.location.products.length > 0);
     };
 
     // GiveFeedbackMission ////////////////////////////////////////////////////

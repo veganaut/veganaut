@@ -124,7 +124,6 @@
         <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
         <div ng-repeat="mission in locationMissions|orderBy:'order'"
-         ng-if="mission.completed || mission.isAvailable()"
          class="page-section mission mission-{{ mission.type }}">
             <div ng-class="{clickable: !mission.completed}"
              ng-click="toggleMissionStarted(mission)">
