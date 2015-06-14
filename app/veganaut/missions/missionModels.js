@@ -402,4 +402,4 @@
         offerQuality: OfferQualityMission,
         effortValue: EffortValueMission
     });
-})(window.veganaut.mapModule);
+})(window.veganaut.missionsModule);

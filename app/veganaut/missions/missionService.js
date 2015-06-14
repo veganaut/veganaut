@@ -72,4 +72,4 @@
             return new MissionService();
         }
     ]);
-})(window.veganaut.mapModule);
+})(window.veganaut.missionsModule);

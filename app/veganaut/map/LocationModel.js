@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.service('Location', ['Leaflet', 'Visit',
-        function(L, Visit) {
+    module.service('Location', ['Leaflet',
+        function(L) {
             /**
              * Z-index offset to use for the marker when the location is active
              * @type {number}
@@ -292,17 +292,6 @@
                     .value()
                 ;
                 return this.sortedPoints;
-            };
-
-            /**
-             * Returns a visit of this location
-             * @param {Player} player The player to get the visit for
-             * @returns {Visit}
-             */
-            Location.prototype.getVisit = function(player) {
-                if (this.type !== Location.TYPES.private) {
-                    return new Visit(this, player);
-                }
             };
 
             /**

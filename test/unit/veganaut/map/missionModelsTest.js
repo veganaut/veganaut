@@ -4,7 +4,7 @@
 describe('missionModels.', function() {
     var missions;
     beforeEach(function() {
-        module('veganaut.app.map');
+        module('veganaut.app.missions');
 
         inject(function($injector) {
             missions = $injector.get('missions');
@@ -22,12 +22,7 @@ describe('missionModels.', function() {
         });
 
         it('resets mission outcome when aborting mission', function() {
-            var mockVisit = {
-                location: {
-                    lastMissionDates: {}
-                }
-            };
-            var mission = new missions.rateProduct(mockVisit);
+            var mission = new missions.rateProduct();
 
             mission.start();
             expect(typeof mission.outcome).toBe('undefined', 'default outcome is undefined');
