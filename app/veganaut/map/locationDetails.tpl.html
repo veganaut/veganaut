@@ -1,4 +1,5 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
+    <!-- TODO: this template is getting way too huge, split it up to directives and separate templates -->
     <h1>
         <vg-location-type-badge location="location"></vg-location-type-badge>
         {{ location.name }}
@@ -36,7 +37,6 @@
                 <li ng-repeat="product in getShownProducts() track by product.id"
                  class="list-group-item list-group-item--no-padding product-availability--{{ product.availability }}"
                  ng-class="{ 'list-group-item--opened': openedProductId === product.id }">
-                    <!-- TODO NOW: find out how to show the products when not logged in: probably just add a note to register to modify -->
                     <button class="btn btn-like-list-group-item btn-block"
                      ng-click="toggleProduct(product)">
                         {{ product.name }}
@@ -83,7 +83,7 @@
                             <!-- TODO: the filtering should be done in the controller. also it should be smarter:
                             it should take into account the availability of the product, not just the points of missions -->
                             <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
-                                <div class="list-group-item__show-more small" ng-hide="showAll">
+                                <div class="list-group-item__bottom-action small" ng-hide="showAll">
                                     <button ng-click="showAll = !showAll" class="btn btn-xs btn-link btn-block">
                                         {{ 'map.mission.showAllMissions' | translate}}
                                     </button>
@@ -94,6 +94,14 @@
                                      vg-mission="mission">
                                     </vg-product-mission>
                                 </div>
+                            </div>
+
+                            <div class="list-group-item__bottom-action small"
+                             ng-if="!isLoggedIn()">
+                                <button class="register-to-edit btn btn-xs btn-link btn-block"
+                                 ng-click="goToView('register')">
+                                    <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
