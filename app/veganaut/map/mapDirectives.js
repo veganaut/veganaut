@@ -18,7 +18,8 @@
             restrict: 'E',
             scope: {
                 points: '=',
-                completed: '=vgCompleted'
+                completed: '=vgCompleted',
+                hidePoints: '=vgHidePoints'
             },
             templateUrl: '/veganaut/map/vgMissionPoints.tpl.html'
         };
