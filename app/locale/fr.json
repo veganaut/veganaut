@@ -50,14 +50,14 @@
   },
   "register": {
     "title": "Inscription",
-    "description": "Est-ce que tu veux ajouter, modifier ou évaluer quelque chose sur veganaut.net? – Alors, inscris-toi!",
+    "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur veganaut.net? – Alors inscris-toi!",
     "form": {
       "submit": "Inscription"
     }
   },
   "login": {
     "title": "Connexion",
-    "forgotPassword": "Oublié le mot de passe?",
+    "forgotPassword": "Mot de passe oublié?",
     "form": {
       "email": "email@example.com",
       "password": "Mot de passe",
@@ -76,7 +76,7 @@
   },
   "action": {
     "register": "Register",
-    "cancel": "Cancel",
+    "cancel": "Annuler",
     "socialGraph": {
       "createActivityLink": {
         "attract": "Invite",
@@ -147,7 +147,7 @@
     "label": {
       "email": "E-mail",
       "fullName": "Prénom et nom de famille",
-      "nickname": "Pseudo (visible pour tout le monde)",
+      "nickname": "Pseudo (visible par tout le monde)",
       "team": "Equipe",
       "captured": "Captured",
       "password": "Mot de passe",
@@ -286,7 +286,7 @@
       "totalPoints": "Points totaux des missions",
       "missionForm": {
         "submit": "Accomplie",
-        "cancel": "Abandonner"
+        "cancel": "Annuler"
       },
       "visitBonus": {
         "title": "Visite cet endroit.",
@@ -417,7 +417,7 @@
   "mapSearch": {
     "form": {
       "title": "Chercher sur la carte",
-      "placeholder": "Chercher nom ou adresse",
+      "placeholder": "Chercher un nom ou une adresse",
       "showForm": "Afficher les résultats de la recherche"
     }
   },
@@ -428,13 +428,13 @@
     },
     "lead": {
       "title": "Explore l'univers végan!",
-      "text1": "Où est-c-e que je trouve quelque chose de végan à manger près d'ici? Quels restaurants et magasins offrent le plus grand choix d'options véganes et quels produits végans sont particulièrement bons? - Sur veganaut.net nous récoltons les réponses à ces questions.",
-      "text2": "Regarde la carte. Est-ce que tu trouves des endroits avec des options véganes que tu ne connaissais pas? Dans certaines régions beaucoup de véganautes ont déjà enregistré des informations, dans d'autres régions nous avons presque rien. Qu'est-ce qui manque? Est-ce que tu connais p. ex. un take-away quelque part qui offre un falafel végan excellent, ou un magasin avec quelques produits végans? Comme véganaute tu peux enregistrer ces informations sur la carte et les rendre accessibles à tout le monde."
+      "text1": "Où trouver de l'alimentation végane près d'ici? Quels sont les restaurants et magasins qui offrent le plus grand choix d'options véganes? Quels produits végans sont particulièrement bons? - Sur veganaut.net, nous récoltons les réponses à ces questions.",
+      "text2": "Parcours la carte. Est-ce que tu y trouves des lieux proposant des options véganes que tu ne connaissais pas? Dans certaines régions, de nombreux véganautes ont déjà partagé des informations. Dans d'autres, il n'existe encore presque rien. Qu'est-ce qui manque? Connais-tu un take-away dont le falafel végan est excellent, par exemple? Un magasin dont certains produits sont végans? En tant que véganaute, tu peux entrer ces informations sur la carte, et les rendre accessibles à tout le monde."
     },
     "game": {
       "title": "Le Jeu",
-      "text1": "En ce moment, chaque véganaute est dans une de cinque équipes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes se battent dans une compétition amicale. Qui découvre plus d'endroits? Grâce é qui est-ce que l'offre végan a ces endroit croît le plus vite?",
-      "text2": "Si tu veux participer: Inscris-toi tout de suite (ça va très vite)! Tu ne veux pas participer? Pas de soucis. Tu peux venir ici pour t'informer sur les offres véganes à tout moment. C'est pour cela que nous récoltons ces informations."
+      "text1": "En ce moment, il existe cinq équipes de véganautes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes s'affrontent en compétition amicale. Laquelle découvre le plus d'endroits? Grâce à quelle équipe l'offre végane de ces endroits croît-elle le plus vite?",
+      "text2": "Si tu veux participer, inscris-toi dès maintenant (c'est très rapide)! Tu n'as pas envie de participer? Pas de problème, tu peux venir ici à tout moment pour t'informer sur les offres véganes. C'est bien à cela que servent les informations que nous récoltons."
     }
   }
 }
