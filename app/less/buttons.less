@@ -23,22 +23,19 @@ button.btn {
     -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
 
-    // TODO: this :not screws up specificity, get rid of it
-    &:not(.btn-no-styles) {
-        &:hover,
-        &:focus,
-        &:active,
-        &.active,
-        .open > .dropdown-toggle & {
-            color: @color;
-            background-color: darken(@background, 3%);
-            border-color: darken(@border, 1%);
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle & {
+        color: @color;
+        background-color: darken(@background, 3%);
+        border-color: darken(@border, 1%);
 
-            .glyphicon {
-                -webkit-transition: transform 0.5s easeinout;
-                transition: transform 0.5s easeinout;
-                transform: scale(1.2) translateY(0.5px);
-            }
+        .glyphicon {
+            -webkit-transition: transform 0.5s easeinout;
+            transition: transform 0.5s easeinout;
+            transform: scale(1.2) translateY(0.5px);
         }
     }
     &:active,
@@ -84,8 +81,7 @@ button.btn {
 .btn-default {
     .button-variant(@colorDark; @colorLight; @colorLighter);
 
-    // TODO: using active class twice to get more specificity because of the :not(.btn-no-styles) above
-    &.active.active {
+    &.active {
         background-color: @colorDark;
         color: @colorLight;
         box-shadow: none;
@@ -95,11 +91,21 @@ button.btn {
     background-color: transparent;
 }
 
-
 .btn-no-styles {
     .button-variant(@colorDark; transparent; transparent);
     .btn-reset-styles();
     padding: 0;
+
+    // Reset transform of glyphicon
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > .dropdown-toggle & {
+        .glyphicon {
+            transform: none;
+        }
+    }
 }
 
 button.menu-button {
