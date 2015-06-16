@@ -17,7 +17,7 @@
         return {
             restrict: 'E',
             scope: {
-                points: '=',
+                points: '=vgPoints',
                 completed: '=vgCompleted',
                 hidePoints: '=vgHidePoints'
             },

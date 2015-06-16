@@ -11,7 +11,7 @@
                 var that = this;
 
                 that.finishMission = function() {
-                    // TODO: this should of course not use the LocationDetailsCtrl method
+                    // TODO NOW: this should of course not use the LocationDetailsCtrl method, pass in a method that we'll call
                     $scope.$parent.finishMission(that.mission);
                 };
 

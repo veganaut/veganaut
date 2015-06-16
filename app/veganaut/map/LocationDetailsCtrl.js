@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    // TOOD: this controller is getting way too big, split it up
+    // TODO: this controller is getting way too big, split it up
     module.controller('LocationDetailsCtrl', [
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',
@@ -73,10 +73,10 @@
                 }
             };
 
+            // TODO: Create proper filter from this?
             $scope.filterOnlyZeroMissions = function(mission) {
                 return (mission.points > 0);
             };
-
             $scope.filterOnlyNonZeroMissions = function(mission) {
                 return !$scope.filterOnlyZeroMissions(mission);
             };
@@ -84,6 +84,7 @@
             /**
              * Returns the number of points that can be made with missions
              * for the given product.
+             * TODO: this should got in a model
              * @param {Product} product
              * @returns {number}
              */
@@ -106,6 +107,7 @@
 
             /**
              * Returns the list of products to display
+             * TODO: there should be a directive for showing the products & product missions
              * @returns {Product[]}
              */
             $scope.getShownProducts = function() {

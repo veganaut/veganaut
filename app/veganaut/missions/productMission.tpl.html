@@ -1,7 +1,7 @@
 <div class="mission mission-{{ productMission.mission.type }}">
     <h4>{{ 'map.mission.' + productMission.mission.type + '.title' | translate }}</h4>
     <div>
-        <vg-mission-points points="productMission.mission.points"
+        <vg-mission-points vg-points="productMission.mission.points"
          vg-completed="productMission.mission.completed"
          ></vg-mission-points>
         {{ 'map.mission.' + productMission.mission.type + '.description' | translate }}

@@ -92,7 +92,7 @@
         return {
             type: this.type,
             outcome: this.getOutcome(),
-            points: this.points // TODO: this is not supported yet by the backend
+            points: this.points // TODO NOW: this is not supported yet by the backend
         };
     };
 

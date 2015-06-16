@@ -47,7 +47,7 @@
                              num-ratings="product.rating.numRatings">
                             </vg-average-rating>
                             <vg-mission-points
-                             points="getAvailableProductMissionsPoints(product)"
+                             vg-points="getAvailableProductMissionsPoints(product)"
                              vg-hide-points="true">
                             </vg-mission-points>
                         </span>
@@ -146,7 +146,7 @@
             <div ng-class="{clickable: !mission.completed}"
              ng-click="toggleMissionStarted(mission)">
                 <p class="h4 mission-title">
-                    <vg-mission-points points="mission.points"></vg-mission-points>
+                    <vg-mission-points vg-points="mission.points"></vg-mission-points>
                     <span class="glyphicon glyphicon-ok" ng-show="mission.completed"></span>
                     {{ 'map.mission.' + mission.type + '.title' | translate }}
                 </p>
