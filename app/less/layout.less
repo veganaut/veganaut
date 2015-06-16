@@ -152,67 +152,6 @@ body.embedded {
     margin-bottom: 5px;
 }
 
-// Style the list-group. Mostly used for product lists
-// TODO: move this to it's own file
-.list-group {
-    .list-group-item--no-padding {
-        padding: 0;
-    }
-
-    .list-group-item--opened {
-        background: @bootstrapLightGreyBackground;
-        box-shadow: 0 0 2px;
-    }
-
-    .product-availability--temporarilyUnavailable .btn-like-list-group-item {
-        opacity: 0.6;
-    }
-
-    .product-availability--unavailable .btn-like-list-group-item {
-        opacity: 0.6;
-        text-decoration: line-through;
-    }
-
-    // No background when transparent, except if they are opened
-    &.list-group--transparent {
-        .list-group-item {
-            background: none;
-            &.list-group-item--opened {
-                background: @colorLight;
-            }
-        }
-    }
-
-    .list-group-item__content {
-        box-shadow: 0 0 2px inset;
-        margin-left: -2px;
-        margin-right: -2px;
-    }
-
-    .list-group-item__description {
-        padding: 10px 15px;
-    }
-
-    .list-group-item__actions {
-        padding: 1px 15px 10px;
-        border-top: 1px solid @colorLighter;
-    }
-
-    .list-group-item__bottom-action {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    h4 {
-        margin-top: 15px;
-        margin-bottom: 5px;
-    }
-}
-
-.product-list__show-unavailable {
-    margin-top: -15px;
-}
-
 .pull-right-spaced {
     float: right;
     margin-left: 5px;

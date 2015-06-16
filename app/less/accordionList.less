@@ -1,0 +1,82 @@
+// Styles for the accordion-list
+// Used for the product display on the location pages
+.accordion-list {
+    padding-left: 0;
+    margin-bottom: 5px;
+
+    .accordion-list__item {
+        position: relative;
+        display: block;
+        margin-bottom: -1px;
+        border: 1px solid @bootstrapGreyBorder;
+
+        &:first-child {
+            border-top-left-radius: @boxBorderRadius;
+            border-top-right-radius: @boxBorderRadius;
+        }
+        &:last-child {
+            border-bottom-right-radius: @boxBorderRadius;
+            border-bottom-left-radius: @boxBorderRadius;
+            margin-bottom: 0;
+        }
+
+        .accordion-list__item__btn {
+            .button-variant(@colorDark; @colorLight; @colorLighter);
+            .btn-reset-styles();
+            padding: 10px 15px;
+
+            // TODO: does this belong in here?
+            .product-availability--temporarilyUnavailable & {
+                opacity: 0.6;
+            }
+            .product-availability--unavailable & {
+                opacity: 0.6;
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    .accordion-list__item--opened {
+        background: @bootstrapLightGreyBackground;
+        box-shadow: 0 0 2px;
+    }
+
+    .accordion-list__item__content {
+        box-shadow: 0 0 2px inset;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+
+    .accordion-list__item__description {
+        padding: 10px 15px;
+    }
+
+    .accordion-list__item__actions {
+        padding: 1px 15px 10px;
+        border-top: 1px solid @colorLighter;
+    }
+
+    .accordion-list__item__bottom-action {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+
+// TODO: the list-group styles are still used on the map product list ("vegan menu"). Should be refactored to use accordion-list
+.list-group {
+    .list-group-item--opened {
+        background: @bootstrapLightGreyBackground;
+        box-shadow: 0 0 2px;
+    }
+
+    // No background when transparent, except if they are opened
+    &.list-group--transparent {
+        .list-group-item {
+            background: none;
+            &.list-group-item--opened {
+                background: @colorLight;
+            }
+        }
+    }
+}

@@ -33,11 +33,11 @@
         <div ng-if="getShownProducts().length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
 
-            <ul class="list-group">
+            <ul class="accordion-list">
                 <li ng-repeat="product in getShownProducts() track by product.id"
-                 class="list-group-item list-group-item--no-padding product-availability--{{ product.availability }}"
-                 ng-class="{ 'list-group-item--opened': openedProductId === product.id }">
-                    <button class="btn btn-like-list-group-item btn-block"
+                 class="accordion-list__item product-availability--{{ product.availability }}"
+                 ng-class="{ 'accordion-list__item--opened': openedProductId === product.id }">
+                    <button class="btn btn-block accordion-list__item__btn"
                      ng-click="toggleProduct(product)">
                         {{ product.name }}
                         <span class="pull-right-spaced">
@@ -53,8 +53,8 @@
                         </span>
                     </button>
 
-                    <div class="list-group-item__content" ng-if="openedProductId === product.id">
-                        <div class="list-group-item__description">
+                    <div class="accordion-list__item__content" ng-if="openedProductId === product.id">
+                        <div class="accordion-list__item__description">
                             <button class="btn btn-no-styles pull-right-spaced"
                              ng-click="toggleProduct(product)">
                                 <span class="glyphicon glyphicon-remove"></span>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
 
-                        <div class="list-group-item__actions">
+                        <div class="accordion-list__item__actions">
                             <vg-product-mission
                              ng-repeat="mission in productMissions[product.id]|filter:filterOnlyZeroMissions|orderBy:'order'"
                              vg-mission="mission">
@@ -83,7 +83,7 @@
                             <!-- TODO: the filtering should be done in the controller. also it should be smarter:
                             it should take into account the availability of the product, not just the points of missions -->
                             <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
-                                <div class="list-group-item__bottom-action small" ng-hide="showAll">
+                                <div class="accordion-list__item__bottom-action small" ng-hide="showAll">
                                     <button ng-click="showAll = !showAll" class="btn btn-xs btn-link btn-block">
                                         {{ 'map.mission.showAllMissions' | translate}}
                                     </button>
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item__bottom-action small"
+                            <div class="accordion-list__item__bottom-action small"
                              ng-if="!isLoggedIn()">
                                 <button class="register-to-edit btn btn-xs btn-link btn-block"
                                  ng-click="goToView('register')">
@@ -107,7 +107,7 @@
                     </div>
                 </li>
             </ul>
-            <div class="product-list__show-unavailable small"
+            <div class="small"
              ng-if="location.getProductsByAvailability('unavailable').length > 0"
              ng-hide="showUnavailable.products">
                 <button ng-click="showUnavailable.products = true"
