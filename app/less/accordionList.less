@@ -24,15 +24,15 @@
             .button-variant(@colorDark; @colorLight; @colorLighter);
             .btn-reset-styles();
             padding: 10px 15px;
+        }
 
-            // TODO: does this belong in here?
-            .product-availability--temporarilyUnavailable & {
-                opacity: 0.6;
-            }
-            .product-availability--unavailable & {
-                opacity: 0.6;
-                text-decoration: line-through;
-            }
+        // TODO: does this belong in here?
+        &.product-availability--temporarilyUnavailable .accordion-list__item__btn {
+            opacity: 0.6;
+        }
+        &.product-availability--unavailable .accordion-list__item__btn {
+            opacity: 0.6;
+            text-decoration: line-through;
         }
     }
 

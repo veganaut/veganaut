@@ -81,7 +81,7 @@ button.btn {
 .btn-default {
     .button-variant(@colorDark; @colorLight; @colorLighter);
 
-    &.active {
+    &.active.active { // GRRR, specificity not working in my favour, so need to add .active twice (because auf the .active.disabled styles)
         background-color: @colorDark;
         color: @colorLight;
         box-shadow: none;
