@@ -5,17 +5,12 @@
         return {
             restrict: 'E',
             scope: {
-                mission: '=vgMission'
+                mission: '=vgMission',
+                onFinishMission: '=vgOnFinishMission'
             },
             controller: ['$scope', 'missions', function($scope, missions) {
-                var that = this;
-
-                that.finishMission = function() {
-                    // TODO NOW: this should of course not use the LocationDetailsCtrl method, pass in a method that we'll call
-                    $scope.$parent.finishMission(that.mission);
-                };
-
                 // Watch missions that should complete as soon as the outcome is set / changed
+                var that = this;
                 if (that.mission instanceof missions.rateProduct ||
                     that.mission instanceof missions.setProductAvail)
                 {
@@ -23,7 +18,7 @@
                         return that.mission.outcome;
                     }, function(newValue, oldValue) {
                         if (newValue !== oldValue && that.mission.hasValidOutcome()) {
-                            that.finishMission();
+                            that.onFinishMission(that.mission);
                         }
                     });
                 }

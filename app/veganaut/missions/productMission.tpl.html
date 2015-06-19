@@ -22,7 +22,7 @@
                     <div class="input-group-addon"
                      ng-if="productMission.mission.hasValidOutcome() && !productMission.mission.completed">
                         <button type="submit" class="btn btn-no-styles"
-                         ng-click="productMission.finishMission()">
+                         ng-click="productMission.onFinishMission(productMission.mission)">
                             <span class="glyphicon glyphicon-floppy-disk"></span>
                         </button>
                     </div>
