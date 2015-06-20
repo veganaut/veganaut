@@ -49,7 +49,6 @@
                     numRatings: 0
                 };
                 this.products = [];
-                this.lastMissionDates = {};
                 this.updatedAt = undefined;
                 this._isBeingEdited = false;
 
@@ -83,10 +82,6 @@
 
                 // Instantiate the dates
                 // TODO: this should already have been done elsewhere
-                var that = this;
-                _.forOwn(this.lastMissionDates, function(date, mission) {
-                    that.lastMissionDates[mission] = new Date(date);
-                });
                 this.updatedAt = new Date(this.updatedAt);
 
                 this._updateMarker();
@@ -373,7 +368,6 @@
                 this.quality = newData.quality;
                 this.effort = newData.effort;
                 this.products = newData.products;
-                this.lastMissionDates = newData.lastMissionDates;
                 this.updatedAt = newData.updatedAt;
                 this._updateMarker();
                 this.setLatLng(newData.lat, newData.lng);
