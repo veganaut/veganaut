@@ -364,7 +364,18 @@
     // EffortValueMission //////////////////////////////////////////////////////
     function EffortValueMission(location, points, lastCompletedDate, lastCompletedOutcome) {
         Mission.call(this, 'effortValue', undefined, location, points, lastCompletedDate, lastCompletedOutcome);
-        this.possibleAnswers = ['yes', 'ratherYes', 'ratherNo', 'no'];
+        this.possibleAnswers = ['no', 'ratherNo', 'ratherYes', 'yes'];
+
+        /**
+         * Mapping of the possible answers to the icon to use for the answer
+         * @type {{no: string, ratherNo: string, ratherYes: string, yes: string}}
+         */
+        this.answerToIconMapping = {
+            no: 'wi-thunderstorm',
+            ratherNo: 'wi-cloudy',
+            ratherYes: 'wi-day-cloudy',
+            yes: 'wi-day-sunny'
+        };
     }
 
     EffortValueMission.prototype = Object.create(Mission.prototype);

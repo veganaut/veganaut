@@ -37,18 +37,6 @@
             $scope.recentlyActiveVeganauts = [];
 
             /**
-             * List of possible answers (and class names for the icon)
-             * for the effort value mission.
-             * @type {{value: string, class: string}[]}
-             */
-            $scope.possibleEffortValueAnswers = [
-                {value: 'yes', class: 'wi-day-sunny'},
-                {value: 'ratherYes', class: 'wi-day-cloudy'},
-                {value: 'ratherNo', class: 'wi-cloudy'},
-                {value: 'no', class: 'wi-thunderstorm'}
-            ];
-
-            /**
              * Whether the current user is already on the recently active list
              * @type {boolean}
              */

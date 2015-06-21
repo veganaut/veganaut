@@ -235,9 +235,9 @@
                                 <div class="text-center h3">
                                     <div class="btn-group form-group">
                                         <label class="btn btn-default"
-                                         ng-repeat="answer in possibleEffortValueAnswers"
-                                         ng-model="mission.outcome" btn-radio="answer.value">
-                                            <span class="wi {{ answer.class }} h4"></span>
+                                         ng-repeat="answer in mission.possibleAnswers"
+                                         ng-model="mission.outcome" btn-radio="answer">
+                                            <span class="wi {{ mission.answerToIconMapping[answer] }} h4"></span>
                                         </label>
                                     </div>
                                 </div>
