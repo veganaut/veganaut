@@ -47,6 +47,7 @@
                              num-ratings="product.rating.numRatings">
                             </vg-average-rating>
                             <vg-mission-points
+                             ng-if="isLoggedIn()"
                              vg-points="getAvailableProductMissionsPoints(product)"
                              vg-hide-points="true">
                             </vg-mission-points>
