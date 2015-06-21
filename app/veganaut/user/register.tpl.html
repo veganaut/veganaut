@@ -4,27 +4,27 @@
         {{ 'register.description' | translate }}
     </p>
     <div class="form-group">
-        <label for="fullName" ng-bind="'person.label.fullName' | translate"></label>
+        <label for="fullName">{{ 'person.label.fullName' | translate }}</label>
         <input type="text" required id="fullName" class="form-control" ng-model="form.fullName" />
     </div>
     <div class="form-group">
-        <label for="nickname" ng-bind="'person.label.nickname' | translate"></label>
+        <label for="nickname">{{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})</label>
         <input type="text" required id="nickname" class="form-control" ng-model="form.nickname" />
     </div>
     <div class="form-group">
-        <label for="email" ng-bind="'person.label.email' | translate"></label>
+        <label for="email">{{ 'person.label.email' | translate }}</label>
         <input type="email" required id="email" class="form-control" ng-model="form.email" />
     </div>
     <div class="form-group">
-        <label for="password" ng-bind="'person.label.password' | translate"></label>
+        <label for="password">{{ 'person.label.password' | translate }}</label>
         <input type="password" required id="password" class="form-control" ng-model="form.password" />
     </div>
     <div class="form-group">
-        <label for="passwordRepeat" ng-bind="'person.label.passwordRepeat' | translate"></label>
+        <label for="passwordRepeat">{{ 'person.label.passwordRepeat' | translate }}</label>
         <input type="password" required id="passwordRepeat" class="form-control" ng-model="form.passwordRepeat" />
     </div>
     <button type="submit" class="btn btn-default pull-right"
      ng-disabled="registerForm.$invalid || form.password !== form.passwordRepeat"
-     ng-click="submit()" ng-bind="'register.form.submit' | translate"></button>
+     ng-click="submit()">{{ 'register.form.submit' | translate }}</button>
     <div class="clearfix"></div>
 </form>

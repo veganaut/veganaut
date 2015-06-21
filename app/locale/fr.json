@@ -145,9 +145,10 @@
       "maybe": "Maybe"
     },
     "label": {
+      "publiclyVisible": "visible par tout le monde",
       "email": "E-mail",
       "fullName": "Prénom et nom de famille",
-      "nickname": "Pseudo (visible par tout le monde)",
+      "nickname": "Pseudo",
       "team": "Equipe",
       "captured": "Captured",
       "password": "Mot de passe",

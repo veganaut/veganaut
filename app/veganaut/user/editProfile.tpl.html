@@ -1,35 +1,35 @@
 <form novalidate name="editProfileForm" class="edit-profile-form" ng-controller="EditProfileCtrl">
     <!-- TODO: merge this with register.tpl.html -->
     <div class="form-group">
-        <label for="editFullName" ng-bind="'person.label.fullName' | translate"></label>
+        <label for="editFullName">{{ 'person.label.fullName' | translate }}</label>
         <input type="text" required id="editFullName" class="form-control" ng-model="form.fullName" />
     </div>
     <div class="form-group">
-        <label for="editNickname" ng-bind="'person.label.nickname' | translate"></label>
+        <label for="editNickname">{{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})</label>
         <input type="text" required id="editNickname" class="form-control" ng-model="form.nickname" />
     </div>
     <div class="form-group">
-        <label for="editEmail" ng-bind="'person.label.email' | translate"></label>
+        <label for="editEmail">{{ 'person.label.email' | translate }}</label>
         <input type="email" required id="editEmail" class="form-control" ng-model="form.email" />
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" ng-model="changePassword" /><span ng-bind="'action.profile.changePassword' | translate"></span>
+            <input type="checkbox" ng-model="changePassword" /><span>{{ 'action.profile.changePassword' | translate }}</span>
         </label>
     </div>
     <div ng-if="changePassword">
         <div class="form-group">
-            <label for="editPassword" ng-bind="'person.label.password' | translate"></label>
+            <label for="editPassword">{{ 'person.label.password' | translate }}</label>
             <input type="password" required id="editPassword" class="form-control" ng-model="form.password" />
         </div>
         <div class="form-group">
-            <label for="editPasswordRepeat" ng-bind="'person.label.passwordRepeat' | translate"></label>
+            <label for="editPasswordRepeat">{{ 'person.label.passwordRepeat' | translate }}</label>
             <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat" />
         </div>
     </div>
     <button class="btn btn-default"
-     ng-click="goToView('me')" ng-bind="'action.cancel' | translate"></button>
+     ng-click="goToView('me')">{{ 'action.cancel' | translate }}</button>
     <button type="submit" class="btn btn-default pull-right"
      ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine || form.password !== form.passwordRepeat"
-     ng-click="submit()" ng-bind="'action.profile.save' | translate"></button>
+     ng-click="submit()">{{ 'action.profile.save' | translate }}</button>
 </form>
