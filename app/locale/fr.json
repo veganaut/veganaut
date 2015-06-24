@@ -235,7 +235,7 @@
         "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
         "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
       },
-      "showUnavailableProducts": "Show unavailable products",
+      "showUnavailableProducts": "Afficher options indisponibles",
       "summary": "{{ product }} et {{ number }} autres options."
     },
     "type": {
@@ -286,7 +286,7 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totaux des missions",
-      "showAllMissions": "Show all editing options",
+      "showAllMissions": "Afficher tous les options de modification",
       "missionForm": {
         "submit": "Accomplie",
         "cancel": "Annuler"
@@ -408,16 +408,16 @@
         "explanation.UNUSED": "Les goûts varient mais si tu aimes quelque chose c'est probable que d'autres gens l'aiment aussi. Inversement, si quelque chose ne te convainc pas c'est possible que d'autres gens ne l'aiment pas beaucoup non plus. Mais peu importent les opinions des autres là – Donne l'évaluation qui te semble la plus juste pour toi!"
       },
       "setProductName": {
-        "title": "Edit name",
-        "description": "Correct or improve the name."
+        "title": "Modifier le nom",
+        "description": "Corriger ou améliorer le nom"
       },
       "setProductAvail": {
-        "title": "Availability",
-        "description": "Is this product available?",
+        "title": "Disponibilité",
+        "description": "Cette option est-elle disponible?",
         "outcome": {
-          "available": "Yes",
-          "temporarilyUnavailable": "Currently not",
-          "unavailable": "No"
+          "available": "Oui",
+          "temporarilyUnavailable": "Pas actuellement",
+          "unavailable": "Non"
         }
       }
     }
@@ -425,12 +425,12 @@
   "product": {
     "rating": {
       "summary": "{{numRatings}} évaluations",
-      "details": "Average of {{rating}} from {{numRatings}} ratings.",
-      "noRating": "This product hasn't been rated yet."
+      "details": "Moyenne de {{rating}} de {{numRatings}} évaluations.",
+      "noRating": "Cette option n'a pas encore été évaluée."
     },
     "availability": {
-      "temporarilyUnavailable": "This product is currently not available.",
-      "unavailable": "This product is no longer available or was entered by mistake."
+      "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
+      "unavailable": "Cette option n'est plus disponible ou a été enregistrée par mégarde."
     }
   },
   "mapSearch": {
