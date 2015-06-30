@@ -111,7 +111,7 @@
         "name": "Filtern",
         "description": "Orte auf der Karte filtern"
       },
-      "locationAction": "Location anschauen"
+      "locationAction": "Mehr"
     },
     "location": {
       "edit": "Location bearbeiten",
