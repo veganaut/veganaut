@@ -6,7 +6,8 @@
         '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik', 'mapDefaults',
         'playerService', 'Location', 'locationService', 'mainMapService', 'backendService',
         function($scope, $location, $timeout, leafletData, angularPiwik, mapDefaults,
-            playerService, Location, locationService, mainMapService, backendService) {
+            playerService, Location, locationService, mainMapService, backendService)
+        {
             var player;
 
             /**
@@ -367,20 +368,35 @@
             // Register event handlers
             $scope.$on('leafletDirectiveMap.click', mapClickHandler);
 
-            // Get the locations
-            locationService.getLocations().then(function(loadedLocations) {
-                locations = loadedLocations;
+            /**
+             * Load the locations that are within the current bounding box
+             */
+            var loadLocations = function() {
                 mapPromise.then(function(map) {
-                    // Go through all the locations and add the marker to the map
-                    angular.forEach(locations, function(location) {
-                        location.marker.on('click', locationClickHandler);
-                        location.marker.addTo(map);
-                    });
+                    // Get the bounds of the map
+                    var bounds = map.getBounds().toBBoxString();
 
-                    // Apply the current filter value
-                    applyFilters($scope.activeFilters);
+                    // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
+                    locationService.getLocations(bounds).then(function(loadedLocations) {
+                        // Remove old markers
+                        angular.forEach(locations, function(location) {
+                            map.removeLayer(location.marker);
+                        });
+
+                        // Set new locations
+                        locations = loadedLocations;
+
+                        // Go through all the locations and add the marker to the map
+                        angular.forEach(locations, function(location) {
+                            location.marker.on('click', locationClickHandler);
+                            location.marker.addTo(map);
+                        });
+
+                        // Apply the current filter value
+                        applyFilters($scope.activeFilters);
+                    });
                 });
-            });
+            };
 
             // Check if we are logged in
             if (backendService.isLoggedIn()) {
@@ -393,6 +409,9 @@
             // Watch the map center for changes to save it
             $scope.$watch('mainMap.center', function() {
                 mainMapService.saveCenter();
+
+                // Reload locations
+                loadLocations();
             });
 
 

@@ -247,10 +247,15 @@
 
             /**
              * Gets the list of locations on the map
+             * @param {string} [bounds] The bounds within to get the locations
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getLocations = function() {
-                return $http.get(backendUrl + '/location/list');
+            BackendService.prototype.getLocations = function(bounds) {
+                return $http.get(backendUrl + '/location/list', {
+                    params: {
+                        bounds: bounds
+                    }
+                });
             };
 
             /**

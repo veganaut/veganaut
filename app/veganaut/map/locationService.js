@@ -45,14 +45,15 @@
 
             /**
              * Returns a Promise that will resolve to the locations
+             * @param {string} [bounds] The bounds within to get the locations
              * @returns {Promise}
              */
-            LocationService.prototype.getLocations = function() {
+            LocationService.prototype.getLocations = function(bounds) {
                 var that = this;
                 var deferredLocations = $q.defer();
                 var beforeActive = this.active;
                 that.active = undefined;
-                backendService.getLocations()
+                backendService.getLocations(bounds)
                     .then(function(data) {
                         var locations = {};
                         var location;

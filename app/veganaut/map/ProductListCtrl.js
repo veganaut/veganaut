@@ -10,9 +10,8 @@
             // At the moment hard-coded to gastronomy
             var locationType = 'gastronomy';
 
-            // Get the locations (to set them in the products)
-            // TODO: get locations should be cached
-            var locationPromise = locationService.getLocations();
+            // Promise for getting the locations
+            var locationPromise;
 
             // Get a reference to the leaflet map object
             var mapPromise = leafletData.getMap();
@@ -101,6 +100,10 @@
             mapPromise.then(function(map) {
                 // Get the bound of the map and load the products for the first time
                 bounds = map.getBounds().toBBoxString();
+
+                // Get the locations (to set them in the products)
+                // TODO: get locations should be cached
+                locationPromise = locationService.getLocations(bounds);
                 loadProducts(bounds, locationType);
             });
         }
