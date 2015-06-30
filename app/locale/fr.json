@@ -235,7 +235,7 @@
         "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
         "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
       },
-      "showUnavailableProducts": "Afficher options indisponibles",
+      "showUnavailableProducts": "Afficher les options non disponibles",
       "summary": "{{ product }} et {{ number }} autres options."
     },
     "type": {
@@ -286,7 +286,7 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totaux des missions",
-      "showAllMissions": "Afficher tous les options de modification",
+      "showAllMissions": "Afficher toutes les modifications possibles",
       "missionForm": {
         "submit": "Accomplie",
         "cancel": "Annuler"
@@ -416,7 +416,7 @@
         "description": "Cette option est-elle disponible?",
         "outcome": {
           "available": "Oui",
-          "temporarilyUnavailable": "Pas actuellement",
+          "temporarilyUnavailable": "Pas en ce moment",
           "unavailable": "Non"
         }
       }
@@ -430,7 +430,7 @@
     },
     "availability": {
       "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
-      "unavailable": "Cette option n'est plus disponible ou a été enregistrée par mégarde."
+      "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
     }
   },
   "mapSearch": {
