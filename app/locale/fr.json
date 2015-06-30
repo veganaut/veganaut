@@ -111,7 +111,7 @@
         "name": "Filtrer",
         "description": "Filtrer les endroits sur la carte"
       },
-      "locationAction": "Voir plus"
+      "locationAction": "Plus"
     },
     "location": {
       "edit": "Modifier",
