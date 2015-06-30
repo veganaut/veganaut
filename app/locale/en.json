@@ -111,7 +111,7 @@
         "name": "Filter",
         "description": "Filter locations on the map"
       },
-      "locationAction": "Check out location"
+      "locationAction": "More"
     },
     "location": {
       "edit": "Edit location",
