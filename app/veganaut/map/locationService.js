@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
     module.factory('locationService', [
-        '$q', 'Location', 'backendService', 'alertService',
-        function($q, Location, backendService, alertService) {
+        '$q', 'Location', 'angularPiwik', 'backendService', 'alertService',
+        function($q, Location, angularPiwik, backendService, alertService) {
             /**
              * Service to handle the veganaut locations
              * @constructor
@@ -13,6 +13,12 @@
                  * @type {Location}
                  */
                 this.active = undefined;
+
+                /**
+                 * The location that is currently being added
+                 * @type {Location}
+                 */
+                this.newLocation = undefined;
 
                 /**
                  * List of active filters
@@ -51,8 +57,7 @@
             LocationService.prototype.getLocations = function(bounds) {
                 var that = this;
                 var deferredLocations = $q.defer();
-                var beforeActive = this.active;
-                that.active = undefined;
+                var beforeActive = that.active;
                 backendService.getLocations(bounds)
                     .then(function(data) {
                         var locations = {};
@@ -62,6 +67,14 @@
                             location = new Location(data.data[i]);
                             locations[location.id] = location;
                         }
+
+                        // Add the location that is being created back to the list
+                        if (that.newLocation) {
+                            locations[that.newLocation.id] = that.newLocation;
+                        }
+
+                        // Deactivate the location and activate it again if it's still around
+                        that.activate();
                         if (beforeActive && locations[beforeActive.id]) {
                             that.activate(locations[beforeActive.id]);
                         }
@@ -88,6 +101,34 @@
 
                 // Return the promise
                 return deferredLocation.promise;
+            };
+
+            /**
+             * Start to create a new location
+             * @param {{}} player
+             */
+            LocationService.prototype.startAddNewLocation = function(player) {
+                this.newLocation = new Location({team: player.team});
+                this.newLocation.setEditing(true);
+                this.activate(this.newLocation);
+
+                angularPiwik.track('map.addLocation', 'start');
+            };
+
+            /**
+             * Abort adding a new location
+             */
+            LocationService.prototype.abortAddNewLocation = function() {
+                this.newLocation = undefined;
+                this.activate();
+            };
+
+            /**
+             * Returns whether we are currently in the process of adding a new location
+             * @returns {boolean}
+             */
+            LocationService.prototype.isAddingLocation = function() {
+                return angular.isDefined(this.newLocation);
             };
 
             /**
@@ -121,13 +162,25 @@
             };
 
             /**
-             * Submits the given location to the backend
-             * @param {Location} location
-             * @return {HttpPromise}
+             * Submits the location that is currently being created to the backend
+             * @return {Promise}
              */
-            LocationService.prototype.submitLocation = function(location) {
-                // TODO: should the promise be handled in the controller?
-                return backendService.submitLocation({
+            LocationService.prototype.submitNewLocation = function() {
+                var that = this;
+                if (!that.isAddingLocation()) {
+                    throw new Error('Cannot submit new location because no new location is being added.');
+                }
+
+                // Reset the new location reference
+                var location = that.newLocation;
+                that.newLocation = undefined;
+
+                // The location is no longer being edited
+                location.setEditing(false);
+
+                // Create deferred to return
+                var deferred = $q.defer();
+                backendService.submitLocation({
                     name: location.name,
                     lat: location.lat,
                     lng: location.lng,
@@ -136,13 +189,14 @@
                     .success(function(data) {
                         // Update the location
                         location.update(data);
-                        alertService.addAlert('Added new location "' + location.name + '"', 'success');
+                        deferred.resolve(location);
                     })
                     .error(function(data) {
-                        // TODO: remove the location from the list
-                        alertService.addAlert('Failed to add location: ' + data.error, 'danger');
+                        deferred.reject(data.error);
                     })
                 ;
+
+                return deferred.promise;
             };
 
             /**

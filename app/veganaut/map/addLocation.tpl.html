@@ -1,7 +1,7 @@
 <form novalidate name="locationForm" class="location-form">
     <div class="top-box__close clickable"
      ng-hide="addLocationComponent.minimised"
-     ng-click="resetAddNewLocation()">
+     ng-click="abortAddNewLocation()">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
     <div ng-switch="addLocationStep">
@@ -9,7 +9,7 @@
             <label class="top-box__first-line">{{ 'location.form.new.type' | translate }}</label>
             <div class="btn-group form-group">
                 <button class="btn btn-default" ng-repeat="type in locationTypes"
-                 ng-model="newLocation.type" btn-radio="type">
+                 ng-model="location.newLocation.type" btn-radio="type">
                     <vg-location-type-icon type="type"></vg-location-type-icon>
                     {{ 'location.type.' + type | translate }}
                 </button>
@@ -17,10 +17,10 @@
         </div>
         <div ng-switch-when="2" class="form-group">
             <label class="top-box__first-line" for="addLocationName">
-                {{ 'location.form.new.name.' + newLocation.type | translate }}
+                {{ 'location.form.new.name.' + location.newLocation.type | translate }}
             </label>
             <input type="text" required class="form-control" id="addLocationName"
-             ng-model="newLocation.name" />
+             ng-model="location.newLocation.name" />
         </div>
         <div ng-switch-when="3" ng-controller="SearchCtrl">
             <a href="" class="link-unstyled pull-left top-box__minimise"

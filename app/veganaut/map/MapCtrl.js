@@ -5,8 +5,10 @@
     module.controller('MapCtrl', [
         '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik', 'mapDefaults',
         'playerService', 'Location', 'locationService', 'mainMapService', 'backendService',
+        'alertService',
         function($scope, $location, $timeout, leafletData, angularPiwik, mapDefaults,
-            playerService, Location, locationService, mainMapService, backendService)
+            playerService, Location, locationService, mainMapService, backendService,
+            alertService)
         {
             var player;
 
@@ -22,19 +24,13 @@
              */
             var locations = {};
 
-            /**
-             * Whether the user is currently adding a new location
-             * @type {boolean}
-             */
-            $scope.isAddingLocation = false;
-
             // TODO: all this addLocation stuff should be separated to a directive or other controller
             $scope.addLocationStep = 1;
 
             $scope.nextStep = function() {
                 if ($scope.stepIsValid()) {
                     if ($scope.isLastStep()) {
-                        $scope.addNewLocation();
+                        $scope.submitNewLocation();
                         angularPiwik.track('map.addLocation', 'finish');
                     }
                     else {
@@ -54,7 +50,7 @@
             };
 
             $scope.stepIsValid = function() {
-                var loc = $scope.newLocation;
+                var loc = locationService.newLocation;
                 switch ($scope.addLocationStep) {
                 case 1:
                     return (angular.isString(loc.type) && loc.type.length > 0);
@@ -90,12 +86,6 @@
              * @type {{}}
              */
             $scope.events = {};
-
-            /**
-             * Location that is currently being added
-             * @type {Location}
-             */
-            $scope.newLocation = undefined;
 
             /**
              * Whether to show the location products
@@ -211,7 +201,7 @@
              * @returns {boolean}
              */
             $scope.isPlacingLocation = function() {
-                return ($scope.isAddingLocation && $scope.addLocationStep === 3);
+                return (locationService.isAddingLocation() && $scope.addLocationStep === 3);
             };
 
             /**
@@ -219,45 +209,41 @@
              */
             $scope.startAddNewLocation = function() {
                 $scope.addLocationStep = 1;
-                $scope.isAddingLocation = true;
-                $scope.newLocation = new Location({team: player.team});
-                $scope.newLocation.setEditing(true);
-                locationService.activate($scope.newLocation);
-
-                angularPiwik.track('map.addLocation', 'start');
+                locationService.startAddNewLocation(player);
             };
 
             /**
              * Aborts adding a new location
              */
-            $scope.resetAddNewLocation = function() {
-                locationService.activate();
+            $scope.abortAddNewLocation = function() {
                 // Remove from map if it was added
                 if (newLocationIsAddedToMap === true) {
-                    var markerToRemove = $scope.newLocation.marker;
+                    var markerToRemove = locationService.newLocation.marker;
                     mapPromise.then(function(map) {
                         map.removeLayer(markerToRemove);
                     });
                 }
-                $scope.isAddingLocation = false;
-                $scope.newLocation = undefined;
                 newLocationIsAddedToMap = false;
+
+                // Tell the location service about it
+                locationService.abortAddNewLocation();
             };
 
             /**
              * Finalises adding a new location
              */
-            $scope.addNewLocation = function() {
-                var newLocation = $scope.newLocation;
-                newLocation.setEditing(false);
-                $scope.isAddingLocation = false;
-                $scope.newLocation = undefined;
+            $scope.submitNewLocation = function() {
                 newLocationIsAddedToMap = false;
 
                 // Submit the location and add it to the list once done
-                locationService.submitLocation(newLocation)
-                    .then(function() {
+                locationService.submitNewLocation()
+                    .then(function(newLocation) {
                         locations[newLocation.id] = newLocation;
+                        alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
+                    })
+                    .catch(function(error) {
+                        // TODO: remove the marker from the map
+                        alertService.addAlert('Failed to add location: ' + error, 'danger');
                     })
                 ;
             };
@@ -278,15 +264,15 @@
              * @return {boolean} Whether the coordinates where set on the new location
              */
             $scope.setNewLocationCoordinates = function(lat, lng) {
-                if ($scope.isAddingLocation) {
+                if (locationService.isAddingLocation()) {
                     // Set the coordinates
-                    $scope.newLocation.setLatLng(lat, lng);
+                    locationService.newLocation.setLatLng(lat, lng);
 
                     // Push to map if not already there
                     if (newLocationIsAddedToMap !== true) {
                         mapPromise.then(function(map) {
-                            $scope.newLocation.marker.on('click', locationClickHandler);
-                            $scope.newLocation.marker.addTo(map);
+                            locationService.newLocation.marker.on('click', locationClickHandler);
+                            locationService.newLocation.marker.addTo(map);
                         });
                         newLocationIsAddedToMap = true;
                     }
@@ -315,7 +301,7 @@
              * @param args
              */
             var mapClickHandler = function(event, args) {
-                if ($scope.isAddingLocation) {
+                if (locationService.isAddingLocation()) {
                     if ($scope.addLocationStep === 3) {
                         // When adding a new location, take the click
                         // as the coordinates of this new location
@@ -345,7 +331,7 @@
              *      (not angular-leaflet-directive)
              */
             var locationClickHandler = function(event) {
-                if (!$scope.isAddingLocation) {
+                if (!locationService.isAddingLocation()) {
                     var clickedLocation = locations[event.target.locationId];
                     if (clickedLocation && !clickedLocation.isDisabled()) {
                         // Run it through $apply since we are coming directly from Leaflet
@@ -500,11 +486,14 @@
                 mainMapService.setMapCenterFromUrl();
             });
 
-            // When we go away from this page, reset the url
+            // When we go away from this page, reset the url and abort adding location
             $scope.$onRootScope('$routeChangeStart', function(event) {
-                // Remove the hash if the event is still ongoing
                 if (!event.defaultPrevented) {
+                    // Remove the hash if the event is still ongoing
                     $location.hash(null);
+
+                    // Abort adding a new location
+                    locationService.abortAddNewLocation();
                 }
             });
         }

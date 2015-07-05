@@ -51,7 +51,7 @@
     <!-- TODO: get rid of complicated ng-show in view -->
     <div class="top-box container main-container"
      ng-show="location.active || productShown || filtersShown || searchShown">
-        <div class="text-center location-details" ng-show="location.active && !isAddingLocation">
+        <div class="text-center location-details" ng-show="location.active && !location.isAddingLocation()">
             <div class="pull-right clickable" ng-click="location.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
@@ -79,7 +79,7 @@
             </p>
         </div>
 
-        <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="isAddingLocation"></ng-include>
+        <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="location.isAddingLocation()"></ng-include>
         <ng-include src="'/veganaut/map/productList.tpl.html'" ng-if="productShown"></ng-include>
         <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>
         <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
