@@ -147,7 +147,7 @@
     "label": {
       "publiclyVisible": "publicly visible",
       "email": "Email",
-      "fullName": "Name",
+      "fullName": "First name and family name",
       "nickname": "Nickname",
       "team": "Team",
       "captured": "Captured",
