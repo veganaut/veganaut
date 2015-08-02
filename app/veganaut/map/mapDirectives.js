@@ -3,16 +3,6 @@
 
     // TODO: not really sure how to treat tiny directives and filters like this
 
-    module.directive('vgTeamPointsDisplay', [function() {
-        return {
-            restrict: 'E',
-            scope: {
-                location: '='
-            },
-            templateUrl: '/veganaut/map/vgTeamPointsDisplay.tpl.html'
-        };
-    }]);
-
     module.directive('vgMissionPoints', [function() {
         return {
             restrict: 'E',
@@ -48,17 +38,6 @@
             }],
             controllerAs: 'vgLocationTypeIconCtrl',
             template: '<span ng-class="vgLocationTypeIconCtrl.getClassName()"></span>'
-        };
-    }]);
-
-    module.directive('vgTeamName', [function() {
-        return {
-            restrict: 'E',
-            replace: true,
-            scope: {
-                team: '='
-            },
-            template: '<span class="color-{{ team }}" ng-bind="\'team.\' + team | translate"></span>'
         };
     }]);
 

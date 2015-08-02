@@ -127,18 +127,12 @@
 
                 // TODO: handle error properly
                 backendService.submitMission(missionData, $scope.location)
-                    .success(function(savedMission) {
+                    .success(function(/*savedMission*/) {
                         // Prepare success message
-                        var pointTexts = [];
-                        for (var team in savedMission.points) {
-                            if (savedMission.points.hasOwnProperty(team)) {
-                                // TODO: translate team
-                                pointTexts.push(savedMission.points[team] + ' (' + team + ')');
-                            }
-                        }
                         // TODO: should we only show this once we reloaded the location?
                         alertService.addAlert(
-                            $translate.instant('message.mission.success') + pointTexts.join(', '),
+                            // TODO NOW: add how many points the user made
+                            $translate.instant('message.mission.success'),
                             'success'
                         );
 

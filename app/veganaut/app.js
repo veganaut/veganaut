@@ -20,15 +20,14 @@
         'veganaut.app.map',
         'veganaut.app.missions',
         'veganaut.app.score',
-        'veganaut.app.socialGraph',
         'veganaut.app.user'
     ]);
 
     veganautModule.config([
         '$routeProvider', '$locationProvider', '$translateProvider', 'angularPiwikProvider',
-        'featureToggle', 'useHtml5Mode', 'piwikSettings', 'i18nSettings',
+        'useHtml5Mode', 'piwikSettings', 'i18nSettings',
         function($routeProvider, $locationProvider, $translateProvider, angularPiwikProvider,
-            featureToggle, useHtml5Mode, piwikSettings, i18nSettings)
+            useHtml5Mode, piwikSettings, i18nSettings)
         {
             $locationProvider.html5Mode(useHtml5Mode);
 
@@ -37,12 +36,6 @@
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
             $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
             $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
-
-            if (featureToggle.socialGraph) {
-                $routeProvider.when('/socialGraph', {templateUrl: '/veganaut/socialGraph/socialGraph.tpl.html', controller: 'SocialGraphCtrl'});
-                $routeProvider.when('/createActivity/:target?', {templateUrl: '/veganaut/socialGraph/activity.tpl.html'});
-                $routeProvider.when('/activities', {templateUrl: '/veganaut/socialGraph/activities.tpl.html'});
-            }
 
             $routeProvider.when('/', {templateUrl: '/veganaut/home/home.tpl.html'});
             $routeProvider.when('/map', {
@@ -103,7 +96,6 @@
     var mapModule = angular.module('veganaut.app.map', []);
     var missionsModule = angular.module('veganaut.app.missions', []);
     var scoreModule = angular.module('veganaut.app.score', []);
-    var socialGraphModule = angular.module('veganaut.app.socialGraph', []);
     var userModule = angular.module('veganaut.app.user', []);
 
     // Make Leaflet available as angular service
@@ -114,7 +106,6 @@
         mapModule: mapModule,
         missionsModule: missionsModule,
         scoreModule: scoreModule,
-        socialGraphModule: socialGraphModule,
         userModule: userModule
     };
 })();

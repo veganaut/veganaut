@@ -31,7 +31,6 @@
 
             // Expose some backend states and methods
             $scope.isLoggedIn = backendService.isLoggedIn.bind(backendService);
-            $scope.canViewGraph = backendService.canViewGraph.bind(backendService);
             $scope.logout = backendService.logout.bind(backendService);
 
             $scope.menu = {
@@ -110,9 +109,6 @@
             playerService.getMe().then(function(me) {
                 $scope.me = me;
             });
-
-            // Expose the activity verb method
-            $scope.getActivityVerb = playerService.getActivityVerb;
 
             /**
              * Returns the logo URL (svg)

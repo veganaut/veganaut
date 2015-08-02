@@ -1,55 +1,6 @@
 <div ng-controller="ScoreCtrl">
-    <h2>{{ 'score.teams.title' | translate }}</h2>
     <!-- TODO: make a directive to put these score tables in ? -->
-    <table class="table table-striped table-condensed">
-        <thead>
-        <tr>
-            <th>{{ 'general.team' | translate }}</th>
-            <th>{{ 'score.teams.locations' | translate }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="score in scores.teams.locations">
-            <td><vg-team-name team="score.team"></vg-team-name></td>
-            <td>{{ score.locations }}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td>{{ 'score.total' | translate }}</td>
-            <td>{{ sum(scores.teams.locations, 'locations') }}</td>
-        </tr>
-        </tfoot>
-    </table>
-
-    <table class="table table-striped table-condensed">
-        <thead>
-        <tr>
-            <th>{{ 'general.team' | translate }}</th>
-            <th>{{ 'score.teams.people' | translate }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="score in scores.teams.people">
-            <td><vg-team-name team="score.team"></vg-team-name></td>
-            <td>{{ score.people }}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td>{{ 'score.total' | translate }}</td>
-            <td>{{ sum(scores.teams.people, 'people') }}</td>
-        </tr>
-        </tfoot>
-    </table>
-
     <h2>{{ 'score.people.title' | translate }}</h2>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" ng-model="onlyMyTeam" />
-            {{ 'score.people.filter.onlyMyTeam' | translate }}
-        </label>
-    </div>
     <table class="table table-striped table-condensed">
         <thead>
         <tr>
@@ -58,9 +9,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="score in scores.people.missions | filter:filterPeopleByTeam">
+        <tr ng-repeat="score in scores.people.missions">
             <td>
-                <a href="/veganaut/{{score.person.id}}" class="color-{{ score.person.team }} player-score">
+                <a href="/veganaut/{{score.person.id}}" class="player-score">
                     {{ score.person.nickname }}
                 </a>
             </td>
@@ -70,7 +21,7 @@
         <tfoot>
         <tr>
             <td>{{ 'score.total' | translate }}</td>
-            <td>{{ sum(scores.people.missions, 'missions', filterPeopleByTeam) }}</td>
+            <td>{{ sum(scores.people.missions, 'missions') }}</td>
         </tr>
         </tfoot>
     </table>

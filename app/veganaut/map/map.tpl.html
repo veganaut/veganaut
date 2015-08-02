@@ -6,20 +6,20 @@
                 <div ng-if="isEmbedded">
                     <a type="button" class="btn-logo btn btn-default btn-default--transparent"
                      ng-click="goToView('/')">
-                        <svg class="logo logo--top-box color-team">
+                        <svg class="logo logo--top-box">
                             <use xlink:href="" ng-href="{{:: getLogoUrl() }}"/>
                         </svg>
                     </a>
                 </div>
                 <div ng-if="!isEmbedded">
-                    <button type="button" class="btn-register btn btn-team"
+                    <button type="button" class="btn-register btn btn-primary"
                      ng-if="!isLoggedIn()"
                      ng-click="goToView('register')"
                      title="{{ 'action.map.register.description' | translate }}">
                         <span class="glyphicon glyphicon-pencil"></span><br />
                         <span class="small">{{ 'action.map.register.name' | translate }}</span>
                     </button>
-                    <button type="button" class="add-location btn btn-block btn-team"
+                    <button type="button" class="add-location btn btn-block btn-primary"
                      ng-if="isLoggedIn()"
                      ng-click="startAddNewLocation()"
                      title="{{ 'action.map.addLocation.description' | translate }}">
@@ -71,7 +71,7 @@
             </p>
 
             <p ng-show="location.active.id">
-                <button type="button" class="btn btn-block btn-team"
+                <button type="button" class="btn btn-block btn-primary"
                  ng-click="visitLocation(location.active)">
                     <span class="glyphicon glyphicon-hand-right"></span>
                     <span ng-bind="'action.map.locationAction'|translate"></span>

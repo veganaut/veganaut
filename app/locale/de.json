@@ -3,7 +3,6 @@
     "title": "veganaut.net - beta"
   },
   "general": {
-    "team": "Team",
     "person": "VeganautIn"
   },
   "navigation": {
@@ -77,14 +76,6 @@
   "action": {
     "register": "Registrieren",
     "cancel": "Abbrechen",
-    "socialGraph": {
-      "createActivityLink": {
-        "attract": "Invite",
-        "support": "Invite",
-        "tempt": "Invite",
-        "unspecified": "Jemanden einladen"
-      }
-    },
     "profile": {
       "edit": "Profil bearbeiten",
       "save": "Profil speichern",
@@ -131,9 +122,6 @@
       "submit": "Speichern und Weiter"
     }
   },
-  "socialGraph": {
-    "title": "Netzwerk"
-  },
   "openActivities": {
     "title": "Geplante Einladungen",
     "description": "Codes für deine geplanten Einladungen:"
@@ -149,7 +137,6 @@
       "email": "E-Mail Adresse",
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
-      "team": "Team",
       "captured": "Gefangen",
       "password": "Passwort",
       "passwordRepeat": "Passwort wiederholen",
@@ -161,14 +148,6 @@
       "completedMissions": "Abgeschlossene Missionen"
     }
   },
-  "team": {
-    "team1": "Blau",
-    "team2": "Grün",
-    "team3": "Violett",
-    "team4": "Rot",
-    "team5": "Orange",
-    "npc": "NPC"
-  },
   "score": {
     "points": "Punkte",
     "score": "Punktestand",
@@ -176,17 +155,9 @@
     "captured": "Gefangen",
     "babies": "Babies",
     "total": "Total",
-    "teams": {
-      "title": "Teams",
-      "locations": "# Locations",
-      "people": "# VeganautInnen"
-    },
     "people": {
       "title": "VeganautInnen",
-      "missions": "# Missionen",
-      "filter": {
-        "onlyMyTeam": "Nur meine Teammitglieder anzeigen."
-      }
+      "missions": "# Missionen"
     }
   },
   "location": {
@@ -243,11 +214,6 @@
       "retail": "Shopping",
       "event": "Event",
       "private": "Privat"
-    },
-    "score": {
-      "explanation": {
-        "teamPoints": "Das Team mit dieser Farbe hat hier so viele Punkte"
-      }
     },
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
@@ -452,7 +418,7 @@
     },
     "game": {
       "title": "Das Spiel",
-      "text1": "Alle, die bei bei Veganaut mitmachen, gehören im Moment einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich einen freundschaftlichen Wettkampf. Wer entdeckt am meisten Locations? Dank wem wächst das vegane Angebot in den Locations am schnellsten?",
+      "text1": "TODO: NEW TEXT. Alle, die bei bei Veganaut mitmachen, gehören im Moment einem von fünf Teams an:  <span class=\"color-team1\">Blau</span>, <span class=\"color-team2\">Grün</span>, <span class=\"color-team3\">Violett</span>, <span class=\"color-team4\">Rot</span>, <span class=\"color-team5\">Orange</span>. Die Teams liefern sich einen freundschaftlichen Wettkampf. Wer entdeckt am meisten Locations? Dank wem wächst das vegane Angebot in den Locations am schnellsten?",
       "text2": "Wie das Spiel genau funktioniert, merkst du dann beim Spielen. Willst du es ausprobieren? Dann mach einen Account (geht ganz schnell). Willst du es nicht ausprobieren? Easy. Infos über vegane Angebote kannst du dir hier jederzeit holen, auch wenn du nicht mitspielst. Genau dafür sammeln wir sie ja."
     }
   }

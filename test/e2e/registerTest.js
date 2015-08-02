@@ -44,12 +44,5 @@ describe('register.', function() {
         expect(alerts.count()).toBe(1, 'should have a success message');
         element.all(by.css('.alert-success button.close')).first().click();
         expect(alerts.count()).toBe(0, 'can close alert');
-
-
-        // TODO: uncomment this now that we have social graph again?
-//        // Should show a social graph with me and two dummies and no connections
-//        expect(ptor.getCurrentUrl()).toMatch(/\/socialGraph/);
-//        expect(element.all(by.css('social-graph .node')).count()).toBe(3, 'total nodes');
-//        expect(element.all(by.css('social-graph .link')).count()).toBe(0, 'total links');
     });
 });

@@ -107,8 +107,8 @@
              * Start to create a new location
              * @param {{}} player
              */
-            LocationService.prototype.startAddNewLocation = function(player) {
-                this.newLocation = new Location({team: player.team});
+            LocationService.prototype.startAddNewLocation = function(/*player*/) {
+                this.newLocation = new Location({}); // TODO NOW: set the player as the current owner?
                 this.newLocation.setEditing(true);
                 this.activate(this.newLocation);
 

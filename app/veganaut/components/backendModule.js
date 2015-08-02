@@ -36,22 +36,6 @@
             };
 
             /**
-             * Returns whether there is a valid person id set
-             * @returns {boolean}
-             */
-            BackendService.prototype.hasValidPersonId = function() {
-                return (angular.isString(this.personId));
-            };
-
-            /**
-             * Returns whether the user is allowed to view the graph
-             * @returns {boolean}
-             */
-            BackendService.prototype.canViewGraph = function() {
-                return this.isLoggedIn() || this.hasValidPersonId();
-            };
-
-            /**
              * Registers a new user. If the user has already entered a reference
              * code, the person from that activity's target will be used.
              * @param {string} email
@@ -75,6 +59,7 @@
                 }
 
                 // If we already have a person id, register as that person
+                // TODO NOW: remove this
                 if (this.personId) {
                     postData.id = this.personId;
                 }
@@ -115,25 +100,6 @@
             BackendService.prototype.getActivities = function() {
                 // TODO: make sure we are logged in first
                 return $http.get(backendUrl + '/activity');
-            };
-
-            /**
-             * Sends the get graph request to the backend
-             * @returns {promise} promise returned from $http.get
-             */
-            BackendService.prototype.getGraph = function() {
-                var person;
-                if (this.isLoggedIn()) {
-                    person = 'me';
-                }
-                else if (this.hasValidPersonId()) {
-                    person = this.personId;
-                }
-//            else {
-//                // TODO: return failed promise
-//            }
-
-                return $http.get(backendUrl + '/graph/' + person);
             };
 
             /**

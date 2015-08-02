@@ -94,12 +94,6 @@
     }
 }
 
-// When logged have white test and border (color is set by team)
-body.logged-in .marker {
-    color: white;
-    border-color: white;
-}
-
 .map--placing-location {
     cursor: crosshair;
 }
@@ -114,9 +108,8 @@ body.logged-in .marker {
 }
 
 // Styles for the location quality label in the title
-// TODO: those are hacked together late in the evening, so probably buggy
 .location-quality-label {
-    background-color: @bootstrapDarkGreyBackground;
+    background-color: @colourPrimary;
     border-radius: 12px;
     color: white;
     display: inline-block;
@@ -139,7 +132,7 @@ body.logged-in .marker {
 
     // The colours of the glyphicon are inverted
     background-color: white;
-    color: @colorDark;
+    color: @colourPrimary;
 }
 
 .location-description {

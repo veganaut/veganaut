@@ -11,7 +11,6 @@
 @import 'loadingBar.less';
 @import 'map.less';
 @import 'missions.less';
-@import 'socialGraph.less';
 @import 'icons.less';
 @import 'navbar.less';
 @import 'typography.less';
@@ -19,46 +18,6 @@
 
 @import '../lib/weather-icons/weather-icons/weather-icons.less';
 @weather-icons-path: '../lib/weather-icons/fonts';
-
-// TODO: these styles should be distributed over different modules
-.team-styles(@teamName, @baseColour) {
-    // Text colour
-    body.player-@{teamName} .color-team, .color-@{teamName} {
-        color: @baseColour;
-    }
-
-    // Team button
-    body.player-@{teamName} .btn-team {
-        .button-variant(#fff; @baseColour; darken(@baseColour, 5%));
-    }
-
-    // Team badges
-    .badge.badge-team-@{teamName} {
-        background-color: @baseColour;
-    }
-
-    // Map markers
-    body.logged-in .marker.marker--enabled.marker--team-@{teamName} {
-        background-color: @baseColour;
-    }
-
-    // Location quality label
-    body.logged-in .location-quality-label--team-@{teamName} {
-        background-color: @baseColour;
-
-        // The colours of the glyphicon question mark are inverted
-        .location-quality-label__unknown-icon {
-            color: @baseColour;
-        }
-    }
-}
-
-.team-styles(team1, @team1BaseColour);
-.team-styles(team2, @team2BaseColour);
-.team-styles(team3, @team3BaseColour);
-.team-styles(team4, @team4BaseColour);
-.team-styles(team5, @team5BaseColour);
-.team-styles(npc, @teamNpcBaseColour);
 
 
 .clickable {

@@ -36,7 +36,6 @@ describe('score.', function() {
 
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Nickname');
-            expect(profileText).toContain('Team');
             expect(profileText).toContain('Completed Missions');
             expect(profileText).toContain('Pioneer');
             expect(profileText).toContain('Diplomat');

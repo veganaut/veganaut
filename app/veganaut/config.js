@@ -56,8 +56,5 @@
     });
 
     // Toggle features that aren't ready yet
-    // TODO: those should be turned off in production
-    module.constant('featureToggle', {
-        socialGraph: true
-    });
+    module.constant('featureToggle', {});
 })(window.veganaut.mainModule);

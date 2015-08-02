@@ -3,7 +3,6 @@
     "title": "veganaut.net - beta"
   },
   "general": {
-    "team": "Équipe",
     "person": "Véganaute"
   },
   "navigation": {
@@ -77,14 +76,6 @@
   "action": {
     "register": "Register",
     "cancel": "Annuler",
-    "socialGraph": {
-      "createActivityLink": {
-        "attract": "Invite",
-        "support": "Invite",
-        "tempt": "Invite",
-        "unspecified": "Invite someone"
-      }
-    },
     "profile": {
       "edit": "Modifier le profil",
       "save": "Enregistrer le profil",
@@ -131,9 +122,6 @@
       "submit": "Save and continue"
     }
   },
-  "socialGraph": {
-    "title": "Network"
-  },
   "openActivities": {
     "title": "Planned invitations",
     "description": "Codes for all planned invitations."
@@ -149,7 +137,6 @@
       "email": "E-mail",
       "fullName": "Prénom et nom de famille",
       "nickname": "Pseudo",
-      "team": "Equipe",
       "captured": "Captured",
       "password": "Mot de passe",
       "passwordRepeat": "Mot de passe: saisir à nouveau",
@@ -161,14 +148,6 @@
       "completedMissions": "Missions accomplies"
     }
   },
-  "team": {
-    "team1": "Bleu",
-    "team2": "Vert",
-    "team3": "Violet",
-    "team4": "Rouge",
-    "team5": "Orange",
-    "npc": "NPC"
-  },
   "score": {
     "points": "Points",
     "totalScore": "Score",
@@ -176,17 +155,9 @@
     "captured": "Captures",
     "babies": "Babies",
     "total": "Total",
-    "teams": {
-      "title": "Equipes",
-      "locations": "# Endroits",
-      "people": "# Véganautes"
-    },
     "people": {
       "title": "Véganautes",
-      "missions": "# Missions",
-      "filter": {
-        "onlyMyTeam": "Seulement afficher mon équipe"
-      }
+      "missions": "# Missions"
     }
   },
   "location": {
@@ -243,11 +214,6 @@
       "retail": "Shopping",
       "event": "Événement",
       "private": "Privé"
-    },
-    "score": {
-      "explanation": {
-        "teamPoints": "L'équipe avec cette couleur a autant de points ici "
-      }
     },
     "quality": {
       "explanation": "Plus de branches signifie une offre végane plus large et meilleure.",
@@ -452,7 +418,7 @@
     },
     "game": {
       "title": "Le Jeu",
-      "text1": "En ce moment, il existe cinq équipes de véganautes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes s'affrontent en compétition amicale. Laquelle découvre le plus d'endroits? Grâce à quelle équipe l'offre végane de ces endroits croît-elle le plus vite?",
+      "text1": "TODO: NEW TEXT. En ce moment, il existe cinq équipes de véganautes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes s'affrontent en compétition amicale. Laquelle découvre le plus d'endroits? Grâce à quelle équipe l'offre végane de ces endroits croît-elle le plus vite?",
       "text2": "Si tu veux participer, inscris-toi dès maintenant (c'est très rapide)! Tu n'as pas envie de participer? Pas de problème, tu peux venir ici à tout moment pour t'informer sur les offres véganes. C'est bien à cela que servent les informations que nous récoltons."
     }
   }

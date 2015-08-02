@@ -124,28 +124,6 @@
             ;
         };
 
-        /**
-         * Returns the verb used to describe making an activity with the
-         * given target
-         *
-         * @param target
-         * @returns {string}
-         */
-        PlayerService.prototype.getActivityVerb = function(target) {
-            if (target.isDummy() || target.isMaybe() || target.isBaby()) {
-                // Attract new players
-                return 'attract';
-            }
-            else if (this._me.team === target.team) {
-                // Support your own team
-                return 'support';
-            }
-            else {
-                // Tempt the other team or the default if you don't have a full account (e.g. as a maybe)
-                return 'tempt';
-            }
-        };
-
         // Returns singleton instance
         return new PlayerService();
     }]);

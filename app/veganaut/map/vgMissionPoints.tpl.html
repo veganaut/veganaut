@@ -1,5 +1,5 @@
 <span class="pull-right-spaced mission-points"
- ng-class="{ 'font--greyed-out': completed, 'color-team': !completed }">
+ ng-class="{ 'mission-points--completed': completed, 'mission-points--available': !completed }">
     <span ng-hide="points <= 0">
         <span ng-hide="hidePoints">{{ points }}</span>
         <span ng-show="completed" class="glyphicon glyphicon-ok"></span>

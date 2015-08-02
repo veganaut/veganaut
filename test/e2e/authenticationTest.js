@@ -19,10 +19,10 @@ describe('authentication.', function() {
     });
 
     it('should redirect to /login for pages needing authentication.', function() {
-        browser.get('/socialGraph');
+        browser.get('/score');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
-        browser.get('/createActivity');
+        browser.get('/me');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
     });
 
@@ -46,8 +46,8 @@ describe('authentication.', function() {
                 expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:2,coords:0\.0000000-0\.0000000$/, 'should redirect to the map after login');
             });
 
-            it('should mark the current player\'s team.', function() {
-                expect(element(by.css('body.player-team1')).isPresent()).toBe(true);
+            it('should mark the body as logged in.', function() {
+                expect(element(by.css('body.logged-in')).isPresent()).toBe(true);
             });
         });
     });

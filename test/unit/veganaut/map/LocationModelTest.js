@@ -172,48 +172,6 @@ describe('LocationModel.', function() {
         });
     });
 
-    describe('getSortedPoints.', function() {
-        it('returns sensible default value', function() {
-            var loc = new Location();
-            expect(typeof loc.getSortedPoints).toBe('function', 'getSortedPoints is a function');
-            var points = loc.getSortedPoints();
-            expect(typeof points).toBe('object', 'is an array (object)');
-            expect(points.length).toBe(0, 'is empty array');
-        });
-
-        it('returns points in correct format', function() {
-            var loc = new Location({ points: {
-                team1: 10
-            }});
-            var points = loc.getSortedPoints();
-            expect(points.length).toBe(1, 'there is 1 point');
-            expect(typeof points[0]).toBe('object', 'contains an object');
-            expect(points[0].team).toBe('team1', 'object has the team set');
-            expect(points[0].points).toBe(10, 'object has the points set');
-        });
-
-        it('returns sorted points', function() {
-            var loc = new Location({ points: {
-                team1: 10,
-                team2: 30,
-                team3: 20,
-                team4: 5
-            }});
-            var points = loc.getSortedPoints();
-            expect(points.length).toBe(4, 'there are 4 point objects');
-            expect(points[0].team).toBe('team2', 'correct team in position 1');
-            expect(points[1].team).toBe('team3', 'correct team in position 2');
-            expect(points[2].team).toBe('team1', 'correct team in position 3');
-            expect(points[3].team).toBe('team4', 'correct team in position 4');
-            expect(points[0].points).toBe(30, 'correct points in position 1');
-            expect(points[1].points).toBe(20, 'correct points in position 2');
-            expect(points[2].points).toBe(10, 'correct points in position 3');
-            expect(points[3].points).toBe( 5, 'correct points in position 4');
-        });
-
-        // TODO: test memoization?
-    });
-
     describe('getProductById.', function() {
         it('has method', function() {
             var loc = new Location();

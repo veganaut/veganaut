@@ -32,7 +32,6 @@
             function Location(jsonData) {
                 // Explicitly define all the properties
                 this.id = undefined;
-                this.team = undefined;
                 this.lat = undefined;
                 this.lng = undefined;
                 this.name = undefined;
@@ -131,7 +130,6 @@
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
                     className: 'marker marker--type-' + this.type +
-                        ' marker--team-' + this.team +
                         ' marker--quality-' + this.getRoundedQuality(),
                     html: ''
                 };
@@ -270,25 +268,6 @@
                 return this._disabled;
             };
 
-
-            /**
-             * Returns an array of all the points starting with the highest:
-             * { team: 'color', points: 100 }
-             * @returns {{}}
-             */
-            Location.prototype.getSortedPoints = function() {
-                // TODO: should be possible to clear the memoiziation
-                this.sortedPoints = this.sortedPoints || _.chain(this.points)
-                    .map(function(value, key) {
-                        return {team: key, points: value};
-                    })
-                    .sortBy('points')
-                    .reverse()
-                    .value()
-                ;
-                return this.sortedPoints;
-            };
-
             /**
              * Returns the Product with the given id if it exists
              * @param {string} productId
@@ -359,7 +338,6 @@
                 // TODO: should be merged with the constructor and just be less ugly
                 // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
                 this.id = newData.id;
-                this.team = newData.team;
                 this.name = newData.name;
                 this.description = newData.description;
                 this.link = newData.link;
@@ -371,9 +349,6 @@
                 this.updatedAt = newData.updatedAt;
                 this._updateMarker();
                 this.setLatLng(newData.lat, newData.lng);
-
-                // Clear points memoiziation
-                this.sortedPoints = undefined;
 
                 // TODO: update the marker 'title'
             };

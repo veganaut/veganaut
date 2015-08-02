@@ -91,7 +91,6 @@ describe('backendModule', function() {
                 email: 'foo@bar.baz',
                 nickname: 'Alicster',
                 fullName: 'Alice Alison',
-                team: 'team1',
                 id: '000000000000000000000001',
                 type: 'user',
                 capture: {

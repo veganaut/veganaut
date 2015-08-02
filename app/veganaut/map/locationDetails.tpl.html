@@ -6,9 +6,6 @@
         <vg-location-quality-icon location="location"></vg-location-quality-icon>
         <vg-location-effort-icon location="location"></vg-location-effort-icon>
     </h1>
-    <p ng-if="isLoggedIn()">
-        <vg-team-points-display location="location"></vg-team-points-display>
-    </p>
     <p ng-if="location.description">
         <span class="location-description">{{ location.description }}</span>
     </p>
@@ -135,7 +132,7 @@
             <strong>{{ 'location.label.recentMissionsBy' | translate }}</strong>:
             <span ng-repeat="person in recentlyActiveVeganauts">
                 <a href="/veganaut/{{person.id}}"
-                 class="color-{{ person.team }} player-recently-active"
+                 class="player-recently-active"
                  >{{ person.nickname }}</a><span ng-hide="$last">,</span>
             </span>
             <span ng-if="recentlyActiveVeganauts.length === 0">
@@ -250,7 +247,7 @@
                             <span class="glyphicon glyphicon-remove"></span>
                             {{ 'map.mission.missionForm.cancel' | translate }}
                         </button>
-                        <button type="submit" class="btn btn-team pull-right"
+                        <button type="submit" class="btn btn-primary pull-right"
                          ng-disabled="!mission.hasValidOutcome()"
                          ng-click="finishMission(mission)">
                             <span class="glyphicon glyphicon-ok"></span>

@@ -11,8 +11,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body class="player-{{ me.team }}"
- ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn(), 'embedded': isEmbedded }">
+<body ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn(), 'embedded': isEmbedded }">
 
 <!-- VEGANAUT LOGO -->
 <ng-include src="'img/veganaut.svg'" class="hidden"></ng-include>
@@ -33,7 +32,7 @@
                     <span class="glyphicon glyphicon-log-in"></span>
                 </button>
                 <a href="/" class="main-logo-link">
-                    <svg class="logo logo--main color-team">
+                    <svg class="logo logo--main">
                         <% /*
                         Because of the <base href="/"> we need to bind this to the absolute url when the app is started.
                         Once the app is started and the SVG loaded, it's fine, so we use a one time binding.
@@ -48,10 +47,6 @@
                  ng-bind="'navigation.home' | translate"></button>
                 <button class="btn btn-default btn-block nav-map" ng-click="goToView('map')"
                  ng-bind="'navigation.map' | translate"></button>
-                <button class="btn btn-default btn-block nav-graph" ng-click="goToView('socialGraph')"
-                 ng-if="featureToggle.socialGraph && canViewGraph()" ng-bind="'navigation.avatar' | translate"></button>
-                <button class="btn btn-default btn-block nav-activities" ng-click="goToView('activities')"
-                 ng-if="featureToggle.socialGraph" ng-bind="'navigation.activities' | translate"></button>
 
                 <button class="btn btn-default btn-block nav-score" ng-click="goToView('score')"
                  ng-if="isLoggedIn()" ng-bind="'navigation.score' | translate"></button>
@@ -61,7 +56,7 @@
                 <button class="btn btn-default btn-block nav-register" ng-click="goToView('register')"
                  ng-if="!isLoggedIn()" ng-bind="'navigation.register' | translate"></button>
                 <button class="btn btn-default btn-block nav-login" ng-click="goToView('login')"
-                 ng-if="!canViewGraph()">
+                 ng-if="!isLoggedIn()">
                     <span class="glyphicon glyphicon-log-in"></span>
                     {{ 'navigation.login' | translate }}
                 </button>
