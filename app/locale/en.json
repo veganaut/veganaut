@@ -13,8 +13,6 @@
     "map": "Map",
     "score": "Teams",
     "profile": "Profile",
-    "avatar": "Network",
-    "activities": "Invitations",
     "blog": "Blog",
     "contactForm": "Contact",
     "twitter": "Twitter",
@@ -22,15 +20,8 @@
     "github": "GitHub",
     "bugs": "Bugreport"
   },
-  "form": {
-    "referenceCode": {
-      "placeholder": "Enter invitation-code",
-      "submit": "Submit code"
-    }
-  },
   "message": {
     "registered": "Registered successfully.",
-    "activityLinkCreated": "Invitation created.",
     "mission": {
       "success": "Mission completed. You made {{ points }} points.",
       "error": "Sorry, mission could not be saved: "
@@ -111,33 +102,12 @@
       "backToMap": "Back to map"
     }
   },
-  "activityLink": {
-    "title": "New invitation",
-    "label": {
-      "targetName": "With / For"
-    },
-    "form": {
-      "targetName": "Who?",
-      "choose": "What?",
-      "submit": "Save and continue"
-    }
-  },
-  "openActivities": {
-    "title": "Planned invitations",
-    "description": "Codes for all planned invitations."
-  },
   "person": {
-    "type": {
-      "user": "Veganaut",
-      "baby": "Baby",
-      "maybe": "Maybe"
-    },
     "label": {
       "publiclyVisible": "publicly visible",
       "email": "Email",
       "fullName": "Name",
       "nickname": "Nickname",
-      "captured": "Captured",
       "password": "Password",
       "passwordRepeat": "Repeat password",
       "attributes": "Attributes",
@@ -150,10 +120,6 @@
   },
   "score": {
     "points": "Points",
-    "totalScore": "Score",
-    "players": "Players",
-    "captured": "Captures",
-    "babies": "Babies",
     "total": "Total",
     "people": {
       "title": "Veganauts",
@@ -211,9 +177,7 @@
     },
     "type": {
       "gastronomy": "Gastronomy",
-      "retail": "Retail",
-      "event": "Event",
-      "private": "Private"
+      "retail": "Retail"
     },
     "quality": {
       "explanation": "The more twigs the bigger and better the vegan offer here.",
@@ -371,7 +335,6 @@
       "rateProduct": {
         "title": "Your rating",
         "description": "How do you rate this offer?",
-        "explanation.UNUSED": "There's no accounting for taste, but chances are that if you like something other people will like it too. Conversely, if something doesn't convince you then it's quite possible that other people won't fancy it either. But never mind other people's opinion here. Just provide the rating that is right for you personally."
       },
       "setProductName": {
         "title": "Edit name",

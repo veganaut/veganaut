@@ -13,8 +13,6 @@
     "map": "Karte",
     "score": "Teams",
     "profile": "Profil",
-    "avatar": "Netzwerk",
-    "activities": "Einladungen",
     "blog": "Blog",
     "contactForm": "Kontakt",
     "twitter": "Twitter",
@@ -22,15 +20,8 @@
     "github": "GitHub",
     "bugs": "Bugreport"
   },
-  "form": {
-    "referenceCode": {
-      "placeholder": "Einladungs-Code eingeben",
-      "submit": "Code absenden"
-    }
-  },
   "message": {
     "registered": "Registrierung erfolgreich.",
-    "activityLinkCreated": "Einladung erstellt.",
     "mission": {
       "success": "Mission erfolgreich abgeschlossen. Du hast {{ points }} Punkte gemacht.",
       "error": "Sorry, die Mission konnte nicht gespeichert werden: "
@@ -111,33 +102,12 @@
       "backToMap": "Zurück zur Karte"
     }
   },
-  "activityLink": {
-    "title": "Neue Einladung",
-    "label": {
-      "targetName": "Mit / Für"
-    },
-    "form": {
-      "targetName": "Wen?",
-      "choose": "Was?",
-      "submit": "Speichern und Weiter"
-    }
-  },
-  "openActivities": {
-    "title": "Geplante Einladungen",
-    "description": "Codes für deine geplanten Einladungen:"
-  },
   "person": {
-    "type": {
-      "user": "Veganaut_in",
-      "baby": "Baby",
-      "maybe": "Maybe"
-    },
     "label": {
       "publiclyVisible": "öffentlich sichtbar",
       "email": "E-Mail Adresse",
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
-      "captured": "Gefangen",
       "password": "Passwort",
       "passwordRepeat": "Passwort wiederholen",
       "attributes": "Attribute",
@@ -150,10 +120,6 @@
   },
   "score": {
     "points": "Punkte",
-    "score": "Punktestand",
-    "users": "Spieler",
-    "captured": "Gefangen",
-    "babies": "Babies",
     "total": "Total",
     "people": {
       "title": "VeganautInnen",
@@ -211,9 +177,7 @@
     },
     "type": {
       "gastronomy": "Gastro",
-      "retail": "Shopping",
-      "event": "Event",
-      "private": "Privat"
+      "retail": "Shopping"
     },
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
@@ -371,7 +335,6 @@
       "rateProduct": {
         "title": "Deine Bewertung",
         "description": "Wie bewertest du dieses vegane Angebot?",
-        "explanation.UNUSED": "Über Geschmack lässt sich nicht streiten. Gib einfach deine persönliche Bewertung ab."
       },
       "setProductName": {
         "title": "Edit name",

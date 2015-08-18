@@ -11,20 +11,6 @@
     module.factory('backendService', ['$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
         function($http, $rootScope, backendUrl, sessionService, i18nSettings) {
             var BackendService = function() {
-                /**
-                 * Person id is set if the user entered a reference code but is not
-                 * logged in
-                 */
-                this.personId = undefined;
-
-
-                // Subscribe to session events
-                $rootScope.$onRootScope('veganaut.session.created', function() {
-                    this.personId = undefined;
-                }.bind(this));
-                $rootScope.$onRootScope('veganaut.session.destroyed', function() {
-                    this.personId = undefined;
-                }.bind(this));
             };
 
             /**
@@ -36,8 +22,7 @@
             };
 
             /**
-             * Registers a new user. If the user has already entered a reference
-             * code, the person from that activity's target will be used.
+             * Registers a new user.
              * @param {string} email
              * @param {string} fullName
              * @param {string} nickname
@@ -56,12 +41,6 @@
                 // Only submit locale if it's valid
                 if (i18nSettings.availableLocales.indexOf(locale) >= 0) {
                     postData.locale = locale;
-                }
-
-                // If we already have a person id, register as that person
-                // TODO NOW: remove this
-                if (this.personId) {
-                    postData.id = this.personId;
                 }
 
                 return $http.post(backendUrl + '/person', postData);
@@ -90,77 +69,6 @@
                 // TODO: make sure we are logged in first
                 return $http.delete(backendUrl + '/session')
                     .finally(sessionService.destroySession.bind(sessionService));
-            };
-
-            /**
-             * Sends the get activity list request to the backend
-             * @returns {promise} promise returned from $http.get
-             * TODO: cache this list for a while
-             */
-            BackendService.prototype.getActivities = function() {
-                // TODO: make sure we are logged in first
-                return $http.get(backendUrl + '/activity');
-            };
-
-            /**
-             * Posts a new activity link with the given data to the backend
-             * @param person Either a name of a person to create or a person object
-             * @param activity
-             * @returns {promise} promise returned from $http.post
-             */
-            BackendService.prototype.addActivityLink = function(person, activity) {
-                // TODO: make sure we are logged in first
-                var target = {};
-                if (angular.isString(person)) {
-                    // Create a person object
-                    target.nickname = person;
-                }
-                else {
-                    target.id = person.id;
-                }
-
-                // Prepare the data to post
-                var postData = {
-                    target: target
-                };
-
-                // Add activity if given
-                if (activity) {
-                    postData.activity = {
-                        id: activity.id
-                    };
-                }
-                return $http.post(backendUrl + '/activityLink', postData);
-            };
-
-            /**
-             * Submits the given referenceCode to the backend. Will set the
-             * returned target of the activity link as the active person,
-             * which makes it possible to query the graph of that person.
-             *
-             * @param referenceCode
-             * @returns {promise} promise returned from $http.post
-             */
-            BackendService.prototype.submitReferenceCode = function(referenceCode) {
-                var postData = {
-                    referenceCode: referenceCode
-                };
-
-                return $http.post(backendUrl + '/activityLink/reference', postData)
-                    .success(function(data) {
-                        // TODO: validate id?
-                        this.personId = data.target;
-                    }.bind(this));
-            };
-
-            /**
-             * Gets the list of open activityLink for the logged in user
-             *
-             * @returns {promise}
-             */
-            BackendService.prototype.getOpenActivityLinks = function() {
-                // TODO: make sure we are logged in first
-                return $http.get(backendUrl + '/activityLink/mine/open');
             };
 
             /**

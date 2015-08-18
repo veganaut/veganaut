@@ -13,8 +13,6 @@
     "map": "Carte",
     "score": "Équipes",
     "profile": "Profil",
-    "avatar": "Réseau",
-    "activities": "Invitations",
     "blog": "Blog",
     "contactForm": "Contact",
     "twitter": "Twitter",
@@ -22,15 +20,8 @@
     "github": "GitHub",
     "bugs": "Bugreport"
   },
-  "form": {
-    "referenceCode": {
-      "placeholder": "Enter invitation-code",
-      "submit": "Submit code"
-    }
-  },
   "message": {
     "registered": "Inscription réussi.",
-    "activityLinkCreated": "Invitation created.",
     "mission": {
       "success": "Mission accomplie. Tu as gagné {{ points }} points.",
       "error": "Désolé, la mission n'a pas pu être enregistrée: "
@@ -111,33 +102,12 @@
       "backToMap": "Retourner à la carte"
     }
   },
-  "activityLink": {
-    "title": "New invitation",
-    "label": {
-      "targetName": "With / For"
-    },
-    "form": {
-      "targetName": "Who?",
-      "choose": "What?",
-      "submit": "Save and continue"
-    }
-  },
-  "openActivities": {
-    "title": "Planned invitations",
-    "description": "Codes for all planned invitations."
-  },
   "person": {
-    "type": {
-      "user": "Véganaute",
-      "baby": "Baby",
-      "maybe": "Maybe"
-    },
     "label": {
       "publiclyVisible": "visible par tout le monde",
       "email": "E-mail",
       "fullName": "Prénom et nom de famille",
       "nickname": "Pseudo",
-      "captured": "Captured",
       "password": "Mot de passe",
       "passwordRepeat": "Mot de passe: saisir à nouveau",
       "attributes": "Attributs",
@@ -150,10 +120,6 @@
   },
   "score": {
     "points": "Points",
-    "totalScore": "Score",
-    "players": "Players",
-    "captured": "Captures",
-    "babies": "Babies",
     "total": "Total",
     "people": {
       "title": "Véganautes",
@@ -211,9 +177,7 @@
     },
     "type": {
       "gastronomy": "Gastronomie",
-      "retail": "Shopping",
-      "event": "Événement",
-      "private": "Privé"
+      "retail": "Shopping"
     },
     "quality": {
       "explanation": "Plus de branches signifie une offre végane plus large et meilleure.",
@@ -371,7 +335,6 @@
       "rateProduct": {
         "title": "Ton évaluation",
         "description": "Comment est-ce que tu évalues cette option végane?",
-        "explanation.UNUSED": "Les goûts varient mais si tu aimes quelque chose c'est probable que d'autres gens l'aiment aussi. Inversement, si quelque chose ne te convainc pas c'est possible que d'autres gens ne l'aiment pas beaucoup non plus. Mais peu importent les opinions des autres là – Donne l'évaluation qui te semble la plus juste pour toi!"
       },
       "setProductName": {
         "title": "Modifier le nom",

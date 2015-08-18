@@ -55,35 +55,6 @@ describe('backendModule', function() {
         expect(sessionServiceMock.createSession).toHaveBeenCalledWith('test-session-id');
     }));
 
-
-    it('should have a addActivityLink method', inject(function($httpBackend, backendService) {
-        // Define our expectations
-        var expectedPostData = {
-            target: {
-                nickname: 'Tester'
-            },
-            activity: {
-                id: '1'
-            }
-        };
-        $httpBackend.expectPOST('/activityLink', expectedPostData)
-            .respond({
-                referenceCode: 'ref-123'
-            })
-        ;
-
-        expect(typeof backendService.addActivityLink).toBe('function');
-
-        // Add activity link
-        var req = backendService.addActivityLink('Tester', { id: '1'});
-        $httpBackend.flush();
-
-        // Make sure we got a promise
-        expect(typeof req.then).toBe('function');
-        expect(typeof req.catch).toBe('function');
-        expect(typeof req.finally).toBe('function');
-    }));
-
     it('should have a getMe method', inject(function($httpBackend, backendService) {
         // Define our expectations
         $httpBackend.expectGET('/person/me')
@@ -92,10 +63,7 @@ describe('backendModule', function() {
                 nickname: 'Alicster',
                 fullName: 'Alice Alison',
                 id: '000000000000000000000001',
-                type: 'user',
-                capture: {
-                    active: false
-                }
+                accountType: 'player'
             })
         ;
 

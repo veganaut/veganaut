@@ -32,12 +32,6 @@
         <strong>{{ 'person.label.gourmet' | translate }}</strong><br />
         {{ me.attributes.gourmet }}
     </p>
-    <p>
-        <span ng-if="me.capture.active" class="badge captured">
-            <span class="glyphicon glyphicon-asterisk"></span>
-            <span ng-bind="'person.label.captured'|translate"></span>
-        </span>
-    </p>
 </div>
 
 <button type="button" class="edit-profile btn btn-block btn-default" ng-click="goToView('me/edit')">
