@@ -189,6 +189,10 @@
              */
             BackendService.prototype.updateMe = function(newPlayerData) {
                 newPlayerData = _.pick(newPlayerData, 'email', 'fullName', 'nickname', 'password', 'locale');
+                if (newPlayerData.password === '') {
+                    // Don't submit empty new password
+                    delete newPlayerData.password;
+                }
                 return $http.put(backendUrl + '/person/me', newPlayerData);
             };
 
