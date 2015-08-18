@@ -8,12 +8,6 @@
     module.controller('ScoreCtrl', ['$scope', 'backendService',
         function($scope, backendService) {
             /**
-             * The logged in user
-             * @type {Person}
-             */
-            $scope.me = undefined;
-
-            /**
              * Scores retrieved from the backend
              * @type {{}}
              */
@@ -39,13 +33,6 @@
             backendService.getScore()
                 .success(function(scores) {
                     $scope.scores = scores;
-                })
-            ;
-
-            // Get the logged in user
-            backendService.getMe()
-                .success(function(me) {
-                    $scope.me = me;
                 })
             ;
         }
