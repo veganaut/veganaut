@@ -3,7 +3,7 @@
 
     module.controller('EditProfileCtrl', ['$scope', '$translate', 'alertService', 'playerService',
         function($scope, $translate, alertService, playerService) {
-            playerService.getMe().then(function(me) {
+            playerService.getDeferredMe().then(function(me) {
                 $scope.form = {
                     fullName: me.fullName,
                     nickname: me.nickname,

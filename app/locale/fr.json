@@ -32,13 +32,13 @@
     "registered": "Inscription réussi.",
     "activityLinkCreated": "Invitation created.",
     "mission": {
-      "success": "Mission accomplie. Tu as gagné autant de points: ",
+      "success": "Mission accomplie. Tu as gagné {{ points }} points.",
       "error": "Désolé, la mission n'a pas pu être enregistrée: "
     },
     "profile": {
       "update": {
         "success": "Profil modifié.",
-        "fail": "Désolé, ton profil n'a pas pu être modifié."
+        "error": "Désolé, ton profil n'a pas pu être modifié."
       }
     },
     "resetPassword": {

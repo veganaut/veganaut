@@ -43,10 +43,16 @@ describe('playerService', function() {
         expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.session.created', jasmine.any(Function));
     }));
 
-    it('should have a getMe method', inject(function(playerService) {
-        expect(typeof playerService.getMe).toBe('function', 'getMe should be a function');
-        var me = playerService.getMe();
-        expect(typeof me.then).toEqual('function', 'getMe should return a promise');
+    it('should have a getDeferredMe method', inject(function(playerService) {
+        expect(typeof playerService.getDeferredMe).toBe('function', 'getDeferredMe should be a function');
+        var me = playerService.getDeferredMe();
+        expect(typeof me.then).toEqual('function', 'getDeferredMe should return a promise');
+    }));
+
+    it('should have a getImmediateMe method', inject(function(playerService) {
+        expect(typeof playerService.getImmediateMe).toBe('function', 'getImmediateMe should be a function');
+        var me = playerService.getImmediateMe();
+        expect(typeof me).toEqual('object', 'getImmediateMe should return an object');
     }));
 
     it('should request the player data on login', inject(function(playerService) { // jshint ignore:line

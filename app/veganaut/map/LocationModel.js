@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.service('Location', ['Leaflet',
-        function(L) {
+    module.service('Location', ['Leaflet', 'playerService',
+        function(L, playerService) {
             /**
              * Z-index offset to use for the marker when the location is active
              * @type {number}
@@ -32,6 +32,7 @@
             function Location(jsonData) {
                 // Explicitly define all the properties
                 this.id = undefined;
+                this.owner = undefined;
                 this.lat = undefined;
                 this.lng = undefined;
                 this.name = undefined;
@@ -120,6 +121,15 @@
             };
 
             /**
+             * Returns whether this location is owned by the current player
+             * @returns {boolean}
+             */
+            Location.prototype.isOwnedByPlayer = function() {
+                var me = playerService.getImmediateMe();
+                return (typeof me === 'object' && this.owner.id === me.id);
+            };
+
+            /**
              * Makes sure the Leaflet marker is up to date with the current
              * model state. Sets the icon html and the css as well as the
              * locationId on the marker.
@@ -127,9 +137,11 @@
              */
             Location.prototype._updateMarker = function() {
                 // Create the basic icon settings
+                var ownerClass = (this.isOwnedByPlayer() ? ' marker--owner ' : '');
                 var icon = {
                     iconSize: null, // Needs to be set to null so it can be specified in CSS
                     className: 'marker marker--type-' + this.type +
+                        ownerClass +
                         ' marker--quality-' + this.getRoundedQuality(),
                     html: ''
                 };
@@ -241,6 +253,14 @@
             };
 
             /**
+             * Returns the number of points the current owner has
+             * @returns {number}
+             */
+            Location.prototype.getOwnerPoints = function() {
+                return this.points[this.owner.id] || 0;
+            };
+
+            /**
              * Sets the location to be disabled or enabled on the map.
              * Disabled locations are shown greyed out.
              * @param {boolean} isDisabled
@@ -266,6 +286,24 @@
              */
             Location.prototype.isDisabled = function() {
                 return this._disabled;
+            };
+
+            /**
+             * Returns an array of all the points starting with the highest:
+             * { player: id, points: 100 }
+             * @returns {{}}
+             */
+            Location.prototype.getSortedPoints = function() {
+                // TODO: should be possible to clear the memoiziation
+                this._sortedPoints = this._sortedPoints || _.chain(this.points)
+                    .map(function(value, key) {
+                        return {player: key, points: value};
+                    })
+                    .sortBy('points')
+                    .reverse()
+                    .value()
+                ;
+                return this._sortedPoints;
             };
 
             /**
@@ -338,6 +376,7 @@
                 // TODO: should be merged with the constructor and just be less ugly
                 // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
                 this.id = newData.id;
+                this.owner = newData.owner;
                 this.name = newData.name;
                 this.description = newData.description;
                 this.link = newData.link;
@@ -349,6 +388,9 @@
                 this.updatedAt = newData.updatedAt;
                 this._updateMarker();
                 this.setLatLng(newData.lat, newData.lng);
+
+                // Clear points memoiziation
+                this._sortedPoints = undefined;
 
                 // TODO: update the marker 'title'
             };

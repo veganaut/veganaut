@@ -36,8 +36,8 @@
                     return Location.getIconClassForType($scope.type);
                 };
             }],
-            controllerAs: 'vgLocationTypeIconCtrl',
-            template: '<span ng-class="vgLocationTypeIconCtrl.getClassName()"></span>'
+            controllerAs: 'locationTypeIconCtrl',
+            template: '<span ng-class="locationTypeIconCtrl.getClassName()"></span>'
         };
     }]);
 

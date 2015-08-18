@@ -43,19 +43,30 @@
 
 
         /**
-         * Gets the player data
+         * Returns a promise to the player data.
          * @param {boolean} [forceReload=false] Reload the data from the backend
          * @returns {promise}
          */
-        PlayerService.prototype.getMe = function(forceReload) {
+        PlayerService.prototype.getDeferredMe = function(forceReload) {
             if (forceReload === true && this._canReloadData) {
                 // Create a new deferred
                 this._deferredMe = $q.defer();
 
-                // Get th data
+                // Get the data
                 this._retrieveFromBackend();
             }
             return this._deferredMe.promise;
+        };
+
+        /**
+         * Returns the currently available player data. If the player
+         * was not retrieved yet, this will be an empty object.
+         * The same object will be updated however as soon as the player
+         * is fetched.
+         * @returns {{}}
+         */
+        PlayerService.prototype.getImmediateMe = function() {
+            return this._me;
         };
 
         /**

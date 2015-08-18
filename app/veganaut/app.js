@@ -17,6 +17,7 @@
         'veganaut.app.main',
         'veganaut.app.session',
         'veganaut.app.backend',
+        'veganaut.app.location',
         'veganaut.app.map',
         'veganaut.app.missions',
         'veganaut.app.score',
@@ -93,6 +94,7 @@
     mainModule.value('d3', window.d3);
 
     // Define the different modules of the app
+    var locationModule = angular.module('veganaut.app.location', []);
     var mapModule = angular.module('veganaut.app.map', []);
     var missionsModule = angular.module('veganaut.app.missions', []);
     var scoreModule = angular.module('veganaut.app.score', []);
@@ -103,6 +105,7 @@
 
     window.veganaut = {
         mainModule: mainModule,
+        locationModule: locationModule,
         mapModule: mapModule,
         missionsModule: missionsModule,
         scoreModule: scoreModule,

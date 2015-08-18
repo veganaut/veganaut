@@ -32,13 +32,13 @@
     "registered": "Registered successfully.",
     "activityLinkCreated": "Invitation created.",
     "mission": {
-      "success": "Mission completed. You made this many points: ",
+      "success": "Mission completed. You made {{ points }} points.",
       "error": "Sorry, mission could not be saved: "
     },
     "profile": {
       "update": {
         "success": "Profile updated successfully.",
-        "fail": "Sorry, your profile couldn't be updated."
+        "error": "Sorry, your profile couldn't be updated."
       }
     },
     "resetPassword": {

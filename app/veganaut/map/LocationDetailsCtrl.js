@@ -153,7 +153,7 @@
 
                         // Make sure the user is in the list of active Veganauts
                         if (!currentUserIsRecentlyActive) {
-                            playerService.getMe().then(function(me) {
+                            playerService.getDeferredMe().then(function(me) {
                                 // Check if the user is already in the list
                                 for (var i = 0; i < $scope.recentlyActiveVeganauts.length; i++) {
                                     if (me.id === $scope.recentlyActiveVeganauts[i].id) {

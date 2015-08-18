@@ -44,7 +44,7 @@
              */
             LocaleService.prototype._loadPlayerLocale = function() {
                 var that = this;
-                playerService.getMe().then(function(me) {
+                playerService.getDeferredMe().then(function(me) {
                     that.changeLocale(me.locale);
                     that._canSaveToPlayer = true;
                 });
@@ -59,7 +59,7 @@
             LocaleService.prototype._updatePlayerLocale = function() {
                 var that = this;
                 if (that._canSaveToPlayer) {
-                    playerService.getMe().then(function(me) {
+                    playerService.getDeferredMe().then(function(me) {
                         // Update the locale if it's different than the current one
                         var currentLocale = that.getLocale();
                         if (me.locale !== currentLocale) {

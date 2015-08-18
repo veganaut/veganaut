@@ -32,7 +32,7 @@
     "registered": "Registrierung erfolgreich.",
     "activityLinkCreated": "Einladung erstellt.",
     "mission": {
-      "success": "Mission erfolgreich abgeschlossen. Du hast so viele Punkte gemacht: ",
+      "success": "Mission erfolgreich abgeschlossen. Du hast {{ points }} Punkte gemacht.",
       "error": "Sorry, die Mission konnte nicht gespeichert werden: "
     },
     "profile": {

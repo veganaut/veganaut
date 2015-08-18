@@ -57,6 +57,12 @@
         .marker-style(@sizeQuality5, @opacityQuality5);
     }
 
+    &.marker--owner {
+        background-color: @colourBrandTurquoise;
+        color: @colorLight;
+        border-color: @colorLight;
+    }
+
     // Icon representing the location type inside the marker
     .marker__icon--type {
         width: 100%;
@@ -109,7 +115,7 @@
 
 // Styles for the location quality label in the title
 .location-quality-label {
-    background-color: @colourPrimary;
+    background-color: @colourBrandGrey;
     border-radius: 12px;
     color: white;
     display: inline-block;
@@ -132,7 +138,7 @@
 
     // The colours of the glyphicon are inverted
     background-color: white;
-    color: @colourPrimary;
+    color: @colourBrandGrey;
 }
 
 .location-description {

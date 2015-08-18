@@ -1,5 +1,6 @@
 <div ng-controller="LocationDetailsCtrl" ng-show="location">
     <!-- TODO: this template is getting way too huge, split it up to directives and separate templates -->
+    <vg-location-score ng-if="isLoggedIn()" vg-location="location" vg-user="me"></vg-location-score>
     <h1>
         <vg-location-type-badge location="location"></vg-location-type-badge>
         {{ location.name }}

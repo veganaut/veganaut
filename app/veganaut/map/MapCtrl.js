@@ -387,7 +387,7 @@
             // Check if we are logged in
             if (backendService.isLoggedIn()) {
                 // Get the player
-                playerService.getMe().then(function(me) {
+                playerService.getDeferredMe().then(function(me) {
                     player = me;
                 });
             }

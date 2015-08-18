@@ -11,7 +11,7 @@ describe('localeService.', function() {
         $translate.use = jasmine.createSpy('use');
         $translate.proposedLanguage = jasmine.createSpy('proposedLanguage');
         playerService = {
-            getMe: jasmine.createSpy('getMe')
+            getDeferredMe: jasmine.createSpy('getDeferredMe')
         };
         localStorage = {
             getItem: jasmine.createSpy('getItem'),
@@ -31,7 +31,7 @@ describe('localeService.', function() {
 
     beforeEach(inject(function($q, _$rootScope_) {
         deferredMe = $q.defer();
-        playerService.getMe.andReturn(deferredMe.promise);
+        playerService.getDeferredMe.andReturn(deferredMe.promise);
         $rootScope = _$rootScope_;
     }));
 
@@ -47,7 +47,7 @@ describe('localeService.', function() {
         }));
 
         it('loads the locale from player.', inject(function(localeService) { // jshint ignore:line
-            expect(playerService.getMe).toHaveBeenCalled();
+            expect(playerService.getDeferredMe).toHaveBeenCalled();
 
             expect($translate.use.mostRecentCall.args[0]).not.toBe('de');
 

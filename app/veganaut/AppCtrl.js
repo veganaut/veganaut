@@ -106,7 +106,7 @@
             }
 
             // Get the logged in user data
-            playerService.getMe().then(function(me) {
+            playerService.getDeferredMe().then(function(me) {
                 $scope.me = me;
             });
 

@@ -12,6 +12,11 @@ body {
     overflow: hidden;
 }
 
+.container {
+    padding-left: @mainSidePadding;
+    padding-right: @mainSidePadding;
+}
+
 .main-container {
     margin-top: @navbarHeight + 10px;
 }
@@ -50,23 +55,6 @@ body.embedded .main-container {
     opacity: 0.2;
 }
 
-.navbar-header {
-    float: none;
-}
-
-.navbar-toggle {
-    display: block;
-}
-
-.navbar-btn-login {
-    float: right;
-    margin: 8px 5px 0 0;
-}
-
-.navbar-footer {
-    margin: 10px 0;
-}
-
 .page-section {
     margin-bottom: 5px;
 }
@@ -77,6 +65,7 @@ body.embedded .main-container {
     left: 0;
     right: 0;
     border: 1px solid @bootstrapGreyBorder;
+    border-top: 0;
     padding-top: 10px;
     position: absolute;
     z-index: 1005;
@@ -96,7 +85,7 @@ body.embedded .main-container {
 }
 
 .top-box--full-width {
-    padding: 2px 0 0; // TODO: this should be "0", it's not because @navbarHeight is 2px too little
+    padding: 0;
     width: 100%;
     border-left: 0;
     border-right: 0;
@@ -104,7 +93,6 @@ body.embedded .main-container {
 
 body.embedded {
     .top-box--full-width {
-        padding: 0;
         margin-top: 9px;
     }
 
