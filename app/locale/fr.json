@@ -157,10 +157,8 @@
     "label": {
       "description": "Description",
       "link": "Site web",
-      "updatedAt": "Mission la plus récente",
-      "recentMissionsBy": "Dernières/derniers véganautes actives/actifs "
+      "updatedAt": "Dernière mise à jour"
     },
-    "noRecentMissions": "Cet endroit a été ajouté par nos admins. Tu peux être la première/le premier véganaute à accomplir une mission ici. ",
     "rating": {
       "average": "Moyenne",
       "numRatings": "Évaluations"
@@ -334,7 +332,7 @@
       },
       "rateProduct": {
         "title": "Ton évaluation",
-        "description": "Comment est-ce que tu évalues cette option végane?",
+        "description": "Comment est-ce que tu évalues cette option végane?"
       },
       "setProductName": {
         "title": "Modifier le nom",

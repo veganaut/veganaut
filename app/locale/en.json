@@ -157,10 +157,8 @@
     "label": {
       "description": "Description",
       "link": "Website",
-      "updatedAt": "Last mission",
-      "recentMissionsBy": "Last active Veganauts"
+      "updatedAt": "Last update"
     },
-    "noRecentMissions": "This location was added by an admin. Be the first Veganaut to complete a mission here!",
     "rating": {
       "average": "Average",
       "numRatings": "Ratings"
@@ -334,7 +332,7 @@
       },
       "rateProduct": {
         "title": "Your rating",
-        "description": "How do you rate this offer?",
+        "description": "How do you rate this offer?"
       },
       "setProductName": {
         "title": "Edit name",

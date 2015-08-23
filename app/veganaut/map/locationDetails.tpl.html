@@ -13,6 +13,12 @@
     <p ng-if="location.link">
         <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
     </p>
+    <p ng-if="location.updatedAt">
+        <small>
+            {{ 'location.label.updatedAt' | translate }}:
+            {{ location.updatedAt | date:'dd.MM.yyyy' }}
+        </small>
+    </p>
     <button ng-if="isLoggedIn()"
      type="button" class="edit-location btn btn-block btn-default"
      ng-click="goToView(location.getUrl(true))">
@@ -123,23 +129,8 @@
         </p>
     </div>
 
-    <div ng-if="locationMissions" class="location-missions">
+    <div ng-if="locationMissions.length > 0" class="location-missions">
         <h2>{{ 'map.mission.title' | translate }}</h2>
-        <p ng-if="location.updatedAt && recentlyActiveVeganauts.length > 0">
-            <strong>{{ 'location.label.updatedAt' | translate }}</strong>:
-            {{ location.updatedAt | date:'dd.MM.yyyy' }}
-        </p>
-        <p>
-            <strong>{{ 'location.label.recentMissionsBy' | translate }}</strong>:
-            <span ng-repeat="person in recentlyActiveVeganauts">
-                <a href="/veganaut/{{person.id}}"
-                 class="player-recently-active"
-                 >{{ person.nickname }}</a><span ng-hide="$last">,</span>
-            </span>
-            <span ng-if="recentlyActiveVeganauts.length === 0">
-                {{ 'location.noRecentMissions' | translate }}
-            </span>
-        </p>
         <small class="pull-right">{{ 'score.points' | translate }}</small>
         <div class="clearfix"></div>
         <div ng-repeat="mission in locationMissions|filter:filterOnlyZeroMissions|orderBy:'order'"

@@ -157,10 +157,8 @@
     "label": {
       "description": "Beschreibung",
       "link": "Webseite",
-      "updatedAt": "Letzte Mission",
-      "recentMissionsBy": "Zuletzt aktiv"
+      "updatedAt": "Letzte Aktualisierung"
     },
-    "noRecentMissions": "Diese Location wurde von Admins eingetragen. Du kannst hier als ersteR eine Mission erfüllen",
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen"
@@ -334,7 +332,7 @@
       },
       "rateProduct": {
         "title": "Deine Bewertung",
-        "description": "Wie bewertest du dieses vegane Angebot?",
+        "description": "Wie bewertest du dieses vegane Angebot?"
       },
       "setProductName": {
         "title": "Edit name",
