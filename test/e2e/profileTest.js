@@ -32,7 +32,6 @@ describe('profile.', function() {
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Alice Alison');
             expect(profileText).toContain('foo@bar.baz');
-            expect(profileText).toContain('Blue');
             expect(profileText).toContain('Completed Missions');
             expect(profileText).toContain('Pioneer');
             expect(profileText).toContain('Diplomat');

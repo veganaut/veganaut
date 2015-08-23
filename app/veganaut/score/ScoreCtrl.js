@@ -7,6 +7,10 @@
      */
     module.controller('ScoreCtrl', ['$scope', 'backendService',
         function($scope, backendService) {
+            if (!backendService.isLoggedIn()) {
+                $scope.goToView('login');
+            }
+
             /**
              * Scores retrieved from the backend
              * @type {{}}

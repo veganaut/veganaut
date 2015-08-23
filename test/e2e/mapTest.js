@@ -56,9 +56,9 @@ describe('map when logged out.', function() {
 
     it('should show some locations on the map.', function() {
         expect(element.all(by.css('.marker')).count()).toBeGreaterThan(0, 'has at least one location');
-        expect(element.all(by.css('.marker.marker--team-npc')).count()).toBeGreaterThan(0, 'has at least one npc location');
-        expect(element.all(by.css('.marker.marker--team-team1')).count()).toBeGreaterThan(0, 'has at least one team1 location');
-        expect(element.all(by.css('.marker.marker--team-team2')).count()).toBeGreaterThan(0, 'has at least one team2 location');
+        expect(element.all(by.css('.marker.marker--type-retail')).count()).toBeGreaterThan(0, 'has at least one retail location');
+        expect(element.all(by.css('.marker.marker--type-gastronomy')).count()).toBeGreaterThan(0, 'has at least one gastronomy location');
+        expect(element.all(by.css('.marker.marker--owner')).count()).toBe(0, 'has no location marked as being owned');
     });
 
     describe('map center loaded in local storage', function() {
@@ -112,7 +112,7 @@ describe('map when logged out.', function() {
     describe('interaction with locations on the map', function() {
         it('should toggle showing details when selecting a location.', function() {
             browser.get('/map#zoom:13,coords:46.945-7.449');
-            var location = element(by.css('.marker.marker--team-team1[title="Reformhaus Ruprecht"]'));
+            var location = element(by.css('.marker[title="Reformhaus Ruprecht"]'));
             location.click();
 
             var details = element(by.css('.location-details'));
@@ -200,8 +200,6 @@ describe('map when logged in.', function() {
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
         helpers.login();
-
-        browser.get('/map');
     });
 
     describe('add location.', function() {

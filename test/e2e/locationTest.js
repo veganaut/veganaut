@@ -65,23 +65,4 @@ describe('location.', function() {
             expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
         });
     });
-
-    describe('visit recently active players.', function() {
-        it('should be able to visit profile of recently active player.', function() {
-            browser.get('/location/000000000000000000000006');
-
-            var personLink = element(by.css('a.player-recently-active'));
-            personLink.click();
-
-            expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
-
-            var profileText = element(by.css('.profile')).getText();
-            expect(profileText).toContain('Nickname');
-            expect(profileText).toContain('Completed Missions');
-            expect(profileText).toContain('Pioneer');
-            expect(profileText).toContain('Diplomat');
-            expect(profileText).toContain('Evaluator');
-            expect(profileText).toContain('Gourmet');
-        });
-    });
 });
