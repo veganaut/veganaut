@@ -2,8 +2,17 @@
 
 /* global describe, beforeEach, it, expect, inject */
 describe('LocationModel.', function() {
-    var Location;
+    var Location, playerService;
     beforeEach(module('veganaut.app.map'));
+
+    beforeEach(module(function($provide) {
+        // Set up all the mock dependencies
+        playerService = {
+            getImmediateMe: jasmine.createSpy('getImmediateMe')
+        };
+
+        $provide.value('playerService', playerService);
+    }));
 
     beforeEach(inject(function(_Location_) {
         Location = _Location_;
@@ -256,7 +265,7 @@ describe('LocationModel.', function() {
         });
     });
 
-    describe('getTypeIconClass static method.', function() {
+    describe('getIconClassForType static method.', function() {
         it('method exists', function() {
             expect(typeof Location.getIconClassForType).toBe('function');
         });
