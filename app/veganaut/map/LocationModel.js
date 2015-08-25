@@ -126,7 +126,10 @@
              */
             Location.prototype.isOwnedByPlayer = function() {
                 var me = playerService.getImmediateMe();
-                return (typeof me === 'object' && this.owner.id === me.id);
+                if (angular.isObject(me) && angular.isObject(this.owner)) {
+                    return (this.owner.id === me.id);
+                }
+                return false;
             };
 
             /**
@@ -257,7 +260,14 @@
              * @returns {number}
              */
             Location.prototype.getOwnerPoints = function() {
-                return this.points[this.owner.id] || 0;
+                var points = 0;
+                if (angular.isObject(this.owner) &&
+                    angular.isString(this.owner.id) &&
+                    angular.isNumber(this.points[this.owner.id]))
+                {
+                    points = this.points[this.owner.id];
+                }
+                return points;
             };
 
             /**
