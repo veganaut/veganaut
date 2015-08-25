@@ -11,7 +11,7 @@
     "login": "Login",
     "logout": "Logout",
     "map": "Karte",
-    "score": "Teams",
+    "community": "Community",
     "profile": "Profil",
     "blog": "Blog",
     "contactForm": "Kontakt",
@@ -118,7 +118,7 @@
       "completedMissions": "Abgeschlossene Missionen"
     }
   },
-  "score": {
+  "community": {
     "points": "Punkte",
     "total": "Total",
     "people": {

@@ -19,7 +19,7 @@ describe('authentication.', function() {
     });
 
     it('should redirect to /login for pages needing authentication.', function() {
-        browser.get('/score');
+        browser.get('/community');
         expect(ptor.getCurrentUrl()).toMatch(/\/login/);
 
         browser.get('/me');

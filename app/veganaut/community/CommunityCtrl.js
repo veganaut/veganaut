@@ -2,10 +2,10 @@
     'use strict';
 
     /**
-     * Controller for the scores page. Retrieves scores from the backend
+     * Controller for the community page. Retrieves scores from the backend
      * and displays them.
      */
-    module.controller('ScoreCtrl', ['$scope', 'backendService',
+    module.controller('CommunityCtrl', ['$scope', 'backendService',
         function($scope, backendService) {
             if (!backendService.isLoggedIn()) {
                 $scope.goToView('login');
@@ -41,4 +41,4 @@
             ;
         }
     ]);
-})(window.veganaut.scoreModule);
+})(window.veganaut.communityModule);

@@ -4,7 +4,7 @@
 var helpers = require('./helpers');
 var elements = helpers.elements;
 
-describe('score.', function() {
+describe('community.', function() {
     var ptor;
 
     beforeEach(function() {
@@ -20,14 +20,14 @@ describe('score.', function() {
         helpers.login();
     });
 
-    describe('visit score.', function() {
-        it('should have a page that shows the score.', function() {
+    describe('visit community.', function() {
+        it('should have a page that shows the scores.', function() {
             elements.menuButton.click();
 
-            var scoreNavEntry = element(by.css('button.nav-score'));
-            expect(scoreNavEntry.isPresent()).toBe(true, 'nav entry for score is present');
-            scoreNavEntry.click();
-            expect(ptor.getCurrentUrl()).toMatch(/\/score/);
+            var communityNavEntry = element(by.css('button.nav-community'));
+            expect(communityNavEntry.isPresent()).toBe(true, 'nav entry for community is present');
+            communityNavEntry.click();
+            expect(ptor.getCurrentUrl()).toMatch(/\/community/);
 
             var scoreLink = element.all(by.css('a.player-score')).first();
             scoreLink.click();
@@ -45,8 +45,8 @@ describe('score.', function() {
     });
 
     describe('visit profile of another player.', function() {
-        it('should be able to visit profile of a player from the score.', function() {
-            browser.get('/score');
+        it('should be able to visit profile of a player from the community.', function() {
+            browser.get('/community');
 
             var personLink = element.all(by.css('a.player-score')).first();
             personLink.click();

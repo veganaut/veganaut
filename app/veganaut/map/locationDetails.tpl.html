@@ -131,7 +131,7 @@
 
     <div ng-if="locationMissions.length > 0" class="location-missions">
         <h2>{{ 'map.mission.title' | translate }}</h2>
-        <small class="pull-right">{{ 'score.points' | translate }}</small>
+        <small class="pull-right">{{ 'community.points' | translate }}</small>
         <div class="clearfix"></div>
         <div ng-repeat="mission in locationMissions|filter:filterOnlyZeroMissions|orderBy:'order'"
          class="page-section mission mission-{{ mission.type }}">

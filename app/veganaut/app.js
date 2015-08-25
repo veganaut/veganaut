@@ -20,7 +20,7 @@
         'veganaut.app.location',
         'veganaut.app.map',
         'veganaut.app.missions',
-        'veganaut.app.score',
+        'veganaut.app.community',
         'veganaut.app.user'
     ]);
 
@@ -48,8 +48,11 @@
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
-            $routeProvider.when('/score', {templateUrl: '/veganaut/score/score.tpl.html'});
+            $routeProvider.when('/community', {templateUrl: '/veganaut/community/community.tpl.html'});
             $routeProvider.when('/veganaut/:personId', {templateUrl: '/veganaut/user/person.tpl.html', controller: 'PersonCtrl'});
+
+            // Legacy URL redirects
+            $routeProvider.when('/score', {redirectTo: '/community'});
 
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
@@ -97,7 +100,7 @@
     var locationModule = angular.module('veganaut.app.location', []);
     var mapModule = angular.module('veganaut.app.map', []);
     var missionsModule = angular.module('veganaut.app.missions', []);
-    var scoreModule = angular.module('veganaut.app.score', []);
+    var communityModule = angular.module('veganaut.app.community', []);
     var userModule = angular.module('veganaut.app.user', []);
 
     // Make Leaflet available as angular service
@@ -108,7 +111,7 @@
         locationModule: locationModule,
         mapModule: mapModule,
         missionsModule: missionsModule,
-        scoreModule: scoreModule,
+        communityModule: communityModule,
         userModule: userModule
     };
 })();
