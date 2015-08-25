@@ -26,7 +26,10 @@
                  * @returns {boolean}
                  */
                 this.userIsOwner = function() {
-                    return (this.location.owner.id === this.user.id);
+                    if (angular.isObject(this.location.owner)) {
+                        return (this.location.owner.id === this.user.id);
+                    }
+                    return false;
                 };
 
                 /**
