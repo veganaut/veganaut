@@ -1,7 +1,4 @@
 {
-  "app": {
-    "title": "veganaut.net - beta"
-  },
   "general": {
     "person": "Véganaute"
   },
@@ -40,7 +37,7 @@
   },
   "register": {
     "title": "Inscription",
-    "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur veganaut.net? – Alors inscris-toi!",
+    "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur Veganaut.net? – Alors inscris-toi!",
     "form": {
       "submit": "Inscription"
     }
@@ -374,13 +371,15 @@
     },
     "lead": {
       "title": "Explore l'univers végan!",
-      "text1": "Où trouver de l'alimentation végane près d'ici? Quels sont les restaurants et magasins qui offrent le plus grand choix d'options véganes? Quels produits végans sont particulièrement bons? - Sur veganaut.net, nous récoltons les réponses à ces questions.",
+      "text1": "Où trouver de l'alimentation végane près d'ici? Quels sont les restaurants et magasins qui offrent le plus grand choix d'options véganes? Quels produits végans sont particulièrement bons? - Sur Veganaut.net, nous récoltons les réponses à ces questions.",
       "text2": "Parcours la carte. Est-ce que tu y trouves des lieux proposant des options véganes que tu ne connaissais pas? Dans certaines régions, de nombreux véganautes ont déjà partagé des informations. Dans d'autres, il n'existe encore presque rien. Qu'est-ce qui manque? Connais-tu un take-away dont le falafel végan est excellent, par exemple? Un magasin dont certains produits sont végans? En tant que véganaute, tu peux entrer ces informations sur la carte, et les rendre accessibles à tout le monde."
     },
-    "game": {
-      "title": "Le Jeu",
-      "text1": "TODO: NEW TEXT. En ce moment, il existe cinq équipes de véganautes: <span class=\"color-team1\">bleu</span>, <span class=\"color-team2\">vert</span>, <span class=\"color-team3\">violet</span>, <span class=\"color-team4\">rouge</span>, <span class=\"color-team5\">orange</span>. Les équipes s'affrontent en compétition amicale. Laquelle découvre le plus d'endroits? Grâce à quelle équipe l'offre végane de ces endroits croît-elle le plus vite?",
-      "text2": "Si tu veux participer, inscris-toi dès maintenant (c'est très rapide)! Tu n'as pas envie de participer? Pas de problème, tu peux venir ici à tout moment pour t'informer sur les offres véganes. C'est bien à cela que servent les informations que nous récoltons."
+    "team": {
+      "title": "The people behind Veganaut.net",
+      "text1": "That's our core team from left to right: Sophie, Sebu and Toby.",
+      "text2": "Toby is our head of development, Sebu is our head of everything but development and Sophie is our summer intern.",
+      "text3": "In addition to the core team we have software developer friends who join us for hackathons or volunteer a few lines of code in their free time. If you're a developer and you can imagine doing that too: contact us!",
+      "text4": "And then of course there's all of you, the amazing Veganauts, who share their vegan discoveries on Veganaut.net. Thank you very much, we're glad you're part of this!"
     }
   }
 }

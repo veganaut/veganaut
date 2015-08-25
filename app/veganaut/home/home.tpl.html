@@ -31,9 +31,15 @@
                 </button>
             </p>
             <div class="home-game">
-                <h2 class="h4 title--home">{{ 'home.game.title' | translate }}</h2>
+                <h2 class="h4 title--home">{{ 'home.team.title' | translate }}</h2>
                 <p>
-                    <span ng-bind-html="'home.game.text1' | translate"></span>
+                    {{ 'home.team.text1' | translate }}
+                </p>
+                <p>
+                    <img src="/img/team.jpg" class="home-team-image" />
+                </p>
+                <p>
+                    {{ 'home.team.text2' | translate }}
                     <a href="#" class="action--show-more"
                      ng-click="showFullGameText = true | track:'home.text':'expandGameText'"
                      ng-hide="showFullGameText">
@@ -41,8 +47,12 @@
                     </a>
                 </p>
                 <p ng-show="showFullGameText">
-                    {{ 'home.game.text2' | translate }}
+                    {{ 'home.team.text3' | translate }}
                 </p>
+                <p ng-show="showFullGameText">
+                    {{ 'home.team.text4' | translate }}
+                </p>
+                <!-- TODO NOW: 'contact us' should be a link -->
             </div>
         </div>
     </div>
