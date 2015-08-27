@@ -1,7 +1,4 @@
 {
-  "general": {
-    "person": "Véganaute"
-  },
   "navigation": {
     "home": "Acceuil",
     "register": "Inscription",
@@ -118,10 +115,9 @@
   "community": {
     "points": "Points",
     "total": "Total",
-    "people": {
-      "title": "Véganautes",
-      "missions": "# Missions"
-    }
+    "locationTypes": "Endroits",
+    "totalPeople": "Véganautes",
+    "missions": "Missions"
   },
   "location": {
     "form": {

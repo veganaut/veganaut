@@ -1,27 +1,62 @@
 <div ng-controller="CommunityCtrl">
     <!-- TODO: make a directive to put these tables in ? -->
-    <h2>{{ 'community.people.title' | translate }}</h2>
+
     <table class="table table-striped table-condensed">
         <thead>
         <tr>
-            <th>{{ 'general.person' | translate }}</th>
-            <th>{{ 'community.people.missions' | translate }}</th>
+            <th colspan="2">{{ 'community.totalPeople' | translate }}</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td>{{ 'community.total' | translate }}</td>
+            <td class="community-table__count">{{ scores.people.count }}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th colspan="2">{{ 'community.locationTypes' | translate }}</th>
         </tr>
         </thead>
         <tbody>
+        <tr></tr> <!-- TODO: hack to get the colours of the striped table to be inversed -->
+        <tr ng-repeat="score in scores.locationTypes.locations">
+            <td>{{ 'location.type.' + score.type | translate }}</td>
+            <td class="community-table__count">{{ score.locations }}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>{{ 'community.total' | translate }}</td>
+            <td class="community-table__count">{{ sum(scores.locationTypes.locations, 'locations') }}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th colspan="2">{{ 'community.missions' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr></tr> <!-- TODO: hack to get the colours of the striped table to be inversed -->
         <tr ng-repeat="score in scores.people.missions">
             <td>
                 <a href="/veganaut/{{score.person.id}}" class="player-score">
                     {{ score.person.nickname }}
                 </a>
             </td>
-            <td>{{ score.missions }}</td>
+            <td class="community-table__count">{{ score.missions }}</td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
             <td>{{ 'community.total' | translate }}</td>
-            <td>{{ sum(scores.people.missions, 'missions') }}</td>
+            <td class="community-table__count">{{ sum(scores.people.missions, 'missions') }}</td>
         </tr>
         </tfoot>
     </table>

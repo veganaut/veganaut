@@ -1,7 +1,4 @@
 {
-  "general": {
-    "person": "Veganaut"
-  },
   "navigation": {
     "home": "Home",
     "register": "Register",
@@ -118,10 +115,9 @@
   "community": {
     "points": "Points",
     "total": "Total",
-    "people": {
-      "title": "Veganauts",
-      "missions": "# Missions"
-    }
+    "locationTypes": "Locations",
+    "totalPeople": "Veganauts",
+    "missions": "Missions"
   },
   "location": {
     "form": {
