@@ -57,7 +57,6 @@
             LocationService.prototype.getLocations = function(bounds) {
                 var that = this;
                 var deferredLocations = $q.defer();
-                var beforeActive = that.active;
                 backendService.getLocations(bounds)
                     .then(function(data) {
                         var locations = {};
@@ -74,6 +73,7 @@
                         }
 
                         // Deactivate the location and activate it again if it's still around
+                        var beforeActive = that.active;
                         that.activate();
                         if (beforeActive && locations[beforeActive.id]) {
                             that.activate(locations[beforeActive.id]);
