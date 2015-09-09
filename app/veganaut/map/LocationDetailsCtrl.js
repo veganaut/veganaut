@@ -43,9 +43,11 @@
             $scope.toggleProduct = function(product) {
                 if ($scope.openedProductId === product.id) {
                     $scope.openedProductId = undefined;
+                    angularPiwik.track('location.products', 'close');
                 }
                 else {
                     $scope.openedProductId = product.id;
+                    angularPiwik.track('location.products', 'open');
                 }
             };
 
