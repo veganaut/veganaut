@@ -1,0 +1,50 @@
+// Styles for the community page
+
+.table--community {
+    & > tbody > tr:nth-of-type(2n) {
+        background-color: @bootstrapLightGreyBackground;
+        &.table--community__show-more {
+            background-color: @colorLight;
+        }
+    }
+
+    .table--community__count {
+        text-align: right;
+    }
+
+    .table--community__prefix {
+        margin-right: 5px;
+        font-size: 85%;
+    }
+
+    .table--community__row--player {
+        .table--community__player,
+        .table--community__prefix,
+        .table--community__count {
+            font-weight: bold;
+        }
+    }
+
+    .table--community__summary-link {
+        font-style: italic;
+    }
+
+    .table--community__show-more {
+        text-align: center;
+        td {
+            padding: 0;
+        }
+    }
+
+    .table--community__close {
+        float: right;
+
+        // Make clickable area bigger by moving it a bit into the surrounding areas
+        padding: 5px;
+        margin: -5px -5px -5px 0;
+
+        .glyphicon {
+            font-size: 85%;
+        }
+    }
+}

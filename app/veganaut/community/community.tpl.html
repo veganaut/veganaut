@@ -1,63 +1,50 @@
-<div ng-controller="CommunityCtrl">
-    <!-- TODO: make a directive to put these tables in ? -->
-
-    <table class="table table-striped table-condensed">
+<div ng-controller="CommunityCtrl as community">
+    <table class="table table-condensed table--community">
         <thead>
         <tr>
             <th colspan="2">{{ 'community.totalPeople' | translate }}</th>
+            <th class="table--community__count">{{ community.totalPeople }}</th>
         </tr>
         </thead>
-        <tfoot>
-        <tr>
-            <td>{{ 'community.total' | translate }}</td>
-            <td class="community-table__count">{{ scores.people.count }}</td>
-        </tr>
-        </tfoot>
     </table>
 
-    <table class="table table-striped table-condensed">
+    <table class="table table-condensed table--community">
         <thead>
         <tr>
-            <th colspan="2">{{ 'community.locationTypes' | translate }}</th>
+            <th>
+                {{ 'community.locationTypes' | translate }}
+            </th>
+            <th class="table--community__count">
+                {{ community.totalLocations }}
+            </th>
         </tr>
         </thead>
         <tbody>
-        <tr></tr> <!-- TODO: hack to get the colours of the striped table to be inversed -->
-        <tr ng-repeat="score in scores.locationTypes.locations">
-            <td>{{ 'location.type.' + score.type | translate }}</td>
-            <td class="community-table__count">{{ score.locations }}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td>{{ 'community.total' | translate }}</td>
-            <td class="community-table__count">{{ sum(scores.locationTypes.locations, 'locations') }}</td>
-        </tr>
-        </tfoot>
-    </table>
-
-    <table class="table table-striped table-condensed">
-        <thead>
-        <tr>
-            <th colspan="2">{{ 'community.missions' | translate }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr></tr> <!-- TODO: hack to get the colours of the striped table to be inversed -->
-        <tr ng-repeat="score in scores.people.missions">
+        <tr ng-repeat="score in community.locationTypes">
             <td>
-                <a href="/veganaut/{{score.person.id}}" class="player-score">
-                    {{ score.person.nickname }}
-                </a>
+                <span class="table--community__prefix">
+                    <vg-location-type-icon type="score.type"></vg-location-type-icon>
+                </span>
+                {{ 'location.type.' + score.type | translate }}
             </td>
-            <td class="community-table__count">{{ score.missions }}</td>
+            <td class="table--community__count">
+                {{ score.locations }}
+            </td>
         </tr>
         </tbody>
-        <tfoot>
-        <tr>
-            <td>{{ 'community.total' | translate }}</td>
-            <td class="community-table__count">{{ sum(scores.people.missions, 'missions') }}</td>
-        </tr>
-        </tfoot>
     </table>
+
+    <vg-ranking-table
+     class="ranking--location-owners"
+     vg-ranks="community.locationOwnerRanks"
+     vg-title="{{ 'community.locationOwners' | translate }}"
+     vg-tracking-category="community.locationOwners">
+    </vg-ranking-table>
+
+    <vg-ranking-table
+     class="ranking--missions"
+     vg-ranks="community.missionRanks"
+     vg-title="{{ 'community.missions' | translate }}"
+     vg-tracking-category="community.missions">
+    </vg-ranking-table>
 </div>

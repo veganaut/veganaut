@@ -114,10 +114,13 @@
   },
   "community": {
     "points": "Punkte",
-    "total": "Total",
     "locationTypes": "Locations",
-    "totalPeople": "VeganautInnen",
-    "missions": "Missionen"
+    "locationOwners": "Rangliste nach Locations",
+    "missions": "Rangliste nach Missionen",
+    "and": "und",
+    "numPeople": "{{ count }} VeganautInnen",
+    "numOtherPeople": "{{ count }} andere VeganautInnen",
+    "totalPeople": "VeganautInnen"
   },
   "location": {
     "form": {

@@ -5,7 +5,7 @@
     "login": "Connexion",
     "logout": "Déconnexion",
     "map": "Carte",
-    "community": "Community",
+    "community": "Communauté",
     "profile": "Profil",
     "blog": "Blog",
     "contactForm": "Contact",
@@ -114,10 +114,13 @@
   },
   "community": {
     "points": "Points",
-    "total": "Total",
     "locationTypes": "Endroits",
-    "totalPeople": "Véganautes",
-    "missions": "Missions"
+    "locationOwners": "Classement par endroits",
+    "missions": "Classement par missions",
+    "and": "et",
+    "numPeople": "{{ count }} Véganautes",
+    "numOtherPeople": "{{ count }} autres Véganautes",
+    "totalPeople": "Véganautes"
   },
   "location": {
     "form": {

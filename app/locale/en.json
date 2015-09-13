@@ -114,10 +114,13 @@
   },
   "community": {
     "points": "Points",
-    "total": "Total",
     "locationTypes": "Locations",
-    "totalPeople": "Veganauts",
-    "missions": "Missions"
+    "locationOwners": "Ranking by locations",
+    "missions": "Ranking by missions",
+    "and": "and",
+    "numPeople": "{{ count }} Veganauts",
+    "numOtherPeople": "{{ count }} other Veganauts",
+    "totalPeople": "Veganauts"
   },
   "location": {
     "form": {

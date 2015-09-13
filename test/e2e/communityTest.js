@@ -1,4 +1,4 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global protractor, describe, beforeEach, it, expect, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -6,49 +6,54 @@ var elements = helpers.elements;
 
 describe('community.', function() {
     var ptor;
+    var loadFixtures = true;
 
     beforeEach(function() {
-        // Tell backend to reload the fixtures
-        helpers.loadFixtures();
+        // Only load fixtures if explicitly told
+        if (loadFixtures) {
+            // Tell backend to reload the fixtures
+            helpers.loadFixtures();
+            loadFixtures = false;
 
-        // Go to the app
-        helpers.loadApp('/');
+            // Go to the app
+            helpers.loadApp('/login');
+        }
+
         ptor = protractor.getInstance();
-
-        // TODO: not so great to logout before every test
-        helpers.logoutIfLoggedIn();
-        helpers.login();
+        helpers.loginIfLoggedOut();
     });
 
+    it('should have a menu entry for community.', function() {
+        elements.menuButton.click();
+
+        var communityNavEntry = element(by.css('button.nav-community'));
+        expect(communityNavEntry.isPresent()).toBe(true, 'nav entry for community is present');
+        communityNavEntry.click();
+        expect(ptor.getCurrentUrl()).toMatch(/\/community/);
+    });
+
+    // TODO: extend to test the rankings and the impact of doing missions more precisely
     describe('visit community.', function() {
-        it('should have a page that shows the scores.', function() {
-            elements.menuButton.click();
-
-            var communityNavEntry = element(by.css('button.nav-community'));
-            expect(communityNavEntry.isPresent()).toBe(true, 'nav entry for community is present');
-            communityNavEntry.click();
-            expect(ptor.getCurrentUrl()).toMatch(/\/community/);
-
-            var scoreLink = element.all(by.css('a.player-score')).first();
-            scoreLink.click();
-
-            expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
-
-            var profileText = element(by.css('.profile')).getText();
-            expect(profileText).toContain('Nickname');
-            expect(profileText).toContain('Completed Missions');
-            expect(profileText).toContain('Pioneer');
-            expect(profileText).toContain('Diplomat');
-            expect(profileText).toContain('Evaluator');
-            expect(profileText).toContain('Gourmet');
+        beforeEach(function() {
+            helpers.goToIfNotAlreadyThere('/community');
         });
-    });
 
-    describe('visit profile of another player.', function() {
+        it('should have owned location ranking.', function() {
+            var ranking = element(by.css('.ranking--location-owners'));
+            expect(ranking.isPresent()).toBe(true, 'has ranking table');
+
+            expect(ranking.getText()).toContain('Alice', 'Alice should be shown in the ranking');
+        });
+
+        it('should have owned location ranking.', function() {
+            var ranking = element(by.css('.ranking--missions'));
+            expect(ranking.isPresent()).toBe(true, 'has ranking table');
+
+            expect(ranking.getText()).toContain('Alice', 'Alice should be shown in the ranking');
+        });
+
         it('should be able to visit profile of a player from the community.', function() {
-            browser.get('/community');
-
-            var personLink = element.all(by.css('a.player-score')).first();
+            var personLink = element.all(by.css('a.person-score')).first();
             personLink.click();
 
             expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);

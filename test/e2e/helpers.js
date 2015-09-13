@@ -72,7 +72,7 @@ var helpers = {
     login: function(email, password) {
         email = email || 'foo@bar.baz';
         password = password || 'foobar';
-        browser.get('/login');
+        helpers.goToIfNotAlreadyThere('/login');
         element(by.model('form.email')).sendKeys(email);
         element(by.model('form.password')).sendKeys(password + '\n');
 
@@ -84,6 +84,19 @@ var helpers = {
     },
 
     /**
+     * Log into the app but only if not already logged in
+     * @param {string} [email]
+     * @param {string} [password]
+     */
+    loginIfLoggedOut: function(email, password) {
+        element(by.css('body.logged-in')).isPresent().then(function(isLoggedIn) {
+            if (!isLoggedIn) {
+                helpers.login(email, password);
+            }
+        });
+    },
+
+    /**
      * Checks if we are logged in and if yes logs out
      */
     logoutIfLoggedIn: function() {
@@ -91,6 +104,21 @@ var helpers = {
             if (isPresent) {
                 helpers.openMenu();
                 elements.logoutButton.click();
+            }
+        });
+    },
+
+    /**
+     * Checks if we are currently at the given URL and if not go there
+     * @param {string} url
+     */
+    goToIfNotAlreadyThere: function(url) {
+        browser.getCurrentUrl().then(function(currentUrl) {
+            // Check if the currentUrl already ends with the URL
+            // TODO: this test only checks that the end of the URL matches
+            if (currentUrl.indexOf(url, currentUrl.length - url.length) === -1) {
+                console.log('reload');
+                browser.get(url);
             }
         });
     },

@@ -1,0 +1,37 @@
+<table class="table table-condensed table--community">
+    <thead>
+    <tr>
+        <th colspan="2">{{ rankingTable.title }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in rankingTable.topRanks track by row.rank"
+     vg-ranking-table-row="row"
+     vg-tracking-category="{{ rankingTable.trackingCategory }}">
+    </tr>
+
+    <tr ng-if="rankingTable.showMoreMiddle" class="table--community__show-more">
+        <td colspan="2">
+            <button class="btn btn-link" ng-click="rankingTable.showMoreTop()">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+            <button class="btn btn-link" ng-click="rankingTable.showMoreBefore()">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </button>
+        </td>
+    </tr>
+
+    <tr ng-repeat="row in rankingTable.playerRanks track by row.rank"
+     vg-ranking-table-row="row"
+     vg-tracking-category="{{ rankingTable.trackingCategory }}">
+    </tr>
+
+    <tr ng-if="rankingTable.showMoreEnd" class="table--community__show-more">
+        <td colspan="2">
+            <button class="btn btn-link" ng-click="rankingTable.showMoreAfter()">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
