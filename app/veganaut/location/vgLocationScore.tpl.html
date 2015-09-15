@@ -8,10 +8,10 @@
         {{ locationScoreCtrl.getRightPoints() }}
     </div>
     <div class="location-score__owner">
-        <span ng-if="locationScoreCtrl.userIsOwner()"
-         class="location-score__owner__icon">
-            <span class="glyphicon glyphicon-user"></span>
-        </span>
-        {{ locationScoreCtrl.location.owner.nickname }}
+        <a href="/veganaut/{{ locationScoreCtrl.location.owner.id }}">
+            <span ng-if="locationScoreCtrl.userIsOwner()"
+             class="location-score__owner__icon">
+                <span class="glyphicon glyphicon-user"></span></span>{{ locationScoreCtrl.location.owner.nickname }}
+        </a>
     </div>
 </div>
