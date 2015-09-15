@@ -26,7 +26,7 @@
 //    };
 
     // Mapquest tiles
-    mapDefaults.tileLayer = 'http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg';
+    mapDefaults.tileLayer = 'https://otile{s}-s.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg';
     mapDefaults.tileLayerOptions = {
         subdomains: '1234',
         attribution: osmAttribution + ' | <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> Tiles'
