@@ -78,6 +78,7 @@ gulp.task('ngTemplateConcat', function() {
         .pipe(minifyHtml({
             empty: true,
             spare: true,
+            loose: true,
             quotes: true
         }))
 
