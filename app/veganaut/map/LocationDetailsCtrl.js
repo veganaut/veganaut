@@ -92,14 +92,22 @@
                 if (!angular.isObject($scope.location)) {
                     return [];
                 }
-                else if ($scope.showUnavailable.products) {
-                    // Show all products
-                    return $scope.location.products;
-                }
-                else {
+
+                // Check if unavailable products should be hidden
+                if (!$scope.showUnavailable.products) {
                     // Show only available and temporarily unavailable products
-                    return $scope.location.getProductsByAvailability(['available', 'temporarilyUnavailable']);
+                    var products = $scope.location.getProductsByAvailability(['available', 'temporarilyUnavailable']);
+                    if (products.length > 0) {
+                        // If we found products, return them
+                        return products;
+                    }
+
+                    // We haven't found any available or temporarilyUnavailable products, show all instead
+                    $scope.showUnavailable.products = true;
                 }
+
+                // Show all products
+                return $scope.location.products;
             };
 
             /**
