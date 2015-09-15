@@ -161,9 +161,10 @@
                 // the rounded average. We then make sure the last 3 digits are
                 // always 0. Those will be used by Leaflet to set a latitude
                 // based offset.
+                // Locations with no rating are counted as if they had a rating of 3
                 // TODO: add a test for this
                 // TODO: should use the rank, but isn't in frontend yet
-                var zIndexOffset = Math.round((this.quality.average || 0) * 100) * 1000;
+                var zIndexOffset = Math.round((this.quality.average || 3) * 100) * 1000;
 
                 // Add active class if active
                 if (this._active) {

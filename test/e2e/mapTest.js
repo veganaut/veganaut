@@ -150,9 +150,9 @@ describe('map when logged out.', function() {
             quality0.getSize().then(function(size0) {
                 quality3.getSize().then(function(size3) {
                     quality4.getSize().then(function(size4) {
-                        expect(size0.height).toBeLessThan(size3.height, 'height of 0 is less than that of 3');
+                        expect(Math.abs(size0.height - size3.height)).toBeLessThan(0.0001, 'height of 0 is equal to that of 3');
                         expect(size3.height).toBeLessThan(size4.height, 'height of 3 is less than that of 4');
-                        expect(size0.width).toBeLessThan(size3.width, 'width of 0 is less than that of 3');
+                        expect(Math.abs(size0.width - size3.width)).toBeLessThan(0.0001, 'width of 0 is equal to that of 3');
                         expect(size3.width).toBeLessThan(size4.width, 'width of 3 is less than that of 4');
                     });
                 });
@@ -166,7 +166,7 @@ describe('map when logged out.', function() {
                         opacity0 = parseFloat(opacity0);
                         opacity3 = parseFloat(opacity3);
                         opacity4 = parseFloat(opacity4);
-                        expect(opacity0).toBeLessThan(opacity3, 'opacity of 0 is less than that of 3');
+                        expect(Math.abs(opacity0 - opacity3)).toBeLessThan(0.0001, 'opacity of 0 is equal to that of 3');
                         expect(opacity3).toBeLessThan(opacity4, 'opacity of 3 is less than that of 4');
                     });
                 });
@@ -180,7 +180,7 @@ describe('map when logged out.', function() {
                         z0 = parseInt(z0, 10);
                         z3 = parseInt(z3, 10);
                         z4 = parseInt(z4, 10);
-                        expect(z0).toBeLessThan(z3, 'z-index of 0 is less than that of 3');
+                        expect(Math.abs(z0 - z3)).toBeLessThan(1000, 'z-index of 0 is about equal to that of 3');
                         expect(z3).toBeLessThan(z4, 'z-index of 3 is less than that of 4');
                     });
                 });
