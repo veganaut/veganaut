@@ -117,7 +117,6 @@ var helpers = {
             // Check if the currentUrl already ends with the URL
             // TODO: this test only checks that the end of the URL matches
             if (currentUrl.indexOf(url, currentUrl.length - url.length) === -1) {
-                console.log('reload');
                 browser.get(url);
             }
         });
