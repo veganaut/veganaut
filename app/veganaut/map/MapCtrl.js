@@ -170,6 +170,10 @@
                 // Update and track if it changed
                 if ($scope.searchShown !== show) {
                     $scope.searchShown = show;
+                    if ($scope.searchShown) {
+                        // Make sure search is not minimised when shown
+                        $scope.searchComponent.minimised = false;
+                    }
                     angularPiwik.track('map.search', show ? 'open' : 'close');
                 }
             };
