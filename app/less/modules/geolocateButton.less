@@ -1,0 +1,27 @@
+// Styles for the vg-geolocation-button
+.geolocate-button {
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    bottom: 22px;
+    right: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    border: none;
+
+    &.geolocate-button--locating {
+        -webkit-animation:spin 1s linear infinite;
+        -moz-animation:spin 2s linear infinite;
+        animation:spin 2s linear infinite;
+    }
+
+    .geolocate-button__icon {
+        font-size: 20px;
+        left: -2px;
+        top: 0;
+    }
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

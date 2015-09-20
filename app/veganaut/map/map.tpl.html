@@ -89,4 +89,8 @@
      ng-class="{'map--placing-location': isPlacingLocation()}"
      defaults="mapDefaults" center="mainMap.center" event-broadcast="events">
     </leaflet>
+
+    <vg-geolocate-button
+     vg-map-center="mainMap.center">
+    </vg-geolocate-button>
 </div>
