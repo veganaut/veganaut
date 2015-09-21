@@ -16,6 +16,9 @@
   },
   "message": {
     "registered": "Registered successfully.",
+    "geolocate": {
+      "error": "Position could not be retrieved."
+    },
     "mission": {
       "success": "Mission completed. You made {{ points }} points.",
       "error": "Sorry, mission could not be saved: "

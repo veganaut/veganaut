@@ -16,6 +16,9 @@
   },
   "message": {
     "registered": "Inscription réussi.",
+    "geolocate": {
+      "error": "La position n'a pas pu être récupéré."
+    },
     "mission": {
       "success": "Mission accomplie. Tu as gagné {{ points }} points.",
       "error": "Désolé, la mission n'a pas pu être enregistrée: "

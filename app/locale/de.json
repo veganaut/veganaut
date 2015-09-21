@@ -16,6 +16,9 @@
   },
   "message": {
     "registered": "Registrierung erfolgreich.",
+    "geolocate": {
+      "error": "Position konnte nicht ermittelt werden."
+    },
     "mission": {
       "success": "Mission erfolgreich abgeschlossen. Du hast {{ points }} Punkte gemacht.",
       "error": "Sorry, die Mission konnte nicht gespeichert werden: "
