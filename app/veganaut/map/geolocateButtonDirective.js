@@ -5,7 +5,7 @@
      * Maz zoom to be used when a location was found
      * @type {number}
      */
-    var MAX_GEOLOCATE_ZOOM = 18;
+    var MAX_GEOLOCATE_ZOOM = 17;
 
     /**
      * Directive for adding a geolocate button to a map.
@@ -17,9 +17,9 @@
             scope: {},
             controller: [
                 '$scope', '$window', '$timeout', '$translate',
-                'leafletData', 'angularPiwik', 'alertService',
+                'Leaflet', 'leafletData', 'angularPiwik', 'alertService',
                 function($scope, $window, $timeout, $translate,
-                    leafletData, angularPiwik, alertService)
+                    L, leafletData, angularPiwik, alertService)
                 {
                     /**
                      * Stores whether the browser supports geolocation
@@ -79,6 +79,22 @@
                         $timeout(function() {
                             $scope.$apply();
                         }, 0);
+
+                        // After a while (when zooming/panning is done) add a circle to show the accuracy
+                        // TODO: actually wait for the zooming to be done
+                        $timeout(function() {
+                            var radius = location.accuracy / 2;
+                            var marker = L.circle(location.latlng, radius, {
+                                className: 'geolocate-circle-marker'
+                            });
+
+                            marker.addTo(this._map);
+
+                            // Remove it again after it's faded out
+                            $timeout(function() {
+                                this._map.removeLayer(marker);
+                            }.bind(this), 2000); // TODO: move numbers to constant
+                        }.bind(this), 300);
 
                         // Track usage
                         angularPiwik.track('map.geolocation', 'found');
