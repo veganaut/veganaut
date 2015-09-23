@@ -69,7 +69,7 @@
     "devel"         : true,     // Development/debugging (alert, confirm, etc)
     "dojo"          : false,    // Dojo Toolkit
     "jasmine"       : true,     // Jasmine
-    "jquery"        : true,     // jQuery
+    "jquery"        : false,    // jQuery
     "mocha"         : false,    // Mocha
     "mootools"      : false,    // MooTools
     "node"          : true,     // Node.js

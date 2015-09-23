@@ -93,9 +93,6 @@
     // Main module for components that don't belong anywhere particular
     var mainModule = angular.module('veganaut.app.main', []);
 
-    // Make d3js available as angular service
-    mainModule.value('d3', window.d3);
-
     // Define the different modules of the app
     var locationModule = angular.module('veganaut.app.location', []);
     var mapModule = angular.module('veganaut.app.map', []);

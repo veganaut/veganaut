@@ -21,9 +21,7 @@ var files = {
     ],
     jsLib: [
         'app/lib/lodash/lodash.js',
-        'app/lib/jquery/dist/jquery.js',
         'app/lib/angular/angular.js',
-        'app/lib/d3/d3.js',
         'app/lib/leaflet/dist/leaflet-src.js',
         'app/lib/angular-route/angular-route.js',
         'app/lib/angular-sanitize/angular-sanitize.js',
