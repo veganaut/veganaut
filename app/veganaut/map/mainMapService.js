@@ -23,6 +23,12 @@
             var MAP_CENTER_STORAGE_ID = 'veganautMapCenter';
 
             /**
+             * How many digits after the decimal point should be considered for lat/lng
+             * @type {number}
+             */
+            var FLOAT_PRECISION = 7;
+
+            /**
              * Service managing the main map. This mostly concerns the
              * storage and retrieval of the map center from different sources.
              * @constructor
@@ -80,8 +86,19 @@
                     angular.isNumber(lng) && isFinite(lat) &&
                     angular.isNumber(zoom) && isFinite(lat))
                 {
-                    this.center.lat = lat;
-                    this.center.lng = lng;
+                    // Only set new coords if either not defined or significantly enough different
+                    if (!angular.isNumber(this.center.lat) ||
+                        this.center.lat.toFixed(FLOAT_PRECISION) !== lat.toFixed(FLOAT_PRECISION))
+                    {
+                        this.center.lat = lat;
+                    }
+                    if (!angular.isNumber(this.center.lng) ||
+                        this.center.lng.toFixed(FLOAT_PRECISION) !== lng.toFixed(FLOAT_PRECISION))
+                    {
+                        this.center.lng = lng;
+                    }
+
+                    // Set zoom
                     this.center.zoom = zoom;
 
                     this.saveCenter();
@@ -144,8 +161,8 @@
                     'zoom:' +
                     this.center.zoom +
                     ',coords:' +
-                    this.center.lat.toFixed(7) + '-' +
-                    this.center.lng.toFixed(7)
+                    this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
+                    this.center.lng.toFixed(FLOAT_PRECISION)
                 );
             };
 

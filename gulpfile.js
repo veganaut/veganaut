@@ -27,6 +27,7 @@ var files = {
         'app/lib/angular-sanitize/angular-sanitize.js',
         'app/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
         'app/lib/angular-loading-bar/build/loading-bar.js',
+        'app/lib/angular-simple-logger/dist/angular-simple-logger.light.js', // Needed for angular-leaflet-directive
         'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
         'app/lib/angular-translate/angular-translate.js',
         'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'

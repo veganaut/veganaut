@@ -397,7 +397,7 @@
             }
 
             // Watch the map center for changes to save it
-            $scope.$watch('mainMap.center', function() {
+            $scope.$watchCollection('mainMap.center', function() {
                 mainMapService.saveCenter();
 
                 // Reload locations
