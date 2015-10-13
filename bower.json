@@ -12,7 +12,7 @@
     "angular-leaflet-directive": "0.7.11",
     "leaflet": "0.7.3",
     "bootstrap": "3.3.2",
-    "lodash": "3.0.1",
+    "lodash": "3.10.1",
     "weather-icons": "1.2.1"
   },
   "devDependencies": {

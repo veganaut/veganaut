@@ -17,42 +17,42 @@
      * @example
      * // Renders a list of <input> of which the first 2 have the required
      * // attribute set, and "Enter Options" is used as placeholder
-     * <vg-list-input list="answers" num-required="2"
-     *  placeholder="Enter Options"></vg-list-input>
+     * <vg-list-input vg-list="answers" vg-num-required="2"
+     *  vg-placeholder="Enter Options"></vg-list-input>
      */
     var listInputDirective = function() {
         return {
             restrict: 'E',
-            replace: true,
             scope: {
-                list: '=',
-                numRequired: '@',
-                placeholder: '@'
+                list: '=vgList',
+                numRequired: '@vgNumRequired',
+                placeholder: '@vgPlaceholder'
             },
             controller: ['$scope', function($scope) {
-                $scope.numRequired = parseInt($scope.numRequired);
+                var vm = this;
+                vm.numRequired = parseInt(vm.numRequired);
 
-                $scope.inputFields = [];
+                vm.inputFields = [];
                 var addInputField = function(text) {
-                    $scope.inputFields.push({
+                    vm.inputFields.push({
                         text: text || ''
                     });
                 };
 
                 // Make sure we got a list
-                if (!angular.isArray($scope.list)) {
-                    $scope.list = [];
+                if (!angular.isArray(vm.list)) {
+                    vm.list = [];
                 }
 
-                for (var i = 0; i < $scope.list.length; i += 1) {
-                    addInputField($scope.list[i]);
+                for (var i = 0; i < vm.list.length; i += 1) {
+                    addInputField(vm.list[i]);
                 }
-                if ($scope.inputFields.length < 1) {
+                if (vm.inputFields.length < 1) {
                     addInputField();
                 }
 
                 // Watch the list to add or remove new input fields
-                $scope.$watch('inputFields', function(inputFields) {
+                $scope.$watch('listInputVm.inputFields', function(inputFields) {
                     // Check if the last item is not empty
                     var lastInput = inputFields[inputFields.length - 1];
                     if (typeof lastInput.text !== 'undefined' && lastInput.text.length > 0) {
@@ -69,18 +69,20 @@
                     }
 
                     // Clean the list for outside this directive
-                    $scope.list = [];
+                    vm.list = [];
                     for (var i = 0; i < inputFields.length; i += 1) {
                         var item = inputFields[i];
                         if (typeof item.text !== 'undefined' && item.text.length > 0) {
-                            $scope.list.push(item.text);
+                            vm.list.push(item.text);
                         }
                     }
                 }, true);
             }],
-            template: '<div class="form-group" ng-repeat="elem in inputFields">' +
-                '<input type="text" ng-required="$index < numRequired" class="form-control" ' +
-                'ng-model="elem.text" placeholder="{{ placeholder }}"/> ' +
+            controllerAs: 'listInputVm',
+            bindToController: true,
+            template: '<div class="form-group" ng-repeat="elem in listInputVm.inputFields">' +
+                '<input type="text" ng-required="$index < listInputVm.numRequired" class="form-control" ' +
+                'ng-model="elem.text" placeholder="{{ listInputVm.placeholder }}"/> ' +
                 '</div>'
         };
     };

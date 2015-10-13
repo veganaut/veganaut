@@ -182,8 +182,8 @@
                                     </label>
                                 </div>
                                 {{ 'map.mission.' + mission.type + '.form.custom' | translate }}
-                                <vg-list-input list="mission.outcome.custom" num-required="0"
-                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
+                                <vg-list-input vg-list="mission.outcome.custom" vg-num-required="0"
+                                 vg-placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="whatOptions">
@@ -193,8 +193,8 @@
                                         <li ng-repeat="product in mission.location.products | orderBy:'name'">{{ product.name }}</li>
                                     </ul>
                                 </div>
-                                <vg-list-input list="mission.outcome" num-required="1"
-                                 placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
+                                <vg-list-input vg-list="mission.outcome" vg-num-required="1"
+                                 vg-placeholder="{{ 'map.mission.' + mission.type + '.form.placeholder' | translate }}">
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
