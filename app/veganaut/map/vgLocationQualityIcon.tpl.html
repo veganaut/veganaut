@@ -2,13 +2,13 @@
     <span ng-if="location.getRoundedQuality() > 0"
      class="icon icon-{{ location.getRoundedQuality() }} location-quality-label__twig-icon"
      tooltip-placement="bottom"
-     tooltip="{{ 'location.quality.explanation' | translate }}
+     uib-tooltip="{{ 'location.quality.explanation' | translate }}
      {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
      {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
     </span>
     <span ng-if="location.getRoundedQuality() === 0"
      class="glyphicon glyphicon-question-sign location-quality-label__unknown-icon"
      tooltip-placement="bottom"
-     tooltip="{{ 'location.quality.noRatingExplanation' | translate }}">
+     uib-tooltip="{{ 'location.quality.noRatingExplanation' | translate }}">
     </span>
 </span>

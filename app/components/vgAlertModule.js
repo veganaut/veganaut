@@ -170,7 +170,7 @@
                 // Get the alerts of the given group
                 $scope.alerts = alertService.getAlerts($scope.group);
             }],
-            template: '<alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.remove()">{{ alert.message }}</alert>'
+            template: '<uib-alert ng-repeat="alert in alerts" type="{{ alert.type }}" close="alert.remove()">{{ alert.message }}</uib-alert>'
         };
     };
 

@@ -9,7 +9,7 @@
             <label class="top-box__first-line">{{ 'location.form.new.type' | translate }}</label>
             <div class="btn-group form-group">
                 <button class="btn btn-default" ng-repeat="type in locationTypes"
-                 ng-model="location.newLocation.type" btn-radio="type">
+                 ng-model="location.newLocation.type" uib-btn-radio="type">
                     <vg-location-type-icon type="type"></vg-location-type-icon>
                     {{ 'location.type.' + type | translate }}
                 </button>

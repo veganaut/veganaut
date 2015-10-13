@@ -5,7 +5,7 @@
     <div><label>{{ 'map.filters.recent.title' | translate }}</label></div>
     <div class="btn-group form-group">
         <button class="btn btn-default" ng-repeat="filter in POSSIBLE_FILTERS.recent"
-         ng-model="activeFilters.recent" btn-radio="filter">
+         ng-model="activeFilters.recent" uib-btn-radio="filter">
             {{ 'map.filters.recent.form.' + filter | translate }}
         </button>
     </div>
@@ -13,7 +13,7 @@
     <div><label>{{ 'map.filters.type.title' | translate }}</label></div>
     <div class="btn-group form-group">
         <button class="btn btn-default" ng-repeat="filter in POSSIBLE_FILTERS.type"
-         ng-model="activeFilters.type" btn-radio="filter">
+         ng-model="activeFilters.type" uib-btn-radio="filter">
             {{ 'map.filters.type.form.' + filter | translate }}
         </button>
     </div>

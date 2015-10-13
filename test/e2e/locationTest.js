@@ -41,7 +41,7 @@ describe('location.', function() {
             hasOptionsMission.click();
             expect(element(by.css('.mission-hasOptions form')).isDisplayed()).toBe(true, 'shows mission form after click');
 
-            var hasOptionsAnswer = element.all(by.css('.mission-hasOptions form *[btn-radio]')).first();
+            var hasOptionsAnswer = element.all(by.css('.mission-hasOptions form *[uib-btn-radio]')).first();
             expect(hasOptionsAnswer.getText()).toBe('Yes', 'correct mission outcome button found');
 
             var submitMission = element(by.css('.mission-hasOptions form button[type=submit]'));

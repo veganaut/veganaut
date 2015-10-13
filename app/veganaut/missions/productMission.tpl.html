@@ -9,8 +9,8 @@
     <div ng-switch="productMission.mission.type">
         <div ng-switch-when="rateProduct" class="font--large text-center"
          ng-class="{ 'font--greyed-out': productMission.mission.completed }">
-            <rating ng-model="productMission.mission.outcome"
-             readonly="productMission.mission.completed" max="5"></rating>
+            <uib-rating ng-model="productMission.mission.outcome"
+             readonly="productMission.mission.completed" max="5"></uib-rating>
         </div>
         <div ng-switch-when="setProductName">
             <form novalidate name="editProductNameForm" class="edit-product-name-form">
@@ -34,7 +34,7 @@
                 <button class="btn btn-default"
                  ng-repeat="possibleAnswer in productMission.mission.possibleAnswers"
                  ng-disabled="productMission.mission.completed"
-                 ng-model="productMission.mission.outcome" btn-radio="possibleAnswer">
+                 ng-model="productMission.mission.outcome" uib-btn-radio="possibleAnswer">
                     {{ 'map.mission.' + productMission.mission.type + '.outcome.' + possibleAnswer | translate }}
                 </button>
             </div>

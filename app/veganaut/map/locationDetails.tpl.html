@@ -156,7 +156,7 @@
                             <div ng-switch-when="hasOptions">
                                 <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-repeat="answer in mission.firstAnswers"
-                                     ng-model="mission.outcome.first" btn-radio="answer">
+                                     ng-model="mission.outcome.first" uib-btn-radio="answer">
                                         {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
                                     </label>
                                 </div>
@@ -167,7 +167,7 @@
                                     </p>
                                     <div class="btn-group form-group pull-right">
                                         <label class="btn btn-default" ng-repeat="answer in mission.secondAnswers"
-                                         ng-model="mission.outcome.second" btn-radio="answer">
+                                         ng-model="mission.outcome.second" uib-btn-radio="answer">
                                             {{ 'map.mission.' + mission.type + '.form.' + answer | translate }}
                                         </label>
                                     </div>
@@ -215,7 +215,7 @@
                                 <div class="text-center h3">
                                     <div class="btn-group form-group">
                                         <label class="btn btn-default" ng-repeat="answer in [1,2,3,4,5]"
-                                         ng-model="mission.outcome" btn-radio="answer">
+                                         ng-model="mission.outcome" uib-btn-radio="answer">
                                             <span class="icon icon-{{ answer }} h3"></span>
                                         </label>
                                     </div>
@@ -226,7 +226,7 @@
                                     <div class="btn-group form-group">
                                         <label class="btn btn-default"
                                          ng-repeat="answer in mission.possibleAnswers"
-                                         ng-model="mission.outcome" btn-radio="answer">
+                                         ng-model="mission.outcome" uib-btn-radio="answer">
                                             <span class="wi {{ mission.answerToIconMapping[answer] }} h4"></span>
                                         </label>
                                     </div>
