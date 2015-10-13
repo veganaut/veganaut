@@ -89,12 +89,9 @@
 
             /**
              * The possible types of locations
-             * @type {{gastronomy: string, retail: string}}
+             * @type {string[]}
              */
-            Location.TYPES = {
-                gastronomy: 'gastronomy',
-                retail: 'retail'
-            };
+            Location.TYPES = ['gastronomy', 'retail'];
 
             /**
              * Icon CSS classes used for the type of location
