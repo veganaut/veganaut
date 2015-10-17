@@ -25,14 +25,16 @@
     ]);
 
     veganautModule.config([
-        '$routeProvider', '$locationProvider', '$translateProvider', 'angularPiwikProvider',
-        'useHtml5Mode', 'piwikSettings', 'i18nSettings',
-        function($routeProvider, $locationProvider, $translateProvider, angularPiwikProvider,
-            useHtml5Mode, piwikSettings, i18nSettings)
+        '$routeProvider', '$locationProvider', '$compileProvider', '$translateProvider',
+        'angularPiwikProvider', 'appSettings', 'piwikSettings', 'i18nSettings',
+        function($routeProvider, $locationProvider, $compileProvider, $translateProvider,
+            angularPiwikProvider, appSettings, piwikSettings, i18nSettings)
         {
-            $locationProvider.html5Mode(useHtml5Mode);
+            // Configure general settings
+            $locationProvider.html5Mode(appSettings.html5Mode);
+            $compileProvider.debugInfoEnabled(appSettings.debugInfo);
 
-            // TODO: get rid of all the controllers here and define them in the tempalte
+            // Set up routes
             $routeProvider.when('/register', {templateUrl: '/veganaut/user/register.tpl.html', controller: 'RegisterCtrl'});
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
             $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});

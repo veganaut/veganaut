@@ -16,10 +16,12 @@ describe('config', function() {
         }));
     });
 
-    describe('useHtml5Mode', function() {
-        it('should define the useHtml5Mode', inject(function(useHtml5Mode) {
-            expect(useHtml5Mode).toBeDefined();
-            expect(typeof useHtml5Mode).toBe('boolean');
+    describe('appSettings', function() {
+        it('should define the appSettings', inject(function(appSettings) {
+            expect(appSettings).toBeDefined('appSettings is defined');
+            expect(typeof appSettings).toBe('object', 'appSettings is an object');
+            expect(typeof appSettings.html5Mode).toBe('boolean', 'has html5Mode setting');
+            expect(typeof appSettings.debugInfo).toBe('boolean', 'has debugInfo setting');
         }));
     });
 });
