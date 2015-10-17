@@ -1,25 +1,22 @@
-/* global protractor, describe, beforeEach, it, expect, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 
 describe('homePage.', function() {
-    var ptor;
-
     beforeEach(function() {
         // Tell backend to reload the fixtures
         helpers.loadFixtures();
 
         // Go to the app
         helpers.loadApp('/');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
     });
 
     it('should redirect to / when location hash is empty.', function() {
-        expect(ptor.getCurrentUrl()).toMatch(/\/$/);
+        expect(browser.getCurrentUrl()).toMatch(/\/$/);
     });
 
     it('should have a register and login button.', function() {

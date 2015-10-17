@@ -1,11 +1,10 @@
-/* global protractor, describe, beforeEach, it, expect, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 var elements = helpers.elements;
 
 describe('community.', function() {
-    var ptor;
     var loadFixtures = true;
 
     beforeEach(function() {
@@ -19,7 +18,6 @@ describe('community.', function() {
             helpers.loadApp('/login');
         }
 
-        ptor = protractor.getInstance();
         helpers.loginIfLoggedOut();
     });
 
@@ -29,7 +27,7 @@ describe('community.', function() {
         var communityNavEntry = element(by.css('button.nav-community'));
         expect(communityNavEntry.isPresent()).toBe(true, 'nav entry for community is present');
         communityNavEntry.click();
-        expect(ptor.getCurrentUrl()).toMatch(/\/community/);
+        expect(browser.getCurrentUrl()).toMatch(/\/community/);
     });
 
     // TODO: extend to test the rankings and the impact of doing missions more precisely
@@ -56,7 +54,7 @@ describe('community.', function() {
             var personLink = element.all(by.css('a.person-score')).first();
             personLink.click();
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/veganaut/);
+            expect(browser.getCurrentUrl()).toMatch(/\/veganaut/);
 
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Nickname');

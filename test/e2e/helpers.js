@@ -16,14 +16,13 @@ var helpers = {
     /**
      * Helper for selecting an item in a drop down by text
      * Taken from https://coderwall.com/p/tjx5zg
-     * @param ptor Reference to the protractor instance
      * @param selector
      * @param item
      */
-    selectOption: function(ptor, selector, item) {
+    selectOption: function(selector, item) {
         var selectList, desiredOption;
 
-        selectList = ptor.findElement(selector);
+        selectList = browser.findElement(selector);
         selectList.click();
 
         selectList.findElements(by.tagName('option'))

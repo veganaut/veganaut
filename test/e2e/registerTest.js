@@ -1,19 +1,16 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 var elements = helpers.elements;
 
 describe('register.', function() {
-    var ptor;
-
     beforeEach(function() {
         // Tell backend to reload the fixtures
         helpers.loadFixtures();
 
         // Go to the app
         helpers.loadApp('/');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
@@ -25,7 +22,7 @@ describe('register.', function() {
         expect(button.count()).toBe(1);
 
         button.first().click();
-        expect(ptor.getCurrentUrl()).toMatch(/\/register/);
+        expect(browser.getCurrentUrl()).toMatch(/\/register/);
     });
 
     it('should be possible to register as a new user.', function() {
@@ -36,7 +33,7 @@ describe('register.', function() {
         element(by.model('form.nickname')).sendKeys('The Cody');
         element(by.model('form.password')).sendKeys('so secure brah');
         element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
-        expect(ptor.getCurrentUrl()).toMatch(/\//);
+        expect(browser.getCurrentUrl()).toMatch(/\//);
 
         // Check if there's an alert and if it can be closed
         // TODO: this doesn't really belong in this test, should be a separate file

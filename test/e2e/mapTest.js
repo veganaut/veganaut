@@ -1,4 +1,4 @@
-/* global protractor, browser, describe, beforeEach, it, expect, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
@@ -6,7 +6,6 @@ var elements = helpers.elements;
 
 describe('map page.', function() {
     var mapNavEntry;
-    var ptor;
 
     beforeEach(function() {
         // Tell backend to reload the fixtures
@@ -14,7 +13,6 @@ describe('map page.', function() {
 
         // Go to the app
         helpers.loadApp('/map');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
@@ -27,7 +25,7 @@ describe('map page.', function() {
     it('should have a button to get to the map.', function() {
         expect(mapNavEntry.isPresent()).toBe(true, 'nav entry for map is present');
         mapNavEntry.click();
-        expect(ptor.getCurrentUrl()).toMatch(/\/map/);
+        expect(browser.getCurrentUrl()).toMatch(/\/map/);
     });
 
     it('should have a page that shows the map.', function() {
@@ -38,15 +36,12 @@ describe('map page.', function() {
 });
 
 describe('map when logged out.', function() {
-    var ptor;
-
     beforeEach(function() {
         // Tell backend to reload the fixtures
         helpers.loadFixtures();
 
         // Go to the app
         helpers.loadApp('/map');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
@@ -67,7 +62,7 @@ describe('map when logged out.', function() {
             browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":47.1,"lng":8.2,"zoom":7}\')');
             browser.get('/map');
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
@@ -79,7 +74,7 @@ describe('map when logged out.', function() {
             browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":5,"lng":115,"zoom":10}\')');
             browser.get('/map');
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');
@@ -91,7 +86,7 @@ describe('map when logged out.', function() {
         it('should watch map center in URL', function() {
             browser.get('/map#zoom:7,coords:47.1-8.2');
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
@@ -101,7 +96,7 @@ describe('map when logged out.', function() {
         it('should still watch map center in URL', function() {
             browser.get('/map#zoom:10,coords:5-115');
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');

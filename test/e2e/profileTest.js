@@ -1,19 +1,16 @@
-/* global protractor, describe, beforeEach, it, expect, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 var elements = helpers.elements;
 
 describe('profile.', function() {
-    var ptor;
-
     beforeEach(function() {
         // Tell backend to reload the fixtures
         helpers.loadFixtures();
 
         // Go to the app
         helpers.loadApp('/');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
@@ -27,7 +24,7 @@ describe('profile.', function() {
             var profileNavEntry = element(by.css('button.nav-profile'));
             expect(profileNavEntry.isPresent()).toBe(true, 'nav entry for profile is present');
             profileNavEntry.click();
-            expect(ptor.getCurrentUrl()).toMatch(/\/me/);
+            expect(browser.getCurrentUrl()).toMatch(/\/me/);
 
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Alice Alison');

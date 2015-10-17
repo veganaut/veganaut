@@ -1,18 +1,15 @@
-/* global protractor, describe, beforeEach, it, expect, browser, element, by */
+/* global describe, beforeEach, it, expect, browser, element, by */
 'use strict';
 
 var helpers = require('./helpers');
 
 describe('location.', function() {
-    var ptor;
-
     beforeEach(function() {
         // Tell backend to reload the fixtures
         helpers.loadFixtures();
 
         // Go to the app
         helpers.loadApp('/');
-        ptor = protractor.getInstance();
 
         // TODO: not so great to logout before every test
         helpers.logoutIfLoggedIn();
@@ -50,7 +47,7 @@ describe('location.', function() {
             expect(submitMission.isEnabled()).toBe(true, 'Submit is enabled after entering mission outcome');
             submitMission.click();
 
-            expect(ptor.getCurrentUrl()).toMatch(/\/location\/000000000000000000000006/, 'Stays on the location page after submitting');
+            expect(browser.getCurrentUrl()).toMatch(/\/location\/000000000000000000000006/, 'Stays on the location page after submitting');
             expect(element.all(by.css('.alert-success')).count()).toBe(1, 'shows a success message');
 
             // TODO: add more tests, especially about whether the location info was
