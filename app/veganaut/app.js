@@ -65,6 +65,7 @@
             $translateProvider.registerAvailableLanguageKeys(i18nSettings.availableLocales);
             $translateProvider.fallbackLanguage(i18nSettings.defaultLocale);
             $translateProvider.determinePreferredLanguage();
+            $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
             // Configure piwik
             angularPiwikProvider.enableTracking(piwikSettings.enabled);
