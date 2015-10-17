@@ -3,8 +3,8 @@
   "private": true,
   "repository": "https://github.com/veganaut/veganaut",
   "devDependencies": {
-    "bower": "1.5.2",
-    "jshint": "2.6.0",
+    "bower": "1.6.3",
+    "jshint": "2.8.0",
     "karma": "0.12.24",
     "karma-jasmine": "0.1.5",
     "karma-ng-scenario": "0.1.0",
