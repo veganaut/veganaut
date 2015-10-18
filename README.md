@@ -82,15 +82,11 @@ Protractor is run like this:
 ### Backend Tests
 Backend integration (end-to-end) tests:
 
-    cd veganaut-backend; ./node_modules/.bin/jasmine-node --captureExceptions --verbose test/e2e/
+    cd veganaut-backend; NODE_ENV=test ./node_modules/.bin/jasmine JASMINE_CONFIG_PATH=test/jasmine.json test/e2e/**
 
 Backend unit tests:
 
-    cd veganaut-backend; ./node_modules/.bin/jasmine-node --captureExceptions --verbose test/models/
-
-Run tests automatically when any file changes:
-
-    cd veganaut-backend; ./node_modules/.bin/jasmine-node --watch app.js --watch app/ --watch test/ --captureExceptions --autotest test/
+    cd veganaut-backend; NODE_ENV=test ./node_modules/.bin/jasmine JASMINE_CONFIG_PATH=test/jasmine.json test/models/**
 
 ### Frontend Tests
 The frontend unit tests use [Karma](https://github.com/karma-runner/karma) which is automatically
