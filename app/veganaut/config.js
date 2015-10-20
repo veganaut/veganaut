@@ -24,7 +24,7 @@
     // General app settings
     module.constant('appSettings', {
         html5Mode: true,
-        debugInfo: false
+        debugInfo: true
     });
 
     // Piwik settings
