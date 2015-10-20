@@ -1,6 +1,22 @@
 Veganaut Changelog
 ==================
 
+0.8.0: O sole mio (2015-10-20)
+-------------------------------------------
+* New feature: French version of Veganaut.
+* New feature: Locations are now owned by users, not teams. There are no more teams.
+* New feature: [http://blog.veganaut.net/2015/05/how-to-embed-the-veganaut-map-on-your-page/](Veganaut can now be embedded in another page).
+* New feature: Product names and availability can now be edited.
+* New feature: Adding a button on the map that takes you to where you are currently located (using GPS or whatever the device offers).
+* Enhancement: Page showing stats and highscores about Veganaut is now called "Community" and shows ranking of user by owned locations and by missions.
+* Enhancement: Better display name of search results from OpenStreetMap Nominatim service.
+* Enhancement: Only showing gastronomy location options in the product browser ("Vegan Menu" button on the map).
+* Performance: Only loading the locations that are in the currently visible map section.
+* Security: Map tiles are now loaded over https like the rest of the page.
+* Bug fixes: Many.
+* Dependencies: Upgrading to Angular 1.4, Mongoose 4.1 and many other minor upgrades.
+* Dependencies: Removing dependency on jQuery and D3.js.
+
 0.7.0: Sharing is Caring (2015-04-12)
 -------------------------------------------
 * New feature: current map coordinates and zoom level now included in page url (i.e. users can now share links to specific map sections)
