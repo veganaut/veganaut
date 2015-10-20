@@ -5,7 +5,7 @@ Veganaut Changelog
 -------------------------------------------
 * New feature: French version of Veganaut.
 * New feature: Locations are now owned by users, not teams. There are no more teams.
-* New feature: [http://blog.veganaut.net/2015/05/how-to-embed-the-veganaut-map-on-your-page/](Veganaut can now be embedded in another page).
+* New feature: [Veganaut can now be embedded in another page](http://blog.veganaut.net/2015/05/how-to-embed-the-veganaut-map-on-your-page/).
 * New feature: Product names and availability can now be edited.
 * New feature: Adding a button on the map that takes you to where you are currently located (using GPS or whatever the device offers).
 * Enhancement: Page showing stats and highscores about Veganaut is now called "Community" and shows ranking of user by owned locations and by missions.
