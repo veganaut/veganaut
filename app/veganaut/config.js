@@ -30,8 +30,8 @@
     // Piwik settings
     module.constant('piwikSettings', {
         enabled: false,
-        domain: 'veganaut.net/piwik',
-        siteId: 7
+        domain: 'https://veganaut.net/piwik',
+        siteId: 8
     });
 
     // Translation settings

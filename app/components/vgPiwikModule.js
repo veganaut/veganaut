@@ -50,14 +50,13 @@
 
             // Slightly angularised piwik tracking code
             var doc = $window.document;
-            var url = (('https:' === doc.location.protocol) ? 'https' : 'http') + '://' + piwikDomain + '/';
-            this._pushToPiwik(['setTrackerUrl', url + 'piwik.php']);
+            this._pushToPiwik(['setTrackerUrl', piwikDomain + '/piwik.php']);
             this._pushToPiwik(['setSiteId', '' + siteId]);
             var script = doc.createElement('script');
             script.type = 'text/javascript';
             script.defer = true;
             script.async = true;
-            script.src = url + 'piwik.js';
+            script.src = piwikDomain + '/piwik.js';
             var existingScript = doc.getElementsByTagName('script')[0];
             existingScript.parentNode.insertBefore(script, existingScript);
         }
@@ -162,7 +161,8 @@
         };
 
         /**
-         * Set the domain of the piwik server, e.g. 'piwik.example.com'
+         * Set the domain of the piwik server, e.g. 'https://piwik.example.com'
+         * (with protocol but without trailing slash)
          * @param domain {string}
          */
         this.setPiwikDomain = function(domain) {
