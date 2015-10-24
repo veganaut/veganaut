@@ -11,7 +11,7 @@
                 )
                     .success(function() {
                         alertService.addAlert('Registered successfully', 'success');
-                        angularPiwik.track('user', 'registration.success');
+                        angularPiwik.track('registration', 'registration.success');
 
                         // TODO: code duplication with LoginController
                         backendService.login($scope.form.email, $scope.form.password)
@@ -28,7 +28,7 @@
                     .error(function(data) {
                         // TODO: showing the error to the user should be done by the backend service
                         alertService.addAlert('Could not register: ' + data.error, 'danger');
-                        angularPiwik.track('user', 'registration.error');
+                        angularPiwik.track('registration', 'registration.error');
                     })
                 ;
             };
