@@ -342,6 +342,9 @@
                         $scope.$apply(function() {
                             locationService.activate(clickedLocation);
 
+                            // Track it
+                            angularPiwik.track('map.locations', 'map.locations.click');
+
                             // Hide the product list, filters and search
                             $scope.showProductList(false);
                             $scope.showFilters(false);
