@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService', 'localeService',
-        function($scope, backendService, alertService, localeService) {
+    module.controller('RegisterCtrl', ['$scope', 'backendService', 'alertService', 'localeService', 'angularPiwik',
+        function($scope, backendService, alertService, localeService, angularPiwik) {
 
             // TODO: improve how the form validates password and passwordRepeat are the same
             $scope.submit = function() {
@@ -11,6 +11,7 @@
                 )
                     .success(function() {
                         alertService.addAlert('Registered successfully', 'success');
+                        angularPiwik.track('user', 'registration.success');
 
                         // TODO: code duplication with LoginController
                         backendService.login($scope.form.email, $scope.form.password)
@@ -27,6 +28,7 @@
                     .error(function(data) {
                         // TODO: showing the error to the user should be done by the backend service
                         alertService.addAlert('Could not register: ' + data.error, 'danger');
+                        angularPiwik.track('user', 'registration.error');
                     })
                 ;
             };
