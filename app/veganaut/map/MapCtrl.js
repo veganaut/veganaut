@@ -22,7 +22,7 @@
              * Locations loaded from the backend indexed by id
              * @type {{}}
              */
-            var locations = {};
+            $scope.locations = {};
 
             // TODO: all this addLocation stuff should be separated to a directive or other controller
             $scope.addLocationStep = 1;
@@ -68,7 +68,7 @@
             };
 
             // Expose the location service
-            $scope.location = locationService;
+            $scope.locationService = locationService;
 
             // Expose map settings and filters from the service
             $scope.mainMap = mainMapService;
@@ -104,6 +104,12 @@
              * @type {boolean}
              */
             $scope.searchShown = false;
+
+            /**
+             * Whether to show the location list
+             * @type {boolean}
+             */
+            $scope.locationListShown = false;
 
             /**
              * Whether the add location form is minimised
@@ -179,6 +185,23 @@
             };
 
             /**
+             * Sets whether the location list isshown
+             * @param {boolean} [show=true]
+             */
+            $scope.showLocationList = function(show) {
+                if (typeof show === 'undefined') {
+                    show = true;
+                }
+                show = !!show;
+
+                // Update and track if it changed
+                if ($scope.locationListShown !== show) {
+                    $scope.locationListShown = show;
+                    angularPiwik.track('map.locationList', show ? 'open' : 'close');
+                }
+            };
+
+            /**
              * Returns the number of currently active filters
              * @returns {number}
              */
@@ -242,7 +265,7 @@
                 // Submit the location and add it to the list once done
                 locationService.submitNewLocation()
                     .then(function(newLocation) {
-                        locations[newLocation.id] = newLocation;
+                        $scope.locations[newLocation.id] = newLocation;
                         alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
                     })
                     .catch(function(error) {
@@ -336,7 +359,7 @@
              */
             var locationClickHandler = function(event) {
                 if (!locationService.isAddingLocation()) {
-                    var clickedLocation = locations[event.target.locationId];
+                    var clickedLocation = $scope.locations[event.target.locationId];
                     if (clickedLocation && !clickedLocation.isDisabled()) {
                         // Run it through $apply since we are coming directly from Leaflet
                         $scope.$apply(function() {
@@ -366,18 +389,20 @@
                     // Get the bounds of the map
                     var bounds = map.getBounds().toBBoxString();
 
+                    console.log(bounds);
+
                     // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
                     locationService.getLocations(bounds).then(function(loadedLocations) {
                         // Remove old markers
-                        angular.forEach(locations, function(location) {
+                        angular.forEach($scope.locations, function(location) {
                             map.removeLayer(location.marker);
                         });
 
                         // Set new locations
-                        locations = loadedLocations;
+                        $scope.locations = loadedLocations;
 
                         // Go through all the locations and add the marker to the map
-                        angular.forEach(locations, function(location) {
+                        angular.forEach($scope.locations, function(location) {
                             location.marker.on('click', locationClickHandler);
                             location.marker.addTo(map);
                         });
@@ -429,7 +454,7 @@
                 }
 
                 // Go through all the locations and filter them
-                angular.forEach(locations, function(location) {
+                angular.forEach($scope.locations, function(location) {
                     // Only apply the filter if the location is not already hidden
                     if (!location.isDisabled()) {
                         var disableIt = (!showAll && location.updatedAt < recentDate);
@@ -445,7 +470,7 @@
             var _applyTypeFilter = function(typeFilter) {
                 var showAll = (typeFilter === 'anytype');
                 // Go through all the locations and filter them
-                angular.forEach(locations, function(location) {
+                angular.forEach($scope.locations, function(location) {
                     // Only apply the filter if the location is not already hidden
                     if (!location.isDisabled()) {
                         var disableIt = (!showAll && location.type !== typeFilter);
@@ -462,7 +487,7 @@
             var applyFilters = function(filters, filtersBefore) {
                 // First show all the locations
                 // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
-                angular.forEach(locations, function(location) {
+                angular.forEach($scope.locations, function(location) {
                     location.setDisabled(false);
                 });
 

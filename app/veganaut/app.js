@@ -46,6 +46,7 @@
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
+            $routeProvider.when('/list', {template: '<vg-location-list></vg-location-list>'});
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});

@@ -1,0 +1,22 @@
+<div>
+    <h1 class="h4">{{ 'locationList.title' | translate }}</h1>
+    <ul class="accordion-list">
+        <li ng-repeat="location in locationListVm.list"
+         class="accordion-list__item"
+         ng-class="{ 'accordion-list__item--opened': locationListVm.openLocationId === location.id }">
+            <button class="btn btn-block accordion-list__item__btn"
+             ng-click="locationListVm.toggleOpen(location)">
+                {{ location.name }}
+                <span class="pull-right-spaced">
+                    <vg-location-effort-icon location="location"></vg-location-effort-icon>
+                    <vg-location-type-badge location="location"></vg-location-type-badge>
+                    <vg-location-quality-icon location="location"></vg-location-quality-icon>
+                </span>
+            </button>
+
+            <div class="accordion-list__item__content" ng-if="locationListVm.openLocationId === location.id">
+                Open
+            </div>
+        </li>
+    </ul>
+</div>
