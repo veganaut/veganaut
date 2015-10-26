@@ -94,7 +94,7 @@
     },
     "location": {
       "edit": "Location bearbeiten",
-      "editAsAnonymous": "Registrieren zum Bearbeiten",
+      "editAsAnonymous": "Bearbeiten",
       "save": "Location speichern",
       "backToMap": "Zurück zur Karte"
     }
