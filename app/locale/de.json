@@ -1,7 +1,7 @@
 {
   "navigation": {
     "home": "Home",
-    "register": "Registrieren",
+    "register": "Mitmachen",
     "login": "Login",
     "logout": "Logout",
     "map": "Karte",
@@ -9,7 +9,7 @@
     "profile": "Profil",
     "blog": "Blog",
     "contactForm": "Kontakt",
-    "twitter": "Twitter",
+    "twitter": "Twitter",re
     "facebook": "Facebook",
     "github": "GitHub",
     "bugs": "Bugreport"
@@ -36,7 +36,7 @@
     }
   },
   "register": {
-    "title": "Registrieren",
+    "title": "Mitmachen",
     "description": "Wenn du auf Veganaut.net etwas eintragen, bewerten oder ändern möchtest, kannst du dich hier registrieren.",
     "form": {
       "submit": "Registrieren"
@@ -71,7 +71,7 @@
     },
     "map": {
       "register": {
-        "name": "Registrieren",
+        "name": "Mitmachen",
         "description": "Registrieren um die Karte zu bearbeiten"
       },
       "addLocation": {
