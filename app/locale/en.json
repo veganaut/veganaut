@@ -1,7 +1,7 @@
 {
   "navigation": {
     "home": "Home",
-    "register": "Register",
+    "register": "Participate",
     "login": "Login",
     "logout": "Logout",
     "map": "Map",
@@ -36,7 +36,7 @@
     }
   },
   "register": {
-    "title": "Register",
+    "title": "Participate",
     "description": "To add, rate or edit anything on Veganaut.net, please register.",
     "form": {
       "submit": "Register"
@@ -71,7 +71,7 @@
     },
     "map": {
       "register": {
-        "name": "Register",
+        "name": "Participate",
         "description": "Register to edit the map"
       },
       "addLocation": {
