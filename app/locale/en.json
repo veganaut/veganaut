@@ -94,7 +94,7 @@
     },
     "location": {
       "edit": "Edit location",
-      "editAsAnonymous": "Register to edit",
+      "editAsAnonymous": "Edit",
       "save": "Save location",
       "backToMap": "Back to map"
     }
