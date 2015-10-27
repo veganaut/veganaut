@@ -50,39 +50,69 @@
             };
 
             /**
-             * Returns a Promise that will resolve to the locations
-             * @param {string} [bounds] The bounds within to get the locations
+             * Handles locations received from the backend and returns the instantiated
+             * Location objects indexed by location id.
+             * @param data
+             * @returns {{}}
+             * @private
+             */
+            LocationService.prototype._handleLocationResult = function(data) {
+                var locations = {};
+                var location;
+                for (var i = 0; i < data.length; i++) {
+                    // Instantiate the locations and index them by id
+                    location = new Location(data[i]);
+                    locations[location.id] = location;
+                }
+
+                // Add the location that is being created back to the list
+                if (this.newLocation) {
+                    locations[this.newLocation.id] = this.newLocation;
+                }
+
+                // Deactivate the location and activate it again if it's still around
+                var beforeActive = this.active;
+                this.activate();
+                if (beforeActive && locations[beforeActive.id]) {
+                    this.activate(locations[beforeActive.id]);
+                }
+
+                return locations;
+            };
+
+            /**
+             * Returns a promise to the locations within the given bounds
+             * @param {string} bounds The bounds within to get the locations
              * @returns {Promise}
              */
-            LocationService.prototype.getLocations = function(bounds) {
+            LocationService.prototype.getLocationsByBounds = function(bounds) {
                 var that = this;
                 var deferredLocations = $q.defer();
-                backendService.getLocations(bounds)
+                backendService.getLocationsByBounds(bounds)
                     .then(function(data) {
-                        var locations = {};
-                        var location;
-                        for (var i = 0; i < data.data.length; i++) {
-                            // Instantiate the locations and index them by id
-                            location = new Location(data.data[i]);
-                            locations[location.id] = location;
-                        }
-
-                        // Add the location that is being created back to the list
-                        if (that.newLocation) {
-                            locations[that.newLocation.id] = that.newLocation;
-                        }
-
-                        // Deactivate the location and activate it again if it's still around
-                        var beforeActive = that.active;
-                        that.activate();
-                        if (beforeActive && locations[beforeActive.id]) {
-                            that.activate(locations[beforeActive.id]);
-                        }
-                        deferredLocations.resolve(locations);
+                        deferredLocations.resolve(that._handleLocationResult(data.data));
                     })
                 ;
 
-                // Return the promise
+                return deferredLocations.promise;
+            };
+
+            /**
+             * Returns a promise to the locations around the radius of the given center
+             * @param {number} lat
+             * @param {number} lng
+             * @param {number} radius
+             * @returns {Promise}
+             */
+            LocationService.prototype.getLocationsByRadius = function(lat, lng, radius) {
+                var that = this;
+                var deferredLocations = $q.defer();
+                backendService.getLocationsByRadius(lat, lng, radius)
+                    .then(function(data) {
+                        deferredLocations.resolve(that._handleLocationResult(data.data));
+                    })
+                ;
+
                 return deferredLocations.promise;
             };
 

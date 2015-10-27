@@ -5,10 +5,10 @@
     module.controller('MapCtrl', [
         '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik', 'mapDefaults',
         'playerService', 'Location', 'locationService', 'mainMapService', 'backendService',
-        'alertService',
+        'alertService', 'Leaflet',
         function($scope, $location, $timeout, leafletData, angularPiwik, mapDefaults,
             playerService, Location, locationService, mainMapService, backendService,
-            alertService)
+            alertService, L)
         {
             var player;
 
@@ -106,12 +106,6 @@
             $scope.searchShown = false;
 
             /**
-             * Whether to show the location list
-             * @type {boolean}
-             */
-            $scope.locationListShown = false;
-
-            /**
              * Whether the add location form is minimised
              * TODO: should probably go elsewhere
              * @type {{minimised: boolean}}
@@ -185,23 +179,6 @@
             };
 
             /**
-             * Sets whether the location list isshown
-             * @param {boolean} [show=true]
-             */
-            $scope.showLocationList = function(show) {
-                if (typeof show === 'undefined') {
-                    show = true;
-                }
-                show = !!show;
-
-                // Update and track if it changed
-                if ($scope.locationListShown !== show) {
-                    $scope.locationListShown = show;
-                    angularPiwik.track('map.locationList', show ? 'open' : 'close');
-                }
-            };
-
-            /**
              * Returns the number of currently active filters
              * @returns {number}
              */
@@ -215,6 +192,50 @@
                 }
 
                 return active;
+            };
+
+
+            /**
+             * Goes to the location list showing roughly the locations currently on the map
+             */
+            $scope.goToLocationList = function() {
+                mapPromise.then(function(map) {
+                    // TODO: document and clean up
+                    var bounds = map.getBounds();
+                    var center = bounds.getCenter();
+
+                    // Convert center to container point (pixels)
+                    var containerCenterPoint = map.latLngToContainerPoint(center);
+
+                    // Move the center down to account for the header size
+                    var HEADER_SIZE = 96;
+                    var adjustedCenter = map.containerPointToLatLng([containerCenterPoint.x, containerCenterPoint.y + HEADER_SIZE / 2]);
+
+                    // Get vertical and horizontal distance in meters
+                    var horizontal = 2 * adjustedCenter.distanceTo([adjustedCenter.lat, bounds.getEast()]);
+                    var vertical = 2 * adjustedCenter.distanceTo([bounds.getSouth(), adjustedCenter.lng]);
+
+                    // Calculate the biggest radius that fully fits within the view
+                    var radius = Math.min(horizontal, vertical) / 2;
+
+                    // Show area on the map
+                    var marker = L.circle(adjustedCenter, radius, {
+                        className: 'geolocate-circle-marker'
+                    });
+                    marker.addTo(map);
+
+                    // Redirect after a bit
+                    $timeout(function() {
+                        // TODO: already start loading the locations now for the location list
+                        $location
+                            .path('list')
+                            .search('lat', adjustedCenter.lat.toFixed(7))// TODO: constants
+                            .search('lng', adjustedCenter.lng.toFixed(7))
+                            .search('radius', radius.toFixed(0))
+                        ;
+                    }, 500);
+                });
+
             };
 
             /**
@@ -392,10 +413,8 @@
                     // Get the bounds of the map
                     var bounds = map.getBounds().toBBoxString();
 
-                    console.log(bounds);
-
                     // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
-                    locationService.getLocations(bounds).then(function(loadedLocations) {
+                    locationService.getLocationsByBounds(bounds).then(function(loadedLocations) {
                         // Remove old markers
                         angular.forEach($scope.locations, function(location) {
                             map.removeLayer(location.marker);

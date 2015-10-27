@@ -11,7 +11,7 @@
             scope: {
                 _locations: '=vgLocations'
             },
-            controller: ['$scope', 'locationService', function($scope, locationService) {
+            controller: ['$scope', '$location', 'locationService', function($scope, $location, locationService) {
                 var vm = this;
 
                 // TODO: document
@@ -32,19 +32,27 @@
                     }
                 };
 
+                // TODO: de-duplicate with MapCtrl
+                vm.visitLocation = function(location) {
+                    $location.path('location/' + location.id);
+                };
+
                 function compileList(locations) {
                     vm.list = _.chain(locations)
                         .filter(function(loc) {
                             return !loc.isDisabled();
                         })
-                        .sortByOrder(['quality.average', 'name'], ['desc', 'asc'])
+                        .sortByOrder(['quality.average', 'quality.numRatings', 'name'], ['desc', 'desc', 'asc'])
+                        // TODO: should sort by rank
                         .value();
                 }
 
                 $scope.$watchCollection('locationListVm._locations', compileList);
 
-                var bounds = '7.41474151611328,46.92084154916144,7.469673156738281,46.982594624734936';
-                locationService.getLocations(bounds).then(compileList);
+
+                // TODO: validate input from search params
+                var query = $location.search();
+                locationService.getLocationsByRadius(query.lat, query.lng, query.radius).then(compileList);
 
             }],
             controllerAs: 'locationListVm',

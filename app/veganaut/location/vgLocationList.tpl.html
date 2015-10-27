@@ -15,7 +15,15 @@
             </button>
 
             <div class="accordion-list__item__content" ng-if="locationListVm.openLocationId === location.id">
-                Open
+                <div class="accordion-list__item__description">
+                    More info to come...
+
+                    <button type="button" class="btn btn-block btn-primary"
+                     ng-click="locationListVm.visitLocation(location)">
+                        <span class="glyphicon glyphicon-hand-right"></span>
+                        <span ng-bind="'action.map.locationAction'|translate"></span>
+                    </button>
+                </div>
             </div>
         </li>
     </ul>

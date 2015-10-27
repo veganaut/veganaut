@@ -124,14 +124,31 @@
             };
 
             /**
-             * Gets the list of locations on the map
-             * @param {string} [bounds] The bounds within to get the locations
+             * Gets the list of locations on the map in the given bounds
+             * @param {string} bounds The bounds within to get the locations
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getLocations = function(bounds) {
+            BackendService.prototype.getLocationsByBounds = function(bounds) {
                 return $http.get(backendUrl + '/location/list', {
                     params: {
                         bounds: bounds
+                    }
+                });
+            };
+
+            /**
+             * Gets list of locations in a radius around a center
+             * @param {lat} lat Latitude of the center
+             * @param {lng} lng Longitude of the center
+             * @param {number} radius Radius in meters
+             * @returns {HttpPromise}
+             */
+            BackendService.prototype.getLocationsByRadius = function(lat, lng, radius) {
+                return $http.get(backendUrl + '/location/list', {
+                    params: {
+                        lat: lat,
+                        lng: lng,
+                        radius: radius
                     }
                 });
             };

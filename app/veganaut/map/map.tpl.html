@@ -1,6 +1,6 @@
 <div ng-controller="MapCtrl">
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="location.active || productShown || filtersShown || searchShown || locationListShown">
+     ng-hide="location.active || productShown || filtersShown || searchShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
                 <div ng-if="isEmbedded">
@@ -23,14 +23,20 @@
                     <span class="glyphicon glyphicon-search"></span><br />
                     <span class="small">{{ 'action.map.searchMap.name' | translate }}</span>
                 </button>
-                <div ng-if="!isEmbedded">
-                    <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
-                     ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
-                     title="{{ 'action.map.filterMap.description' | translate }}">
-                        <span class="glyphicon glyphicon-filter"></span><br />
-                        <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
-                    </button>
-                </div>
+                <!--<div ng-if="!isEmbedded">-->
+                    <!--<button type="button" class="btn-show-location-filters btn btn-default btn-default&#45;&#45;transparent"-->
+                     <!--ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"-->
+                     <!--title="{{ 'action.map.filterMap.description' | translate }}">-->
+                        <!--<span class="glyphicon glyphicon-filter"></span><br />-->
+                        <!--<span class="small">{{ 'action.map.filterMap.name' | translate }}</span>-->
+                    <!--</button>-->
+                <!--</div>-->
+                <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
+                 ng-click="goToLocationList()"
+                 title="{{ 'action.map.showList.description' | translate }}">
+                    <span class="glyphicon glyphicon-th-list"></span><br />
+                    <span class="small">{{ 'action.map.showList.name' | translate }}</span>
+                </button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!isLoggedIn()"
                  ng-click="goToView('register')"
@@ -45,19 +51,13 @@
                     <span class="glyphicon glyphicon-plus-sign"></span><br />
                     <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
                 </button>
-                <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
-                 ng-click="showLocationList(true)"
-                 title="{{ 'action.map.showList.description' | translate }}">
-                    <span class="glyphicon glyphicon-th-list"></span><br />
-                    <span class="small">{{ 'action.map.showList.name' | translate }}</span>
-                </button>
             </div>
         </div>
     </div>
 
     <!-- TODO: get rid of complicated ng-show in view -->
     <div class="top-box container main-container"
-     ng-show="locationService.active || productShown || filtersShown || searchShown || locationListShown">
+     ng-show="locationService.active || productShown || filtersShown || searchShown">
         <div class="text-center location-details" ng-show="locationService.active && !locationService.isAddingLocation()">
             <div class="pull-right clickable" ng-click="locationService.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -90,12 +90,6 @@
         <ng-include src="'/veganaut/map/productList.tpl.html'" ng-if="productShown"></ng-include>
         <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>
         <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
-        <div ng-if="locationListShown">
-            <div class="pull-right clickable" ng-click="showLocationList(false)">
-                <span class="glyphicon glyphicon-remove"></span>
-            </div>
-            <vg-location-list vg-locations="locations"></vg-location-list>
-        </div>
     </div>
 
     <leaflet class="main-map full-viewport"
