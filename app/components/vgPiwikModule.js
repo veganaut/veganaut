@@ -45,23 +45,31 @@
         // Check if we should include the tracking code
         if (this._enabled === true && typeof piwikDomain !== 'undefined' && typeof siteId !== 'undefined') {
             // Set up piwik
-            var _paq = this._$window._paq;
-            //_paq.push(['trackPageView']); TODO: make it configurable whether this is done by default
-            _paq.push(['enableLinkTracking']);
-            _paq.push(['storeCustomVariablesInCookie']);
+            this._pushToPiwik(['enableLinkTracking']);
+            this._pushToPiwik(['storeCustomVariablesInCookie']);
 
             // Slightly angularised piwik tracking code
             var doc = $window.document;
-            var url = (('https:' === doc.location.protocol) ? 'https' : 'http') + '://' + piwikDomain + '/';
-            _paq.push(['setTrackerUrl', url + 'piwik.php']);
-            _paq.push(['setSiteId', '' + siteId]);
+            this._pushToPiwik(['setTrackerUrl', piwikDomain + '/piwik.php']);
+            this._pushToPiwik(['setSiteId', '' + siteId]);
             var script = doc.createElement('script');
             script.type = 'text/javascript';
             script.defer = true;
             script.async = true;
-            script.src = url + 'piwik.js';
+            script.src = piwikDomain + '/piwik.js';
             var existingScript = doc.getElementsByTagName('script')[0];
             existingScript.parentNode.insertBefore(script, existingScript);
+        }
+    };
+
+    /**
+     * Adds a call to a Piwik method to the global _paq array if tracking is enabled.
+     * @param {[]} piwikCall
+     * @private
+     */
+    AngularPiwik.prototype._pushToPiwik = function(piwikCall) {
+        if (this._enabled) {
+            this._$window._paq.push(piwikCall);
         }
     };
 
@@ -74,27 +82,16 @@
      * @param {number} [value] A numerical value to associate with the event
      */
     AngularPiwik.prototype.track = function(category, action, name, value) {
-        // Don't do anything if not enabled
-        if (!this._enabled) {
-            return;
-        }
-
-        // Push to the tracking array
-        this._$window._paq.push(['trackEvent', category, action, name, value]);
+        this._pushToPiwik(['trackEvent', category, action, name, value]);
     };
 
     /**
      * Tracks a page view
      */
     AngularPiwik.prototype.trackPageView = function() {
-        // Don't do anything if not enabled
-        if (!this._enabled) {
-            return;
-        }
-
         // Set url to the correct one and track the page view
-        this._$window._paq.push(['setCustomUrl', this._$location.absUrl()]);
-        this._$window._paq.push(['trackPageView']);
+        this._pushToPiwik(['setCustomUrl', this._$location.absUrl()]);
+        this._pushToPiwik(['trackPageView']);
     };
 
     /**
@@ -106,13 +103,7 @@
      * @param {string} scope 'visit' or 'page'
      */
     AngularPiwik.prototype.setCustomVariable = function(index, name, value, scope) {
-        // Don't do anything if not enabled
-        if (!this._enabled) {
-            return;
-        }
-
-        // Push to Piwik
-        this._$window._paq.push(['setCustomVariable', index, name, value, scope]);
+        this._pushToPiwik(['setCustomVariable', index, name, value, scope]);
     };
 
     /**
@@ -123,7 +114,7 @@
      */
     AngularPiwik.prototype.getCustomVariable = function(index, scope) {
         var def = this._$q.defer();
-        this._$window._paq.push([function() {
+        this._pushToPiwik([function() {
             def.resolve(this.getCustomVariable(index, scope));
         }]);
         return def.promise;
@@ -170,7 +161,8 @@
         };
 
         /**
-         * Set the domain of the piwik server, e.g. 'piwik.example.com'
+         * Set the domain of the piwik server, e.g. 'https://piwik.example.com'
+         * (with protocol but without trailing slash)
          * @param domain {string}
          */
         this.setPiwikDomain = function(domain) {

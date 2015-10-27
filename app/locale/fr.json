@@ -1,7 +1,7 @@
 {
   "navigation": {
     "home": "Acceuil",
-    "register": "Inscription",
+    "register": "Participer",
     "login": "Connexion",
     "logout": "Déconnexion",
     "map": "Carte",
@@ -36,7 +36,7 @@
     }
   },
   "register": {
-    "title": "Inscription",
+    "title": "Participer",
     "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur Veganaut.net? – Alors inscris-toi!",
     "form": {
       "submit": "Inscription"
@@ -71,7 +71,7 @@
     },
     "map": {
       "register": {
-        "name": "Inscription",
+        "name": "Participer",
         "description": "S'inscrire pour modifier la carte"
       },
       "addLocation": {
@@ -94,7 +94,7 @@
     },
     "location": {
       "edit": "Modifier",
-      "editAsAnonymous": "S'inscrire pour modifier",
+      "editAsAnonymous": "Modifier",
       "save": "Enregistrer",
       "backToMap": "Retourner à la carte"
     }
