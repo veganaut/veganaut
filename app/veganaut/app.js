@@ -35,7 +35,7 @@
             $compileProvider.debugInfoEnabled(appSettings.debugInfo);
 
             // Set up routes
-            $routeProvider.when('/register', {templateUrl: '/veganaut/user/register.tpl.html', controller: 'RegisterCtrl'});
+            $routeProvider.when('/register', {template: '<vg-register></vg-register>'});
             $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
             $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
             $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});

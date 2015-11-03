@@ -39,6 +39,8 @@
     "title": "Mitmachen",
     "description": "Wenn du auf Veganaut.net etwas eintragen, bewerten oder ändern möchtest, kannst du dich hier registrieren.",
     "form": {
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verstecken",
       "submit": "Registrieren"
     }
   },

@@ -28,11 +28,8 @@ describe('register.', function() {
     it('should be possible to register as a new user.', function() {
         browser.get('/register');
 
-        element(by.model('form.email')).sendKeys('cody@testerburger.com');
-        element(by.model('form.fullName')).sendKeys('Cody Testerburger');
-        element(by.model('form.nickname')).sendKeys('The Cody');
-        element(by.model('form.password')).sendKeys('so secure brah');
-        element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
+        element(by.model('registerVm.form.email')).sendKeys('cody@testerburger.com');
+        element(by.model('registerVm.form.password')).sendKeys('so secure brah\n');
         expect(browser.getCurrentUrl()).toMatch(/\//);
 
         // Check if there's an alert and if it can be closed

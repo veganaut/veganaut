@@ -39,6 +39,8 @@
     "title": "Participate",
     "description": "To add, rate or edit anything on Veganaut.net, please register.",
     "form": {
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
       "submit": "Register"
     }
   },

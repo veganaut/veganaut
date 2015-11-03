@@ -24,16 +24,14 @@
             /**
              * Registers a new user.
              * @param {string} email
-             * @param {string} fullName
              * @param {string} nickname
              * @param {string} password
              * @param {string} locale Only submitted if valid
              * @returns {promise}
              */
-            BackendService.prototype.register = function(email, fullName, nickname, password, locale) {
+            BackendService.prototype.register = function(email, nickname, password, locale) {
                 var postData = {
                     email: email,
-                    fullName: fullName,
                     nickname: nickname,
                     password: password
                 };

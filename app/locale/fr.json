@@ -39,6 +39,8 @@
     "title": "Participer",
     "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur Veganaut.net? – Alors inscris-toi!",
     "form": {
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Cacher le mot de passe",
       "submit": "Inscription"
     }
   },

@@ -2,7 +2,7 @@
     <!-- TODO: merge this with register.tpl.html -->
     <div class="form-group">
         <label for="editFullName">{{ 'person.label.fullName' | translate }}</label>
-        <input type="text" required id="editFullName" class="form-control" ng-model="form.fullName" />
+        <input type="text" id="editFullName" class="form-control" ng-model="form.fullName" />
     </div>
     <div class="form-group">
         <label for="editNickname">{{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})</label>
@@ -27,7 +27,7 @@
             <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat" />
         </div>
     </div>
-    <button class="btn btn-default"
+    <button type="reset" class="btn btn-default"
      ng-click="goToView('me')">{{ 'action.cancel' | translate }}</button>
     <button type="submit" class="btn btn-default pull-right"
      ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine || form.password !== form.passwordRepeat"
