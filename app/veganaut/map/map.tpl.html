@@ -22,14 +22,13 @@
                     <span class="glyphicon glyphicon-search"></span><br />
                     <span class="small">{{ 'action.map.searchMap.name' | translate }}</span>
                 </button>
-                <div ng-if="!isEmbedded">
-                    <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
-                     ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
-                     title="{{ 'action.map.filterMap.description' | translate }}">
-                        <span class="glyphicon glyphicon-filter"></span><br />
-                        <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
-                    </button>
-                </div>
+                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
+                 ng-if="!isEmbedded"
+                 ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
+                 title="{{ 'action.map.filterMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-filter"></span><br />
+                    <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
+                </button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!isLoggedIn()"
                  ng-click="goToView('register')"
