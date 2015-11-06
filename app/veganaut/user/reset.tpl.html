@@ -1,15 +1,11 @@
 <form novalidate name="resetForm" ng-controller="ResetCtrl" ng-show="validToken">
-    <div class="form-group">
-        <label for="editPassword" ng-bind="'person.label.password' | translate"></label>
-        <input type="password" required id="editPassword" required class="form-control" ng-model="form.password"/>
-    </div>
-    <div class="form-group">
-        <label for="editPasswordRepeat" ng-bind="'person.label.passwordRepeat' | translate"></label>
-        <input type="password" required id="editPasswordRepeat" required class="form-control" ng-model="form.passwordRepeat"/>
-    </div>
+    <vg-password-input vg-model="form.password"></vg-password-input>
+
     <div>
         <button type="submit" class="btn btn-default pull-right"
-         ng-disabled="resetForm.$invalid || form.password !== form.passwordRepeat"
-         ng-click="submit()" ng-bind="'reset.form.save' | translate"></button>
+         ng-disabled="resetForm.$invalid"
+         ng-click="submit()">
+            {{ 'reset.form.save' | translate }}
+        </button>
     </div>
 </form>
