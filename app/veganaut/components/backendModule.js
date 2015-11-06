@@ -25,15 +25,13 @@
              * Registers a new user.
              * @param {string} email
              * @param {string} nickname
-             * @param {string} password
              * @param {string} locale Only submitted if valid
              * @returns {promise}
              */
-            BackendService.prototype.register = function(email, nickname, password, locale) {
+            BackendService.prototype.register = function(email, nickname, locale) {
                 var postData = {
                     email: email,
-                    nickname: nickname,
-                    password: password
+                    nickname: nickname
                 };
 
                 // Only submit locale if it's valid
@@ -41,7 +39,10 @@
                     postData.locale = locale;
                 }
 
-                return $http.post(backendUrl + '/person', postData);
+                return $http.post(backendUrl + '/person', postData)
+                    .success(function(data) {
+                        sessionService.createSession(data.sessionId);
+                    });
             };
 
             /**
@@ -55,8 +56,7 @@
                 return $http.post(backendUrl + '/session', {email: email, password: password})
                     .success(function(data) {
                         sessionService.createSession(data.sessionId);
-                    })
-                    .error(sessionService.destroySession.bind(sessionService));
+                    });
             };
 
             /**
@@ -193,11 +193,17 @@
             /**
              * Send a password reset email
              * @param {string} email
+             * @param {boolean} [isRegistration=false] Whether this is the "reset" during
+             *      registration when the user gives no password.
              * @returns {HttpPromise}
              *
              */
-            BackendService.prototype.sendPasswordResetMail = function(email) {
-                return $http.post(backendUrl + '/passwordResetEmail',  {email: email});
+            BackendService.prototype.sendPasswordResetMail = function(email, isRegistration) {
+                var type = (isRegistration === true) ? 'registration' : 'reset';
+                return $http.post(backendUrl + '/passwordResetEmail',  {
+                    email: email,
+                    type: type
+                });
             };
 
             /**

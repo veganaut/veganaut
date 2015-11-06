@@ -3,41 +3,31 @@
         {{ 'register.description' | translate }}
     </p>
     <div class="form-group" vg-form-validation-class="registerForm.email">
-        <label for="email">{{ 'person.label.email' | translate }}</label>
+        <label for="email">
+            {{ 'person.label.email' | translate }}
+        </label>
         <div class="input-group">
             <input type="email" name="email" id="email" class="form-control"
              required
              ng-model="registerVm.form.email"
+             ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
              />
             <vg-form-validation-icon vg-form-field="registerForm.email"></vg-form-validation-icon>
         </div>
     </div>
 
     <div class="form-group" vg-form-validation-class="registerForm.nickname">
-        <label for="nickname">{{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})</label>
+        <label for="nickname">
+            {{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})
+        </label>
         <div class="input-group">
             <input type="text" name="nickname" id="nickname" class="form-control"
              required ng-minlength="4"
              ng-model="registerVm.form.nickname"
+             ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
              />
             <vg-form-validation-icon vg-form-field="registerForm.nickname"></vg-form-validation-icon>
         </div>
-    </div>
-
-    <div class="form-group" vg-form-validation-class="registerForm.password">
-        <label for="password">{{ 'person.label.password' | translate }}</label>
-        <div class="input-group">
-            <input type="{{ registerVm.showPassword ? 'text' : 'password' }}"
-             name="password" id="password" class="form-control"
-             required ng-minlength="6"
-             ng-model="registerVm.form.password"
-             />
-            <vg-form-validation-icon vg-form-field="registerForm.password"></vg-form-validation-icon>
-        </div>
-        <a href="" ng-click="registerVm.toggleShowPassword()">
-            <span ng-hide="registerVm.showPassword">{{ 'register.form.showPassword' | translate }}</span>
-            <span ng-show="registerVm.showPassword">{{ 'register.form.hidePassword' | translate }}</span>
-        </a>
     </div>
 
     <button type="submit" class="btn btn-default pull-right"

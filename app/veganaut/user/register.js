@@ -16,56 +16,51 @@
     });
 
     var registerCtrl = [
-        '$location', 'backendService', 'alertService', 'localeService', 'angularPiwik', 'nameGeneratorService',
-        function($location, backendService, alertService, localeService, angularPiwik, nameGeneratorService) {
+        '$location', '$translate', 'backendService', 'alertService',
+        'localeService', 'angularPiwik', 'nameGeneratorService',
+        function($location, $translate, backendService, alertService,
+            localeService, angularPiwik, nameGeneratorService)
+        {
             var vm = this;
 
             /**
              * Form values
-             * @type {{email: string, nickname: string, password: string}}
+             * @type {{email: string, nickname: string}}
              */
             vm.form = {
                 email: '',
-                nickname: nameGeneratorService.generateNickname(),
-                password: ''
-            };
-
-            /**
-             * Whether to show the password (input type text or password)
-             * @type {boolean}
-             */
-            vm.showPassword = false;
-
-            /**
-             * Toggle showing the password
-             */
-            vm.toggleShowPassword = function() {
-                vm.showPassword = !vm.showPassword;
+                nickname: nameGeneratorService.generateNickname()
             };
 
             /**
              * Submit the registration form
              */
             vm.submit = function() {
-                backendService.register(vm.form.email, vm.form.nickname, vm.form.password, localeService.getLocale())
+                // Get the registration values
+                var email = vm.form.email;
+                var nickname = vm.form.nickname;
+                var locale = localeService.getLocale();
+
+                // Do the registration
+                backendService.register(email, nickname, locale)
                     .success(function() {
-                        alertService.addAlert('Registered successfully', 'success');
+                        // Show the success message longer than usual (it's a longer text)
+                        alertService.addAlert($translate.instant('message.registration.success', {
+                            name: nickname
+                        }), 'success', '', 10000);
+
                         angularPiwik.track('registration', 'registration.success');
 
-                        // TODO: code duplication with LoginController
-                        backendService.login(vm.form.email, vm.form.password)
-                            .success(function() {
-                                if (backendService.isLoggedIn()) {
-                                    $location.path('map');
-                                }
-                            })
-                            .error(function(data) {
-                                alertService.addAlert('Could not log in: ' + data.error, 'danger');
-                            })
-                        ;
+                        // Request a password "reset"
+                        backendService.sendPasswordResetMail(email, true);
+
+                        // Go to the map
+                        $location.path('map');
                     })
                     .error(function(data) {
-                        alertService.addAlert('Could not register: ' + data.error, 'danger');
+                        alertService.addAlert($translate.instant('message.registration.error', {
+                            reason: data.error
+                        }), 'danger');
                         angularPiwik.track('registration', 'registration.error');
                     })
                 ;

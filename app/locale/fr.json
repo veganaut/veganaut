@@ -15,7 +15,13 @@
     "bugs": "Bugreport"
   },
   "message": {
-    "registered": "Inscription réussi.",
+    "registration": {
+      "success": "Inscription réussi. Bienvenue chez Veganaut.net {{ name }}!",
+      "error": "Inscription échoué: {{ reason }}"
+    },
+    "login": {
+      "error": "Connexion échoué: {{ reason }}"
+    },
     "geolocate": {
       "error": "La position n'a pas pu être récupéré."
     },
@@ -46,7 +52,7 @@
   },
   "login": {
     "title": "Connexion",
-    "forgotPassword": "Mot de passe oublié?",
+    "forgotPassword": "Je ne sais pas mon mot de passe.",
     "form": {
       "email": "email@example.com",
       "password": "Mot de passe",
@@ -54,17 +60,17 @@
     }
   },
   "forgot": {
+    "title": "Nous allons t'envoyer un mail pour que tu puisse saisir un nouveau mot de passe.",
     "form": {
       "submit": "Envoyer"
     }
   },
   "reset": {
     "form": {
-      "save": "Enregistrer"
+      "save": "Enregistrer le mot de passe"
     }
   },
   "action": {
-    "register": "Register",
     "cancel": "Annuler",
     "profile": {
       "edit": "Modifier le profil",
@@ -108,7 +114,6 @@
       "fullName": "Prénom et nom de famille",
       "nickname": "Pseudo",
       "password": "Mot de passe",
-      "passwordRepeat": "Mot de passe: saisir à nouveau",
       "attributes": "Attributs",
       "pioneer": "Pionnier",
       "diplomat": "Diplomate",
