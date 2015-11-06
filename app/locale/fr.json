@@ -16,6 +16,7 @@
   },
   "message": {
     "registration": {
+      "success": "Bienvenue chez Veganaut.net {{ name }}! Nous avons t'envoyé un mail pour que tu puisses saisir un mot de passe.",
       "success": "Inscription réussi. Bienvenue chez Veganaut.net {{ name }}!",
       "error": "Inscription échoué: {{ reason }}"
     },
@@ -60,7 +61,7 @@
     }
   },
   "forgot": {
-    "title": "Nous allons t'envoyer un mail pour que tu puisse saisir un nouveau mot de passe.",
+    "title": "Nous allons t'envoyer un mail pour que tu puisses saisir un nouveau mot de passe.",
     "form": {
       "submit": "Envoyer"
     }

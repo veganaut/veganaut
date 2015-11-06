@@ -16,7 +16,7 @@
   },
   "message": {
     "registration": {
-      "success": "Registrierung erfolgreich. Willkommen bei Veganaut.net {{ name }}!",
+      "success": "Willkommen bei Veganaut.net {{ name }}! Wir haben dir eine E-Mail gesendet mit einem Link um dein Passwort zu setzen.",
       "error": "Registrierung fehlgeschlagen: {{ reason }}"
     },
     "login": {
