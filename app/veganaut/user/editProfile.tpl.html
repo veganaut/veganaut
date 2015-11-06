@@ -18,18 +18,11 @@
         </label>
     </div>
     <div ng-if="changePassword">
-        <div class="form-group">
-            <label for="editPassword">{{ 'person.label.password' | translate }}</label>
-            <input type="password" required id="editPassword" class="form-control" ng-model="form.password" />
-        </div>
-        <div class="form-group">
-            <label for="editPasswordRepeat">{{ 'person.label.passwordRepeat' | translate }}</label>
-            <input type="password" required id="editPasswordRepeat" class="form-control" ng-model="form.passwordRepeat" />
-        </div>
+        <vg-password-input vg-model="form.password"></vg-password-input>
     </div>
     <button type="reset" class="btn btn-default"
      ng-click="goToView('me')">{{ 'action.cancel' | translate }}</button>
     <button type="submit" class="btn btn-default pull-right"
-     ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine || form.password !== form.passwordRepeat"
+     ng-disabled="editProfileForm.$invalid || editProfileForm.$pristine"
      ng-click="submit()">{{ 'action.profile.save' | translate }}</button>
 </form>
