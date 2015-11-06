@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.controller('LoginCtrl', ['$scope', 'backendService', 'alertService',
-        function($scope, backendService, alertService) {
+    module.controller('LoginCtrl', ['$scope', '$translate', 'backendService', 'alertService',
+        function($scope, $translate, backendService, alertService) {
             if (backendService.isLoggedIn()) {
                 $scope.goToView('');
             }
@@ -15,8 +15,9 @@
                         }
                     })
                     .error(function (data) {
-                        // TODO: showing the error to the user should be done by the backend service
-                        alertService.addAlert('Could not log in: ' + data.error, 'danger');
+                        alertService.addAlert($translate.instant('message.login.error', {
+                            reason: data.error
+                        }), 'danger');
                     })
                 ;
             };
