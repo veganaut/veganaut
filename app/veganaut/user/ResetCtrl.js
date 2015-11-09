@@ -4,10 +4,6 @@
     module.controller('ResetCtrl', [
         '$scope', '$routeParams', '$location', '$translate', 'backendService', 'alertService',
         function ($scope, $routeParams, $location, $translate, backendService, alertService) {
-            if (backendService.isLoggedIn()) {
-                $scope.goToView('');
-            }
-
             var token = $routeParams.token;
 
             /**
@@ -15,6 +11,14 @@
              * @type {boolean}
              */
             $scope.validToken = false;
+
+            /**
+             * Form values
+             * @type {{password: string}}
+             */
+            $scope.form = {
+                password: ''
+            };
 
             // Check if the token is valid
             backendService.isValidToken(token)

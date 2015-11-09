@@ -16,7 +16,7 @@ describe('register.', function() {
         helpers.logoutIfLoggedIn();
     });
 
-    it('should have a link to the register form.', function() {
+    xit('should have a link to the register form.', function() {
         elements.menuButton.click();
         var button = element.all(by.css('.nav-register'));
         expect(button.count()).toBe(1);
@@ -28,11 +28,12 @@ describe('register.', function() {
     it('should be possible to register as a new user.', function() {
         browser.get('/register');
 
-        element(by.model('form.email')).sendKeys('cody@testerburger.com');
-        element(by.model('form.fullName')).sendKeys('Cody Testerburger');
-        element(by.model('form.nickname')).sendKeys('The Cody');
-        element(by.model('form.password')).sendKeys('so secure brah');
-        element(by.model('form.passwordRepeat')).sendKeys('so secure brah\n');
+        var emailInput = element(by.model('registerVm.form.email'));
+        emailInput.sendKeys('cody@testerburger.com');
+        browser.sleep(350); // wait for debounce TODO: find another way to do that
+
+        // Submit form by sending an EOL
+        emailInput.sendKeys('\n');
         expect(browser.getCurrentUrl()).toMatch(/\//);
 
         // Check if there's an alert and if it can be closed

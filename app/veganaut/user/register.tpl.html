@@ -1,30 +1,39 @@
 <form novalidate name="registerForm" class="register-form">
-    <!-- TODO: merge this with editProfile.tpl.html -->
     <p class="lead">
         {{ 'register.description' | translate }}
     </p>
-    <div class="form-group">
-        <label for="fullName">{{ 'person.label.fullName' | translate }}</label>
-        <input type="text" required id="fullName" class="form-control" ng-model="form.fullName" />
+    <div class="form-group" vg-form-validation-class="registerForm.email">
+        <label for="email">
+            {{ 'person.label.email' | translate }}
+        </label>
+        <div class="input-group">
+            <input type="email" name="email" id="email" class="form-control"
+             required
+             ng-model="registerVm.form.email"
+             ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
+             />
+            <vg-form-validation-icon vg-form-field="registerForm.email"></vg-form-validation-icon>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="nickname">{{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})</label>
-        <input type="text" required id="nickname" class="form-control" ng-model="form.nickname" />
+
+    <div class="form-group" vg-form-validation-class="registerForm.nickname">
+        <label for="nickname">
+            {{ 'person.label.nickname' | translate }} ({{ 'person.label.publiclyVisible' | translate }})
+        </label>
+        <div class="input-group">
+            <input type="text" name="nickname" id="nickname" class="form-control"
+             required ng-minlength="4"
+             ng-model="registerVm.form.nickname"
+             ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
+             />
+            <vg-form-validation-icon vg-form-field="registerForm.nickname"></vg-form-validation-icon>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="email">{{ 'person.label.email' | translate }}</label>
-        <input type="email" required id="email" class="form-control" ng-model="form.email" />
-    </div>
-    <div class="form-group">
-        <label for="password">{{ 'person.label.password' | translate }}</label>
-        <input type="password" required id="password" class="form-control" ng-model="form.password" />
-    </div>
-    <div class="form-group">
-        <label for="passwordRepeat">{{ 'person.label.passwordRepeat' | translate }}</label>
-        <input type="password" required id="passwordRepeat" class="form-control" ng-model="form.passwordRepeat" />
-    </div>
+
     <button type="submit" class="btn btn-default pull-right"
-     ng-disabled="registerForm.$invalid || form.password !== form.passwordRepeat"
-     ng-click="submit()">{{ 'register.form.submit' | translate }}</button>
+     ng-disabled="registerForm.$invalid"
+     ng-click="registerVm.submit()">
+        {{ 'register.form.submit' | translate }}
+    </button>
     <div class="clearfix"></div>
 </form>

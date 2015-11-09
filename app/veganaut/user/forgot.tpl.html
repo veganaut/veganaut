@@ -1,8 +1,18 @@
 <form novalidate name="forgotForm" ng-controller="ForgotCtrl">
-    <div class="form-group">
-        <label for="loginEmail">{{ 'person.label.email' | translate }}</label>
-        <input id="loginEmail" type="email" required class="form-control" ng-model="form.email"
-               placeholder="{{ 'login.form.email' | translate}}"/>
+    <p class="lead">{{ 'forgot.title' | translate }}</p>
+
+    <div class="form-group" vg-form-validation-class="forgotForm.email">
+        <label for="email">
+            {{ 'person.label.email' | translate }}
+        </label>
+        <div class="input-group">
+            <input type="email" name="email" id="email" class="form-control"
+             required
+             ng-model="form.email"
+             ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
+             />
+            <vg-form-validation-icon vg-form-field="forgotForm.email"></vg-form-validation-icon>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-default pull-right" ng-disabled="forgotForm.$invalid"

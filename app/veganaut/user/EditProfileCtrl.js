@@ -8,8 +8,7 @@
                     fullName: me.fullName,
                     nickname: me.nickname,
                     email: me.email,
-                    password: '',
-                    passwordRepeat: ''
+                    password: ''
                 };
 
                 $scope.changePassword = false;
@@ -17,7 +16,12 @@
 
             $scope.submit = function() {
                 var form = $scope.form;
-                // TODO: improve how the form validates password and passwordRepeat are the same
+
+                // Don't send the password if the user doesn't want to change it
+                if (!$scope.changePassword) {
+                    delete form.password;
+                }
+
                 playerService.updateMe(form)
                     .success(function() {
                         alertService.addAlert($translate.instant('message.profile.update.success'), 'success');

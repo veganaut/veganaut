@@ -15,7 +15,13 @@
     "bugs": "Bugreport"
   },
   "message": {
-    "registered": "Registrierung erfolgreich.",
+    "registration": {
+      "success": "Willkommen bei Veganaut.net {{ name }}! Du bist jetzt eingeloggt. Wir schicken dir eine E-Mail mit einem Link, um dein Passwort für spätere Logins zu setzen.",
+      "error": "Registrierung fehlgeschlagen: {{ reason }}"
+    },
+    "login": {
+      "error": "Login fehlgeschlagen: {{ reason }}"
+    },
     "geolocate": {
       "error": "Position konnte nicht ermittelt werden."
     },
@@ -39,12 +45,14 @@
     "title": "Mitmachen",
     "description": "Wenn du auf Veganaut.net etwas eintragen, bewerten oder ändern möchtest, kannst du dich hier registrieren.",
     "form": {
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verstecken",
       "submit": "Registrieren"
     }
   },
   "login": {
     "title": "Login",
-    "forgotPassword": "Passwort vergessen?",
+    "forgotPassword": "Ich weiss mein Passwort nicht.",
     "form": {
       "email": "email@beispiel.com",
       "password": "Passwort",
@@ -52,17 +60,17 @@
     }
   },
   "forgot": {
+    "title": "Wir senden dir eine E-Mail, damit du ein neues Passwort setzen kannst.",
     "form": {
       "submit": "Abschicken"
     }
   },
   "reset": {
     "form": {
-      "save": "Speichern"
+      "save": "Passwort speichern"
     }
   },
   "action": {
-    "register": "Registrieren",
     "cancel": "Abbrechen",
     "profile": {
       "edit": "Profil bearbeiten",
@@ -106,7 +114,6 @@
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
       "password": "Passwort",
-      "passwordRepeat": "Passwort wiederholen",
       "attributes": "Attribute",
       "pioneer": "Pionier",
       "diplomat": "Diplomat",
