@@ -20,7 +20,6 @@
         </array>
       </option>
       <option name="outputFromStdout" value="true" />
-      <option name="passParentEnvs" value="true" />
       <option name="program" value="$ProjectFileDir$/node_modules/.bin/lessc" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="false" />
@@ -29,4 +28,3 @@
     </TaskOptions>
   </component>
 </project>
-
