@@ -17,7 +17,8 @@ After that checkout veganaut and veganaut-backend:
     git clone https://github.com/veganaut/veganaut-backend.git
 
 Install the dependencies using npm and let the post install script create a config
-file for the backend in `veganaut-backend/app/config.js`:
+file for the backend in `veganaut-backend/app/config.js`
+(keep the parentheses to be able to copy paste the whole code block):
 
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
