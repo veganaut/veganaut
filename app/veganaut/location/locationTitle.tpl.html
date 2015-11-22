@@ -1,0 +1,8 @@
+<span class="location-title">
+    {{ locationTitleVm.location.name }}
+    <span ng-class="{ 'pull-right-spaced': locationTitleVm.showIconsRight() }">
+        <vg-location-effort-icon location="locationTitleVm.location"></vg-location-effort-icon>
+        <vg-location-quality-icon location="locationTitleVm.location"></vg-location-quality-icon>
+        <vg-location-type-badge location="locationTitleVm.location"></vg-location-type-badge>
+    </span>
+</span>
