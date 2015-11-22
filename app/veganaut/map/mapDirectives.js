@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    // TODO: not really sure how to treat tiny directives and filters like this
+    // TODO: put all of these directives in separate files
 
     module.directive('vgMissionPoints', [function() {
         return {
@@ -98,10 +98,39 @@
             templateUrl: '/veganaut/map/vgAverageRating.tpl.html',
             controller: ['$scope', function($scope) {
                 var maxRating = $scope.maxRating || 5;
-                $scope.range = [];
-                for (var i = 1; i <= maxRating; i++) {
-                    $scope.range.push(i);
+
+                // Prepare the stars array
+                var stars = [];
+                for (var i = 0; i < maxRating; i++) {
+                    stars.push({
+                        id: i,
+                        icon: ''
+                    });
                 }
+
+                /**
+                 * Returns the array of stars (icons) to be displayed
+                 * @returns {Array}
+                 */
+                $scope.getStars = function() {
+                    // Fill up the stars array with the right stars
+                    for (var i = 0; i < maxRating; i++) {
+                        // Either an empty or full star
+                        var icon = 'glyphicon-star-empty';
+                        if (i <= ($scope.average - 0.5)) {
+                            icon = 'glyphicon-star';
+                        }
+
+                        // If the average is 0 (= no rating) make the middle star a question mark
+                        if (i === Math.floor(maxRating/2) && $scope.average === 0) {
+                            icon = 'glyphicon-question-sign';
+                        }
+
+                        // Set the icon
+                        stars[i].icon = icon;
+                    }
+                    return stars;
+                };
             }]
         };
     }]);

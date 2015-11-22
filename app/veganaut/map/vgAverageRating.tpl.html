@@ -1,7 +1,6 @@
-<span ng-if="average" class="nowrap"
+<span class="nowrap" ng-class="{ 'average-rating--no-rating': (average === 0) }"
  uib-tooltip="{{ 'location.rating.average' | translate }}: {{ average | number:1 }},
  {{ 'location.rating.numRatings' | translate }}: {{ numRatings }}">
-    <i ng-repeat="r in range" class="glyphicon"
-     ng-class="r <= (average + 0.5) ? 'glyphicon-star' : 'glyphicon-star-empty'">
+    <i ng-repeat="star in getStars() track by star.id" class="glyphicon {{ star.icon }}">
     </i>
 </span>
