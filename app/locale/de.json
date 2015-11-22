@@ -97,6 +97,10 @@
       "filterMap": {
         "name": "Filtern",
         "description": "Orte auf der Karte filtern"
+      },
+      "showList": {
+        "name": "Locations",
+        "description": "Locations in einer Liste anzeigen"
       }
     },
     "locationVisitAction": "Location anzeigen",

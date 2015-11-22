@@ -99,7 +99,7 @@
         "description": "Filter locations on the map"
       },
       "showList": {
-        "name": "List",
+        "name": "Locations",
         "description": "Show locations in a list"
       }
     },

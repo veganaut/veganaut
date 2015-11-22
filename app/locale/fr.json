@@ -97,6 +97,10 @@
       "filterMap": {
         "name": "Filtrer",
         "description": "Filtrer les endroits sur la carte"
+      },
+      "showList": {
+        "name": "Endroits",
+        "description": "Afficher les endroits sur une liste"
       }
     },
     "locationVisitAction": "Afficher l'endroit",
