@@ -103,7 +103,7 @@
 
                 // Get the locations (to set them in the products)
                 // TODO: get locations should be cached
-                locationPromise = locationService.getLocations(bounds);
+                locationPromise = locationService.getLocationsByBounds(bounds);
                 loadProducts(bounds, locationType);
             });
         }
