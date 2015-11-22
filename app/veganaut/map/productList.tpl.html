@@ -37,17 +37,8 @@
 
                     <hr class="hr--small"/>
 
-                    {{ product.location.name }}
-                    <span class="pull-right-spaced">
-                        <vg-location-effort-icon location="product.location"></vg-location-effort-icon>
-                        <vg-location-quality-icon location="product.location"></vg-location-quality-icon>
-                        <vg-location-type-badge location="product.location"></vg-location-type-badge>
-                    </span>
-                    <button type="button" class="btn btn-block btn-primary"
-                     ng-click="visitLocation(product.location)">
-                        <span class="glyphicon glyphicon-hand-right"></span>
-                        <span>{{ 'action.map.locationAction' | translate }}</span>
-                    </button>
+                    <vg-location-title vg-location="product.location"></vg-location-title>
+                    <vg-location-visit-button vg-location="product.location"></vg-location-visit-button>
                 </vg-accordion-item-body>
             </vg-accordion-item>
         </vg-accordion>
