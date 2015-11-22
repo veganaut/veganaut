@@ -364,7 +364,8 @@
     "availability": {
       "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
-    }
+    },
+    "totalProducts": "Total {{ totalProducts }} Angebote verfügbar"
   },
   "mapSearch": {
     "form": {

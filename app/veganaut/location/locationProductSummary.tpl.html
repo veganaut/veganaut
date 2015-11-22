@@ -1,0 +1,24 @@
+<div ng-if="locationProductSummaryVm.location.getProducts().length > 0">
+    <div
+     class="clearfix"
+     ng-repeat="product in locationProductSummaryVm.location.getProducts() |
+        limitTo:locationProductSummaryVm.limitTo
+        track by product.id"
+    >
+        {{ product.name }}
+        <vg-average-rating
+         class="pull-right"
+         average="product.rating.average"
+         num-ratings="product.rating.numRatings">
+        </vg-average-rating>
+    </div>
+    <div class="clearfix"></div>
+    <p class="pull-right small">
+        {{
+        'product.totalProducts' |
+        translate:{totalProducts: locationProductSummaryVm.location.getProducts().length }
+        }}
+    </p>
+
+    <div class="clearfix"></div>
+</div>
