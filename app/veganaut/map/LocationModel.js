@@ -371,6 +371,35 @@
             };
 
             /**
+             * Returns the description limited to a certain length
+             * TODO: Add unit test? Or will this anyway be done by the backend somehow?
+             * @returns {string}
+             */
+            Location.prototype.getShortDescription = function() {
+                var desc = this.description;
+
+                // If there is no description, return empty
+                if (!angular.isString(desc)) {
+                    return '';
+                }
+
+                // Limit if longer than certain length
+                var MAX_LENGTH = 80;
+                if (desc.length > MAX_LENGTH) {
+                    // Find the last space to not cut words
+                    desc = desc.substring(0, MAX_LENGTH);
+                    var lastSpace = desc.lastIndexOf(' ');
+                    if (lastSpace !== -1) {
+                        desc = desc.substring(0, lastSpace);
+                    }
+
+                    // Add an ellipsis
+                    desc += '…';
+                }
+                return desc;
+            };
+
+            /**
              * Returns the URL of this location
              * @param {boolean} [edit=false] Whether to return the URL to edit
              *      this location
