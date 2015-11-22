@@ -30,27 +30,6 @@
             $scope.productMissions = [];
             $scope.location = undefined;
 
-            /**
-             * Which product is currently shown
-             * @type {{}}
-             */
-            $scope.openedProductId = undefined;
-
-            /**
-             * Shows or hides details of the given product.
-             * @param {{}} product
-             */
-            $scope.toggleProduct = function(product) {
-                if ($scope.openedProductId === product.id) {
-                    $scope.openedProductId = undefined;
-                    angularPiwik.track('location.products', 'close');
-                }
-                else {
-                    $scope.openedProductId = product.id;
-                    angularPiwik.track('location.products', 'open');
-                }
-            };
-
             // TODO: Create proper filter from this?
             $scope.filterOnlyZeroMissions = function(mission) {
                 return (mission.points > 0);

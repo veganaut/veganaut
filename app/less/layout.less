@@ -149,3 +149,14 @@ body.embedded {
 .list-spaced li {
     margin-top: 5px;
 }
+
+// Adapt the default hr style
+hr {
+    border-color: @colorLighter;
+
+    // Add a smaller variant
+    &.hr--small {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

@@ -40,12 +40,13 @@
         <div ng-if="getShownProducts().length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
 
-            <ul class="accordion-list">
-                <li ng-repeat="product in getShownProducts() track by product.id"
-                 class="accordion-list__item product-availability--{{ product.availability }}"
-                 ng-class="{ 'accordion-list__item--opened': openedProductId === product.id }">
-                    <button class="btn btn-block accordion-list__item__btn"
-                     ng-click="toggleProduct(product)">
+            <vg-accordion>
+                <vg-accordion-item
+                 ng-repeat="product in getShownProducts() track by product.id"
+                 vg-tracking-category="location.products"
+                 class="product product--availability-{{ product.availability }}"
+                >
+                    <vg-accordion-item-header class="product__header">
                         {{ product.name }}
                         <span class="pull-right-spaced">
                             <vg-average-rating
@@ -58,65 +59,59 @@
                              vg-hide-points="true">
                             </vg-mission-points>
                         </span>
-                    </button>
-
-                    <div class="accordion-list__item__content" ng-if="openedProductId === product.id">
-                        <div class="accordion-list__item__description">
-                            <button class="btn btn-no-styles pull-right-spaced"
-                             ng-click="toggleProduct(product)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                            <div ng-if="product.availability !== 'available'">
-                                <em>{{ 'product.availability.' + product.availability | translate }}</em>
+                    </vg-accordion-item-header>
+                    <vg-accordion-item-body>
+                        <div ng-if="product.availability !== 'available'">
+                            <em>{{ 'product.availability.' + product.availability | translate }}</em>
+                        </div>
+                        <div ng-if="product.availability === 'available'">
+                            <div ng-show="product.rating.numRatings > 0"
+                             translate="product.rating.details"
+                             translate-values="{ rating: (product.rating.average | number:1),
+                              numRatings: product.rating.numRatings }">
                             </div>
-                            <div  ng-if="product.availability === 'available'">
-                                <div ng-show="product.rating.numRatings > 0"
-                                 translate="product.rating.details"
-                                 translate-values="{ rating: (product.rating.average | number:1),
-                                  numRatings: product.rating.numRatings }">
-                                </div>
-                                <div ng-hide="product.rating.numRatings > 0">
-                                    {{ 'product.rating.noRating' | translate }}
-                                </div>
+                            <div ng-hide="product.rating.numRatings > 0">
+                                {{ 'product.rating.noRating' | translate }}
                             </div>
                         </div>
 
-                        <div class="accordion-list__item__actions">
-                            <vg-product-mission
-                             ng-repeat="mission in productMissions[product.id]|filter:filterOnlyZeroMissions|orderBy:'order'"
-                             vg-mission="mission"
-                             vg-on-finish-mission="finishMission">
-                            </vg-product-mission>
+                        <hr class="hr--small"/>
 
-                            <!-- TODO: the filtering should be done in the controller. also it should be smarter:
-                            it should take into account the availability of the product, not just the points of missions -->
-                            <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
-                                <div class="accordion-list__item__bottom-action small" ng-hide="showAll">
-                                    <button ng-click="showAll = !showAll | track:'location.products':'showAllMissions'"
-                                     class="btn btn-xs btn-link btn-block">
-                                        {{ 'map.mission.showAllMissions' | translate}}
-                                    </button>
-                                </div>
-                                <div ng-if="showAll">
-                                    <vg-product-mission
-                                     ng-repeat="mission in productMissions[product.id]|filter:filterOnlyNonZeroMissions|orderBy:'order'"
-                                     vg-mission="mission"
-                                     vg-on-finish-mission="finishMission">
-                                    </vg-product-mission>
-                                </div>
-                            </div>
+                        <vg-product-mission
+                         ng-repeat="mission in productMissions[product.id]|filter:filterOnlyZeroMissions|orderBy:'order'"
+                         vg-mission="mission"
+                         vg-on-finish-mission="finishMission">
+                        </vg-product-mission>
 
-                            <div class="accordion-list__item__bottom-action small"
-                             ng-if="!isLoggedIn()">
-                                <button class="register-to-edit btn btn-xs btn-link btn-block"
-                                 ng-click="goToView('register')">
-                                    <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
+                        <!-- TODO: the filtering should be done in the controller. also it should be smarter:
+                        it should take into account the availability of the product, not just the points of missions -->
+                        <div ng-if="(productMissions[product.id]|filter:filterOnlyNonZeroMissions).length > 0">
+                            <div class="product-list__bottom-action small" ng-hide="showAll">
+                                <button ng-click="showAll = !showAll | track:'location.products':'showAllMissions'"
+                                 class="btn btn-xs btn-link btn-block">
+                                    {{ 'map.mission.showAllMissions' | translate}}
                                 </button>
                             </div>
+                            <div ng-if="showAll">
+                                <vg-product-mission
+                                 ng-repeat="mission in productMissions[product.id]|filter:filterOnlyNonZeroMissions|orderBy:'order'"
+                                 vg-mission="mission"
+                                 vg-on-finish-mission="finishMission">
+                                </vg-product-mission>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+
+                        <div class="product-list__bottom-action small"
+                         ng-if="!isLoggedIn()">
+                            <button class="register-to-edit btn btn-xs btn-link btn-block"
+                             ng-click="goToView('register')">
+                                <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
+                            </button>
+                        </div>
+                    </vg-accordion-item-body>
+                </vg-accordion-item>
+            </vg-accordion>
+
             <div class="small"
              ng-if="location.hasUnavailableProducts()"
              ng-hide="showUnavailable.products">
