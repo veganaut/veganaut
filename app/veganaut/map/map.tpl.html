@@ -1,6 +1,6 @@
 <div ng-controller="MapCtrl">
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="location.active || productShown || filtersShown || searchShown">
+     ng-hide="locationService.active || productShown || filtersShown || searchShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
                 <div ng-if="isEmbedded">
@@ -67,11 +67,11 @@
                 <strong>{{ locationService.active.name }}</strong>
                 <vg-location-quality-icon location="locationService.active"></vg-location-quality-icon>
                 <vg-location-effort-icon location="locationService.active"></vg-location-effort-icon>
-                <span ng-show="locationService.active.getProductsByAvailability('available').length > 0">
+                <span ng-show="locationService.active.getProducts().length > 0">
                     <br/>
                     {{ 'location.products.summary' | translate:{
-                        product: locationService.active.getProductsByAvailability('available')[0].name,
-                        number: locationService.active.getProductsByAvailability('available').length - 1}
+                        product: locationService.active.getProducts()[0].name,
+                        number: locationService.active.getProducts().length - 1}
                     }}
                 </span>
             </p>

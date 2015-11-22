@@ -10,9 +10,11 @@
     <p ng-if="location.description">
         <span class="location-description">{{ location.description }}</span>
     </p>
+
     <p ng-if="location.link">
         <a target="_blank" ng-href="{{ location.link }}">{{ location.link }}</a>
     </p>
+
     <p ng-if="location.updatedAt">
         <small>
             {{ 'location.label.updatedAt' | translate }}:
@@ -34,6 +36,7 @@
 
     <div>
         <h2>{{ 'location.products.title' | translate }}</h2>
+
         <div ng-if="getShownProducts().length > 0">
             <p>{{ 'location.products.description' | translate }}</p>
 
@@ -46,7 +49,6 @@
                         {{ product.name }}
                         <span class="pull-right-spaced">
                             <vg-average-rating
-                             ng-show="product.rating.numRatings > 0"
                              average="product.rating.average"
                              num-ratings="product.rating.numRatings">
                             </vg-average-rating>
@@ -116,7 +118,7 @@
                 </li>
             </ul>
             <div class="small"
-             ng-if="location.getProductsByAvailability('unavailable').length > 0"
+             ng-if="location.hasUnavailableProducts()"
              ng-hide="showUnavailable.products">
                 <button ng-click="showUnavailable.products = true"
                  class="btn btn-xs btn-link btn-block">
@@ -152,7 +154,9 @@
                     <form novalidate name="outcomeForm" class="{{ mission.type }}-form">
                         <div ng-switch="mission.type">
                             <p>{{ 'map.mission.' + mission.type + '.explanation' | translate }}</p>
+
                             <p class="lead">{{ 'map.mission.' + mission.type + '.description' | translate }}</p>
+
                             <div ng-switch-when="hasOptions">
                                 <div class="btn-group form-group pull-right">
                                     <label class="btn btn-default" ng-repeat="answer in mission.firstAnswers"
@@ -165,6 +169,7 @@
                                     <p class="lead">
                                         {{ 'map.mission.' + mission.type + '.description2' | translate }}
                                     </p>
+
                                     <div class="btn-group form-group pull-right">
                                         <label class="btn btn-default" ng-repeat="answer in mission.secondAnswers"
                                          ng-model="mission.outcome.second" uib-btn-radio="answer">
@@ -198,7 +203,7 @@
                                 </vg-list-input>
                             </div>
                             <div ng-switch-when="buyOptions">
-                                <div class="checkbox" ng-repeat="product in mission.location.getProductsByAvailability('available') | orderBy:'name'">
+                                <div class="checkbox" ng-repeat="product in mission.location.getProducts() | orderBy:'name'">
                                     <label>
                                         <input type="checkbox" ng-model="mission.outcome[product.id]"/>
                                         {{ product.name }}

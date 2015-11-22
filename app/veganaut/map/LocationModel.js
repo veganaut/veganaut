@@ -328,14 +328,36 @@
              * @param {string|string[]} filterBy A string for a single availability
              *      or an array of strings for multiple.
              * @return {Product[]}
+             * @private
              */
-            Location.prototype.getProductsByAvailability = function(filterBy) {
+            Location.prototype._getProductsByAvailability = function(filterBy) {
                 if (angular.isString(filterBy)) {
                     filterBy = [filterBy];
                 }
                 return _.filter(this.products, function(product) {
                     return (filterBy.indexOf(product.availability) > -1);
                 });
+            };
+
+            /**
+             * Get the products that should be displayed for this location
+             * @param {boolean} [showUnavailable=false] Whether to also include unavailable products.
+             *      By default only available and temporarilyUnavailable products are shown.
+             * @returns {Product[]}
+             */
+            Location.prototype.getProducts = function(showUnavailable) {
+                if (showUnavailable) {
+                    return this.products;
+                }
+                return this._getProductsByAvailability(['available', 'temporarilyUnavailable']);
+            };
+
+            /**
+             * Whether this location has an products that are unavailable
+             * @returns {boolean}
+             */
+            Location.prototype.hasUnavailableProducts = function() {
+                return (this._getProductsByAvailability('unavailable').length > 0);
             };
 
             /**

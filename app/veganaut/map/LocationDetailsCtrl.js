@@ -96,7 +96,7 @@
                 // Check if unavailable products should be hidden
                 if (!$scope.showUnavailable.products) {
                     // Show only available and temporarily unavailable products
-                    var products = $scope.location.getProductsByAvailability(['available', 'temporarilyUnavailable']);
+                    var products = $scope.location.getProducts();
                     if (products.length > 0) {
                         // If we found products, return them
                         return products;
@@ -107,7 +107,7 @@
                 }
 
                 // Show all products
-                return $scope.location.products;
+                return $scope.location.getProducts(true);
             };
 
             /**
