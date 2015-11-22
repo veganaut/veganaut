@@ -176,8 +176,7 @@
         "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
         "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
       },
-      "showUnavailableProducts": "Afficher les options non disponibles",
-      "summary": "{{ product }} et {{ number }} autres options."
+      "showUnavailableProducts": "Afficher les options non disponibles"
     },
     "type": {
       "gastronomy": "Gastronomie",
@@ -357,7 +356,6 @@
   },
   "product": {
     "rating": {
-      "summary": "{{numRatings}} évaluations",
       "details": "Moyenne de {{rating}} de {{numRatings}} évaluations.",
       "noRating": "Cette option n'a pas encore été évaluée."
     },

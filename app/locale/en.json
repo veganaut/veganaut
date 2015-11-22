@@ -180,8 +180,7 @@
         "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
         "user": "No options have been entered yet. You can enter vegan options by completing one of the missions below."
       },
-      "showUnavailableProducts": "Show unavailable products",
-      "summary": "{{ product }} and {{ number }} other options."
+      "showUnavailableProducts": "Show unavailable products"
     },
     "type": {
       "gastronomy": "Gastronomy",
@@ -361,7 +360,6 @@
   },
   "product": {
     "rating": {
-      "summary": "{{numRatings}} ratings",
       "details": "Average of {{rating}} from {{numRatings}} ratings.",
       "noRating": "This product hasn't been rated yet."
     },

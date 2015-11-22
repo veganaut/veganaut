@@ -176,8 +176,7 @@
         "anonymous": "Es wurden noch keine Angebote eingetragen. <a href=\"/register\">Registriere</a> dich, um vegane Angebote einzutragen.",
         "user": "Es wurden noch keine Angebote eingetragen. Mit einer der Missionen kannst du Angebote eintragen."
       },
-      "showUnavailableProducts": "Zeige nicht verfügbare Produkte",
-      "summary": "{{ product }} und {{ number }} weitere Angebote"
+      "showUnavailableProducts": "Zeige nicht verfügbare Produkte"
     },
     "type": {
       "gastronomy": "Gastro",
@@ -357,7 +356,6 @@
   },
   "product": {
     "rating": {
-      "summary": "{{numRatings}} Bewertungen",
       "details": "Durchschnitt von {{rating}} von {{numRatings}} Bewertungen.",
       "noRating": "Dieses Angebot wurde noch nicht bewertet."
     },

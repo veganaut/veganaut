@@ -14,13 +14,13 @@
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.map.showProductList.description' | translate }}"
                  ng-click="showProductList(true)">
-                    <span class="glyphicon glyphicon-cutlery"></span><br />
+                    <span class="glyphicon glyphicon-cutlery"></span><br/>
                     <span class="small">{{ 'action.map.showProductList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-show-search btn btn-default btn-default--transparent"
                  ng-click="showSearch(true)"
                  title="{{ 'action.map.searchMap.description' | translate }}">
-                    <span class="glyphicon glyphicon-search"></span><br />
+                    <span class="glyphicon glyphicon-search"></span><br/>
                     <span class="small">{{ 'action.map.searchMap.name' | translate }}</span>
                 </button>
                 <!--<button type="button" class="btn-show-location-filters btn btn-default btn-default&#45;&#45;transparent"-->
@@ -33,21 +33,21 @@
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
                  ng-click="goToLocationList()"
                  title="{{ 'action.map.showList.description' | translate }}">
-                    <span class="glyphicon glyphicon-th-list"></span><br />
+                    <span class="glyphicon glyphicon-th-list"></span><br/>
                     <span class="small">{{ 'action.map.showList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!isLoggedIn()"
                  ng-click="goToView('register')"
                  title="{{ 'action.map.register.description' | translate }}">
-                    <span class="glyphicon glyphicon-heart"></span><br />
+                    <span class="glyphicon glyphicon-heart"></span><br/>
                     <span class="small">{{ 'action.map.register.name' | translate }}</span>
                 </button>
                 <button type="button" class="add-location btn btn-block btn-primary"
                  ng-if="isLoggedIn()"
                  ng-click="startAddNewLocation()"
                  title="{{ 'action.map.addLocation.description' | translate }}">
-                    <span class="glyphicon glyphicon-plus-sign"></span><br />
+                    <span class="glyphicon glyphicon-plus-sign"></span><br/>
                     <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
                 </button>
             </div>
@@ -57,31 +57,30 @@
     <!-- TODO: get rid of complicated ng-show in view -->
     <div class="top-box container main-container"
      ng-show="locationService.active || productShown || filtersShown || searchShown">
-        <div class="text-center location-details" ng-show="locationService.active && !locationService.isAddingLocation()">
+        <div class="location-details" ng-show="locationService.active && !locationService.isAddingLocation()">
             <div class="pull-right clickable" ng-click="locationService.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
-
             <p>
-                <vg-location-type-badge location="locationService.active"></vg-location-type-badge>
-                <strong>{{ locationService.active.name }}</strong>
-                <vg-location-quality-icon location="locationService.active"></vg-location-quality-icon>
-                <vg-location-effort-icon location="locationService.active"></vg-location-effort-icon>
-                <span ng-show="locationService.active.getProducts().length > 0">
-                    <br/>
-                    {{ 'location.products.summary' | translate:{
-                        product: locationService.active.getProducts()[0].name,
-                        number: locationService.active.getProducts().length - 1}
-                    }}
-                </span>
+                <strong>
+                    <vg-location-title
+                     vg-location="locationService.active"
+                     vg-icons-right="false">
+                    </vg-location-title>
+                </strong>
             </p>
 
+            <p ng-if="locationService.active.getShortDescription()">
+                {{ locationService.active.getShortDescription() }}
+            </p>
+
+            <vg-location-product-summary
+             vg-location="locationService.active"
+             vg-limit-to="1">
+            </vg-location-product-summary>
+
             <p ng-show="locationService.active.id">
-                <button type="button" class="btn btn-block btn-primary"
-                 ng-click="visitLocation(locationService.active)">
-                    <span class="glyphicon glyphicon-hand-right"></span>
-                    <span ng-bind="'action.map.locationAction'|translate"></span>
-                </button>
+                <vg-location-visit-button vg-location="locationService.active"></vg-location-visit-button>
             </p>
         </div>
 
