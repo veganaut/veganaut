@@ -97,9 +97,9 @@
       "filterMap": {
         "name": "Filtern",
         "description": "Orte auf der Karte filtern"
-      },
-      "locationAction": "Mehr"
+      }
     },
+    "locationVisitAction": "Location anzeigen",
     "location": {
       "edit": "Location bearbeiten",
       "editAsAnonymous": "Bearbeiten",

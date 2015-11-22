@@ -101,9 +101,9 @@
       "showList": {
         "name": "List",
         "description": "Show locations in a list"
-      },
-      "locationAction": "More"
+      }
     },
+    "locationVisitAction": "View location",
     "location": {
       "edit": "Edit location",
       "editAsAnonymous": "Edit",
