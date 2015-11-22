@@ -29,30 +29,10 @@
             $scope.totalProducts = 0;
 
             /**
-             * Which product is currently shown
-             * @type {{}}
-             */
-            $scope.openedProductId = undefined;
-
-            /**
              * Whether the products have been loaded
              * @type {boolean}
              */
             $scope.productsLoaded = false;
-
-            /**
-             * Shows the details of the given product.
-             * If the it's already shown, it's hidden.
-             * @param {{}} product
-             */
-            $scope.openProduct = function(product) {
-                if ($scope.openedProductId === product.id) {
-                    $scope.openedProductId = undefined;
-                }
-                else {
-                    $scope.openedProductId = product.id;
-                }
-            };
 
             /**
              * Load the next batch of products
