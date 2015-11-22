@@ -377,7 +377,9 @@
     }
   },
   "locationList": {
-    "title": "Location List"
+    "title": "Locations",
+    "radius": "(radius {{ radius }})",
+    "noResults": "No locations can be found in the given area."
   },
   "home": {
     "action": {

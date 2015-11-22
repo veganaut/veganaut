@@ -376,6 +376,11 @@
       "showForm": "Suche anzeigen"
     }
   },
+  "locationList": {
+    "title": "Locations",
+    "radius": "(Radius {{ radius }})",
+    "noResults": "Es wurden keine Locations im angegebenen Gebiet gefunden."
+  },
   "home": {
     "action": {
       "visitMap": "Zur Karte",

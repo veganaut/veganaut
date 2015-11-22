@@ -376,6 +376,11 @@
       "showForm": "Afficher les résultats de la recherche"
     }
   },
+  "locationList": {
+    "title": "Endroits",
+    "radius": "(radius {{ radius }})",
+    "noResults": "No locations can be found in the given area."
+  },
   "home": {
     "action": {
       "visitMap": "Voir la carte",

@@ -1,30 +1,35 @@
 <div>
-    <h1 class="h4">{{ 'locationList.title' | translate }}</h1>
-    <ul class="accordion-list">
-        <li ng-repeat="location in locationListVm.list"
-         class="accordion-list__item"
-         ng-class="{ 'accordion-list__item--opened': locationListVm.openLocationId === location.id }">
-            <button class="btn btn-block accordion-list__item__btn"
-             ng-click="locationListVm.toggleOpen(location)">
-                {{ location.name }}
-                <span class="pull-right-spaced">
-                    <vg-location-effort-icon location="location"></vg-location-effort-icon>
-                    <vg-location-type-badge location="location"></vg-location-type-badge>
-                    <vg-location-quality-icon location="location"></vg-location-quality-icon>
-                </span>
-            </button>
+    <h1 class="h4">
+        {{ 'locationList.title' | translate }}
+        <span ng-if="locationListVm.validQuery">
+            {{ 'locationList.radius' | translate:{radius: locationListVm.displayRadius} }}
+        </span>
+    </h1>
 
-            <div class="accordion-list__item__content" ng-if="locationListVm.openLocationId === location.id">
-                <div class="accordion-list__item__description">
-                    More info to come...
+    <p ng-if="!locationListVm.validQuery || locationListVm.list.length === 0">
+        {{ 'locationList.noResults' | translate }}
+    </p>
+    <vg-accordion ng-if="locationListVm.validQuery">
+        <vg-accordion-item
+         ng-repeat="location in locationListVm.list track by location.id"
+         vg-on-open-toggle="locationListVm.onOpenToggle(location, isOpen)"
+         vg-tracking-category="locationList.location"
+        >
+            <vg-accordion-item-header>
+                <vg-location-title vg-location="location"></vg-location-title>
+            </vg-accordion-item-header>
+            <vg-accordion-item-body>
+                <p ng-if="location.getShortDescription()">
+                    {{ location.getShortDescription() }}
+                </p>
 
-                    <button type="button" class="btn btn-block btn-primary"
-                     ng-click="locationListVm.visitLocation(location)">
-                        <span class="glyphicon glyphicon-hand-right"></span>
-                        <span ng-bind="'action.map.locationAction'|translate"></span>
-                    </button>
-                </div>
-            </div>
-        </li>
-    </ul>
+                <vg-location-product-summary
+                 vg-location="location"
+                 vg-limit-to="3">
+                </vg-location-product-summary>
+
+                <vg-location-visit-button vg-location="location"></vg-location-visit-button>
+            </vg-accordion-item-body>
+        </vg-accordion-item>
+    </vg-accordion>
 </div>
