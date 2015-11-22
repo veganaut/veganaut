@@ -17,24 +17,18 @@
                     <span class="glyphicon glyphicon-cutlery"></span><br/>
                     <span class="small">{{ 'action.map.showProductList.name' | translate }}</span>
                 </button>
-                <button type="button" class="btn-show-search btn btn-default btn-default--transparent"
-                 ng-click="showSearch(true)"
-                 title="{{ 'action.map.searchMap.description' | translate }}">
-                    <span class="glyphicon glyphicon-search"></span><br/>
-                    <span class="small">{{ 'action.map.searchMap.name' | translate }}</span>
-                </button>
-                <!--<button type="button" class="btn-show-location-filters btn btn-default btn-default&#45;&#45;transparent"-->
-                 <!--ng-if="!isEmbedded"-->
-                 <!--ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"-->
-                 <!--title="{{ 'action.map.filterMap.description' | translate }}">-->
-                    <!--<span class="glyphicon glyphicon-filter"></span><br />-->
-                    <!--<span class="small">{{ 'action.map.filterMap.name' | translate }}</span>-->
-                <!--</button>-->
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
                  ng-click="goToLocationList()"
                  title="{{ 'action.map.showList.description' | translate }}">
                     <span class="glyphicon glyphicon-th-list"></span><br/>
                     <span class="small">{{ 'action.map.showList.name' | translate }}</span>
+                </button>
+                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
+                 ng-if="!isEmbedded"
+                 ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
+                 title="{{ 'action.map.filterMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-filter"></span><br/>
+                    <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!isLoggedIn()"

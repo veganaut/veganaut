@@ -2,10 +2,10 @@
     'use strict';
 
     module.controller('AppCtrl', [
-        '$scope', '$location', '$window',
+        '$scope', '$location', '$window', '$rootScope',
         'angularPiwik', 'featureToggle',
         'backendService', 'playerService', 'localeService',
-        function($scope, $location, $window,
+        function($scope, $location, $window, $rootScope,
             angularPiwik, featureToggle,
             backendService, playerService, localService)
         {
@@ -35,6 +35,15 @@
 
             $scope.menu = {
                 shown: false
+            };
+
+            /**
+             * Handler for clicks on search button in navbar
+             */
+            $scope.searchClick = function() {
+                // This is a temporary solution to handle the search click
+                // Is no handled in MapCtrl, will move to proper directives later
+                $rootScope.$emit('veganaut.search.clicked');
             };
 
             /**

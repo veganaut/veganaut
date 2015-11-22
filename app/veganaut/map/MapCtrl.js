@@ -297,14 +297,6 @@
             };
 
             /**
-             * Goes to the location view
-             * @param location
-             */
-            $scope.visitLocation = function(location) {
-                $location.path('location/' + location.id);
-            };
-
-            /**
              * Sets the given coordinates as the lat/lng of the location
              * that is being added.
              * @param {number} lat
@@ -530,6 +522,11 @@
 
             // Watch the active filters
             $scope.$watch('activeFilters', applyFilters, true);
+
+            // Listen to clicks on search button
+            $scope.$onRootScope('veganaut.search.clicked', function() {
+                $scope.showSearch(!$scope.searchShown);
+            });
 
             // Listen to location changes to update the map center
             // (if the user changes the hash manually)

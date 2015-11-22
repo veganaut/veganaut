@@ -21,6 +21,5 @@ describe('homePage.', function() {
 
     it('should have a register and login button.', function() {
         expect(element(by.css('button.btn-register')).isPresent()).toBe(true, 'has a register button');
-        expect(element(by.css('button.navbar-btn-login')).isPresent()).toBe(true, 'has a login button');
     });
 });
