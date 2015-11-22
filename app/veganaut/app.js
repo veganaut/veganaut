@@ -9,6 +9,7 @@
         'angular-loading-bar',
         'leaflet-directive',
         'pascalprecht.translate',
+        'veganaut.ui',
         'veganaut.alert',
         'veganaut.form',
         'veganaut.geocode',

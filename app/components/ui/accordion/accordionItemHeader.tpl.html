@@ -1,0 +1,10 @@
+<div class="accordion__item__header">
+    <button class="btn btn-block accordion__item__header__btn"
+     ng-click="accordionItemVm.toggleOpen()">
+        <small class="glyphicon accordion__item__header__icon"
+         ng-class="{'glyphicon-chevron-right': !accordionItemVm.isOpen,
+                 'glyphicon-chevron-down': accordionItemVm.isOpen}">
+        </small>
+        <ng-transclude></ng-transclude>
+    </button>
+</div>

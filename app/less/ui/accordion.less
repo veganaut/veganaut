@@ -1,0 +1,48 @@
+// Styles for the accordion and related components
+.accordion {
+    padding-left: 0;
+    margin-bottom: 5px;
+
+    .accordion__item {
+        position: relative;
+        display: block;
+        margin-bottom: -1px;
+        border: 1px solid @bootstrapGreyBorder;
+
+        &:first-child {
+            border-top-left-radius: @boxBorderRadius;
+            border-top-right-radius: @boxBorderRadius;
+        }
+        &:last-child {
+            border-bottom-right-radius: @boxBorderRadius;
+            border-bottom-left-radius: @boxBorderRadius;
+            margin-bottom: 0;
+        }
+
+        .accordion__item__header__btn {
+            .button-variant(@colorDark; @colorLight; @colorLighter);
+            .btn-reset-styles();
+            padding: 10px 15px;
+        }
+    }
+
+    .accordion__item--opened {
+        background: @bootstrapLightGreyBackground;
+        box-shadow: 0 0 2px;
+    }
+
+    .accordion__item__body {
+        box-shadow: 0 0 2px inset;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+
+    .accordion__item__body__content {
+        padding: 10px 15px;
+    }
+
+    .accordion__item__header__icon {
+        margin-left: -6px;
+        padding-right: 4px;
+    }
+}

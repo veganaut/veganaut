@@ -15,6 +15,7 @@ var minifyHtml = require('gulp-minify-html');
 
 var files = {
     js: [
+        'app/components/ui/vgUiModule.js',
         'app/components/**/*.js',
         'app/veganaut/app.js',
         'app/veganaut/**/*.js'
