@@ -173,6 +173,12 @@
                     if ($scope.searchShown) {
                         // Make sure search is not minimised when shown
                         $scope.searchComponent.minimised = false;
+
+                        // Hide all other boxes
+                        // TODO: this should really be done somewhere more central (in it's own component)
+                        $scope.showProductList(false);
+                        $scope.showFilters(false);
+                        $scope.abortAddNewLocation();
                     }
                     angularPiwik.track('map.search', show ? 'open' : 'close');
                 }
