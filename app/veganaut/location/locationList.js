@@ -73,6 +73,14 @@
                     };
 
                     /**
+                     * Navigates to the map
+                     * TODO: this method should not be necessary in this controller
+                     */
+                    vm.goToMap = function() {
+                        $location.path('map');
+                    };
+
+                    /**
                      * Sorts and filters the locations and stores them in vm.list
                      * @param {Location[]} locations
                      */

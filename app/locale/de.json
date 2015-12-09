@@ -77,31 +77,33 @@
       "save": "Profil speichern",
       "changePassword": "Passwort ändern"
     },
-    "map": {
-      "register": {
-        "name": "Mitmachen",
-        "description": "Registrieren um die Karte zu bearbeiten"
-      },
-      "addLocation": {
-        "name": "Neue Location",
-        "description": "Neue Location hinzufügen"
-      },
-      "showProductList": {
-        "name": "Veganes Menu",
-        "description": "Vegane Angebote im Kartenausschnitt anzeigen"
-      },
-      "searchMap": {
-        "name": "Suchen",
-        "description": "Auf der Karte suchen"
-      },
-      "filterMap": {
-        "name": "Filtern",
-        "description": "Orte auf der Karte filtern"
-      },
-      "showList": {
-        "name": "Locations",
-        "description": "Locations in einer Liste anzeigen"
-      }
+    "register": {
+      "name": "Mitmachen",
+      "description": "Registrieren um die Karte zu bearbeiten"
+    },
+    "addLocation": {
+      "name": "Neue Location",
+      "description": "Neue Location hinzufügen"
+    },
+    "showProductList": {
+      "name": "Veganes Menu",
+      "description": "Vegane Angebote im Kartenausschnitt anzeigen"
+    },
+    "searchMap": {
+      "name": "Suchen",
+      "description": "Auf der Karte suchen"
+    },
+    "filterMap": {
+      "name": "Filtern",
+      "description": "Orte auf der Karte filtern"
+    },
+    "showList": {
+      "name": "Locations",
+      "description": "Locations in einer Liste anzeigen"
+    },
+    "showMap": {
+      "name": "Karte",
+      "description": "Locations auf der Karte anzeigen"
     },
     "locationVisitAction": "Location anzeigen",
     "location": {

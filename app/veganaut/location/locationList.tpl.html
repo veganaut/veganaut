@@ -1,4 +1,17 @@
-<div>
+<div class="container--offset-top-box-nav">
+    <div class="top-box top-box--full-width top-box--fixed main-container">
+        <div class="top-box--full-width__border-offset">
+            <div class="btn-group--top-box">
+                <button type="button" class="btn-map btn btn-default btn-default--transparent btn--width-100"
+                 ng-click="locationListVm.goToMap()"
+                 title="{{ 'action.showMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-map-marker"></span><br/>
+                    <span class="small">{{ 'action.showMap.name' | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <h1 class="h4">
         {{ 'locationList.title' | translate }}
         <span ng-if="locationListVm.displayRadius">

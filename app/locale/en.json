@@ -77,31 +77,33 @@
       "save": "Save profile",
       "changePassword": "Change password"
     },
-    "map": {
-      "register": {
-        "name": "Participate",
-        "description": "Register to edit the map"
-      },
-      "addLocation": {
-        "name": "New location",
-        "description": "Add new location"
-      },
-      "showProductList": {
-        "name": "Vegan Menu",
-        "description": "Show vegan menu for this map section"
-      },
-      "searchMap": {
-        "name": "Search",
-        "description": "Search on the map"
-      },
-      "filterMap": {
-        "name": "Filter",
-        "description": "Filter locations on the map"
-      },
-      "showList": {
-        "name": "Locations",
-        "description": "Show locations in a list"
-      }
+    "register": {
+      "name": "Participate",
+      "description": "Register to edit the map"
+    },
+    "addLocation": {
+      "name": "New location",
+      "description": "Add new location"
+    },
+    "showProductList": {
+      "name": "Vegan Menu",
+      "description": "Show vegan menu for this map section"
+    },
+    "searchMap": {
+      "name": "Search",
+      "description": "Search on the map"
+    },
+    "filterMap": {
+      "name": "Filter",
+      "description": "Filter locations on the map"
+    },
+    "showList": {
+      "name": "Locations",
+      "description": "Show locations in a list"
+    },
+    "showMap": {
+      "name": "Map",
+      "description": "Show locations on map"
     },
     "locationVisitAction": "View location",
     "location": {

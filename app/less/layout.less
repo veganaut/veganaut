@@ -29,6 +29,10 @@ body.embedded .main-container {
     margin-top: @navbarHeight;
 }
 
+.container--offset-top-box-nav {
+    margin-top: @navbarHeight;
+}
+
 .container, .navbar-container {
     max-width: @maxContainerWidth;
 }
@@ -91,6 +95,10 @@ body.embedded .main-container {
     border-right: 0;
 }
 
+.top-box--fixed {
+    position: fixed;
+}
+
 body.embedded {
     .top-box--full-width {
         margin-top: 9px;
@@ -127,6 +135,10 @@ body.embedded {
         border-left-width: 0;
         &:first-child {
             border-left-width: 1px;
+        }
+
+        &.btn--width-100 {
+            width: 100%;
         }
 
         .small {

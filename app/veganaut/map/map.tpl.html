@@ -12,37 +12,37 @@
                     </a>
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
-                 title="{{ 'action.map.showProductList.description' | translate }}"
+                 title="{{ 'action.showProductList.description' | translate }}"
                  ng-click="showProductList(true)">
                     <span class="glyphicon glyphicon-cutlery"></span><br/>
-                    <span class="small">{{ 'action.map.showProductList.name' | translate }}</span>
+                    <span class="small">{{ 'action.showProductList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
                  ng-click="goToLocationList()"
-                 title="{{ 'action.map.showList.description' | translate }}">
+                 title="{{ 'action.showList.description' | translate }}">
                     <span class="glyphicon glyphicon-th-list"></span><br/>
-                    <span class="small">{{ 'action.map.showList.name' | translate }}</span>
+                    <span class="small">{{ 'action.showList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
                  ng-if="!isEmbedded"
                  ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
-                 title="{{ 'action.map.filterMap.description' | translate }}">
+                 title="{{ 'action.filterMap.description' | translate }}">
                     <span class="glyphicon glyphicon-filter"></span><br/>
-                    <span class="small">{{ 'action.map.filterMap.name' | translate }}</span>
+                    <span class="small">{{ 'action.filterMap.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!isLoggedIn()"
                  ng-click="goToView('register')"
-                 title="{{ 'action.map.register.description' | translate }}">
+                 title="{{ 'action.register.description' | translate }}">
                     <span class="glyphicon glyphicon-heart"></span><br/>
-                    <span class="small">{{ 'action.map.register.name' | translate }}</span>
+                    <span class="small">{{ 'action.register.name' | translate }}</span>
                 </button>
                 <button type="button" class="add-location btn btn-block btn-primary"
                  ng-if="isLoggedIn()"
                  ng-click="startAddNewLocation()"
-                 title="{{ 'action.map.addLocation.description' | translate }}">
+                 title="{{ 'action.addLocation.description' | translate }}">
                     <span class="glyphicon glyphicon-plus-sign"></span><br/>
-                    <span class="small">{{ 'action.map.addLocation.name' | translate }}</span>
+                    <span class="small">{{ 'action.addLocation.name' | translate }}</span>
                 </button>
             </div>
         </div>

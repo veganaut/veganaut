@@ -77,31 +77,33 @@
       "save": "Enregistrer le profil",
       "changePassword": "Modifier le mot de passe"
     },
-    "map": {
-      "register": {
-        "name": "Participer",
-        "description": "S'inscrire pour modifier la carte"
-      },
-      "addLocation": {
-        "name": "Nouvel endroit",
-        "description": "Ajouter nouvel endroit"
-      },
-      "showProductList": {
-        "name": "Menu végan",
-        "description": "Afficher l'offre végane pour cette partie de la carte."
-      },
-      "searchMap": {
-        "name": "Recherche",
-        "description": "Chercher sur la carte"
-      },
-      "filterMap": {
-        "name": "Filtrer",
-        "description": "Filtrer les endroits sur la carte"
-      },
-      "showList": {
-        "name": "Endroits",
-        "description": "Afficher les endroits sur une liste"
-      }
+    "register": {
+      "name": "Participer",
+      "description": "S'inscrire pour modifier la carte"
+    },
+    "addLocation": {
+      "name": "Nouvel endroit",
+      "description": "Ajouter nouvel endroit"
+    },
+    "showProductList": {
+      "name": "Menu végan",
+      "description": "Afficher l'offre végane pour cette partie de la carte."
+    },
+    "searchMap": {
+      "name": "Recherche",
+      "description": "Chercher sur la carte"
+    },
+    "filterMap": {
+      "name": "Filtrer",
+      "description": "Filtrer les endroits sur la carte"
+    },
+    "showList": {
+      "name": "Endroits",
+      "description": "Afficher les endroits sur une liste"
+    },
+    "showMap": {
+      "name": "Carte",
+      "description": "Afficher les endroits sur la carte"
     },
     "locationVisitAction": "Afficher l'endroit",
     "location": {
