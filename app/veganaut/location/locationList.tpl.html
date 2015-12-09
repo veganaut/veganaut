@@ -1,35 +1,61 @@
 <div>
     <h1 class="h4">
         {{ 'locationList.title' | translate }}
-        <span ng-if="locationListVm.validQuery">
+        <span ng-if="locationListVm.displayRadius">
             {{ 'locationList.radius' | translate:{radius: locationListVm.displayRadius} }}
         </span>
     </h1>
 
-    <p ng-if="!locationListVm.validQuery || locationListVm.list.length === 0">
+    <p ng-if="locationListVm.noResults">
         {{ 'locationList.noResults' | translate }}
     </p>
-    <vg-accordion ng-if="locationListVm.validQuery">
-        <vg-accordion-item
-         ng-repeat="location in locationListVm.list track by location.id"
-         vg-on-open-toggle="locationListVm.onOpenToggle(location, isOpen)"
-         vg-tracking-category="locationList.location"
-        >
-            <vg-accordion-item-header>
-                <vg-location-title vg-location="location"></vg-location-title>
-            </vg-accordion-item-header>
-            <vg-accordion-item-body>
-                <p ng-if="location.getShortDescription()">
-                    {{ location.getShortDescription() }}
-                </p>
 
-                <vg-location-product-summary
-                 vg-location="location"
-                 vg-limit-to="3">
-                </vg-location-product-summary>
+    <div ng-if="locationListVm.numShownLocations > 0">
+        <vg-accordion>
+            <vg-accordion-item
+             ng-repeat="location in locationListVm.list | limitTo:locationListVm.numShownLocations track by location.id"
+             vg-on-open-toggle="locationListVm.onOpenToggle(location, isOpen)"
+             vg-tracking-category="locationList.location"
+            >
+                <vg-accordion-item-header>
+                    <vg-location-title vg-location="location"></vg-location-title>
+                </vg-accordion-item-header>
+                <vg-accordion-item-body>
+                    <p ng-if="location.getShortDescription()">
+                        {{ location.getShortDescription() }}
+                    </p>
 
-                <vg-location-visit-button vg-location="location"></vg-location-visit-button>
-            </vg-accordion-item-body>
-        </vg-accordion-item>
-    </vg-accordion>
+                    <vg-location-product-summary
+                     vg-location="location"
+                     vg-limit-to="3">
+                    </vg-location-product-summary>
+
+                    <vg-location-visit-button vg-location="location"></vg-location-visit-button>
+                </vg-accordion-item-body>
+            </vg-accordion-item>
+        </vg-accordion>
+
+        <div ng-show="locationListVm.numShownLocations < locationListVm.list.length">
+            <p>
+                {{
+                'locationList.moreLocationsAvailable' |
+                translate:{ available: locationListVm.list.length - locationListVm.numShownLocations}
+                }}
+            </p>
+
+            <p>
+                <button type="button" class="btn btn-block btn-default"
+                 ng-click="locationListVm.showMore()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span>{{ 'locationList.showMore' | translate }}</span>
+                </button>
+            </p>
+        </div>
+        <p ng-show="locationListVm.numShownLocations >= locationListVm.list.length">
+            {{
+            'locationList.allLocationsShown' |
+            translate:{ available: locationListVm.list.length }
+            }}
+        </p>
+    </div>
 </div>

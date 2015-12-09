@@ -8,13 +8,18 @@
     var locationListDirective = function() {
         return {
             restrict: 'E',
-            scope: {
-                _locations: '=vgLocations'
-            },
+            scope: {},
             controller: [
-                '$scope', '$location', 'locationService',
-                function($scope, $location, locationService) {
+                '$scope', '$location', 'locationService', 'angularPiwik',
+                function($scope, $location, locationService, angularPiwik) {
                     var vm = this;
+
+                    /**
+                     * How many locations to show by default and then show more
+                     * when the "Show more" button is clicked.
+                     * @type {number}
+                     */
+                    var NUM_LOCATIONS_SHOWN_STEP = 20;
 
                     /**
                      * Sorted list of locations to show
@@ -23,16 +28,23 @@
                     vm.list = [];
 
                     /**
-                     * Whether we have a valid query (center and radius)
+                     * Whether no results were found (either because of invalid query parameters
+                     * or because no locations are found in the given area)
                      * @type {boolean}
                      */
-                    vm.validQuery = false;
+                    vm.noResults = false;
 
                     /**
                      * Radius of this query formatted for display
                      * @type {string}
                      */
                     vm.displayRadius = '';
+
+                    /**
+                     * Number of currently shown locations
+                     * @type {number}
+                     */
+                    vm.numShownLocations = 0;
 
                     /**
                      * Handler for toggling the open state of a location in the list
@@ -44,6 +56,20 @@
                             // Activate the location (this will load the full location data)
                             locationService.activate(location);
                         }
+                    };
+
+                    /**
+                     * Shows the next batch of locations
+                     */
+                    vm.showMore = function() {
+                        // Increase by the step size, but don't go bigger than the max available
+                        vm.numShownLocations = Math.min(
+                            vm.list.length,
+                            vm.numShownLocations + NUM_LOCATIONS_SHOWN_STEP
+                        );
+
+                        // Track it
+                        angularPiwik.track('locationList', 'locationList.showMore');
                     };
 
                     /**
@@ -59,10 +85,19 @@
                             // TODO: should sort by rank, but don't have the rank in the frontend
                             .value()
                         ;
-                    };
 
-                    // Watch the locations to re-compile the list on changes
-                    $scope.$watchCollection('locationListVm._locations', compileList);
+                        // Check if we found any results
+                        if (vm.list.length === 0) {
+                            vm.noResults = true;
+                        }
+                        else {
+                            // Show the first batch of locations
+                            vm.numShownLocations = Math.min(
+                                vm.list.length,
+                                NUM_LOCATIONS_SHOWN_STEP
+                            );
+                        }
+                    };
 
                     // Parse query
                     // TODO: the whole parsing should happen in its own function or so
@@ -73,21 +108,23 @@
 
                     // Check if valid
                     if (!isNaN(lat) && !isNaN(lng) && !isNaN(radius)) {
-                        vm.validQuery = true;
-
                         // Valid, get the locations
                         locationService.getLocationsByRadius(lat, lng, radius).then(compileList);
-                    }
 
-                    // Round the radius to two significant digits and display it as meters or kms
-                    // TODO: this should be a filter
-                    var roundingHelper = Math.pow(10, ('' + radius).length) / 100;
-                    var roundedRadius = Math.round(radius / roundingHelper) * roundingHelper;
-                    if (roundedRadius < 1000) {
-                        vm.displayRadius = roundedRadius + 'm';
+                        // Round the radius to two significant digits and display it as meters or kms
+                        // TODO: this should be a filter
+                        var roundingHelper = Math.pow(10, ('' + radius).length) / 100;
+                        var roundedRadius = Math.round(radius / roundingHelper) * roundingHelper;
+                        if (roundedRadius < 1000) {
+                            vm.displayRadius = roundedRadius + 'm';
+                        }
+                        else {
+                            vm.displayRadius = (roundedRadius / 1000) + 'km';
+                        }
                     }
                     else {
-                        vm.displayRadius = (roundedRadius / 1000) + 'km';
+                        // Not valid -> no results found
+                        vm.noResults = true;
                     }
 
                     // Reset search parameters when navigating away from this page

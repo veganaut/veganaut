@@ -379,7 +379,10 @@
   "locationList": {
     "title": "Locations",
     "radius": "(radius {{ radius }})",
-    "noResults": "No locations can be found in the given area."
+    "noResults": "No locations can be found in the given area.",
+    "showMore": "Show more",
+    "moreLocationsAvailable": "Another {{ available }} locations were found.",
+    "allLocationsShown": "Showing all {{ available }} found locations."
   },
   "home": {
     "action": {
