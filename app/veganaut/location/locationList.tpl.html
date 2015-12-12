@@ -14,10 +14,12 @@
 
     <h1 class="h4">
         {{ 'locationList.title' | translate }}
-        <span ng-if="locationListVm.displayRadius">
-            {{ 'locationList.radius' | translate:{radius: locationListVm.displayRadius} }}
-        </span>
     </h1>
+
+    <p ng-if="locationListVm.displayRadius">
+        {{ 'locationList.description' |
+        translate:{radius: locationListVm.displayRadius, place: locationListVm.displayName} }}
+    </p>
 
     <p ng-if="locationListVm.noResults">
         {{ 'locationList.noResults' | translate }}

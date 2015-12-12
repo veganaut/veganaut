@@ -2,7 +2,8 @@
     'use strict';
 
     /**
-     * TODO
+     * This components shows a list of locations. Which locations to show is
+     * determined based on coordinates and a radius that are read from GET parameters.
      * @returns {directive}
      */
     var locationListDirective = function() {
@@ -10,8 +11,8 @@
             restrict: 'E',
             scope: {},
             controller: [
-                '$scope', '$location', 'locationService', 'angularPiwik',
-                function($scope, $location, locationService, angularPiwik) {
+                '$scope', '$location', 'locationService', 'angularPiwik', 'geocodeService',
+                function($scope, $location, locationService, angularPiwik, geocodeService) {
                     var vm = this;
 
                     /**
@@ -39,6 +40,12 @@
                      * @type {string}
                      */
                     vm.displayRadius = '';
+
+                    /**
+                     * Name of the approximate place that we are showing locations around
+                     * @type {string}
+                     */
+                    vm.displayName = '';
 
                     /**
                      * Number of currently shown locations
@@ -118,6 +125,15 @@
                     if (!isNaN(lat) && !isNaN(lng) && !isNaN(radius)) {
                         // Valid, get the locations
                         locationService.getLocationsByRadius(lat, lng, radius).then(compileList);
+
+                        // Reverse lookup a place name for these coordinates
+                        // Choose a zoom level based on the radius
+                        var reverseLookupZoom = (radius < 2000) ? 16 : 13;
+                        geocodeService.reverseSearch(lat, lng, reverseLookupZoom).then(function(place) {
+                            if (place) {
+                                vm.displayName = place.getDisplayName();
+                            }
+                        });
 
                         // Round the radius to two significant digits and display it as meters or kms
                         // TODO: this should be a filter

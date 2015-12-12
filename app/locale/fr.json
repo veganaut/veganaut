@@ -380,7 +380,7 @@
   },
   "locationList": {
     "title": "Endroits",
-    "radius": "(radius {{ radius }})",
+    "description": "Showing locations in radius {{ radius }} around {{ place }}.",
     "noResults": "No locations can be found in the given area.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",

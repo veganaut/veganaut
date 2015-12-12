@@ -53,7 +53,8 @@
         }
 
         // Add other parts
-        _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet', 'village', 'town', 'city', 'country'],
+        _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet',
+                'village', 'town', 'city_district', 'city', 'country'],
             function(partName) {
                 // Include the given part if wasn't already added as type and if it actually exists
                 if (partName !== that.type && angular.isString(that.address[partName])) {
@@ -85,20 +86,52 @@
             var locale = localeService.getLocale();
             var deferred = $q.defer();
             $http.get(BASE_URL + '/search', {
-                params: {
-                    q: searchString,
-                    limit: limit || 5,
-                    'accept-language': locale,
-                    addressdetails: true,
-                    format: 'json'
-                }
-            })
+                    params: {
+                        q: searchString,
+                        limit: limit || 5,
+                        'accept-language': locale,
+                        addressdetails: true,
+                        format: 'json'
+                    }
+                })
                 .success(function(data) {
                     var results = [];
                     for (var i = 0; i < data.length; i += 1) {
                         results.push(new GeocodeResult(data[i]));
                     }
                     deferred.resolve(results);
+                })
+                .error(function(data) {
+                    deferred.reject(data);
+                })
+            ;
+
+            return deferred.promise;
+        };
+
+        /**
+         * Performs a reverse lookup of the given coordinates at the given zoom level
+         * @param {number} lat
+         * @param {number} lng
+         * @param {number} zoom Between 0 and 18
+         * @returns {promise}
+         */
+        GeocodeService.prototype.reverseSearch = function(lat, lng, zoom) {
+            var locale = localeService.getLocale();
+            var deferred = $q.defer();
+            $http.get(BASE_URL + '/reverse', {
+                    params: {
+                        lat: lat,
+                        lon: lng,
+                        zoom: zoom,
+                        'accept-language': locale,
+                        addressdetails: true,
+                        format: 'json'
+                    }
+                })
+                .success(function(data) {
+                    var result = new GeocodeResult(data);
+                    deferred.resolve(result);
                 })
                 .error(function(data) {
                     deferred.reject(data);
