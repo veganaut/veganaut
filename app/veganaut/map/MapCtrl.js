@@ -3,12 +3,10 @@
 
     // TODO: refactor (it's getting way too big!), document and add tests!!
     module.controller('MapCtrl', [
-        '$scope', '$location', '$timeout', 'leafletData', 'angularPiwik', 'mapDefaults',
-        'playerService', 'Location', 'locationService', 'mainMapService', 'backendService',
-        'alertService', 'Leaflet',
-        function($scope, $location, $timeout, leafletData, angularPiwik, mapDefaults,
-            playerService, Location, locationService, mainMapService, backendService,
-            alertService, L)
+        '$scope', '$location', 'leafletData', 'angularPiwik', 'mapDefaults',
+        'playerService', 'Location', 'locationService', 'mainMapService', 'alertService',
+        function($scope, $location, leafletData, angularPiwik, mapDefaults,
+            playerService, Location, locationService, mainMapService, alertService)
         {
             var player;
 
@@ -200,48 +198,20 @@
                 return active;
             };
 
+            // Size of the header (main nav bar and map nav) in pixels
+            // Used for location list radius calculations
+            var HEADER_SIZE = 46;
+            // TODO: isEmbedded should come from a service and the header size probably too
+            var isEmbedded = ($location.search()['mode'] === 'embedded');
+            if (!isEmbedded) {
+                HEADER_SIZE += 50;
+            }
 
             /**
-             * Goes to the location list showing roughly the locations currently on the map
+             * Goes to the location list
              */
             $scope.goToLocationList = function() {
-                mapPromise.then(function(map) {
-                    // TODO: document and clean up
-                    var bounds = map.getBounds();
-                    var center = bounds.getCenter();
-
-                    // Convert center to container point (pixels)
-                    var containerCenterPoint = map.latLngToContainerPoint(center);
-
-                    // Move the center down to account for the header size
-                    var HEADER_SIZE = 96;
-                    var adjustedCenter = map.containerPointToLatLng([containerCenterPoint.x, containerCenterPoint.y + HEADER_SIZE / 2]);
-
-                    // Get vertical and horizontal distance in meters
-                    var horizontal = 2 * adjustedCenter.distanceTo([adjustedCenter.lat, bounds.getEast()]);
-                    var vertical = 2 * adjustedCenter.distanceTo([bounds.getSouth(), adjustedCenter.lng]);
-
-                    // Calculate the biggest radius that fully fits within the view
-                    var radius = Math.min(horizontal, vertical) / 2;
-
-                    // Show area on the map
-                    var marker = L.circle(adjustedCenter, radius, {
-                        className: 'geolocate-circle-marker'
-                    });
-                    marker.addTo(map);
-
-                    // Redirect after a bit
-                    $timeout(function() {
-                        // TODO: already start loading the locations now for the location list
-                        $location
-                            .path('list')
-                            .search('lat', adjustedCenter.lat.toFixed(7))// TODO: constants
-                            .search('lng', adjustedCenter.lng.toFixed(7))
-                            .search('radius', radius.toFixed(0))
-                        ;
-                    }, 500);
-                });
-
+                mainMapService.goToLocationList(HEADER_SIZE);
             };
 
             /**
@@ -433,13 +403,10 @@
                 });
             };
 
-            // Check if we are logged in
-            if (backendService.isLoggedIn()) {
-                // Get the player
-                playerService.getDeferredMe().then(function(me) {
-                    player = me;
-                });
-            }
+            // Get the player
+            playerService.getDeferredMe().then(function(me) {
+                player = me;
+            });
 
             // Watch the map center for changes to save it
             $scope.$watchCollection('mainMap.center', function() {
