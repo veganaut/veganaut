@@ -369,7 +369,7 @@
       "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
       "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
     },
-    "totalProducts": "Total de {{ totalProducts }} options disponibles"
+    "moreProducts": "et {{ numProducts }} autres offres"
   },
   "mapSearch": {
     "form": {

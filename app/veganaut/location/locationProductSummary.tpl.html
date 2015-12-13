@@ -1,6 +1,6 @@
 <div
  ng-if="locationProductSummaryVm.location.getProducts().length > 0"
- class="location-product-summary"
+ class="location-product-summary bottom-spaced"
 >
     <div
      ng-repeat="product in locationProductSummaryVm.location.getProducts() |
@@ -16,12 +16,14 @@
         </vg-average-rating>
     </div>
     <div class="clearfix"></div>
-    <p class="pull-right small">
+    <div
+     ng-if="locationProductSummaryVm.location.getProducts().length - locationProductSummaryVm.limitTo > 0"
+     class="small"
+    >
         {{
-        'product.totalProducts' |
-        translate:{totalProducts: locationProductSummaryVm.location.getProducts().length }
+        'product.moreProducts' |
+        translate:{numProducts:
+        locationProductSummaryVm.location.getProducts().length - locationProductSummaryVm.limitTo }
         }}
-    </p>
-
-    <div class="clearfix"></div>
+    </div>
 </div>
