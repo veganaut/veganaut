@@ -126,14 +126,26 @@
                         // Valid, get the locations
                         locationService.getLocationsByRadius(lat, lng, radius).then(compileList);
 
+                        // Simple fallback display name in case the reverse lookup doesn't work out.
+                        // TODO: should be translated and displayed nicer
+                        var fallbackDisplayName = 'lat ' + lat.toFixed(3) + ' lng ' + lng.toFixed(3);
+
                         // Reverse lookup a place name for these coordinates
                         // Choose a zoom level based on the radius
                         var reverseLookupZoom = (radius < 2000) ? 16 : 13;
-                        geocodeService.reverseSearch(lat, lng, reverseLookupZoom).then(function(place) {
-                            if (place) {
-                                vm.displayName = place.getDisplayName();
-                            }
-                        });
+                        geocodeService.reverseSearch(lat, lng, reverseLookupZoom)
+                            .then(function(place) {
+                                if (place) {
+                                    vm.displayName = place.getDisplayName();
+                                }
+                                else {
+                                    vm.displayName = fallbackDisplayName;
+                                }
+                            })
+                            .catch(function() {
+                                vm.displayName = fallbackDisplayName;
+                            })
+                        ;
 
                         // Round the radius to two significant digits and display it as meters or kms
                         // TODO: this should be a filter
