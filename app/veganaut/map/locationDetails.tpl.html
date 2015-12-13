@@ -44,9 +44,9 @@
                 <vg-accordion-item
                  ng-repeat="product in getShownProducts() track by product.id"
                  vg-tracking-category="location.products"
-                 class="product product--availability-{{ product.availability }}"
+                 class="product-list__product--{{ product.availability }}"
                 >
-                    <vg-accordion-item-header class="product__header">
+                    <vg-accordion-item-header class="product-list__product__header">
                         {{ product.name }}
                         <span class="pull-right-spaced">
                             <vg-average-rating

@@ -1,0 +1,22 @@
+// General styles for products
+.product--temporarilyUnavailable {
+    opacity: 0.6;
+}
+.product--unavailable {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+// Styles for the product list (there only the header has the availability styles)
+.product-list__product--temporarilyUnavailable .product-list__product__header {
+    .product--temporarilyUnavailable;
+}
+.product-list__product--unavailable .product-list__product__header {
+    .product--unavailable;
+}
+
+// Action at the bottom of a product or product list
+.product-list__bottom-action {
+    text-align: center;
+    margin-top: 10px;
+}
