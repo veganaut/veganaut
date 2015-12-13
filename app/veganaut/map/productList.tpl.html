@@ -11,12 +11,14 @@
             {{ 'map.productList.noProducts' | translate }}
         </p>
 
+        <!-- TODO: de-duplicate this code with the one from locationDetails -->
         <vg-accordion ng-show="products.length > 0">
             <vg-accordion-item
              ng-repeat="product in products"
              vg-tracking-category="map.productList"
+             class="product product--availability-{{ product.availability }}"
             >
-                <vg-accordion-item-header>
+                <vg-accordion-item-header class="product__header">
                     {{ product.name }}
                     <span class="pull-right-spaced">
                         <vg-average-rating
@@ -26,13 +28,18 @@
                     </span>
                 </vg-accordion-item-header>
                 <vg-accordion-item-body>
-                    <div ng-show="product.rating.numRatings > 0"
-                     translate="product.rating.details"
-                     translate-values="{ rating: (product.rating.average | number:1),
-                          numRatings: product.rating.numRatings }">
+                    <div ng-if="product.availability !== 'available'">
+                        <em>{{ 'product.availability.' + product.availability | translate }}</em>
                     </div>
-                    <div ng-hide="product.rating.numRatings > 0">
-                        {{ 'product.rating.noRating' | translate }}
+                    <div ng-if="product.availability === 'available'">
+                        <div ng-show="product.rating.numRatings > 0"
+                         translate="product.rating.details"
+                         translate-values="{ rating: (product.rating.average | number:1),
+                              numRatings: product.rating.numRatings }">
+                        </div>
+                        <div ng-hide="product.rating.numRatings > 0">
+                            {{ 'product.rating.noRating' | translate }}
+                        </div>
                     </div>
 
                     <hr class="hr--small"/>
