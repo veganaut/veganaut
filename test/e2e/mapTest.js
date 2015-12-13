@@ -208,12 +208,12 @@ describe('map when logged in.', function() {
             expect(next.isDisplayed()).toBe(true, 'shows next button');
 
             expect(next.isEnabled()).toBe(false, 'next button step 1 is disabled');
-            form.all(by.model('location.newLocation.type')).first().click();
+            form.all(by.model('locationService.newLocation.type')).first().click();
             expect(next.isEnabled()).toBe(true, 'next button step 1 is no longer disabled');
             next.click();
 
             expect(next.isEnabled()).toBe(false, 'next button step 2 is disabled');
-            element(by.model('location.newLocation.name')).sendKeys('New Place');
+            element(by.model('locationService.newLocation.name')).sendKeys('New Place');
             expect(next.isEnabled()).toBe(true, 'next button step 2 is no longer disabled');
             next.click();
 

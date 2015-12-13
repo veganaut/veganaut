@@ -29,6 +29,8 @@ describe('mainMapService.', function() {
         $provide.value('$window', {
             localStorage: localStorage
         });
+        $provide.value('Leaflet', {});
+        $provide.value('leafletData', {});
     }));
 
     beforeEach(inject(function($q, _$rootScope_) {

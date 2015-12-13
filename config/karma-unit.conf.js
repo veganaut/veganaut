@@ -12,6 +12,7 @@ module.exports = function(config) {
             'app/lib/angular-mocks/angular-mocks.js',
             'app/lib/leaflet/dist/leaflet-src.js',
             'app/veganaut/app.js',
+            'app/components/ui/vgUiModule.js',
             'app/components/**/*.js',
             'app/veganaut/**/*.js',
             'test/unit/**/*.js'
