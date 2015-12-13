@@ -56,13 +56,11 @@
                     /**
                      * Handler for toggling the open state of a location in the list
                      * @param {Location} location
-                     * @param {boolean} isOpen
                      */
-                    vm.onOpenToggle = function(location, isOpen) {
-                        if (isOpen) {
-                            // Activate the location (this will load the full location data)
-                            locationService.activate(location);
-                        }
+                    vm.onOpenToggle = function(location) {
+                        // Activate the location (this will load the full location data)
+                        // If it's already activated, this will de-activate it
+                        locationService.activate(location);
                     };
 
                     /**

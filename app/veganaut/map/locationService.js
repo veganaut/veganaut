@@ -162,7 +162,7 @@
             };
 
             /**
-             * Sets the given location as active deactivates it if it's already active.
+             * Sets the given location as active. Deactivates it if it's already active.
              * @param {Location} [location]
              */
             LocationService.prototype.activate = function(location) {
