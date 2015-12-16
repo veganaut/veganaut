@@ -380,7 +380,6 @@
   },
   "locationList": {
     "title": "Locations",
-    "radius": "(Radius {{ radius }})",
     "description": "Zeige Location im Radius von {{ radius }} um {{ place }}.",
     "noResults": "Es wurden keine Locations im angegebenen Gebiet gefunden.",
     "showMore": "Weitere Locations anzeigen",
