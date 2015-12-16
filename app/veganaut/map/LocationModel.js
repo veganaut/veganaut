@@ -373,6 +373,7 @@
             /**
              * Returns the description limited to a certain length
              * TODO: Add unit test? Or will this anyway be done by the backend somehow?
+             * TODO: this should be a filter
              * @returns {string}
              */
             Location.prototype.getShortDescription = function() {
