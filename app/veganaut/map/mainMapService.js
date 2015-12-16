@@ -270,15 +270,18 @@
                     // approximation of drawing a circle on a mercator projection to show an area within a certain
                     // radius around a point of the sphere gets more and more imprecise.
                     // TODO: try to draw the actual projection of the circle
-                    var marker = L.circleMarker(adjustedCenter, {
+                    var circleMarker = L.circleMarker(adjustedCenter, {
                         className: 'geolocate-circle-marker'
                     });
                     var radiusPixel = Math.min(containerSizePixel.x, containerSizePixel.y - headerSize) / 2;
-                    marker.setRadius(radiusPixel);
-                    marker.addTo(map);
+                    circleMarker.setRadius(radiusPixel);
+                    circleMarker.addTo(map);
 
                     // Redirect after a bit
                     $timeout(function() {
+                        // Remove the circle marker again
+                        map.removeLayer(circleMarker);
+
                         // TODO: already start loading the locations now for the location list
                         $location
                             .path('list')
