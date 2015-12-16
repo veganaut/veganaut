@@ -46,22 +46,6 @@
                 $rootScope.$emit('veganaut.search.clicked');
             };
 
-            /**
-             * Helper method to get the current absolute URL without
-             * hash or search parameters
-             * TODO: should be moved elsewhere
-             * @returns {string}
-             */
-            var getAbsUrlWithoutParams = function() {
-                var absUrl = $location.protocol() + '://' + $location.host();
-                var port = $location.port();
-                if (port !== 80) {
-                    absUrl += ':' + port;
-                }
-                absUrl += $location.path();
-                return absUrl;
-            };
-
             // Reload the whole app when the session gets destroyed to clear all data
             $scope.$onRootScope('veganaut.session.destroyed', function() {
                 $window.location.reload();
@@ -104,7 +88,16 @@
                             // The user is trying to navigate away from the map.
                             // We want to open a new window instead
                             event.preventDefault();
-                            $window.open(getAbsUrlWithoutParams());
+
+                            // Get the current url, then remove some parts we don't want in the new window.
+                            var oldUrl = $location.url();
+                            $location.hash(null);
+                            $location.search('mode', null);
+                            $location.search('pk_campaign', null);
+                            $window.open($location.absUrl());
+
+                            // Restore the old URL so we don't trigger another location change
+                            $location.url(oldUrl);
                         }
                         else {
                             // App has just loaded but not on the map. Redirect to the map
