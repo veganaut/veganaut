@@ -284,7 +284,7 @@
 
                         // TODO: already start loading the locations now for the location list
                         $location
-                            .path('list')
+                            .path('list/locations')
                             .search('lat', adjustedCenter.lat.toFixed(FLOAT_PRECISION))
                             .search('lng', adjustedCenter.lng.toFixed(FLOAT_PRECISION))
                             .search('radius', radius.toFixed(0))
