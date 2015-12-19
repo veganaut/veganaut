@@ -1,6 +1,7 @@
 .idea/workspace.xml
-node_modules/
 app/index.html
+build/
 log/
 mongodb/
+node_modules/
 tests.out

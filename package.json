@@ -9,6 +9,7 @@
     "karma-jasmine": "0.1.6",
     "karma-ng-scenario": "0.1.0",
     "karma-firefox-launcher": "0.1.6",
+    "karma-coverage": "0.5.3",
     "less": "2.5.3",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
