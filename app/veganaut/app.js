@@ -59,7 +59,7 @@
 
             // Legacy URL redirects
             $routeProvider.when('/score', {redirectTo: '/community'});
-            $routeProvider.when('/list', {redirectTo: '/list/locations'});
+            $routeProvider.when('/list', {redirectTo: '/list/locations/'});
 
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
