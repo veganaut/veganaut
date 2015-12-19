@@ -47,7 +47,7 @@ then
 fi
 
 # Run jshint (and exit if errors are detected)
-if ! node_modules/.bin/jshint .; then
+if ! node_modules/.bin/jshint app config test; then
     echo "jshint detected errors. Please fix before committing"
     exit 1
 fi
