@@ -30,7 +30,7 @@
             },
             controller: ['$scope', function($scope) {
                 var vm = this;
-                vm.numRequired = parseInt(vm.numRequired);
+                vm.numRequired = parseInt(vm.numRequired, 10);
 
                 vm.inputFields = [];
                 var addInputField = function(text) {
