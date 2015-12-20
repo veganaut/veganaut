@@ -1,5 +1,6 @@
 {
   "name": "veganaut",
+  "version": "0.8.0",
   "private": true,
   "repository": "https://github.com/veganaut/veganaut",
   "devDependencies": {
@@ -23,6 +24,7 @@
     "protractor": "1.8.0"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update"
+    "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update",
+    "test": "./node_modules/.bin/karma start config/karma-coverage.conf.js --single-run --browsers Firefox"
   }
 }
