@@ -44,6 +44,7 @@
   "register": {
     "title": "Participer",
     "description": "Tu veux ajouter, modifier ou évaluer quelque chose sur Veganaut.net? – Alors inscris-toi!",
+    "alreadyRegistered": "Déjà inscrit? Connecte-toi ici.",
     "form": {
       "showPassword": "Afficher le mot de passe",
       "hidePassword": "Cacher le mot de passe",

@@ -44,6 +44,7 @@
   "register": {
     "title": "Mitmachen",
     "description": "Wenn du auf Veganaut.net etwas eintragen, bewerten oder ändern möchtest, kannst du dich hier registrieren.",
+    "alreadyRegistered": "Bist du schon registriert? Hier geht es zum Login.",
     "form": {
       "showPassword": "Passwort anzeigen",
       "hidePassword": "Passwort verstecken",

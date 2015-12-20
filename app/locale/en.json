@@ -44,6 +44,7 @@
   "register": {
     "title": "Participate",
     "description": "To add, rate or edit anything on Veganaut.net, please register.",
+    "alreadyRegistered": "Already have an account? Log in here.",
     "form": {
       "showPassword": "Show password",
       "hidePassword": "Hide password",
@@ -56,7 +57,7 @@
     "form": {
       "email": "email@example.com",
       "password": "Password",
-      "submit": "Login"
+      "submit": "Log in"
     }
   },
   "forgot": {
