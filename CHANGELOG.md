@@ -1,6 +1,16 @@
 Veganaut Changelog
 ==================
 
+0.9.0: Structured Intrigue (2015-12-20)
+-------------------------------------------
+* New feature: Locations can now be shown in a list (around a center in a given radius).
+* New feature: Removing the need to provide anything else than the e-mail when registering.
+* New feature: Sending a welcome e-mail to newly registered users with a link to set a password.
+* New feature: Showing part of the description and product with rating in the location preview on the map.
+* Enhancement: Improving the password fields (no password repeat and possibility to view the password).
+* Enhancement: Unified the styles of all the list views and made it more obvious that elements can be opened.
+* Enhancement: Unified the styles of displaying products (available / temporarily unavailable / unavailable).
+
 0.8.0: O sole mio (2015-10-20)
 -------------------------------------------
 * New feature: French version of Veganaut.
