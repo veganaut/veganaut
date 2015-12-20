@@ -149,7 +149,7 @@
         },
         "selectCoordinates": "Place le cercle là où se trouve l'endroit ou utilise la fonction recherche.",
         "search": "Cherche par nom ou adresse",
-        "showForm": "Afficher les résultats de la recherche",
+        "showForm": "Afficher le formulaire",
         "next": "Continuer",
         "previous": "Retour",
         "submit": "Enregistrer"
