@@ -16,7 +16,7 @@
         {{ 'locationList.title' | translate }}
     </h1>
 
-    <p ng-if="locationListVm.displayRadius">
+    <p ng-if="locationListVm.displayRadius" class="location-list__description">
         {{ 'locationList.description' |
         translate:{radius: locationListVm.displayRadius, place: locationListVm.displayName} }}
     </p>
@@ -31,6 +31,7 @@
              ng-repeat="location in locationListVm.list | limitTo:locationListVm.numShownLocations track by location.id"
              vg-on-open-toggle="locationListVm.onOpenToggle(location, isOpen)"
              vg-tracking-category="locationList.location"
+             class="location-list__location"
             >
                 <vg-accordion-item-header>
                     <vg-location-title vg-location="location"></vg-location-title>
