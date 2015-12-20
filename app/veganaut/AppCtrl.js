@@ -54,6 +54,7 @@
             // Listen to route changes to track page views
             $scope.$onRootScope('$routeChangeSuccess', function() {
                 // Get the current value of the accountType piwik custom variable
+                // TODO: should only track if "newRoute.redirectTo" is not set? Or track differently if it is
                 angularPiwik.getCustomVariable(1, 'visit').then(function(customVar) {
                     // Check what we previously stored as account type
                     var previousAccountType;
