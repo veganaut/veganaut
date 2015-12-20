@@ -106,7 +106,14 @@
 
 // Location detail styles
 .location-detail-map {
-    height: 200px;
+    margin-bottom: 10px;
+}
+
+// Make the map square, see http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+.location-detail-map::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
 }
 
 .mission-title {
