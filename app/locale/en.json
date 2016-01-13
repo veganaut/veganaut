@@ -54,6 +54,7 @@
   "login": {
     "title": "Login",
     "forgotPassword": "I don't know my password.",
+    "registerInstead": "I don't have an account yet.",
     "form": {
       "email": "email@example.com",
       "password": "Password",

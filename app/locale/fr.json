@@ -54,6 +54,7 @@
   "login": {
     "title": "Connexion",
     "forgotPassword": "Je ne sais pas mon mot de passe.",
+    "registerInstead": "Je ne suis pas encore inscrit.",
     "form": {
       "email": "email@example.com",
       "password": "Mot de passe",
