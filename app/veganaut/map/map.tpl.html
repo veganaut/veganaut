@@ -50,7 +50,7 @@
 
     <!-- TODO: get rid of complicated ng-show in view -->
     <div class="top-box container main-container"
-     ng-show="locationService.active || productShown || filtersShown || searchShown">
+     ng-show="locationService.active">
         <div class="location-details" ng-show="locationService.active && !locationService.isAddingLocation()">
             <div class="pull-right clickable" ng-click="locationService.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -77,12 +77,20 @@
                 <vg-location-visit-button vg-location="locationService.active"></vg-location-visit-button>
             </p>
         </div>
-
-        <ng-include src="'/veganaut/map/addLocation.tpl.html'" ng-if="locationService.isAddingLocation()"></ng-include>
-        <ng-include src="'/veganaut/map/productList.tpl.html'" ng-if="productShown"></ng-include>
-        <ng-include src="'/veganaut/map/search.tpl.html'" ng-if="searchShown"></ng-include>
-        <ng-include src="'/veganaut/map/locationFilters.tpl.html'" ng-show="filtersShown"></ng-include>
     </div>
+
+    <vg-overlay ng-if="filtersShown">
+        <ng-include src="'/veganaut/map/locationFilters.tpl.html'"></ng-include>
+    </vg-overlay>
+    <vg-overlay  ng-if="locationService.isAddingLocation()">
+        <ng-include src="'/veganaut/map/addLocation.tpl.html'"></ng-include>
+    </vg-overlay>
+    <vg-overlay ng-if="productShown">
+        <ng-include src="'/veganaut/map/productList.tpl.html'"></ng-include>
+    </vg-overlay>
+    <vg-overlay ng-if="searchShown">
+        <ng-include src="'/veganaut/map/search.tpl.html'"></ng-include>
+    </vg-overlay>
 
     <leaflet class="main-map full-viewport"
      ng-class="{'map--placing-location': isPlacingLocation()}"
