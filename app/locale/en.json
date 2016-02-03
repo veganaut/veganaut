@@ -83,7 +83,7 @@
       "name": "Participate",
       "description": "Register to edit the map"
     },
-    "addLocation": {
+    "createLocation": {
       "name": "New location",
       "description": "Add new location"
     },

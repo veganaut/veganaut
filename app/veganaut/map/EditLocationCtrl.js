@@ -2,8 +2,8 @@
     'use strict';
 
     module.controller('EditLocationCtrl', [
-        '$scope', '$routeParams', '$timeout', 'locationService', 'Location', 'leafletData', 'mapDefaults',
-        function($scope, $routeParams, $timeout, locationService, Location, leafletData, mapDefaults) {
+        '$scope', '$routeParams', 'locationService', 'leafletData', 'mapDefaults',
+        function($scope, $routeParams, locationService, leafletData, mapDefaults) {
             var locationId = $routeParams.id;
 
             /**
@@ -25,7 +25,7 @@
              * Expose the location types
              * @type {{}}
              */
-            $scope.locationTypes = Location.TYPES;
+            $scope.LOCATION_TYPES = locationService.LOCATION_TYPES;
 
             /**
              * Leaflet map settings
@@ -43,8 +43,17 @@
                 zoom: 18 // Zoom in as much as possible to discourage big change
             };
 
+            /**
+             * Reference to the leaflet map object
+             * @type {{}}
+             */
+            $scope.map = undefined;
+
             // Get a reference the the leaflet map object
             var mapPromise = leafletData.getMap();
+            leafletData.getMap().then(function(map) {
+                $scope.map = map;
+            });
 
             /**
              * Save the location
@@ -62,20 +71,7 @@
                 $scope.center.lat = $scope.location.lat;
                 $scope.center.lng = $scope.location.lng;
                 location.setEditing(true);
-
-                // Add the marker to the map
-                mapPromise.then(function(map) {
-                    location.marker.addTo(map);
-                });
             });
-
-            // Show the map in the next cycle. This needs to be done
-            // because leaflet somehow doesn't like to be initialised
-            // while the page is still hidden.
-            // TODO: this shouldn't be necessary
-            $timeout(function() {
-                $scope.showMap = true;
-            }, 0);
 
             /**
              * Sets the given coordinates as the lat/lng of the location
@@ -88,7 +84,7 @@
                 $scope.location.setLatLng(lat, lng);
 
                 // Zoom in all the way to make sure users place it precisely
-                // TODO: duplication with MapCtrl
+                // TODO: duplication with CreateLocationModel
                 mapPromise.then(function(map) {
                     var maxZoom = map.getMaxZoom();
                     var zoomTo = [lat, lng];

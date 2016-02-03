@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label
+     for="{{ geocodeSearchInputVm.inputId }}"
+     class="top-box__first-line">
+        {{ geocodeSearchInputVm.label }}
+    </label>
+    <input type="text" class="form-control"
+     id="{{ geocodeSearchInputVm.inputId }}"
+     ng-model="geocodeSearchInputVm.input"
+     ng-model-options="{ debounce: 500 }"
+     placeholder="{{ geocodeSearchInputVm.placeholder }}"/>
+</div>

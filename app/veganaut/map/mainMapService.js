@@ -101,7 +101,8 @@
                     // Set zoom
                     this.center.zoom = zoom;
 
-                    this.saveCenter();
+                    // Save the center, but don't update the url
+                    this.saveCenter(false);
                     return true;
                 }
                 return false;
@@ -148,22 +149,27 @@
 
             /**
              * Saves the map center in local storage and in the url
+             * @param {boolean} [updateUrl=true] Whether to save the map center
+             *      to the hash in the url
              */
-            MainMapService.prototype.saveCenter = function() {
+            MainMapService.prototype.saveCenter = function(updateUrl) {
                 // Store it in local storage
                 $window.localStorage.setItem(MAP_CENTER_STORAGE_ID,
                     JSON.stringify(this.center)
                 );
 
-                // Store it in the url hash (without adding a new history item)
-                $location.replace();
-                $location.hash(
-                    'zoom:' +
-                    this.center.zoom +
-                    ',coords:' +
-                    this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
-                    this.center.lng.toFixed(FLOAT_PRECISION)
-                );
+                // Check if we should update the url (default to true)
+                if (updateUrl !== false) {
+                    // Replace the url hash (without adding a new history item)
+                    $location.replace();
+                    $location.hash(
+                        'zoom:' +
+                        this.center.zoom +
+                        ',coords:' +
+                        this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
+                        this.center.lng.toFixed(FLOAT_PRECISION)
+                    );
+                }
             };
 
             /**

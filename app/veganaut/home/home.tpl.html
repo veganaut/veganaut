@@ -4,7 +4,7 @@
             <h1 class="h4 title--home">{{ 'home.lead.title' | translate }}</h1>
             <p>
                 {{ 'home.lead.text1' | translate }}
-                <a href="#" class="action--show-more"
+                <a href="" class="action--show-more"
                  ng-click="showFullLeadText = true | track:'home.text':'expandLeadText'"
                  ng-hide="showFullLeadText">
                     {{ 'home.action.showMore' | translate}}
@@ -16,15 +16,15 @@
         </div>
     </div>
     <button type="button" class="btn-map btn btn-block btn-link home-window-to-map top-box--home__content-size"
-     ng-click="goToView('map')">
+     ng-click="homeVm.legacyGlobals.goToView('map')">
         <span class="glyphicon glyphicon-hand-right"></span>{{ 'home.action.visitMap' | translate }}
     </button>
     <div class="container--home top-box--home__expand-size">
         <div class="container">
             <p>
                 <button type="button" class="btn-register btn btn-block btn-primary"
-                 ng-if="!isLoggedIn()"
-                 ng-click="goToView('register')"
+                 ng-if="!homeVm.legacyGlobals.isLoggedIn()"
+                 ng-click="homeVm.legacyGlobals.goToView('register')"
                  title="{{ 'navigation.register' | translate }}">
                     <span class="glyphicon glyphicon-heart"></span>
                     {{ 'navigation.register' | translate }}
@@ -40,7 +40,7 @@
                 </p>
                 <p>
                     {{ 'home.team.text2' | translate }}
-                    <a href="#" class="action--show-more"
+                    <a href="" class="action--show-more"
                      ng-click="showFullGameText = true | track:'home.text':'expandGameText'"
                      ng-hide="showFullGameText">
                         {{ 'home.action.showMore' | translate}}
@@ -52,13 +52,17 @@
                 <p ng-show="showFullGameText">
                     {{ 'home.team.text4' | translate }}
                 </p>
-                <!-- TODO NOW: 'contact us' should be a link -->
+                <!-- TODO: 'contact us' should be a link -->
             </div>
         </div>
     </div>
 </div>
-<div ng-controller="MapCtrl">
-    <leaflet class="main-map full-viewport"
-     defaults="mapDefaults" lf-center="mainMap.center" event-broadcast="events">
-    </leaflet>
-</div>
+
+<leaflet class="main-map full-viewport"
+ defaults="homeVm.mapDefaults" lf-center="homeVm.mapCenter">
+</leaflet>
+<vg-map-markers
+ ng-if="homeVm.map"
+ vg-locations="homeVm.locationSet.locations"
+ vg-map="homeVm.map">
+</vg-map-markers>

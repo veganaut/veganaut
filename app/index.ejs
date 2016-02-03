@@ -101,7 +101,7 @@
                     <div class="col-xs-12 text-center" ng-controller="ChangeLocaleCtrl">
                         <span ng-repeat="locale in availableLocales">
                             <span ng-show="$index > 0">&nbsp;|&nbsp;</span>
-                            <a href="#" ng-hide="locale === localeService.getLocale()"
+                            <a href="" ng-hide="locale === localeService.getLocale()"
                              ng-click="localeService.changeLocale(locale); closeMenu()">
                                 {{ localeNames[locale] }}
                             </a>

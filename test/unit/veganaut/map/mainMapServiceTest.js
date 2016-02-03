@@ -44,6 +44,7 @@ describe('mainMapService.', function() {
             hash = 'zoom:12,coords:46.5-7.3';
             inject(function(mainMapService) {
                 expect($location.hash).toHaveBeenCalledWith();
+                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).not.toHaveBeenCalled();
                 expect(backendService.getGeoIP).not.toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -52,15 +53,16 @@ describe('mainMapService.', function() {
                     zoom: 12
                 });
 
-                // Stored the value in the local storage and url hash
+                // Stored the value in the local storage (but not the hash, that's only done on explicit save)
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":46.5,"lng":7.3,"zoom":12}');
-                expect($location.hash).toHaveBeenCalledWith('zoom:12,coords:46.5000000-7.3000000');
             });
         });
 
         it('loads the center from local storage if url hash is empty.', function() {
             localStorage.getItem.andReturn('{"lat":10.5, "lng": 20.1, "zoom": 3}');
             inject(function(mainMapService) {
+                expect($location.hash).toHaveBeenCalledWith();
+                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautMapCenter');
                 expect(backendService.getGeoIP).not.toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -70,12 +72,13 @@ describe('mainMapService.', function() {
                 });
 
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":10.5,"lng":20.1,"zoom":3}');
-                expect($location.hash).toHaveBeenCalledWith('zoom:3,coords:10.5000000-20.1000000');
             });
         });
 
         it('loads the center from backend if local storage and url hash are empty.', function() {
             inject(function(mainMapService) {
+                expect($location.hash).toHaveBeenCalledWith();
+                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautMapCenter');
                 expect(backendService.getGeoIP).toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -102,7 +105,6 @@ describe('mainMapService.', function() {
                 }, 'takes values from backend');
 
                 expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":15.2,"lng":22.5,"zoom":10}');
-                expect($location.hash).toHaveBeenCalledWith('zoom:10,coords:15.2000000-22.5000000');
             });
         });
 
@@ -124,6 +126,7 @@ describe('mainMapService.', function() {
 
         it('reads the center from the url.', inject(function(mainMapService) {
             hash = 'zoom:3,coords:1-2';
+            $location.hash.reset();
             expect(mainMapService.setMapCenterFromUrl()).toBe(true, 'set the map center');
             expect(mainMapService.center).toEqual({
                 lat: 1,
@@ -132,7 +135,11 @@ describe('mainMapService.', function() {
             });
 
             expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":1,"lng":2,"zoom":3}');
-            expect($location.hash).toHaveBeenCalledWith('zoom:3,coords:1.0000000-2.0000000');
+
+            // Only retrieved the hash, didn't set it
+            expect($location.hash).toHaveBeenCalledWith();
+            expect($location.hash.calls.length).toBe(1);
+            $location.hash.reset();
 
             // Order shouldn't matter
             hash = 'coords:4.1-5,zoom:6';
@@ -144,7 +151,8 @@ describe('mainMapService.', function() {
             });
 
             expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":4.1,"lng":5,"zoom":6}');
-            expect($location.hash).toHaveBeenCalledWith('zoom:6,coords:4.1000000-5.0000000');
+            expect($location.hash).toHaveBeenCalledWith();
+            expect($location.hash.calls.length).toBe(1);
         }));
 
         it('ignores faulty values.', inject(function(mainMapService) {

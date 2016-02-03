@@ -56,16 +56,17 @@
             }
 
             /**
-             * Check if a location id matches id in product and populate the locationId
-             * in product with the location object
-             * @param {array} products
+             * Populate the locationId in the given products with the location object.
+             * @param {[]} products
              */
             function populateLocations(products) {
-                locationPromise.then(function(locations) {
+                locationPromise.then(function() {
+                    var locationSet = locationService.getLocationSet();
+
                     // Go through all the products to find its location
                     angular.forEach(products, function(product) {
-                        if (angular.isObject(locations[product.location])) {
-                            product.location = locations[product.location];
+                        if (angular.isObject(locationSet.locations[product.location])) {
+                            product.location = locationSet.locations[product.location];
                             $scope.products.push(product);
                         }
                         // If we couldn't find the location, don't show the product
@@ -82,8 +83,9 @@
                 bounds = map.getBounds().toBBoxString();
 
                 // Get the locations (to set them in the products)
-                // TODO: get locations should be cached
-                locationPromise = locationService.getLocationsByBounds(bounds);
+                locationPromise = locationService.queryByBounds(bounds);
+
+                // Load products
                 loadProducts(bounds, locationType);
             });
         }

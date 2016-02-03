@@ -8,7 +8,12 @@ describe('LocationModel.', function() {
     beforeEach(module(function($provide) {
         // Set up all the mock dependencies
         playerService = {
-            getImmediateMe: jasmine.createSpy('getImmediateMe')
+            getImmediateMe: jasmine.createSpy('getImmediateMe'),
+            getDeferredMe: jasmine.createSpy('getDeferredMe')
+                .andReturn({
+                    then: function() {
+                    }
+                })
         };
 
         $provide.value('playerService', playerService);
@@ -110,54 +115,47 @@ describe('LocationModel.', function() {
         });
     });
 
-    describe('marker.', function() {
-        it('instantiates a marker.', function() {
+    describe('markerDefinition.', function() {
+        it('has a marker definition.', function() {
             var loc = new Location();
-            var marker = loc.marker;
-            expect(typeof marker).toBe('object', 'marker is an object');
+            var markerDefinition = loc.getMarkerDefinition();
+            expect(typeof markerDefinition).toBe('object', 'markerDefinition is an object');
 
-            var icon = marker.options.icon.options;
-            expect(typeof icon).toBe('object', 'icon is an object');
-            expect(icon.iconSize).toBe(null, 'correct iconSize');
-            expect(typeof icon.html).toBe('string', 'correct html type');
-            expect(icon.className).toMatch(/\bmarker\b/, 'className contains "marker"');
+            expect(typeof markerDefinition.icon).toBe('object', 'icon is an object');
+            expect(markerDefinition.icon.iconSize).toBe(null, 'correct iconSize');
+            expect(typeof markerDefinition.icon.html).toBe('string', 'correct html type');
+            expect(markerDefinition.icon.className).toMatch(/\bmarker\b/, 'className contains "marker"');
         });
 
-        it('added the location it on the marker.', function() {
+        it('added the location name to the marker definition.', function() {
             var loc = new Location({
-                id: 'test123'
+                name: 'test name'
             });
-            expect(loc.marker.locationId).toBe('test123');
+            expect(loc.getMarkerDefinition().title).toBe('test name');
         });
 
         it('updates marker icon className when changing active state.', function() {
             var loc = new Location();
-            var icon = loc.marker.options.icon.options;
             var classRegex = /\bmarker--active\b/;
-            expect(icon.className).toNotMatch(classRegex, 'does not have active class');
+            expect(loc.getMarkerDefinition().icon.className).not.toMatch(classRegex, 'does not have active class');
             loc.setActive();
-            icon = loc.marker.options.icon.options;
-            expect(icon.className).toMatch(classRegex, 'has active class when setting active');
+            expect(loc.getMarkerDefinition().icon.className).toMatch(classRegex, 'has active class when setting active');
             loc.setActive(false);
-            icon = loc.marker.options.icon.options;
-            expect(icon.className).toNotMatch(classRegex, 'active class removed when setting inactive');
+            expect(loc.getMarkerDefinition().icon.className).not.toMatch(classRegex, 'active class removed when setting inactive');
         });
 
         it('updates marker icon className when changing disabled state.', function() {
             var loc = new Location();
-            var icon = loc.marker.options.icon.options;
             var disabledClass = /\bmarker--disabled\b/;
             var enabledClass = /\bmarker--enabled\b/;
-            expect(icon.className).toNotMatch(disabledClass, 'does not have the disabled class');
-            expect(icon.className).toMatch(enabledClass, 'has the enabled class');
+            expect(loc.getMarkerDefinition().icon.className).not.toMatch(disabledClass, 'does not have the disabled class');
+            expect(loc.getMarkerDefinition().icon.className).toMatch(enabledClass, 'has the enabled class');
             loc.setDisabled();
-            icon = loc.marker.options.icon.options;
-            expect(icon.className).toMatch(disabledClass, 'has the disabled class when setting disabled');
-            expect(icon.className).toNotMatch(enabledClass, 'does not have the enabled class when setting disabled');
+            expect(loc.getMarkerDefinition().icon.className).toMatch(disabledClass, 'has the disabled class when setting disabled');
+            expect(loc.getMarkerDefinition().icon.className).not.toMatch(enabledClass, 'does not have the enabled class when setting disabled');
             loc.setDisabled(false);
-            icon = loc.marker.options.icon.options;
-            expect(icon.className).toNotMatch(disabledClass, 'disabled class removed when setting enabled');
-            expect(icon.className).toMatch(enabledClass, 'enabled class added when setting enabled');
+            expect(loc.getMarkerDefinition().icon.className).not.toMatch(disabledClass, 'disabled class removed when setting enabled');
+            expect(loc.getMarkerDefinition().icon.className).toMatch(enabledClass, 'enabled class added when setting enabled');
         });
     });
 
@@ -175,9 +173,9 @@ describe('LocationModel.', function() {
             loc.setLatLng(3, 4);
             expect(loc.lat).toBe(3, 'set correct lat');
             expect(loc.lng).toBe(4, 'set correct lng');
-            var markerLatLng = loc.marker.getLatLng();
-            expect(markerLatLng.lat).toBe(3, 'set correct marker lat');
-            expect(markerLatLng.lng).toBe(4, 'set correct marker lng');
+            var markerLatLng = loc.getMarkerDefinition().latLng;
+            expect(markerLatLng[0]).toBe(3, 'set correct marker lat');
+            expect(markerLatLng[1]).toBe(4, 'set correct marker lng');
         });
     });
 

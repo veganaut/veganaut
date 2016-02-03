@@ -8,8 +8,9 @@
      * TODO: rather return promises for the return object instead of $http promises
      * TODO: split this up in different semantically grouped services
      */
-    module.factory('backendService', ['$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
-        function($http, $rootScope, backendUrl, sessionService, i18nSettings) {
+    module.factory('backendService', [
+        '$q', '$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
+        function($q, $http, $rootScope, backendUrl, sessionService, i18nSettings) {
             var BackendService = function() {
             };
 
@@ -122,33 +123,25 @@
             };
 
             /**
-             * Gets the list of locations on the map in the given bounds
-             * @param {string} bounds The bounds within to get the locations
+             * Gets the list of locations on the map with the given params.
+             * Query can either by by bounds or by lat/lng/radius.
+             * @param {{}} params Params to pass on to the backend
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getLocationsByBounds = function(bounds) {
-                return $http.get(backendUrl + '/location/list', {
-                    params: {
-                        bounds: bounds
-                    }
+            BackendService.prototype.getLocations = function(params) {
+                // TODO: the canceller should be added centrally for every request
+                var canceller = $q.defer();
+                var promise = $http.get(backendUrl + '/location/list', {
+                    params: params,
+                    timeout: canceller.promise
                 });
-            };
 
-            /**
-             * Gets list of locations in a radius around a center
-             * @param {lat} lat Latitude of the center
-             * @param {lng} lng Longitude of the center
-             * @param {number} radius Radius in meters
-             * @returns {HttpPromise}
-             */
-            BackendService.prototype.getLocationsByRadius = function(lat, lng, radius) {
-                return $http.get(backendUrl + '/location/list', {
-                    params: {
-                        lat: lat,
-                        lng: lng,
-                        radius: radius
-                    }
-                });
+                // Add a method to cancel request
+                promise.cancelRequest = function() {
+                    canceller.resolve();
+                };
+
+                return promise;
             };
 
             /**

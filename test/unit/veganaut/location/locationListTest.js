@@ -12,10 +12,11 @@ describe('locationList.', function() {
     var locationService = {};
     var geocodeService = {};
     var angularPiwik = {};
+    var playerService = {};
 
     // Mock data returned by mock services
     var getParams = {};
-    var deferredLocations;
+    var locationSet;
     var deferredGeocodeSearch;
 
     beforeEach(module('veganaut.app.map', 'veganaut.app.location'));
@@ -25,17 +26,18 @@ describe('locationList.', function() {
         $provide.value('locationService', locationService);
         $provide.value('geocodeService', geocodeService);
         $provide.value('angularPiwik', angularPiwik);
-        $provide.value('playerService', {
-            getImmediateMe: jasmine.createSpy()
-        });
-
+        $provide.value('playerService', playerService);
     }));
 
     beforeEach(inject(function(_$rootScope_, $q, _Location_) {
         $rootScope = _$rootScope_;
         Location = _Location_;
         scope = $rootScope.$new();
-        scope.$onRootScope = jasmine.createSpy('$onRootScope');
+
+        locationSet = {
+            locations: {},
+            activate: jasmine.createSpy('locationSet.activate')
+        };
 
         $location.search = jasmine.createSpy('$location.search')
             .andCallFake(function() {
@@ -46,14 +48,11 @@ describe('locationList.', function() {
             })
         ;
 
-        locationService.getLocationsByRadius = jasmine.createSpy('locationService.getLocationsByRadius')
-            .andCallFake(function() {
-                deferredLocations = $q.defer();
-                return deferredLocations.promise;
-            })
+        locationService.getLocationSet = jasmine.createSpy('locationService.getLocationSet')
+            .andReturn(locationSet)
         ;
 
-        locationService.activate = jasmine.createSpy('locationService.activate');
+        locationService.queryByRadius = jasmine.createSpy('locationService.queryByRadius');
 
         geocodeService.reverseSearch = jasmine.createSpy('geocodeService.reverseSearch')
             .andCallFake(function() {
@@ -63,6 +62,13 @@ describe('locationList.', function() {
         ;
 
         angularPiwik.track = jasmine.createSpy('angularPiwik.track');
+
+        playerService.getImmediateMe = jasmine.createSpy('playerService.getImmediateMe');
+        playerService.getDeferredMe = jasmine.createSpy('playerService.getDeferredMe')
+            .andCallFake(function() {
+                return $q.defer().promise;
+            })
+        ;
     }));
 
     describe('controller.', function() {
@@ -71,7 +77,7 @@ describe('locationList.', function() {
             expect(typeof vm).toBe('object', 'could instantiate controller');
 
             expect($location.search).toHaveBeenCalled();
-            expect(locationService.getLocationsByRadius).not.toHaveBeenCalled();
+            expect(locationService.queryByRadius).not.toHaveBeenCalled();
             expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
 
             expect(angular.isArray(vm.list)).toBe(true, 'has a list defined');
@@ -89,22 +95,21 @@ describe('locationList.', function() {
             expect(typeof vm).toBe('object', 'could instantiate controller');
 
             expect($location.search).toHaveBeenCalled();
-            expect(locationService.getLocationsByRadius).toHaveBeenCalledWith(46.5, 7.4, 522);
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(46.5, 7.4, 522);
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(46.5, 7.4, 16);
 
             expect(vm.noResults).toBe(false, 'not declared that no results found');
             expect(vm.displayRadius).toBe('520m', 'set rounded display radius');
 
-            var locations = {};
+            locationSet.locations = {};
             for (var i = 0; i < 30; i++) {
-                locations['a' + i] = new Location({
+                locationSet.locations['a' + i] = new Location({
                     id: 'a' + i
                 });
             }
-            deferredLocations.resolve(locations);
             expect(vm.list.length).toBe(0, 'list is empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');
-            $rootScope.$apply();
+            $rootScope.$broadcast('veganaut.locationSet.updated');
             expect(vm.list.length).toBe(30, 'list now has elements');
             expect(vm.numShownLocations).toBe(20, 'showing only the first locations');
 
@@ -123,8 +128,8 @@ describe('locationList.', function() {
             expect(angularPiwik.track).toHaveBeenCalledWith('locationList', 'locationList.showMore');
 
             expect(angular.isFunction(vm.onOpenToggle), 'has an onOpenToggle function');
-            vm.onOpenToggle(locations.a1);
-            expect(locationService.activate).toHaveBeenCalledWith(locations.a1);
+            vm.onOpenToggle(locationSet.locations.a1);
+            expect(locationSet.activate).toHaveBeenCalledWith(locationSet.locations.a1);
         }));
 
         it('valid params with big radius, no results', inject(function($controller) {
@@ -135,14 +140,14 @@ describe('locationList.', function() {
             };
             var vm = $controller('vgLocationListCtrl', {$scope: scope});
 
-            expect(locationService.getLocationsByRadius).toHaveBeenCalledWith(10.2, 20, 268096);
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.2, 20, 268096);
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(10.2, 20, 13);
             expect(vm.displayRadius).toBe('270km', 'set rounded display radius');
 
             // Resolve with an empty location list
-            deferredLocations.resolve({});
+            locationSet.locations = {};
             expect(vm.noResults).toBe(false, 'not yet declared that no results found');
-            $rootScope.$apply();
+            $rootScope.$broadcast('veganaut.locationSet.updated');
             expect(vm.noResults).toBe(true, 'declared that no results found');
             expect(vm.list.length).toBe(0, 'list is empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');
@@ -156,25 +161,9 @@ describe('locationList.', function() {
         it('unsets get parameters when leaving', inject(function($controller) {
             $controller('vgLocationListCtrl', {$scope: scope});
 
-            expect(scope.$onRootScope).toHaveBeenCalled();
-            var args = scope.$onRootScope.calls[0].args;
-
-            expect(args[0]).toBe('$routeChangeStart', 'listens to route change');
-            var handler = args[1];
-            expect(angular.isFunction(handler)).toBe(true, 'registered a function');
-
-
             expect($location.search.calls.length).toBe(1, 'called $location.search during init');
 
-            // Call first with an event that is prevented
-            handler({
-                defaultPrevented: true
-            });
-            expect($location.search.calls.length).toBe(1, 'did not call $location.search');
-
-            handler({
-                defaultPrevented: false
-            });
+            scope.$broadcast('$routeChangeStart');
             expect($location.search).toHaveBeenCalledWith('lat', null);
             expect($location.search).toHaveBeenCalledWith('lng', null);
             expect($location.search).toHaveBeenCalledWith('radius', null);

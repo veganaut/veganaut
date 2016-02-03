@@ -16,7 +16,7 @@ describe('register.', function() {
         helpers.logoutIfLoggedIn();
     });
 
-    xit('should have a link to the register form.', function() {
+    it('should have a link to the register form.', function() {
         elements.menuButton.click();
         var button = element.all(by.css('.nav-register'));
         expect(button.count()).toBe(1);

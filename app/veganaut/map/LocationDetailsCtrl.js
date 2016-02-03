@@ -25,6 +25,12 @@
                 zoom: 16
             };
 
+            /**
+             * Reference to the leaflet map object
+             * @type {{}}
+             */
+            $scope.map = undefined;
+
             // TODO: the missions should be stored directly on the location model
             $scope.locationMissions = [];
             $scope.productMissions = [];
@@ -114,10 +120,13 @@
                             'success'
                         );
 
-                        // Request the location again
-                        locationService.getLocation(locationId).then(function(newLocationData) {
-                            $scope.location.update(newLocationData);
-                        });
+                        // Update the location
+                        // TODO: this shouldn't require going through the backendService
+                        backendService.getLocation(locationId)
+                            .then(function(res) {
+                                $scope.location.update(res.data);
+                            })
+                        ;
 
                         if (mission instanceof missions.whatOptions) {
                             // If new products are added, we have to reload the missions
@@ -172,9 +181,9 @@
                     });
                 }
 
-                // Add the marker to the map
+                // Get the map
                 leafletData.getMap().then(function(map) {
-                    location.marker.addTo(map);
+                    $scope.map = map;
                 });
 
                 // Show the map in the next cycle. This needs to be done

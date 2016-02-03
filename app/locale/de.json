@@ -83,7 +83,7 @@
       "name": "Mitmachen",
       "description": "Registrieren um die Karte zu bearbeiten"
     },
-    "addLocation": {
+    "createLocation": {
       "name": "Neue Location",
       "description": "Neue Location hinzufügen"
     },

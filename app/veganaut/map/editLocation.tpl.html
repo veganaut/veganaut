@@ -19,7 +19,7 @@
         <label>{{ 'location.form.edit.type' | translate }}</label>
         <div>
             <div class="btn-group">
-                <button class="btn btn-default" ng-repeat="type in locationTypes"
+                <button class="btn btn-default" ng-repeat="type in LOCATION_TYPES"
                  ng-model="location.type" uib-btn-radio="type">
                     <vg-location-type-icon type="type"></vg-location-type-icon>
                     {{ 'location.type.' + type | translate }}
@@ -32,11 +32,16 @@
             <input type="checkbox" ng-model="changeCoordinates"/><span ng-bind="'location.form.edit.changeCoordinates' | translate"></span>
         </label>
     </div>
-    <p ng-show="changeCoordinates">
+    <p ng-if="changeCoordinates">
         {{'location.form.edit.selectCoordinates' | translate}}
         <leaflet class="location-detail-map map--placing-location"
          defaults="mapDefaults" lf-center="center">
         </leaflet>
+        <vg-map-markers
+         ng-if="map"
+         vg-locations="[location]"
+         vg-map="map">
+        </vg-map-markers>
     </p>
     <p>
         <button class="btn btn-default"

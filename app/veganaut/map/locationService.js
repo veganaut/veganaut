@@ -1,100 +1,127 @@
 (function(module) {
     'use strict';
     module.factory('locationService', [
-        '$q', 'Location', 'angularPiwik', 'backendService', 'alertService',
-        function($q, Location, angularPiwik, backendService, alertService) {
+        '$q', '$rootScope', 'Location', 'LocationSet', 'backendService', 'alertService',
+        function($q, $rootScope, Location, LocationSet, backendService, alertService) {
             /**
              * Service to handle the veganaut locations
              * @constructor
              */
             var LocationService = function() {
                 /**
-                 * The currently active location
-                 * @type {Location}
+                 * The global location set that will be updated when
+                 * location queries are set.
                  */
-                this.active = undefined;
+                this._locationSet = new LocationSet();
 
                 /**
-                 * The location that is currently being added
-                 * @type {Location}
+                 * The id of the query whose result is currently held
+                 * in the locationSet.
+                 * @type {string}
+                 * @private
                  */
-                this.newLocation = undefined;
+                this._currentQueryId = undefined;
 
                 /**
-                 * List of active filters
-                 * @type {{}}
+                 * Promise of the request currently in progress or false
+                 * if not request is running.
+                 * @type {Promise|boolean}
+                 * @private
                  */
-                this.activeFilters = {
-                    recent: 'anytime',
-                    type: 'anytype'
-                };
+                this._requestInProgress = false;
             };
 
             /**
-             * Possible filter options for all the available filters
-             * @type {{recent: string[]}}
+             * The possible types of locations
+             * @type {string[]}
              */
-            LocationService.prototype.POSSIBLE_FILTERS = {
-                recent: [
-                    'anytime',
-                    'month',
-                    'week',
-                    'day'
-                ],
-                type: [
-                    'anytype',
-                    'gastronomy',
-                    'retail'
-                ]
-
-            };
+            LocationService.prototype.LOCATION_TYPES = ['gastronomy', 'retail'];
 
             /**
              * Handles locations received from the backend and returns the instantiated
              * Location objects indexed by location id.
-             * @param data
-             * @returns {{}}
+             * @param {[]} data
              * @private
              */
             LocationService.prototype._handleLocationResult = function(data) {
-                var locations = {};
-                var location;
-                for (var i = 0; i < data.length; i++) {
-                    // Instantiate the locations and index them by id
-                    location = new Location(data[i]);
-                    locations[location.id] = location;
+                // Index data by id and pass to location set
+                this._locationSet.updateSet(_.indexBy(data, 'id'));
+
+                // Broadcast that we updated the set
+                $rootScope.$broadcast('veganaut.locationSet.updated');
+            };
+
+            /**
+             * Sets the given query (id and params). Will launch a request to the
+             * backend if the query is not fulfilled yet and abort ongoing requests.
+             * @param {string} queryId
+             * @param {{}} params
+             * @returns {Promise}
+             * @private
+             */
+            LocationService.prototype._setQuery = function(queryId, params) {
+                var queryDeferred = $q.defer();
+
+                // Cancel ongoing request
+                if (angular.isObject(this._requestInProgress)) {
+                    this._requestInProgress.cancelRequest();
+                    this._requestInProgress = false;
                 }
 
-                // Add the location that is being created back to the list
-                if (this.newLocation) {
-                    locations[this.newLocation.id] = this.newLocation;
+                // Check if that query is already fulfilled
+                if (this._currentQueryId === queryId) {
+                    // Resolve deferred right away
+                    queryDeferred.resolve();
+                }
+                else {
+                    // Query not fulfilled yet, start backend request
+                    this._requestInProgress = backendService.getLocations(params);
+                    this._requestInProgress.then(function(data) {
+                        // No longer requesting
+                        this._requestInProgress = false;
+
+                        // Set the query to be the current one
+                        // (so we don't have to run it again if the next query is the same).
+                        this._currentQueryId = queryId;
+
+                        // Handle result
+                        this._handleLocationResult(data.data);
+
+                        // Resolve deferred
+                        queryDeferred.resolve();
+                    }.bind(this));
+                    // TODO: reject deferred on failure
                 }
 
-                // Deactivate the location and activate it again if it's still around
-                var beforeActive = this.active;
-                this.activate();
-                if (beforeActive && locations[beforeActive.id]) {
-                    this.activate(locations[beforeActive.id]);
-                }
+                // Return promise that will resolve once the query is fulfilled
+                return queryDeferred.promise;
+            };
 
-                return locations;
+            /**
+             * Returns the location set managed by the location service.
+             * Will update when queries are changed.
+             * @returns {LocationSet}
+             */
+            LocationService.prototype.getLocationSet = function() {
+                return this._locationSet;
             };
 
             /**
              * Returns a promise to the locations within the given bounds
              * @param {string} bounds The bounds within to get the locations
-             * @returns {Promise}
+             * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.getLocationsByBounds = function(bounds) {
-                var that = this;
-                var deferredLocations = $q.defer();
-                backendService.getLocationsByBounds(bounds)
-                    .then(function(data) {
-                        deferredLocations.resolve(that._handleLocationResult(data.data));
-                    })
-                ;
+            LocationService.prototype.queryByBounds = function(bounds) {
+                // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
 
-                return deferredLocations.promise;
+                // Create an id for this query
+                // TODO: the bounds are too precise, should round coords more
+                var queryId = 'bounds' + bounds;
+
+                // Set the query
+                return this._setQuery(queryId, {
+                    bounds: bounds
+                });
             };
 
             /**
@@ -102,131 +129,54 @@
              * @param {number} lat
              * @param {number} lng
              * @param {number} radius
-             * @returns {Promise}
+             * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.getLocationsByRadius = function(lat, lng, radius) {
-                var that = this;
-                var deferredLocations = $q.defer();
-                backendService.getLocationsByRadius(lat, lng, radius)
-                    .then(function(data) {
-                        deferredLocations.resolve(that._handleLocationResult(data.data));
-                    })
-                ;
+            LocationService.prototype.queryByRadius = function(lat, lng, radius) {
+                // Create an id for this query
+                // TODO: constant "7"  should go elsewhere; or should we just hash this more automatically?
+                var queryId = 'radius' + lat.toFixed(7) + '-' + lng.toFixed(7) + '-' + radius.toFixed(0);
 
-                return deferredLocations.promise;
+                // Set the query
+                return this._setQuery(queryId, {
+                    lat: lat,
+                    lng: lng,
+                    radius: radius
+                });
             };
 
             /**
-             * Returns the Location with the given id
-             * @param id
-             * @returns {Location}
+             * Returns the Location with the given id.
+             * If the location is already contained in the current
+             * locationSet, will return that instance.
+             * @param {string} id
+             * @returns {Promise}
              */
             LocationService.prototype.getLocation = function(id) {
                 var deferredLocation = $q.defer();
-                backendService.getLocation(id)
-                    .then(function(res) {
-                        deferredLocation.resolve(new Location(res.data));
-                    })
-                ;
+
+                // Check if we already have this location in the current set
+                if (angular.isObject(this._locationSet.locations) &&
+                    angular.isObject(this._locationSet.locations[id]))
+                {
+                    // Make sure the location is active (so the details are fetched)
+                    var location = this._locationSet.locations[id];
+                    if (this._locationSet.active !== location) {
+                        this._locationSet.activate(location);
+                    }
+
+                    // Resolve directly with that location
+                    deferredLocation.resolve(location);
+                }
+                else {
+                    backendService.getLocation(id)
+                        .then(function(res) {
+                            deferredLocation.resolve(new Location(res.data));
+                        })
+                    ;
+                }
 
                 // Return the promise
                 return deferredLocation.promise;
-            };
-
-            /**
-             * Start to create a new location
-             * @param {{}} player
-             */
-            LocationService.prototype.startAddNewLocation = function(player) {
-                this.newLocation = new Location({owner: player});
-                this.newLocation.setEditing(true);
-                this.activate(this.newLocation);
-
-                angularPiwik.track('map.addLocation', 'start');
-            };
-
-            /**
-             * Abort adding a new location
-             */
-            LocationService.prototype.abortAddNewLocation = function() {
-                this.newLocation = undefined;
-                this.activate();
-            };
-
-            /**
-             * Returns whether we are currently in the process of adding a new location
-             * @returns {boolean}
-             */
-            LocationService.prototype.isAddingLocation = function() {
-                return angular.isDefined(this.newLocation);
-            };
-
-            /**
-             * Sets the given location as active. Deactivates it if it's already active.
-             * @param {Location} [location]
-             */
-            LocationService.prototype.activate = function(location) {
-                // Deactivate current location
-                if (typeof this.active !== 'undefined') {
-                    this.active.setActive(false);
-                }
-
-                if (this.active === location || typeof location === 'undefined') {
-                    // If the given location is already active
-                    // or the new active location should be undefined, deactivate
-                    this.active = undefined;
-                }
-                else {
-                    // Otherwise activate the given location
-                    this.active = location;
-                    this.active.setActive();
-
-                    // Check if this is a location that has an id (= not one that is being added right now)
-                    if (angular.isDefined(location.id)) {
-                        // Get details (for the products)
-                        this.getLocation(location.id).then(function(newLocationData) {
-                            location.update(newLocationData);
-                        });
-                    }
-                }
-            };
-
-            /**
-             * Submits the location that is currently being created to the backend
-             * @return {Promise}
-             */
-            LocationService.prototype.submitNewLocation = function() {
-                var that = this;
-                if (!that.isAddingLocation()) {
-                    throw new Error('Cannot submit new location because no new location is being added.');
-                }
-
-                // Reset the new location reference
-                var location = that.newLocation;
-                that.newLocation = undefined;
-
-                // The location is no longer being edited
-                location.setEditing(false);
-
-                // Create deferred to return
-                var deferred = $q.defer();
-                backendService.submitLocation({
-                    name: location.name,
-                    lat: location.lat,
-                    lng: location.lng,
-                    type: location.type
-                })
-                    .success(function(data) {
-                        // Update the location
-                        location.update(data);
-                        deferred.resolve(location);
-                    })
-                    .error(function(data) {
-                        deferred.reject(data.error);
-                    })
-                ;
-
-                return deferred.promise;
             };
 
             /**
@@ -241,13 +191,13 @@
 
                 // TODO: should find out what has been edited and only send that
                 return backendService.updateLocation(location.id, {
-                    name: location.name,
-                    description: location.description,
-                    type: location.type,
-                    link: location.link,
-                    lat: location.lat,
-                    lng: location.lng
-                })
+                        name: location.name,
+                        description: location.description,
+                        type: location.type,
+                        link: location.link,
+                        lat: location.lat,
+                        lng: location.lng
+                    })
                     .success(function(data) {
                         // Update the location
                         location.update(data);
@@ -256,8 +206,7 @@
                     .error(function(data) {
                         // TODO: should reset the location data to what it previously was
                         alertService.addAlert('Failed to update location: ' + data.error, 'danger');
-                    })
-                ;
+                    });
             };
 
             return new LocationService();

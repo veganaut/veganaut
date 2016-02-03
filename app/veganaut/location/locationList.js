@@ -22,6 +22,15 @@
         function($scope, $location, locationService, angularPiwik, geocodeService) {
             var vm = this;
 
+            // Expose the global methods we still need
+            // TODO: find a better way to do this
+            vm.legacyGlobals = {
+                goToView: $scope.$parent.goToView
+            };
+
+            // Get the location set that we'll display
+            var locationSet = locationService.getLocationSet();
+
             /**
              * How many locations to show by default and then show more
              * when the "Show more" button is clicked.
@@ -67,7 +76,7 @@
             vm.onOpenToggle = function(location) {
                 // Activate the location (this will load the full location data)
                 // If it's already activated, this will de-activate it
-                locationService.activate(location);
+                locationSet.activate(location);
             };
 
             /**
@@ -85,22 +94,15 @@
             };
 
             /**
-             * Navigates to the map
-             * TODO: this method should not be necessary in this controller
-             */
-            vm.goToMap = function() {
-                $location.path('map');
-            };
-
-            /**
              * Sorts and filters the locations and stores them in vm.list
-             * @param {Location[]} locations
+             * @param {LocationSet} locationSet
              */
-            var compileList = function(locations) {
-                vm.list = _.chain(locations)
-                    .filter(function(loc) {
-                        return !loc.isDisabled();
-                    })
+            var compileList = function(locationSet) {
+                vm.list = _.chain(locationSet.locations)
+                    // TODO: enable filtering
+                    //.filter(function(loc) {
+                    //    return !loc.isDisabled();
+                    //})
                     .sortByOrder(['quality.average', 'quality.numRatings', 'name'], ['desc', 'desc', 'asc'])
                     // TODO: should sort by rank, but don't have the rank in the frontend
                     .value()
@@ -128,8 +130,8 @@
 
             // Check if valid
             if (!isNaN(lat) && !isNaN(lng) && !isNaN(radius)) {
-                // Valid, get the locations
-                locationService.getLocationsByRadius(lat, lng, radius).then(compileList);
+                // Valid -> query the locations
+                locationService.queryByRadius(lat, lng, radius);
 
                 // Simple fallback display name in case the reverse lookup doesn't work out.
                 // TODO: should be translated and displayed nicer
@@ -168,9 +170,13 @@
                 vm.noResults = true;
             }
 
+            // Listen to the set update event to re-compile our list
+            $scope.$on('veganaut.locationSet.updated', function() {
+                compileList(locationSet);
+            });
+
             // Reset search parameters when navigating away from this page
-            // TODO: should probably not use $onRootScope
-            $scope.$onRootScope('$routeChangeStart', function(event) {
+            $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
                     $location
                         .search('lat', null)
@@ -187,4 +193,4 @@
         .controller('vgLocationListCtrl', locationListCtrl)
         .directive('vgLocationList', [locationListDirective])
     ;
-})(window.veganaut.locationModule);
+})();

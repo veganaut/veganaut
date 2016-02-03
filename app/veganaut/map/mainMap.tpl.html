@@ -1,48 +1,49 @@
-<div ng-controller="MapCtrl">
+<div>
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="locationService.active || productShown || filtersShown || searchShown">
+     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown || mainMapVm.filtersShown || mainMapVm.searchShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
-                <div ng-if="isEmbedded">
+                <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
                     <a type="button" class="btn-logo btn btn-default btn-default--transparent"
-                     ng-click="goToView('/')">
+                     ng-click="mainMapVm.legacyGlobals.goToView('/')">
                         <svg class="logo logo--top-box">
-                            <use xlink:href="" ng-href="{{:: getLogoUrl() }}"/>
+                            <use xlink:href="" ng-href="{{:: mainMapVm.legacyGlobals.getLogoUrl() }}"/>
                         </svg>
                     </a>
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.showProductList.description' | translate }}"
-                 ng-click="showProductList(true)">
+                 ng-click="mainMapVm.showProductList(true)">
                     <span class="glyphicon glyphicon-cutlery"></span><br/>
                     <span class="small">{{ 'action.showProductList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
-                 ng-click="goToLocationList()"
+                 ng-click="mainMapVm.goToLocationList()"
                  title="{{ 'action.showList.description' | translate }}">
                     <span class="glyphicon glyphicon-th-list"></span><br/>
                     <span class="small">{{ 'action.showList.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
-                 ng-if="!isEmbedded"
-                 ng-click="showFilters(true)" ng-class="{active: numActiveFilters() > 0}"
+                 ng-if="!mainMapVm.legacyGlobals.isEmbedded"
+                 ng-click="mainMapVm.showFilters(true)"
+                 ng-class="{active: mainMapVm.locationFilterService.getNumActiveFilters() > 0}"
                  title="{{ 'action.filterMap.description' | translate }}">
                     <span class="glyphicon glyphicon-filter"></span><br/>
                     <span class="small">{{ 'action.filterMap.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-register btn btn-primary"
-                 ng-if="!isLoggedIn()"
-                 ng-click="goToView('register')"
+                 ng-if="!mainMapVm.legacyGlobals.isLoggedIn()"
+                 ng-click="mainMapVm.legacyGlobals.goToView('register')"
                  title="{{ 'action.register.description' | translate }}">
                     <span class="glyphicon glyphicon-heart"></span><br/>
                     <span class="small">{{ 'action.register.name' | translate }}</span>
                 </button>
-                <button type="button" class="add-location btn btn-block btn-primary"
-                 ng-if="isLoggedIn()"
-                 ng-click="startAddNewLocation()"
-                 title="{{ 'action.addLocation.description' | translate }}">
+                <button type="button" class="create-location btn btn-block btn-primary"
+                 ng-if="mainMapVm.legacyGlobals.isLoggedIn()"
+                 ng-click="mainMapVm.startCreateLocation()"
+                 title="{{ 'action.createLocation.description' | translate }}">
                     <span class="glyphicon glyphicon-plus-sign"></span><br/>
-                    <span class="small">{{ 'action.addLocation.name' | translate }}</span>
+                    <span class="small">{{ 'action.createLocation.name' | translate }}</span>
                 </button>
             </div>
         </div>
@@ -50,52 +51,65 @@
 
     <!-- TODO: get rid of complicated ng-show in view -->
     <div class="top-box container main-container"
-     ng-show="locationService.active">
-        <div class="location-details" ng-show="locationService.active && !locationService.isAddingLocation()">
-            <div class="pull-right clickable" ng-click="locationService.activate()">
+     ng-show="mainMapVm.locationSet.active">
+        <div class="location-details" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
+            <div class="pull-right clickable" ng-click="mainMapVm.locationSet.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
             <p>
                 <strong>
                     <vg-location-title
-                     vg-location="locationService.active"
+                     vg-location="mainMapVm.locationSet.active"
                      vg-icons-right="false">
                     </vg-location-title>
                 </strong>
             </p>
 
-            <p ng-if="locationService.active.getShortDescription()">
-                {{ locationService.active.getShortDescription() }}
+            <p ng-if="mainMapVm.locationSet.active.getShortDescription()">
+                {{ mainMapVm.locationSet.active.getShortDescription() }}
             </p>
 
             <vg-location-product-summary
-             vg-location="locationService.active"
+             vg-location="mainMapVm.locationSet.active"
              vg-limit-to="1">
             </vg-location-product-summary>
 
-            <p ng-show="locationService.active.id">
-                <vg-location-visit-button vg-location="locationService.active"></vg-location-visit-button>
+            <p ng-show="mainMapVm.locationSet.active.id">
+                <vg-location-visit-button vg-location="mainMapVm.locationSet.active"></vg-location-visit-button>
             </p>
         </div>
     </div>
 
-    <vg-overlay ng-if="filtersShown">
+    <vg-overlay ng-if="mainMapVm.filtersShown">
         <ng-include src="'/veganaut/map/locationFilters.tpl.html'"></ng-include>
     </vg-overlay>
-    <vg-overlay  ng-if="locationService.isAddingLocation()">
-        <ng-include src="'/veganaut/map/addLocation.tpl.html'"></ng-include>
+    <vg-overlay ng-if="mainMapVm.locationSet.isCreatingLocation()">
+        <vg-create-location-form
+         vg-create-location="mainMapVm.locationSet.createLocation"
+         vg-on-abort="mainMapVm.locationSet.abortCreateLocation()"
+         vg-on-submit="mainMapVm.locationSet.submitCreateLocation()">
+        </vg-create-location-form>
     </vg-overlay>
-    <vg-overlay ng-if="productShown">
+    <vg-overlay ng-if="mainMapVm.productShown">
         <ng-include src="'/veganaut/map/productList.tpl.html'"></ng-include>
     </vg-overlay>
-    <vg-overlay ng-if="searchShown">
-        <ng-include src="'/veganaut/map/search.tpl.html'"></ng-include>
+    <vg-overlay ng-if="mainMapVm.searchShown">
+        <vg-map-search
+         vg-on-close="mainMapVm.showSearch(false)"
+         vg-map="mainMapVm.map">
+        </vg-map-search>
     </vg-overlay>
 
     <leaflet class="main-map full-viewport"
-     ng-class="{'map--placing-location': isPlacingLocation()}"
-     defaults="mapDefaults" lf-center="mainMap.center" event-broadcast="events">
+     ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}"
+     defaults="mainMapVm.mapDefaults" lf-center="mainMapVm.mainMap.center" event-broadcast="mainMapVm.events">
     </leaflet>
+    <vg-map-markers
+     ng-if="mainMapVm.map"
+     vg-locations="mainMapVm.locationSet.locations"
+     vg-on-click="mainMapVm.onLocationClick(location)"
+     vg-map="mainMapVm.map">
+    </vg-map-markers>
 
     <vg-geolocate-button></vg-geolocate-button>
 </div>

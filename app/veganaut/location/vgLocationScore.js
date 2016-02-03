@@ -1,4 +1,4 @@
-(function(module) {
+(function() {
     'use strict';
 
     /**
@@ -26,6 +26,7 @@
                  * @returns {boolean}
                  */
                 this.userIsOwner = function() {
+                    // TODO: this.user is accessed sometimes before it exists
                     if (angular.isObject(this.location.owner)) {
                         return (this.location.owner.id === this.user.id);
                     }
@@ -92,5 +93,7 @@
     };
 
     // Expose as directive
-    module.directive('vgLocationScore', [locationScoreDirective]);
-})(window.veganaut.locationModule);
+    angular.module('veganaut.app.location')
+        .directive('vgLocationScore', [locationScoreDirective])
+    ;
+})();

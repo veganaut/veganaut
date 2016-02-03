@@ -28,7 +28,7 @@ describe('location list accessed from map.', function() {
         expect(locationListButton.isPresent()).toBe(true, 'button present');
     });
 
-    it('should go the the location list.', function() {
+    it('should go to the location list.', function() {
         locationListButton.click();
         browser.getCurrentUrl().then(function(url) {
             // Get the URL parameters and verify them
@@ -65,6 +65,7 @@ describe('location list accessed from map.', function() {
 
                 // Open the location
                 ruprecht.click();
+                browser.sleep(100); // Wait for location to update
                 expect(ruprecht.getText()).toContain('Bio shop with many vegan options.', 'loaded location description');
                 var products = ruprecht.element(by.css('vg-location-product-summary'));
                 expect(products.getText()).toContain('tofu', 'showing products');

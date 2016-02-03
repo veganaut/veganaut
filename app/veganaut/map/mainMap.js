@@ -1,139 +1,107 @@
-(function(module) {
+(function() {
     'use strict';
 
-    // TODO: refactor (it's getting way too big!), document and add tests!!
-    module.controller('MapCtrl', [
+    /**
+     * Component for the main map page.
+     * Holds the map and all the actions possible on the map.
+     * @returns {directive}
+     */
+    var mainMapDirective = function() {
+        return {
+            restrict: 'E',
+            scope: {},
+            controller: 'vgMainMapCtrl',
+            controllerAs: 'mainMapVm',
+            bindToController: true,
+            templateUrl: '/veganaut/map/mainMap.tpl.html'
+        };
+    };
+
+    // TODO: re-group variable and method definition
+    var mainMapCtrl = [
         '$scope', '$location', 'leafletData', 'angularPiwik', 'mapDefaults',
-        'playerService', 'Location', 'locationService', 'mainMapService', 'alertService',
+        'playerService', 'locationService', 'locationFilterService', 'mainMapService',
         function($scope, $location, leafletData, angularPiwik, mapDefaults,
-            playerService, Location, locationService, mainMapService, alertService)
-        {
-            var player;
+            playerService, locationService, locationFilterService, mainMapService) {
+            var vm = this;
+
+            // Expose the global methods we still need
+            // TODO: find a better way to do this
+            vm.legacyGlobals = {
+                goToView: $scope.$parent.goToView,
+                isLoggedIn: $scope.$parent.isLoggedIn,
+                isEmbedded: $scope.$parent.isEmbedded,
+                getLogoUrl: $scope.$parent.getLogoUrl
+            };
+
+            // Expose map settings and filter service
+            vm.mainMap = mainMapService;
+            vm.locationFilterService = locationFilterService;
 
             /**
              * Leaflet map settings
              * @type {{}}
              */
-            $scope.mapDefaults = mapDefaults;
+            vm.mapDefaults = mapDefaults;
 
             /**
-             * Locations loaded from the backend indexed by id
+             * Reference to the leaflet map object
              * @type {{}}
              */
-            $scope.locations = {};
-
-            // TODO: all this addLocation stuff should be separated to a directive or other controller
-            $scope.addLocationStep = 1;
-
-            $scope.nextStep = function() {
-                if ($scope.stepIsValid()) {
-                    if ($scope.isLastStep()) {
-                        $scope.submitNewLocation();
-                        angularPiwik.track('map.addLocation', 'finish');
-                    }
-                    else {
-                        $scope.addLocationStep += 1;
-                        $scope.addLocationComponent.minimised = false;
-                        angularPiwik.track('map.addLocation', 'nextStep', $scope.addLocationStep);
-                    }
-                }
-            };
-
-            $scope.previousStep = function() {
-                if ($scope.addLocationStep > 1) {
-                    $scope.addLocationStep -= 1;
-                    $scope.addLocationComponent.minimised = false;
-                    angularPiwik.track('map.addLocation', 'previousStep', $scope.addLocationStep);
-                }
-            };
-
-            $scope.stepIsValid = function() {
-                var loc = locationService.newLocation;
-                switch ($scope.addLocationStep) {
-                case 1:
-                    return (angular.isString(loc.type) && loc.type.length > 0);
-                case 2:
-                    return (angular.isString(loc.name) && loc.name.length > 0);
-                case 3:
-                    return (angular.isNumber(loc.lat) && angular.isNumber(loc.lng));
-                default:
-                    return false;
-                }
-            };
-
-            $scope.isLastStep = function() {
-                return ($scope.addLocationStep === 3);
-            };
-
-            // Expose the location service
-            $scope.locationService = locationService;
-
-            // Expose map settings and filters from the service
-            $scope.mainMap = mainMapService;
-            $scope.activeFilters = locationService.activeFilters;
-            $scope.POSSIBLE_FILTERS = locationService.POSSIBLE_FILTERS;
+            vm.map = undefined;
 
             /**
-             * Expose the location types
-             * @type {{}}
+             * Locations loaded from the backend
+             * @type {LocationSet}
              */
-            $scope.locationTypes = Location.TYPES;
+            vm.locationSet = locationService.getLocationSet();
 
             /**
              * Empty events object (needed to get the leaflet map to broadcast events)
              * @type {{}}
              */
-            $scope.events = {};
+            vm.events = {};
 
             /**
              * Whether to show the location products
              * @type {boolean}
              */
-            $scope.productShown = false;
+            vm.productShown = false;
 
             /**
              * Whether to show the location filters
              * @type {boolean}
              */
-            $scope.filtersShown = false;
+            vm.filtersShown = false;
 
             /**
              * whether to show search
              * @type {boolean}
              */
-            $scope.searchShown = false;
+            vm.searchShown = false;
 
-            /**
-             * Whether the add location form is minimised
-             * TODO: should probably go elsewhere
-             * @type {{minimised: boolean}}
-             */
-            $scope.addLocationComponent = {
-                minimised: false
-            };
+            // Get a reference the the leaflet map object
+            var mapPromise = leafletData.getMap();
+            mapPromise.then(function(map) {
+                vm.map = map;
+            });
 
-            /**
-             * Whether the search form is minimised
-             * TODO: should probably go elsewhere
-             * @type {{minimised: boolean}}
-             */
-            $scope.searchComponent = {
-                minimised: false
-            };
+            // Get the player
+            var playerPromise = playerService.getDeferredMe();
 
             /**
              * Sets whether the product list is shown
              * @param {boolean} [show=true]
              */
-            $scope.showProductList = function(show) {
+            vm.showProductList = function(show) {
                 if (typeof show === 'undefined') {
                     show = true;
                 }
                 show = !!show;
 
                 // Update and track if it changed
-                if ($scope.productShown !== show) {
-                    $scope.productShown = show;
+                if (vm.productShown !== show) {
+                    vm.productShown = show;
                     angularPiwik.track('map.productList', show ? 'open' : 'close');
                 }
             };
@@ -142,15 +110,15 @@
              * Sets whether the filters are shown
              * @param {boolean} [show=true]
              */
-            $scope.showFilters = function(show) {
+            vm.showFilters = function(show) {
                 if (typeof show === 'undefined') {
                     show = true;
                 }
                 show = !!show;
 
                 // Update and track if it changed
-                if ($scope.filtersShown !== show) {
-                    $scope.filtersShown = show;
+                if (vm.filtersShown !== show) {
+                    vm.filtersShown = show;
                     angularPiwik.track('map.filters', show ? 'open' : 'close');
                 }
             };
@@ -159,346 +127,119 @@
              * Sets whether the search is shown
              * @param {boolean} [show=true]
              */
-            $scope.showSearch = function(show) {
+            vm.showSearch = function(show) {
                 if (typeof show === 'undefined') {
                     show = true;
                 }
                 show = !!show;
 
                 // Update and track if it changed
-                if ($scope.searchShown !== show) {
-                    $scope.searchShown = show;
-                    if ($scope.searchShown) {
-                        // Make sure search is not minimised when shown
-                        $scope.searchComponent.minimised = false;
-
+                if (vm.searchShown !== show) {
+                    vm.searchShown = show;
+                    if (vm.searchShown) {
                         // Hide all other boxes
                         // TODO: this should really be done somewhere more central (in it's own component)
-                        $scope.showProductList(false);
-                        $scope.showFilters(false);
-                        $scope.abortAddNewLocation();
+                        vm.showProductList(false);
+                        vm.showFilters(false);
+                        vm.locationSet.abortCreateLocation();
+                        vm.locationSet.activate();
                     }
                     angularPiwik.track('map.search', show ? 'open' : 'close');
                 }
             };
 
             /**
-             * Returns the number of currently active filters
-             * @returns {number}
-             */
-            $scope.numActiveFilters = function() {
-                var active = 0;
-                if ($scope.activeFilters.recent !== 'anytime') {
-                    active += 1;
-                }
-                if ($scope.activeFilters.type !== 'anytype') {
-                    active += 1;
-                }
-
-                return active;
-            };
-
-            // Size of the header (main nav bar and map nav) in pixels
-            // Used for location list radius calculations
-            var HEADER_SIZE = 46;
-            // TODO: isEmbedded should come from a service and the header size probably too
-            var isEmbedded = ($location.search()['mode'] === 'embedded');
-            if (!isEmbedded) {
-                HEADER_SIZE += 50;
-            }
-
-            /**
              * Goes to the location list
              */
-            $scope.goToLocationList = function() {
-                mainMapService.goToLocationList(HEADER_SIZE);
-            };
-
-            /**
-             * Whether the newLocation has already been added to the map
-             * @type {boolean}
-             */
-            var newLocationIsAddedToMap = false;
-
-            /**
-             * Whether we are currently placing a location on the map
-             * @returns {boolean}
-             */
-            $scope.isPlacingLocation = function() {
-                return (locationService.isAddingLocation() && $scope.addLocationStep === 3);
-            };
-
-            /**
-             * Starts adding a new location
-             */
-            $scope.startAddNewLocation = function() {
-                $scope.addLocationStep = 1;
-                locationService.startAddNewLocation(player);
-            };
-
-            /**
-             * Aborts adding a new location
-             */
-            $scope.abortAddNewLocation = function() {
-                // Remove from map if it was added
-                if (newLocationIsAddedToMap === true) {
-                    var markerToRemove = locationService.newLocation.marker;
-                    mapPromise.then(function(map) {
-                        map.removeLayer(markerToRemove);
-                    });
+            vm.goToLocationList = function() {
+                // Get size of the header (main nav bar and map nav) in pixels
+                // TODO: isEmbedded should come from a service and the header size probably too
+                var headerSize = 46;
+                if (!vm.legacyGlobals.isEmbedded) {
+                    headerSize += 50;
                 }
-                newLocationIsAddedToMap = false;
-
-                // Tell the location service about it
-                locationService.abortAddNewLocation();
+                mainMapService.goToLocationList(headerSize);
             };
 
             /**
-             * Finalises adding a new location
+             * Starts creating a new location
              */
-            $scope.submitNewLocation = function() {
-                newLocationIsAddedToMap = false;
-
-                // Submit the location and add it to the list once done
-                locationService.submitNewLocation()
-                    .then(function(newLocation) {
-                        $scope.locations[newLocation.id] = newLocation;
-                        alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
-                    })
-                    .catch(function(error) {
-                        // TODO: remove the marker from the map
-                        alertService.addAlert('Failed to add location: ' + error, 'danger');
-                    })
-                ;
-            };
-
-            /**
-             * Sets the given coordinates as the lat/lng of the location
-             * that is being added.
-             * @param {number} lat
-             * @param {number} lng
-             * @return {boolean} Whether the coordinates where set on the new location
-             */
-            $scope.setNewLocationCoordinates = function(lat, lng) {
-                if (locationService.isAddingLocation()) {
-                    // Set the coordinates
-                    locationService.newLocation.setLatLng(lat, lng);
-
-                    // Push to map if not already there
-                    if (newLocationIsAddedToMap !== true) {
-                        mapPromise.then(function(map) {
-                            locationService.newLocation.marker.on('click', locationClickHandler);
-                            locationService.newLocation.marker.addTo(map);
-                        });
-                        newLocationIsAddedToMap = true;
-                    }
-
-                    // Hide the component
-                    $scope.addLocationComponent.minimised = true;
-
-                    // Zoom in all the way to make sure users place it precisely
-                    // TODO: duplication with EditLocationCtrl
-                    mapPromise.then(function(map) {
-                        var maxZoom = map.getMaxZoom();
-                        var zoomTo = [lat, lng];
-                        if (map.getZoom() < maxZoom || !map.getBounds().contains(zoomTo)) {
-                            map.setView(zoomTo, maxZoom);
-                        }
-                    });
-
-                    return true;
-                }
-                return false;
-            };
-
-            /**
-             * Handler for clicks on the map
-             * @param event
-             * @param args
-             */
-            var mapClickHandler = function(event, args) {
-                if (locationService.isAddingLocation()) {
-                    if ($scope.addLocationStep === 3) {
-                        // When adding a new location, take the click
-                        // as the coordinates of this new location
-                        $scope.setNewLocationCoordinates(
-                            args.leafletEvent.latlng.lat,
-                            args.leafletEvent.latlng.lng
-                        );
-
-                        angularPiwik.track('map.addLocation', 'mapClick');
-                    }
-                    // TODO: else what? We are adding a location but clicked one -> should show some info of the clicked place
-                }
-                else {
-                    // When not adding a location, deselect currently active location
-                    locationService.activate();
-
-                    // And hide product list, filters and search
-                    $scope.showProductList(false);
-                    $scope.showFilters(false);
-                    $scope.showSearch(false);
-                }
-            };
-
-            /**
-             * Handler for clicks on map markers (Locations)
-             * @param event Event coming directly from leaflet
-             *      (not angular-leaflet-directive)
-             */
-            var locationClickHandler = function(event) {
-                if (!locationService.isAddingLocation()) {
-                    var clickedLocation = $scope.locations[event.target.locationId];
-                    if (clickedLocation && !clickedLocation.isDisabled()) {
-                        // Run it through $apply since we are coming directly from Leaflet
-                        $scope.$apply(function() {
-                            locationService.activate(clickedLocation);
-
-                            // Track it
-                            angularPiwik.track('map.locations', 'map.locations.click');
-
-                            // Hide the product list, filters and search
-                            $scope.showProductList(false);
-                            $scope.showFilters(false);
-                            $scope.showSearch(false);
-                        });
-                    }
-                }
-                // TODO: if not handled, should pass on the click to the map
-            };
-
-            // Get a reference the the leaflet map object
-            var mapPromise = leafletData.getMap();
-
-            // Register event handlers
-            $scope.$on('leafletDirectiveMap.click', mapClickHandler);
-
-            /**
-             * Load the locations that are within the current bounding box
-             */
-            var loadLocations = function() {
+            vm.startCreateLocation = function() {
                 mapPromise.then(function(map) {
-                    // Get the bounds of the map
-                    var bounds = map.getBounds().toBBoxString();
-
-                    // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
-                    locationService.getLocationsByBounds(bounds).then(function(loadedLocations) {
-                        // Remove old markers
-                        angular.forEach($scope.locations, function(location) {
-                            map.removeLayer(location.marker);
-                        });
-
-                        // Set new locations
-                        $scope.locations = loadedLocations;
-
-                        // Go through all the locations and add the marker to the map
-                        angular.forEach($scope.locations, function(location) {
-                            location.marker.on('click', locationClickHandler);
-                            location.marker.addTo(map);
-                        });
-
-                        // Apply the current filter value
-                        applyFilters($scope.activeFilters);
+                    playerPromise.then(function(player) {
+                        vm.locationSet.startCreateLocation(player, map);
                     });
                 });
             };
 
-            // Get the player
-            playerService.getDeferredMe().then(function(me) {
-                player = me;
+            /**
+             * Handler for clicks on map markers
+             * @param {Location} location
+             */
+            vm.onLocationClick = function(location) {
+                if (!vm.locationSet.isCreatingLocation() && !location.isDisabled()) {
+                    // Run it through $apply since we are coming directly from Leaflet
+                    $scope.$apply(function() {
+                        vm.locationSet.activate(location);
+
+                        // Track it
+                        angularPiwik.track('map.locations', 'map.locations.click');
+
+                        // Hide the product list, filters and search
+                        vm.showProductList(false);
+                        vm.showFilters(false);
+                        vm.showSearch(false);
+                    });
+                }
+                // TODO: if not handled, should pass on the click to the map?
+            };
+
+            // Listen to clicks on the map
+            $scope.$on('leafletDirectiveMap.click', function() {
+                if (!vm.locationSet.isCreatingLocation()) {
+                    // When not adding a location, deselect currently active location
+                    vm.locationSet.activate();
+
+                    // And hide product list, filters and search
+                    vm.showProductList(false);
+                    vm.showFilters(false);
+                    vm.showSearch(false);
+                }
             });
 
             // Watch the map center for changes to save it
-            $scope.$watchCollection('mainMap.center', function() {
+            $scope.$watchCollection('mainMapVm.mainMap.center', function() {
+                // Save the center (will also update the url)
                 mainMapService.saveCenter();
 
                 // Reload locations
-                loadLocations();
+                mapPromise.then(function(map) {
+                    // Get the bounds of the map and query the locations
+                    locationService.queryByBounds(map.getBounds().toBBoxString());
+                });
             });
 
-
-            // TODO: move the filter stuff to a separate controller
-            /**
-             * Map of recent filter values to the period of
-             * time for which to show the locations.
-             * @type {{month: number, week: number, day: number}}
-             */
-            var RECENT_FILTER_PERIOD = {
-                month: 4 * 7 * 24 * 3600000,
-                week: 7 * 24 * 3600000,
-                day: 24 * 3600000
-            };
-
-            /**
-             * Runs the locations through the given recent filter
-             * @param recentFilter
-             */
-            var _applyRecentFilter = function(recentFilter) {
-                var showAll = (recentFilter === 'anytime');
-                var recentDate;
-                if (!showAll) {
-                    recentDate = new Date(Date.now() - RECENT_FILTER_PERIOD[recentFilter]);
-                }
-
-                // Go through all the locations and filter them
-                angular.forEach($scope.locations, function(location) {
-                    // Only apply the filter if the location is not already hidden
-                    if (!location.isDisabled()) {
-                        var disableIt = (!showAll && location.updatedAt < recentDate);
-                        location.setDisabled(disableIt);
-                    }
-                });
-            };
-
-            /**
-             * Runs the locations through the given type filter
-             * @param typeFilter
-             */
-            var _applyTypeFilter = function(typeFilter) {
-                var showAll = (typeFilter === 'anytype');
-                // Go through all the locations and filter them
-                angular.forEach($scope.locations, function(location) {
-                    // Only apply the filter if the location is not already hidden
-                    if (!location.isDisabled()) {
-                        var disableIt = (!showAll && location.type !== typeFilter);
-                        location.setDisabled(disableIt);
-                    }
-                });
-            };
-
-            /**
-             * Runs the locations through all the filters
-             * Add new filters to this function
-             * @param typeFilter
-             */
-            var applyFilters = function(filters, filtersBefore) {
-                // First show all the locations
-                // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
-                angular.forEach($scope.locations, function(location) {
-                    location.setDisabled(false);
-                });
-
-                // Track filter usage
-                if (angular.isDefined(filtersBefore)) {
-                    if (filters.recent !== filtersBefore.recent) {
-                        angularPiwik.track('map.filters', 'applyFilter.recent', filters.recent);
-                    }
-                    if (filters.type !== filtersBefore.type) {
-                        angularPiwik.track('map.filters', 'applyFilter.type', filters.type);
-                    }
-                }
-
-                // Then run the filters
-                _applyRecentFilter(filters.recent);
-                _applyTypeFilter(filters.type);
-            };
-
             // Watch the active filters
-            $scope.$watch('activeFilters', applyFilters, true);
+            $scope.$watchCollection('mainMapVm.locationFilterService.activeFilters',
+                function(filters, filtersBefore) {
+                    // Track filter usage
+                    if (angular.isDefined(filtersBefore)) {
+                        if (filters.recent !== filtersBefore.recent) {
+                            angularPiwik.track('map.filters', 'applyFilter.recent', filters.recent);
+                        }
+                        if (filters.type !== filtersBefore.type) {
+                            angularPiwik.track('map.filters', 'applyFilter.type', filters.type);
+                        }
+                    }
+
+                    // Let filter service apply the filters to the set
+                    locationFilterService.applyFilters(vm.locationSet);
+                }
+            );
 
             // Listen to clicks on search button
             $scope.$onRootScope('veganaut.search.clicked', function() {
-                $scope.showSearch(!$scope.searchShown);
+                vm.showSearch(!vm.searchShown);
             });
 
             // Listen to location changes to update the map center
@@ -514,9 +255,15 @@
                     $location.hash(null);
 
                     // Abort adding a new location
-                    locationService.abortAddNewLocation();
+                    vm.locationSet.abortCreateLocation();
                 }
             });
         }
-    ]);
-})(window.veganaut.mapModule);
+    ];
+
+    // Expose as directive
+    angular.module('veganaut.app.map')
+        .controller('vgMainMapCtrl', mainMapCtrl)
+        .directive('vgMainMap', [mainMapDirective])
+    ;
+})();

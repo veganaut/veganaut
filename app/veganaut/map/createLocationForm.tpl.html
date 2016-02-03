@@ -1,76 +1,74 @@
 <form novalidate name="locationForm" class="location-form">
     <div class="top-box__close clickable"
-     ng-hide="addLocationComponent.minimised"
-     ng-click="abortAddNewLocation()">
+     ng-hide="createLocationFormVm.createLocation.isMinimised"
+     ng-click="createLocationFormVm.onAbort()">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
-    <div ng-switch="addLocationStep">
+    <div ng-switch="createLocationFormVm.createLocation.step">
         <div ng-switch-when="1">
             <label class="top-box__first-line">{{ 'location.form.new.type' | translate }}</label>
             <div class="btn-group form-group">
-                <button class="btn btn-default" ng-repeat="type in locationTypes"
-                 ng-model="locationService.newLocation.type" uib-btn-radio="type">
+                <button class="btn btn-default" ng-repeat="type in createLocationFormVm.LOCATION_TYPES"
+                 ng-model="createLocationFormVm.createLocation.newLocation.type" uib-btn-radio="type">
                     <vg-location-type-icon type="type"></vg-location-type-icon>
                     {{ 'location.type.' + type | translate }}
                 </button>
             </div>
         </div>
         <div ng-switch-when="2" class="form-group">
-            <label class="top-box__first-line" for="addLocationName">
-                {{ 'location.form.new.name.' + locationService.newLocation.type | translate }}
+            <label class="top-box__first-line" for="createLocationName">
+                {{ 'location.form.new.name.' + createLocationFormVm.createLocation.newLocation.type | translate }}
             </label>
-            <input type="text" required class="form-control" id="addLocationName"
-             ng-model="locationService.newLocation.name" />
+            <input type="text" required class="form-control" id="createLocationName"
+             ng-model="createLocationFormVm.createLocation.newLocation.name" />
         </div>
-        <div ng-switch-when="3" ng-controller="SearchCtrl">
+        <div ng-switch-when="3">
             <a href="" class="link-unstyled pull-left top-box__minimise"
-                 ng-click="addLocationComponent.minimised = !addLocationComponent.minimised">
+                 ng-click="createLocationFormVm.createLocation.isMinimised = !createLocationFormVm.createLocation.isMinimised">
                 <span class="glyphicon glyphicon-chevron-up"
-                 ng-hide="addLocationComponent.minimised"></span>
-                <span ng-show="addLocationComponent.minimised">
+                 ng-hide="createLocationFormVm.createLocation.isMinimised"></span>
+                <span ng-show="createLocationFormVm.createLocation.isMinimised">
                     <span class="glyphicon glyphicon-chevron-down"></span>
                     {{ 'location.form.new.showForm' | translate }}
                 </span>
             </a>
-            <div class="form-group" ng-hide="addLocationComponent.minimised">
-                <label class="top-box__first-line" for="addLocationSearch">
-                    {{ 'location.form.new.selectCoordinates' | translate }}
-                </label>
-                <input type="text" class="form-control" id="addLocationSearch"
-                 ng-model="geocoding.search" ng-model-options="{ debounce: 500 }"
-                 placeholder="{{ 'location.form.new.search' | translate }}"/>
-            </div>
-            <div ng-show="geocoding.results.length > 0">
-                <ul class="list-unstyled list-spaced" ng-hide="addLocationComponent.minimised">
-                    <li ng-repeat="result in geocoding.results">
-                        <a class="clickable"
-                         ng-click="setGeocodeResult(result) | track:'map.addLocation':'searchResultClick'">
-                            {{ result.getDisplayName() }}
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+            <vg-geocode-search-input
+             ng-hide="createLocationFormVm.createLocation.isMinimised"
+             vg-results-model="createLocationFormVm.geocodeSearchResults"
+             vg-label="{{ 'location.form.new.selectCoordinates' | translate }}"
+             vg-placeholder="{{ 'location.form.new.search' | translate }}"
+             vg-input-id="createLocationSearch">
+            </vg-geocode-search-input>
+
+            <vg-geocode-search-results
+             ng-hide="createLocationFormVm.createLocation.isMinimised"
+             vg-results="createLocationFormVm.geocodeSearchResults"
+             vg-on-select="createLocationFormVm.onGeocodeResultSelect(result)">
+            </vg-geocode-search-results>
         </div>
     </div>
     <p class="clearfix">
         <span class="pull-right">
-            <button type="button" class="btn btn-default btn-xs btn-add-location-previous"
-             ng-show="addLocationStep > 1"
-             ng-click="previousStep()">
+            <button type="button" class="btn btn-default btn-xs btn-create-location-previous"
+             ng-show="createLocationFormVm.createLocation.step > 1"
+             ng-click="createLocationFormVm.createLocation.previousStep()">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 <span>{{ 'location.form.new.previous' | translate }}</span>
             </button>
-            <button type="submit" class="btn btn-primary btn-xs btn-add-location-next"
-             ng-disabled="!stepIsValid()"
-             ng-click="nextStep()">
-                <span ng-hide="isLastStep()">
-                    <span class="glyphicon glyphicon-arrow-right"></span>
-                    {{ 'location.form.new.next' | translate }}
-                </span>
-                <span ng-show="isLastStep()">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    {{ 'location.form.new.submit' | translate }}
-                </span>
+            <button type="submit" class="btn btn-primary btn-xs btn-create-location-next"
+             ng-hide="createLocationFormVm.createLocation.isLastStep()"
+             ng-disabled="!createLocationFormVm.createLocation.stepIsValid()"
+             ng-click="createLocationFormVm.createLocation.nextStep()">
+                <span class="glyphicon glyphicon-arrow-right"></span>
+                {{ 'location.form.new.next' | translate }}
+            </button>
+            <button type="submit" class="btn btn-primary btn-xs btn-create-location-submit"
+             ng-show="createLocationFormVm.createLocation.isLastStep()"
+             ng-disabled="!createLocationFormVm.createLocation.stepIsValid()"
+             ng-click="createLocationFormVm.onSubmit()">
+                <span class="glyphicon glyphicon-ok"></span>
+                {{ 'location.form.new.submit' | translate }}
             </button>
         </span>
     </p>

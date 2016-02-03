@@ -1,62 +1,58 @@
-(function (module) {
+(function() {
     'use strict';
 
-    module.controller('SearchCtrl', ['$scope', '$location', '$timeout', 'leafletData',
-        'playerService', 'backendService', 'geocodeService',
-        function ($scope, $location, $timeout, leafletData,
-                  playerService, backendService, geocodeService) {
-            // Geocoding search string model and results
-            $scope.geocoding = {
-                search: '',
-                results: []
-            };
+    /**
+     * Component for map search input and results.
+     * @returns {directive}
+     */
+    var mapSearchDirective = function() {
+        return {
+            restrict: 'E',
+            scope: {
+                /**
+                 * Leaflet map object on which the search results should be shown
+                 * (zooms to the selected search result).
+                 */
+                map: '=vgMap',
 
-            // Get a reference the the leaflet map object
-            var mapPromise = leafletData.getMap();
+                /**
+                 * Handler for when the user closes the search component.
+                 */
+                onClose: '&vgOnClose'
+            },
+            controller: 'vgMapSearchCtrl',
+            controllerAs: 'mapSearchVm',
+            bindToController: true,
+            templateUrl: '/veganaut/search/mapSearch.tpl.html'
+        };
+    };
+
+    var mapSearchCtrl = [
+        'angularPiwik',
+        function (angularPiwik) {
+            var vm = this;
 
             /**
-             * Selects the given geocode result as the coordinates
-             * for the new location
-             * @param {GeocodeResult} result
+             * Whether the search component is minimised
+             * @type {boolean}
              */
-            $scope.setGeocodeResult = function (result) {
-                // Set coordinates
-                // TODO: don't access method of other controller
-                var setCoordinates = $scope.setNewLocationCoordinates(
-                    result.lat,
-                    result.lng
-                );
+            vm.minimised = false;
 
-                // If the coordinates of the new location where not set, zoom to the result
-                if (!setCoordinates) {
-                    // Fit to the bounds of the result
-                    if (angular.isArray(result.bounds)) {
-                        mapPromise.then(function (map) {
-                            map.fitBounds(result.bounds);
-                        });
-                    }
-                }
+            /**
+             * Handles result selection: minimise and track.
+             * Showing the result location on the map is done by
+             * vgGeocodeSearchResults
+             */
+            vm.onResultSelect = function() {
+                vm.minimised = true;
+                angularPiwik.track('map.search', 'selectResult');
             };
-
-            // Watch the geocoding search string
-            $scope.$watch('geocoding.search', function (search) {
-                // Reset results
-                $scope.geocoding.results = [];
-
-                // Only start new query if the string is long enough
-                // TODO: move constants somewhere else
-                if (!angular.isString(search) || search.length < 4) {
-                    return;
-                }
-
-                // Lookup the search string
-                geocodeService.search($scope.geocoding.search)
-                    .then(function (data) {
-                        $scope.geocoding.results = data;
-                    })
-                ;
-            });
-
         }
-    ]);
-})(window.veganaut.mapModule);
+    ];
+
+    // Expose as directive
+    angular.module('veganaut.app.search')
+        .controller('vgMapSearchCtrl', mapSearchCtrl)
+        .directive('vgMapSearch', [mapSearchDirective])
+    ;
+})();

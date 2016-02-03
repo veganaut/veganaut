@@ -42,7 +42,7 @@
              */
             $scope.searchClick = function() {
                 // This is a temporary solution to handle the search click
-                // Is no handled in MapCtrl, will move to proper directives later
+                // Is now handled in mainMap, will move to proper directives later
                 $rootScope.$emit('veganaut.search.clicked');
             };
 

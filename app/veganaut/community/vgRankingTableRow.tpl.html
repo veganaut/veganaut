@@ -12,7 +12,7 @@
             </span>
         </span>
         <span ng-if="row.items.length > 1 && !row.showAll">
-            <a href="#"
+            <a href=""
              ng-click="row.showAll = true | track:trackingCategory:'rankEntry.expand':(row.player ? 'player': 'notPlayer'):row.rank"
              class="table--community__summary-link">
                 <span ng-if="row.player">
@@ -23,7 +23,7 @@
                 </span>
             </a>
         </span>
-        <a href="#"
+        <a href=""
          ng-if="row.showAll"
          ng-click="row.showAll = false | track:trackingCategory:'rankEntry.collapse':(row.player ? 'player': 'notPlayer'):row.rank"
          class="table--community__close">

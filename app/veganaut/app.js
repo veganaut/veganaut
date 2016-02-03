@@ -14,14 +14,16 @@
         'veganaut.form',
         'veganaut.geocode',
         'veganaut.angularPiwik',
-        'veganaut.app.templates',
-        'veganaut.app.main',
-        'veganaut.app.session',
         'veganaut.app.backend',
+        'veganaut.app.community',
+        'veganaut.app.home',
         'veganaut.app.location',
+        'veganaut.app.main',
         'veganaut.app.map',
         'veganaut.app.missions',
-        'veganaut.app.community',
+        'veganaut.app.search',
+        'veganaut.app.session',
+        'veganaut.app.templates',
         'veganaut.app.user'
     ]);
 
@@ -41,9 +43,9 @@
             $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
             $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
 
-            $routeProvider.when('/', {templateUrl: '/veganaut/home/home.tpl.html'});
+            $routeProvider.when('/', {template: '<vg-home></vg-home>'});
             $routeProvider.when('/map', {
-                templateUrl: '/veganaut/map/map.tpl.html',
+                template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
@@ -86,6 +88,7 @@
 
     // Add $onRootScope method for pub/sub
     // See https://github.com/angular/angular.js/issues/4574
+    // TODO: get rid of this and use $rootScope.$broadcast and $scope.$on
     veganautModule.config(['$provide', function($provide) {
         $provide.decorator('$rootScope', ['$delegate', function($delegate) {
 
@@ -102,18 +105,21 @@
     var mainModule = angular.module('veganaut.app.main', []);
 
     // Define the different modules of the app
-    var locationModule = angular.module('veganaut.app.location', []);
     var mapModule = angular.module('veganaut.app.map', []);
     var missionsModule = angular.module('veganaut.app.missions', []);
     var communityModule = angular.module('veganaut.app.community', []);
     var userModule = angular.module('veganaut.app.user', []);
+
+    // New and refactored modules are not exposed through a global anymore
+    angular.module('veganaut.app.home', []);
+    angular.module('veganaut.app.location', []);
+    angular.module('veganaut.app.search', []);
 
     // Make Leaflet available as angular service
     mapModule.value('Leaflet', window.L);
 
     window.veganaut = {
         mainModule: mainModule,
-        locationModule: locationModule,
         mapModule: mapModule,
         missionsModule: missionsModule,
         communityModule: communityModule,

@@ -1,32 +1,28 @@
-<form novalidate name="searchForm" class="search-form clearfix" ng-controller="SearchCtrl">
+<form novalidate name="searchForm" class="search-form clearfix">
     <a href="" class="link-unstyled pull-left top-box__minimise"
-     ng-click="searchComponent.minimised = !searchComponent.minimised">
+     ng-click="mapSearchVm.minimised = !mapSearchVm.minimised">
         <span class="glyphicon glyphicon-chevron-up"
-         ng-hide="searchComponent.minimised"></span>
-        <span ng-show="searchComponent.minimised">
+         ng-hide="mapSearchVm.minimised"></span>
+        <span ng-show="mapSearchVm.minimised">
             <span class="glyphicon glyphicon-chevron-down"></span>
             {{ 'mapSearch.form.showForm' | translate }}
         </span>
     </a>
-    <div class="top-box__close clickable" ng-click="showSearch(false)">
+    <div class="top-box__close clickable" ng-click="mapSearchVm.onClose()">
         <span class="glyphicon glyphicon-remove"></span>
     </div>
-    <div ng-hide="searchComponent.minimised">
-        <div class="form-group">
-            <label for="addLocationSearch" class="top-box__first-line">
-                {{ 'mapSearch.form.title' | translate }}
-            </label>
-            <input type="text" class="form-control" id="addLocationSearch"
-             ng-model="geocoding.search" ng-model-options="{ debounce: 500 }"
-             placeholder="{{ 'mapSearch.form.placeholder' | translate }}"/>
-        </div>
-        <ul class="list-unstyled list-spaced">
-            <li ng-repeat="result in geocoding.results">
-                <a href=""
-                 ng-click="searchComponent.minimised = true; setGeocodeResult(result) | track:'map.search':'selectResult'">
-                    {{ result.getDisplayName() }}
-                </a>
-            </li>
-        </ul>
+    <div ng-hide="mapSearchVm.minimised">
+        <vg-geocode-search-input
+         vg-results-model="mapSearchVm.searchResults"
+         vg-label="{{ 'mapSearch.form.title' | translate }}"
+         vg-placeholder="{{ 'mapSearch.form.placeholder' | translate }}"
+         vg-input-id="searchForm">
+        </vg-geocode-search-input>
+
+        <vg-geocode-search-results
+         vg-results="mapSearchVm.searchResults"
+         vg-on-select="mapSearchVm.onResultSelect()"
+         vg-map="mapSearchVm.map">
+        </vg-geocode-search-results>
     </div>
 </form>

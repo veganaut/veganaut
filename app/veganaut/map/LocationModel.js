@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.service('Location', ['Leaflet', 'playerService',
-        function(L, playerService) {
+    module.service('Location', ['$rootScope', 'playerService',
+        function($rootScope, playerService) {
             /**
              * Z-index offset to use for the marker when the location is active
              * @type {number}
@@ -31,7 +31,14 @@
              */
             function Location(jsonData) {
                 // Explicitly define all the properties
-                this.id = undefined;
+
+                /**
+                 * Id of this location.
+                 * A value of "new" signifies that this location is currently
+                 * being created in the frontend and is not yet stored.
+                 * @type {string}
+                 */
+                this.id = 'new';
                 this.owner = undefined;
                 this.lat = undefined;
                 this.lng = undefined;
@@ -52,10 +59,6 @@
                 this.updatedAt = undefined;
                 this._isBeingEdited = false;
 
-                // Apply the given data
-                // TODO: this should deep copy, otherwise quality might not have a valid value
-                angular.extend(this, jsonData || {});
-
                 /**
                  * Whether this location shows as active on the map
                  * @type {boolean}
@@ -71,27 +74,21 @@
                 this._disabled = false;
 
                 /**
-                 * Leaflet Marker representing this location
-                 * @type {L.Marker}
+                 * Defines all the properties for the Leaflet marker to
+                 * represent this location.
+                 * @type {{}}
+                 * @private
                  */
-                this.marker = L.marker([this.lat, this.lng], {
-                    title: this.name,
-                    riseOnHover: true,
-                    riseOffset: Z_INDEX_OFFSET_HOVER
-                });
+                this._markerDefinition = undefined;
 
-                // Instantiate the dates
-                // TODO: this should already have been done elsewhere
-                this.updatedAt = new Date(this.updatedAt);
+                // Apply the given data (will also set marker definition)
+                this.update(jsonData);
 
-                this._updateMarker();
+                // Update the marker once we got the player info (to set correct ownership after login)
+                playerService.getDeferredMe().then(function() {
+                    this.updateMarker();
+                }.bind(this));
             }
-
-            /**
-             * The possible types of locations
-             * @type {string[]}
-             */
-            Location.TYPES = ['gastronomy', 'retail'];
 
             /**
              * Icon CSS classes used for the type of location
@@ -130,28 +127,49 @@
             };
 
             /**
-             * Makes sure the Leaflet marker is up to date with the current
-             * model state. Sets the icon html and the css as well as the
-             * locationId on the marker.
+             * Returns the marker definition to be used for this location.
+             * The event 'veganaut.location.marker.updated' will be broadcast
+             * when the definition changes.
+             * @returns {{}}
+             */
+            Location.prototype.getMarkerDefinition = function() {
+                return this._markerDefinition;
+            };
+
+            /**
+             * Get the list of class names to be used for the marker icon.
+             * @returns {string}
+             */
+            Location.prototype._getMarkerIconClasses = function() {
+                // Compose the icon class name
+                return 'marker' +
+                    ' marker--type-' + this.type +
+                    ' marker--quality-' + this.getRoundedQuality() +
+                    (this._disabled ? ' marker--disabled' : ' marker--enabled') +
+                    (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
+                    (this._active ? ' marker--active' : '') +
+                    (this._isBeingEdited ? ' marker--editing' : '');
+            };
+
+            /**
+             * Get the HTML markup to be used for the marker icon.
+             * @returns {string}
              * @private
              */
-            Location.prototype._updateMarker = function() {
-                // Create the basic icon settings
-                var ownerClass = (this.isOwnedByPlayer() ? ' marker--owner ' : '');
-                var icon = {
-                    iconSize: null, // Needs to be set to null so it can be specified in CSS
-                    className: 'marker marker--type-' + this.type +
-                        ownerClass +
-                        ' marker--quality-' + this.getRoundedQuality(),
-                    html: ''
-                };
-
-                // Set a marker based on the type of location
+            Location.prototype._getMarkerIconHtml = function() {
+                // Check if this type has a valid icon
                 var typeIcon = Location.getIconClassForType(this.type);
                 if (typeIcon) {
-                    icon.html = '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
+                    return '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
                 }
+                return '';
+            };
 
+            /**
+             * Gets the zIndexOffset that should be used for this location's marker
+             * @returns {number}
+             */
+            Location.prototype._getMarkerZIndexOffset = function() {
                 // Calculate the z-index offset:
                 // Higher quality locations should be more in front. We take 2
                 // decimal places of the average too have more layers than just
@@ -163,11 +181,8 @@
                 // TODO: should use the rank, but isn't in frontend yet
                 var zIndexOffset = Math.round((this.quality.average || 3) * 100) * 1000;
 
-                // Add active class if active
+                // Active markers should be in front of all others (except hover)
                 if (this._active) {
-                    icon.className += ' marker--active';
-
-                    // Active markers should be in front of all others (except hover)
                     zIndexOffset = Z_INDEX_OFFSET_ACTIVE;
                 }
 
@@ -176,22 +191,48 @@
                     zIndexOffset = Z_INDEX_OFFSET_DISABLED;
                 }
 
-                // Add editing class
-                if (this._isBeingEdited) {
-                    icon.className += ' marker--editing';
+                return zIndexOffset;
+            };
+
+            /**
+             * Updates the marker definition of this location.
+             * If the marker has changed, broadcasts an event letting all the shown
+             * markers know they should get the newest marker definition.
+             */
+            Location.prototype.updateMarker = function() {
+                // Store old definition to check for changes further down
+                var oldDefinition = this._markerDefinition;
+
+                // Set latLng if valid coordinates are available
+                var latLng;
+                if (angular.isNumber(this.lat) &&
+                    angular.isNumber(this.lng))
+                {
+                    latLng = [this.lat, this.lng];
                 }
 
-                // Add disabled or enabled class
-                icon.className += this._disabled ? ' marker--disabled' : ' marker--enabled';
+                // Create current marker definition
+                this._markerDefinition = {
+                    title: this.name,
+                    latLng: latLng,
+                    base: {
+                        riseOnHover: true,
+                        riseOffset: Z_INDEX_OFFSET_HOVER
+                    },
+                    icon: {
+                        iconSize: null, // Needs to be set to null so it can be specified in CSS
+                        className: this._getMarkerIconClasses(),
+                        html: this._getMarkerIconHtml()
+                    },
+                    zIndexOffset: this._getMarkerZIndexOffset()
+                };
 
-                // TODO: only do this if something actually changed
-                this.marker.setIcon(L.divIcon(icon));
-
-                // Set the z-index offset
-                this.marker.setZIndexOffset(zIndexOffset);
-
-                // Make sure the marker still hast the correct location id set
-                this.marker.locationId = this.id;
+                // Send updated event if it changed (but not if it was previously undefined;
+                // in this case the location is just being initialised).
+                if (angular.isObject(oldDefinition) && !_.isEqual(oldDefinition, this._markerDefinition))
+                {
+                    $rootScope.$broadcast('veganaut.location.marker.updated', this);
+                }
             };
 
             /**
@@ -204,7 +245,7 @@
                 // TODO: make lat/lng private
                 this.lat = lat;
                 this.lng = lng;
-                this.marker.setLatLng([this.lat, this.lng]);
+                this.updateMarker();
             };
 
             /**
@@ -215,15 +256,8 @@
                 if (typeof isActive === 'undefined') {
                     isActive = true;
                 }
-                isActive = !!isActive;
-
-                // Update active state if it changed
-                if (this._active !== isActive) {
-                    this._active = isActive;
-
-                    // Update marker
-                    this._updateMarker();
-                }
+                this._active = !!isActive;
+                this.updateMarker();
             };
 
             /**
@@ -234,15 +268,8 @@
                 if (typeof isEditing === 'undefined') {
                     isEditing = true;
                 }
-                isEditing = !!isEditing;
-
-                // Update active state if it changed
-                if (this._isBeingEdited !== isEditing) {
-                    this._isBeingEdited = isEditing;
-
-                    // Update marker
-                    this._updateMarker();
-                }
+                this._isBeingEdited = !!isEditing;
+                this.updateMarker();
             };
 
             /**
@@ -271,21 +298,14 @@
             /**
              * Sets the location to be disabled or enabled on the map.
              * Disabled locations are shown greyed out.
-             * @param {boolean} isDisabled
+             * @param {boolean} [isDisabled=true]
              */
             Location.prototype.setDisabled = function(isDisabled) {
                 if (typeof isDisabled === 'undefined') {
                     isDisabled = true;
                 }
-                isDisabled = !!isDisabled;
-
-                // Update disabled state if it changed
-                if (this._disabled !== isDisabled) {
-                    this._disabled = isDisabled;
-
-                    // Update marker
-                    this._updateMarker();
-                }
+                this._disabled = !!isDisabled;
+                this.updateMarker();
             };
 
             /**
@@ -429,30 +449,22 @@
 
             /**
              * Updates this Location with the new data loaded from the backend
-             * @param {{}} newData
+             * @param {{}} newData Raw (not instantiated Location!) data from the backend
              */
             Location.prototype.update = function(newData) {
-                // TODO: should only update what is actually given in the newData
-                // TODO: should be merged with the constructor and just be less ugly
-                // TODO: this is a mess: locationService returns already instantiated model, shouldn't.
-                this.id = newData.id;
-                this.owner = newData.owner;
-                this.name = newData.name;
-                this.description = newData.description;
-                this.link = newData.link;
-                this.type = newData.type;
-                this.points = newData.points;
-                this.quality = newData.quality;
-                this.effort = newData.effort;
-                this.products = newData.products;
-                this.updatedAt = newData.updatedAt;
-                this._updateMarker();
-                this.setLatLng(newData.lat, newData.lng);
+                // TODO: this should deep copy, otherwise quality might not have a valid value
+                _.assign(this, newData || {});
 
                 // Clear points memoiziation
                 this._sortedPoints = undefined;
 
-                // TODO: update the marker 'title'
+                // Instantiate the date
+                if (!angular.isDate(this.updatedAt)) {
+                    this.updatedAt = new Date(this.updatedAt);
+                }
+
+                // Update the marker
+                this.updateMarker();
             };
 
             return Location;
