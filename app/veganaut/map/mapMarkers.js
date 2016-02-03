@@ -37,8 +37,7 @@
             var markers = {};
 
             /**
-             * Creates a new marker for the given location, adds it to the map
-             * and returns it.
+             * Creates a new marker for the given location and returns it.
              * @param {Location} location
              * @returns {L.marker}
              */
@@ -59,8 +58,7 @@
                     }
                 });
 
-                // Add it to the map and return it
-                vm.map.addLayer(marker);
+                // Return the marker
                 return marker;
             };
 
@@ -78,8 +76,10 @@
                 }
 
                 // Check if there isn't a marker yet for that location
+                var isNewMarker = false;
                 if (!angular.isObject(markers[location.id])) {
                     markers[location.id] = createMarker(location);
+                    isNewMarker = true;
                 }
 
                 // Get marker definition and marker instance
@@ -90,7 +90,16 @@
                 marker.setLatLng(markerDefinition.latLng);
                 marker.setZIndexOffset(markerDefinition.zIndexOffset);
                 marker.setIcon(L.divIcon(markerDefinition.icon));
-                marker._icon.title = markerDefinition.title; // This is the only possibility to update the title in Leaflet
+                if (angular.isObject(marker._icon)) {
+                    // This is the only possibility to update the title in Leaflet
+                    // (when the marker is not on the map yet, the _icon is not defined yet).
+                    marker._icon.title = markerDefinition.base.title;
+                }
+
+                // Add it to the map if it was just created
+                if (isNewMarker) {
+                    vm.map.addLayer(marker);
+                }
             };
 
 

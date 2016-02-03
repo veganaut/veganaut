@@ -213,9 +213,9 @@
 
                 // Create current marker definition
                 this._markerDefinition = {
-                    title: this.name,
                     latLng: latLng,
                     base: {
+                        title: this.name,
                         riseOnHover: true,
                         riseOffset: Z_INDEX_OFFSET_HOVER
                     },
