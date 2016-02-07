@@ -97,7 +97,7 @@
              * Sorts and filters the locations and stores them in vm.list
              * @param {LocationSet} locationSet
              */
-            var compileList = function(locationSet) {
+            var compileList = function() {
                 vm.list = _.chain(locationSet.locations)
                     // TODO: enable filtering
                     //.filter(function(loc) {
@@ -131,7 +131,9 @@
             // Check if valid
             if (!isNaN(lat) && !isNaN(lng) && !isNaN(radius)) {
                 // Valid -> query the locations
-                locationService.queryByRadius(lat, lng, radius);
+                locationService.queryByRadius(lat, lng, radius)
+                    .then(compileList)
+                ;
 
                 // Simple fallback display name in case the reverse lookup doesn't work out.
                 // TODO: should be translated and displayed nicer
@@ -169,11 +171,6 @@
                 // Not valid -> no results found
                 vm.noResults = true;
             }
-
-            // Listen to the set update event to re-compile our list
-            $scope.$on('veganaut.locationSet.updated', function() {
-                compileList(locationSet);
-            });
 
             // Reset search parameters when navigating away from this page
             $scope.$on('$routeChangeStart', function(event) {
