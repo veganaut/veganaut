@@ -17,6 +17,7 @@ describe('locationList.', function() {
     // Mock data returned by mock services
     var getParams = {};
     var locationSet;
+    var deferredQuery;
     var deferredGeocodeSearch;
 
     beforeEach(module('veganaut.app.map', 'veganaut.app.location'));
@@ -52,7 +53,12 @@ describe('locationList.', function() {
             .andReturn(locationSet)
         ;
 
-        locationService.queryByRadius = jasmine.createSpy('locationService.queryByRadius');
+        locationService.queryByRadius = jasmine.createSpy('locationService.queryByRadius')
+            .andCallFake(function() {
+                deferredQuery = $q.defer();
+                return deferredQuery.promise;
+            })
+        ;
 
         geocodeService.reverseSearch = jasmine.createSpy('geocodeService.reverseSearch')
             .andCallFake(function() {
@@ -109,7 +115,8 @@ describe('locationList.', function() {
             }
             expect(vm.list.length).toBe(0, 'list is empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');
-            $rootScope.$broadcast('veganaut.locationSet.updated');
+            deferredQuery.resolve();
+            $rootScope.$apply();
             expect(vm.list.length).toBe(30, 'list now has elements');
             expect(vm.numShownLocations).toBe(20, 'showing only the first locations');
 
@@ -147,7 +154,8 @@ describe('locationList.', function() {
             // Resolve with an empty location list
             locationSet.locations = {};
             expect(vm.noResults).toBe(false, 'not yet declared that no results found');
-            $rootScope.$broadcast('veganaut.locationSet.updated');
+            deferredQuery.resolve();
+            $rootScope.$apply();
             expect(vm.noResults).toBe(true, 'declared that no results found');
             expect(vm.list.length).toBe(0, 'list is empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');

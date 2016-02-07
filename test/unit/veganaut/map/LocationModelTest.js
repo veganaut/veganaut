@@ -131,7 +131,7 @@ describe('LocationModel.', function() {
             var loc = new Location({
                 name: 'test name'
             });
-            expect(loc.getMarkerDefinition().title).toBe('test name');
+            expect(loc.getMarkerDefinition().base.title).toBe('test name');
         });
 
         it('updates marker icon className when changing active state.', function() {
