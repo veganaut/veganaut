@@ -12,10 +12,16 @@
                     </a>
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
-                 title="{{ 'action.showProductList.description' | translate }}"
+                 title="{{ 'action.showProductList.' + mainMapVm.getProductListType() + '.description' | translate }}"
                  ng-click="mainMapVm.showProductList(true)">
-                    <span class="glyphicon glyphicon-cutlery"></span><br/>
-                    <span class="small">{{ 'action.showProductList.name' | translate }}</span>
+                    <span ng-show="mainMapVm.getProductListType() === 'gastronomy'"
+                     class="glyphicon glyphicon-cutlery"></span>
+                    <span ng-show="mainMapVm.getProductListType() === 'retail'"
+                     class="glyphicon glyphicon-shopping-cart"></span>
+                    <br/>
+                    <span class="small">
+                        {{ 'action.showProductList.' + mainMapVm.getProductListType() + '.name' | translate }}
+                    </span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
                  ng-click="mainMapVm.goToLocationList()"

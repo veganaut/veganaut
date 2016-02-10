@@ -2,7 +2,7 @@
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('mainMapService.', function() {
-    var $location, $rootScope, backendService, localStorage, hash = '', geoIpDeferred;
+    var $location, $rootScope, backendService, localStorage, hash = '', geoIpDeferred, activeFilters = {};
     beforeEach(module('veganaut.app.map'));
 
     beforeEach(module(function($provide) {
@@ -24,6 +24,14 @@ describe('mainMapService.', function() {
             setItem: jasmine.createSpy('setItem')
         };
 
+        var locationFilterService = {
+            INACTIVE_FILTER_VALUE: {
+                type: 'defaultTypeFilter'
+            },
+            activeFilters: activeFilters
+        };
+        activeFilters.type = locationFilterService.INACTIVE_FILTER_VALUE.type;
+
         $provide.value('$location', $location);
         $provide.value('backendService', backendService);
         $provide.value('$window', {
@@ -31,6 +39,7 @@ describe('mainMapService.', function() {
         });
         $provide.value('Leaflet', {});
         $provide.value('leafletData', {});
+        $provide.value('locationFilterService', locationFilterService);
     }));
 
     beforeEach(inject(function($q, _$rootScope_) {
@@ -44,7 +53,6 @@ describe('mainMapService.', function() {
             hash = 'zoom:12,coords:46.5-7.3';
             inject(function(mainMapService) {
                 expect($location.hash).toHaveBeenCalledWith();
-                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).not.toHaveBeenCalled();
                 expect(backendService.getGeoIP).not.toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -62,7 +70,6 @@ describe('mainMapService.', function() {
             localStorage.getItem.andReturn('{"lat":10.5, "lng": 20.1, "zoom": 3}');
             inject(function(mainMapService) {
                 expect($location.hash).toHaveBeenCalledWith();
-                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautMapCenter');
                 expect(backendService.getGeoIP).not.toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -78,7 +85,6 @@ describe('mainMapService.', function() {
         it('loads the center from backend if local storage and url hash are empty.', function() {
             inject(function(mainMapService) {
                 expect($location.hash).toHaveBeenCalledWith();
-                expect($location.hash.calls.length).toBe(1);
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautMapCenter');
                 expect(backendService.getGeoIP).toHaveBeenCalled();
                 expect(mainMapService.center).toEqual({
@@ -119,15 +125,16 @@ describe('mainMapService.', function() {
         });
     });
 
-    describe('setMapCenterFromUrl.', function() {
+    describe('_setMapCenterFromUrl.', function() {
+        // TODO: don't test private method
         it('method exists.', inject(function(mainMapService) {
-            expect(typeof mainMapService.setMapCenterFromUrl).toBe('function');
+            expect(typeof mainMapService._setMapCenterFromUrl).toBe('function');
         }));
 
         it('reads the center from the url.', inject(function(mainMapService) {
             hash = 'zoom:3,coords:1-2';
             $location.hash.reset();
-            expect(mainMapService.setMapCenterFromUrl()).toBe(true, 'set the map center');
+            expect(mainMapService._setMapCenterFromUrl()).toBe(true, 'set the map center');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -143,7 +150,7 @@ describe('mainMapService.', function() {
 
             // Order shouldn't matter
             hash = 'coords:4.1-5,zoom:6';
-            expect(mainMapService.setMapCenterFromUrl()).toBe(true, 'set the map center with reverse params');
+            expect(mainMapService._setMapCenterFromUrl()).toBe(true, 'set the map center with reverse params');
             expect(mainMapService.center).toEqual({
                 lat: 4.1,
                 lng: 5,
@@ -163,7 +170,7 @@ describe('mainMapService.', function() {
             };
 
             hash = 'zoom:a,coords:b-c';
-            expect(mainMapService.setMapCenterFromUrl()).toBe(false, 'did not set first faulty params');
+            expect(mainMapService._setMapCenterFromUrl()).toBe(false, 'did not set first faulty params');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -172,7 +179,7 @@ describe('mainMapService.', function() {
             expect(localStorage.setItem).not.toHaveBeenCalled();
 
             hash = 'zoom:3;coords:10';
-            expect(mainMapService.setMapCenterFromUrl()).toBe(false, 'did not set second faulty params');
+            expect(mainMapService._setMapCenterFromUrl()).toBe(false, 'did not set second faulty params');
             expect(mainMapService.center).toEqual({
                 lat: 1,
                 lng: 2,
@@ -194,8 +201,14 @@ describe('mainMapService.', function() {
                 zoom: 15
             };
 
+            activeFilters.type = 'gastronomy';
+
             mainMapService.saveCenter();
             expect(localStorage.setItem).toHaveBeenCalledWith('veganautMapCenter', '{"lat":7.1234567890123,"lng":2.123456789012,"zoom":15}');
+            expect($location.hash).toHaveBeenCalledWith('zoom:15,coords:7.1234568-2.1234568,type:gastronomy');
+
+            activeFilters.type = 'defaultTypeFilter';
+            mainMapService.saveCenter();
             expect($location.hash).toHaveBeenCalledWith('zoom:15,coords:7.1234568-2.1234568');
         }));
     });

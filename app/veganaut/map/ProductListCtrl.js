@@ -1,20 +1,24 @@
 (function(module) {
     'use strict';
     module.controller('ProductListCtrl', [
-        '$scope', 'locationService', '$location', 'backendService', 'leafletData',
-        function($scope, locationService, $location, backendService, leafletData) {
+        '$scope', 'locationService', '$location', 'backendService', 'leafletData', 'locationFilterService',
+        function($scope, locationService, $location, backendService, leafletData, locationFilterService) {
             // Bounds used to show the products
             var bounds;
-
-            // Location type for which to show products
-            // At the moment hard-coded to gastronomy
-            var locationType = 'gastronomy';
 
             // Promise for getting the locations
             var locationPromise;
 
             // Get a reference to the leaflet map object
             var mapPromise = leafletData.getMap();
+
+            // TODO: convert to component and get this as parameter
+            // Location type for which to show products
+            // By default gastronomy, but if filter is set to retail, then that.
+            $scope.locationType = 'gastronomy';
+            if (locationFilterService.activeFilters.type === 'retail') {
+                $scope.locationType = 'retail';
+            }
 
             /**
              * Loaded products
@@ -38,7 +42,7 @@
              * Load the next batch of products
              */
             $scope.loadMore = function() {
-                loadProducts(bounds, locationType, $scope.products.length);
+                loadProducts(bounds, $scope.locationType, $scope.products.length);
             };
 
             /**
@@ -86,7 +90,7 @@
                 locationPromise = locationService.queryByBounds(bounds);
 
                 // Load products
-                loadProducts(bounds, locationType);
+                loadProducts(bounds, $scope.locationType);
             });
         }
     ]);

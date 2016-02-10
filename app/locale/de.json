@@ -88,8 +88,14 @@
       "description": "Neue Location hinzufügen"
     },
     "showProductList": {
-      "name": "Veganes Menu",
-      "description": "Vegane Angebote im Kartenausschnitt anzeigen"
+      "gastronomy": {
+        "name": "Veganes Menu",
+        "description": "Veganes Menu im Kartenausschnitt anzeigen"
+      },
+      "retail": {
+        "name": "Produkte",
+        "description": "Vegane Angebote im Kartenausschnitt anzeigen"
+      }
     },
     "searchMap": {
       "name": "Suchen",
@@ -219,7 +225,10 @@
       }
     },
     "productList": {
-      "title": "Vegane Speisekarte: Angebote der Gastronomie-Locations in diesem Kartenausschnitt",
+      "title": {
+        "gastronomy": "Vegane Speisekarte: Angebote der Gastronomie-Locations in diesem Kartenausschnitt",
+        "retail": "Vegane Angebote der Shopping-Locations in diesem Kartenausschnitt"
+      },
       "noProducts": "Keine Angebote gefunden.",
       "showMore": "Weitere Angebote anzeigen",
       "moreProductsAvailable": "{{ available }} weitere Angebote gefunden."

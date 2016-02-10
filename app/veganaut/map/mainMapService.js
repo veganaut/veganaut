@@ -1,8 +1,11 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$window', '$location', '$timeout', 'Leaflet', 'leafletData', 'backendService',
-        function($window, $location, $timeout, L, leafletData, backendService) {
+        '$window', '$location', '$timeout', 'Leaflet', 'leafletData', 'backendService', 'locationFilterService',
+        function($window, $location, $timeout, L, leafletData, backendService, locationFilterService) {
+
+            // TODO: the management of the URL hash should be extracted to a separate service
+
             /**
              * Default zoom used when no one provided a zoom level
              * @type {number}
@@ -28,6 +31,12 @@
              */
             var FLOAT_PRECISION = 7;
 
+            // Regex for parsing the URL hash
+            // Hash is in the form: zoom:11,coords:46.9767388-7.6516342,type:retail
+            var ZOOM_REGEX = /(?:^|,)zoom:([0-9]+)(?:,|$)/;
+            var COORDINATES_REGEX = /(?:^|,)coords:(-?[0-9\.]+)-(-?[0-9\.]+)(?:,|$)/;
+            var TYPE_FILTER_REGEX = /(?:^|,)type:([a-z]+)(?:,|$)/;
+
             /**
              * Service managing the main map. This mostly concerns the
              * storage and retrieval of the map center from different sources.
@@ -44,7 +53,9 @@
                     zoom: DEFAULT_ZOOM
                 };
 
+                // Initialise map center and location type filter
                 this._initialiseMapCenter();
+                this._setTypeFilterFromUrl();
             };
 
             /**
@@ -56,7 +67,7 @@
                 var that = this;
 
                 // Try setting from the URL hash
-                var centerSet = that.setMapCenterFromUrl();
+                var centerSet = that._setMapCenterFromUrl();
 
                 // Try to load from center from local storage
                 if (!centerSet) {
@@ -121,36 +132,61 @@
             /**
              * Try to read the map center from the url hash
              * @returns {boolean} Whether the center was set
+             * @private
              */
-            MainMapService.prototype.setMapCenterFromUrl = function() {
-                // Hash is in the form: zoom:11,coords:46.9767388-7.6516342
-                var hashArgs = $location.hash().split(',');
+            MainMapService.prototype._setMapCenterFromUrl = function() {
+                var hash = $location.hash();
                 var zoom, lat, lng;
 
-                // Go through all the arguments
-                for (var i = 0; i < hashArgs.length; i++) {
-                    var arg = hashArgs[i].split(':');
-                    if (arg[0] === 'zoom') {
-                        // Found zoom value
-                        zoom = parseInt(arg[1], 10);
-                    }
-                    else if (arg[0] === 'coords') {
-                        // Found coordinates
-                        var coords = arg[1].split('-');
-                        if (coords.length === 2) {
-                            lat = parseFloat(coords[0]);
-                            lng = parseFloat(coords[1]);
-                        }
-                    }
+                var match = ZOOM_REGEX.exec(hash);
+                if (match) {
+                    // Found zoom value
+                    zoom = parseInt(match[1], 10);
+                }
+
+                match = COORDINATES_REGEX.exec(hash);
+                if (match) {
+                    lat = parseFloat(match[1]);
+                    lng = parseFloat(match[2]);
                 }
 
                 return this._setMapCenterIfValid(lat, lng, zoom);
             };
 
             /**
+             * Sets the location type filter from the URL hash.
+             * @private
+             */
+            MainMapService.prototype._setTypeFilterFromUrl = function() {
+                var match = TYPE_FILTER_REGEX.exec($location.hash());
+                if (match) {
+                    if (locationFilterService.POSSIBLE_FILTERS.type.indexOf(match[1]) >= 0) {
+                        // Found valid location type filter
+                        locationFilterService.activeFilters.type = match[1];
+                    }
+                    else {
+                        // Invalid type, reset to inactive
+                        locationFilterService.activeFilters.type = locationFilterService.INACTIVE_FILTER_VALUE.type;
+
+                        // Update the URL to make sure it's always well-formed
+                        this.updateUrl();
+                    }
+                }
+            };
+
+            /**
+             * Sets all the map settings stored in the URL.
+             */
+            MainMapService.prototype.setMapFromUrl = function() {
+                // Set center and type filter
+                this._setMapCenterFromUrl();
+                this._setTypeFilterFromUrl();
+            };
+
+            /**
              * Saves the map center in local storage and in the url
-             * @param {boolean} [updateUrl=true] Whether to save the map center
-             *      to the hash in the url
+             * @param {boolean} [updateUrl=true] Whether to update the URL
+             *      after saving to local storage
              */
             MainMapService.prototype.saveCenter = function(updateUrl) {
                 // Store it in local storage
@@ -158,18 +194,34 @@
                     JSON.stringify(this.center)
                 );
 
-                // Check if we should update the url (default to true)
+                // Check if we should update the url (defaults to true)
                 if (updateUrl !== false) {
-                    // Replace the url hash (without adding a new history item)
-                    $location.replace();
-                    $location.hash(
-                        'zoom:' +
-                        this.center.zoom +
-                        ',coords:' +
-                        this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
-                        this.center.lng.toFixed(FLOAT_PRECISION)
-                    );
+                    this.updateUrl();
                 }
+            };
+
+            /**
+             * Updates the URL hash to represent the currently displayed map.
+             * The URL will contain the zoom, coordinates as well as the
+             * location type filter value.
+             */
+            MainMapService.prototype.updateUrl = function() {
+                // Add zoom and coords to the hash
+                var hash =
+                    'zoom:' +
+                    this.center.zoom +
+                    ',coords:' +
+                    this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
+                    this.center.lng.toFixed(FLOAT_PRECISION);
+
+                // Add type filter if active
+                if (locationFilterService.activeFilters.type !== locationFilterService.INACTIVE_FILTER_VALUE.type) {
+                    hash += ',type:' + locationFilterService.activeFilters.type;
+                }
+
+                // Replace the url hash (without adding a new history item)
+                $location.replace();
+                $location.hash(hash);
             };
 
             /**

@@ -173,6 +173,22 @@
             };
 
             /**
+             * Returns the location type to be shown on the product list
+             * @returns {string}
+             */
+            vm.getProductListType = function() {
+                // Default is gastronomy
+                var type = 'gastronomy';
+
+                // If filter is set to retail, then retail
+                if (locationFilterService.activeFilters.type === 'retail') {
+                    type = 'retail';
+                }
+
+                return type;
+            };
+
+            /**
              * Handler for clicks on map markers
              * @param {Location} location
              */
@@ -224,6 +240,7 @@
                 function(filters, filtersBefore) {
                     // Track filter usage
                     if (angular.isDefined(filtersBefore)) {
+                        // Note: this also tracks when the filter is changed through the url
                         if (filters.recent !== filtersBefore.recent) {
                             angularPiwik.track('map.filters', 'applyFilter.recent', filters.recent);
                         }
@@ -234,6 +251,9 @@
 
                     // Let filter service apply the filters to the set
                     locationFilterService.applyFilters(vm.locationSet);
+
+                    // Update the url with the new filter value
+                    mainMapService.updateUrl();
                 }
             );
 
@@ -242,10 +262,10 @@
                 vm.showSearch(!vm.searchShown);
             });
 
-            // Listen to location changes to update the map center
+            // Listen to location changes to update the map settings
             // (if the user changes the hash manually)
             $scope.$onRootScope('$locationChangeSuccess', function() {
-                mainMapService.setMapCenterFromUrl();
+                mainMapService.setMapFromUrl();
             });
 
             // When we go away from this page, reset the url and abort adding location

@@ -88,8 +88,14 @@
       "description": "Ajouter nouvel endroit"
     },
     "showProductList": {
-      "name": "Menu végan",
-      "description": "Afficher l'offre végane pour cette partie de la carte."
+      "gastronomy": {
+        "name": "Menu végan",
+        "description": "Afficher le menu végan pour cette partie de la carte."
+      },
+      "retail": {
+        "name": "Produits",
+        "description": "Afficher l'offre végane pour cette partie de la carte."
+      }
     },
     "searchMap": {
       "name": "Recherche",
@@ -219,7 +225,10 @@
       }
     },
     "productList": {
-      "title": "Offres gastronomiques véganes trouvées dans cette partie de la carte",
+      "title": {
+        "gastronomy": "Offres gastronomiques véganes trouvées dans cette partie de la carte",
+        "retail": "Produits végans trouvées aux endroits shopping dans cette partie de la carte"
+      },
       "noProducts": "Pas d'offres trouvées.",
       "showMore": "Afficher plus d'offres",
       "moreProductsAvailable": "Encore {{ available }} offres additionnelles ont été trouvées."
