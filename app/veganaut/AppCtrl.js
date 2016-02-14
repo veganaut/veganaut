@@ -95,6 +95,8 @@
                             $location.hash(null);
                             $location.search('mode', null);
                             $location.search('pk_campaign', null);
+                            $location.search('pk_cpn', null);
+                            $location.search('pk_kwd', null);
                             $window.open($location.absUrl());
 
                             // Restore the old URL so we don't trigger another location change
