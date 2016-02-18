@@ -77,24 +77,21 @@
      */
     CommunityCtrl.prototype._preparePeopleRanks = function(scoreArray, scoreName, player) {
         // TODO: the backend should already send it like this
+        var that = this;
         var ranks = [];
         var lastScoreValue = Infinity;
         var currentRank;
+        var playerFound = false;
         _.each(scoreArray, function(score) {
             if (score[scoreName] < lastScoreValue) {
                 lastScoreValue = score[scoreName];
-                currentRank = {
-                    rank: ranks.length + 1,
-                    score: lastScoreValue,
-                    player: false,
-                    items: [],
-                    showAll: false
-                };
+                currentRank = that._createEmptyRank(ranks.length + 1, lastScoreValue);
                 ranks.push(currentRank);
             }
 
             // Check if this is the rank of the player
             if (score.person.id === player.id) {
+                playerFound = true;
                 currentRank.player = player;
             }
             else {
@@ -103,7 +100,32 @@
             }
         });
 
+        // If the player has not been found, we add an extra rank
+        // with a score of 0 and place the player inside.
+        if (!playerFound) {
+            currentRank = that._createEmptyRank(ranks.length + 1, 0);
+            currentRank.player = player;
+            ranks.push(currentRank);
+        }
+
         return ranks;
+    };
+
+    /**
+     * Creates an empty rank entry and returns it.
+     * @param {number} rank
+     * @param {number} score
+     * @returns {{}}
+     * @private
+     */
+    CommunityCtrl.prototype._createEmptyRank = function(rank, score) {
+        return {
+            rank: rank,
+            score: score,
+            player: false,
+            items: [],
+            showAll: false
+        };
     };
 
     module.controller('CommunityCtrl', [
