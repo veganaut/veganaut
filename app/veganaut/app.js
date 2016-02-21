@@ -56,7 +56,7 @@
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
-            $routeProvider.when('/community', {templateUrl: '/veganaut/community/community.tpl.html'});
+            $routeProvider.when('/community', {template: '<vg-community></vg-community>'});
             $routeProvider.when('/veganaut/:personId', {templateUrl: '/veganaut/user/person.tpl.html', controller: 'PersonCtrl'});
 
             // Legacy URL redirects
@@ -101,16 +101,17 @@
         }]);
     }]);
 
+    // TODO: get rid of all the modules? Not sure if they add anything...
     // Main module for components that don't belong anywhere particular
     var mainModule = angular.module('veganaut.app.main', []);
 
     // Define the different modules of the app
     var mapModule = angular.module('veganaut.app.map', []);
     var missionsModule = angular.module('veganaut.app.missions', []);
-    var communityModule = angular.module('veganaut.app.community', []);
     var userModule = angular.module('veganaut.app.user', []);
 
     // New and refactored modules are not exposed through a global anymore
+    angular.module('veganaut.app.community', []);
     angular.module('veganaut.app.home', []);
     angular.module('veganaut.app.location', []);
     angular.module('veganaut.app.search', []);
@@ -122,7 +123,6 @@
         mainModule: mainModule,
         mapModule: mapModule,
         missionsModule: missionsModule,
-        communityModule: communityModule,
         userModule: userModule
     };
 })();

@@ -1,40 +1,42 @@
-<tr ng-class="{ 'table--community__row--player': row.player }">
+<tr ng-class="{ 'table--community__row--player': rankingTableRowVm.row.player }">
     <td>
         <span class="table--community__prefix">
-            {{ row.rank }}.
+            {{ rankingTableRowVm.row.rank }}.
         </span>
-        <span ng-if="row.player">
-            <a href="/veganaut/{{ row.player.id }}"
+        <span ng-if="rankingTableRowVm.row.player">
+            <a href="/veganaut/{{ rankingTableRowVm.row.player.id }}"
              class="table--community__player person-score">
-                {{ row.player.nickname }}</a>
-            <span ng-if="row.items.length > 0">
+                {{ rankingTableRowVm.row.player.nickname }}</a>
+            <span ng-if="rankingTableRowVm.row.items.length > 0">
                 {{ 'community.and' | translate }}
             </span>
         </span>
-        <span ng-if="row.items.length > 1 && !row.showAll">
+        <span ng-if="rankingTableRowVm.row.items.length > 1 && !rankingTableRowVm.row.showAll">
             <a href=""
-             ng-click="row.showAll = true | track:trackingCategory:'rankEntry.expand':(row.player ? 'player': 'notPlayer'):row.rank"
+             ng-click="rankingTableRowVm.row.showAll = true
+              | track:rankingTableRowVm.trackingCategory:'rankEntry.expand':(rankingTableRowVm.row.player ? 'player': 'notPlayer'):rankingTableRowVm.row.rank"
              class="table--community__summary-link">
-                <span ng-if="row.player">
-                    {{ 'community.numOtherPeople' | translate:{ count: row.items.length } }}
+                <span ng-if="rankingTableRowVm.row.player">
+                    {{ 'community.numOtherPeople' | translate:{ count: rankingTableRowVm.row.items.length } }}
                 </span>
-                <span ng-if="!row.player">
-                    {{ 'community.numPeople' | translate:{ count: row.items.length } }}
+                <span ng-if="!rankingTableRowVm.row.player">
+                    {{ 'community.numPeople' | translate:{ count: rankingTableRowVm.row.items.length } }}
                 </span>
             </a>
         </span>
         <a href=""
-         ng-if="row.showAll"
-         ng-click="row.showAll = false | track:trackingCategory:'rankEntry.collapse':(row.player ? 'player': 'notPlayer'):row.rank"
+         ng-if="rankingTableRowVm.row.showAll"
+         ng-click="rankingTableRowVm.row.showAll = false
+          | track:rankingTableRowVm.trackingCategory:'rankEntry.collapse':(rankingTableRowVm.row.player ? 'player': 'notPlayer'):rankingTableRowVm.row.rank"
          class="table--community__close">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
-        <span ng-if="row.items.length === 1 || row.showAll"
-         ng-repeat="person in row.items">
+        <span ng-if="rankingTableRowVm.row.items.length === 1 || rankingTableRowVm.row.showAll"
+         ng-repeat="person in rankingTableRowVm.row.items">
             <a href="/veganaut/{{ person.id }}"
              class="person-score">
                 {{ person.nickname }}</a><span ng-hide="$last">,</span>
         </span>
     </td>
-    <td class="table--community__count">{{ row.score }}</td>
+    <td class="table--community__count">{{ rankingTableRowVm.row.score }}</td>
 </tr>

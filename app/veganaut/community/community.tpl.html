@@ -1,9 +1,9 @@
-<div ng-controller="CommunityCtrl as community">
+<div>
     <table class="table table-condensed table--community">
         <thead>
         <tr>
             <th colspan="2">{{ 'community.totalPeople' | translate }}</th>
-            <th class="table--community__count">{{ community.totalPeople }}</th>
+            <th class="table--community__count">{{ communityVm.totalPeople }}</th>
         </tr>
         </thead>
     </table>
@@ -15,12 +15,12 @@
                 {{ 'community.locationTypes' | translate }}
             </th>
             <th class="table--community__count">
-                {{ community.totalLocations }}
+                {{ communityVm.totalLocations }}
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="score in community.locationTypes">
+        <tr ng-repeat="score in communityVm.locationTypes">
             <td>
                 <span class="table--community__prefix">
                     <vg-location-type-icon type="score.type"></vg-location-type-icon>
@@ -36,14 +36,14 @@
 
     <vg-ranking-table
      class="ranking--location-owners"
-     vg-ranks="community.locationOwnerRanks"
+     vg-ranks="communityVm.locationOwnerRanks"
      vg-title="{{ 'community.locationOwners' | translate }}"
      vg-tracking-category="community.locationOwners">
     </vg-ranking-table>
 
     <vg-ranking-table
      class="ranking--missions"
-     vg-ranks="community.missionRanks"
+     vg-ranks="communityVm.missionRanks"
      vg-title="{{ 'community.missions' | translate }}"
      vg-tracking-category="community.missions">
     </vg-ranking-table>

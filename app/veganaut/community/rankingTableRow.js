@@ -1,15 +1,15 @@
-(function(module) {
+angular.module('veganaut.app.community').directive('vgRankingTableRow', function() {
     'use strict';
-
-    module.directive('vgRankingTableRow', function() {
-        return {
-            restrict: 'A',
-            replace: true,
-            scope: {
-                row: '=vgRankingTableRow',
-                trackingCategory: '@vgTrackingCategory'
-            },
-            templateUrl: '/veganaut/community/vgRankingTableRow.tpl.html'
-        };
-    });
-})(window.veganaut.communityModule);
+    return {
+        restrict: 'A',
+        replace: true,
+        scope: {
+            row: '=vgRankingTableRow',
+            trackingCategory: '@vgTrackingCategory'
+        },
+        controller: [function() {}],
+        controllerAs: 'rankingTableRowVm',
+        bindToController: true,
+        templateUrl: '/veganaut/community/rankingTableRow.tpl.html'
+    };
+});
