@@ -84,7 +84,7 @@
       "description": "Register to edit the map"
     },
     "createLocation": {
-      "name": "New location",
+      "name": "Add location",
       "description": "Add new location"
     },
     "showProductList": {
