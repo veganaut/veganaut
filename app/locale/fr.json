@@ -334,7 +334,7 @@
         }
       },
       "offerQuality": {
-        "title": "Evalue cet endroit d'un point de vue véganautique.",
+        "title": "Evalue l'offre à cet endroit d'un point de vue véganautique.",
         "description": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
         "explanation": "Les véganautes veulent avoir le choix entre beaucoup d'options véganes. À quelques endroits il n'y a pas ou presque pas d'options véganes ou les options véganes ne sont pas convaincantes encore. À d'autres endroits il y a déjà deux ou trois options véganes dont une ou deux sont satisfaisantes. D'autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement, il y a des endroits où l'offre végane est énorme et toutes les options sont fantastiques.",
         "outcome": {
@@ -342,14 +342,14 @@
         }
       },
       "effortValue": {
-        "title": "Établis une prévision météo véganautique pour cet endroit.",
-        "description": "Comment est la météo pour que l'offre végane  s'élargisse et s'améliore à cet endroit?",
-        "explanation": "À certains endroits le personnel n'a aucun intérêt au thème \"végan\", à d'autres endroits ils sont plus ouverts ou ont déjà fait un ou deux pas dans la direction végane et n'attendent seulement à ce que leur clientèle en demande plus.",
+        "title": "Indique si le personnel à cet endroit s'intéresse au thème \"végan\".",
+        "description": "Combien d'intérêt au thème \"végan\" est-ce que le personnel montre ici? Quelle est la chance que l'offre végane s'élargisse et s'améliore à cet endroit?",
+        "explanation": "À certains endroits le personnel n'a aucun intérêt au thème \"végan\" (mauvais temps), à d'autres endroits ils sont plus ouverts et se donnent de la peine à contenter les vœux végans (beau temps).",
         "outcome": {
-          "yes": "La prognose pour que l'offre végane s'améliore et élargisse ici est un beau temps.",
-          "ratherYes": "La prognose pour que l'offre végane s'améliore et élargisse ici est un assez beau temps.",
-          "ratherNo": "La prognose pour que l'offre végane s'améliore et élargisse ici est un assez mauvais temps.",
-          "no": "La prognose pour que l'offre végane s'améliore et élargisse ici est un mauvais temps."
+          "yes": "Ici, le personnel montre beaucoup d'intérêt au thème \"végan\".",
+          "ratherYes": "Ici, le personnel montre assez d' intérêt au thème \"végan\".",
+          "ratherNo": "Ici, le personnel montre peu d'intérêt au thème \"végan\".",
+          "no": "Ici, le personnel ne montre aucun intérêt au thème \"végan\"."
         }
       },
       "rateProduct": {
