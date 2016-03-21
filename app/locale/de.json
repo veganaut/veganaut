@@ -334,7 +334,7 @@
         }
       },
       "offerQuality": {
-        "title": "Beurteile diese Location aus veganautischer Sicht.",
+        "title": "Beurteile das Angebot dieser Location aus veganautischer Sicht.",
         "description": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
         "explanation": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.",
         "outcome": {
@@ -342,14 +342,14 @@
         }
       },
       "effortValue": {
-        "title": "Gib eine veganautische Wetterprognose für diese Location ab.",
-        "description": "Wie gut ist das Wetter hier;  wie stehen die Chancen, dass das vegane Angebot vergrössert und verbessert wird?",
-        "explanation": "In manchen Locations hat das Personal Null Interesse an \"vegan\", anderswo ist man offener oder hat schon erste Schritte in Richtung grösseres und besseres veganes Angebot unternommen und wartet nur darauf, dass die Kundschaft mehr davon nachfragt.",
+        "title": "Gib an, wie offen das Personal hier für \"vegan\" ist.",
+        "description": "Wie offen ist das Personal hier für das Thema vegan? Wie stehen die Chancen, dass das vegane Angebot hier grösser und besser wird?",
+        "explanation": "In manchen Locations hat das Personal Null Interesse an \"vegan\" (schlechtes Wetter), anderswo sind sie offener und geben sich aufrichtig Mühe, vegane Wünsche zu befriedigen (schönes Wetter).",
         "outcome": {
-          "yes": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter gut aus.",
-          "ratherYes": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter eher gut aus.",
-          "ratherNo": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter eher schlecht aus.",
-          "no": "Für die Wachstumschancen des veganen Angebots hier sieht das Wetter schlecht aus."
+          "yes": "Das Personal hier zeigt grosses Interesse an \"vegan\".",
+          "ratherYes": "Das Personal hier zeigt ein gewisses Interesse an \"vegan\".",
+          "ratherNo": "Das Personal hier zeigt nur wenig Interesse an \"vegan\".",
+          "no": "Das Personal hier zeigt gar kein Interesse an \"vegan\"."
         }
       },
       "rateProduct": {
