@@ -334,7 +334,7 @@
         }
       },
       "offerQuality": {
-        "title": "Evaluate this location from a veganautic standpoint.",
+        "title": "Evaluate the offer at this location from a veganautic standpoint.",
         "description": "How well does this location satisfy veganautic needs?",
         "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
         "outcome": {
@@ -342,14 +342,14 @@
         }
       },
       "effortValue": {
-        "title": "Make a veganautic weather forecast for this location.",
-        "description": "How good is the wheather at this location for the vegan offer to grow and prosper?",
-        "explanation": "In some locations the staff has zero interest in anything \"vegan\", in other places they are more open or have already taken one or two steps in the vegan direction and are only wating for their customers to ask for more.",
+        "title": "Indicate whether the staff here is interested in \"vegan\".",
+        "description": "How open is the staff at this location towards vegan wishes? How likely is the vegan offer to grow and prosper here?",
+        "explanation": "At some locations the staff has zero interest in anything \"vegan\" (bad weather), at other places they are more open and make a sincere effort to satisfy vegan wishes (good weather).",
         "outcome": {
-          "yes": "The weather looks good for the future growth of the vegan offer here.",
-          "ratherYes": "The weather looks rather good for the future growth of the vegan offer here.",
-          "ratherNo": "The weather looks rather bad for the future growth of the vegan offer here.",
-          "no": "The weather looks bad for the future growth of the vegan offer here."
+          "yes": "The staff here shows a lot of interest in \"vegan\".",
+          "ratherYes": "The staff here shows some interest in \"vegan\".",
+          "ratherNo": "The staff here shows little interest in \"vegan\".",
+          "no": "The staff here shows no interest in \"vegan\" whatsoever."
         }
       },
       "rateProduct": {
