@@ -14,6 +14,7 @@
         'giveFeedback',
         'offerQuality',
         'effortValue',
+        'locationTags',
 
         // TODO: should the product missions be separted?
         'rateProduct',
@@ -116,6 +117,18 @@
             this._finalOutcome = this.getOutcome();
             this.completed = true;
         }
+    };
+
+    /**
+     * Returns the number of points that can currently be made with this mission.
+     * @returns {number}
+     */
+    Mission.prototype.getAvailablePoints = function() {
+        var points = 0;
+        if (!this.completed) {
+            points += this.points;
+        }
+        return points;
     };
 
     // VisitBonusMission //////////////////////////////////////////////////////
@@ -280,28 +293,36 @@
     RateProductMission.prototype.constructor = RateProductMission;
 
     RateProductMission.prototype.hasValidOutcome = function() {
-        return angular.isDefined(this.getOutcome());
+        var outcome = this.getOutcome();
+
+        // Check if the outcome is the same as the last one.
+        // If yes, the outcome is not valid yet
+        if (angular.isObject(this.lastCompletedOutcome) &&
+            angular.isObject(outcome) &&
+            this.lastCompletedOutcome.info === outcome.info)
+        {
+            outcome = undefined;
+        }
+
+        return angular.isDefined(outcome);
     };
 
     RateProductMission.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
+
         var outcome;
-        var lastOutcomeValue;
-        if (angular.isObject(this.lastCompletedOutcome)) {
-            lastOutcomeValue = this.lastCompletedOutcome.info;
-        }
         if (angular.isNumber(this.outcome) &&
             this.outcome > 0 &&
-            this.outcome <= this.maxRating &&
-            this.outcome !== lastOutcomeValue)
+            this.outcome <= this.maxRating)
         {
             outcome = {
                 product: this.product.id,
                 info: this.outcome
             };
         }
+
         return outcome;
     };
 
@@ -381,6 +402,104 @@
     EffortValueMission.prototype = Object.create(Mission.prototype);
     EffortValueMission.prototype.constructor = EffortValueMission;
 
+    // LocationTagsMission ////////////////////////////////////////////////////////
+    function LocationTagsMission(location, points, lastCompletedDate, lastCompletedOutcome) {
+        // Create initial outcome from last completed
+        var initialOutcome = {};
+        if (angular.isArray(lastCompletedOutcome)) {
+            _.each(lastCompletedOutcome, function(tag) {
+                initialOutcome[tag] = true;
+            });
+        }
+
+        Mission.call(this, 'locationTags', initialOutcome, location, points, lastCompletedDate, lastCompletedOutcome);
+        this.possibleAnswers = {
+            gastronomy: [
+                'gBreakfast',
+                'gLunch',
+                'gDinner',
+                'gBrunch',
+                'gSweets',
+                'gSnacks',
+                'gMilk'
+            ],
+            retailFood: [
+                'rfDairy',
+                'rfBread',
+                'rfSweets',
+                'rfMeat',
+                'rfCheese',
+                'rfSupplements'
+            ],
+            retailNonFood: [
+                'rnClothes',
+                'rnShoes',
+                'rnHygiene',
+                'rnCleaning',
+                'rnBooks',
+                'rnPets'
+            ]
+        };
+
+        // Set which group is shown by default based on the location type
+        this.groupShown = {};
+        if (location.type === 'gastronomy') {
+            this.groupShown.gastronomy = true;
+        }
+        else {
+            this.groupShown.retailFood = true;
+        }
+    }
+
+    LocationTagsMission.prototype = Object.create(Mission.prototype);
+    LocationTagsMission.prototype.constructor = LocationTagsMission;
+
+    LocationTagsMission.prototype.hasValidOutcome = function() {
+        var outcome = this.getOutcome();
+
+        // Check if the outcome is the same as the last one.
+        // If yes, the outcome is not valid yet
+        if (angular.isArray(this.lastCompletedOutcome) &&
+            this.lastCompletedOutcome.length === outcome.length &&
+            _.isEqual(outcome.sort(), this.lastCompletedOutcome.sort()))
+        {
+            outcome = [];
+        }
+
+        return (outcome.length > 0);
+    };
+
+    LocationTagsMission.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this._finalOutcome;
+        }
+        var outcome = [];
+        _.each(this.outcome, function(selected, tag) {
+            if (selected === true) {
+                outcome.push(tag);
+            }
+        });
+
+        return outcome;
+    };
+
+    /**
+     * Helper method for getting the number of selected tags in a group
+     * @param {string} group
+     * @returns {number}
+     */
+    LocationTagsMission.prototype.getNumSelected = function(group) {
+        var outcome = this.getOutcome();
+        var count = 0;
+        _.each(this.possibleAnswers[group], function(tag) {
+            if (outcome.indexOf(tag) > -1) {
+                count += 1;
+            }
+        });
+
+        return count;
+    };
+
 
     // TODO: get rid of the two identifiers for missions ("visitBonus" and "VisitBonusMission")
     module.value('missions', {
@@ -394,6 +513,7 @@
         setProductName: SetProductNameMission,
         setProductAvail: SetProductAvailMission,
         offerQuality: OfferQualityMission,
-        effortValue: EffortValueMission
+        effortValue: EffortValueMission,
+        locationTags: LocationTagsMission
     });
 })(window.veganaut.missionsModule);

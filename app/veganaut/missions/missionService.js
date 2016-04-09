@@ -48,11 +48,18 @@
                 backendService.getAvailableMissions(location.id).then(function(response) {
                     var missionData = response.data;
                     var locationMissions = [];
+                    var specialMissions = {};
                     var productMissions = {};
 
                     // Instantiate the location missions
                     angular.forEach(missionData.locationMissions, function(definition, type) {
-                        locationMissions.push(that._instantiateMission(definition, type, location));
+                        var mission = that._instantiateMission(definition, type, location);
+                        if (mission instanceof missions.locationTags) { // TODO: this info should be part of the mission itself
+                            specialMissions[type] = mission;
+                        }
+                        else {
+                            locationMissions.push(mission);
+                        }
                     });
 
                     // Instantiate the product missions
@@ -66,6 +73,7 @@
 
                     deferred.resolve({
                         locationMissions: locationMissions,
+                        specialMissions: specialMissions,
                         productMissions: productMissions
                     });
                 }).catch(function(err) {

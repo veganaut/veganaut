@@ -96,6 +96,7 @@
              * @private
              */
             Location._CLASS_FOR_TYPE = {
+                // TODO: this should be a directive
                 gastronomy: 'glyphicon glyphicon-cutlery',
                 retail: 'glyphicon glyphicon-shopping-cart'
             };
@@ -335,6 +336,22 @@
             };
 
             /**
+             * Returns the list of tags of this location sorted by number of votes.
+             * @returns {[]}
+             */
+            Location.prototype.getSortedTags = function() {
+                // TODO: should be possible to clear the memoiziation
+                this._sortedTags = this._sortedTags ||  _.chain(this.tags)
+                    .map(function(value, key) {
+                        return {name: key, count: value};
+                    })
+                    .sortByOrder(['count', 'name'], ['desc', 'asc'])
+                    .value()
+                ;
+                return this._sortedTags;
+            };
+
+            /**
              * Returns the Product with the given id if it exists
              * @param {string} productId
              * @return {Product}
@@ -455,8 +472,9 @@
                 // TODO: this should deep copy, otherwise quality might not have a valid value
                 _.assign(this, newData || {});
 
-                // Clear points memoiziation
+                // Clear memoiziations
                 this._sortedPoints = undefined;
+                this._sortedTags = undefined;
 
                 // Instantiate the date
                 if (!angular.isDate(this.updatedAt)) {

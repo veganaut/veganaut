@@ -13,7 +13,7 @@ describe('missionModels.', function() {
 
     it('is defined.', function() {
         expect(typeof missions).toBe('object');
-        expect(Object.keys(missions).length).toBe(11, 'correct amount of mission models defined');
+        expect(Object.keys(missions).length).toBe(12, 'correct amount of mission models defined');
     });
 
     describe('RateProductMission.', function() {

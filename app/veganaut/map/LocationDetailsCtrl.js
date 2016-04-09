@@ -47,16 +47,14 @@
             /**
              * Returns the number of points that can be made with missions
              * for the given product.
-             * TODO: this should got in a model
+             * TODO: this should go in a model
              * @param {Product} product
              * @returns {number}
              */
             $scope.getAvailableProductMissionsPoints = function(product) {
                 var points = 0;
                 _.each($scope.productMissions[product.id], function(mission) {
-                    if (!mission.completed) {
-                        points += mission.points;
-                    }
+                    points += mission.getAvailablePoints();
                 });
                 return points;
             };
@@ -133,6 +131,7 @@
                             // TODO: actually, we should not blindly replace the missions, we should merge in the completed ones
                             missionService.getAvailableMissions($scope.location).then(function(availableMissions) {
                                 $scope.locationMissions = availableMissions.locationMissions;
+                                $scope.specialMissions = availableMissions.specialMissions;
                                 $scope.productMissions = availableMissions.productMissions;
                             });
                         }
@@ -177,6 +176,7 @@
                 if (backendService.isLoggedIn()) {
                     missionService.getAvailableMissions(location).then(function(availableMissions) {
                         $scope.locationMissions = availableMissions.locationMissions;
+                        $scope.specialMissions = availableMissions.specialMissions;
                         $scope.productMissions = availableMissions.productMissions;
                     });
                 }

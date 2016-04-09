@@ -202,6 +202,10 @@
     },
     "effort": {
       "explanation": "The fairer the whether the better the chances that the vegan offer will improve if more veganauts come here"
+    },
+    "locationTags": {
+      "explanation": "The tags show what was liked by how many people at this location.",
+      "noTags": "No one has given their preferences, be the first to tag this location!"
     }
   },
   "map": {
@@ -352,6 +356,11 @@
           "no": "The staff here shows no interest in \"vegan\" whatsoever."
         }
       },
+      "locationTags": {
+        "title": "Your preferences",
+        "description": "What do you enjoy at this location?",
+        "numSelected": "{{ num }} selected"
+      },
       "rateProduct": {
         "title": "Your rating",
         "description": "How do you rate this offer?"
@@ -396,6 +405,70 @@
     "showMore": "Show more",
     "moreLocationsAvailable": "Another {{ available }} locations were found.",
     "allLocationsShown": "Showing all {{ available }} found locations."
+  },
+  "tags": {
+    "groups": {
+      "gastronomy": "Gastronomy",
+      "retailFood": "Retail: food",
+      "retailNonFood": "Retail: non-food"
+    },
+    "gBreakfast": {
+      "name": "Breakfast"
+    },
+    "gLunch": {
+      "name": "Lunch"
+    },
+    "gDinner": {
+      "name": "Dinner"
+    },
+    "gBrunch": {
+      "name": "Brunch"
+    },
+    "gSweets": {
+      "name": "Sweets & deserts"
+    },
+    "gSnacks": {
+      "name": "Snacks & small meals"
+    },
+    "gMilk":{
+      "name": "Plant milk"
+    },
+    "rfDairy": {
+      "name": "Plant milk, yoghurt, butter"
+    },
+    "rfBread": {
+      "name": "Bread & baked goods"
+    },
+    "rfSweets": {
+      "name": "Sweets"
+    },
+    "rfMeat": {
+      "name": "Meat alternatives"
+    },
+    "rfCheese": {
+      "name": "Cheese alternatives"
+    },
+    "rfSupplements": {
+      "name": "B12 & other supplements"
+    },
+    "rnClothes":{
+      "name": "Clothes"
+    },
+    "rnShoes": {
+      "name": "Shoes"
+    },
+    "rnHygiene": {
+      "name": "Cosmetics, shampoos, etc."
+    },
+    "rnCleaning": {
+      "name": "Washing & cleaning agents"
+    },
+    "rnBooks": {
+      "name": "Books related to veganism"
+    },
+    "rnPets": {
+      "name": "Pet food & stuff for pets"
+    }
   },
   "home": {
     "action": {
