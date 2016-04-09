@@ -1,9 +1,9 @@
 <div class="mission mission-{{ productMission.mission.type }}">
+    <vg-mission-points vg-points="productMission.mission.points"
+     vg-completed="productMission.mission.completed">
+    </vg-mission-points>
     <h4>{{ 'map.mission.' + productMission.mission.type + '.title' | translate }}</h4>
     <div>
-        <vg-mission-points vg-points="productMission.mission.points"
-         vg-completed="productMission.mission.completed"
-         ></vg-mission-points>
         {{ 'map.mission.' + productMission.mission.type + '.description' | translate }}
     </div>
     <div ng-switch="productMission.mission.type">
