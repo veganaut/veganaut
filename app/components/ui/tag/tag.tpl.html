@@ -1,0 +1,9 @@
+<span class="tag badge clickable"
+ uib-tooltip="20 people enjoy 'brekfast' at this location."
+ tooltip-placement="bottom">
+    <ng-transclude></ng-transclude>
+    <span ng-show="tagVm.count >= 0"
+     class="tag__count">
+        {{ tagVm.count }}
+    </span>
+</span>

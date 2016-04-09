@@ -16,6 +16,7 @@
 @import 'typography.less';
 
 @import 'ui/accordion.less';
+@import 'ui/tag.less';
 
 @import 'modules/averageRating.less';
 @import 'modules/geolocateButton.less';
@@ -48,4 +49,16 @@
 // Make sure ng-cloak is around even if angular is not loaded yet
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
+}
+
+
+// TODO: make proper component
+.link-for-toggle {
+    display: block;
+    padding: 5px 0;
+    color: @colorDark;
+
+    &:hover, &:active, &:focus {
+        color: @colorDark;
+    }
 }
