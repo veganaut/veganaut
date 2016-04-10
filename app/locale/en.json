@@ -201,11 +201,11 @@
       "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
     },
     "effort": {
-      "explanation": "The fairer the whether the better the chances that the vegan offer will improve if more veganauts come here"
+      "explanation": "The fairer the whether the greater the interest of the staff to fulfill vegan wishes."
     },
     "locationTags": {
-      "explanation": "The tags show what was liked by how many people at this location.",
-      "noTags": "No one has given their preferences, be the first to tag this location!"
+      "explanation": "The tags show which vegan offers were liked by how many people here.",
+      "noTags": "No one has indicated which vegan offers they like here. Be the first to do so!"
     }
   },
   "map": {
@@ -358,7 +358,7 @@
       },
       "locationTags": {
         "title": "Your preferences",
-        "description": "What do you enjoy at this location?",
+        "description": "Which vegan offers of this location do you like?",
         "numSelected": "{{ num }} selected"
       },
       "rateProduct": {
