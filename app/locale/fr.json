@@ -184,13 +184,13 @@
       "numRatings": "Évaluations"
     },
     "products": {
-      "title": "Offre végane",
-      "description": "Cet endroit offre les options véganes suivantes:",
+      "title": "Produits végans",
+      "description": "Cet endroit offre les produits végans suivantes:",
       "noProducts": {
-        "anonymous": "Personne n'a ajouté des options jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des options véganes.",
-        "user": "Personne n'a ajouté des options jusqu'à maintenant. Tu peux ajouter des options véganes en accomplissant une des missions en bas."
+        "anonymous": "Personne n'a ajouté des produits jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des produitss végans.",
+        "user": "Personne n'a ajouté des produits jusqu'à maintenant. Tu peux ajouter des produits végans en accomplissant une des missions en bas."
       },
-      "showUnavailableProducts": "Afficher les options non disponibles"
+      "showUnavailableProducts": "Afficher les produits non disponibles"
     },
     "type": {
       "gastronomy": "Gastronomie",
