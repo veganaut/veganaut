@@ -321,9 +321,9 @@
       "buyOptions": {
         "title": "Achète quelque chose de végan.",
         "description": "Qu'est-ce que tu as achèté?",
-        "explanation": "Est-ce que tu aimes l'une ou l'autre des options véganes offertes ici? Si oui, tu peux montrer au personnel que ça vaut la peine d'offrir des options véganes en les achetant et quand tu es en train de payer, pourquoi pas dire explicitement que tu as entre autres choisi cette option parce qu'elle est végane? Le plus souvent le personnel entend le mot \"végan\" dans un contexte positif, le mieux.",
+        "explanation": "Est-ce que tu aimes l'un ou l'autre des produits végans offerts ici? Si oui, tu peux montrer au personnel que ça vaut la peine d'offrir des produits végans en les achetant. Et quand tu es en train de payer, pourquoi pas dire explicitement que tu as entre autres choisi ce produit parce qu'il est végan? Le plus souvent le personnel entend le mot \"végan\" dans un contexte positif, le mieux.",
         "outcome": {
-          "description": "Tu as acheté ces options véganes:"
+          "description": "Tu as acheté ces produits végans:"
         }
       },
       "giveFeedback": {
