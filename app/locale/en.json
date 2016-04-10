@@ -184,11 +184,11 @@
       "numRatings": "Ratings"
     },
     "products": {
-      "title": "Vegan Offer",
-      "description": "This location offers these vegan options:",
+      "title": "Vegan Products",
+      "description": "This location offers these vegan products:",
       "noProducts": {
-        "anonymous": "No options have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan options available here.",
-        "user": "No options have been entered yet. You can enter vegan options by completing one of the missions below."
+        "anonymous": "No products have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan products available here.",
+        "user": "No products have been entered yet. You can enter vegan products by completing one of the missions below."
       },
       "showUnavailableProducts": "Show unavailable products"
     },
