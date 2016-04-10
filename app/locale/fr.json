@@ -201,11 +201,11 @@
       "noRatingExplanation": "La qualité et étendue de l'offre végane n'a pas encore été évaluée ici. Évalue-la maintenant!"
     },
     "effort": {
-      "explanation": "S'il fait beau temps cela signifie que l'offre végane va s'améliorer et s'élargir au cas où plus de véganautes viennent ici."
+      "explanation": "S'il fait beau temps cela signifie que le personnel est intéressé et se donne de la peine à contenter les vœux végans."
     },
     "locationTags": {
-      "explanation": "The tags show what was liked by how many people at this location.",
-      "noTags": "No one has given their preferences, be the first to tag this location!"
+      "explanation": "Les étiquettes montrent combien de gens aiment quels offres végans ici.",
+      "noTags": "Personne n'a indiqué les offres végans qu'ils aiment ici. Fais-le toi-même!"
     }
   },
   "map": {
@@ -357,9 +357,9 @@
         }
       },
       "locationTags": {
-        "title": "Your preferences",
-        "description": "What do you enjoy at this location?",
-        "numSelected": "{{ num }} selected"
+        "title": "Tes préférences",
+        "description": "Quels offres végans de cet endroit est-ce que tu aimes?",
+        "numSelected": "{{ num }} sélectionnés"
       },
       "rateProduct": {
         "title": "Ton évaluation",
@@ -408,66 +408,66 @@
   },
   "tags": {
     "groups": {
-      "gastronomy": "Gastronomy",
-      "retailFood": "Retail: food",
-      "retailNonFood": "Retail: non-food"
+      "gastronomy": "Gastronomie",
+      "retailFood": "Shopping: aliments",
+      "retailNonFood": "Shopping: autre"
     },
     "gBreakfast": {
-      "name": "Breakfast"
+      "name": "petit-déjeuner"
     },
     "gLunch": {
-      "name": "Lunch"
+      "name": "déjeuner"
     },
     "gDinner": {
-      "name": "Dinner"
+      "name": "souper"
     },
     "gBrunch": {
-      "name": "Brunch"
+      "name": "brunch"
     },
     "gSweets": {
-      "name": "Sweets & deserts"
+      "name": "sucreries & desserts"
     },
     "gSnacks": {
-      "name": "Snacks & small meals"
+      "name": "snacks & collation"
     },
     "gMilk":{
-      "name": "Plant milk"
+      "name": "lait végan"
     },
     "rfDairy": {
-      "name": "Plant milk, yoghurt, butter"
+      "name": "lait, yoghourt, beurre végan(e)"
     },
     "rfBread": {
-      "name": "Bread & baked goods"
+      "name": "pain & pâtisseries"
     },
     "rfSweets": {
-      "name": "Sweets"
+      "name": "douceurs"
     },
     "rfMeat": {
-      "name": "Meat alternatives"
+      "name": "viandes véganes"
     },
     "rfCheese": {
-      "name": "Cheese alternatives"
+      "name": "frommages véganes"
     },
     "rfSupplements": {
-      "name": "B12 & other supplements"
+      "name": "B12 & compléments"
     },
     "rnClothes":{
-      "name": "Clothes"
+      "name": "vêtements"
     },
     "rnShoes": {
-      "name": "Shoes"
+      "name": "chaussures"
     },
     "rnHygiene": {
-      "name": "Cosmetics, shampoos, etc."
+      "name": "produits cosmétiques, shampoing, etc."
     },
     "rnCleaning": {
-      "name": "Washing & cleaning agents"
+      "name": "détergent & lessive"
     },
     "rnBooks": {
-      "name": "Books related to veganism"
+      "name": "livers sur le sujet \"végan\""
     },
     "rnPets": {
-      "name": "Pet food & stuff for pets"
+      "name": "aliments etc. pour animaux"
     }
   },
   "home": {
