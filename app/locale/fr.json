@@ -307,15 +307,15 @@
         }
       },
       "whatOptions": {
-        "title": "Découvre quelles options véganes ils offrent ici.",
-        "description": "Quelles options véganes est-ce qu'ils offrent ici?",
-        "description2": "Tu ne dois pas enregistrer ces options une deuxième fois:",
-        "explanation": "Le but est d'avoir une liste complète et à jour de toutes les options véganes offertes ici. Ajoute les options disponibles mais manquantes dans la liste, confirme les options qui se trouvent déjà dans la liste et indique lesquelles des options ne sont pas ou plus disponibles (en ce moment).",
+        "title": "Découvre quelles produits végans ils offrent ici.",
+        "description": "Quelles produits végans est-ce qu'ils offrent ici?",
+        "description2": "Tu ne dois pas enregistrer ces produits une deuxième fois:",
+        "explanation": "Le but est d'avoir une liste complète et à jour de toutes les produits végans offerts ici. Ajoute les produits disponibles mais manquantes dans la liste, confirme les produits qui se trouvent déjà dans la liste et indique lesquels des produits ne sont pas ou plus disponibles (en ce moment).",
         "form": {
-          "placeholder": "Saisir une option végane ici"
+          "placeholder": "Saisir un produit végan ici"
         },
         "outcome": {
-          "description": "Tu a saisi ces options véganes:"
+          "description": "Tu a saisi ces produits végans:"
         }
       },
       "buyOptions": {
