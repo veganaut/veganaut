@@ -204,8 +204,8 @@
       "explanation": "S'il fait beau temps cela signifie que le personnel est intéressé et se donne de la peine à contenter les vœux végans."
     },
     "locationTags": {
-      "explanation": "Les étiquettes montrent combien de gens aiment quels offres végans ici.",
-      "noTags": "Personne n'a indiqué les offres végans qu'ils aiment ici. Fais-le toi-même!"
+      "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
+      "noTags": "Personne n'a indiqué les offres véganes qu'ils aiment ici. Fais-le toi-même!"
     }
   },
   "map": {
@@ -358,8 +358,8 @@
       },
       "locationTags": {
         "title": "Tes préférences",
-        "description": "Quels offres végans de cet endroit est-ce que tu aimes?",
-        "numSelected": "{{ num }} sélectionnés"
+        "description": "Quelles offres véganes de cet endroit est-ce que tu aimes?",
+        "numSelected": "{{ num }} sélectionnées"
       },
       "rateProduct": {
         "title": "Ton évaluation",
