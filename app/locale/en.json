@@ -321,9 +321,9 @@
       "buyOptions": {
         "title": "Buy something vegan.",
         "description": "What did you buy?",
-        "explanation": "Do you fancy one or the other vegan option available here? If so, you can show the staff that it pays off to supply vegan options by buying. And while you're paying, why not mention that you chose this option (in part) because it's vegan? The more the staff hears the word \"vegan\" in a positive context, the better.",
+        "explanation": "Do you fancy one or the other vegan product available here? If so, you can show the staff that it pays off to supply vegan products by buying them. And while you're paying, why not mention that you chose this product (in part) because it's vegan? The more the staff hears the word \"vegan\" in a positive context, the better.",
         "outcome": {
-          "description": "You bought these vegan options:"
+          "description": "You bought these vegan products:"
         }
       },
       "giveFeedback": {
