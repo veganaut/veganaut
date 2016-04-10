@@ -321,9 +321,9 @@
       "buyOptions": {
         "title": "Kauf etwas Veganes.",
         "description": "Was hast du gekauft?",
-        "explanation": "Mit einem Kauf kannst du dem Personal zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn du willst, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Angebot u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort \"vegan\" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.",
+        "explanation": "Mit einem Kauf kannst du dem Personal zeigen, dass es sich lohnt, etwas Veganes anzubieten. Wenn du willst, kannst du beim Zahlen gerne ausdrücklich sagen, dass du dieses Produkt u.a. deshalb gewählt hast, weil es vegan ist. Je öfter das Personal das Wort \"vegan\" von der Kundschaft in einem positiven Zusammenhang hört, desto besser.",
         "outcome": {
-          "description": "Du hast diese veganen Angebote gekauft:"
+          "description": "Du hast diese veganen Produkte gekauft:"
         }
       },
       "giveFeedback": {
