@@ -201,11 +201,11 @@
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
     },
     "effort": {
-      "explanation": "Je besser das Wetter, desto grösser die Chance, dass sich das vegane Angebot verbessert, wenn mehr Veganautinnen und Veganauten hierher kommen"
+      "explanation": "Je besser das Wetter, desto grösser das Interesse des Personals, vegane Wünsche zu erfüllen."
     },
     "locationTags": {
-      "explanation": "The tags show what was liked by how many people at this location.",
-      "noTags": "No one has given their preferences, be the first to tag this location!"
+      "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
+      "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!"
     }
   },
   "map": {
@@ -357,9 +357,9 @@
         }
       },
       "locationTags": {
-        "title": "Your preferences",
-        "description": "What do you enjoy at this location?",
-        "numSelected": "{{ num }} selected"
+        "title": "Deine Vorlieben",
+        "description": "Welche veganen Angebote dieser Location gefallen dir?",
+        "numSelected": "{{ num }} ausgewählt"
       },
       "rateProduct": {
         "title": "Deine Bewertung",
@@ -408,66 +408,66 @@
   },
   "tags": {
     "groups": {
-      "gastronomy": "Gastronomy",
-      "retailFood": "Retail: food",
-      "retailNonFood": "Retail: non-food"
+      "gastronomy": "Gastro",
+      "retailFood": "Shopping: Nahrungsmittel",
+      "retailNonFood": "Shopping: anderes"
     },
     "gBreakfast": {
-      "name": "Breakfast"
+      "name": "Frühstück"
     },
     "gLunch": {
-      "name": "Lunch"
+      "name": "Mittagessen"
     },
     "gDinner": {
-      "name": "Dinner"
+      "name": "Abendessen"
     },
     "gBrunch": {
       "name": "Brunch"
     },
     "gSweets": {
-      "name": "Sweets & deserts"
+      "name": "Süssigkeiten & Nachtisch"
     },
     "gSnacks": {
-      "name": "Snacks & small meals"
+      "name": "Snacks & Zwischenverpflegung"
     },
     "gMilk":{
-      "name": "Plant milk"
+      "name": "Pflanzenmilch"
     },
     "rfDairy": {
-      "name": "Plant milk, yoghurt, butter"
+      "name": "Pflanzenmilch, Joghurt, Butter"
     },
     "rfBread": {
-      "name": "Bread & baked goods"
+      "name": "Brot & Gebäck"
     },
     "rfSweets": {
-      "name": "Sweets"
+      "name": "Süssigkeiten"
     },
     "rfMeat": {
-      "name": "Meat alternatives"
+      "name": "Fleischalternativen"
     },
     "rfCheese": {
-      "name": "Cheese alternatives"
+      "name": "Käsealternativen"
     },
     "rfSupplements": {
-      "name": "B12 & other supplements"
+      "name": "B12 & Nahrungsergänzung"
     },
     "rnClothes":{
-      "name": "Clothes"
+      "name": "Kleider"
     },
     "rnShoes": {
-      "name": "Shoes"
+      "name": "Schuhe"
     },
     "rnHygiene": {
-      "name": "Cosmetics, shampoos, etc."
+      "name": "Kosmetik, Shampoos, etc."
     },
     "rnCleaning": {
-      "name": "Washing & cleaning agents"
+      "name": "Putz- & Waschmittel"
     },
     "rnBooks": {
-      "name": "Books related to veganism"
+      "name": "Bücher zu \"vegan\""
     },
     "rnPets": {
-      "name": "Pet food & stuff for pets"
+      "name": "Tierfutter & Haustierbedarf"
     }
   },
   "home": {
