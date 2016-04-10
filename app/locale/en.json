@@ -307,15 +307,15 @@
         }
       },
       "whatOptions": {
-        "title": "Find out what vegan options are available here.",
-        "description": "What vegan options are available here?",
-        "description2": "You don't have to re-enter the following options:",
-        "explanation": "The goal is to make the list of vegan options as complete and as up-to-date as possible. Add vegan options that aren't on the list yet, confirm vegan options that are already listed and indicate which vegan options on the list are not available (at the moment).",
+        "title": "Find out what vegan products are available here.",
+        "description": "What vegan products are available here?",
+        "description2": "You don't have to re-enter the following products:",
+        "explanation": "The goal is to make the list of vegan products as complete and as up-to-date as possible. Add vegan products that aren't on the list yet, confirm vegan products that are already listed and indicate which vegan products on the list are not available (at the moment).",
         "form": {
-          "placeholder": "Enter a vegan option here"
+          "placeholder": "Enter a vegan product here"
         },
         "outcome": {
-          "description": "You entered these vegan options:"
+          "description": "You entered these vegan products:"
         }
       },
       "buyOptions": {
