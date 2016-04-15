@@ -52,6 +52,54 @@ describe('location.', function() {
 
             // TODO: add more tests, especially about whether the location info was
         });
+
+        it('shows tags and tag mission.', function() {
+            var locationTags = element(by.css('.location-tags'));
+            var allTags = locationTags.all(by.css('.tag'));
+            var mission = locationTags.element(by.css('.mission-locationTags'));
+            var missionButtons = mission.all(by.css('button'));
+            var groupToggles = mission.all(by.css('.link-for-toggle'));
+            var missionSubmit = mission.element(by.css('.btn-primary'));
+
+            expect(locationTags.isDisplayed()).toBe(true, 'shows location tags section');
+            expect(allTags.count()).toBe(0, 'no tags yet');
+            expect(mission.isDisplayed()).toBe(false, 'does not show mission at first');
+            locationTags.all(by.css('button')).first().click();
+            expect(mission.isDisplayed()).toBe(true, 'shows mission after click');
+
+            expect(missionSubmit.isEnabled()).toBe(false, 'mission submit not enabled when nothing is selected');
+
+            // TODO: this filtering is slow, use something faster
+            missionButtons.filter(function(elem) {
+                return elem.getText().then(function(text) {
+                    return (
+                        text === 'Brunch' || text === 'Dinner'
+                    );
+                });
+            }).then(function(filteredButtons) {
+                expect(filteredButtons.length).toBe(2, 'found Brunch and Dinner tag button');
+                filteredButtons[0].click();
+                expect(missionSubmit.isEnabled()).toBe(true, 'submit button enabled after first selection');
+                filteredButtons[1].click();
+            });
+
+            // Toggle all the groups
+            groupToggles.click();
+
+            missionButtons.filter(function(elem) {
+                return elem.getText().then(function(text) {
+                    return (
+                        text === 'Meat alternatives'
+                    );
+                });
+            }).then(function(filteredButtons) {
+                expect(filteredButtons.length).toBe(1, 'found Meat alternatives tag button');
+                filteredButtons[0].click();
+            });
+
+            missionSubmit.click();
+            expect(allTags.count()).toBe(3, 'all tags displayed after mission submitted');
+        });
     });
 
     describe('visit ruprecht as alice.', function() {
