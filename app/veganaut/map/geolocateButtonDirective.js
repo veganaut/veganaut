@@ -8,6 +8,12 @@
     var MAX_GEOLOCATE_ZOOM = 17;
 
     /**
+     * Minimum radius of the circle marker that shows the location
+     * @type {number}
+     */
+    var MIN_MARKER_RADIUS = 5;
+
+    /**
      * Directive for adding a geolocate button to a map.
      * When clicked, it uses the browser's geolocation API to retrieve and watch
      * the user's location.
@@ -126,7 +132,7 @@
                      * @private
                      */
                     this._onLocationUpdate = function(location) {
-                        var radius = location.accuracy / 2;
+                        var radius = Math.max(location.accuracy / 2, MIN_MARKER_RADIUS);
 
                         if (angular.isUndefined(this._marker)) {
                             this._marker = L.circle(location.latlng, radius, {
