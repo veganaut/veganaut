@@ -9,7 +9,8 @@
 
     /**
      * Directive for adding a geolocate button to a map.
-     * When clicked, it uses the browser's geolocation API to retrieve a location.
+     * When clicked, it uses the browser's geolocation API to retrieve and watch
+     * the user's location.
      */
     module.directive('vgGeolocateButton', function() {
         return {
@@ -25,19 +26,32 @@
                      * Stores whether the browser supports geolocation
                      * @type {boolean}
                      */
-                    this.supported = !!($window.navigator.geolocation);
+                    this.supported = !!('geolocation' in $window.navigator);
 
                     /**
-                     * Whether we are currently locating
+                     * Whether we are currently waiting for the first coordinates
                      * @type {boolean}
                      */
-                    this.locating = false;
+                    this.initialLocate = false;
+
+                    /**
+                     * Whether we are currently listening for location changes
+                     * @type {boolean}
+                     */
+                    this.active = false;
 
                     /**
                      * Reference to the map object
                      * @type {{}}
                      */
                     this._map = undefined;
+
+                    /**
+                     * Leaflet circle instance used to show the coordinates and accuracy on the map
+                     * @type {L.circle}
+                     * @private
+                     */
+                    this._marker = undefined;
 
                     /**
                      * Use the geolocation API to locate the user and move the map to that place
@@ -48,17 +62,26 @@
                             return;
                         }
 
-                        // Use the leaflet locate method
-                        this._map.locate();
+                        // Check if we are already active
+                        if (this.active) {
+                            this._stopLocate();
+                        }
+                        else {
+                            // Start locating and set to active
+                            this.initialLocate = true;
+                            this.active = true;
 
-                        // Start locating
-                        this.locating = true;
+                            // Use the leaflet locate method
+                            this._map.locate({
+                                watch: true
+                            });
+
+                            // Track usage
+                            angularPiwik.track('map.geolocation', 'start');
+                        }
 
                         // Blur the button
                         $event.target.blur();
-
-                        // Track usage
-                        angularPiwik.track('map.geolocation', 'start');
                     };
 
                     /**
@@ -67,37 +90,55 @@
                      * @private
                      */
                     this._onLocationFound = function(location) {
-                        // Done locating
-                        this.locating = false;
+                        // Check if this is the first location found
+                        if (this.initialLocate) {
+                            // Initial locating done
+                            this.initialLocate = false;
 
-                        // Fit the map to the bounds
-                        this._map.fitBounds(location.bounds, {
-                            maxZoom: MAX_GEOLOCATE_ZOOM
-                        });
+                            // Fit the map to the bounds
+                            this._map.fitBounds(location.bounds, {
+                                maxZoom: MAX_GEOLOCATE_ZOOM
+                            });
 
-                        // Apply after timeout (otherwise the map center is not always correctly updated)
-                        $timeout(function() {
-                            $scope.$apply();
-                        }, 0);
+                            // Apply after timeout (otherwise the map center is not always correctly updated)
+                            $timeout(function() {
+                                $scope.$apply();
+                            }, 0);
 
-                        // After a while (when zooming/panning is done) add a circle to show the accuracy
-                        // TODO: actually wait for the zooming to be done
-                        $timeout(function() {
-                            var radius = location.accuracy / 2;
-                            var marker = L.circle(location.latlng, radius, {
+                            // After a while (when zooming/panning is done) call locatin update
+                            // TODO: actually wait for the zooming to be done
+                            $timeout(function() {
+                                this._onLocationUpdate(location);
+                            }.bind(this), 300);
+
+                            // Track usage
+                            angularPiwik.track('map.geolocation', 'found');
+                        }
+                        else {
+                            // Location was already found before, this is just an update
+                            this._onLocationUpdate(location);
+                        }
+                    };
+
+                    /**
+                     * Adds or updates the circle marker showing the current location on the map
+                     * @param location
+                     * @private
+                     */
+                    this._onLocationUpdate = function(location) {
+                        var radius = location.accuracy / 2;
+
+                        if (angular.isUndefined(this._marker)) {
+                            this._marker = L.circle(location.latlng, radius, {
                                 className: 'geolocate-circle-marker'
                             });
 
-                            marker.addTo(this._map);
-
-                            // Remove it again after it's faded out
-                            $timeout(function() {
-                                this._map.removeLayer(marker);
-                            }.bind(this), 2000); // TODO: move numbers to constant
-                        }.bind(this), 300);
-
-                        // Track usage
-                        angularPiwik.track('map.geolocation', 'found');
+                            this._marker.addTo(this._map);
+                        }
+                        else {
+                            this._marker.setLatLng(location.latlng);
+                            this._marker.setRadius(radius);
+                        }
                     };
 
                     /**
@@ -106,13 +147,32 @@
                      */
                     this._onLocationError = function() {
                         // Done locating
-                        this.locating = false;
+                        this._stopLocate();
 
                         // Tell user about error
                         alertService.addAlert($translate.instant('message.geolocate.error'), 'danger');
 
                         // Track usage
                         angularPiwik.track('map.geolocation', 'error');
+                    };
+
+                    /**
+                     * Stops the locating and resets everything correctly.
+                     * @private
+                     */
+                    this._stopLocate = function() {
+                        // Reset flags
+                        this.initialLocate = false;
+                        this.active = false;
+
+                        // Stop locating
+                        this._map.stopLocate();
+
+                        // Remove the marker
+                        if (angular.isDefined(this._marker)) {
+                            this._map.removeLayer(this._marker);
+                            this._marker = undefined;
+                        }
                     };
 
                     // Retrieve the map
