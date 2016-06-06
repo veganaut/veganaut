@@ -1,7 +1,6 @@
 // Mixing to create a marker with the given size, opacity and z-index
 .marker-style(@size, @opacity) {
     opacity: @opacity;
-    border-radius: @size / 2;
     width: @size;
     height: @size;
     margin-left: -@size / 2;
@@ -31,10 +30,56 @@
 @opacityDisabled: 0.4;
 @opacityActive: 1;
 
+// TODO WIP: clean up these styles
+.marker-cluster {
+    //background-color: @colourBrandTurquoise;
+    //color: @colorLight;
+    //border-color: @colorLight;
+
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+.marker-cluster-tiny {
+    opacity: 0.55;
+    height: 10px;
+    width: 10px;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+.marker-cluster-small {
+    opacity: 0.6;
+    height: 12px;
+    width: 12px;
+    margin-left: -6px;
+    margin-top: -6px;
+}
+.marker-cluster-medium {
+    opacity: 0.65;
+    height: 14px;
+    width: 14px;
+    margin-left: -7px;
+    margin-top: -7px;
+}
+.marker-cluster-large {
+    opacity: 0.7;
+    height: 16px;
+    width: 16px;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+
 .marker {
     background-color: white;
     color: black;
     border: 1px solid black;
+    border-radius: 50%;
+
+
+    //background-color: @colourBrandTurquoise;
+    //color: @colorLight;
+    //border-color: @colorLight;
+
 
     // Create all the marker styles based on the location quality
     // This should be done with a loop, but less makes this less readable than having it copy pasted.

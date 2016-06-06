@@ -108,10 +108,11 @@
 
             /**
              * Returns a promise to the locations within the given bounds
-             * @param {string} bounds The bounds within to get the locations
+             * @param {string} bounds The bounds within to get the locations.
+             * @param {number} zoom The current zoom level of the map.
              * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.queryByBounds = function(bounds) {
+            LocationService.prototype.queryByBounds = function(bounds, zoom) {
                 // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
 
                 // Create an id for this query
@@ -120,7 +121,8 @@
 
                 // Set the query
                 return this._setQuery(queryId, {
-                    bounds: bounds
+                    bounds: bounds,
+                    zoom: zoom
                 });
             };
 

@@ -143,13 +143,25 @@
              */
             Location.prototype._getMarkerIconClasses = function() {
                 // Compose the icon class name
-                return 'marker' +
-                    ' marker--type-' + this.type +
-                    ' marker--quality-' + this.getRoundedQuality() +
-                    (this._disabled ? ' marker--disabled' : ' marker--enabled') +
-                    (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
-                    (this._active ? ' marker--active' : '') +
-                    (this._isBeingEdited ? ' marker--editing' : '');
+                // TODO WIP: clean up and split up LocationModel from LocationClusterModel
+                var classes =  'marker';
+
+                // If cluster
+                if (this.sizeName) {
+                    classes += ' marker-cluster marker-cluster-' + this.sizeName;
+                }
+                // If single location
+                else {
+                    classes += ' marker--type-' + this.type +
+                        ' marker--quality-' + this.getRoundedQuality() +
+                        (this._disabled ? ' marker--disabled' : ' marker--enabled') +
+                        (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
+                        (this._active ? ' marker--active' : '') +
+                        (this._isBeingEdited ? ' marker--editing' : '')
+                    ;
+                }
+
+                return classes;
             };
 
             /**
@@ -160,7 +172,7 @@
             Location.prototype._getMarkerIconHtml = function() {
                 // Check if this type has a valid icon
                 var typeIcon = Location.getIconClassForType(this.type);
-                if (typeIcon) {
+                if (typeIcon && angular.isUndefined(this.clusterSize)) {
                     return '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
                 }
                 return '';
@@ -217,6 +229,7 @@
                     latLng: latLng,
                     base: {
                         title: this.name,
+                        clickable: (angular.isUndefined(this.clusterSize)),
                         riseOnHover: true,
                         riseOffset: Z_INDEX_OFFSET_HOVER
                     },

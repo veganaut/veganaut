@@ -87,6 +87,7 @@
                 bounds = map.getBounds().toBBoxString();
 
                 // Get the locations (to set them in the products)
+                // TODO WIP: this now excpets a zoom level and is probably broken
                 locationPromise = locationService.queryByBounds(bounds);
 
                 // Load products

@@ -230,8 +230,8 @@
 
                 // Reload locations
                 mapPromise.then(function(map) {
-                    // Get the bounds of the map and query the locations
-                    locationService.queryByBounds(map.getBounds().toBBoxString());
+                    // Get the bounds and zoom level of the map and query the locations
+                    locationService.queryByBounds(map.getBounds().toBBoxString(), map.getZoom());
                 });
             });
 
