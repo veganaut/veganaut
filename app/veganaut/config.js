@@ -8,6 +8,7 @@
     // Different possible map tiles
     var osmAttribution = '© <a href="http://www.openstreetmap.org/copyright" target="_blank" >OpenStreetMap</a> Data';
     var mapDefaults = {
+        maxZoom: 17,
         zoomControlPosition: 'bottomleft',
         worldCopyJump: true
     };
