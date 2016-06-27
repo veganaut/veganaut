@@ -1,9 +1,6 @@
 angular.module('veganaut.app.map').service('LocationSet', [
-    '$rootScope', 'angularPiwik', 'backendService', 'alertService',
-    'locationFilterService', 'Location', 'CreateLocation',
-    function($rootScope, angularPiwik, backendService, alertService,
-        locationFilterService, Location, CreateLocation)
-    {
+    '$rootScope', 'angularPiwik', 'backendService', 'alertService', 'Location', 'CreateLocation',
+    function($rootScope, angularPiwik, backendService, alertService, Location, CreateLocation) {
         'use strict';
 
         /**
@@ -162,6 +159,7 @@ angular.module('veganaut.app.map').service('LocationSet', [
          * @param {{}} newLocationData Map of location ids to location data
          */
         LocationSet.prototype.updateSet = function(newLocationData) {
+            // TODO WIP: this might all be a bit obsolete now because mostly everything changes on every update...
             var that = this;
             var newLocations = Object.keys(newLocationData);
             var oldLocations = Object.keys(that.locations);
@@ -184,10 +182,6 @@ angular.module('veganaut.app.map').service('LocationSet', [
                 // TODO: location sends the update (and only for marker changed), is that OK?
                 that.locations[id].update(newLocationData[id]);
             });
-
-            // Apply the filters
-            // TODO: should only apply filters to new locations for optimisation?
-            locationFilterService.applyFilters(this);
 
             // Deactivate the location that was active if it's no longer around
             // (and if it's not the location we are just creating).

@@ -89,6 +89,19 @@
             // Get the player
             var playerPromise = playerService.getDeferredMe();
 
+
+            /**
+             * Queries for locations within the current map bounds.
+             */
+            var reloadLocations = function() {
+                // Reload locations
+                // TODO WIP: this is called way to often (different watchers)
+                mapPromise.then(function(map) {
+                    // Get the bounds and zoom level of the map and query the locations
+                    locationService.queryByBounds(map.getBounds().toBBoxString(), map.getZoom());
+                });
+            };
+
             /**
              * Sets whether the product list is shown
              * @param {boolean} [show=true]
@@ -229,10 +242,7 @@
                 mainMapService.saveCenter();
 
                 // Reload locations
-                mapPromise.then(function(map) {
-                    // Get the bounds and zoom level of the map and query the locations
-                    locationService.queryByBounds(map.getBounds().toBBoxString(), map.getZoom());
-                });
+                reloadLocations();
             });
 
             // Watch the active filters
@@ -249,8 +259,8 @@
                         }
                     }
 
-                    // Let filter service apply the filters to the set
-                    locationFilterService.applyFilters(vm.locationSet);
+                    // Reload locations (will apply new filters)
+                    reloadLocations();
 
                     // Update the url with the new filter value
                     mainMapService.updateUrl();

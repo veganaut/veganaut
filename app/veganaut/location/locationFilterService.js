@@ -2,8 +2,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
     function() {
         'use strict';
         /**
-         * Service that keeps the global location filter state
-         * and filters location sets.
+         * Service that keeps the global location filter state.
          * @constructor
          */
         var LocationFilterService = function() {
@@ -46,68 +45,36 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
         /**
          * Map of recent filter values to the period of
-         * time for which to show the locations.
+         * time in seconds for which to show the locations.
          * @type {{month: number, week: number, day: number}}
          */
         LocationFilterService.prototype.RECENT_FILTER_PERIOD = {
-            month: 4 * 7 * 24 * 3600000,
-            week: 7 * 24 * 3600000,
-            day: 24 * 3600000
+            month: 4 * 7 * 24 * 3600,
+            week: 7 * 24 * 3600,
+            day: 24 * 3600
         };
 
         /**
-         * Runs the locations through the given recent filter
-         * @param locations
-         * @private
+         * Returns the recent filter value (number of seconds within which to filter)
+         * or undefined if that filter is not active.
+         * @returns {number|undefined}
          */
-        LocationFilterService.prototype._applyRecentFilter = function(locations) {
-            var showAll = (this.activeFilters.recent === this.INACTIVE_FILTER_VALUE.recent);
-            var recentDate;
-            if (!showAll) {
-                recentDate = new Date(Date.now() - this.RECENT_FILTER_PERIOD[this.activeFilters.recent]);
+        LocationFilterService.prototype.getRecentFilterValue = function() {
+            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent) {
+                return this.RECENT_FILTER_PERIOD[this.activeFilters.recent];
             }
-
-            // Go through all the locations and filter them
-            angular.forEach(locations, function(location) {
-                // Only apply the filter if the location is not already hidden
-                if (!location.isDisabled()) {
-                    var disableIt = (!showAll && location.updatedAt < recentDate);
-                    location.setDisabled(disableIt);
-                }
-            });
+            return undefined;
         };
 
         /**
-         * Runs the locations through the given type filter
-         * @param locations
-         * @private
+         * Returns the type filter value or undefined if that filter is not active.
+         * @returns {string|undefined}
          */
-        LocationFilterService.prototype._applyTypeFilter = function(locations) {
-            var showAll = (this.activeFilters.type === this.INACTIVE_FILTER_VALUE.type);
-            // Go through all the locations and filter them
-            angular.forEach(locations, function(location) {
-                // Only apply the filter if the location is not already hidden
-                if (!location.isDisabled()) {
-                    var disableIt = (!showAll && location.type !== this.activeFilters.type);
-                    location.setDisabled(disableIt);
-                }
-            }.bind(this));
-        };
-
-        /**
-         * Runs the locations through all the filters
-         * @param {LocationSet} locationSet
-         */
-        LocationFilterService.prototype.applyFilters = function(locationSet) {
-            // First show all the locations
-            // TODO: this is inefficient because the marker might update twice (show it, then hide it again)
-            angular.forEach(locationSet.locations, function(location) {
-                location.setDisabled(false);
-            });
-
-            // Then run the filters
-            this._applyRecentFilter(locationSet.locations);
-            this._applyTypeFilter(locationSet.locations);
+        LocationFilterService.prototype.getTypeFilterValue = function() {
+            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
+                return this.activeFilters.type;
+            }
+            return undefined;
         };
 
         /**

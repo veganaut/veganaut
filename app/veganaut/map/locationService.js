@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
     module.factory('locationService', [
-        '$q', '$rootScope', 'Location', 'LocationSet', 'backendService', 'alertService',
-        function($q, $rootScope, Location, LocationSet, backendService, alertService) {
+        '$q', '$rootScope', 'Location', 'LocationSet', 'backendService', 'alertService', 'locationFilterService',
+        function($q, $rootScope, Location, LocationSet, backendService, alertService, locationFilterService) {
             /**
              * Service to handle the veganaut locations
              * @constructor
@@ -62,6 +62,13 @@
             LocationService.prototype._setQuery = function(queryId, params) {
                 var queryDeferred = $q.defer();
 
+                // Add the active filters to the params
+                params.type = locationFilterService.getTypeFilterValue();
+                queryId += '-type' + params.type;
+
+                params.updatedWithin = locationFilterService.getRecentFilterValue();
+                queryId += '-updatedWithin' + params.updatedWithin;
+
                 // Cancel ongoing request
                 if (angular.isObject(this._requestInProgress)) {
                     this._requestInProgress.cancelRequest();
@@ -112,12 +119,11 @@
              * @param {number} zoom The current zoom level of the map.
              * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.queryByBounds = function(bounds, zoom) {
-                // TODO: make the loading of locations smarter: e.g. when zooming in, don't reload at all
-
+            LocationService.prototype.queryByBounds = function(bounds, zoom) { // TODO WIP
                 // Create an id for this query
                 // TODO: the bounds are too precise, should round coords more
-                var queryId = 'bounds' + bounds;
+                // TODO: find better way to do queryId (let _setQuery do sth automatic)
+                var queryId = 'bounds' + bounds + '-zoom' + zoom;
 
                 // Set the query
                 return this._setQuery(queryId, {
