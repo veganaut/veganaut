@@ -1,48 +1,81 @@
-(function(module) {
+(function() {
     'use strict';
-    module.controller('ProductListCtrl', [
-        '$scope', 'locationService', '$location', 'backendService', 'leafletData', 'locationFilterService',
-        function($scope, locationService, $location, backendService, leafletData, locationFilterService) {
+
+    /**
+     * Shows a list of products within the bounds of the current map.
+     * @returns {directive}
+     *
+     * @example
+     * <vg-product-list></vg-product-list>
+     */
+    var productListDirective = function() {
+        return {
+            restrict: 'E',
+            scope: {},
+            controller: 'vgProductListCtrl',
+            controllerAs: 'productListVm',
+            bindToController: true,
+            templateUrl: '/veganaut/map/productList.tpl.html'
+        };
+    };
+
+    var productListCtrl = [
+        'locationService', '$location', 'backendService', 'leafletData', 'locationFilterService',
+        function(locationService, $location, backendService, leafletData, locationFilterService) {
+            var vm = this;
+
             // Bounds used to show the products
             var bounds;
-
-            // Promise for getting the locations
-            var locationPromise;
 
             // Get a reference to the leaflet map object
             var mapPromise = leafletData.getMap();
 
-            // TODO: convert to component and get this as parameter
             // Location type for which to show products
             // By default gastronomy, but if filter is set to retail, then that.
-            $scope.locationType = 'gastronomy';
+            vm.locationType = 'gastronomy';
             if (locationFilterService.activeFilters.type === 'retail') {
-                $scope.locationType = 'retail';
+                vm.locationType = 'retail';
             }
 
             /**
              * Loaded products
              * @type {Array}
              */
-            $scope.products = [];
+            vm.products = [];
 
             /**
              * Total products available with the current query
              * @type {number}
              */
-            $scope.totalProducts = 0;
+            vm.totalProducts = 0;
 
             /**
              * Whether the products have been loaded
              * @type {boolean}
              */
-            $scope.productsLoaded = false;
+            vm.productsLoaded = false;
 
             /**
              * Load the next batch of products
              */
-            $scope.loadMore = function() {
-                loadProducts(bounds, $scope.locationType, $scope.products.length);
+            vm.loadMore = function() {
+                loadProducts(bounds, vm.locationType, vm.products.length);
+            };
+
+            /**
+             * Handler for toggling the open state of a product in the list
+             * @param {Product} product
+             * @param {boolean} isOpen
+             */
+            vm.onOpenToggle = function(product, isOpen) {
+                // Load the location data if the product was opened and we haven't yet loaded it
+                if (isOpen && angular.isString(product.location)) {
+                    locationService.getLocation(product.location)
+                        .then(function(location) {
+                            product.location = location;
+                        })
+                    ;
+                }
             };
 
             /**
@@ -54,30 +87,11 @@
             function loadProducts(bounds, locationType, skip) {
                 // Get products from the backend
                 backendService.getProducts(bounds, locationType, skip || 0).then(function(data) {
-                    $scope.totalProducts = data.data.totalProducts;
-                    populateLocations(data.data.products);
-                });
-            }
-
-            /**
-             * Populate the locationId in the given products with the location object.
-             * @param {[]} products
-             */
-            function populateLocations(products) {
-                locationPromise.then(function() {
-                    var locationSet = locationService.getLocationSet();
-
-                    // Go through all the products to find its location
-                    angular.forEach(products, function(product) {
-                        if (angular.isObject(locationSet.locations[product.location])) {
-                            product.location = locationSet.locations[product.location];
-                            $scope.products.push(product);
-                        }
-                        // If we couldn't find the location, don't show the product
-                    });
+                    vm.totalProducts = data.data.totalProducts;
+                    vm.products = vm.products.concat(data.data.products);
 
                     // The products are now loaded
-                    $scope.productsLoaded = true;
+                    vm.productsLoaded = true;
                 });
             }
 
@@ -86,13 +100,15 @@
                 // Get the bound of the map and load the products for the first time
                 bounds = map.getBounds().toBBoxString();
 
-                // Get the locations (to set them in the products)
-                // TODO WIP: this now excpets a zoom level and is probably broken
-                locationPromise = locationService.queryByBounds(bounds);
-
                 // Load products
-                loadProducts(bounds, $scope.locationType);
+                loadProducts(bounds, vm.locationType);
             });
         }
-    ]);
-})(window.veganaut.mapModule);
+    ];
+
+    // Define the directive
+    angular.module('veganaut.app.map')
+        .controller('vgProductListCtrl', productListCtrl)
+        .directive('vgProductList', productListDirective)
+    ;
+})();

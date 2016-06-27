@@ -97,7 +97,10 @@
         </vg-create-location-form>
     </vg-overlay>
     <vg-overlay ng-if="mainMapVm.productShown">
-        <ng-include src="'/veganaut/map/productList.tpl.html'"></ng-include>
+        <div class="top-box__close clickable" ng-click="mainMapVm.showProductList(false)">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <vg-product-list></vg-product-list>
     </vg-overlay>
     <vg-overlay ng-if="mainMapVm.searchShown">
         <vg-map-search

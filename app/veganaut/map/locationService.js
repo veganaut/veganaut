@@ -119,7 +119,7 @@
              * @param {number} zoom The current zoom level of the map.
              * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.queryByBounds = function(bounds, zoom) { // TODO WIP
+            LocationService.prototype.queryByBounds = function(bounds, zoom) {
                 // Create an id for this query
                 // TODO: the bounds are too precise, should round coords more
                 // TODO: find better way to do queryId (let _setQuery do sth automatic)
