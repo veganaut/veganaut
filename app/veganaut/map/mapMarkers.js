@@ -2,8 +2,8 @@
     'use strict';
 
     /**
-     * Directive for adding a location markers to a Leaflet map.
-     * For initialisation, the provided list of locations is used,
+     * Directive for adding location items (locations and clusters) to a
+     * Leaflet map. For initialisation, the provided list of items is used,
      * after that the directive listens to events to get updates.
      * (This cannot be done with watchers because there would be too
      * many when there are a lot of markers.)
@@ -13,7 +13,13 @@
         return {
             restrict: 'E',
             scope: {
-                locations: '=vgLocations',
+                /**
+                 * List of location items to display.
+                 * the objects must have the following properties:
+                 * - id (unique among all location items)
+                 * - getMarkerDefinition()
+                 */
+                locationItems: '=vgLocationItems',
                 map: '=vgMap',
                 onClick: '&?vgOnClick'
             },
@@ -30,20 +36,20 @@
             var vm = this;
 
             /**
-             * Map of location id to marker that was added to the map
-             * for that location.
+             * Map of locationItem id to marker that was added to the map
+             * for that locationItem.
              * @type {{}}
              */
             var markers = {};
 
             /**
-             * Creates a new marker for the given location and returns it.
-             * @param {Location} location
+             * Creates a new marker for the given locationItem and returns it.
+             * @param {{}} locationItem
              * @returns {L.marker}
              */
-            var createMarker = function(location) {
+            var createMarker = function(locationItem) {
                 // Get the marker definition
-                var markerDefinition = location.getMarkerDefinition();
+                var markerDefinition = locationItem.getMarkerDefinition();
 
                 // Create new marker
                 var marker = L.marker(markerDefinition.latLng,
@@ -54,7 +60,7 @@
                 marker.on('click', function() {
                     // Pass on to the handler if it's defined
                     if (angular.isDefined(vm.onClick)) {
-                        vm.onClick({location: location});
+                        vm.onClick({locationItem: locationItem});
                     }
                 });
 
@@ -63,27 +69,27 @@
             };
 
             /**
-             * Updates the marker of the given location,
+             * Updates the marker of the given locationItem,
              * creating it if it doesn't exist yet
-             * @param location
+             * @param locationItem
              */
-            var updateMarker = function(location) {
+            var updateMarker = function(locationItem) {
                 // Get the marker definition
-                var markerDefinition = location.getMarkerDefinition();
+                var markerDefinition = locationItem.getMarkerDefinition();
                 if (!angular.isArray(markerDefinition.latLng)) {
                     // Can't add a marker if there are no coordinates
                     return;
                 }
 
-                // Check if there isn't a marker yet for that location
+                // Check if there isn't a marker yet for that locationItem
                 var isNewMarker = false;
-                if (!angular.isObject(markers[location.id])) {
-                    markers[location.id] = createMarker(location);
+                if (!angular.isObject(markers[locationItem.id])) {
+                    markers[locationItem.id] = createMarker(locationItem);
                     isNewMarker = true;
                 }
 
                 // Get marker definition and marker instance
-                var marker = markers[location.id];
+                var marker = markers[locationItem.id];
 
                 // Update the properties
                 // TODO: only set the stuff that changed
@@ -103,27 +109,27 @@
             };
 
 
-            // Listen for newly added locations
-            $scope.$on('veganaut.locationSet.location.added', function(event, location) {
-                updateMarker(location);
+            // Listen for newly added location items
+            $scope.$on('veganaut.locationSet.locationItem.added', function(event, locationItem) {
+                updateMarker(locationItem);
             });
 
-            // Listen for removed locations
-            $scope.$on('veganaut.locationSet.location.removed', function(event, location) {
-                if (angular.isObject(markers[location.id])) {
-                    vm.map.removeLayer(markers[location.id]);
-                    delete markers[location.id];
+            // Listen for removed location items
+            $scope.$on('veganaut.locationSet.locationItem.removed', function(event, locationItem) {
+                if (angular.isObject(markers[locationItem.id])) {
+                    vm.map.removeLayer(markers[locationItem.id]);
+                    delete markers[locationItem.id];
                 }
             });
 
-            // Listen for updated locations
-            $scope.$on('veganaut.location.marker.updated', function(event, location) {
+            // Listen for updated location item markers
+            $scope.$on('veganaut.locationItem.marker.updated', function(event, location) {
                 updateMarker(location);
             });
 
             // Initialise the markers for the locations that are already around.
             // The rest will be done through events
-            angular.forEach(vm.locations, function(location) {
+            angular.forEach(vm.locationItems, function(location) {
                 updateMarker(location);
             });
         }

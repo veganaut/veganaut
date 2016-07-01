@@ -1,10 +1,10 @@
 angular.module('veganaut.app.map').service('LocationSet', [
-    '$rootScope', 'angularPiwik', 'backendService', 'alertService', 'Location', 'CreateLocation',
-    function($rootScope, angularPiwik, backendService, alertService, Location, CreateLocation) {
+    '$rootScope', 'angularPiwik', 'backendService', 'alertService', 'Location', 'LocationCluster', 'CreateLocation',
+    function($rootScope, angularPiwik, backendService, alertService, Location, LocationCluster, CreateLocation) {
         'use strict';
 
         /**
-         * Set of locations belonging together in some way.
+         * Set of locations and location clusters belonging together in some way.
          * One of the locations in the set can be "active".
          * @constructor
          */
@@ -14,6 +14,19 @@ angular.module('veganaut.app.map').service('LocationSet', [
              * @type {{}}
              */
             this.locations = {};
+
+            /**
+             * LocationClusters in this set (mapped from id to locationSet)
+             * @type {{}}
+             */
+            this.locationClusters = {};
+
+            /**
+             * Combined list of Locations and LocationClusters (mapped by id).
+             * TODO: find better name than LocationItem
+             * @type {{}}
+             */
+            this.allLocationItems = {};
 
             /**
              * The currently active location
@@ -80,7 +93,7 @@ angular.module('veganaut.app.map').service('LocationSet', [
             this.activate(this.createLocation.newLocation);
 
             // Broadcast addition and track
-            $rootScope.$broadcast('veganaut.locationSet.location.added', this.createLocation.newLocation);
+            $rootScope.$broadcast('veganaut.locationSet.locationItem.added', this.createLocation.newLocation);
             angularPiwik.track('map.addLocation', 'start');
         };
 
@@ -96,7 +109,7 @@ angular.module('veganaut.app.map').service('LocationSet', [
                 this.activate();
 
                 // Broadcast removal and track
-                $rootScope.$broadcast('veganaut.locationSet.location.removed', abortedLocation);
+                $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', abortedLocation);
                 angularPiwik.track('map.addLocation', 'abort');
             }
         };
@@ -119,30 +132,32 @@ angular.module('veganaut.app.map').service('LocationSet', [
 
                 // Create deferred to return
                 backendService.submitLocation({
-                        name: newLocation.name,
-                        lat: newLocation.lat,
-                        lng: newLocation.lng,
-                        type: newLocation.type
-                    })
+                    name: newLocation.name,
+                    lat: newLocation.lat,
+                    lng: newLocation.lng,
+                    type: newLocation.type
+                })
                     .success(function(data) {
                         // Update the location, we broadcast removal and addition because the id will change
-                        $rootScope.$broadcast('veganaut.locationSet.location.removed', newLocation);
+                        $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
                         newLocation.update(data);
 
                         // The location is no longer being edited
                         newLocation.setEditing(false);
 
                         // Add to list
+                        // TODO: make a helper method to add locations and locationClusters to not forget to update allLocationItems
                         that.locations[newLocation.id] = newLocation;
+                        that.allLocationItems[newLocation.id] = newLocation;
 
                         // Broadcast the new final location and add an alert
-                        $rootScope.$broadcast('veganaut.locationSet.location.added', newLocation);
+                        $rootScope.$broadcast('veganaut.locationSet.locationItem.added', newLocation);
                         alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
                         angularPiwik.track('map.addLocation', 'finish');
                     })
                     .error(function(data) {
                         // Broadcast removal and show alert
-                        $rootScope.$broadcast('veganaut.locationSet.location.removed', newLocation);
+                        $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
                         alertService.addAlert('Failed to add location: ' + data.error, 'danger');
                         angularPiwik.track('map.addLocation', 'submitError');
                     })
@@ -156,37 +171,54 @@ angular.module('veganaut.app.map').service('LocationSet', [
 
         /**
          * Updates this set with the given new data
-         * @param {{}} newLocationData Map of location ids to location data
+         * @param {{}} newData Raw location data from the backend (clusters and locations)
          */
-        LocationSet.prototype.updateSet = function(newLocationData) {
-            // TODO WIP: this might all be a bit obsolete now because mostly everything changes on every update...
+        LocationSet.prototype.updateSet = function(newData) {
             var that = this;
-            var newLocations = Object.keys(newLocationData);
-            var oldLocations = Object.keys(that.locations);
 
-            // Loop through locations that are gone
-            angular.forEach(_.difference(oldLocations, newLocations), function(id) {
-                var removedLocation = that.locations[id];
+            // Index the locations and clusters by id
+            newData.locations = _.indexBy(newData.locations, 'id');
+            newData.clusters = _.indexBy(newData.clusters, 'id');
+
+            // Get the ids of all new and old location items
+            var newLocationItems = _.extend({}, newData.locations, newData.clusters);
+            var newItemIds = Object.keys(newLocationItems);
+            var oldItemIds = Object.keys(that.allLocationItems);
+
+            // Loop through items that are gone
+            angular.forEach(_.difference(oldItemIds, newItemIds), function(id) {
+                var removedItem = that.allLocationItems[id];
                 delete that.locations[id];
-                $rootScope.$broadcast('veganaut.locationSet.location.removed', removedLocation);
+                delete that.locationClusters[id];
+                delete that.allLocationItems[id];
+                $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', removedItem);
             });
 
-            // Loop through new locations
-            angular.forEach(_.difference(newLocations, oldLocations), function(id) {
-                that.locations[id] = new Location(newLocationData[id]);
-                $rootScope.$broadcast('veganaut.locationSet.location.added', that.locations[id]);
+            // Loop through new items
+            angular.forEach(_.difference(newItemIds, oldItemIds), function(id) {
+                var addedItem;
+                if (angular.isObject(newData.locations[id])) {
+                    addedItem = new Location(newData.locations[id]);
+                    that.locations[id] = addedItem;
+                }
+                else if (angular.isObject(newData.clusters[id])) {
+                    addedItem = new LocationCluster(newData.clusters[id]);
+                    that.locationClusters[id] = addedItem;
+                }
+                that.allLocationItems[id] = addedItem;
+                $rootScope.$broadcast('veganaut.locationSet.locationItem.added', that.allLocationItems[id]);
             });
 
-            // Loop through locations that are still around
-            angular.forEach(_.intersection(newLocations, oldLocations), function(id) {
+            // Loop through items that are still around
+            angular.forEach(_.intersection(newItemIds, oldItemIds), function(id) {
                 // TODO: location sends the update (and only for marker changed), is that OK?
-                that.locations[id].update(newLocationData[id]);
+                that.allLocationItems[id].update(newLocationItems[id]);
             });
 
             // Deactivate the location that was active if it's no longer around
             // (and if it's not the location we are just creating).
             if (angular.isObject(that.active) &&
-                (that.isCreatingLocation() && that.active !== that.createLocation.newLocation) &&
+                (!that.isCreatingLocation() || that.active !== that.createLocation.newLocation) &&
                 !angular.isObject(that.locations[that.active.id]))
             {
                 that.activate();

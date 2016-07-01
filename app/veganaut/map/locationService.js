@@ -38,14 +38,13 @@
             LocationService.prototype.LOCATION_TYPES = ['gastronomy', 'retail'];
 
             /**
-             * Handles locations received from the backend and returns the instantiated
-             * Location objects indexed by location id.
+             * Handles map data received from the backend by updating the location set.
              * @param {[]} data
              * @private
              */
             LocationService.prototype._handleLocationResult = function(data) {
-                // Index data by id and pass to location set
-                this._locationSet.updateSet(_.indexBy(data, 'id'));
+                // Pass the new data to the location set
+                this._locationSet.updateSet(data);
 
                 // Broadcast that we updated the set
                 $rootScope.$broadcast('veganaut.locationSet.updated');

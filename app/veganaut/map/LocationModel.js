@@ -129,7 +129,7 @@
 
             /**
              * Returns the marker definition to be used for this location.
-             * The event 'veganaut.location.marker.updated' will be broadcast
+             * The event 'veganaut.locationItem.marker.updated' will be broadcast
              * when the definition changes.
              * @returns {{}}
              */
@@ -143,25 +143,13 @@
              */
             Location.prototype._getMarkerIconClasses = function() {
                 // Compose the icon class name
-                // TODO WIP: clean up and split up LocationModel from LocationClusterModel
-                var classes =  'marker';
-
-                // If cluster
-                if (this.sizeName) {
-                    classes += ' marker-cluster marker-cluster-' + this.sizeName;
-                }
-                // If single location
-                else {
-                    classes += ' marker--type-' + this.type +
-                        ' marker--quality-' + this.getRoundedQuality() +
-                        (this._disabled ? ' marker--disabled' : ' marker--enabled') +
-                        (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
-                        (this._active ? ' marker--active' : '') +
-                        (this._isBeingEdited ? ' marker--editing' : '')
-                    ;
-                }
-
-                return classes;
+                return 'marker' +
+                    ' marker--type-' + this.type +
+                    ' marker--quality-' + this.getRoundedQuality() +
+                    (this._disabled ? ' marker--disabled' : ' marker--enabled') +
+                    (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
+                    (this._active ? ' marker--active' : '') +
+                    (this._isBeingEdited ? ' marker--editing' : '');
             };
 
             /**
@@ -172,7 +160,7 @@
             Location.prototype._getMarkerIconHtml = function() {
                 // Check if this type has a valid icon
                 var typeIcon = Location.getIconClassForType(this.type);
-                if (typeIcon && angular.isUndefined(this.clusterSize)) {
+                if (typeIcon) {
                     return '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
                 }
                 return '';
@@ -229,7 +217,7 @@
                     latLng: latLng,
                     base: {
                         title: this.name,
-                        clickable: (angular.isUndefined(this.clusterSize)),
+                        clickable: true,
                         riseOnHover: true,
                         riseOffset: Z_INDEX_OFFSET_HOVER
                     },
@@ -245,7 +233,7 @@
                 // in this case the location is just being initialised).
                 if (angular.isObject(oldDefinition) && !_.isEqual(oldDefinition, this._markerDefinition))
                 {
-                    $rootScope.$broadcast('veganaut.location.marker.updated', this);
+                    $rootScope.$broadcast('veganaut.locationItem.marker.updated', this);
                 }
             };
 
@@ -313,6 +301,7 @@
              * Sets the location to be disabled or enabled on the map.
              * Disabled locations are shown greyed out.
              * @param {boolean} [isDisabled=true]
+             * TODO: disabled is unused now that filters are done in the backend, remove?
              */
             Location.prototype.setDisabled = function(isDisabled) {
                 if (typeof isDisabled === 'undefined') {
@@ -323,7 +312,7 @@
             };
 
             /**
-             * Returns whether the location is diabled
+             * Returns whether the location is disabled
              * @returns boolean
              */
             Location.prototype.isDisabled = function() {

@@ -202,14 +202,15 @@
             };
 
             /**
-             * Handler for clicks on map markers
-             * @param {Location} location
+             * Handler for clicks on map markers. This will only ever be called for
+             * Locations, because only those are clickable (clusters aren't).
+             * @param {Location} locationItem
              */
-            vm.onLocationClick = function(location) {
-                if (!vm.locationSet.isCreatingLocation() && !location.isDisabled()) {
+            vm.onLocationClick = function(locationItem) {
+                if (!vm.locationSet.isCreatingLocation() && !locationItem.isDisabled()) {
                     // Run it through $apply since we are coming directly from Leaflet
                     $scope.$apply(function() {
-                        vm.locationSet.activate(location);
+                        vm.locationSet.activate(locationItem);
 
                         // Track it
                         angularPiwik.track('map.locations', 'map.locations.click');
