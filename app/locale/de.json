@@ -208,6 +208,11 @@
       "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!"
     }
   },
+  "locationCluster": {
+    "marker": {
+      "title": "Zoome herein um diese {{numLocations}} Locations anzuzeigen."
+    }
+  },
   "map": {
     "filters": {
       "recent": {

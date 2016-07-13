@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
 
-    module.service('LocationCluster', ['$rootScope',
-        function($rootScope) {
+    module.service('LocationCluster', ['$rootScope', '$translate',
+        function($rootScope, $translate) {
             /**
              * Represents a location cluster on the map.
              *
@@ -90,7 +90,7 @@
                 this._markerDefinition = {
                     latLng: latLng,
                     base: {
-                        title: this.name,
+                        title: $translate.instant('locationCluster.marker.title', { numLocations: this.clusterSize }),
                         clickable: false,
                         riseOnHover: false
                     },

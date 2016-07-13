@@ -208,6 +208,11 @@
       "noTags": "Personne n'a indiqué les offres véganes qu'ils aiment ici. Fais-le toi-même!"
     }
   },
+  "locationCluster": {
+    "marker": {
+      "title": "Zoomer pour voir ces {{numLocations}} endroits."
+    }
+  },
   "map": {
     "filters": {
       "recent": {

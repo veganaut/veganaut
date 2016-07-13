@@ -208,6 +208,11 @@
       "noTags": "No one has indicated which vegan offers they like here. Be the first to do so!"
     }
   },
+  "locationCluster": {
+    "marker": {
+      "title": "Zoom in to show these {{numLocations}} locations."
+    }
+  },
   "map": {
     "filters": {
       "recent": {
