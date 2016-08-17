@@ -1,63 +1,53 @@
-.top-box--home {
-    background: none;
+.home__hero-image {
+    background: url('/img/home.jpg') no-repeat 50% 50%;
+    background-size: cover;
+
     display: flex;
-    flex-flow: column;
-    bottom: 0;
+    flex-direction: column;
+    margin-top: -@navbarHeight - @mainSidePadding;
+    margin-left: -@mainSidePadding;
+    margin-right: -@mainSidePadding;
 
-    .top-box--home__content-size {
-        flex: 0 0 auto;
+    height: 350px;
+    @media screen and (min-width: 350px) {
+        height: 400px;
     }
-    .top-box--home__expand-size {
-        flex: 1 0 auto;
+    @media screen and (min-width: 400px) {
+        height: 450px;
     }
-}
-
-.container--home {
-    background-color: @colorLightTranslucent;
-}
-
-.title--home {
-    margin-top: 16px;
-}
-
-.btn.home-window-to-map {
-    height: 140px;
-    color: @colorDark;
-    text-shadow: 1px 1px 1px white, 1px 1px 1px white;
-    font-weight: bold;
-    font-size: 20px;
-
-    .glyphicon {
-        margin: -5px 10px 0 0;
+    @media screen and (min-width: 450px) {
+        height: 500px;
     }
-
-    // Add some padding to the first following sibling
-    & + * {
-        padding-top: 10px;
+    @media screen and (min-width: 500px) {
+        height: 550px;
     }
 }
 
-.home-team-image {
-    width: 100%;
-    height: auto;
+.home__logo {
+    margin: auto;
+    padding-top: 15%;
+
+    .logo {
+        fill: white;
+        width: 150px;
+        height: 70px;
+
+        @media screen and (min-width: 400px) {
+            width: 200px;
+        }
+    }
 }
 
-// TODO WIP: add classes for all of that
 .home__call-to-action {
-    background-color: @colourBrandTurquoise;
     color: white;
-    padding-bottom: 20px;
 
-    // Bootstrap grid leaves too much space between the columns
-    .row {
-        margin-left: -5px;
-        margin-right: -5px;
-    }
-    .col-xs-6 {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
 
+    // TODO WIP: add specific classes for this
     .input-group-addon {
         padding: 0;
 
@@ -65,5 +55,48 @@
             padding: 6px 12px;
             white-space: nowrap;
         }
+    }
+}
+
+.title--home {
+    margin-top: 16px;
+}
+
+.home-team-image {
+    width: 100%;
+    height: auto;
+}
+
+// Global style changes only applicable on the home page
+.body--home {
+    // Make navbar transparent
+    .navbar {
+        background-color: transparent;
+        border: none;
+        position: absolute;
+    }
+
+    // Menu button that works on transparent bar
+    .menu-button {
+        background-color: transparent;
+        border-color: transparent;
+        .icon-bar {
+            background-color: white;
+        }
+
+        &:focus, &:hover {
+            background-color: transparent;
+            border-color: white;
+        }
+    }
+
+    // Some background for the additional links
+    .navbar-footer {
+        background-color: white;
+    }
+
+    // Darker backdrop since the menu is on transparent ground
+    .menu-backdrop {
+        opacity: 0.5;
     }
 }
