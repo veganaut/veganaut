@@ -5,13 +5,12 @@
      * AngularPiwik class exposed to angular with the angularPiwik module.
      * @param $q
      * @param $window
-     * @param $location
      * @param piwikDomain
      * @param siteId
      * @param enableTracking
      * @constructor
      */
-    var AngularPiwik = function($q, $window, $location, piwikDomain, siteId, enableTracking) {
+    var AngularPiwik = function($q, $window, piwikDomain, siteId, enableTracking) {
         /**
          * Reference to $q
          * @private
@@ -24,13 +23,6 @@
          * @private
          */
         this._$window = $window;
-
-        /**
-         * Reference to $location
-         * @type {{}}
-         * @private
-         */
-        this._$location = $location;
 
         // Make sure the piwik _paq array exists
         this._$window._paq = this._$window._paq || [];
@@ -87,10 +79,11 @@
 
     /**
      * Tracks a page view
+     * @param {string} absUrl URL to set as custom URL
      */
-    AngularPiwik.prototype.trackPageView = function() {
+    AngularPiwik.prototype.trackPageView = function(absUrl) {
         // Set url to the correct one and track the page view
-        this._pushToPiwik(['setCustomUrl', this._$location.absUrl()]);
+        this._pushToPiwik(['setCustomUrl', absUrl]);
         this._pushToPiwik(['trackPageView']);
     };
 
@@ -177,8 +170,8 @@
             siteId = id;
         };
 
-        this.$get = ['$q', '$window', '$location', function($q, $window, $location) {
-            return new AngularPiwik($q, $window, $location, piwikDomain, siteId, enable);
+        this.$get = ['$q', '$window', function($q, $window) {
+            return new AngularPiwik($q, $window, piwikDomain, siteId, enable);
         }];
     };
 
