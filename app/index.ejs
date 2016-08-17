@@ -11,10 +11,12 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body ng-class="{ 'logged-in': isLoggedIn(), 'logged-out': !isLoggedIn(), 'embedded': isEmbedded }">
-
-<!-- VEGANAUT LOGO -->
-<ng-include src="'img/veganaut.svg'" class="hidden"></ng-include>
+<body ng-class="{
+'logged-in': isLoggedIn(),
+'logged-out': !isLoggedIn(),
+'body--home': $location.path() === '/',
+'embedded': isEmbedded
+}">
 
 <base href="/">
 <header class="navbar navbar-default navbar-fixed-top" ng-if="!isEmbedded">
@@ -32,14 +34,8 @@
                  ng-click="searchClick()">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
-                <a href="/" class="main-logo-link">
-                    <svg class="logo logo--main">
-                        <% /*
-                        Because of the <base href="/"> we need to bind this to the absolute url when the app is started.
-                        Once the app is started and the SVG loaded, it's fine, so we use a one time binding.
-                        */ -%>
-                        <use xlink:href="" ng-href="{{:: getLogoUrl() }}"/>
-                    </svg>
+                <a href="/" class="main-logo-link" ng-show="$location.path() !== '/'">
+                    <ng-include src="'img/veganaut.svg'" class="logo logo--main"></ng-include>
                 </a>
             </div>
             <nav class="collapse" uib-collapse="!menu.shown">

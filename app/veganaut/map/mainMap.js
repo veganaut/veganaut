@@ -31,8 +31,7 @@
             vm.legacyGlobals = {
                 goToView: $scope.$parent.goToView,
                 isLoggedIn: $scope.$parent.isLoggedIn,
-                isEmbedded: $scope.$parent.isEmbedded,
-                getLogoUrl: $scope.$parent.getLogoUrl
+                isEmbedded: $scope.$parent.isEmbedded
             };
 
             // Expose map settings and filter service

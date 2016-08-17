@@ -6,9 +6,7 @@
                 <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
                     <a type="button" class="btn-logo btn btn-default btn-default--transparent"
                      ng-click="mainMapVm.legacyGlobals.goToView('/')">
-                        <svg class="logo logo--top-box">
-                            <use xlink:href="" ng-href="{{:: mainMapVm.legacyGlobals.getLogoUrl() }}"/>
-                        </svg>
+                        <ng-include src="'img/veganaut.svg'" class="logo logo--top-box"></ng-include>
                     </a>
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"

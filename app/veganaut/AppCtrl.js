@@ -123,16 +123,6 @@
             playerService.getDeferredMe().then(function(me) {
                 $scope.me = me;
             });
-
-            /**
-             * Returns the logo URL (svg)
-             * See the main template for more explanation
-             * @returns {string}
-             */
-            $scope.getLogoUrl = function() {
-                // Need to remove the hash and search params from the absolute URL and add the svg id
-                return $location.absUrl().replace(/#.*/, '').replace('/\?.*/', '') + '#veganaut';
-            };
         }
     ]);
 })(window.veganaut.mainModule);
