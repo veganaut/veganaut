@@ -23,12 +23,28 @@
                 this._currentQueryId = undefined;
 
                 /**
-                 * Promise of the request currently in progress or false
-                 * if not request is running.
+                 * Promise of the backend request currently in progress or
+                 * false if not request is running.
                  * @type {Promise|boolean}
                  * @private
                  */
                 this._requestInProgress = false;
+
+                /**
+                 * Deferred which's promise was returned to the caller waiting
+                 * for the updated locations.
+                 * @type {Promise}
+                 * @private
+                 */
+                this._requestInProgressDeferred = undefined;
+
+                /**
+                 * The id of the query that is currently being requested
+                 * from the backend.
+                 * @type {string}
+                 * @private
+                 */
+                this._requestInProgressQueryId = undefined;
             };
 
             /**
@@ -59,8 +75,6 @@
              * @private
              */
             LocationService.prototype._setQuery = function(queryId, params) {
-                var queryDeferred = $q.defer();
-
                 // Add the active filters to the params
                 params.type = locationFilterService.getTypeFilterValue();
                 queryId += '-type' + params.type;
@@ -70,17 +84,33 @@
 
                 // Cancel ongoing request
                 if (angular.isObject(this._requestInProgress)) {
-                    this._requestInProgress.cancelRequest();
-                    this._requestInProgress = false;
+                    if (this._requestInProgressQueryId === queryId) {
+                        // We are already running the desired query, just return the existing promise
+                        return this._requestInProgressDeferred.promise;
+                    }
+                    else {
+                        // Asked for a new query, cancel the ongoing request
+                        this._requestInProgress.cancelRequest();
+                        this._requestInProgress = false;
+
+                        // Reject last request
+                        // TODO: what message to reject it with?
+                        this._requestInProgressDeferred.reject();
+                        this._requestInProgressDeferred = undefined;
+                    }
+
                 }
 
                 // Check if that query is already fulfilled
                 if (this._currentQueryId === queryId) {
-                    // Resolve deferred right away
-                    queryDeferred.resolve();
+                    // Return a resolved promise right away
+                    return $q.when();
                 }
                 else {
                     // Query not fulfilled yet, start backend request
+                    this._requestInProgressQueryId = queryId;
+                    this._requestInProgressDeferred = $q.defer();
+
                     this._requestInProgress = backendService.getLocations(params);
                     this._requestInProgress.then(function(data) {
                         // No longer requesting
@@ -88,19 +118,20 @@
 
                         // Set the query to be the current one
                         // (so we don't have to run it again if the next query is the same).
-                        this._currentQueryId = queryId;
+                        this._currentQueryId = this._requestInProgressQueryId;
 
                         // Handle result
                         this._handleLocationResult(data.data);
 
                         // Resolve deferred
-                        queryDeferred.resolve();
+                        this._requestInProgressDeferred.resolve();
+                        this._requestInProgressDeferred = undefined;
                     }.bind(this));
                     // TODO: reject deferred on failure
-                }
 
-                // Return promise that will resolve once the query is fulfilled
-                return queryDeferred.promise;
+                    // Return promise that will resolve once the query is fulfilled
+                    return this._requestInProgressDeferred.promise;
+                }
             };
 
             /**

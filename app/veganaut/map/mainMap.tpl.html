@@ -111,7 +111,7 @@
 
     <leaflet class="main-map full-viewport"
      ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}"
-     defaults="mainMapVm.mapDefaults" lf-center="mainMapVm.mainMap.center" event-broadcast="mainMapVm.events">
+     defaults="mainMapVm.mapDefaults" lf-center="{lat: 0, lng: 0, zoom: 2}" event-broadcast="mainMapVm.events">
     </leaflet>
     <vg-map-markers
      ng-if="mainMapVm.map"

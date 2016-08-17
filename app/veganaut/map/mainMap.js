@@ -18,10 +18,11 @@
     };
 
     // TODO: re-group variable and method definition
+    // TODO: the main map should just do without angular-leaflet, it's hardly using it anymore
     var mainMapCtrl = [
-        '$scope', '$location', 'leafletData', 'angularPiwik', 'mapDefaults',
+        '$scope', '$location', '$route', '$routeParams', 'leafletData', 'angularPiwik', 'mapDefaults',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $location, leafletData, angularPiwik, mapDefaults,
+        function($scope, $location, $route, $routeParams, leafletData, angularPiwik, mapDefaults,
             playerService, locationService, locationFilterService, mainMapService) {
             var vm = this;
 
@@ -80,27 +81,75 @@
              */
             vm.searchShown = false;
 
+
+            // Parse legacy URL and redirect if anything found
+            // TODO: Remove this after a few month of having the new URL scheme
+            var hash = $location.hash();
+            var legacyParams = {};
+            if (hash.length > 0) {
+                var hashArgs = hash.split(',');
+                _.each(hashArgs, function(arg) {
+                    var split = arg.split(':');
+                    if (split.length === 2 && ['zoom', 'coords', 'type'].indexOf(split[0]) > -1) {
+                        if (split[0] === 'coords') {
+                            // Convert coords from being separated by "-" to ","
+                            var match = /(-?[0-9\.]+)-(-?[0-9\.]+)/.exec(split[1]);
+                            if (match) {
+                                split[1] = match[1] + ',' + match[2];
+                            }
+                        }
+                        legacyParams[split[0]] = split[1];
+                    }
+                });
+            }
+            if (Object.keys(legacyParams).length > 0) {
+                // Replace the URL (no new history entry) and delete hash
+                $location
+                    .replace()
+                    .hash(null)
+                ;
+
+                // Set new route params and make sure the route is reloaded
+                $route.updateParams(legacyParams);
+                $route.reload();
+
+                // Nothing else to be done here, we are redirecting
+                return;
+            }
+
+
             // Get a reference the the leaflet map object
             var mapPromise = leafletData.getMap();
             mapPromise.then(function(map) {
                 vm.map = map;
+
+                /**
+                 * Method to inform service that the center changed
+                 */
+                var informCenterChanged = function() {
+                    var newCenter = map.getCenter();
+                    mainMapService.onCenterChanged({
+                        lat: newCenter.lat,
+                        lng: newCenter.lng,
+                        zoom: map.getZoom()
+                    });
+                };
+
+                // Register to map changes
+                // We do it directly through leaflet, because watching the center
+                // provided from leaflet-directive is buggy in some cases.
+                map.on('moveend', informCenterChanged);
+                map.on('viewreset', informCenterChanged);
+
+                // Inform of the first center
+                informCenterChanged();
             });
 
             // Get the player
             var playerPromise = playerService.getDeferredMe();
 
-
-            /**
-             * Queries for locations within the current map bounds.
-             */
-            var reloadLocations = function() {
-                // Reload locations
-                // TODO WIP: this is called way to often (different watchers)
-                mapPromise.then(function(map) {
-                    // Get the bounds and zoom level of the map and query the locations
-                    locationService.queryByBounds(map.getBounds().toBBoxString(), map.getZoom());
-                });
-            };
+            // Initialise the map
+            mainMapService.initialiseMap();
 
             /**
              * Sets whether the product list is shown
@@ -237,15 +286,6 @@
                 }
             });
 
-            // Watch the map center for changes to save it
-            $scope.$watchCollection('mainMapVm.mainMap.center', function() {
-                // Save the center (will also update the url)
-                mainMapService.saveCenter();
-
-                // Reload locations
-                reloadLocations();
-            });
-
             // Watch the active filters
             $scope.$watchCollection('mainMapVm.locationFilterService.activeFilters',
                 function(filters, filtersBefore) {
@@ -260,11 +300,7 @@
                         }
                     }
 
-                    // Reload locations (will apply new filters)
-                    reloadLocations();
-
-                    // Update the url with the new filter value
-                    mainMapService.updateUrl();
+                    mainMapService.onFiltersChanged();
                 }
             );
 
@@ -273,17 +309,14 @@
                 vm.showSearch(!vm.searchShown);
             });
 
-            // Listen to location changes to update the map settings
-            // (if the user changes the hash manually)
-            $scope.$onRootScope('$locationChangeSuccess', function() {
-                mainMapService.setMapFromUrl();
-            });
-
             // When we go away from this page, reset the url and abort adding location
             $scope.$onRootScope('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
-                    // Remove the hash if the event is still ongoing
-                    $location.hash(null);
+                    // Remove the search params if the event is still ongoing
+                    $location.search('zoom', null);
+                    $location.search('coords', null);
+                    $location.search('type', null);
+                    $location.search('recent', null);
 
                     // Abort adding a new location
                     vm.locationSet.abortCreateLocation();

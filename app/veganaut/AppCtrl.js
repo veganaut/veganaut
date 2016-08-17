@@ -53,6 +53,9 @@
 
             // Listen to route changes to track page views
             $scope.$onRootScope('$routeChangeSuccess', function() {
+                // Get the current complete URL that will be tracked
+                var absUrl = $location.absUrl();
+
                 // Get the current value of the accountType piwik custom variable
                 // TODO: should only track if "newRoute.redirectTo" is not set? Or track differently if it is
                 angularPiwik.getCustomVariable(1, 'visit').then(function(customVar) {
@@ -75,7 +78,7 @@
                     angularPiwik.setCustomVariable(2, 'locale', localService.getLocale(), 'visit');
 
                     // Finally, track the page view
-                    angularPiwik.trackPageView();
+                    angularPiwik.trackPageView(absUrl);
                 });
             });
 
@@ -83,7 +86,7 @@
             if ($scope.isEmbedded) {
                 $scope.$onRootScope('$routeChangeStart', function(event, newRoute, oldRoute) {
                     var currentPath = $location.path();
-                    if (currentPath !== '/map') {
+                    if (currentPath !== '/map/') {
                         // Check if there was already an old route defined,
                         if (angular.isDefined(oldRoute)) {
                             // The user is trying to navigate away from the map.
@@ -92,11 +95,17 @@
 
                             // Get the current url, then remove some parts we don't want in the new window.
                             var oldUrl = $location.url();
-                            $location.hash(null);
-                            $location.search('mode', null);
-                            $location.search('pk_campaign', null);
-                            $location.search('pk_cpn', null);
-                            $location.search('pk_kwd', null);
+                            $location
+                                .hash(null)
+                                .search('mode', null)
+                                .search('pk_campaign', null)
+                                .search('pk_cpn', null)
+                                .search('pk_kwd', null)
+                                .search('coords', null)
+                                .search('zoom', null)
+                                .search('type', null)
+                                .search('recent', null)
+                            ;
                             $window.open($location.absUrl());
 
                             // Restore the old URL so we don't trigger another location change
@@ -104,7 +113,7 @@
                         }
                         else {
                             // App has just loaded but not on the map. Redirect to the map
-                            $location.path('/map');
+                            $location.path('/map/');
                         }
                     }
                 });
@@ -121,8 +130,8 @@
              * @returns {string}
              */
             $scope.getLogoUrl = function() {
-                // Need to remove the hash from the absolute URL and add the svg id
-                return $location.absUrl().replace(/#.*/, '') + '#veganaut';
+                // Need to remove the hash and search params from the absolute URL and add the svg id
+                return $location.absUrl().replace(/#.*/, '').replace('/\?.*/', '') + '#veganaut';
             };
         }
     ]);

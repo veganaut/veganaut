@@ -1,23 +1,18 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$window', '$location', '$timeout', 'Leaflet', 'leafletData', 'backendService', 'locationFilterService',
-        function($window, $location, $timeout, L, leafletData, backendService, locationFilterService) {
-
-            // TODO: the management of the URL hash should be extracted to a separate service
-
-            /**
-             * Default zoom used when no one provided a zoom level
-             * @type {number}
-             */
-            var DEFAULT_ZOOM = 2;
+        '$window', '$location', '$route', '$routeParams', '$timeout', 'Leaflet',
+        'leafletData', 'backendService', 'locationService', 'locationFilterService',
+        function($window, $location, $route, $routeParams, $timeout, L,
+            leafletData, backendService, locationService, locationFilterService) {
 
             /**
-             * Zoom level used when the backend provides the zoom level
-             * based on the IP address
+             * Default zoom level used when showing a given place.
+             * Used for example when the backend provides a place based
+             * on the IP
              * @type {number}
              */
-            var GEO_IP_ZOOM = 10;
+            var DEFAULT_ZOOM = 4;
 
             /**
              * Local storage id used for storing the current map center
@@ -31,12 +26,6 @@
              */
             var FLOAT_PRECISION = 7;
 
-            // Regex for parsing the URL hash
-            // Hash is in the form: zoom:11,coords:46.9767388-7.6516342,type:retail
-            var ZOOM_REGEX = /(?:^|,)zoom:([0-9]+)(?:,|$)/;
-            var COORDINATES_REGEX = /(?:^|,)coords:(-?[0-9\.]+)-(-?[0-9\.]+)(?:,|$)/;
-            var TYPE_FILTER_REGEX = /(?:^|,)type:([a-z]+)(?:,|$)/;
-
             /**
              * Service managing the main map. This mostly concerns the
              * storage and retrieval of the map center from different sources.
@@ -44,43 +33,25 @@
              */
             var MainMapService = function() {
                 /**
-                 * Current center of the map
+                 * The center that we last stored (in the URL and local storage).
+                 * This needs to be tracked separately from the center that Leaflet
+                 * provides to keep everything in sync correctly.
                  * @type {{lat: number, lng: number, zoom: number}}
+                 * @private
                  */
-                this.center = {
+                this._lastStoredCenter = {
+                    // Defaults correspond to the ones set in mainMap.tpl.html
                     lat: 0,
                     lng: 0,
-                    zoom: DEFAULT_ZOOM
+                    zoom: 2
                 };
 
-                // Initialise map center and location type filter
-                this._initialiseMapCenter();
-                this._setTypeFilterFromUrl();
-            };
-
-            /**
-             * Sets the map center either from the url hash, local storage or
-             * from asking the backend for a location
-             * @private
-             */
-            MainMapService.prototype._initialiseMapCenter = function() {
-                var that = this;
-
-                // Try setting from the URL hash
-                var centerSet = that._setMapCenterFromUrl();
-
-                // Try to load from center from local storage
-                if (!centerSet) {
-                    centerSet = that._setMapCenterFromLocalStorage();
-                }
-
-                // Finally, ask the backend for a center
-                if (!centerSet) {
-                    backendService.getGeoIP().then(function(res) {
-                        // Try to set the received center
-                        that._setMapCenterIfValid(res.data.lat, res.data.lng, GEO_IP_ZOOM);
-                    });
-                }
+                /**
+                 * Target place that will try to be shown when the map is next loaded.
+                 * @type {{}}
+                 * @private
+                 */
+                this._targetPlace = undefined;
             };
 
             /**
@@ -94,28 +65,45 @@
              */
             MainMapService.prototype._setMapCenterIfValid = function(lat, lng, zoom) {
                 if (angular.isNumber(lat) && isFinite(lat) &&
-                    angular.isNumber(lng) && isFinite(lat) &&
-                    angular.isNumber(zoom) && isFinite(lat))
+                    angular.isNumber(lng) && isFinite(lng) &&
+                    angular.isNumber(zoom) && isFinite(zoom))
                 {
-                    // Only set new coords if either not defined or significantly enough different
-                    if (!angular.isNumber(this.center.lat) ||
-                        this.center.lat.toFixed(FLOAT_PRECISION) !== lat.toFixed(FLOAT_PRECISION))
-                    {
-                        this.center.lat = lat;
-                    }
-                    if (!angular.isNumber(this.center.lng) ||
-                        this.center.lng.toFixed(FLOAT_PRECISION) !== lng.toFixed(FLOAT_PRECISION))
-                    {
-                        this.center.lng = lng;
-                    }
+                    leafletData.getMap().then(function(map) {
+                        var changed = false;
+                        // Only set new coords if either not defined or significantly enough different
+                        // We compare to the last stored center because it is possible that Leaflet
+                        // doesn't exactly go to the coords we wanted. To prevent looping updated, we compare
+                        // to what we last wanted to set it to.
+                        var newLat = this._lastStoredCenter.lat;
+                        if (!angular.isNumber(newLat) || newLat.toFixed(FLOAT_PRECISION) !== lat.toFixed(FLOAT_PRECISION)) {
+                            changed = true;
+                            newLat = lat;
+                        }
 
-                    // Set zoom
-                    this.center.zoom = zoom;
+                        var newLng = this._lastStoredCenter.lng;
+                        if (!angular.isNumber(newLng) || newLng.toFixed(FLOAT_PRECISION) !== lng.toFixed(FLOAT_PRECISION)) {
+                            changed = true;
+                            newLng = lng;
+                        }
 
-                    // Save the center, but don't update the url
-                    this.saveCenter(false);
+                        var newZoom = this._lastStoredCenter.zoom;
+                        if (!angular.isNumber(newZoom) || newZoom !== zoom) {
+                            changed = true;
+                            newZoom = zoom;
+                        }
+
+                        if (changed) {
+                            // Set the new center (directly through leaflet to only fire
+                            // the reload of locations once the view is set).
+                            map.setView([newLat, newLng], newZoom);
+                        }
+                    }.bind(this));
+
+                    // The passed center looked valid (and we will set it soon)
                     return true;
                 }
+
+                // Passed center is not valid
                 return false;
             };
 
@@ -135,93 +123,224 @@
              * @private
              */
             MainMapService.prototype._setMapCenterFromUrl = function() {
-                var hash = $location.hash();
+                var rawZoom = $routeParams.zoom || '';
+                var rawCoords = $routeParams.coords || '';
                 var zoom, lat, lng;
 
-                var match = ZOOM_REGEX.exec(hash);
-                if (match) {
-                    // Found zoom value
-                    zoom = parseInt(match[1], 10);
-                }
+                // Parse the raw zoom
+                zoom = parseInt(rawZoom, 10);
 
-                match = COORDINATES_REGEX.exec(hash);
-                if (match) {
-                    lat = parseFloat(match[1]);
-                    lng = parseFloat(match[2]);
+                // Parse the coordinates
+                var splitCoords = rawCoords.split(',');
+                if (splitCoords.length === 2) {
+                    lat = parseFloat(splitCoords[0]);
+                    lng = parseFloat(splitCoords[1]);
                 }
 
                 return this._setMapCenterIfValid(lat, lng, zoom);
             };
 
             /**
-             * Sets the location type filter from the URL hash.
+             * Parses and sets all the filters from the URL.
              * @private
              */
-            MainMapService.prototype._setTypeFilterFromUrl = function() {
-                var match = TYPE_FILTER_REGEX.exec($location.hash());
-                if (match) {
-                    if (locationFilterService.POSSIBLE_FILTERS.type.indexOf(match[1]) >= 0) {
+            MainMapService.prototype._setFiltersFromUrl = function() {
+                // TODO: don't duplicate, make generic
+                if ($routeParams.type) {
+                    // By default set the inactive value (if invalid value was given)
+                    var typeFilter = locationFilterService.INACTIVE_FILTER_VALUE.type;
+                    if (locationFilterService.POSSIBLE_FILTERS.type.indexOf($routeParams.type) >= 0) {
                         // Found valid location type filter
-                        locationFilterService.activeFilters.type = match[1];
+                        typeFilter = $routeParams.type;
                     }
-                    else {
-                        // Invalid type, reset to inactive
-                        locationFilterService.activeFilters.type = locationFilterService.INACTIVE_FILTER_VALUE.type;
 
-                        // Update the URL to make sure it's always well-formed
-                        this.updateUrl();
+                    // Set the new value
+                    locationFilterService.activeFilters.type = typeFilter;
+                }
+
+                if ($routeParams.recent) {
+                    // By default set the inactive value (if invalid value was given)
+                    var recentFilter = locationFilterService.INACTIVE_FILTER_VALUE.recent;
+                    if (locationFilterService.POSSIBLE_FILTERS.recent.indexOf($routeParams.recent) >= 0) {
+                        // Found valid recent filter
+                        recentFilter = $routeParams.recent;
                     }
+
+                    // Set the new value
+                    locationFilterService.activeFilters.recent = recentFilter;
                 }
+
+                // Update the URL to make sure it's always well-formed
+                this._updateFiltersInUrl();
             };
 
             /**
-             * Sets all the map settings stored in the URL.
+             * Tells the location service to query for new locations based on the
+             * currently shown map section
+             * @private
              */
-            MainMapService.prototype.setMapFromUrl = function() {
-                // Set center and type filter
-                this._setMapCenterFromUrl();
-                this._setTypeFilterFromUrl();
+            MainMapService.prototype._reloadLocations = function() {
+                leafletData.getMap().then(function(map) {
+                    // Get the bounds and zoom level of the map and query the locations
+                    // Note: we should use the _lastStoredCenter, but there is no easy way
+                    // to get the bounding box from that.
+                    locationService.queryByBounds(map.getBounds().toBBoxString(), map.getZoom());
+                });
             };
 
             /**
-             * Saves the map center in local storage and in the url
-             * @param {boolean} [updateUrl=true] Whether to update the URL
-             *      after saving to local storage
+             * Updates the URL params to correctly reflect the currently active filters.
+             * @private
              */
-            MainMapService.prototype.saveCenter = function(updateUrl) {
-                // Store it in local storage
-                $window.localStorage.setItem(MAP_CENTER_STORAGE_ID,
-                    JSON.stringify(this.center)
-                );
-
-                // Check if we should update the url (defaults to true)
-                if (updateUrl !== false) {
-                    this.updateUrl();
-                }
-            };
-
-            /**
-             * Updates the URL hash to represent the currently displayed map.
-             * The URL will contain the zoom, coordinates as well as the
-             * location type filter value.
-             */
-            MainMapService.prototype.updateUrl = function() {
-                // Add zoom and coords to the hash
-                var hash =
-                    'zoom:' +
-                    this.center.zoom +
-                    ',coords:' +
-                    this.center.lat.toFixed(FLOAT_PRECISION) + '-' +
-                    this.center.lng.toFixed(FLOAT_PRECISION);
-
-                // Add type filter if active
+            MainMapService.prototype._updateFiltersInUrl = function() {
+                var typeFilter;
                 if (locationFilterService.activeFilters.type !== locationFilterService.INACTIVE_FILTER_VALUE.type) {
-                    hash += ',type:' + locationFilterService.activeFilters.type;
+                    typeFilter = locationFilterService.activeFilters.type;
+                }
+
+                var recentFilter;
+                if (locationFilterService.activeFilters.recent !== locationFilterService.INACTIVE_FILTER_VALUE.recent) {
+                    recentFilter = locationFilterService.activeFilters.recent;
                 }
 
                 // Replace the url hash (without adding a new history item)
                 $location.replace();
-                $location.hash(hash);
+                $route.updateParams({
+                    type: typeFilter,
+                    recent: recentFilter
+                });
+            };
+
+            /**
+             * Updates the URL to represent the currently displayed map.
+             * The zoom as well as the coordinates are set.
+             */
+            MainMapService.prototype._updateCenterInUrl = function() {
+                var coords =
+                    this._lastStoredCenter.lat.toFixed(FLOAT_PRECISION) + ',' +
+                    this._lastStoredCenter.lng.toFixed(FLOAT_PRECISION);
+
+                // Replace the url hash (without adding a new history item)
+                $location.replace();
+                $route.updateParams({
+                    zoom: this._lastStoredCenter.zoom,
+                    coords: coords
+                });
+            };
+
+            MainMapService.prototype._showPlace = function(place) {
+                var targetZoom = place.zoom || DEFAULT_ZOOM;
+                var targetLat = place.lat;
+                var targetLng = place.lng;
+
+                // For a better fit, we try to get the bounding box
+                if (_.isArray(place.boundingBox)) {
+                    leafletData.getMap().then(function(map) {
+                        // Find the center and zoom level we would go to with the bounding box
+                        var bounds = L.latLngBounds(place.boundingBox);
+                        var boundingBoxCenter = bounds.getCenter();
+                        var boundingBoxZoom = map.getBoundsZoom(bounds);
+
+                        // Only set the bounding box based center if we wouldn't zoom out too far
+                        // (e.g. the US bounding box is basically the whole world)
+                        if (boundingBoxZoom >= DEFAULT_ZOOM) {
+                            targetZoom = boundingBoxZoom;
+                            targetLat = boundingBoxCenter.lat;
+                            targetLng = boundingBoxCenter.lng;
+                        }
+
+                        // Set the center
+                        this._setMapCenterIfValid(targetLat, targetLng, targetZoom);
+                    }.bind(this));
+                }
+                else {
+                    // If no bounding box given, set the center directly
+                    this._setMapCenterIfValid(targetLat, targetLng, targetZoom);
+                }
+            };
+
+            /**
+             * Initialises the main map by setting the filters, center and zoom.
+             * Different strategies are tried for the center in this order:
+             *  - If a target location was set, then that is loaded. No other strategy is tried.
+             *  - From the URL
+             *  - From local storage
+             *  - By asking the backend for a location (based in the user's IP)
+             */
+            MainMapService.prototype.initialiseMap = function() {
+                // Set the filters from the url first
+                this._setFiltersFromUrl();
+
+                var centerSet = false;
+                if (angular.isObject(this._targetPlace)) {
+                    centerSet = true;
+
+                    // Show the place and reset the target
+                    this._showPlace(this._targetPlace);
+                    this._targetPlace = undefined;
+                }
+
+                // Try setting from the URL hash
+                if (!centerSet) {
+                    centerSet = this._setMapCenterFromUrl();
+                }
+
+                // Try to load from center from local storage
+                if (!centerSet) {
+                    centerSet = this._setMapCenterFromLocalStorage();
+                }
+
+                // Finally, ask the backend for a center
+                if (!centerSet) {
+                    backendService.getGeoIP().then(function(geoIp) {
+                        // Show the received place
+                        this._showPlace(geoIp.data);
+                    }.bind(this));
+                }
+            };
+
+            /**
+             * Set the location that the main map will try to show the next time it's loaded.
+             * The targetPlace parameter must have a lat and a lng property and can have
+             * a zoom and/or a boundingBox property.
+             * @param {{}} targetPlace
+             */
+            MainMapService.prototype.setTargetPlace = function(targetPlace) {
+                this._targetPlace = targetPlace;
+            };
+
+            /**
+             * Handler for changes to the center and zoom of the map.
+             * The controller is responsible for calling this method.
+             * @param {{}} newCenter
+             */
+            MainMapService.prototype.onCenterChanged = function(newCenter) {
+                // Check if something actually changed
+                if (newCenter.lat !== this._lastStoredCenter.lat ||
+                    newCenter.lng !== this._lastStoredCenter.lng ||
+                    newCenter.zoom !== this._lastStoredCenter.zoom)
+                {
+                    this._lastStoredCenter.lat = newCenter.lat;
+                    this._lastStoredCenter.lng = newCenter.lng;
+                    this._lastStoredCenter.zoom = newCenter.zoom;
+
+                    // Store it in local storage
+                    $window.localStorage.setItem(MAP_CENTER_STORAGE_ID,
+                        JSON.stringify(this._lastStoredCenter)
+                    );
+
+                    this._updateCenterInUrl();
+                    this._reloadLocations();
+                }
+            };
+
+            /**
+             * Handler for changes in the filter settings.
+             * The controller is responsible for calling this method.
+             */
+            MainMapService.prototype.onFiltersChanged = function() {
+                this._updateFiltersInUrl();
+                this._reloadLocations();
             };
 
             /**
@@ -340,7 +459,6 @@
                         // Remove the circle marker again
                         map.removeLayer(circleMarker);
 
-                        // TODO: already start loading the locations now for the location list
                         $location
                             .path('list/locations/')
                             .search('lat', adjustedCenter.lat.toFixed(FLOAT_PRECISION))

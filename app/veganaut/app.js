@@ -44,7 +44,7 @@
             $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
 
             $routeProvider.when('/', {template: '<vg-home></vg-home>'});
-            $routeProvider.when('/map', {
+            $routeProvider.when('/map/', {
                 template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
