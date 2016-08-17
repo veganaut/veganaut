@@ -17,10 +17,9 @@
     };
 
     var homeCtrl = [
-        '$scope', 'leafletData', 'mapDefaults', 'locationService', 'mainMapService',
-        function($scope, leafletData, mapDefaults, locationService, mainMapService) {
+        '$scope', '$location', 'backendService', 'mainMapService',
+        function($scope, $location, backendService, mainMapService) {
             var vm = this;
-            // TODO: this is mostly mostly duplications with mainMap -> consolidate!
 
             // Expose the global methods we still need
             // TODO: find a better way to do this
@@ -29,35 +28,59 @@
                 isLoggedIn: $scope.$parent.isLoggedIn
             };
 
-            /**
-             * Leaflet map settings
-             * @type {{}}
-             */
-            vm.mapDefaults = mapDefaults;
+            // TODO WIP: finalise the new start page
+            vm.countryName = undefined;
+            vm.form = {
+                ctaInput: ''
+            };
 
-            /**
-             * Reference to the leaflet map object
-             * @type {{}}
-             */
-            vm.map = undefined;
+            var targetPlace;
 
-            /**
-             * Locations loaded from the backend
-             * @type {LocationSet}
-             */
-            vm.locationSet = locationService.getLocationSet();
+            vm.goToMap = function() {
+                mainMapService.setTargetPlace(targetPlace);
+                $location.path('map');
+            };
 
-            // Expose map settings and filter service
-            vm.mapCenter = mainMapService.center;
+            vm.getUserLocation = function() {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    console.log(position);
+                    targetPlace = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        zoom: 15 // TODO WIP: what to use?
+                    };
+                    $scope.$apply(function() {
+                        vm.form.ctaInput = 'My location';
+                    });
+                }, function(error) {
+                    // TODO WIP: show error to user
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: true,
+                    timeout: 30000,
+                    maximumAge: 0
+                });
+            };
 
-            // Get a reference the the leaflet map object
-            var mapPromise = leafletData.getMap();
-            mapPromise.then(function(map) {
-                // Expose the map
-                vm.map = map;
+            // TODO WIP: only do that if not already located (local storage?)
+            backendService.getGeoIP().then(function(res) {
+                var data = res.data;
+                console.log(data);
 
-                // Query the locations
-                locationService.queryByBounds(map.getBounds().toBBoxString());
+                if (_.isObject(data)) {
+                    vm.countryName = data.countryName;
+                    vm.form.ctaInput = vm.countryName;
+
+                    targetPlace = {
+                        lat: data.lat,
+                        lng: data.lng,
+                        boundingBox: data.boundingBox
+                    };
+                }
+                // else {
+                    // TODO WIP
+                // }
+
             });
         }
     ];

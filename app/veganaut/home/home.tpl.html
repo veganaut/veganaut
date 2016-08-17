@@ -15,28 +15,65 @@
             </p>
         </div>
     </div>
-    <button type="button" class="btn-map btn btn-block btn-link home-window-to-map top-box--home__content-size"
-     ng-click="homeVm.legacyGlobals.goToView('map')">
-        <span class="glyphicon glyphicon-hand-right"></span>{{ 'home.action.visitMap' | translate }}
-    </button>
+    <!-- TODO WIP: translate! -->
+    <div class="container--home home__call-to-action">
+        <div class="container">
+            <h2 class="h3">
+                Find vegan offers in
+            </h2>
+            <form novalidate>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input
+                         type="text"
+                         class="form-control"
+                         ng-model="homeVm.form.ctaInput"
+                        >
+                        <div class="input-group-addon">
+                            <button type="submit" class="btn btn-no-styles"
+                             ng-click="homeVm.getUserLocation()">
+                                <span class="glyphicon glyphicon-screenshot"></span>
+                                My location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-default btn-block"
+             ng-click="homeVm.goToMap()">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                Show map
+            </button>
+        </div>
+    </div>
     <div class="container--home top-box--home__expand-size">
         <div class="container">
-            <p>
-                <button type="button" class="btn-register btn btn-block btn-primary"
-                 ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-                 ng-click="homeVm.legacyGlobals.goToView('register')"
-                 title="{{ 'navigation.register' | translate }}">
-                    <span class="glyphicon glyphicon-heart"></span>
-                    {{ 'navigation.register' | translate }}
-                </button>
-            </p>
+            <div class="">
+                <h2 class="h4 title--home">Participate!</h2>
+                <p>
+                    <!-- TODO WIP: remove this again -->
+                    Test
+                    <a href="/map/?zoom=7&coords=40.3256080,-4.4494629">middle</a>
+                    <a href="/map/?zoom=2&coords=0.0000000,0.0000000&type=retail">retail</a>
+                    <a href="/map/?zoom=2&coords=0.0000000,0.0000000&type=gastronomy">gastronomy</a>
+                </p>
+                <p>
+                    <button type="button" class="btn-register btn btn-block btn-primary"
+                     ng-if="!homeVm.legacyGlobals.isLoggedIn()"
+                     ng-click="homeVm.legacyGlobals.goToView('register')"
+                     title="{{ 'navigation.register' | translate }}">
+                        <span class="glyphicon glyphicon-heart"></span>
+                        {{ 'navigation.register' | translate }}
+                    </button>
+                </p>
+            </div>
             <div class="home-game">
                 <h2 class="h4 title--home">{{ 'home.team.title' | translate }}</h2>
                 <p>
                     {{ 'home.team.text1' | translate }}
                 </p>
                 <p>
-                    <img src="/img/team.jpg" class="home-team-image" />
+                    <img src="/img/team.jpg" class="home-team-image"/>
                 </p>
                 <p>
                     {{ 'home.team.text2' | translate }}
@@ -57,12 +94,3 @@
         </div>
     </div>
 </div>
-
-<leaflet class="main-map full-viewport"
- defaults="homeVm.mapDefaults" lf-center="homeVm.mapCenter">
-</leaflet>
-<vg-map-markers
- ng-if="homeVm.map"
- vg-locations="homeVm.locationSet.locations"
- vg-map="homeVm.map">
-</vg-map-markers>
