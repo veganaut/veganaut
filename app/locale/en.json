@@ -7,12 +7,12 @@
     "map": "Map",
     "community": "Community",
     "profile": "Profile",
+    "about": "About",
     "blog": "Blog",
     "contactForm": "Contact",
     "twitter": "Twitter",
     "facebook": "Facebook",
-    "github": "GitHub",
-    "bugs": "Bugreport"
+    "bugs": "Bugreport / GitHub"
   },
   "message": {
     "registration": {
@@ -476,21 +476,22 @@
     }
   },
   "home": {
-    "action": {
-      "visitMap": "Check out the map",
-      "showMore": "Show more"
+    "tagLine": "A community-driven vegan guide",
+    "callToAction": {
+      "text": "Find vegan offers in:",
+      "inputPlaceholder": "Enter a country or city",
+      "showMap": "Show map",
+      "geoLocate": "My location"
     },
     "lead": {
-      "title": "Explore the vegan universe!",
-      "text1": "Where can I get something vegan to eat nearby? How broad is the vegan offer at which restaurants and shops and which vegan products are especially good? - On Veganaut.net we collect answers to such questions. The goal: a vegan world map.",
-      "text2": "Browse the map. Do you find vegan options that you didn't know of? At some places a lot of veganauts have already gathered intel, at other places we have no or hardly any infos. What's missing? Do you know e.g. a takeaway somewhere that makes a great vegan falafel, or a shop with a few vegan things? As a veganaut you can record these infos on the map and thereby immediately make them accessible to everybody else."
+      "openSource": "Open-source",
+      "openContent": "open-content",
+      "text": "All our infos about vegan offers were contributed by people like you and can be used freely for your own projects. Sharing is caring."
     },
-    "team": {
-      "title": "The people behind Veganaut.net",
-      "text1": "That's our core team from left to right: Sophie, Sebu and Toby.",
-      "text2": "Toby is our head of development, Sebu is our head of everything but development and Sophie is our summer intern.",
-      "text3": "In addition to the core team we have software developer friends who join us for hackathons or volunteer a few lines of code in their free time. If you're a developer and you can imagine doing that too: contact us!",
-      "text4": "And then of course there's all of you, the amazing Veganauts, who share their vegan discoveries on Veganaut.net. Thank you very much, we're glad you're part of this!"
+    "participate": {
+      "title": "Participate",
+      "text": "Do you want to help others to explore the vegan universe? On Veganaut you can share and rate vegan discoveries.",
+      "register": "Start sharing!"
     }
   }
 }

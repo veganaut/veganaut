@@ -1,11 +1,13 @@
 <div class="home__hero-image">
     <div class="home__logo">
         <ng-include src="'img/veganaut.svg'" class="logo"></ng-include>
+        <h1 class="home__tag-line h4">
+            {{ 'home.tagLine' | translate }}
+        </h1>
     </div>
-    <!-- TODO WIP: translate and integrate new texts! -->
     <div class="home__call-to-action">
         <h2 class="h3">
-            Find vegan offers in
+            {{ 'home.callToAction.text' | translate }}
         </h2>
         <form novalidate>
             <div class="form-group">
@@ -13,13 +15,14 @@
                     <input
                      type="text"
                      class="form-control"
+                     placeholder="{{ 'home.callToAction.inputPlaceholder' | translate }}"
                      ng-model="homeVm.form.ctaInput"
                     >
-                    <div class="input-group-addon">
+                    <div class="home__call-to-action__geo-locate input-group-addon">
                         <button type="submit" class="btn btn-no-styles"
                          ng-click="homeVm.getUserLocation()">
                             <span class="glyphicon glyphicon-screenshot"></span>
-                            My location
+                            {{ 'home.callToAction.geoLocate' | translate }}
                         </button>
                     </div>
                 </div>
@@ -28,57 +31,34 @@
         <button class="btn btn-default btn-block"
          ng-click="homeVm.goToMap()">
             <span class="glyphicon glyphicon-map-marker"></span>
-            Show map
+            {{ 'home.callToAction.showMap' | translate }}
         </button>
     </div>
 </div>
 <div>
-    <h1 class="h4 title--home">{{ 'home.lead.title' | translate }}</h1>
-    <p>
-        {{ 'home.lead.text1' | translate }}
-        <a href="" class="action--show-more"
-         ng-click="showFullLeadText = true | track:'home.text':'expandLeadText'"
-         ng-hide="showFullLeadText">
-            {{ 'home.action.showMore' | translate}}
+    <h2 class="h4 title--home">
+        <a href="https://github.com/veganaut/veganaut/blob/master/LICENSE" target="_blank">
+            {{ 'home.lead.openSource' | translate }}
+        </a> &
+        <a href="https://creativecommons.org/licenses/by-sa/3.0/ch/" target="_blank">
+            {{ 'home.lead.openContent' | translate }}
         </a>
+    </h2>
+    <p>
+        {{ 'home.lead.text' | translate }}
     </p>
-    <p ng-show="showFullLeadText">
-        {{ 'home.lead.text2' | translate }}
+
+    <h2 class="h4 title--home">{{ 'home.participate.title' | translate }}</h2>
+    <p>
+        {{ 'home.participate.text' | translate }}
     </p>
-</div>
-<div class="">
-    <h2 class="h4 title--home">Participate!</h2>
     <p>
         <button type="button" class="btn-register btn btn-block btn-primary"
          ng-if="!homeVm.legacyGlobals.isLoggedIn()"
          ng-click="homeVm.legacyGlobals.goToView('register')"
          title="{{ 'navigation.register' | translate }}">
             <span class="glyphicon glyphicon-heart"></span>
-            {{ 'navigation.register' | translate }}
+            {{ 'home.participate.register' | translate }}
         </button>
     </p>
-</div>
-<div class="home-game">
-    <h2 class="h4 title--home">{{ 'home.team.title' | translate }}</h2>
-    <p>
-        {{ 'home.team.text1' | translate }}
-    </p>
-    <p>
-        <img src="/img/team.jpg" class="home-team-image"/>
-    </p>
-    <p>
-        {{ 'home.team.text2' | translate }}
-        <a href="" class="action--show-more"
-         ng-click="showFullGameText = true | track:'home.text':'expandGameText'"
-         ng-hide="showFullGameText">
-            {{ 'home.action.showMore' | translate}}
-        </a>
-    </p>
-    <p ng-show="showFullGameText">
-        {{ 'home.team.text3' | translate }}
-    </p>
-    <p ng-show="showFullGameText">
-        {{ 'home.team.text4' | translate }}
-    </p>
-    <!-- TODO: 'contact us' should be a link -->
 </div>

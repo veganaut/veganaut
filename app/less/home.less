@@ -26,16 +26,23 @@
 .home__logo {
     margin: auto;
     padding-top: 15%;
+    text-align: center;
 
     .logo {
         fill: white;
         width: 150px;
-        height: 70px;
+        height: 50px;
 
         @media screen and (min-width: 400px) {
             width: 200px;
+            height: 70px;
         }
     }
+}
+
+.home__tag-line {
+    color: white;
+    margin: 0;
 }
 
 .home__call-to-action {
@@ -47,24 +54,18 @@
     right: 0;
     text-align: center;
 
-    // TODO WIP: add specific classes for this
-    .input-group-addon {
-        padding: 0;
+}
+.home__call-to-action__geo-locate {
+    padding: 0;
 
-        .btn-no-styles {
-            padding: 6px 12px;
-            white-space: nowrap;
-        }
+    .btn {
+        padding: 6px 12px;
+        white-space: nowrap;
     }
 }
 
 .title--home {
     margin-top: 16px;
-}
-
-.home-team-image {
-    width: 100%;
-    height: auto;
 }
 
 // Global style changes only applicable on the home page

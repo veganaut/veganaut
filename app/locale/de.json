@@ -7,12 +7,12 @@
     "map": "Karte",
     "community": "Community",
     "profile": "Profil",
+    "about": "About",
     "blog": "Blog",
     "contactForm": "Kontakt",
     "twitter": "Twitter",
     "facebook": "Facebook",
-    "github": "GitHub",
-    "bugs": "Bugreport"
+    "bugs": "Bugreport / GitHub"
   },
   "message": {
     "registration": {
@@ -476,21 +476,22 @@
     }
   },
   "home": {
-    "action": {
-      "visitMap": "Zur Karte",
-      "showMore": "Mehr anzeigen"
+    "tagLine": "Ein Vegan-Guide zum Mitmachen",
+    "callToAction": {
+      "text": "Vegane Angebote finden in:",
+      "inputPlaceholder": "Land oder Stadt eingeben",
+      "showMap": "Karte anzeigen",
+      "geoLocate": "Mein Standort"
     },
     "lead": {
-      "title": "Erkunde das vegane Universum!",
-      "text1": "Wo gibt es in der Nähe etwas veganes zu essen? Wie gross ist die vegane Auswahl in welchen Restaurants und Läden und welche veganen Produkte sind besonders gut? - Auf Veganaut.net sammeln wir Antworten auf solche Fragen. Das Ziel: eine vegane Weltkarte.",
-      "text2": "Schau dich auf der Karte um. Findest du vegane Angebote, von denen du noch nichts wusstest? An einigen Orten haben schon viele VeganautInnen ihre Geheimtipps eingetragen, an anderen Orten haben wir noch wenig oder gar keine Infos. Was fehlt noch? Kennst du irgendwo z.B. ein Take Away, das einen guten veganen Falafel macht, oder einen Laden mit ein paar veganen Sachen? Als VeganautIn kannst du diese Infos auf der Karte eintragen und sofort allen Interessierten zugänglich machen."
+      "openSource": "Open-source",
+      "openContent": "open-content",
+      "text": "Alle unsere Infos über vegane Angebote stammen von Menschen wie dir und stehen für deine eigenen Projekte frei zur Verfügung. Sharing is caring."
     },
-    "team": {
-      "title": "Die Leute hinter Veganaut.net",
-      "text1": "Das ist unser Kernteam von links nach rechts: Sophie, Sebu und Toby.",
-      "text2": "Toby ist unser Head of Development, Sebu ist unser Head of everything but Development und Sophie ist unsere Sommer-Praktikantin.",
-      "text3": "Zusätzlich haben wir Freundinnen und Freunde, die uns während Hackathons beim Programmieren unterstützen, oder in ihrer Freizeit ein paar Zeilen Code beisteuern. Wenn du das auch machen möchtest: Kontaktiere uns!",
-      "text4": "Und natürlich gibt's dann noch euch, ihr fabulösen Veganautinnen und Veganauten, die ihr eure veganen Entdeckungen auf Veganaut.net teilt. Herzlichen Dank & schön, seid ihr dabei!"
+    "participate": {
+      "title": "Mitmachen",
+      "text": "Willst du anderen helfen, das vegane Universum zu erkunden? Auf Veganaut kannst du vegane Entdeckungen teilen und bewerten.",
+      "register": "Ich will mitmachen!"
     }
   }
 }
