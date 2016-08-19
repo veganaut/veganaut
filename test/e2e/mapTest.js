@@ -51,8 +51,8 @@ describe('map when logged out.', function() {
 
     it('should show some locations on the map.', function() {
         expect(element.all(by.css('.marker')).count()).toBeGreaterThan(0, 'has at least one location');
+        expect(element.all(by.css('.marker-cluster')).count()).toBeGreaterThan(0, 'has at least one marker cluster');
         expect(element.all(by.css('.marker.marker--type-retail')).count()).toBeGreaterThan(0, 'has at least one retail location');
-        expect(element.all(by.css('.marker.marker--type-gastronomy')).count()).toBeGreaterThan(0, 'has at least one gastronomy location');
         expect(element.all(by.css('.marker.marker--owner')).count()).toBe(0, 'has no location marked as being owned');
     });
 
@@ -62,7 +62,7 @@ describe('map when logged out.', function() {
             browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":47.1,"lng":8.2,"zoom":7}\')');
             browser.get('/map');
 
-            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=7&coords=47\.1000000,8\.2000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
@@ -74,7 +74,7 @@ describe('map when logged out.', function() {
             browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":5,"lng":115,"zoom":10}\')');
             browser.get('/map');
 
-            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=10&coords=5\.0000000,115\.0000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');
@@ -86,7 +86,7 @@ describe('map when logged out.', function() {
         it('should watch map center in URL', function() {
             browser.get('/map#zoom:7,coords:47.1-8.2');
 
-            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:7,coords:47\.1000000-8\.2000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=7&coords=47\.1000000,8\.2000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(true, 'locations are visible');
@@ -96,7 +96,7 @@ describe('map when logged out.', function() {
         it('should still watch map center in URL', function() {
             browser.get('/map#zoom:10,coords:5-115');
 
-            expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:10,coords:5\.0000000-115\.0000000$/);
+            expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=10&coords=5\.0000000,115\.0000000$/);
 
             element.all(by.css('.marker')).each(function(location) {
                 expect(location.isDisplayed()).toBe(false, 'locations are visible');
@@ -132,6 +132,9 @@ describe('map when logged out.', function() {
             quality0 = allQuality0.first();
             quality3 = allQuality3.first();
             quality4 = allQuality4.first();
+
+            // Zoom enough in so we show all the location
+            browser.get('/map?zoom=14&coords=46.945,7.449');
         });
 
         it('should qualify locations by quality', function() {

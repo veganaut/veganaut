@@ -40,7 +40,7 @@ describe('authentication.', function() {
             });
 
             it('should be possible to login with correct username and pw.', function() {
-                expect(browser.getCurrentUrl()).toMatch(/\/map#zoom:2,coords:0\.0000000-0\.0000000$/, 'should redirect to the map after login');
+                expect(browser.getCurrentUrl()).toMatch(/\/map\/$/, 'should redirect to the map after login');
             });
 
             it('should mark the body as logged in.', function() {
