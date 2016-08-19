@@ -10,29 +10,45 @@
             {{ 'home.callToAction.text' | translate }}
         </h2>
         <form novalidate>
-            <div class="form-group">
-                <div class="input-group">
+            <div class="home__call-to-action__input">
+                <div class="form-group form--auto-complete">
+                    <label class="sr-only" for="homeCallToAction">{{ 'home.callToAction.text' | translate }}</label>
                     <input
                      type="text"
+                     id="homeCallToAction"
                      class="form-control"
                      placeholder="{{ 'home.callToAction.inputPlaceholder' | translate }}"
-                     ng-model="homeVm.form.ctaInput"
+                     ng-model="homeVm.ctaFormInput"
+                     ng-focus="homeVm.onCtaInputFocus()"
+                     ng-blur="homeVm.onCtaInputBlur()"
+                     uib-typeahead="res.getDisplayName() for res in homeVm.getSearchResults($viewValue)"
+                     typeahead-min-length="3"
+                     typeahead-wait-ms="500"
+                     typeahead-loading="homeVm.searching"
+                     typeahead-on-select="homeVm.onResultSelected($item)"
                     >
-                    <div class="home__call-to-action__geo-locate input-group-addon">
-                        <button type="submit" class="btn btn-no-styles"
-                         ng-click="homeVm.getUserLocation()">
-                            <span class="glyphicon glyphicon-screenshot"></span>
-                            {{ 'home.callToAction.geoLocate' | translate }}
-                        </button>
+                    <div class="form--auto-complete__loading"
+                     ng-show="homeVm.searching || homeVm.geolocating">
+                        <i class="glyphicon glyphicon-refresh">
+                        </i>
                     </div>
                 </div>
+                <button class="btn btn-default"
+                 type="button"
+                 ng-click="homeVm.getUserLocation()">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                    {{ 'home.callToAction.geolocate' | translate }}
+                </button>
             </div>
+            <button class="btn btn-default btn-block"
+             type="submit"
+             ng-disabled="!homeVm.canSubmitCta()"
+             ng-click="homeVm.onCtaSubmit()">
+                <span class="glyphicon glyphicon-map-marker"></span>
+                {{ 'home.callToAction.showMap' | translate }}
+            </button>
         </form>
-        <button class="btn btn-default btn-block"
-         ng-click="homeVm.goToMap()">
-            <span class="glyphicon glyphicon-map-marker"></span>
-            {{ 'home.callToAction.showMap' | translate }}
-        </button>
+
     </div>
 </div>
 <div>
@@ -55,7 +71,7 @@
     <p>
         <button type="button" class="btn-register btn btn-block btn-primary"
          ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-         ng-click="homeVm.legacyGlobals.goToView('register')"
+         ng-click="homeVm.legacyGlobals.goToView('register') | track:'home.participate':'home.participate.submit'"
          title="{{ 'navigation.register' | translate }}">
             <span class="glyphicon glyphicon-heart"></span>
             {{ 'home.participate.register' | translate }}

@@ -7,7 +7,7 @@
     "map": "Carte",
     "community": "Communauté",
     "profile": "Profil",
-    "about": "About",
+    "about": "Qui sommes-nous",
     "blog": "Blog",
     "contactForm": "Contact",
     "twitter": "Twitter",
@@ -481,7 +481,7 @@
       "text": "Find vegan offers in:",
       "inputPlaceholder": "Enter a country or city",
       "showMap": "Afficher la carte",
-      "geoLocate": "My location"
+      "geolocate": "My location"
     },
     "lead": {
       "openSource": "Open-source",

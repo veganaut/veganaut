@@ -481,7 +481,7 @@
       "text": "Find vegan offers in:",
       "inputPlaceholder": "Enter a country or city",
       "showMap": "Show map",
-      "geoLocate": "My location"
+      "geolocate": "My location"
     },
     "lead": {
       "openSource": "Open-source",
@@ -490,7 +490,7 @@
     },
     "participate": {
       "title": "Participate",
-      "text": "Do you want to help others to explore the vegan universe? On Veganaut you can share and rate vegan discoveries.",
+      "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
       "register": "Start sharing!"
     }
   }

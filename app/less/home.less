@@ -45,23 +45,54 @@
     margin: 0;
 }
 
+// Style the call to action area
 .home__call-to-action {
     color: white;
 
     padding: 10px;
-    bottom: 0;
-    left: 0;
-    right: 0;
     text-align: center;
-
 }
-.home__call-to-action__geo-locate {
-    padding: 0;
+.home__call-to-action__input {
+    display: flex;
+
+    .form-group {
+        flex-grow: 1;
+    }
 
     .btn {
-        padding: 6px 12px;
-        white-space: nowrap;
+        padding: 4px 12px;
+        height: 34px;
+        margin-left: 10px;
     }
+}
+
+// Auto-complete input styles
+.form--auto-complete {
+    position: relative;
+}
+.form--auto-complete__loading {
+    color: @colorDark;
+    background-color: white;
+
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    padding-left: 7px;
+
+    .glyphicon {
+        -webkit-animation:spin 2s linear infinite;
+        -moz-animation:spin 2s linear infinite;
+        animation:spin 2s linear infinite;
+    }
+}
+.form--auto-complete__no-results {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    color: @colorDark;
+    padding: 5px 10px;
+    position: absolute;
 }
 
 .title--home {

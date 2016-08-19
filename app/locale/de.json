@@ -7,7 +7,7 @@
     "map": "Karte",
     "community": "Community",
     "profile": "Profil",
-    "about": "About",
+    "about": "Über uns",
     "blog": "Blog",
     "contactForm": "Kontakt",
     "twitter": "Twitter",
@@ -481,7 +481,7 @@
       "text": "Vegane Angebote finden in:",
       "inputPlaceholder": "Land oder Stadt eingeben",
       "showMap": "Karte anzeigen",
-      "geoLocate": "Mein Standort"
+      "geolocate": "Mein Standort"
     },
     "lead": {
       "openSource": "Open-source",

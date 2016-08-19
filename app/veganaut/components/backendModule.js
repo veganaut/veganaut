@@ -155,10 +155,15 @@
 
             /**
              * Requests the lat/lng based on the ip of the user
+             * @param {string} [language] Optional language (for the country name)
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getGeoIP = function() {
-                return $http.get(backendUrl + '/geoip');
+            BackendService.prototype.getGeoIP = function(language) {
+                return $http.get(backendUrl + '/geoip', {
+                    params: {
+                        lang: language
+                    }
+                });
             };
 
             /**
