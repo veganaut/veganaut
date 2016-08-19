@@ -187,7 +187,7 @@
             // TODO: only do that if not already located (local storage?)
             backendService.getGeoIP(localeService.getLocale()).then(function(res) {
                 var data = res.data;
-                if (_.isObject(data)) {
+                if (_.isObject(data) && Object.keys(data) > 0) {
                     vm.ctaFormInput = data.countryName;
 
                     targetPlace = {
