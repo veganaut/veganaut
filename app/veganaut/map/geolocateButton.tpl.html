@@ -1,6 +1,6 @@
 <button
  ng-if="geolocateButton.supported"
- ng-click="geolocateButton.locate($event)"
+ ng-click="geolocateButton.onClick($event)"
  ng-disabled="geolocateButton.locating"
  class="btn btn-default geolocate-button"
  ng-class="{ 'geolocate-button--locating': geolocateButton.initialLocate, 'active': geolocateButton.active }">

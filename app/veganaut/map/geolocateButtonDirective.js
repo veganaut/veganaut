@@ -22,6 +22,12 @@
         return {
             restrict: 'E',
             scope: {},
+            link: function(scope, element, attrs, vm) {
+                // Stop locating when destroyed
+                element.on('$destroy', function() {
+                    vm.stopLocate();
+                });
+            },
             controller: [
                 '$scope', '$window', '$timeout', '$translate',
                 'Leaflet', 'leafletData', 'angularPiwik', 'alertService',
@@ -60,17 +66,18 @@
                     this._marker = undefined;
 
                     /**
-                     * Use the geolocation API to locate the user and move the map to that place
+                     * Handler for clicks on the locate button.
+                     * Use the geolocation API to locate the user and move the map to that place.
                      * @param $event
                      */
-                    this.locate = function($event) {
+                    this.onClick = function($event) {
                         if (!this.supported || !this._map) {
                             return;
                         }
 
                         // Check if we are already active
                         if (this.active) {
-                            this._stopLocate();
+                            this.stopLocate();
                         }
                         else {
                             // Start locating and set to active
@@ -88,6 +95,27 @@
 
                         // Blur the button
                         $event.target.blur();
+                    };
+
+                    /**
+                     * Stops the locating and resets everything correctly.
+                     */
+                    this.stopLocate = function() {
+                        // Check if we are actually active
+                        if (this.active) {
+                            // Reset flags
+                            this.initialLocate = false;
+                            this.active = false;
+
+                            // Stop locating
+                            this._map.stopLocate();
+
+                            // Remove the marker
+                            if (angular.isDefined(this._marker)) {
+                                this._map.removeLayer(this._marker);
+                                this._marker = undefined;
+                            }
+                        }
                     };
 
                     /**
@@ -153,32 +181,13 @@
                      */
                     this._onLocationError = function() {
                         // Done locating
-                        this._stopLocate();
+                        this.stopLocate();
 
                         // Tell user about error
                         alertService.addAlert($translate.instant('message.geolocate.error'), 'danger');
 
                         // Track usage
                         angularPiwik.track('map.geolocation', 'error');
-                    };
-
-                    /**
-                     * Stops the locating and resets everything correctly.
-                     * @private
-                     */
-                    this._stopLocate = function() {
-                        // Reset flags
-                        this.initialLocate = false;
-                        this.active = false;
-
-                        // Stop locating
-                        this._map.stopLocate();
-
-                        // Remove the marker
-                        if (angular.isDefined(this._marker)) {
-                            this._map.removeLayer(this._marker);
-                            this._marker = undefined;
-                        }
                     };
 
                     // Retrieve the map
