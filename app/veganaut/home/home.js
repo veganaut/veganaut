@@ -54,7 +54,12 @@
              * The target place to show on the map when submitting the cta form.
              * @type {{}}
              */
-            var targetPlace;
+            var targetPlace = {
+                lat: 0,
+                lng: 0,
+                zoom: 2,
+                displayName: vm.ctaFormInput
+            };
 
             /**
              * Whether to clear the cta input field on the next focus event
