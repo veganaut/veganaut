@@ -40,13 +40,26 @@
                     {{ 'home.callToAction.geolocate' | translate }}
                 </button>
             </div>
-            <button class="btn btn-default btn-block"
-             type="submit"
-             ng-disabled="!homeVm.canSubmitCta()"
-             ng-click="homeVm.onCtaSubmit()">
-                <span class="glyphicon glyphicon-map-marker"></span>
-                {{ 'home.callToAction.showMap' | translate }}
-            </button>
+            <div class="row home__call-to-action__submit">
+                <div class="col-xs-6">
+                    <button class="btn btn-default btn-block"
+                     type="button"
+                     ng-disabled="!homeVm.canSubmitCta()"
+                     ng-click="homeVm.onCtaSubmit('list')">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        {{ 'home.callToAction.showList' | translate }}
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-default btn-block"
+                     type="submit"
+                     ng-disabled="!homeVm.canSubmitCta()"
+                     ng-click="homeVm.onCtaSubmit('map')">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        {{ 'home.callToAction.showMap' | translate }}
+                    </button>
+                </div>
+            </div>
         </form>
 
     </div>

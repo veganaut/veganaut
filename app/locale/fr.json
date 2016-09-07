@@ -482,6 +482,7 @@
     "callToAction": {
       "text": "Find vegan offers in:",
       "inputPlaceholder": "Enter a country or city",
+      "showList": "Afficher la liste",
       "showMap": "Afficher la carte",
       "geolocate": "My location"
     },
@@ -495,5 +496,8 @@
       "text": "Do you want to help others to explore the vegan universe? On Veganaut you can share and rate vegan discoveries.",
       "register": "Je veux participer!"
     }
+  },
+  "missingFeature": {
+    "goToList": "To get to the list, click on the \"Endroits\" button above. We are working on getting you there directly from the home page. Thanks for letting us know your interest!"
   }
 }

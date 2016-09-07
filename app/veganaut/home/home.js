@@ -133,11 +133,22 @@
              * Handler for submission of the cta form.
              * Will go to the selected place on the map.
              */
-            vm.onCtaSubmit = function() {
+            vm.onCtaSubmit = function(targetPage) {
                 mainMapService.setTargetPlace(targetPlace);
                 $location.path('map');
 
-                angularPiwik.track('home.cta', 'home.cta.submit');
+                // Check which target page was given
+                var action = '';
+                if (targetPage === 'list') {
+                    action = 'home.cta.submitToList';
+                    // Feature not done yet, inform the user
+                    alertService.addAlert($translate.instant('missingFeature.goToList'), 'info', undefined, 13000);
+                }
+                else {
+                    action = 'home.cta.submitToMap';
+                }
+
+                angularPiwik.track('home.cta', action);
             };
 
             /**

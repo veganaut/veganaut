@@ -482,6 +482,7 @@
     "callToAction": {
       "text": "Vegane Angebote finden in:",
       "inputPlaceholder": "Land oder Stadt eingeben",
+      "showList": "Liste anzeigen",
       "showMap": "Karte anzeigen",
       "geolocate": "Mein Standort"
     },
@@ -495,5 +496,8 @@
       "text": "Willst du anderen helfen, das vegane Universum zu erkunden? Auf Veganaut kannst du vegane Entdeckungen teilen und bewerten.",
       "register": "Ich will mitmachen!"
     }
+  },
+  "missingFeature": {
+    "goToList": "⁠⁠⁠Klicke auf den \"Locations\"-Knopf oben, um zur Liste zu gelangen. Wir arbeiten daran, dass dieser Zwischenschritt nicht mehr nötig ist. Danke für dein Verständnis!"
   }
 }
