@@ -2,10 +2,10 @@
     'use strict';
 
     module.controller('AppCtrl', [
-        '$scope', '$location', '$window', '$rootScope',
+        '$scope', '$location', '$window', '$rootScope', '$q',
         'angularPiwik', 'featureToggle',
         'backendService', 'playerService', 'localeService',
-        function($scope, $location, $window, $rootScope,
+        function($scope, $location, $window, $rootScope, $q,
             angularPiwik, featureToggle,
             backendService, playerService, localService)
         {
@@ -56,13 +56,19 @@
                 // Get the current complete URL that will be tracked
                 var absUrl = $location.absUrl();
 
-                // Get the current value of the accountType piwik custom variable
+                // Get the current value of the accountType and entryMode Piwik custom variables
                 // TODO: should only track if "newRoute.redirectTo" is not set? Or track differently if it is
-                angularPiwik.getCustomVariable(1, 'visit').then(function(customVar) {
-                    // Check what we previously stored as account type
-                    var previousAccountType;
-                    if (angular.isArray(customVar)) {
-                        previousAccountType = customVar[1];
+                $q.all({
+                    accountType: angularPiwik.getCustomVariable(1, 'visit'),
+                    entryMode: angularPiwik.getCustomVariable(3, 'visit')
+                }).then(function(customVars) {
+                    // Check what we previously stored as account type and entry mode
+                    var previousAccountType, previousEntryMode;
+                    if (angular.isArray(customVars.accountType)) {
+                        previousAccountType = customVars.accountType[1];
+                    }
+                    if (angular.isArray(customVars.entryMode)) {
+                        previousEntryMode = customVars.entryMode[1];
                     }
 
                     // Check what we now would store as account type
@@ -70,12 +76,20 @@
 
                     // Set the account type if it wasn't set already or if it's now a user
                     // (meaning we never want to go back from 'user' to 'none'
-                    if (angular.isUndefined(previousAccountType) || newAccountType === 'user') {
+                    if (!angular.isString(previousAccountType) || newAccountType === 'user') {
                         angularPiwik.setCustomVariable(1, 'accountType', newAccountType, 'visit');
                     }
 
                     // Set the current locale
                     angularPiwik.setCustomVariable(2, 'locale', localService.getLocale(), 'visit');
+
+                    // Set the mode (for the visit and the page)
+                    var newMode = $scope.isEmbedded ? 'embedded' : 'default';
+                    if (!angular.isString(previousEntryMode)) {
+                        // The entry mode is only set once
+                        angularPiwik.setCustomVariable(3, 'entryMode', newMode, 'visit');
+                    }
+                    angularPiwik.setCustomVariable(1, 'mode', newMode, 'page');
 
                     // Finally, track the page view
                     angularPiwik.trackPageView(absUrl);
