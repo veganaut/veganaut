@@ -187,7 +187,9 @@
       "title": "Vegan Products",
       "description": "This location offers these vegan products:",
       "noProducts": {
-        "anonymous": "No products have been entered yet. If you <a href=\"/register\">register</a> you can enter vegan products available here.",
+        "anonymousPart1": "No products have been entered yet. If you ",
+        "anonymousLink": "register",
+        "anonymousPart2": " you can enter vegan products available here.",
         "user": "No products have been entered yet. You can enter vegan products by completing one of the missions below."
       },
       "showUnavailableProducts": "Show unavailable products"

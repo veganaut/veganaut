@@ -13,6 +13,8 @@
     <button type="submit" class="btn btn-default pull-right" ng-disabled="loginForm.$invalid"
      ng-click="submit()">{{ 'login.form.submit' | translate }}</button>
     <a href="forgot">{{ 'login.forgotPassword' | translate }}</a><br />
-    <a href="register">{{ 'login.registerInstead' | translate }}</a>
+    <a href="" ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.login'">
+        {{ 'login.registerInstead' | translate }}
+    </a>
     <div class="clearfix"></div>
 </form>

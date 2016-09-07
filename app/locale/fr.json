@@ -187,7 +187,9 @@
       "title": "Produits végans",
       "description": "Cet endroit offre les produits végans suivants:",
       "noProducts": {
-        "anonymous": "Personne n'a ajouté des produits jusqu'à maintenant. Si tu t'<a href=\"/register\">inscris</a> tu peux ajouter des produitss végans.",
+        "anonymousPart1": "Personne n'a ajouté des produits jusqu'à maintenant. Si tu ",
+        "anonymousLink": "t'inscris",
+        "anonymousPart2": " tu peux ajouter des produitss végans.",
         "user": "Personne n'a ajouté des produits jusqu'à maintenant. Tu peux ajouter des produits végans en accomplissant une des missions en bas."
       },
       "showUnavailableProducts": "Afficher les produits non disponibles"

@@ -71,7 +71,7 @@
     <p>
         <button type="button" class="btn-register btn btn-block btn-primary"
          ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-         ng-click="homeVm.legacyGlobals.goToView('register') | track:'home.participate':'home.participate.submit'"
+         ng-click="homeVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.home'"
          title="{{ 'navigation.register' | translate }}">
             <span class="glyphicon glyphicon-heart"></span>
             {{ 'home.participate.register' | translate }}

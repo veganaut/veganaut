@@ -187,7 +187,9 @@
       "title": "Vegane Produkte",
       "description": "An dieser Location werden folgende vegane Produkte angeboten:",
       "noProducts": {
-        "anonymous": "Es wurden noch keine Produkte eingetragen. <a href=\"/register\">Registriere</a> dich, um vegane Produkte einzutragen.",
+        "anonymousPart1": "Es wurden noch keine Produkte eingetragen. ",
+        "anonymousLink": "Registriere",
+        "anonymousPart2": " dich, um vegane Produkte einzutragen.",
         "user": "Es wurden noch keine Produkte eingetragen. Mit einer der Missionen kannst du Produkte eintragen."
       },
       "showUnavailableProducts": "Zeige nicht verfügbare Produkte"

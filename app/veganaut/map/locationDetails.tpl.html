@@ -32,7 +32,7 @@
                 <hr class="hr--small" />
                 <div class="small" ng-if="!isLoggedIn()">
                     <button class="register-to-edit btn btn-xs btn-link btn-block"
-                     ng-click="goToView('register')">
+                     ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.locationTags'">
                         <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
                     </button>
                 </div>
@@ -103,7 +103,7 @@
     </button>
     <button ng-if="!isLoggedIn()"
      type="button" class="register-to-edit btn btn-block btn-default"
-     ng-click="goToView('register')">
+     ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.location'">
         <span class="glyphicon glyphicon-edit"></span>
         <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
     </button>
@@ -177,7 +177,7 @@
                         <div class="product-list__bottom-action small"
                          ng-if="!isLoggedIn()">
                             <button class="register-to-edit btn btn-xs btn-link btn-block"
-                             ng-click="goToView('register')">
+                             ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.product'">
                                 <span ng-bind="'action.location.editAsAnonymous' | translate"></span>
                             </button>
                         </div>
@@ -196,7 +196,12 @@
         </div>
         <p ng-if="getShownProducts().length === 0">
             <span ng-if="isLoggedIn()">{{ 'location.products.noProducts.user' | translate }}</span>
-            <span ng-if="!isLoggedIn()" ng-bind-html="'location.products.noProducts.anonymous' | translate"></span>
+            <span ng-if="!isLoggedIn()">{{ 'location.products.noProducts.anonymousPart1' | translate }}
+                <a href="" ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.emptyProductList'">
+                    {{ 'location.products.noProducts.anonymousLink' | translate }}
+                </a>
+                {{ 'location.products.noProducts.anonymousPart2' | translate }}
+            </span>
         </p>
     </div>
 
