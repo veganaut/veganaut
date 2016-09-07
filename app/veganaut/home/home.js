@@ -142,7 +142,7 @@
                 if (targetPage === 'list') {
                     action = 'home.cta.submitToList';
                     // Feature not done yet, inform the user
-                    alertService.addAlert($translate.instant('missingFeature.goToList'), 'info', undefined, 13000);
+                    alertService.addAlert($translate.instant('missingFeature.goToList'), 'info', undefined, 18000);
                 }
                 else {
                     action = 'home.cta.submitToMap';
