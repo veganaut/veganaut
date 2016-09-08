@@ -480,10 +480,10 @@
   "home": {
     "tagLine": "Ein Vegan-Guide zum Mitmachen",
     "callToAction": {
-      "text": "Vegane Angebote finden in:",
+      "text": "Zeige vegane Angebote in...",
       "inputPlaceholder": "Land oder Stadt eingeben",
-      "showList": "Liste anzeigen",
-      "showMap": "Karte anzeigen",
+      "showList": "...als Liste",
+      "showMap": "...auf Karte",
       "geolocate": "Mein Standort"
     },
     "lead": {

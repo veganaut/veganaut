@@ -480,10 +480,10 @@
   "home": {
     "tagLine": "A community-driven vegan guide",
     "callToAction": {
-      "text": "Find vegan offers in:",
+      "text": "Show vegan offers in...",
       "inputPlaceholder": "Enter a country or city",
-      "showList": "Show list",
-      "showMap": "Show map",
+      "showList": "...as a list",
+      "showMap": "...on a map",
       "geolocate": "My location"
     },
     "lead": {
