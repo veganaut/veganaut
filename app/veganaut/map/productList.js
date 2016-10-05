@@ -97,7 +97,7 @@
                 var boundingBox = area.getBoundingBox();
 
                 // Check if we have a bounding box
-                if (angular.isObject(boundingBox) && false) {
+                if (angular.isObject(boundingBox)) {
                     bounds = area.getBoundingBox().toBBoxString();
 
                     // Load products
