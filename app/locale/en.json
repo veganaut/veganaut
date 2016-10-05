@@ -489,13 +489,13 @@
       "showMap": "...on a map",
       "geolocate": "My location"
     },
-    "lead": {
-      "openSource": "Open-source",
-      "openContent": "open-content",
-      "text": "All our infos about vegan offers were contributed by people like you and can be used freely for your own projects. Sharing is caring."
+    "open": {
+      "text1": "All our infos about vegan offers were contributed by people like you and can be used freely for your own projects: Veganaut is ",
+      "source": "open-source",
+      "text2": " and ",
+      "content": "open-content"
     },
     "participate": {
-      "title": "Participate",
       "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
       "register": "Start sharing!"
     }
