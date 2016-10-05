@@ -150,6 +150,19 @@
     }
 }
 
+.main-map {
+    position: fixed;
+    top: @navbarHeight;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+body.embedded .main-map {
+    top: 0;
+}
+
 .map--placing-location {
     cursor: crosshair;
 }

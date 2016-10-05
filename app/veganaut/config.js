@@ -44,6 +44,21 @@
         }
     });
 
+    // Some global constants
+    module.constant('constants', {
+        /**
+         * Radius used when including the whole world on the location list.
+         * @type {number} in meters
+         */
+        WHOLE_WORLD_RADIUS: 30000000,
+
+        /**
+         * Float precision: used for representing floats in URLs.
+         * @type {number}
+         */
+        URL_FLOAT_PRECISION: 7
+    });
+
     // Toggle features that aren't ready yet
     module.constant('featureToggle', {});
 })(window.veganaut.mainModule);

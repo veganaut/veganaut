@@ -16,6 +16,9 @@
         {{ 'locationList.title' | translate }}
     </h1>
 
+    <p ng-if="locationListVm.wholeWorld" class="location-list__description">
+        {{ 'locationList.descriptionWholeWorld' | translate }}
+    </p>
     <p ng-if="locationListVm.displayRadius" class="location-list__description">
         {{ 'locationList.description' |
         translate:{radius: locationListVm.displayRadius, place: locationListVm.displayName} }}

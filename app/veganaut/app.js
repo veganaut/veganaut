@@ -51,17 +51,17 @@
             });
 
             // Location list (with trailing slash for Piwik)
-            $routeProvider.when('/list/locations/', {template: '<vg-location-list></vg-location-list>'});
+            $routeProvider.when('/locations/', {
+                template: '<vg-location-list></vg-location-list>',
+                // Don't reload when get params or hash changes
+                reloadOnSearch: false
+            });
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.when('/community', {template: '<vg-community></vg-community>'});
             $routeProvider.when('/veganaut/:personId', {templateUrl: '/veganaut/user/person.tpl.html', controller: 'PersonCtrl'});
-
-            // Legacy URL redirects
-            $routeProvider.when('/score', {redirectTo: '/community'});
-            $routeProvider.when('/list', {redirectTo: '/list/locations/'});
 
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)

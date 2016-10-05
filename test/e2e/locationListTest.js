@@ -32,7 +32,7 @@ describe('location list accessed from map.', function() {
         locationListButton.click();
         browser.getCurrentUrl().then(function(url) {
             // Get the URL parameters and verify them
-            var match = url.match(/\/list\/locations\/\?lat=([0-9\.]+)&lng=([0-9\.]+)&radius=([0-9]+)$/);
+            var match = url.match(/\/locations\/\?coords=([0-9\.]+),([0-9\.]+)&radius=([0-9]+)$/);
             expect(match).not.toBe(null, 'loaded correct url');
             var lat = parseFloat(match[1]);
             var lng = parseFloat(match[2]);

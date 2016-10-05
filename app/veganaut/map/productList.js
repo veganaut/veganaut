@@ -20,15 +20,12 @@
     };
 
     var productListCtrl = [
-        'locationService', '$location', 'backendService', 'leafletData', 'locationFilterService',
-        function(locationService, $location, backendService, leafletData, locationFilterService) {
+        'locationService', '$location', 'backendService', 'locationFilterService', 'areaService',
+        function(locationService, $location, backendService, locationFilterService, areaService) {
             var vm = this;
 
             // Bounds used to show the products
             var bounds;
-
-            // Get a reference to the leaflet map object
-            var mapPromise = leafletData.getMap();
 
             // Location type for which to show products
             // By default gastronomy, but if filter is set to retail, then that.
@@ -95,13 +92,22 @@
                 });
             }
 
-            // When we get the map, load the products
-            mapPromise.then(function(map) {
-                // Get the bound of the map and load the products for the first time
-                bounds = map.getBounds().toBBoxString();
+            // Get the bound of the current area and load the products for the first time
+            areaService.getCurrentArea().then(function(area) {
+                var boundingBox = area.getBoundingBox();
 
-                // Load products
-                loadProducts(bounds, vm.locationType);
+                // Check if we have a bounding box
+                if (angular.isObject(boundingBox) && false) {
+                    bounds = area.getBoundingBox().toBBoxString();
+
+                    // Load products
+                    loadProducts(bounds, vm.locationType);
+                }
+                else {
+                    // No bounding box, so we can't load the products (this should never happen)
+                    vm.totalProducts = 0;
+                    vm.productsLoaded = true;
+                }
             });
         }
     ];

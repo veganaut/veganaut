@@ -18,8 +18,11 @@
     };
 
     var locationListCtrl = [
-        '$scope', '$location', 'locationService', 'angularPiwik', 'geocodeService',
-        function($scope, $location, locationService, angularPiwik, geocodeService) {
+        '$scope', '$location', '$routeParams', 'constants', 'locationService',
+        'angularPiwik', 'geocodeService', 'areaService', 'Area',
+        function($scope, $location, $routeParams, constants, locationService,
+            angularPiwik, geocodeService, areaService, Area)
+        {
             var vm = this;
 
             // Expose the global methods we still need
@@ -50,6 +53,12 @@
              * @type {boolean}
              */
             vm.noResults = false;
+
+            /**
+             * Whether the whole world is shown.
+             * @type {boolean}
+             */
+            vm.wholeWorld = false;
 
             /**
              * Radius of this query formatted for display
@@ -121,65 +130,91 @@
                 }
             };
 
-            // Parse query
-            // TODO: the whole parsing should happen in its own function or so
-            var query = $location.search();
-            var lat = parseFloat(query.lat);
-            var lng = parseFloat(query.lng);
-            var radius = parseInt(query.radius, 10);
 
-            // Check if valid
-            if (!isNaN(lat) && !isNaN(lng) && !isNaN(radius)) {
-                // Valid -> query the locations
-                locationService.queryByRadius(lat, lng, radius)
+            var init = function(area) {
+                // Get the radius params from the area
+                var params = area.getRadiusParams();
+
+                // Expose if we are showing the whole world
+                vm.wholeWorld = params.includesWholeWorld;
+
+                // Query
+                locationService.queryByRadius(params.lat, params.lng, params.radius)
                     .then(compileList)
                 ;
 
-                // Simple fallback display name in case the reverse lookup doesn't work out.
-                // TODO: should be translated and displayed nicer
-                var fallbackDisplayName = 'lat ' + lat.toFixed(3) + ' lng ' + lng.toFixed(3);
+                // Replace the url params (without adding a new history item)
+                // TODO: de-duplicate this code with the one from mainMapService
+                var coords =
+                    params.lat.toFixed(constants.URL_FLOAT_PRECISION) + ',' +
+                    params.lng.toFixed(constants.URL_FLOAT_PRECISION);
+                $location.replace();
+                $location.search('coords', coords);
+                $location.search('radius', params.radius);
 
-                // Reverse lookup a place name for these coordinates
-                // Choose a zoom level based on the radius
-                var reverseLookupZoom = (radius < 2000) ? 16 : 13;
-                geocodeService.reverseSearch(lat, lng, reverseLookupZoom)
-                    .then(function(place) {
-                        if (place) {
-                            vm.displayName = place.getDisplayName();
-                        }
-                        else {
+                if (!vm.wholeWorld) {
+                    // Simple fallback display name in case the reverse lookup doesn't work out.
+                    // TODO: should be translated and displayed nicer
+                    var fallbackDisplayName = 'lat ' + params.lat.toFixed(3) + ' lng ' + params.lng.toFixed(3);
+
+                    // Reverse lookup a place name for these coordinates
+                    // Choose a zoom level based on the radius
+                    var reverseLookupZoom = (params.radius < 2000) ? 16 : 13;
+                    geocodeService.reverseSearch(params.lat, params.lng, reverseLookupZoom)
+                        .then(function(place) {
+                            if (place) {
+                                vm.displayName = place.getDisplayName();
+                            }
+                            else {
+                                vm.displayName = fallbackDisplayName;
+                            }
+                        })
+                        .catch(function() {
                             vm.displayName = fallbackDisplayName;
-                        }
-                    })
-                    .catch(function() {
-                        vm.displayName = fallbackDisplayName;
-                    })
-                ;
+                        })
+                    ;
 
-                // Round the radius to two significant digits and display it as meters or kms
-                // TODO: this should be a filter
-                var roundingHelper = Math.pow(10, ('' + radius).length) / 100;
-                var roundedRadius = Math.round(radius / roundingHelper) * roundingHelper;
-                if (roundedRadius < 1000) {
-                    vm.displayRadius = roundedRadius + 'm';
+                    // Round the radius to two significant digits and display it as meters or kms
+                    // TODO: this should be a filter
+                    var roundingHelper = Math.pow(10, ('' + params.radius).length) / 100;
+                    var roundedRadius = Math.round(params.radius / roundingHelper) * roundingHelper;
+                    if (roundedRadius < 1000) {
+                        vm.displayRadius = roundedRadius + 'm';
+                    }
+                    else {
+                        vm.displayRadius = (roundedRadius / 1000) + 'km';
+                    }
                 }
-                else {
-                    vm.displayRadius = (roundedRadius / 1000) + 'km';
-                }
+            };
+
+            // Parse params from url
+            // TODO: de-duplicate with code from mainMapService
+            var rawCoords = $routeParams.coords || '';
+            var lat, lng;
+
+            // Parse the coordinates
+            var splitCoords = rawCoords.split(',');
+            if (splitCoords.length === 2) {
+                lat = parseFloat(splitCoords[0]);
+                lng = parseFloat(splitCoords[1]);
+
+                // Try to set it (will check if it's valid)
+                areaService.setArea(new Area({
+                    lat: lat,
+                    lng: lng,
+                    radius: parseInt($routeParams.radius, 10)
+                }));
             }
-            else {
-                // Not valid -> no results found
-                vm.noResults = true;
-            }
+
+            // Initiate with the currently valid area
+            areaService.getCurrentArea().then(init);
 
             // Reset search parameters when navigating away from this page
             $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
-                    $location
-                        .search('lat', null)
-                        .search('lng', null)
-                        .search('radius', null)
-                    ;
+                    // Remove the search params if the event is still ongoing
+                    $location.search('coords', null);
+                    $location.search('radius', null);
                 }
             });
         }

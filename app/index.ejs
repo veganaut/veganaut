@@ -54,6 +54,13 @@
                     <span class="glyphicon glyphicon-map-marker pull-right"></span>
                     <span data-translate="navigation.map"></span>
                 </button>
+                <button class="btn btn-default btn-block nav-location-list" ng-click="goToView('locations/')">
+                    <span class="glyphicon glyphicon-th-list pull-right"></span>
+                    <span data-translate="navigation.locationList"></span>
+                    <span class="badge badge--new">
+                        {{ 'message.new' | translate }}
+                    </span>
+                </button>
 
                 <button class="btn btn-default btn-block nav-community" ng-click="goToView('community')"
                  ng-if="isLoggedIn()">

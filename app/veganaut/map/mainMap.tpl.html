@@ -89,6 +89,7 @@
     </vg-overlay>
     <vg-overlay ng-if="mainMapVm.locationSet.isCreatingLocation()">
         <vg-create-location-form
+         vg-map="mainMapVm.map"
          vg-create-location="mainMapVm.locationSet.createLocation"
          vg-on-abort="mainMapVm.locationSet.abortCreateLocation()"
          vg-on-submit="mainMapVm.locationSet.submitCreateLocation()">
@@ -107,10 +108,10 @@
         </vg-map-search>
     </vg-overlay>
 
-    <leaflet class="main-map full-viewport"
-     ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}"
-     defaults="mainMapVm.mapDefaults" lf-center="{lat: 0, lng: 0, zoom: 2}" event-broadcast="mainMapVm.events">
-    </leaflet>
+    <div id="mainMap" class="main-map"
+     ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}">
+    </div>
+
     <vg-map-markers
      ng-if="mainMapVm.map"
      vg-location-items="mainMapVm.locationSet.allLocationItems"
@@ -118,5 +119,8 @@
      vg-map="mainMapVm.map">
     </vg-map-markers>
 
-    <vg-geolocate-button></vg-geolocate-button>
+    <vg-geolocate-button
+     ng-if="mainMapVm.map"
+     vg-map="mainMapVm.map">
+    </vg-geolocate-button>
 </div>

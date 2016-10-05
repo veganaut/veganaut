@@ -5,6 +5,7 @@
     "login": "Connexion",
     "logout": "Déconnexion",
     "map": "Carte",
+    "locationList": "Endroits",
     "community": "Communauté",
     "profile": "Profil",
     "about": "Qui sommes-nous",
@@ -15,6 +16,7 @@
     "bugs": "Bugreport / GitHub"
   },
   "message": {
+    "new": "new",
     "registration": {
       "success": "Bienvenue chez Veganaut.net {{ name }}! Tu es maintenant connecté. Nous t'envoyons un mail pour que tu puisses saisir un mot de passe pour des connexions futures.",
       "error": "Inscription échoué: {{ reason }}"
@@ -408,6 +410,7 @@
   "locationList": {
     "title": "Endroits",
     "description": "Showing locations in radius {{ radius }} around {{ place }}.",
+    "descriptionWholeWorld": "Showing locations in the whole world.",
     "noResults": "No locations can be found in the given area.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",

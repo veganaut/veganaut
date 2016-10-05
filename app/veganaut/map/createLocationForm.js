@@ -10,6 +10,11 @@
             restrict: 'E',
             scope: {
                 /**
+                 * Leaflet map object.
+                 */
+                map: '=vgMap',
+
+                /**
                  * The CreateLocation model instance used for this form
                  */
                 createLocation: '=vgCreateLocation',
@@ -23,6 +28,15 @@
                  * Handler method called when the user submits the location.
                  */
                 onSubmit: '&vgOnSubmit'
+            },
+            link: function(scope, el, attrs, vm) {
+                // Register event handlers
+                vm.map.on('click', vm._mapClickHandler);
+
+                // Remove on $destroy
+                scope.$on('$destroy', function() {
+                    vm.map.off('click', vm._mapClickHandler);
+                });
             },
             controller: 'vgCreateLocationFormCtrl',
             controllerAs: 'createLocationFormVm',
@@ -57,24 +71,23 @@
             /**
              * Handler for clicks on the map
              * @param event
-             * @param args
+             * @private
              */
-            var mapClickHandler = function(event, args) {
-                if (vm.createLocation.isPlacingLocation()) {
-                    // When adding a new location, take the click
-                    // as the coordinates of this new location
-                    vm.createLocation.setNewLocationCoordinates(
-                        args.leafletEvent.latlng.lat,
-                        args.leafletEvent.latlng.lng
-                    );
+            vm._mapClickHandler = function(event) {
+                $scope.$apply(function() {
+                    if (vm.createLocation.isPlacingLocation()) {
+                        // When adding a new location, take the click
+                        // as the coordinates of this new location
+                        vm.createLocation.setNewLocationCoordinates(
+                            event.latlng.lat,
+                            event.latlng.lng
+                        );
 
-                    angularPiwik.track('map.addLocation', 'mapClick');
-                }
-                // TODO: else what? We are adding a location but clicked one -> should show some info of the clicked place
+                        angularPiwik.track('map.addLocation', 'mapClick');
+                    }
+                    // TODO: else what? We are adding a location but clicked one -> should show some info of the clicked place
+                });
             };
-
-            // Register event handlers
-            $scope.$on('leafletDirectiveMap.click', mapClickHandler);
         }
     ];
 

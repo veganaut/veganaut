@@ -20,10 +20,11 @@
     // TODO: re-group variable and method definition
     // TODO: the main map should just do without angular-leaflet, it's hardly using it anymore
     var mainMapCtrl = [
-        '$scope', '$location', '$route', '$routeParams', 'leafletData', 'angularPiwik', 'mapDefaults',
+        '$scope', '$location', '$route', 'Leaflet', 'angularPiwik', 'mapDefaults',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $location, $route, $routeParams, leafletData, angularPiwik, mapDefaults,
-            playerService, locationService, locationFilterService, mainMapService) {
+        function($scope, $location, $route, L, angularPiwik, mapDefaults,
+            playerService, locationService, locationFilterService, mainMapService)
+        {
             var vm = this;
 
             // Expose the global methods we still need
@@ -37,18 +38,6 @@
             // Expose map settings and filter service
             vm.mainMap = mainMapService;
             vm.locationFilterService = locationFilterService;
-
-            /**
-             * Leaflet map settings
-             * @type {{}}
-             */
-            vm.mapDefaults = mapDefaults;
-
-            /**
-             * Reference to the leaflet map object
-             * @type {{}}
-             */
-            vm.map = undefined;
 
             /**
              * Locations loaded from the backend
@@ -116,39 +105,36 @@
                 return;
             }
 
-
-            // Get a reference the the leaflet map object
-            var mapPromise = leafletData.getMap();
-            mapPromise.then(function(map) {
-                vm.map = map;
-
-                /**
-                 * Method to inform service that the center changed
-                 */
-                var informCenterChanged = function() {
-                    var newCenter = map.getCenter();
-                    mainMapService.onCenterChanged({
-                        lat: newCenter.lat,
-                        lng: newCenter.lng,
-                        zoom: map.getZoom()
-                    });
-                };
-
-                // Register to map changes
-                // We do it directly through leaflet, because watching the center
-                // provided from leaflet-directive is buggy in some cases.
-                map.on('moveend', informCenterChanged);
-                map.on('viewreset', informCenterChanged);
-
-                // Inform of the first center
-                informCenterChanged();
+            /**
+             * Leaflet map object
+             * @type {{}}
+             */
+            vm.map = L.map('mainMap', {
+                layers: [
+                    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    })
+                ],
+                worldCopyJump: true
             });
+            vm.map.zoomControl.setPosition('bottomleft');
+
+            /**
+             * Method to inform service that the center changed
+             */
+            var informCenterChanged = function() {
+                var newCenter = vm.map.getCenter();
+                mainMapService.onCenterChanged({
+                    lat: newCenter.lat,
+                    lng: newCenter.lng,
+                    zoom: vm.map.getZoom(),
+                    boundingBox: vm.map.getBounds()
+                });
+            };
+
 
             // Get the player
             var playerPromise = playerService.getDeferredMe();
-
-            // Initialise the map
-            mainMapService.initialiseMap();
 
             /**
              * Sets whether the product list is shown
@@ -213,23 +199,15 @@
              * Goes to the location list
              */
             vm.goToLocationList = function() {
-                // Get size of the header (main nav bar and map nav) in pixels
-                // TODO: isEmbedded should come from a service and the header size probably too
-                var headerSize = 46;
-                if (!vm.legacyGlobals.isEmbedded) {
-                    headerSize += 50;
-                }
-                mainMapService.goToLocationList(headerSize);
+                $location.path('locations/');
             };
 
             /**
              * Starts creating a new location
              */
             vm.startCreateLocation = function() {
-                mapPromise.then(function(map) {
-                    playerPromise.then(function(player) {
-                        vm.locationSet.startCreateLocation(player, map);
-                    });
+                playerPromise.then(function(player) {
+                    vm.locationSet.startCreateLocation(player, vm.map);
                 });
             };
 
@@ -272,17 +250,25 @@
                 // TODO: if not handled, should pass on the click to the map?
             };
 
-            // Listen to clicks on the map
-            $scope.$on('leafletDirectiveMap.click', function() {
-                if (!vm.locationSet.isCreatingLocation()) {
-                    // When not adding a location, deselect currently active location
-                    vm.locationSet.activate();
+            // Register to map changes
+            // We do it directly through leaflet, because watching the center
+            // provided from leaflet-directive is buggy in some cases.
+            vm.map.on('moveend', informCenterChanged);
+            vm.map.on('viewreset', informCenterChanged);
 
-                    // And hide product list, filters and search
-                    vm.showProductList(false);
-                    vm.showFilters(false);
-                    vm.showSearch(false);
-                }
+            // Listen to clicks on the map
+            vm.map.on('click', function() {
+                $scope.$apply(function() {
+                    if (!vm.locationSet.isCreatingLocation()) {
+                        // When not adding a location, deselect currently active location
+                        vm.locationSet.activate();
+
+                        // And hide product list, filters and search
+                        vm.showProductList(false);
+                        vm.showFilters(false);
+                        vm.showSearch(false);
+                    }
+                });
             });
 
             // Watch the active filters
@@ -321,6 +307,9 @@
                     vm.locationSet.abortCreateLocation();
                 }
             });
+
+            // Finally, initialise the map
+            mainMapService.initialiseMap(vm.map);
         }
     ];
 

@@ -17,10 +17,10 @@
     };
 
     var homeCtrl = [
-        '$scope', '$location', '$translate', 'backendService', 'angularPiwik',
-        'mainMapService', 'geocodeService', 'alertService', 'localeService',
-        function($scope, $location, $translate, backendService, angularPiwik,
-            mainMapService, geocodeService, alertService, localeService)
+        '$scope', '$location', '$translate', 'backendService', 'angularPiwik', 'Area',
+        'areaService', 'mainMapService', 'geocodeService', 'alertService', 'localeService',
+        function($scope, $location, $translate, backendService, angularPiwik, Area,
+            areaService, mainMapService, geocodeService, alertService, localeService)
         {
             var vm = this;
 
@@ -51,15 +51,15 @@
             vm.geolocating = false;
 
             /**
-             * The target place to show on the map when submitting the cta form.
-             * @type {{}}
+             * The target area to show on the map when submitting the cta form.
+             * @type {Area}
              */
-            var targetPlace = {
+            var targetArea = new Area({
                 lat: 0,
                 lng: 0,
                 zoom: 2,
-                displayName: vm.ctaFormInput
-            };
+                name: vm.ctaFormInput
+            });
 
             /**
              * Whether to clear the cta input field on the next focus event
@@ -87,7 +87,7 @@
              */
             vm.canSubmitCta = function() {
                 // Can only submit when we have a target and it's currently shown in the input field
-                return (angular.isObject(targetPlace) && targetPlace.displayName === vm.ctaFormInput);
+                return (angular.isObject(targetArea) && targetArea.name === vm.ctaFormInput);
             };
 
             /**
@@ -95,13 +95,14 @@
              * @param {GeocodeResult} selected
              */
             vm.onResultSelected = function(selected) {
-                // Set the target place
-                targetPlace = {
+                // Set the target area
+                // TODO: GeocodeResult should provide an area directly
+                targetArea = new Area({
                     lat: selected.lat,
                     lng: selected.lng,
                     boundingBox: selected.bounds,
-                    displayName: selected.getDisplayName()
-                };
+                    name: selected.getDisplayName()
+                });
 
                 // We no longer want to clear the input field on focus
                 clearCtaInputOnFocus = false;
@@ -123,29 +124,29 @@
              */
             vm.onCtaInputBlur = function() {
                 // If the user leaves the input and we cannot submit the form
-                // but we have a target place, set that place again
-                if (!vm.canSubmitCta() && angular.isObject(targetPlace)) {
-                    vm.ctaFormInput = targetPlace.displayName;
+                // but we have a target area, set that area again
+                if (!vm.canSubmitCta() && angular.isObject(targetArea)) {
+                    vm.ctaFormInput = targetArea.name;
                 }
             };
 
             /**
              * Handler for submission of the cta form.
-             * Will go to the selected place on the map.
+             * Will go to the selected area on the map or list.
+             * @param {string} targetPage 'list' or 'map'
              */
             vm.onCtaSubmit = function(targetPage) {
-                mainMapService.setTargetPlace(targetPlace);
-                $location.path('map');
+                areaService.setArea(targetArea);
 
                 // Check which target page was given
                 var action = '';
                 if (targetPage === 'list') {
                     action = 'home.cta.submitToList';
-                    // Feature not done yet, inform the user
-                    alertService.addAlert($translate.instant('missingFeature.goToList'), 'info', undefined, 18000);
+                    $location.path('locations/');
                 }
                 else {
                     action = 'home.cta.submitToMap';
+                    $location.path('map/');
                 }
 
                 angularPiwik.track('home.cta', action);
@@ -153,10 +154,11 @@
 
             /**
              * Gets the location from the browser's geolocation API
-             * and sets the target place based on that.
+             * and sets the target area based on that.
              */
             vm.getUserLocation = function() {
                 vm.geolocating = true;
+                // TODO: disable input while searching?
                 navigator.geolocation.getCurrentPosition(function(position) {
                     $scope.$apply(function() {
                         vm.geolocating = false;
@@ -170,13 +172,13 @@
                             ': ' + lat.toFixed(3) + ', ' + lng.toFixed(3)
                         ;
 
-                        // Set the target place
-                        targetPlace = {
+                        // Set the target area
+                        targetArea = new Area({
                             lat: lat,
                             lng: lng,
                             zoom: GEO_LOCATION_ZOOM,
-                            displayName: vm.ctaFormInput
-                        };
+                            name: vm.ctaFormInput
+                        });
 
                         // When the user focuses the input field, clear it
                         clearCtaInputOnFocus = true;
@@ -206,12 +208,12 @@
                 if (_.isObject(data) && Object.keys(data).length > 0) {
                     vm.ctaFormInput = data.countryName;
 
-                    targetPlace = {
+                    targetArea = new Area({
                         lat: data.lat,
                         lng: data.lng,
                         boundingBox: data.boundingBox,
-                        displayName: vm.ctaFormInput
-                    };
+                        name: vm.ctaFormInput
+                    });
                 }
                 // If nothing valid found, we can't do anything
             });

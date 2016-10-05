@@ -56,10 +56,12 @@ describe('map when logged out.', function() {
         expect(element.all(by.css('.marker.marker--owner')).count()).toBe(0, 'has no location marked as being owned');
     });
 
-    describe('map center loaded in local storage', function() {
+    describe('map center loaded from local storage', function() {
         it('should load the center from local storage', function() {
-            // Inject into local storage and reload the map page
-            browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":47.1,"lng":8.2,"zoom":7}\')');
+            // Inject into local storage, reload the whole app (not on map page, because then it will take the url params)
+            browser.executeScript('localStorage.setItem(\'veganautArea\',\'{"lat":47.1,"lng":8.2,"zoom":7}\')');
+            browser.get('/');
+            browser.refresh();
             browser.get('/map');
 
             expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=7&coords=47\.1000000,8\.2000000$/);
@@ -71,7 +73,9 @@ describe('map when logged out.', function() {
 
         it('should load another center from local storage', function() {
             // Move to a part of the map where there's nothing
-            browser.executeScript('localStorage.setItem(\'veganautMapCenter\',\'{"lat":5,"lng":115,"zoom":10}\')');
+            browser.executeScript('localStorage.setItem(\'veganautArea\',\'{"lat":5,"lng":115,"zoom":10}\')');
+            browser.get('/');
+            browser.refresh();
             browser.get('/map');
 
             expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=10&coords=5\.0000000,115\.0000000$/);
@@ -84,7 +88,7 @@ describe('map when logged out.', function() {
 
     describe('map center live-loaded from URL', function() {
         it('should watch map center in URL', function() {
-            browser.get('/map#zoom:7,coords:47.1-8.2');
+            browser.get('/map?zoom=7&coords=47.1,8.2');
 
             expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=7&coords=47\.1000000,8\.2000000$/);
 
@@ -94,7 +98,7 @@ describe('map when logged out.', function() {
         });
 
         it('should still watch map center in URL', function() {
-            browser.get('/map#zoom:10,coords:5-115');
+            browser.get('/map?zoom=10&coords=5,115');
 
             expect(browser.getCurrentUrl()).toMatch(/\/map\/\?zoom=10&coords=5\.0000000,115\.0000000$/);
 

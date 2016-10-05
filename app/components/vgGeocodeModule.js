@@ -19,6 +19,8 @@
         this.address = data.address || {};
         this.type = data.type;
 
+        // TODO: should we instantiate an Area?
+
         // Parse latitude
         if (angular.isString(data.lat)) {
             this.lat = parseFloat(data.lat);
@@ -130,8 +132,14 @@
                     }
                 })
                 .success(function(data) {
-                    var result = new GeocodeResult(data);
-                    deferred.resolve(result);
+                    // API doesn't use correct HTTP return codes for errors
+                    if (angular.isObject(data) && angular.isString(data.error)) {
+                        deferred.reject(data);
+                    }
+                    else {
+                        var result = new GeocodeResult(data);
+                        deferred.resolve(result);
+                    }
                 })
                 .error(function(data) {
                     deferred.reject(data);

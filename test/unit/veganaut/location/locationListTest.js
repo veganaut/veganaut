@@ -9,21 +9,25 @@ describe('locationList.', function() {
 
     // Mock services
     var $location = {};
+    var $routeParams = {};
+    var areaService = {};
     var locationService = {};
     var geocodeService = {};
     var angularPiwik = {};
     var playerService = {};
 
     // Mock data returned by mock services
-    var getParams = {};
     var locationSet;
+    var getCurrentAreaDeferred;
     var deferredQuery;
     var deferredGeocodeSearch;
 
-    beforeEach(module('veganaut.app.map', 'veganaut.app.location'));
+    beforeEach(module('veganaut.app.main', 'veganaut.app.map', 'veganaut.app.location'));
 
     beforeEach(module(function($provide) {
         $provide.value('$location', $location);
+        $provide.value('$routeParams', $routeParams);
+        $provide.value('areaService', areaService);
         $provide.value('locationService', locationService);
         $provide.value('geocodeService', geocodeService);
         $provide.value('angularPiwik', angularPiwik);
@@ -40,31 +44,28 @@ describe('locationList.', function() {
             activate: jasmine.createSpy('locationSet.activate')
         };
 
-        $location.search = jasmine.createSpy('$location.search')
-            .andCallFake(function() {
-                if (arguments.length === 0) {
-                    return getParams;
-                }
-                return $location;
-            })
+        $location.replace = jasmine.createSpy('$location.replace');
+        $location.search = jasmine.createSpy('$location.search');
+
+        areaService.setArea = jasmine.createSpy('areaService.setArea');
+
+        getCurrentAreaDeferred = $q.defer();
+        areaService.getCurrentArea = jasmine.createSpy('areaService.getCurrentArea')
+            .andReturn(getCurrentAreaDeferred.promise)
         ;
 
         locationService.getLocationSet = jasmine.createSpy('locationService.getLocationSet')
             .andReturn(locationSet)
         ;
 
+        deferredQuery = $q.defer();
         locationService.queryByRadius = jasmine.createSpy('locationService.queryByRadius')
-            .andCallFake(function() {
-                deferredQuery = $q.defer();
-                return deferredQuery.promise;
-            })
+            .andReturn(deferredQuery.promise)
         ;
 
+        deferredGeocodeSearch = $q.defer();
         geocodeService.reverseSearch = jasmine.createSpy('geocodeService.reverseSearch')
-            .andCallFake(function() {
-                deferredGeocodeSearch = $q.defer();
-                return deferredGeocodeSearch.promise;
-            })
+            .andReturn(deferredGeocodeSearch.promise)
         ;
 
         angularPiwik.track = jasmine.createSpy('angularPiwik.track');
@@ -78,33 +79,42 @@ describe('locationList.', function() {
     }));
 
     describe('controller.', function() {
-        it('empty params', inject(function($controller) {
+        it('basic functionality (valid params with small radius)', inject(function($controller) {
             var vm = $controller('vgLocationListCtrl', {$scope: scope});
             expect(typeof vm).toBe('object', 'could instantiate controller');
 
-            expect($location.search).toHaveBeenCalled();
+            expect($location.search).not.toHaveBeenCalled();
             expect(locationService.queryByRadius).not.toHaveBeenCalled();
             expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
 
+            expect(areaService.setArea).not.toHaveBeenCalled();
+            expect(areaService.getCurrentArea).toHaveBeenCalled();
+
             expect(angular.isArray(vm.list)).toBe(true, 'has a list defined');
             expect(vm.list.length).toBe(0, 'list is empty');
-            expect(vm.noResults).toBe(true, 'declared that no results were found');
-        }));
+            expect(vm.noResults).toBe(false, 'not yet declared that no results were found');
 
-        it('basic functionality (valid params with small radius)', inject(function($controller) {
-            getParams = {
-                lat: '46.5',
-                lng: '7.4',
-                radius: '522'
-            };
-            var vm = $controller('vgLocationListCtrl', {$scope: scope});
-            expect(typeof vm).toBe('object', 'could instantiate controller');
+            getCurrentAreaDeferred.resolve({
+                getRadiusParams: function() {
+                    return {
+                        lat: 46.5,
+                        lng: 7.4,
+                        radius: 522,
+                        includesWholeWorld: false
+                    };
+                }
+            });
+            $rootScope.$apply();
 
-            expect($location.search).toHaveBeenCalled();
+            expect(vm.wholeWorld).toBe(false, 'exposed whole world setting');
             expect(locationService.queryByRadius).toHaveBeenCalledWith(46.5, 7.4, 522);
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(46.5, 7.4, 16);
 
-            expect(vm.noResults).toBe(false, 'not declared that no results found');
+            expect($location.replace).toHaveBeenCalled();
+            expect($location.search).toHaveBeenCalledWith('coords', '46.5000000,7.4000000');
+            expect($location.search).toHaveBeenCalledWith('radius', 522);
+
+            expect(vm.noResults).toBe(false, 'still not declared that no results found');
             expect(vm.displayRadius).toBe('520m', 'set rounded display radius');
 
             locationSet.locations = {};
@@ -113,7 +123,7 @@ describe('locationList.', function() {
                     id: 'a' + i
                 });
             }
-            expect(vm.list.length).toBe(0, 'list is empty');
+            expect(vm.list.length).toBe(0, 'list is still empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');
             deferredQuery.resolve();
             $rootScope.$apply();
@@ -139,13 +149,20 @@ describe('locationList.', function() {
             expect(locationSet.activate).toHaveBeenCalledWith(locationSet.locations.a1);
         }));
 
-        it('valid params with big radius, no results', inject(function($controller) {
-            getParams = {
-                lat: '10.2',
-                lng: '20',
-                radius: '268096'
-            };
+        it('with big radius, no results', inject(function($controller) {
             var vm = $controller('vgLocationListCtrl', {$scope: scope});
+
+            getCurrentAreaDeferred.resolve({
+                getRadiusParams: function() {
+                    return {
+                        lat: 10.2,
+                        lng: 20,
+                        radius: 268096,
+                        includesWholeWorld: false
+                    };
+                }
+            });
+            $rootScope.$apply();
 
             expect(locationService.queryByRadius).toHaveBeenCalledWith(10.2, 20, 268096);
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(10.2, 20, 13);
@@ -166,14 +183,49 @@ describe('locationList.', function() {
             expect(vm.displayName).toBe('lat 10.200 lng 20.000', 'display name set to fallback');
         }));
 
+        it('with whole world radius, no results', inject(function($controller) {
+            var vm = $controller('vgLocationListCtrl', {$scope: scope});
+
+            getCurrentAreaDeferred.resolve({
+                getRadiusParams: function() {
+                    return {
+                        lat: 10.3,
+                        lng: 20.2,
+                        radius: 30000000,
+                        includesWholeWorld: true
+                    };
+                }
+            });
+            $rootScope.$apply();
+
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.3, 20.2, 30000000);
+            expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
+            expect(vm.displayRadius).toBe('', 'set no display radius');
+            expect(vm.wholeWorld).toBe(true, 'set whole world');
+        }));
+
+        it('sets area from URL', inject(function($controller) {
+            $routeParams.coords = '65.2,54.3';
+            $routeParams.radius = '1234';
+
+            $controller('vgLocationListCtrl', {$scope: scope});
+
+            expect(areaService.setArea.calls.length).toBe(1, 'called setArea once');
+            expect(areaService.setArea.calls[0].args.length).toBe(1, 'called setArea with one argument');
+            var areaSet = areaService.setArea.calls[0].args[0];
+            expect(typeof areaSet).toBe('object', 'set an object');
+            expect(areaSet.getLat()).toBe(65.2, 'set correct lat');
+            expect(areaSet.getLng()).toBe(54.3, 'set correct lng');
+            expect(areaSet.getRadius()).toBe(1234, 'set correct radius');
+        }));
+
         it('unsets get parameters when leaving', inject(function($controller) {
             $controller('vgLocationListCtrl', {$scope: scope});
 
-            expect($location.search.calls.length).toBe(1, 'called $location.search during init');
+            expect($location.search).not.toHaveBeenCalled();
 
             scope.$broadcast('$routeChangeStart');
-            expect($location.search).toHaveBeenCalledWith('lat', null);
-            expect($location.search).toHaveBeenCalledWith('lng', null);
+            expect($location.search).toHaveBeenCalledWith('coords', null);
             expect($location.search).toHaveBeenCalledWith('radius', null);
         }));
     });

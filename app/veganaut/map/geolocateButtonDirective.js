@@ -21,71 +21,76 @@
     module.directive('vgGeolocateButton', function() {
         return {
             restrict: 'E',
-            scope: {},
+            scope: {
+                /**
+                 * Leaflet map object.
+                 */
+                map: '=vgMap'
+            },
             link: function(scope, element, attrs, vm) {
-                // Stop locating when destroyed
                 element.on('$destroy', function() {
+                    // Stop locating when destroyed
                     vm.stopLocate();
+
+                    // And stop listening for events
+                    vm.map.off('locationfound', vm._onLocationFound);
+                    vm.map.off('locationerror', vm._onLocationError);
                 });
             },
             controller: [
                 '$scope', '$window', '$timeout', '$translate',
-                'Leaflet', 'leafletData', 'angularPiwik', 'alertService',
+                'Leaflet', 'angularPiwik', 'alertService',
                 function($scope, $window, $timeout, $translate,
-                    L, leafletData, angularPiwik, alertService)
+                    L, angularPiwik, alertService)
                 {
+                    var vm = this;
+
                     /**
                      * Stores whether the browser supports geolocation
                      * @type {boolean}
                      */
-                    this.supported = !!('geolocation' in $window.navigator);
+                    vm.supported = !!('geolocation' in $window.navigator);
 
                     /**
                      * Whether we are currently waiting for the first coordinates
                      * @type {boolean}
                      */
-                    this.initialLocate = false;
+                    vm.initialLocate = false;
 
                     /**
                      * Whether we are currently listening for location changes
                      * @type {boolean}
                      */
-                    this.active = false;
-
-                    /**
-                     * Reference to the map object
-                     * @type {{}}
-                     */
-                    this._map = undefined;
+                    vm.active = false;
 
                     /**
                      * Leaflet circle instance used to show the coordinates and accuracy on the map
                      * @type {L.circle}
                      * @private
                      */
-                    this._marker = undefined;
+                    vm._marker = undefined;
 
                     /**
                      * Handler for clicks on the locate button.
                      * Use the geolocation API to locate the user and move the map to that place.
                      * @param $event
                      */
-                    this.onClick = function($event) {
-                        if (!this.supported || !this._map) {
+                    vm.onClick = function($event) {
+                        if (!vm.supported) {
                             return;
                         }
 
                         // Check if we are already active
-                        if (this.active) {
-                            this.stopLocate();
+                        if (vm.active) {
+                            vm.stopLocate();
                         }
                         else {
                             // Start locating and set to active
-                            this.initialLocate = true;
-                            this.active = true;
+                            vm.initialLocate = true;
+                            vm.active = true;
 
                             // Use the leaflet locate method
-                            this._map.locate({
+                            vm.map.locate({
                                 watch: true
                             });
 
@@ -100,20 +105,20 @@
                     /**
                      * Stops the locating and resets everything correctly.
                      */
-                    this.stopLocate = function() {
+                    vm.stopLocate = function() {
                         // Check if we are actually active
-                        if (this.active) {
+                        if (vm.active) {
                             // Reset flags
-                            this.initialLocate = false;
-                            this.active = false;
+                            vm.initialLocate = false;
+                            vm.active = false;
 
                             // Stop locating
-                            this._map.stopLocate();
+                            vm.map.stopLocate();
 
                             // Remove the marker
-                            if (angular.isDefined(this._marker)) {
-                                this._map.removeLayer(this._marker);
-                                this._marker = undefined;
+                            if (angular.isDefined(vm._marker)) {
+                                vm.map.removeLayer(vm._marker);
+                                vm._marker = undefined;
                             }
                         }
                     };
@@ -123,35 +128,38 @@
                      * @param location
                      * @private
                      */
-                    this._onLocationFound = function(location) {
-                        // Check if this is the first location found
-                        if (this.initialLocate) {
-                            // Initial locating done
-                            this.initialLocate = false;
+                    vm._onLocationFound = function(location) {
+                        // Coming directly from leaflet, need $apply
+                        $scope.$apply(function() {
+                            // Check if this is the first location found
+                            if (vm.initialLocate) {
+                                // Initial locating done
+                                vm.initialLocate = false;
 
-                            // Fit the map to the bounds
-                            this._map.fitBounds(location.bounds, {
-                                maxZoom: MAX_GEOLOCATE_ZOOM
-                            });
+                                // Fit the map to the bounds
+                                vm.map.fitBounds(location.bounds, {
+                                    maxZoom: MAX_GEOLOCATE_ZOOM
+                                });
 
-                            // Apply after timeout (otherwise the map center is not always correctly updated)
-                            $timeout(function() {
-                                $scope.$apply();
-                            }, 0);
+                                // Apply after timeout (otherwise the map center is not always correctly updated)
+                                $timeout(function() {
+                                    $scope.$apply();
+                                }, 0);
 
-                            // After a while (when zooming/panning is done) call locatin update
-                            // TODO: actually wait for the zooming to be done
-                            $timeout(function() {
-                                this._onLocationUpdate(location);
-                            }.bind(this), 300);
+                                // After a while (when zooming/panning is done) call locatin update
+                                // TODO: actually wait for the zooming to be done
+                                $timeout(function() {
+                                    vm._onLocationUpdate(location);
+                                }.bind(this), 300);
 
-                            // Track usage
-                            angularPiwik.track('map.geolocation', 'found');
-                        }
-                        else {
-                            // Location was already found before, this is just an update
-                            this._onLocationUpdate(location);
-                        }
+                                // Track usage
+                                angularPiwik.track('map.geolocation', 'found');
+                            }
+                            else {
+                                // Location was already found before, this is just an update
+                                vm._onLocationUpdate(location);
+                            }
+                        });
                     };
 
                     /**
@@ -159,19 +167,19 @@
                      * @param location
                      * @private
                      */
-                    this._onLocationUpdate = function(location) {
+                    vm._onLocationUpdate = function(location) {
                         var radius = Math.max(location.accuracy / 2, MIN_MARKER_RADIUS);
 
-                        if (angular.isUndefined(this._marker)) {
-                            this._marker = L.circle(location.latlng, radius, {
+                        if (angular.isUndefined(vm._marker)) {
+                            vm._marker = L.circle(location.latlng, radius, {
                                 className: 'geolocate-circle-marker'
                             });
 
-                            this._marker.addTo(this._map);
+                            vm._marker.addTo(vm.map);
                         }
                         else {
-                            this._marker.setLatLng(location.latlng);
-                            this._marker.setRadius(radius);
+                            vm._marker.setLatLng(location.latlng);
+                            vm._marker.setRadius(radius);
                         }
                     };
 
@@ -179,25 +187,24 @@
                      * Handles the leaflet locationerror event
                      * @private
                      */
-                    this._onLocationError = function() {
-                        // Done locating
-                        this.stopLocate();
+                    vm._onLocationError = function() {
+                        // Coming directly from leaflet, need $apply
+                        $scope.$apply(function() {
+                            // Done locating
+                            vm.stopLocate();
 
-                        // Tell user about error
-                        alertService.addAlert($translate.instant('message.geolocate.error'), 'danger');
+                            // Tell user about error
+                            alertService.addAlert($translate.instant('message.geolocate.error'), 'danger');
 
-                        // Track usage
-                        angularPiwik.track('map.geolocation', 'error');
+                            // Track usage
+                            angularPiwik.track('map.geolocation', 'error');
+                        });
                     };
 
-                    // Retrieve the map
-                    leafletData.getMap().then(function(map) {
-                        this._map = map;
 
-                        // Listen to location events
-                        this._map.on('locationfound', this._onLocationFound.bind(this));
-                        this._map.on('locationerror', this._onLocationError.bind(this));
-                    }.bind(this));
+                    // Listen to location events
+                    vm.map.on('locationfound', vm._onLocationFound);
+                    vm.map.on('locationerror', vm._onLocationError);
                 }
             ],
             controllerAs: 'geolocateButton',

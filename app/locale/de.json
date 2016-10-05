@@ -5,6 +5,7 @@
     "login": "Login",
     "logout": "Logout",
     "map": "Karte",
+    "locationList": "Locations",
     "community": "Community",
     "profile": "Profil",
     "about": "Über uns",
@@ -15,6 +16,7 @@
     "bugs": "Bugreport / GitHub"
   },
   "message": {
+    "new": "neu",
     "registration": {
       "success": "Willkommen bei Veganaut.net {{ name }}! Du bist jetzt eingeloggt. Wir schicken dir eine E-Mail mit einem Link, um dein Passwort für spätere Logins zu setzen.",
       "error": "Registrierung fehlgeschlagen: {{ reason }}"
@@ -407,7 +409,8 @@
   },
   "locationList": {
     "title": "Locations",
-    "description": "Zeige Location im Radius von {{ radius }} um {{ place }}.",
+    "description": "Zeige Locations im Radius von {{ radius }} um {{ place }}.",
+    "descriptionWholeWorld": "Zeige Locations auf der ganzen Welt.",
     "noResults": "Es wurden keine Locations im angegebenen Gebiet gefunden.",
     "showMore": "Weitere Locations anzeigen",
     "moreLocationsAvailable": "{{ available }} weitere Locations gefunden.",
