@@ -13,7 +13,10 @@
     "contactForm": "Contact",
     "twitter": "Twitter",
     "facebook": "Facebook",
-    "bugs": "Bugreport / GitHub"
+    "bugs": "Bugreport / GitHub",
+    "termsOfUse": "Conditions d'utilisation",
+    "privacyPolicy": "Protection de données",
+    "imprint": "Mentions légales"
   },
   "message": {
     "new": "new",
@@ -499,8 +502,5 @@
       "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
       "register": "Start sharing!"
     }
-  },
-  "missingFeature": {
-    "goToList": "To get to the list, click on the \"Endroits\" button above. We are working on getting you there directly from the home page. Thanks for letting us know your interest!"
   }
 }

@@ -90,48 +90,71 @@
                     <span data-translate="navigation.logout"></span>
                 </button>
 
-                <div class="row navbar-footer">
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://blog.veganaut.net/about/" target="_blank">
-                            <span data-translate="navigation.about"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://blog.veganaut.net/" target="_blank">
-                            <span data-translate="navigation.blog"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://blog.veganaut.net/contact" target="_blank">
-                            <span data-translate="navigation.contactForm"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://twitter.com/veganautnet" target="_blank">
-                            <span data-translate="navigation.twitter"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://www.facebook.com/veganautnet" target="_blank">
-                            <span data-translate="navigation.facebook"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-sm-4 text-center">
-                        <a href="https://github.com/veganaut/veganaut/issues" target="_blank">
-                            <span data-translate="navigation.bugs"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 text-center" ng-controller="ChangeLocaleCtrl">
-                        <span ng-repeat="locale in availableLocales">
-                            <span ng-show="$index > 0">&nbsp;|&nbsp;</span>
-                            <a href="" ng-hide="locale === localeService.getLocale()"
-                             ng-click="localeService.changeLocale(locale); closeMenu()">
-                                <span ng-bind="localeNames[locale]"></span>
+                <div class="navbar-footer text-center">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://blog.veganaut.net/about/" target="_blank">
+                                <span data-translate="navigation.about"></span>
                             </a>
-                            <span ng-show="locale === localeService.getLocale()">
-                                <span ng-bind="localeNames[locale]"></span>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://blog.veganaut.net/" target="_blank">
+                                <span data-translate="navigation.blog"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://blog.veganaut.net/contact" target="_blank">
+                                <span data-translate="navigation.contactForm"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://twitter.com/veganautnet" target="_blank">
+                                <span data-translate="navigation.twitter"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://www.facebook.com/veganautnet" target="_blank">
+                                <span data-translate="navigation.facebook"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="https://github.com/veganaut/veganaut/issues" target="_blank">
+                                <span data-translate="navigation.bugs"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12" ng-controller="ChangeLocaleCtrl">
+                            <span ng-repeat="locale in availableLocales">
+                                <span ng-show="$index > 0">&nbsp;|&nbsp;</span>
+                                <a href="" ng-hide="locale === localeService.getLocale()"
+                                 ng-click="localeService.changeLocale(locale); closeMenu()">
+                                    <span ng-bind="localeNames[locale]"></span>
+                                </a>
+                                <span ng-show="locale === localeService.getLocale()">
+                                    <span ng-bind="localeNames[locale]"></span>
+                                </span>
                             </span>
-                        </span>
+                        </div>
+                    </div>
+
+                    <div class="row navbar-footer__bottom">
+                        <div class="col-xs-12 col-sm-4">
+                            <a href="https://blog.veganaut.net/nutzungsbedingungen/" target="_blank">
+                                <span data-translate="navigation.termsOfUse"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <a href="https://blog.veganaut.net/datenschutzerklarung/" target="_blank">
+                                <span data-translate="navigation.privacyPolicy"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <a href="https://blog.veganaut.net/impressum/" target="_blank">
+                                <span data-translate="navigation.imprint"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>
