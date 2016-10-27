@@ -8,7 +8,29 @@
      */
     var module = angular.module('veganaut.geocode', []);
 
+    /**
+     * Base URL of the OSM Nominatim API
+     * @type {string}
+     */
     var BASE_URL = '//nominatim.openstreetmap.org';
+
+    /**
+     * List of classes that denote items returned from the Nominatim search
+     * that represent a building (shops, restaurants, ...) or other content
+     * that is not generally a geographical place like a street, city or country.
+     *
+     * Extracted from http://wiki.openstreetmap.org/wiki/Map_Features
+     * @type {string[]}
+     */
+    var OSM_BUILDING_CLASSES = [
+        'leisure',
+        'amenity',
+        'office',
+        'shop',
+        'office',
+        'craft',
+        'tourism'
+    ];
 
     /**
      * Represents a geocoding results
@@ -81,13 +103,16 @@
         /**
          * Geocode the given search string
          * @param {string} searchString
-         * @param {number} [limit=3]
+         * @param {number} [limit=5]
+         * @param {boolean} [filterBuildings=true] Whether to filter out buildings to only return
+         *      countries, cities, streets, etc.
          * @returns {promise}
          */
-        GeocodeService.prototype.search = function(searchString, limit) {
+        GeocodeService.prototype.search = function(searchString, limit, filterBuildings) {
             var locale = localeService.getLocale();
             var deferred = $q.defer();
-            $http.get(BASE_URL + '/search', {
+            $http.get(BASE_URL + '/search',
+                {
                     params: {
                         q: searchString,
                         limit: limit || 5,
@@ -99,7 +124,12 @@
                 .success(function(data) {
                     var results = [];
                     for (var i = 0; i < data.length; i += 1) {
-                        results.push(new GeocodeResult(data[i]));
+                        // Check if we should filter. If yes, don't add buildings to the results.
+                        if (filterBuildings === false ||
+                            OSM_BUILDING_CLASSES.indexOf(data[i].class) === -1)
+                        {
+                            results.push(new GeocodeResult(data[i]));
+                        }
                     }
                     deferred.resolve(results);
                 })
@@ -121,7 +151,8 @@
         GeocodeService.prototype.reverseSearch = function(lat, lng, zoom) {
             var locale = localeService.getLocale();
             var deferred = $q.defer();
-            $http.get(BASE_URL + '/reverse', {
+            $http.get(BASE_URL + '/reverse',
+                {
                     params: {
                         lat: lat,
                         lon: lng,
