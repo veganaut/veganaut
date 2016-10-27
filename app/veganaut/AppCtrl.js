@@ -2,11 +2,11 @@
     'use strict';
 
     module.controller('AppCtrl', [
-        '$scope', '$location', '$window', '$rootScope', '$q',
-        'angularPiwik', 'featureToggle',
+        '$scope', '$location', '$window', '$q',
+        'angularPiwik', 'featureToggle', 'searchService',
         'backendService', 'playerService', 'localeService',
-        function($scope, $location, $window, $rootScope, $q,
-            angularPiwik, featureToggle,
+        function($scope, $location, $window, $q,
+            angularPiwik, featureToggle, searchService,
             backendService, playerService, localService)
         {
             // Expose feature toggle settings
@@ -41,9 +41,7 @@
              * Handler for clicks on search button in navbar
              */
             $scope.searchClick = function() {
-                // This is a temporary solution to handle the search click
-                // Is now handled in mainMap, will move to proper directives later
-                $rootScope.$emit('veganaut.search.clicked');
+                searchService.toggleSearchModal();
             };
 
             // Reload the whole app when the session gets destroyed to clear all data

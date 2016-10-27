@@ -58,6 +58,7 @@
             });
             $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
             $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
+            $routeProvider.when('/search', {template: '<vg-global-search></vg-global-search>'});
             $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
             $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
             $routeProvider.when('/community', {template: '<vg-community></vg-community>'});

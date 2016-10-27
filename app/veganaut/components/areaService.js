@@ -1,6 +1,9 @@
 angular.module('veganaut.app.main').factory('areaService', [
-    '$q', '$window', 'Leaflet', 'constants', 'Area', 'backendService', 'localeService',
-    function($q, $window, L, constants, Area, backendService, localeService) {
+    '$q', '$window', '$location', '$route', '$rootScope', 'Leaflet',
+    'constants', 'Area', 'backendService', 'localeService',
+    function($q, $window, $location, $route, $rootScope, L,
+        constants, Area, backendService, localeService)
+    {
         'use strict';
 
         /**
@@ -8,6 +11,21 @@ angular.module('veganaut.app.main').factory('areaService', [
          * @type {string}
          */
         var AREA_STORAGE_ID = 'veganautArea';
+
+        /**
+         * Infos about pages where areas can be shown
+         * @type {{}}
+         */
+        var AREA_PAGE_INFOS = {
+            map: {
+                path: '/map/',
+                eventName: 'veganaut.area.pushToMap'
+            },
+            list: {
+                path: '/locations/',
+                eventName: 'veganaut.area.pushToList'
+            }
+        };
 
         /**
          * Service that keeps track of the Area that the user is currently
@@ -99,6 +117,57 @@ angular.module('veganaut.app.main').factory('areaService', [
             }
 
             return false;
+        };
+
+        /**
+         * Shows the given area on the map
+         * @param {Area} areaToShow
+         * @returns {boolean}
+         */
+        AreaService.prototype.showAreaOnMap = function(areaToShow) {
+            return this._showAreaOn(areaToShow, 'map');
+        };
+
+        /**
+         * Shows the given area on the list
+         * @param {Area} areaToShow
+         * @returns {boolean}
+         */
+        AreaService.prototype.showAreaOnList = function(areaToShow) {
+            return this._showAreaOn(areaToShow, 'list');
+        };
+
+        /**
+         * Shows the given area on the given target page.
+         *
+         * @param {Area} areaToShow
+         * @param {string} page: either 'map' or 'list'
+         * @returns {boolean}
+         * @private
+         */
+        AreaService.prototype._showAreaOn = function(areaToShow, page) {
+            // Get the infos for the target page
+            var infos = AREA_PAGE_INFOS[page];
+
+            // Check if infos are there and set the area
+            if (angular.isObject(infos) && this.setArea(areaToShow)) {
+                // The area was set, check if we are already on the correct page
+                if ($route.current.originalPath === infos.path) {
+                    // Emit an event to let the page know it should update
+                    $rootScope.$emit(infos.eventName);
+                }
+                else {
+                    // Go to the target page
+                    $location.path(infos.path);
+                }
+
+                // All went well
+                return true;
+            }
+            else {
+                // Return false if we could not set the area or target page was unknown
+                return false;
+            }
         };
 
         return new AreaService();

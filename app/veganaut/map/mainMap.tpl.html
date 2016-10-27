@@ -1,6 +1,6 @@
 <div>
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown || mainMapVm.filtersShown || mainMapVm.searchShown">
+     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown || mainMapVm.filtersShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
                 <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
@@ -100,12 +100,6 @@
             <span class="glyphicon glyphicon-remove"></span>
         </div>
         <vg-product-list></vg-product-list>
-    </vg-overlay>
-    <vg-overlay ng-if="mainMapVm.searchShown">
-        <vg-map-search
-         vg-on-close="mainMapVm.showSearch(false)"
-         vg-map="mainMapVm.map">
-        </vg-map-search>
     </vg-overlay>
 
     <div id="mainMap" class="main-map"

@@ -131,12 +131,22 @@
             };
 
 
-            var init = function(area) {
+            // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
+            /**
+             * Shows the list of the given area
+             * @param {Area} area
+             */
+            var showArea = function(area) {
                 // Get the radius params from the area
                 var params = area.getRadiusParams();
 
-                // Expose if we are showing the whole world
+                // Expose if we are showing the whole world and reset all other variables
                 vm.wholeWorld = params.includesWholeWorld;
+                vm.list = [];
+                vm.noResults = false;
+                vm.displayRadius = '';
+                vm.displayName = '';
+                vm.numShownLocations = 0;
 
                 // Query
                 locationService.queryByRadius(params.lat, params.lng, params.radius)
@@ -207,7 +217,12 @@
             }
 
             // Initiate with the currently valid area
-            areaService.getCurrentArea().then(init);
+            areaService.getCurrentArea().then(showArea);
+
+            // Listen to explicit area changes
+            $scope.$onRootScope('veganaut.area.pushToList', function() {
+                areaService.getCurrentArea().then(showArea);
+            });
 
             // Reset search parameters when navigating away from this page
             $scope.$on('$routeChangeStart', function(event) {

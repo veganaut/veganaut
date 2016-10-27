@@ -1,9 +1,12 @@
 // Styles for the accordion and related components
-.accordion {
+// The according is actually based on the (CSS-only) component button-list.
+
+// First, style the basic button-list
+.button-list {
     padding-left: 0;
     margin: 0 -10px 5px;
 
-    .accordion__item {
+    .button-list__item {
         position: relative;
         display: block;
         margin-bottom: -1px;
@@ -13,39 +16,49 @@
         &:last-child {
             margin-bottom: 0;
         }
-
-        .accordion__item__header__btn {
-            .button-variant(@colorDark; @colorLight; @colorLighter);
-            .btn-reset-styles();
-            padding: 5px 10px 5px 25px;
-            min-height: 45px;
-        }
     }
 
-    .accordion__item--opened {
+    .button-list__item__btn {
+        .button-variant(@colorDark; @colorLight; @colorLighter);
+        .btn-reset-styles();
+        padding: 5px 10px;
+        min-height: 35px;
+        border-radius: 0;
+    }
+}
+
+
+// Extend the button-list to an accordion with a header and body
+.button-list--accordion {
+    .button-list__item__btn {
+        padding-left: 25px;
+        min-height: 45px;
+    }
+
+    .button-list__item--opened {
         background: @bootstrapLightGreyBackground;
         box-shadow: 0 0 2px;
         z-index: 1; // Move to the front to show the bottom part of the shadow
     }
 
-    .accordion__item__body {
+    .button-list--accordion__header {
+        position: relative;
+    }
+
+    .button-list--accordion__header__icon {
+        position: absolute;
+        left: 7px;
+        top: 50%;
+        margin-top: -7px;
+    }
+
+    .button-list--accordion__body {
         border-top: 1px solid @bootstrapGreyBorder;
         margin-left: -2px;
         margin-right: -2px;
     }
 
-    .accordion__item__header {
-        position: relative;
-    }
-
-    .accordion__item__body__content {
+    .button-list--accordion__body__content {
         padding: 10px 15px;
-    }
-
-    .accordion__item__header__icon {
-        position: absolute;
-        left: 7px;
-        top: 50%;
-        margin-top: -7px;
     }
 }

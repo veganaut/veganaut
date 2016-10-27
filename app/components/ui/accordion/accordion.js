@@ -79,7 +79,7 @@
             }],
             controllerAs: 'accordionVm',
             bindToController: true,
-            template: '<div class="accordion" ng-transclude></div>'
+            template: '<div class="button-list button-list--accordion" ng-transclude></div>'
         };
     };
 

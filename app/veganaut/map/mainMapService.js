@@ -222,6 +222,16 @@
             };
 
             /**
+             * Shows the current area on the map.
+             * @param {L.map} map
+             */
+            MainMapService.prototype.showCurrentArea = function(map) {
+                areaService.getCurrentArea().then(function(area) {
+                    this._showArea(area, map);
+                }.bind(this));
+            };
+
+            /**
              * Handler for changes to the center and zoom of the map.
              * The controller is responsible for calling this method.
              * @param {{}} newCenter

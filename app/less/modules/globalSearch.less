@@ -1,0 +1,38 @@
+// Styles for the global search page and modal
+
+.global-search {
+    // No space at the bottom of the result lists
+    // they are followed by the "show more" buttons
+    .button-list, .list-unstyled {
+        margin-bottom: 0;
+    }
+
+    // Some more space after the form
+    form {
+        margin-bottom: 15px;
+    }
+}
+
+// Icon next to the geo results actions
+.geo-action-icon {
+    padding-right: 5px;
+    padding-left: 10px;
+    color: @colourBrandGrey;
+}
+
+// Styles for the search modal
+.modal--search {
+    .modal-dialog {
+        margin: @navbarHeight auto 0;
+        max-width: @maxContainerWidth;
+    }
+    .modal-content {
+        background-color: @colorLightTranslucent;
+        border: 1px solid @bootstrapGreyBorder;
+        border-radius: 0;
+        padding: 10px 10px 0;
+    }
+}
+.modal-backdrop--search.in {
+    opacity: 0.2;
+}

@@ -63,12 +63,6 @@
              */
             vm.filtersShown = false;
 
-            /**
-             * whether to show search
-             * @type {boolean}
-             */
-            vm.searchShown = false;
-
 
             // Parse legacy URL and redirect if anything found
             // TODO: Remove this after a few month of having the new URL scheme
@@ -171,31 +165,6 @@
             };
 
             /**
-             * Sets whether the search is shown
-             * @param {boolean} [show=true]
-             */
-            vm.showSearch = function(show) {
-                if (typeof show === 'undefined') {
-                    show = true;
-                }
-                show = !!show;
-
-                // Update and track if it changed
-                if (vm.searchShown !== show) {
-                    vm.searchShown = show;
-                    if (vm.searchShown) {
-                        // Hide all other boxes
-                        // TODO: this should really be done somewhere more central (in it's own component)
-                        vm.showProductList(false);
-                        vm.showFilters(false);
-                        vm.locationSet.abortCreateLocation();
-                        vm.locationSet.activate();
-                    }
-                    angularPiwik.track('map.search', show ? 'open' : 'close');
-                }
-            };
-
-            /**
              * Goes to the location list
              */
             vm.goToLocationList = function() {
@@ -241,10 +210,9 @@
                         // Track it
                         angularPiwik.track('map.locations', 'map.locations.click');
 
-                        // Hide the product list, filters and search
+                        // Hide the product list and filters
                         vm.showProductList(false);
                         vm.showFilters(false);
-                        vm.showSearch(false);
                     });
                 }
                 // TODO: if not handled, should pass on the click to the map?
@@ -263,10 +231,9 @@
                         // When not adding a location, deselect currently active location
                         vm.locationSet.activate();
 
-                        // And hide product list, filters and search
+                        // And hide product list and filters
                         vm.showProductList(false);
                         vm.showFilters(false);
-                        vm.showSearch(false);
                     }
                 });
             });
@@ -289,9 +256,9 @@
                 }
             );
 
-            // Listen to clicks on search button
-            $scope.$onRootScope('veganaut.search.clicked', function() {
-                vm.showSearch(!vm.searchShown);
+            // Listen to explicit area changes
+            $scope.$onRootScope('veganaut.area.pushToMap', function() {
+                mainMapService.showCurrentArea(vm.map);
             });
 
             // When we go away from this page, reset the url and abort adding location

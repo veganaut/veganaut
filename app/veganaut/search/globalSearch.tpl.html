@@ -1,0 +1,60 @@
+<!-- TODO WIP: clean up styles-->
+<div class="global-search">
+    <form novalidate name="searchForm" class="clearfix">
+        <label
+         for="globalSearch"
+         class="top-box__first-line">
+            {{ 'globalSearch.title.main' | translate }}
+        </label>
+        <div class="home__call-to-action__input">
+            <input
+             type="text"
+             class="form-control"
+             id="globalSearch"
+             ng-model="globalSearchVm.searchService.searchString"
+             autocomplete="off"
+             placeholder="{{ 'globalSearch.placeholder' | translate }}"
+            >
+            <button class="btn btn-default"
+             type="submit"
+             ng-disabled="!globalSearchVm.canSubmit()"
+             ng-click="globalSearchVm.onSubmit()">
+                <span class="glyphicon glyphicon-search"></span>
+                {{ 'globalSearch.submit' | translate }}
+            </button>
+        </div>
+    </form>
+
+    <div ng-if="globalSearchVm.shouldShowResults()">
+        <h2 class="h4">{{ 'globalSearch.title.locations' | translate }}</h2>
+        <div class="button-list">
+            <div ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
+             class="button-list__item">
+                <button class="btn btn-block button-list__item__btn"
+                 ng-click="globalSearchVm.onLocationClick(location)">
+                    <vg-location-title vg-location="location"></vg-location-title>
+                </button>
+            </div>
+        </div>
+        <button class="btn btn-link btn-block">
+            Find more locations
+        </button>
+
+        <h2 class="h4">{{ 'globalSearch.title.geoPlaces' | translate }}</h2>
+        <ul class="list-unstyled list-spaced">
+            <li class="clearfix" ng-repeat="result in globalSearchVm.searchService.geocodeResults">
+                <span class="pull-right">
+                    <a href="" ng-click="globalSearchVm.onGeoMapClick(result)">
+                        <span class="glyphicon glyphicon-map-marker geo-action-icon"></span>{{ 'globalSearch.geoResults.showOnMap' | translate }}</a>
+                    <a href="" ng-click="globalSearchVm.onGeoListClick(result)">
+                        <span class="glyphicon glyphicon-th-list geo-action-icon"></span>{{ 'globalSearch.geoResults.showOnList' | translate }}</a>
+                </span>
+                {{ result.getDisplayName() }}
+                <!-- TODO WIP: make this clickable as well -->
+            </li>
+        </ul>
+        <button class="btn btn-link btn-block">
+            Find more places
+        </button>
+    </div>
+</div>

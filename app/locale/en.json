@@ -403,11 +403,17 @@
     },
     "moreProducts": "and {{ numProducts }} more options"
   },
-  "mapSearch": {
-    "form": {
-      "title": "Search for locations on the map",
-      "placeholder": "Search name or address",
-      "showForm": "Show search"
+  "globalSearch": {
+    "title": {
+      "main": "Search for restaurants, shops and geographical places",
+      "locations": "Veganaut locations",
+      "geoPlaces": "Geographical places"
+    },
+    "placeholder": "Name, city, address",
+    "submit": "Search",
+    "geoResults": {
+      "showOnMap": "Map",
+      "showOnList": "Locations"
     }
   },
   "locationList": {

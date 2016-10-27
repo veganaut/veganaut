@@ -183,6 +183,30 @@
             };
 
             /**
+             * Searches for locations matching the given string and returns a list of them
+             *
+             * @param {string} searchString
+             * @param {number} limit
+             * @returns {Promise} Will resolve to an array of Locations
+             */
+            LocationService.prototype.searchLocations = function(searchString, limit) {
+                var deferred = $q.defer();
+
+                backendService.getLocationSearch(searchString, limit)
+                    .then(function(res) {
+                        var results = [];
+                        _.each(res.data, function(data) {
+                            results.push(new Location(data));
+                        });
+                        deferred.resolve(results);
+                    })
+                ;
+
+                // Return the promise
+                return deferred.promise;
+            };
+
+            /**
              * Returns the Location with the given id.
              * If the location is already contained in the current
              * locationSet, will return that instance.

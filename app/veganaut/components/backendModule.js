@@ -154,6 +154,21 @@
             };
 
             /**
+             * Searches locations by the given string
+             * @param {string} searchString
+             * @param {number} limit
+             * @returns {HttpPromise}
+             */
+            BackendService.prototype.getLocationSearch = function(searchString, limit) {
+                return $http.get(backendUrl + '/location/search', {
+                    params: {
+                        query: searchString,
+                        limit: limit
+                    }
+                });
+            };
+
+            /**
              * Requests the lat/lng based on the ip of the user
              * @param {string} [language] Optional language (for the country name)
              * @returns {HttpPromise}
