@@ -1,4 +1,5 @@
-<!-- TODO WIP: clean up styles-->
+<!-- TODO WIP: clean up styles (especially on mobile, the flexbox stuff doesn't quite work yet) -->
+<!-- TODO WIP: make sure everything is translated to all languages -->
 <div class="global-search">
     <form novalidate name="searchForm" class="clearfix">
         <label
@@ -17,15 +18,19 @@
             >
             <button class="btn btn-default"
              type="submit"
-             ng-disabled="!globalSearchVm.canSubmit()"
-             ng-click="globalSearchVm.onSubmit()">
+             ng-disabled="!globalSearchVm.searchService.isSearchStringValid()"
+             ng-click="globalSearchVm.searchService.startSearch()">
                 <span class="glyphicon glyphicon-search"></span>
                 {{ 'globalSearch.submit' | translate }}
             </button>
         </div>
     </form>
 
-    <div ng-if="globalSearchVm.shouldShowResults()">
+    <p ng-if="globalSearchVm.searchService.noResultsFound">
+        No results where found.
+    </p>
+
+    <div ng-if="globalSearchVm.searchService.locationResults.length > 0">
         <h2 class="h4">{{ 'globalSearch.title.locations' | translate }}</h2>
         <div class="button-list">
             <div ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
@@ -36,25 +41,37 @@
                 </button>
             </div>
         </div>
-        <button class="btn btn-link btn-block">
-            Find more locations
+        <button class="btn btn-link btn-block btn--more-results"
+         ng-if="globalSearchVm.searchService.hasMoreLocations"
+         ng-click="globalSearchVm.onShowMoreLocations()">
+            <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
+    </div>
 
-        <h2 class="h4">{{ 'globalSearch.title.geoPlaces' | translate }}</h2>
-        <ul class="list-unstyled list-spaced">
-            <li class="clearfix" ng-repeat="result in globalSearchVm.searchService.geocodeResults">
-                <span class="pull-right">
-                    <a href="" ng-click="globalSearchVm.onGeoMapClick(result)">
-                        <span class="glyphicon glyphicon-map-marker geo-action-icon"></span>{{ 'globalSearch.geoResults.showOnMap' | translate }}</a>
-                    <a href="" ng-click="globalSearchVm.onGeoListClick(result)">
-                        <span class="glyphicon glyphicon-th-list geo-action-icon"></span>{{ 'globalSearch.geoResults.showOnList' | translate }}</a>
-                </span>
-                {{ result.getDisplayName() }}
-                <!-- TODO WIP: make this clickable as well -->
-            </li>
-        </ul>
-        <button class="btn btn-link btn-block">
-            Find more places
+    <div ng-if="globalSearchVm.searchService.geoResults.length > 0">
+        <h2 class="h4">
+            <div class="btn-group global-search__geo-result-switch">
+                <label class="btn btn-default btn-sm" ng-repeat="type in ['map', 'list']"
+                 ng-model="globalSearchVm.searchService.geoAction" uib-btn-radio="type">
+                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_MARKERS[type] }}"></span>
+                </label>
+            </div>
+            {{ 'globalSearch.title.geoPlaces' | translate }}
+        </h2>
+        <div class="button-list">
+            <div ng-repeat="result in globalSearchVm.searchService.geoResults"
+             class="button-list__item">
+                <button class="btn btn-block button-list__item__btn"
+                 ng-click="globalSearchVm.onGeoClick(result)">
+                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_MARKERS[globalSearchVm.searchService.geoAction] }}"></span>
+                    {{ result.getDisplayName() }}
+                </button>
+            </div>
+        </div>
+        <button class="btn btn-link btn-block btn--more-results"
+         ng-if="globalSearchVm.searchService.hasMoreGeo"
+         ng-click="globalSearchVm.onShowMoreGeo()">
+            <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
     </div>
 </div>

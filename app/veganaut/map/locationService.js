@@ -200,6 +200,9 @@
                         });
                         deferred.resolve(results);
                     })
+                    .catch(function(data) {
+                        deferred.reject(data);
+                    })
                 ;
 
                 // Return the promise

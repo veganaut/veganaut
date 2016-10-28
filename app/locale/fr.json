@@ -412,8 +412,8 @@
     "placeholder": "Name, city, address",
     "submit": "Search",
     "geoResults": {
-      "showOnMap": "Show on map",
-      "showOnList": "List locations"
+      "showOnMap": "Map",
+      "showOnList": "Locations"
     }
   },
   "locationList": {

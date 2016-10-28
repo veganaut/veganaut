@@ -120,32 +120,13 @@ angular.module('veganaut.app.main').factory('areaService', [
         };
 
         /**
-         * Shows the given area on the map
-         * @param {Area} areaToShow
-         * @returns {boolean}
-         */
-        AreaService.prototype.showAreaOnMap = function(areaToShow) {
-            return this._showAreaOn(areaToShow, 'map');
-        };
-
-        /**
-         * Shows the given area on the list
-         * @param {Area} areaToShow
-         * @returns {boolean}
-         */
-        AreaService.prototype.showAreaOnList = function(areaToShow) {
-            return this._showAreaOn(areaToShow, 'list');
-        };
-
-        /**
          * Shows the given area on the given target page.
          *
          * @param {Area} areaToShow
          * @param {string} page: either 'map' or 'list'
-         * @returns {boolean}
          * @private
          */
-        AreaService.prototype._showAreaOn = function(areaToShow, page) {
+        AreaService.prototype.showAreaOn = function(areaToShow, page) {
             // Get the infos for the target page
             var infos = AREA_PAGE_INFOS[page];
 

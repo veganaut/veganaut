@@ -407,7 +407,7 @@
     "title": {
       "main": "Search for restaurants, shops and geographical places",
       "locations": "Veganaut locations",
-      "geoPlaces": "Geographical places"
+      "geoPlaces": "Geographical search results"
     },
     "placeholder": "Name, city, address",
     "submit": "Search",
