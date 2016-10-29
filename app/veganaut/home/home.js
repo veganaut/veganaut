@@ -136,20 +136,14 @@
              * @param {string} targetPage 'list' or 'map'
              */
             vm.onCtaSubmit = function(targetPage) {
-                areaService.setArea(targetArea);
+                // Show the area on the given page
+                areaService.showAreaOn(targetArea, targetPage);
 
-                // Check which target page was given
-                var action = '';
-                if (targetPage === 'list') {
-                    action = 'home.cta.submitToList';
-                    $location.path('locations/');
-                }
-                else {
-                    action = 'home.cta.submitToMap';
-                    $location.path('map/');
-                }
-
-                angularPiwik.track('home.cta', action);
+                // Track the submission
+                angularPiwik.track(
+                    'home.cta',
+                    (targetPage === 'list' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
+                );
             };
 
             /**
