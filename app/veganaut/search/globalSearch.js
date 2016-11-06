@@ -11,7 +11,8 @@
             restrict: 'E',
             scope: {
                 /**
-                 * Optional handler called when the user selects a search result.
+                 * Optional handler called when the user selects a search result
+                 * or wants to show more results.
                  */
                 onSelect: '&?vgOnSelect'
             },
@@ -23,14 +24,12 @@
     };
 
     var globalSearchCtrl = [
-        '$scope', '$q', '$location', 'geocodeService', 'searchService', 'locationService', 'areaService', 'Area',
-        function($scope, $q, $location, geocodeService, searchService, locationService, areaService, Area) {
+        '$scope', '$location', '$translate', 'angularPiwik', 'alertService', 'searchService', 'areaService',
+        function($scope, $location, $translate, angularPiwik, alertService, searchService, areaService) {
             var vm = this;
 
             // Expose the search service
             vm.searchService = searchService;
-
-            // TODO WIP: track all the stuff here!
 
             /**
              * Handles clicks on a location result
@@ -40,7 +39,8 @@
                 // Go to the location detail page
                 $location.path('location/' + location.id);
 
-                // Tell parent user selected a result
+                // Track and tell parent
+                angularPiwik.track('globalSearch', 'globalSearch.selectResult.location');
                 vm.notifyParent();
             };
 
@@ -49,30 +49,23 @@
              * @param {GeocodeResult} geoResult
              */
             vm.onGeoClick = function(geoResult) {
-                // TODO WIP: GeocodeResult should provide an area directly
-                var geoArea = new Area({
-                    lat: geoResult.lat,
-                    lng: geoResult.lng,
-                    boundingBox: geoResult.bounds,
-                    name: geoResult.getDisplayName()
-                });
-
                 // Show the are on the currently selected page type
-                areaService.showAreaOn(geoArea, vm.searchService.geoAction);
+                areaService.showAreaOn(geoResult.area, vm.searchService.geoAction);
 
-                // Tell parent user selected a result
+                // Track and tell parent
+                angularPiwik.track('globalSearch', 'globalSearch.selectResult.geo');
                 vm.notifyParent();
             };
 
-            // TODO WIP: how to update search URL to contain query string?
-            vm.onShowMoreLocations = function() {
-                $location.path('/search');
-                vm.notifyParent();
-            };
 
-            vm.onShowMoreGeo = function() {
-                $location.path('/search');
-                vm.notifyParent();
+            /**
+             * Handler for clicks on the show more buttons.
+             */
+            vm.onShowMore = function(resultType) {
+                angularPiwik.track('globalSearch', 'globalSearch.showMore.' + resultType);
+
+                // Feature not done yet, inform the user
+                alertService.addAlert($translate.instant('missingFeature.showMoreSearchResults'), 'info', undefined, 18000);
             };
 
             /**
@@ -84,6 +77,13 @@
                     vm.onSelect();
                 }
             };
+
+            // Track switching of geo action
+            $scope.$watch('globalSearchVm.searchService.geoAction', function(valueNow, valueBefore) {
+                if (valueNow !== valueBefore) {
+                    angularPiwik.track('globalSearch', 'globalSearch.switchGeoAction.' + valueNow);
+                }
+            });
         }
     ];
 

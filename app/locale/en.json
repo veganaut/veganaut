@@ -407,14 +407,11 @@
     "title": {
       "main": "Search for restaurants, shops and geographical places",
       "locations": "Veganaut locations",
-      "geoPlaces": "Geographical search results"
+      "geoPlaces": "Geographical results"
     },
     "placeholder": "Name, city, address",
     "submit": "Search",
-    "geoResults": {
-      "showOnMap": "Map",
-      "showOnList": "Locations"
-    }
+    "noResults": "No results where found."
   },
   "locationList": {
     "title": "Locations",
@@ -508,5 +505,8 @@
       "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
       "register": "Start sharing!"
     }
+  },
+  "missingFeature": {
+    "showMoreSearchResults": "Sorry, we can't show you more results yet. We are working on it. Thanks for letting us know your interest!"
   }
 }

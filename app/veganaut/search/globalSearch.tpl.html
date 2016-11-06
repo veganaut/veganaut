@@ -1,5 +1,4 @@
 <!-- TODO WIP: clean up styles (especially on mobile, the flexbox stuff doesn't quite work yet) -->
-<!-- TODO WIP: make sure everything is translated to all languages -->
 <div class="global-search">
     <form novalidate name="searchForm" class="clearfix">
         <label
@@ -27,7 +26,7 @@
     </form>
 
     <p ng-if="globalSearchVm.searchService.noResultsFound">
-        No results where found.
+        {{ 'globalSearch.noResults' | translate }}
     </p>
 
     <div ng-if="globalSearchVm.searchService.locationResults.length > 0">
@@ -43,7 +42,7 @@
         </div>
         <button class="btn btn-link btn-block btn--more-results"
          ng-if="globalSearchVm.searchService.hasMoreLocations"
-         ng-click="globalSearchVm.onShowMoreLocations()">
+         ng-click="globalSearchVm.onShowMore('locations')">
             <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
     </div>
@@ -70,7 +69,7 @@
         </div>
         <button class="btn btn-link btn-block btn--more-results"
          ng-if="globalSearchVm.searchService.hasMoreGeo"
-         ng-click="globalSearchVm.onShowMoreGeo()">
+         ng-click="globalSearchVm.onShowMore('geo')">
             <span class="glyphicon glyphicon-chevron-down"></span>
         </button>
     </div>
