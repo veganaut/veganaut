@@ -1,9 +1,6 @@
 angular.module('veganaut.app.search').factory('searchService', [
-    '$rootScope', '$q', '$uibModal', 'angularPiwik', 'routeHelperService',
-    'locationService', 'geocodeService',
-    function($rootScope, $q, $uibModal, angularPiwik, routeHelperService,
-        locationService, geocodeService)
-    {
+    '$rootScope', '$q', '$uibModal', '$route', 'angularPiwik', 'locationService', 'geocodeService',
+    function($rootScope, $q, $uibModal, $route, angularPiwik, locationService, geocodeService) {
         'use strict';
 
         /**
@@ -44,12 +41,8 @@ angular.module('veganaut.app.search').factory('searchService', [
             // the action corresponding to the page that was last visited to be active.
             var that = this;
             $rootScope.$on('$routeChangeSuccess', function() {
-                // TODO WIP: do this differently? Like getCurrentPage?
-                if (routeHelperService.isCurrentPage('map')) {
-                    that.geoAction = 'map';
-                }
-                else if (routeHelperService.isCurrentPage('list')) {
-                    that.geoAction = 'list';
+                if ($route.current.routeName === 'map' || $route.current.routeName === 'list') {
+                    that.geoAction = $route.current.routeName;
                 }
             });
         };
@@ -81,6 +74,9 @@ angular.module('veganaut.app.search').factory('searchService', [
             that.hasMoreLocations = false;
             that.hasMoreGeo = false;
 
+            // Whether we already tracked the use of the search
+            var isTracked = false;
+
             // TODO: get rid of code duplication
 
             // Get location results (we ask for one more to know whether there are more results)
@@ -96,6 +92,12 @@ angular.module('veganaut.app.search').factory('searchService', [
                 if (that.locationResults.length > DEFAULT_NUM_RESULTS) {
                     that.hasMoreLocations = true;
                     that.locationResults = _.dropRight(that.locationResults);
+                }
+
+                // Track search with results if there are results and we haven't tracked yet
+                if (!isTracked && that.locationResults.length > 0) {
+                    angularPiwik.trackSiteSearch(that.searchString, false, 1);
+                    isTracked = true;
                 }
             });
 
@@ -113,6 +115,12 @@ angular.module('veganaut.app.search').factory('searchService', [
                     that.hasMoreGeo = true;
                     that.geoResults = _.dropRight(that.geoResults);
                 }
+
+                // Track search with results if there are results and we haven't tracked yet
+                if (!isTracked && that.geoResults.length > 0) {
+                    angularPiwik.trackSiteSearch(that.searchString, false, 1);
+                    isTracked = true;
+                }
             });
 
             // Check if no results were found after all calls returned
@@ -121,6 +129,13 @@ angular.module('veganaut.app.search').factory('searchService', [
                     that.locationResults.length === 0)
                 {
                     that.noResultsFound = true;
+                }
+
+                // If we haven't tracked the search yet, we should track it as no results
+                // (otherwise it would have already been tracked before)
+                if (!isTracked) {
+                    angularPiwik.trackSiteSearch(that.searchString, false, 0);
+                    isTracked = true;
                 }
             });
         };
@@ -145,7 +160,7 @@ angular.module('veganaut.app.search').factory('searchService', [
                     .catch(function() {
                         // We only track dismissal, not normal closing here.
                         // When it's closing, a result was selected, so this will be tracked elsewhere.
-                        angularPiwik.track('searchModal', 'searchModal.dismiss');
+                        angularPiwik.track('globalSearch', 'globalSearch.dismissModal');
                     })
                     .finally(function() {
                         this._modalInstance = undefined;
@@ -153,7 +168,7 @@ angular.module('veganaut.app.search').factory('searchService', [
                 ;
 
                 // Track showing of modal
-                angularPiwik.track('searchModal', 'searchModal.open');
+                angularPiwik.track('globalSearch', 'globalSearch.openModal', 'globalSearch.openModal.' + $route.current.routeName);
             }
 
         };
