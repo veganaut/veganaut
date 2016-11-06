@@ -88,6 +88,23 @@
     };
 
     /**
+     * Tracks a site search
+     * @param {string} keyword
+     * @param {string|boolean} [category=false]
+     * @param {number|boolean} [searchCount=false]
+     */
+    AngularPiwik.prototype.trackSiteSearch = function(keyword, category, searchCount) {
+        // Set default values
+        if (!angular.isString(category)) {
+            category = false;
+        }
+        if (!angular.isNumber(searchCount)) {
+            searchCount = false;
+        }
+        this._pushToPiwik(['trackSiteSearch', keyword, category, searchCount]);
+    };
+
+    /**
      * Wrapper of the Piwik setCustomVariable method.
      * Call this before trackPageView!
      * @param {number} index Variable index (between 1 - 5)
