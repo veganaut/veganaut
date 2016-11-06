@@ -38,13 +38,30 @@
             $compileProvider.debugInfoEnabled(appSettings.debugInfo);
 
             // Set up routes
-            $routeProvider.when('/register', {template: '<vg-register></vg-register>'});
-            $routeProvider.when('/login', {templateUrl: '/veganaut/user/login.tpl.html', controller: 'LoginCtrl'});
-            $routeProvider.when('/forgot', {templateUrl: '/veganaut/user/forgot.tpl.html'});
-            $routeProvider.when('/reset/:token', {templateUrl: '/veganaut/user/reset.tpl.html'});
+            $routeProvider.when('/register', {
+                routeName: 'register',
+                template: '<vg-register></vg-register>'
+            });
+            $routeProvider.when('/login', {
+                routeName: 'login',
+                templateUrl: '/veganaut/user/login.tpl.html',
+                controller: 'LoginCtrl'
+            });
+            $routeProvider.when('/forgot', {
+                routeName: 'forgotPassword',
+                templateUrl: '/veganaut/user/forgot.tpl.html'
+            });
+            $routeProvider.when('/reset/:token', {
+                routeName: 'resetPassword',
+                templateUrl: '/veganaut/user/reset.tpl.html'
+            });
 
-            $routeProvider.when('/', {template: '<vg-home></vg-home>'});
+            $routeProvider.when('/', {
+                routeName: 'home',
+                template: '<vg-home></vg-home>'
+            });
             $routeProvider.when('/map/', {
+                routeName: 'map',
                 template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
@@ -52,17 +69,36 @@
 
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
+                routeName: 'list',
                 template: '<vg-location-list></vg-location-list>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
-            $routeProvider.when('/location/:id', {templateUrl: '/veganaut/map/locationDetails.tpl.html'});
-            $routeProvider.when('/location/:id/edit', {templateUrl: '/veganaut/map/editLocation.tpl.html'});
-            $routeProvider.when('/search', {template: '<vg-global-search></vg-global-search>'});
-            $routeProvider.when('/me', {templateUrl: '/veganaut/user/profile.tpl.html'});
-            $routeProvider.when('/me/edit', {templateUrl: '/veganaut/user/editProfile.tpl.html'});
-            $routeProvider.when('/community', {template: '<vg-community></vg-community>'});
-            $routeProvider.when('/veganaut/:personId', {templateUrl: '/veganaut/user/person.tpl.html', controller: 'PersonCtrl'});
+            $routeProvider.when('/location/:id', {
+                routeName: 'location',
+                templateUrl: '/veganaut/map/locationDetails.tpl.html'
+            });
+            $routeProvider.when('/location/:id/edit', {
+                routeName: 'location.edit',
+                templateUrl: '/veganaut/map/editLocation.tpl.html'
+            });
+            $routeProvider.when('/me', {
+                routeName: 'ownProfile',
+                templateUrl: '/veganaut/user/profile.tpl.html'
+            });
+            $routeProvider.when('/me/edit', {
+                routeName: 'ownProfile.edit',
+                templateUrl: '/veganaut/user/editProfile.tpl.html'
+            });
+            $routeProvider.when('/community', {
+                routeName: 'community',
+                template: '<vg-community></vg-community>'
+            });
+            $routeProvider.when('/veganaut/:personId', {
+                routeName: 'otherProfile',
+                templateUrl: '/veganaut/user/person.tpl.html',
+                controller: 'PersonCtrl'
+            });
 
             $routeProvider.otherwise({redirectTo: '/'});
             // TODO: make sure only routes are accessed that are allowed for the current situation (e.g. logged out)
