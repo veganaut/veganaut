@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    module.service('LocationCluster', ['$rootScope', '$translate',
+    module.factory('LocationCluster', ['$rootScope', '$translate',
         function($rootScope, $translate) {
             /**
              * Represents a location cluster on the map.

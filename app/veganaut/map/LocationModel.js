@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    module.service('Location', ['$rootScope', 'playerService',
+    module.factory('Location', ['$rootScope', 'playerService',
         function($rootScope, playerService) {
             /**
              * Z-index offset to use for the marker when the location is active

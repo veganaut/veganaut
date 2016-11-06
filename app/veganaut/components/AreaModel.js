@@ -1,4 +1,4 @@
-angular.module('veganaut.app.main').service('Area', [
+angular.module('veganaut.app.main').factory('Area', [
     'Leaflet', 'constants',
     function(L, constants) {
         'use strict';

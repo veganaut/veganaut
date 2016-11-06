@@ -1,4 +1,4 @@
-angular.module('veganaut.app.map').service('LocationSet', [
+angular.module('veganaut.app.map').factory('LocationSet', [
     '$rootScope', 'angularPiwik', 'backendService', 'alertService', 'Location', 'LocationCluster', 'CreateLocation',
     function($rootScope, angularPiwik, backendService, alertService, Location, LocationCluster, CreateLocation) {
         'use strict';
