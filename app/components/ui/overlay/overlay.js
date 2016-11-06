@@ -26,6 +26,7 @@
             controllerAs: 'overlayVm',
             bindToController: true,
             // TODO: style "overlay" directly instead of using classes?
+            // TODO: is this component still used? useful? too many things: top-box/overlay/modal
             template: '<div class="overlay top-box container main-container" ng-transclude></div>'
         };
     };
