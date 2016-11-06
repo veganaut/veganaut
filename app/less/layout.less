@@ -171,3 +171,23 @@ hr {
         margin-bottom: 10px;
     }
 }
+
+// Element with an expanding input element and an attached button on the right
+.one-line-input-and-submit {
+    display: flex;
+
+    .form-group {
+        flex-grow: 1;
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        border-radius: 2px 0 0 2px;
+        border-right: 0;
+    }
+
+    .btn {
+        padding: 4px 12px;
+        height: 34px;
+    }
+}

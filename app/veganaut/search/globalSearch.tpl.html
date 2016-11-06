@@ -1,4 +1,3 @@
-<!-- TODO WIP: clean up styles (especially on mobile, the flexbox stuff doesn't quite work yet) -->
 <div class="global-search">
     <form novalidate name="searchForm" class="clearfix">
         <label
@@ -6,15 +5,17 @@
          class="top-box__first-line">
             {{ 'globalSearch.title.main' | translate }}
         </label>
-        <div class="home__call-to-action__input">
-            <input
-             type="text"
-             class="form-control"
-             id="globalSearch"
-             ng-model="globalSearchVm.searchService.searchString"
-             autocomplete="off"
-             placeholder="{{ 'globalSearch.placeholder' | translate }}"
-            >
+        <div class="one-line-input-and-submit">
+            <div class="form-group">
+                <input
+                 type="text"
+                 class="form-control"
+                 id="globalSearch"
+                 ng-model="globalSearchVm.searchService.searchString"
+                 autocomplete="off"
+                 placeholder="{{ 'globalSearch.placeholder' | translate }}"
+                >
+            </div>
             <button class="btn btn-default"
              type="submit"
              ng-disabled="!globalSearchVm.searchService.isSearchStringValid()"
