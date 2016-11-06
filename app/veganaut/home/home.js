@@ -92,17 +92,11 @@
 
             /**
              * Handler for when the user selects a result from the auto-complete.
-             * @param {GeocodeResult} selected
+             * @param {GeocodeResult} geoResult
              */
-            vm.onResultSelected = function(selected) {
+            vm.onResultSelected = function(geoResult) {
                 // Set the target area
-                // TODO: GeocodeResult should provide an area directly
-                targetArea = new Area({
-                    lat: selected.lat,
-                    lng: selected.lng,
-                    boundingBox: selected.bounds,
-                    name: selected.getDisplayName()
-                });
+                targetArea = geoResult.area;
 
                 // We no longer want to clear the input field on focus
                 clearCtaInputOnFocus = false;

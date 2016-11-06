@@ -29,70 +29,84 @@
         'shop',
         'office',
         'craft',
-        'tourism'
+        'tourism',
+        'landuse'
     ];
 
-    /**
-     * Represents a geocoding results
-     * @param {{}} data JSON returned by the geocoding service
-     * @constructor
-     */
-    var GeocodeResult = function(data) {
-        this.address = data.address || {};
-        this.type = data.type;
+    module.factory('GeocodeResult', ['Area', function(Area) {
+        /**
+         * Represents a geocoding results
+         * @param {{}} data JSON returned by the geocoding service
+         * @constructor
+         */
+        var GeocodeResult = function(data) {
+            this.address = data.address || {};
+            this.type = data.type;
 
-        // TODO: should we instantiate an Area?
-
-        // Parse latitude
-        if (angular.isString(data.lat)) {
-            this.lat = parseFloat(data.lat);
-        }
-
-        // Longitude is given as 'lon'
-        if (angular.isString(data.lon)) {
-            this.lng = parseFloat(data.lon);
-        }
-
-        // Parse the bounding box
-        if (angular.isArray(data.boundingbox)) {
-            this.bounds = [
-                [parseFloat(data.boundingbox[0]), parseFloat(data.boundingbox[2])],
-                [parseFloat(data.boundingbox[1]), parseFloat(data.boundingbox[3])]
-            ];
-        }
-    };
-
-    /**
-     * Formats a nice display name for this geocode result
-     * @returns {string}
-     */
-    GeocodeResult.prototype.getDisplayName = function() {
-        // TODO: add tests for this
-        var that = this;
-        var parts = [];
-
-        // Check if there is a valid type in the address
-        if (angular.isString(that.type) && angular.isString(that.address[that.type])) {
-            parts.push(that.address[that.type]);
-        }
-
-        // Add other parts
-        _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet',
-                'village', 'town', 'city_district', 'city', 'country'],
-            function(partName) {
-                // Include the given part if wasn't already added as type and if it actually exists
-                if (partName !== that.type && angular.isString(that.address[partName])) {
-                    parts.push(that.address[partName]);
-                }
+            // Parse latitude
+            if (angular.isString(data.lat)) {
+                this.lat = parseFloat(data.lat);
             }
-        );
 
-        // Join them all by commas
-        return parts.join(', ');
-    };
+            // Longitude is given as 'lon'
+            if (angular.isString(data.lon)) {
+                this.lng = parseFloat(data.lon);
+            }
+
+            // Parse the bounding box
+            if (angular.isArray(data.boundingbox)) {
+                this.bounds = [
+                    [parseFloat(data.boundingbox[0]), parseFloat(data.boundingbox[2])],
+                    [parseFloat(data.boundingbox[1]), parseFloat(data.boundingbox[3])]
+                ];
+            }
+
+            /**
+             * Area that corresponds to this GeocodeResult
+             * @type {Area}
+             */
+            this.area = new Area({
+                lat: this.lat,
+                lng: this.lng,
+                boundingBox: this.bounds,
+                name: this.getDisplayName()
+            });
+        };
+
+        /**
+         * Formats a nice display name for this geocode result
+         * @returns {string}
+         */
+        GeocodeResult.prototype.getDisplayName = function() {
+            // TODO: add tests for this
+            var that = this;
+            var parts = [];
+
+            // Check if there is a valid type in the address
+            if (angular.isString(that.type) && angular.isString(that.address[that.type])) {
+                parts.push(that.address[that.type]);
+            }
+
+            // Add other parts
+            _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet',
+                    'village', 'town', 'city_district', 'city', 'country'],
+                function(partName) {
+                    // Include the given part if wasn't already added as type and if it actually exists
+                    if (partName !== that.type && angular.isString(that.address[partName])) {
+                        parts.push(that.address[partName]);
+                    }
+                }
+            );
+
+            // Join them all by commas
+            return parts.join(', ');
+        };
+
+        return GeocodeResult;
+    }]);
 
     // Define the geocodeService
-    module.factory('geocodeService', ['$http', '$q', 'localeService', function($http, $q, localeService) {
+    module.factory('geocodeService', ['$http', '$q', 'localeService', 'GeocodeResult', function($http, $q, localeService, GeocodeResult) {
         /**
          * Geocode service provides an interface to OSM Nominatim API
          * @constructor
