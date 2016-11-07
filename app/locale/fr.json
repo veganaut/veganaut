@@ -411,7 +411,7 @@
     },
     "placeholder": "Name, city, address",
     "submit": "Search",
-    "noResults": "No results where found."
+    "noResults": "No results were found."
   },
   "locationList": {
     "title": "Endroits",
@@ -507,6 +507,6 @@
     }
   },
   "missingFeature": {
-    "showMoreSearchResults": "Sorry, we can't show you more results yet. We are working on it. Thanks for letting us know your interest!"
+    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!"
   }
 }
