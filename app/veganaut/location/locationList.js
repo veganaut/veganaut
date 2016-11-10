@@ -19,17 +19,22 @@
 
     var locationListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'locationService',
-        'angularPiwik', 'geocodeService', 'areaService', 'Area',
+        'locationFilterService', 'angularPiwik', 'geocodeService', 'areaService', 'Area',
         function($scope, $location, $routeParams, constants, locationService,
-            angularPiwik, geocodeService, areaService, Area)
+            locationFilterService, angularPiwik, geocodeService, areaService, Area)
         {
             var vm = this;
 
             // Expose the global methods we still need
             // TODO: find a better way to do this
             vm.legacyGlobals = {
-                goToView: $scope.$parent.goToView
+                goToView: $scope.$parent.goToView,
+                isEmbedded: $scope.$parent.isEmbedded
             };
+
+            // Expose map settings and filter service
+            vm.locationFilterService = locationFilterService;
+
 
             // Get the location set that we'll display
             var locationSet = locationService.getLocationSet();
@@ -59,6 +64,12 @@
              * @type {boolean}
              */
             vm.wholeWorld = false;
+
+            /**
+             * Whether to show the location filters
+             * @type {boolean}
+             */
+            vm.filtersShown = false;
 
             /**
              * Radius of this query formatted for display
@@ -101,6 +112,42 @@
                 // Track it
                 angularPiwik.track('locationList', 'locationList.showMore');
             };
+
+            /**
+             * Sets whether the filters are shown
+             * @param {boolean} [show=true]
+             */
+            vm.showFilters = function(show) {
+                if (typeof show === 'undefined') {
+                    show = true;
+                }
+                show = !!show;
+
+                // Update and track if it changed
+                if (vm.filtersShown !== show) {
+                    vm.filtersShown = show;
+                    angularPiwik.track('list.filters', show ? 'open' : 'close');
+                }
+            };
+
+            // Watch the active filters
+            $scope.$watchCollection('locationListVm.locationFilterService.activeFilters',
+                function(filters, filtersBefore) {
+                    // Track filter usage
+                    if (angular.isDefined(filtersBefore)) {
+                        // Note: this also tracks when the filter is changed through the url
+                        if (filters.recent !== filtersBefore.recent) {
+                            angularPiwik.track('list.filters', 'applyFilter.recent', filters.recent);
+                        }
+                        if (filters.type !== filtersBefore.type) {
+                            angularPiwik.track('list.filters', 'applyFilter.type', filters.type);
+                        }
+                }
+                    console.log("Reached init")
+                    areaService.getCurrentArea().then(init);
+            }
+            );
+
 
             /**
              * Sorts and filters the locations and stores them in vm.list

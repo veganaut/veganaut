@@ -1,0 +1,23 @@
+<form novalidate name="filterForm" class="filter-form form-list">
+    <!-- TODO: create a component for this template -->
+    <div class="pull-right clickable" ng-click="locationListVm.showFilters(false)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <div><label>{{ 'map.filters.recent.title' | translate }}</label></div>
+    <div class="btn-group form-group">
+        <button class="btn btn-default" ng-repeat="filter in locationListVm.locationFilterService.POSSIBLE_FILTERS.recent"
+         ng-model="locationListVm.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
+            <vg-location-type-icon type="filter"></vg-location-type-icon>
+            {{ 'map.filters.recent.form.' + filter | translate }}
+        </button>
+    </div>
+
+    <div><label>{{ 'map.filters.type.title' | translate }}</label></div>
+    <div class="btn-group form-group">
+        <button class="btn btn-default" ng-repeat="filter in locationListVm.locationFilterService.POSSIBLE_FILTERS.type"
+         ng-model="locationListVm.locationFilterService.activeFilters.type" uib-btn-radio="filter">
+            <vg-location-type-icon type="filter"></vg-location-type-icon>
+            {{ 'map.filters.type.form.' + filter | translate }}
+        </button>
+    </div>
+</form>
