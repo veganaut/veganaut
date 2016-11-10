@@ -7,6 +7,7 @@
     <div class="btn-group form-group">
         <button class="btn btn-default" ng-repeat="filter in mainMapVm.locationFilterService.POSSIBLE_FILTERS.recent"
          ng-model="mainMapVm.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
+            <vg-location-type-icon type="filter"></vg-location-type-icon>
             {{ 'map.filters.recent.form.' + filter | translate }}
         </button>
     </div>
@@ -15,6 +16,7 @@
     <div class="btn-group form-group">
         <button class="btn btn-default" ng-repeat="filter in mainMapVm.locationFilterService.POSSIBLE_FILTERS.type"
          ng-model="mainMapVm.locationFilterService.activeFilters.type" uib-btn-radio="filter">
+            <vg-location-type-icon type="filter"></vg-location-type-icon>
             {{ 'map.filters.type.form.' + filter | translate }}
         </button>
     </div>
