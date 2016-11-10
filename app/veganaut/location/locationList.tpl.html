@@ -1,16 +1,28 @@
-<div class="container--offset-top-box-nav">
+<div class="container--offset-top-box-nav location-list">
     <div class="top-box top-box--full-width top-box--fixed container main-container">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
-                <button type="button" class="btn-map btn btn-default btn-default--transparent btn--width-100"
+                <button type="button" class="btn-map btn btn-default btn-default--transparent btn--width-50"
                  ng-click="locationListVm.legacyGlobals.goToView('map/')"
                  title="{{ 'action.showMap.description' | translate }}">
                     <span class="glyphicon glyphicon-map-marker"></span><br/>
                     <span class="small">{{ 'action.showMap.name' | translate }}</span>
                 </button>
+                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent btn--width-50"
+                 ng-if="!locationListVm.legacyGlobals.isEmbedded"
+                 ng-click="locationListVm.showFilters(true)"
+                 ng-class="{active: locationListVm.locationFilterService.getNumActiveFilters() > 0}"
+                 title="{{ 'action.filterMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-filter"></span><br/>
+                    <span class="small">{{ 'action.filterMap.name' | translate }}</span>
+                </button>
             </div>
         </div>
     </div>
+
+    <vg-overlay ng-if="locationListVm.filtersShown">
+        <ng-include src="'/veganaut/map/locationFiltersList.tpl.html'"></ng-include>
+    </vg-overlay>
 
     <h1 class="h4">
         {{ 'locationList.title' | translate }}
