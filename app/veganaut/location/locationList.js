@@ -143,7 +143,6 @@
                             angularPiwik.track('list.filters', 'applyFilter.type', filters.type);
                         }
                 }
-                    console.log("Reached init")
                     areaService.getCurrentArea().then(init);
             }
             );
