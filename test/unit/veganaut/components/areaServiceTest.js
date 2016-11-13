@@ -3,7 +3,7 @@
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('areaService.', function() {
     var areaService, backendService, localeService;
-    var $rootScope, localStorage, getGeoIPDeferred;
+    var $rootScope, $route, localStorage, getGeoIPDeferred;
     beforeEach(module('veganaut.app.main', 'veganaut.app.map'));
 
     beforeEach(module(function($provide) {
@@ -18,12 +18,18 @@ describe('areaService.', function() {
             getItem: jasmine.createSpy('getItem'),
             setItem: jasmine.createSpy('setItem')
         };
+        $route = {
+            current: {
+                routeName: ''
+            }
+        };
 
         $provide.value('$window', {
             localStorage: localStorage
         });
         $provide.value('localeService', localeService);
         $provide.value('backendService', backendService);
+        $provide.value('$route', $route);
     }));
 
     beforeEach(inject(function($q, _$rootScope_) {
