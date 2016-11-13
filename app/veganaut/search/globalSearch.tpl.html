@@ -32,7 +32,7 @@
 
     <div ng-if="globalSearchVm.searchService.locationResults.length > 0">
         <h2 class="h4">{{ 'globalSearch.title.locations' | translate }}</h2>
-        <div class="button-list">
+        <div class="button-list location-search-results">
             <div ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
              class="button-list__item">
                 <button class="btn btn-block button-list__item__btn"
@@ -58,7 +58,7 @@
             </div>
             {{ 'globalSearch.title.geoPlaces' | translate }}
         </h2>
-        <div class="button-list">
+        <div class="button-list geo-search-results">
             <div ng-repeat="result in globalSearchVm.searchService.geoResults"
              class="button-list__item">
                 <button class="btn btn-block button-list__item__btn"
