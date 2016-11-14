@@ -2,13 +2,20 @@
     'use strict';
 
     module.controller('AppCtrl', [
-        '$scope', '$location', '$window', '$q',
+        '$rootScope', '$scope', '$location', '$window', '$q',
         'angularPiwik', 'featureToggle', 'searchService',
         'backendService', 'playerService', 'localeService',
-        function($scope, $location, $window, $q,
+        function($rootScope, $scope, $location, $window, $q,
             angularPiwik, featureToggle, searchService,
             backendService, playerService, localService)
         {
+            /**
+             * Whether the app has finished initialising
+             * (= translations are loaded)
+             * @type {boolean}
+             */
+            $rootScope.isInitialised = false;
+
             // Expose feature toggle settings
             $scope.featureToggle = featureToggle;
 
@@ -130,6 +137,11 @@
                     }
                 });
             }
+
+            // Listen to translation changes to set the app to initialised
+            $scope.$onRootScope('$translateChangeEnd', function() {
+                 $rootScope.isInitialised = true;
+            });
 
             // Get the logged in user data
             playerService.getDeferredMe().then(function(me) {
