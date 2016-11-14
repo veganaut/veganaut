@@ -17,7 +17,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
-<body ng-class="{
+<body ng-show="isInitialised" ng-class="{
 'logged-in': isLoggedIn(),
 'logged-out': !isLoggedIn(),
 'body--home': $location.path() === '/',
@@ -39,6 +39,9 @@
                  ng-if="$location.path() !== '/search'"
                  ng-click="searchClick()">
                     <span class="glyphicon glyphicon-search"></span>
+                    <span class="badge badge--new">
+                        {{ 'message.new' | translate }}
+                    </span>
                 </button>
                 <a href="/" class="main-logo-link" ng-show="$location.path() !== '/'">
                     <ng-include src="'img/veganaut.svg'" class="logo logo--main"></ng-include>
@@ -57,9 +60,6 @@
                 <button class="btn btn-default btn-block nav-location-list" ng-click="goToView('locations/')">
                     <span class="glyphicon glyphicon-th-list pull-right"></span>
                     <span data-translate="navigation.locationList"></span>
-                    <span class="badge badge--new">
-                        {{ 'message.new' | translate }}
-                    </span>
                 </button>
 
                 <button class="btn btn-default btn-block nav-community" ng-click="goToView('community')"
