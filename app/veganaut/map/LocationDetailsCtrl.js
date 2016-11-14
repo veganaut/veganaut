@@ -35,6 +35,7 @@
             $scope.locationMissions = [];
             $scope.productMissions = [];
             $scope.location = undefined;
+            $scope.error = undefined;
 
             // TODO: Create proper filter from this?
             $scope.filterOnlyZeroMissions = function(mission) {
@@ -167,7 +168,8 @@
             };
 
             // Get the location
-            locationService.getLocation(locationId).then(function(location) {
+            var locationPromise = locationService.getLocation(locationId);
+            locationPromise.then(function(location) {
                 // TODO: handle location not found
                 $scope.location = location;
                 $scope.center.lat = $scope.location.lat;
@@ -192,6 +194,12 @@
                 $timeout(function() {
                     $scope.showMap = true;
                 }, 0);
+            });
+            locationPromise.catch(function(res) {
+                // TODO: These kind of errors should be handled globally
+                if (angular.isObject(res) && angular.isString(res.error)) {
+                    $scope.error = res.error;
+                }
             });
         }
     ]);

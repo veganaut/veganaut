@@ -76,7 +76,8 @@
             });
             $routeProvider.when('/location/:id', {
                 routeName: 'location',
-                templateUrl: '/veganaut/map/locationDetails.tpl.html'
+                templateUrl: '/veganaut/map/locationDetails.tpl.html',
+                controller: 'LocationDetailsCtrl'
             });
             $routeProvider.when('/location/:id/edit', {
                 routeName: 'location.edit',

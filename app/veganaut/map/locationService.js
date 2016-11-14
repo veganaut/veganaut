@@ -237,6 +237,9 @@
                         .then(function(res) {
                             deferredLocation.resolve(new Location(res.data));
                         })
+                        .catch(function(res) {
+                            deferredLocation.reject(res.data);
+                        })
                     ;
                 }
 
