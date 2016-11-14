@@ -18,23 +18,66 @@ angular.module('veganaut.app.search').factory('searchService', [
         /**
          * Service that handles the global search. Can search for Locations,
          * geo places and others.
+         * TODO: add tests for this service
          * @constructor
          */
         var SearchService = function() {
-            // TODO WIP: better docu
+            /**
+             * List of Location results
+             * @type {Location[]}
+             */
             this.locationResults = [];
+
+            /**
+             * List of GeocodeResults
+             * @type {GeocodeResult[]}
+             */
             this.geoResults = [];
+
+            /**
+             * Whether more Location results are available
+             * @type {boolean}
+             */
             this.hasMoreLocations = false;
+
+            /**
+             * Whether more GeocodeResults are available
+             * @type {boolean}
+             */
             this.hasMoreGeo = false;
+
+            /**
+             * Whether the search yielded no results
+             * @type {boolean}
+             */
             this.noResultsFound = false;
+
+            /**
+             * Current search string
+             * @type {string}
+             */
             this.searchString = '';
+
+            /**
+             * Current geo result action type (map or list)
+             * @type {string}
+             */
             this.geoAction = 'map';
 
-            this.GEO_ACTION_MARKERS = {
+            /**
+             * Icons used for the geo result actions
+             * @type {{map: string, list: string}}
+             */
+            this.GEO_ACTION_ICONS = {
                 map: 'map-marker',
                 list: 'th-list'
             };
 
+            /**
+             * Instance of the search modal (if it's opened)
+             * @type {{}}
+             * @private
+             */
             this._modalInstance = undefined;
 
             // Listen to route changes ot set the geo action. We always want

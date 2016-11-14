@@ -53,7 +53,7 @@
             <div class="btn-group global-search__geo-result-switch">
                 <label class="btn btn-default btn-sm" ng-repeat="type in ['map', 'list']"
                  ng-model="globalSearchVm.searchService.geoAction" uib-btn-radio="type">
-                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_MARKERS[type] }}"></span>
+                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_ICONS[type] }}"></span>
                 </label>
             </div>
             {{ 'globalSearch.title.geoPlaces' | translate }}
@@ -63,7 +63,7 @@
              class="button-list__item">
                 <button class="btn btn-block button-list__item__btn"
                  ng-click="globalSearchVm.onGeoClick(result)">
-                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_MARKERS[globalSearchVm.searchService.geoAction] }}"></span>
+                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_ICONS[globalSearchVm.searchService.geoAction] }}"></span>
                     {{ result.getDisplayName() }}
                 </button>
             </div>
