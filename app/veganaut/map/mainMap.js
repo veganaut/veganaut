@@ -20,9 +20,9 @@
     // TODO: re-group variable and method definition
     // TODO: the main map should just do without angular-leaflet, it's hardly using it anymore
     var mainMapCtrl = [
-        '$scope', '$location', '$route', 'Leaflet', 'angularPiwik', 'mapDefaults',
+        '$scope', '$location', '$route', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $location, $route, L, angularPiwik, mapDefaults,
+        function($scope, $location, $route, $uibModal, L, angularPiwik, mapDefaults,
             playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
@@ -177,6 +177,29 @@
             vm.startCreateLocation = function() {
                 playerPromise.then(function(player) {
                     vm.locationSet.startCreateLocation(player, vm.map);
+                });
+            };
+
+            /**
+             * Temporary handler of the favourites test
+             */
+            vm.openFavourites = function() {
+                angularPiwik.track('test.favourites', 'test.favourites.click');
+                $uibModal.open({
+                    template: '<p>{{ "missingFeature.favourites.text1" | translate }}</p>' +
+                    '<p>{{ "missingFeature.favourites.text2" | translate }}' +
+                    '<a href="https://blog.veganaut.net/2016/11/skizzen-fur-favoriten-feature/" target="_blank">' +
+                    '{{ "missingFeature.favourites.link" | translate }}</a></p>' +
+                    '<p><button class="btn btn-default btn-block" ng-click="modalVm.close()">' +
+                    '{{ "missingFeature.favourites.button" | translate }}</button></p>',
+                    controller: ['$modalInstance', function($modalInstance) {
+                        var vm = this;
+                        vm.close = function() {
+                            $modalInstance.close();
+                        };
+                    }],
+                    controllerAs: 'modalVm',
+                    bindToController: true
                 });
             };
 

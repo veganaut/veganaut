@@ -118,6 +118,10 @@
       "name": "Map",
       "description": "Show locations on map"
     },
+    "openFavourites": {
+      "name": "Favourites",
+      "description": "Manage favourite locations"
+    },
     "locationVisitAction": "View location",
     "location": {
       "edit": "Edit location",
@@ -507,6 +511,12 @@
     }
   },
   "missingFeature": {
-    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!"
+    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!",
+    "favourites": {
+      "text1": "Thanks for pushing the \"Favourites\" button. We're counting how many visitors push it to find out whether we should implement this feature.",
+      "text2": "There are sketches of how the favourites feature could look like. ",
+      "link": "Check them out on our blog!",
+      "button": "OK"
+    }
   }
 }

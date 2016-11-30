@@ -226,9 +226,7 @@ angular.module('veganaut.app.search').factory('searchService', [
                 templateUrl: '/veganaut/search/searchModal.tpl.html',
                 controller: 'vgSearchModalCtrl',
                 controllerAs: 'searchModalVm',
-                bindToController: true,
-                backdropClass: 'modal-backdrop--search',
-                windowTopClass: 'modal--search'
+                bindToController: true
             });
         };
 
