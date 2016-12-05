@@ -42,14 +42,14 @@
                     <span class="glyphicon glyphicon-heart"></span><br/>
                     <span class="small">{{ 'action.register.name' | translate }}</span>
                 </button>
-                <button type="button" class="create-location btn btn-block btn-primary"
+                <button type="button" class="create-location btn btn-primary"
                  ng-if="mainMapVm.legacyGlobals.isLoggedIn() && !mainMapVm.legacyGlobals.isEmbedded"
                  ng-click="mainMapVm.startCreateLocation()"
                  title="{{ 'action.createLocation.description' | translate }}">
                     <span class="glyphicon glyphicon-plus-sign"></span><br/>
                     <span class="small">{{ 'action.createLocation.name' | translate }}</span>
                 </button>
-                <button type="button" class="btn-favourites btn btn-block btn-primary"
+                <button type="button" class="btn-favourites btn btn-default btn-default--transparent"
                  ng-if="mainMapVm.legacyGlobals.isEmbedded"
                  ng-click="mainMapVm.openFavourites()"
                  title="{{ 'action.openFavourites.description' | translate }}">
