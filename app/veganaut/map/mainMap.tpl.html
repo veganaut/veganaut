@@ -9,6 +9,13 @@
                         <ng-include src="'img/veganaut.svg'" class="logo logo--top-box"></ng-include>
                     </a>
                 </div>
+                <button type="button" class="btn-favourites btn btn-default btn-default--transparent"
+                 ng-if="mainMapVm.legacyGlobals.isEmbedded"
+                 ng-click="mainMapVm.openFavourites()"
+                 title="{{ 'action.openFavourites.description' | translate }}">
+                    <span class="glyphicon glyphicon-pushpin"></span><br/>
+                    <span class="small">{{ 'action.openFavourites.name' | translate }}</span>
+                </button>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.showProductList.' + mainMapVm.getProductListType() + '.description' | translate }}"
                  ng-click="mainMapVm.showProductList(true)">
@@ -48,13 +55,6 @@
                  title="{{ 'action.createLocation.description' | translate }}">
                     <span class="glyphicon glyphicon-plus-sign"></span><br/>
                     <span class="small">{{ 'action.createLocation.name' | translate }}</span>
-                </button>
-                <button type="button" class="btn-favourites btn btn-default btn-default--transparent"
-                 ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                 ng-click="mainMapVm.openFavourites()"
-                 title="{{ 'action.openFavourites.description' | translate }}">
-                    <span class="glyphicon glyphicon-pushpin"></span><br/>
-                    <span class="small">{{ 'action.openFavourites.name' | translate }}</span>
                 </button>
             </div>
         </div>
