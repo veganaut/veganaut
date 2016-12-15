@@ -1,8 +1,7 @@
 Veganaut Frontend [![Build Status](https://travis-ci.org/veganaut/veganaut.svg?branch=master)](https://travis-ci.org/veganaut/veganaut) [![Code Climate](https://codeclimate.com/github/veganaut/veganaut/badges/gpa.svg)](https://codeclimate.com/github/veganaut/veganaut)
 =================
 
-This is the frontend of Veganaut: a gamified platform (website and phonegap app) helping the international
-vegan/vegetarian movement to grow faster, be more effective and include a more diverse range of people.
+This is the frontend of Veganaut, a community-driven vegan guide.
 
 Getting Started
 ---------------
