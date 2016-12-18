@@ -183,8 +183,8 @@
             /**
              * Temporary handler of the favourites test
              */
-            vm.openFavourites = function() {
-                angularPiwik.track('test.favourites', 'test.favourites.click');
+            vm.openFavourites = function(type) {
+                angularPiwik.track('test.favourites', 'test.favourites.' + type);
                 $uibModal.open({
                     template: '<p>{{ "missingFeature.favourites.text1" | translate }}</p>' +
                     '<p>{{ "missingFeature.favourites.text2" | translate }}' +

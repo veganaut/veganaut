@@ -9,9 +9,9 @@
                         <ng-include src="'img/veganaut.svg'" class="logo logo--top-box"></ng-include>
                     </a>
                 </div>
-                <button type="button" class="btn-favourites btn btn-default btn-default--transparent"
+                <button type="button" class="btn-favourites btn btn-primary"
                  ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                 ng-click="mainMapVm.openFavourites()"
+                 ng-click="mainMapVm.openFavourites('mainClick')"
                  title="{{ 'action.openFavourites.description' | translate }}">
                     <span class="glyphicon glyphicon-pushpin"></span><br/>
                     <span class="small">{{ 'action.openFavourites.name' | translate }}</span>
@@ -85,7 +85,26 @@
              vg-limit-to="1">
             </vg-location-product-summary>
 
-            <p ng-show="mainMapVm.locationSet.active.id">
+            <div class="row mark-favourite-mock" ng-show="mainMapVm.locationSet.active.id"
+             ng-if="mainMapVm.legacyGlobals.isEmbedded">
+                <p class="col-xs-6">
+                    <button type="button" class="btn btn-block btn-primary"
+                     ng-if="mainMapVm.legacyGlobals.isEmbedded"
+                     ng-click="mainMapVm.openFavourites('locationClick')">
+                        <span class="glyphicon glyphicon-pushpin"></span>
+                        <span>{{ 'action.markFavourite.name' | translate }}</span>
+                    </button>
+                </p>
+                <p class="col-xs-6">
+                    <vg-location-visit-button
+                     vg-location="mainMapVm.locationSet.active"
+                     vg-is-primary="false">
+                    </vg-location-visit-button>
+                </p>
+            </div>
+
+            <p ng-show="mainMapVm.locationSet.active.id"
+             ng-if="!mainMapVm.legacyGlobals.isEmbedded">
                 <vg-location-visit-button vg-location="mainMapVm.locationSet.active"></vg-location-visit-button>
             </p>
         </div>

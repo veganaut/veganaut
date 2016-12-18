@@ -16,7 +16,10 @@
             restrict: 'E',
             scope: {
                 // The location to show the button for
-                location: '=vgLocation'
+                location: '=vgLocation',
+
+                // Whether to show this as a primary button, defaults to true
+                primary: '=?vgIsPrimary'
             },
 
             controller: ['$location', function($location) {

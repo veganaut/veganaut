@@ -1,4 +1,5 @@
-<button type="button" class="location-visit-button btn btn-block btn-primary"
+<button type="button" class="location-visit-button btn btn-block"
+ ng-class="(locationVisitButtonVm.primary === false) ? 'btn-default' : 'btn-primary'"
  ng-click="locationVisitButtonVm.visit()">
     <span class="glyphicon glyphicon-hand-right"></span>
     <span>{{ 'action.locationVisitAction' | translate }}</span>
