@@ -119,11 +119,11 @@
       "description": "Show locations on map"
     },
     "openFavourites": {
-      "name": "Favourites",
-      "description": "Manage favourite locations"
+      "name": "Highlight",
+      "description": "Manage highlighted locations"
     },
     "markFavourite": {
-      "name": "Favourite"
+      "name": "Highlight"
     },
     "locationVisitAction": "View location",
     "location": {

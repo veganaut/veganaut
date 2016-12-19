@@ -119,8 +119,8 @@
       "description": "Afficher les endroits sur la carte"
     },
     "openFavourites": {
-      "name": "Favoris",
-      "description": "Manage favourite locations"
+      "name": "Marquer",
+      "description": "Manage highlighted locations"
     },
     "markFavourite": {
       "name": "Marquer"
