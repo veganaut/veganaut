@@ -119,11 +119,11 @@
       "description": "Show locations on map"
     },
     "openFavourites": {
-      "name": "Highlight",
-      "description": "Manage highlighted locations"
+      "name": "Favourites",
+      "description": "Manage favourites"
     },
     "markFavourite": {
-      "name": "Highlight"
+      "name": "Favourite"
     },
     "locationVisitAction": "View location",
     "location": {
@@ -516,7 +516,7 @@
   "missingFeature": {
     "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!",
     "favourites": {
-      "text1": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the highlight feature.",
+      "text1": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the favourites feature.",
       "text2": "There are sketches of how this feature could look like. ",
       "link": "Check them out on our blog!",
       "button": "OK"

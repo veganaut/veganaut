@@ -119,11 +119,11 @@
       "description": "Locations auf der Karte anzeigen"
     },
     "openFavourites": {
-      "name": "Markieren",
-      "description": "Markierte Locations verwalten"
+      "name": "Favoriten",
+      "description": "Favoriten verwalten"
     },
      "markFavourite": {
-      "name": "Markieren"
+      "name": "Zu Favoriten"
     },
     "locationVisitAction": "Location anzeigen",
     "location": {
@@ -516,7 +516,7 @@
   "missingFeature": {
     "showMoreSearchResults": "⁠⁠⁠Entschuldigung, mehr Resultate anzeigen funktioniert noch nicht. Wir arbeiten zur Zeit an diesem Feature. Danke für dein Verständnis!",
     "favourites": {
-      "text1": "Danke, dass du diesen Knopf gedrückt hast. Wir zählen, wie viele Besucher*innen ihn drücken, um herauszufinden, ob wir das Markierungs-Feature implementieren sollen.",
+      "text1": "Danke, dass du diesen Knopf gedrückt hast. Wir zählen, wie viele Besucher*innen ihn drücken, um herauszufinden, ob wir das Favoriten-Feature implementieren sollen.",
       "text2": "Wir haben skizziert, wie das Feature aussehen könnte. ",
       "link": "Schau dir die Skizzen auf unserem Blog an!",
       "button": "OK"
