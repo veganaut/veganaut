@@ -42,5 +42,8 @@ describe('register.', function() {
         expect(alerts.count()).toBe(1, 'should have a success message');
         element.all(by.css('.alert-success button.close')).first().click();
         expect(alerts.count()).toBe(0, 'can close alert');
+
+        // Logout because this user will not exist in the next test
+        helpers.logoutIfLoggedIn();
     });
 });
