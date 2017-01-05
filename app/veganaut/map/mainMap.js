@@ -20,9 +20,9 @@
     // TODO: re-group variable and method definition
     // TODO: the main map should just do without angular-leaflet, it's hardly using it anymore
     var mainMapCtrl = [
-        '$scope', '$location', '$route', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults',
+        '$scope', '$location', '$route', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $location, $route, $uibModal, L, angularPiwik, mapDefaults,
+        function($scope, $location, $route, $uibModal, L, angularPiwik, mapDefaults, constants,
             playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
@@ -114,14 +114,26 @@
             vm.map.zoomControl.setPosition('bottomleft');
 
             /**
+             * Whether to show the 'city' or the 'street' part of the address.
+             * Depends on the zoom level.
+             * @type {string}
+             */
+            vm.addressType = undefined;
+
+            /**
              * Method to inform service that the center changed
              */
             var informCenterChanged = function() {
                 var newCenter = vm.map.getCenter();
+                var zoom = vm.map.getZoom();
+
+                // Check whether to show the city or street part of the address
+                vm.addressType = (zoom > constants.ADDRESS_TYPE_BOUNDARY_ZOOM ? 'street' : 'city');
+
                 mainMapService.onCenterChanged({
                     lat: newCenter.lat,
                     lng: newCenter.lng,
-                    zoom: vm.map.getZoom(),
+                    zoom: zoom,
                     boundingBox: vm.map.getBounds()
                 });
             };

@@ -71,6 +71,7 @@
                 <strong>
                     <vg-location-title
                      vg-location="mainMapVm.locationSet.active"
+                     vg-address-type="{{ mainMapVm.addressType }}"
                      vg-icons-right="false">
                     </vg-location-title>
                 </strong>
@@ -125,7 +126,7 @@
         <div class="top-box__close clickable" ng-click="mainMapVm.showProductList(false)">
             <span class="glyphicon glyphicon-remove"></span>
         </div>
-        <vg-product-list></vg-product-list>
+        <vg-product-list vg-address-type="{{ mainMapVm.addressType }}"></vg-product-list>
     </vg-overlay>
 
     <div id="mainMap" class="main-map"

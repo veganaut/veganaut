@@ -206,6 +206,8 @@ describe('map when logged in.', function() {
 
     describe('add location.', function() {
         it('should be possible to add a new location.', function() {
+            browser.get('/map#zoom:13,coords:46.945-7.449');
+
             element(by.css('.create-location')).click();
 
             var form = element(by.css('form.location-form'));
@@ -235,8 +237,13 @@ describe('map when logged in.', function() {
 
             expect(element.all(by.css('.alert-success')).count()).toBe(1, 'should have a success message');
 
+            var locationPreview = element(by.css('.location-details'));
+            expect(locationPreview.getText()).toContain('New Place');
+
+            locationPreview.element(by.css('.location-visit-button')).click();
+            expect(element(by.css('.location-address')).getText()).toContain('Bern', 'has an address in Bern');
+
             // TODO: test that new place is on the map
-            // TODO: add test that uses the search
         });
     });
 });

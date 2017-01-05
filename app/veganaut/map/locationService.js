@@ -1,8 +1,11 @@
 (function(module) {
     'use strict';
     module.factory('locationService', [
-        '$q', '$rootScope', 'Location', 'LocationSet', 'backendService', 'alertService', 'locationFilterService',
-        function($q, $rootScope, Location, LocationSet, backendService, alertService, locationFilterService) {
+        '$q', '$rootScope', 'constants', 'Location', 'LocationSet',
+        'backendService', 'alertService', 'locationFilterService',
+        function($q, $rootScope, constants, Location, LocationSet,
+            backendService, alertService, locationFilterService)
+        {
             /**
              * Service to handle the veganaut locations
              * @constructor
@@ -167,18 +170,24 @@
              * @param {number} lat
              * @param {number} lng
              * @param {number} radius
+             * @param {string} [addressType]
              * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.queryByRadius = function(lat, lng, radius) {
+            LocationService.prototype.queryByRadius = function(lat, lng, radius, addressType) {
                 // Create an id for this query
-                // TODO: constant "7"  should go elsewhere; or should we just hash this more automatically?
-                var queryId = 'radius' + lat.toFixed(7) + '-' + lng.toFixed(7) + '-' + radius.toFixed(0);
+                // TODO: Hash this more automatically
+                var queryId = 'radius' +
+                    lat.toFixed(constants.URL_FLOAT_PRECISION) + '-' +
+                    lng.toFixed(constants.URL_FLOAT_PRECISION) + '-' +
+                    radius.toFixed(0) + '-' +
+                    addressType;
 
                 // Set the query
                 return this._setQuery(queryId, {
                     lat: lat,
                     lng: lng,
-                    radius: radius
+                    radius: radius,
+                    addressType: addressType
                 });
             };
 

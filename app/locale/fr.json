@@ -220,7 +220,8 @@
     "locationTags": {
       "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
       "noTags": "Personne n'a indiqué les offres véganes qu'ils aiment ici. Fais-le toi-même!"
-    }
+    },
+    "approximateAddress": "This address was looked up automatically and is therefore approximate."
   },
   "locationCluster": {
     "marker": {

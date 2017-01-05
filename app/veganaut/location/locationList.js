@@ -79,6 +79,13 @@
             vm.numShownLocations = 0;
 
             /**
+             * Whether to show the 'city' or the 'street' part of the address.
+             * Depends on the radius shown.
+             * @type {string}
+             */
+            vm.addressType = undefined;
+
+            /**
              * Handler for toggling the open state of a location in the list
              * @param {Location} location
              */
@@ -148,8 +155,11 @@
                 vm.displayName = '';
                 vm.numShownLocations = 0;
 
+                // Check whether to show the city or street part of the address
+                vm.addressType = (params.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
+
                 // Query
-                locationService.queryByRadius(params.lat, params.lng, params.radius)
+                locationService.queryByRadius(params.lat, params.lng, params.radius, vm.addressType)
                     .then(compileList)
                 ;
 

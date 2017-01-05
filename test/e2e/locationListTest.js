@@ -57,7 +57,7 @@ describe('location list accessed from map.', function() {
             // Find specific location
             locations.filter(function(elem) {
                 return elem.getText().then(function(text) {
-                    return (text === 'Reformhaus Ruprecht');
+                    return (text === 'Reformhaus Ruprecht - Bern');
                 });
             }).then(function(filtered) {
                 var ruprecht = filtered[0];

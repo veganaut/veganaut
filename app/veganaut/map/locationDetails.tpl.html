@@ -7,6 +7,13 @@
         <vg-location-quality-icon location="location"></vg-location-quality-icon>
         <vg-location-effort-icon location="location"></vg-location-effort-icon>
     </h1>
+    <div class="page-section location-address small" ng-if="location.address">
+        {{ location.address.street }} {{ location.address.houseNumber }}
+        <a href="#" class="location-address__approx"
+         uib-tooltip="{{ 'location.approximateAddress' | translate }}"
+         tooltip-placement="bottom">(ca.)</a>,
+        {{ location.address.postcode }} {{ location.address.city }}, {{ location.address.country }}
+    </div>
 
     <vg-accordion class="page-section location-tags">
         <vg-accordion-item

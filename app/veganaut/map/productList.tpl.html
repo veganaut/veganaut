@@ -40,7 +40,10 @@
 
                 <hr class="hr--small"/>
 
-                <vg-location-title vg-location="product.location"></vg-location-title>
+                <vg-location-title
+                 vg-location="product.location"
+                 vg-address-type="{{ productListVm.addressType }}">
+                </vg-location-title>
                 <vg-location-visit-button vg-location="product.location"></vg-location-visit-button>
             </vg-accordion-item-body>
         </vg-accordion-item>

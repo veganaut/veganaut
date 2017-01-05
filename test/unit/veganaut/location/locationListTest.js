@@ -107,7 +107,7 @@ describe('locationList.', function() {
             $rootScope.$apply();
 
             expect(vm.wholeWorld).toBe(false, 'exposed whole world setting');
-            expect(locationService.queryByRadius).toHaveBeenCalledWith(46.5, 7.4, 522);
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(46.5, 7.4, 522, 'street');
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(46.5, 7.4, 16);
 
             expect($location.replace).toHaveBeenCalled();
@@ -164,7 +164,7 @@ describe('locationList.', function() {
             });
             $rootScope.$apply();
 
-            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.2, 20, 268096);
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.2, 20, 268096, 'city');
             expect(geocodeService.reverseSearch).toHaveBeenCalledWith(10.2, 20, 13);
             expect(vm.displayRadius).toBe('270km', 'set rounded display radius');
 
@@ -198,7 +198,7 @@ describe('locationList.', function() {
             });
             $rootScope.$apply();
 
-            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.3, 20.2, 30000000);
+            expect(locationService.queryByRadius).toHaveBeenCalledWith(10.3, 20.2, 30000000, 'city');
             expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
             expect(vm.displayRadius).toBe('', 'set no display radius');
             expect(vm.wholeWorld).toBe(true, 'set whole world');

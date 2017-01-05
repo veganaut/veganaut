@@ -56,7 +56,21 @@
          * Float precision: used for representing floats in URLs.
          * @type {number}
          */
-        URL_FLOAT_PRECISION: 7
+        URL_FLOAT_PRECISION: 7,
+
+        /**
+         * Zoom above which to show the address type 'street'
+         * (equal or below is for type 'city').
+         * @type {number}
+         */
+        ADDRESS_TYPE_BOUNDARY_ZOOM: 13,
+
+        /**
+         * Radius above which to show the address type 'city'
+         * (equal or below is for type 'street').
+         * @type {number}
+         */
+        ADDRESS_TYPE_BOUNDARY_RADIUS: 5000
     });
 
     // Toggle features that aren't ready yet

@@ -220,7 +220,8 @@
     "locationTags": {
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
       "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!"
-    }
+    },
+    "approximateAddress": "Diese Adresse wurde automatisch bestimmt und kann darum ungenau sein."
   },
   "locationCluster": {
     "marker": {

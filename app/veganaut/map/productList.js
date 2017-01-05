@@ -11,7 +11,12 @@
     var productListDirective = function() {
         return {
             restrict: 'E',
-            scope: {},
+            scope: {
+                /**
+                 * Which address type to show for the locations of the products
+                 */
+                addressType: '@?vgAddressType'
+            },
             controller: 'vgProductListCtrl',
             controllerAs: 'productListVm',
             bindToController: true,

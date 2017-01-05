@@ -46,6 +46,7 @@
                 this.description = undefined;
                 this.link = undefined;
                 this.type = undefined;
+                this.address = undefined;
                 this.points = {};
                 this.quality = {
                     average: 0,
@@ -464,6 +465,30 @@
                 {
                     this.link = 'http://' + this.link;
                 }
+            };
+
+            /**
+             * Returns the short address part to display based on the passed address type.
+             * @param {string} addressType Detail of address to show, either 'street' or 'city'
+             * @returns {string|undefined}
+             */
+            Location.prototype.getDisplayAddress = function(addressType) {
+                var address;
+                if (angular.isObject(this.address)) {
+                    // Check if we should display the street or city
+                    if (addressType === 'street' && angular.isString(this.address.street)) {
+                        address = this.address.street;
+
+                        // Add house number if present
+                        if (angular.isString(this.address.houseNumber)) {
+                            address += ' ' + this.address.houseNumber;
+                        }
+                    }
+                    else if (addressType === 'city' && angular.isString(this.address.city)) {
+                        address = this.address.city;
+                    }
+                }
+                return address;
             };
 
             /**

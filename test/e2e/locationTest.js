@@ -21,8 +21,12 @@ describe('location.', function() {
             browser.get('/location/000000000000000000000006');
         });
 
-        it('should show name and missions.', function() {
+        it('should show name, address and missions.', function() {
             expect(element(by.css('h1')).getText()).toMatch(/3dosha/, 'contains location name');
+
+            var addressText = element(by.css('.location-address')).getText();
+            expect(addressText).toContain('Moserstrasse 25', 'address contains the street');
+            expect(addressText).toContain('3014 Bern, Switzerland', 'address contains the zip, city and country');
 
             expect(element.all(by.css('.mission')).count()).toBeGreaterThan(0, 'contains some missions');
             expect(element(by.css('.mission.mission-visitBonus')).isDisplayed()).toBe(true, 'visitBonus mission is available');

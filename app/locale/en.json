@@ -220,7 +220,8 @@
     "locationTags": {
       "explanation": "The tags show which vegan offers were liked by how many people here.",
       "noTags": "No one has indicated which vegan offers they like here. Be the first to do so!"
-    }
+    },
+    "approximateAddress": "This address was looked up automatically and is therefore approximate."
   },
   "locationCluster": {
     "marker": {

@@ -24,6 +24,10 @@
                 // The location to show the title and icons for
                 location: '=vgLocation',
 
+                // Which part of the address (if any) should be shown
+                // Defaults to no address shown
+                addressType: '@?vgAddressType',
+
                 // Whether the icons should be moved to the right.
                 // Defaults to true
                 _iconsRight: '=?vgIconsRight'
