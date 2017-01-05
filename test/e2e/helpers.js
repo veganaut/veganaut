@@ -45,7 +45,7 @@ var helpers = {
         element(by.model('form.password')).sendKeys(password + '\n');
 
         // Login doesn't always work if we don't wait a tiny bit...
-        browser.sleep(1);
+        browser.sleep(80);
 
         // TODO: not sure why this has to be loaded again, but otherwise it doesn't work everywhere
         helpers.loadTestStylesheet();

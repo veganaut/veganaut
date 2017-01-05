@@ -121,7 +121,7 @@ describe('map when logged out.', function() {
 
             location.click();
             expect(details.isDisplayed()).toBe(false, 'details hidden on second click');
-            expect(location.getAttribute('class')).toNotMatch(/\bmarker--active\b/, '.marker--active class removed');
+            expect(location.getAttribute('class')).not.toMatch(/\bmarker--active\b/, '.marker--active class removed');
         });
     });
 
