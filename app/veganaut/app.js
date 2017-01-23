@@ -123,22 +123,6 @@
         }
     ]);
 
-
-    // Add $onRootScope method for pub/sub
-    // See https://github.com/angular/angular.js/issues/4574
-    // TODO: get rid of this and use $rootScope.$broadcast and $scope.$on
-    veganautModule.config(['$provide', function($provide) {
-        $provide.decorator('$rootScope', ['$delegate', function($delegate) {
-
-            $delegate.constructor.prototype.$onRootScope = function(name, listener) {
-                var unsubscribe = $delegate.$on(name, listener);
-                this.$on('$destroy', unsubscribe);
-            };
-
-            return $delegate;
-        }]);
-    }]);
-
     // TODO: get rid of all the modules? Not sure if they add anything...
     // Main module for components that don't belong anywhere particular
     var mainModule = angular.module('veganaut.app.main', []);

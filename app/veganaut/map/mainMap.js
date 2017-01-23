@@ -311,12 +311,12 @@
             );
 
             // Listen to explicit area changes
-            $scope.$onRootScope('veganaut.area.pushToMap', function() {
+            $scope.$on('veganaut.area.pushToMap', function() {
                 mainMapService.showCurrentArea(vm.map);
             });
 
             // When we go away from this page, reset the url and abort adding location
-            $scope.$onRootScope('$routeChangeStart', function(event) {
+            $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
                     // Remove the search params if the event is still ongoing
                     $location.search('zoom', null);

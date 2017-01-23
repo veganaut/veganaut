@@ -17,11 +17,6 @@ describe('backendModule', function() {
         };
 
         $provide.value('sessionService', sessionServiceMock);
-
-        $provide.decorator('$rootScope', function($delegate) {
-            $delegate.constructor.prototype.$onRootScope = function() {};
-            return $delegate;
-        });
     }));
 
     it('should have a isLoggedIn method', inject(function($httpBackend, backendService) {

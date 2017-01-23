@@ -2,7 +2,7 @@
 
 /* global describe, beforeEach, it, expect, inject, spyOn, jasmine */
 describe('playerService', function() {
-    var $onRootScopeSpy, backendServiceMock;
+    var $rootScope, backendServiceMock;
 
     beforeEach(module('veganaut.app.user'));
 
@@ -28,19 +28,17 @@ describe('playerService', function() {
         };
         spyOn(backendServiceMock, 'getMe').andCallThrough();
 
-        $onRootScopeSpy = jasmine.createSpy('$onRootScope');
-        $provide.decorator('$rootScope', function($delegate) {
-            $delegate.constructor.prototype.$onRootScope = $onRootScopeSpy;
-            return $delegate;
-        });
-
-
         $provide.value('backendService', backendServiceMock);
     }));
 
+    beforeEach(inject(function(_$rootScope_) {
+        $rootScope = _$rootScope_;
+        spyOn($rootScope, '$on');
+    }));
+
     it('should subscribe to session created event', inject(function(playerService) { // jshint ignore:line
-        expect($onRootScopeSpy.callCount).toEqual(1);
-        expect($onRootScopeSpy).toHaveBeenCalledWith('veganaut.session.created', jasmine.any(Function));
+        expect($rootScope.$on.callCount).toEqual(1);
+        expect($rootScope.$on).toHaveBeenCalledWith('veganaut.session.created', jasmine.any(Function));
     }));
 
     it('should have a getDeferredMe method', inject(function(playerService) {
@@ -58,8 +56,8 @@ describe('playerService', function() {
     it('should request the player data on login', inject(function(playerService) { // jshint ignore:line
         // Find the login listener
         var loginListener;
-        for (var i = 0; i < $onRootScopeSpy.calls.length; i++) {
-            var call = $onRootScopeSpy.calls[i];
+        for (var i = 0; i < $rootScope.$on.calls.length; i++) {
+            var call = $rootScope.$on.calls[i];
             if (call.args[0] === 'veganaut.session.created') {
                 loginListener = call.args[1];
                 break;

@@ -33,7 +33,7 @@
             this._canReloadData = false;
 
             // Subscribe to session created event to get the user data
-            $rootScope.$onRootScope('veganaut.session.created', this._retrieveFromBackend.bind(this));
+            $rootScope.$on('veganaut.session.created', this._retrieveFromBackend.bind(this));
 
             // Check if we are logged in already
             if (backendService.isLoggedIn()) {

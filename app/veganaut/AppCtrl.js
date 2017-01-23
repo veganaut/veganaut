@@ -52,12 +52,12 @@
             };
 
             // Reload the whole app when the session gets destroyed to clear all data
-            $scope.$onRootScope('veganaut.session.destroyed', function() {
+            $scope.$on('veganaut.session.destroyed', function() {
                 $window.location.reload();
             });
 
             // Listen to route changes to track page views
-            $scope.$onRootScope('$routeChangeSuccess', function() {
+            $scope.$on('$routeChangeSuccess', function() {
                 // Get the current complete URL that will be tracked
                 var absUrl = $location.absUrl();
 
@@ -103,7 +103,7 @@
 
             // If we're embedded, all links outside the map should open in a new window
             if ($scope.isEmbedded) {
-                $scope.$onRootScope('$routeChangeStart', function(event, newRoute, oldRoute) {
+                $scope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
                     var currentPath = $location.path();
                     if (currentPath !== '/map/') {
                         // Check if there was already an old route defined,
@@ -139,8 +139,8 @@
             }
 
             // Listen to translation changes to set the app to initialised
-            $scope.$onRootScope('$translateChangeEnd', function() {
-                 $rootScope.isInitialised = true;
+            $rootScope.$on('$translateChangeEnd', function() {
+                $rootScope.isInitialised = true;
             });
 
             // Get the logged in user data

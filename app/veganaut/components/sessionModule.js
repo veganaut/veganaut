@@ -41,7 +41,7 @@
     SessionService.prototype.createSession = function(sessionId) {
         this._sid = sessionId;
         localStorage.setItem('sid', this._sid);
-        this._$rootScope.$emit('veganaut.session.created');
+        this._$rootScope.$broadcast('veganaut.session.created');
     };
 
     /**
@@ -51,7 +51,7 @@
         if (this.hasValidSession()) {
             this._sid = undefined;
             localStorage.removeItem('sid');
-            this._$rootScope.$emit('veganaut.session.destroyed');
+            this._$rootScope.$broadcast('veganaut.session.destroyed');
         }
     };
 
