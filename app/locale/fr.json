@@ -423,9 +423,9 @@
   },
   "locationList": {
     "title": "Endroits",
-    "description": "Showing locations in radius {{ radius }} around {{ place }}.",
-    "descriptionWholeWorld": "Showing locations in the whole world.",
-    "noResults": "No locations can be found in the given area.",
+    "description": "Showing locations with vegan offers in radius {{ radius }} around {{ place }}.",
+    "descriptionWholeWorld": "Showing locations with vegan offers in the whole world.",
+    "noResults": "No locations with vegan offers can be found in the given area.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
     "allLocationsShown": "Showing all {{ available }} found locations."
