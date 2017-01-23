@@ -193,17 +193,36 @@
             };
 
             /**
-             * Temporary handler of the favourites test
+             * Temporary handler of the what's new test
              */
-            vm.openFavourites = function(type) {
-                angularPiwik.track('test.favourites', 'test.favourites.' + type);
+            vm.openWhatsNew = function() {
+                angularPiwik.track('test.whatsNew', 'test.whatsNew.click');
                 $uibModal.open({
-                    template: '<p>{{ "missingFeature.favourites.text1" | translate }}</p>' +
-                    '<p>{{ "missingFeature.favourites.text2" | translate }}' +
-                    '<a href="https://blog.veganaut.net/2016/11/skizzen-fur-favoriten-feature/" target="_blank">' +
-                    '{{ "missingFeature.favourites.link" | translate }}</a></p>' +
+                    template: '<p>{{ "missingFeature.whatsNew" | translate }}</p>' +
                     '<p><button class="btn btn-default btn-block" ng-click="modalVm.close()">' +
-                    '{{ "missingFeature.favourites.button" | translate }}</button></p>',
+                    '{{ "missingFeature.button" | translate }}</button></p>',
+                    controller: ['$modalInstance', function($modalInstance) {
+                        var vm = this;
+                        vm.close = function() {
+                            $modalInstance.close();
+                        };
+                    }],
+                    controllerAs: 'modalVm',
+                    bindToController: true
+                });
+            };
+
+            /**
+             * Temporary handler of the rate test
+             */
+            vm.openRate = function() {
+                angularPiwik.track('test.unregisteredRate', 'test.unregisteredRate.click');
+                $uibModal.open({
+                    template: '<p>{{ "missingFeature.rate" | translate }}' +
+                    '<a href="/register">' +
+                    '{{ "missingFeature.rateLink" | translate }}</a>.</p>' +
+                    '<p><button class="btn btn-default btn-block" ng-click="modalVm.close()">' +
+                    '{{ "missingFeature.button" | translate }}</button></p>',
                     controller: ['$modalInstance', function($modalInstance) {
                         var vm = this;
                         vm.close = function() {

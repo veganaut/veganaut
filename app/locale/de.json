@@ -94,7 +94,7 @@
     },
     "showProductList": {
       "gastronomy": {
-        "name": "Veganes Menu",
+        "name": "Vegan-Menu",
         "description": "Veganes Menu im Kartenausschnitt anzeigen"
       },
       "retail": {
@@ -118,12 +118,12 @@
       "name": "Karte",
       "description": "Locations auf der Karte anzeigen"
     },
-    "openFavourites": {
-      "name": "Favoriten",
-      "description": "Favoriten verwalten"
+    "whatsNew": {
+      "name": "Was ist neu?",
+      "description": "Neuste vegane Angebote anschauen"
     },
-     "markFavourite": {
-      "name": "Zu Favoriten"
+    "rate": {
+      "name": "Bewerten"
     },
     "locationVisitAction": "Location anzeigen",
     "location": {
@@ -516,11 +516,9 @@
   },
   "missingFeature": {
     "showMoreSearchResults": "⁠⁠⁠Entschuldigung, mehr Resultate anzeigen funktioniert noch nicht. Wir arbeiten zur Zeit an diesem Feature. Danke für dein Verständnis!",
-    "favourites": {
-      "text1": "Danke, dass du diesen Knopf gedrückt hast. Wir zählen, wie viele Besucher*innen ihn drücken, um herauszufinden, ob wir das Favoriten-Feature implementieren sollen.",
-      "text2": "Wir haben skizziert, wie das Feature aussehen könnte. ",
-      "link": "Schau dir die Skizzen auf unserem Blog an!",
-      "button": "OK"
-    }
+    "whatsNew": "Danke, dass du diesen Knopf gedrückt hast. Wir zählen, wie viele Besucher*innen ihn drücken, um herauszufinden, ob wir das \"Was-ist-neu\"-Feature implementieren sollen.",
+    "rate": "Danke, dass du diesen Knopf gedrückt hast. Wir zählen, wie viele Besucher*innen ihn drücken, um herauszufinden, ob wir das Bewerten-Feature auch für Leute ohne Account implementieren sollen. Wenn du jetzt schon bewerten willst, kannst du ",
+    "rateLink": "einen Account erstellen",
+    "button": "OK"
   }
 }

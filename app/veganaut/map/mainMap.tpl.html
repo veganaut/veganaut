@@ -11,10 +11,10 @@
                 </div>
                 <button type="button" class="btn-favourites btn btn-primary"
                  ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                 ng-click="mainMapVm.openFavourites('mainClick')"
-                 title="{{ 'action.openFavourites.description' | translate }}">
-                    <span class="glyphicon glyphicon-pushpin"></span><br/>
-                    <span class="small">{{ 'action.openFavourites.name' | translate }}</span>
+                 ng-click="mainMapVm.openWhatsNew()"
+                 title="{{ 'action.whatsNew.description' | translate }}">
+                    <span class="glyphicon glyphicon-fire"></span><br/>
+                    <span class="small">{{ 'action.whatsNew.name' | translate }}</span>
                 </button>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.showProductList.' + mainMapVm.getProductListType() + '.description' | translate }}"
@@ -91,9 +91,9 @@
                 <p class="col-xs-6">
                     <button type="button" class="btn btn-block btn-primary"
                      ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                     ng-click="mainMapVm.openFavourites('locationClick')">
-                        <span class="glyphicon glyphicon-pushpin"></span>
-                        <span>{{ 'action.markFavourite.name' | translate }}</span>
+                     ng-click="mainMapVm.openRate()">
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span>{{ 'action.rate.name' | translate }}</span>
                     </button>
                 </p>
                 <p class="col-xs-6">
