@@ -11,7 +11,7 @@
         <vg-accordion-item
          ng-repeat="product in productListVm.products"
          vg-on-open-toggle="productListVm.onOpenToggle(product, isOpen)"
-         vg-tracking-category="map.productList"
+         vg-tracking-category="productList.product"
          class="product-list__product--{{ product.availability }}"
         >
             <vg-accordion-item-header class="product-list__product__header">

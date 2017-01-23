@@ -155,7 +155,7 @@
                 // Update and track if it changed
                 if (vm.productShown !== show) {
                     vm.productShown = show;
-                    angularPiwik.track('map.productList', show ? 'open' : 'close');
+                    angularPiwik.track('map.products', 'map.products.' + (show ? 'show' : 'hide'));
                 }
             };
 
