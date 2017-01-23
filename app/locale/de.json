@@ -423,9 +423,9 @@
   },
   "locationList": {
     "title": "Locations",
-    "description": "Zeige Locations im Radius von {{ radius }} um {{ place }}.",
-    "descriptionWholeWorld": "Zeige Locations auf der ganzen Welt.",
-    "noResults": "Es wurden keine Locations im angegebenen Gebiet gefunden.",
+    "description": "Zeige Locations mit veganen Angeboten im Radius von {{ radius }} um {{ place }}.",
+    "descriptionWholeWorld": "Zeige Locations mit veganen Angeboten auf der ganzen Welt.",
+    "noResults": "Es wurden keine Locations mit veganen Angeboten im angegebenen Gebiet gefunden.",
     "showMore": "Weitere Locations anzeigen",
     "moreLocationsAvailable": "{{ available }} weitere Locations gefunden.",
     "allLocationsShown": "Alle {{ available }} gefunden Locations werden angezeigt."
