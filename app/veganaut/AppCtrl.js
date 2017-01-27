@@ -37,7 +37,11 @@
 
             // Expose some backend states and methods
             $scope.isLoggedIn = backendService.isLoggedIn.bind(backendService);
-            $scope.logout = backendService.logout.bind(backendService);
+            $scope.logout = function() {
+                backendService.logout().finally(function() {
+                    angularPiwik.track('logout', 'logout.success');
+                });
+            };
 
             $scope.menu = {
                 shown: false
