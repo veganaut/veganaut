@@ -18,6 +18,21 @@
     "privacyPolicy": "Protection de données",
     "imprint": "Responsables du site"
   },
+  "pageTitle": {
+    "community": "Communauté",
+    "forgotPassword": "Mot de passe oublié",
+    "home": "A community-driven vegan guide",
+    "list": "Endroits avec des offres véganes",
+    "location": "Endroit avec des offres véganes",
+    "location.edit": "Modifier l'endroit",
+    "login": "Connexion",
+    "map": "Carte du monde végane",
+    "otherProfile": "Profile Veganaut",
+    "ownProfile": "Mon profile",
+    "ownProfile.edit": "Modifier mon profile",
+    "register": "Participer",
+    "resetPassword": "Modifier le mot de passe"
+  },
   "message": {
     "new": "new",
     "registration": {

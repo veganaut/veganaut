@@ -18,6 +18,21 @@
     "privacyPolicy": "Privacy policy",
     "imprint": "Site operators"
   },
+  "pageTitle": {
+    "community": "Community",
+    "forgotPassword": "Forgot password",
+    "home": "A community-driven vegan guide",
+    "list": "Locations with vegan offers",
+    "location": "Location with vegan offers",
+    "location.edit": "Edit location",
+    "login": "Login",
+    "map": "Vegan world map",
+    "otherProfile": "Veganaut profile",
+    "ownProfile": "My profile",
+    "ownProfile.edit": "Edit my profile",
+    "register": "Participate",
+    "resetPassword": "Reset password"
+  },
   "message": {
     "new": "new",
     "registration": {

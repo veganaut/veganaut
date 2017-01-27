@@ -3,10 +3,10 @@
 
     module.controller('AppCtrl', [
         '$rootScope', '$scope', '$location', '$window', '$q',
-        'angularPiwik', 'featureToggle', 'searchService',
+        'angularPiwik', 'featureToggle', 'searchService', 'pageTitleService',
         'backendService', 'playerService', 'localeService',
         function($rootScope, $scope, $location, $window, $q,
-            angularPiwik, featureToggle, searchService,
+            angularPiwik, featureToggle, searchService, pageTitleService,
             backendService, playerService, localService)
         {
             /**
@@ -16,11 +16,10 @@
              */
             $rootScope.isInitialised = false;
 
-            // Expose feature toggle settings
+            // Expose services
             $scope.featureToggle = featureToggle;
-
-            // Expose the location service
             $scope.$location = $location;
+            $scope.pageTitleService = pageTitleService;
 
             // Whether the app is embedded (in an iframe)
             // If that is the case, only the map can be used and the navbar is not shown

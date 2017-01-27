@@ -2,8 +2,8 @@
     'use strict';
 
     module.controller('EditLocationCtrl', [
-        '$scope', '$routeParams', 'locationService', 'leafletData', 'mapDefaults',
-        function($scope, $routeParams, locationService, leafletData, mapDefaults) {
+        '$scope', '$routeParams', 'locationService', 'leafletData', 'mapDefaults', 'pageTitleService',
+        function($scope, $routeParams, locationService, leafletData, mapDefaults, pageTitleService) {
             var locationId = $routeParams.id;
 
             /**
@@ -71,6 +71,9 @@
                 $scope.center.lat = $scope.location.lat;
                 $scope.center.lng = $scope.location.lng;
                 location.setEditing(true);
+
+                // Add the location name to the page title
+                pageTitleService.addCustomTitle($scope.location.name);
             });
 
             /**

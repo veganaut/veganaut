@@ -3,9 +3,9 @@
 
     // TODO: this controller is getting way too big, split it up
     module.controller('LocationDetailsCtrl', [
-        '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions',
+        '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions', 'pageTitleService',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',
-        function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults, missions,
+        function($scope, $routeParams, $timeout, $translate, leafletData, mapDefaults, missions, pageTitleService,
             angularPiwik, locationService, backendService, playerService, alertService, missionService) {
             var locationId = $routeParams.id;
 
@@ -174,6 +174,9 @@
                 $scope.location = location;
                 $scope.center.lat = $scope.location.lat;
                 $scope.center.lng = $scope.location.lng;
+
+                // Add the location name to the page title
+                pageTitleService.addCustomTitle($scope.location.name);
 
                 if (backendService.isLoggedIn()) {
                     missionService.getAvailableMissions(location).then(function(availableMissions) {
