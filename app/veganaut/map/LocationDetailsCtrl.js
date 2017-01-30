@@ -33,7 +33,7 @@
 
             // TODO: the missions should be stored directly on the location model
             $scope.locationMissions = [];
-            $scope.productMissions = [];
+            $scope.productMissions = {};
             $scope.location = undefined;
             $scope.error = undefined;
 
