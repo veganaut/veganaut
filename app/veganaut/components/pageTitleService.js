@@ -49,6 +49,13 @@
              * @returns {string}
              */
             PageTitleService.prototype.getPageTitle = function() {
+                // TODO: we shouldn't read this on the $rootScope, but from a service
+                if (!$rootScope.isInitialised) {
+                    // As long as we are not initialised (no translations loaded),
+                    // we return just the default title.
+                    return DEFAULT_PAGE_TITLE;
+                }
+
                 // Collect the different title parts
                 var titles = [DEFAULT_PAGE_TITLE];
 

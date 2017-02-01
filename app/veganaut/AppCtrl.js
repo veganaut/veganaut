@@ -100,7 +100,7 @@
                     angularPiwik.setCustomVariable(1, 'mode', newMode, 'page');
 
                     // Finally, track the page view
-                    angularPiwik.trackPageView(absUrl);
+                    angularPiwik.trackPageView(absUrl, pageTitleService.getPageTitle());
                 });
             });
 

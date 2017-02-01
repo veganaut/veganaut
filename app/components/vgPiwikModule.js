@@ -80,10 +80,12 @@
     /**
      * Tracks a page view
      * @param {string} absUrl URL to set as custom URL
+     * @param {string} pageTitle Title of the page to track
      */
-    AngularPiwik.prototype.trackPageView = function(absUrl) {
-        // Set url to the correct one and track the page view
+    AngularPiwik.prototype.trackPageView = function(absUrl, pageTitle) {
+        // Set url and page title to the correct one and track the page view
         this._pushToPiwik(['setCustomUrl', absUrl]);
+        this._pushToPiwik(['setDocumentTitle', pageTitle]);
         this._pushToPiwik(['trackPageView']);
     };
 
