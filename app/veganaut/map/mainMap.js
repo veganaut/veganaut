@@ -13,6 +13,12 @@
             controller: 'vgMainMapCtrl',
             controllerAs: 'mainMapVm',
             bindToController: true,
+            link: function(scope, el, attrs, vm) {
+                // Remove map on destroy. This clears all Leaflet event listeners properly.
+                scope.$on('$destroy', function() {
+                    vm.map.remove();
+                });
+            },
             templateUrl: '/veganaut/map/mainMap.tpl.html'
         };
     };
