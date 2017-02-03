@@ -23,12 +23,10 @@
         };
     };
 
-    // TODO: re-group variable and method definition
-    // TODO: the main map should just do without angular-leaflet, it's hardly using it anymore
     var mainMapCtrl = [
-        '$scope', '$location', '$route', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
+        '$scope', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $location, $route, $uibModal, L, angularPiwik, mapDefaults, constants,
+        function($scope, $uibModal, L, angularPiwik, mapDefaults, constants,
             playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
@@ -52,41 +50,6 @@
              * @type {boolean}
              */
             vm.productShown = false;
-
-            // Parse legacy URL and redirect if anything found
-            // TODO: Remove this after a few month of having the new URL scheme
-            var hash = $location.hash();
-            var legacyParams = {};
-            if (hash.length > 0) {
-                var hashArgs = hash.split(',');
-                _.each(hashArgs, function(arg) {
-                    var split = arg.split(':');
-                    if (split.length === 2 && ['zoom', 'coords', 'type'].indexOf(split[0]) > -1) {
-                        if (split[0] === 'coords') {
-                            // Convert coords from being separated by "-" to ","
-                            var match = /(-?[0-9\.]+)-(-?[0-9\.]+)/.exec(split[1]);
-                            if (match) {
-                                split[1] = match[1] + ',' + match[2];
-                            }
-                        }
-                        legacyParams[split[0]] = split[1];
-                    }
-                });
-            }
-            if (Object.keys(legacyParams).length > 0) {
-                // Replace the URL (no new history entry) and delete hash
-                $location
-                    .replace()
-                    .hash(null)
-                ;
-
-                // Set new route params and make sure the route is reloaded
-                $route.updateParams(legacyParams);
-                $route.reload();
-
-                // Nothing else to be done here, we are redirecting
-                return;
-            }
 
             /**
              * Leaflet map object
