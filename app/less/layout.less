@@ -124,13 +124,6 @@ body.embedded {
         border-top-width: 0;
         border-bottom-width: 0;
         border-left-width: 0;
-        &:first-child {
-            border-left-width: 1px;
-        }
-
-        &.btn--width-100 {
-            width: 100%;
-        }
 
         .small {
             font-size: 12px;
@@ -139,6 +132,14 @@ body.embedded {
         .glyphicon {
             vertical-align: middle;
         }
+
+        .btn-group--top-box--list& {
+            width: 50%;
+        }
+    }
+
+    > .btn:first-child {
+        border-left-width: 1px;
     }
 }
 
@@ -193,6 +194,10 @@ hr {
     .modal-dialog {
         margin: 0 auto;
         max-width: @maxContainerWidth;
+
+        .modal--below-contextual-menu& {
+            margin-top: @navbarHeight + 47px;
+        }
     }
     .modal-content {
         background-color: @colorLightTranslucent;
@@ -200,4 +205,7 @@ hr {
         border-radius: 0;
         padding: 10px 10px 0;
     }
+}
+.modal-backdrop--light.in {
+    opacity: 0.3;
 }

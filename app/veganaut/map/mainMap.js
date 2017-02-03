@@ -41,10 +41,6 @@
                 isEmbedded: $scope.$parent.isEmbedded
             };
 
-            // Expose map settings and filter service
-            vm.mainMap = mainMapService;
-            vm.locationFilterService = locationFilterService;
-
             /**
              * Locations loaded from the backend
              * @type {LocationSet}
@@ -52,23 +48,10 @@
             vm.locationSet = locationService.getLocationSet();
 
             /**
-             * Empty events object (needed to get the leaflet map to broadcast events)
-             * @type {{}}
-             */
-            vm.events = {};
-
-            /**
              * Whether to show the location products
              * @type {boolean}
              */
             vm.productShown = false;
-
-            /**
-             * Whether to show the location filters
-             * @type {boolean}
-             */
-            vm.filtersShown = false;
-
 
             // Parse legacy URL and redirect if anything found
             // TODO: Remove this after a few month of having the new URL scheme
@@ -144,7 +127,6 @@
                 });
             };
 
-
             // Get the player
             var playerPromise = playerService.getDeferredMe();
 
@@ -163,30 +145,6 @@
                     vm.productShown = show;
                     angularPiwik.track('map.products', 'map.products.' + (show ? 'show' : 'hide'));
                 }
-            };
-
-            /**
-             * Sets whether the filters are shown
-             * @param {boolean} [show=true]
-             */
-            vm.showFilters = function(show) {
-                if (typeof show === 'undefined') {
-                    show = true;
-                }
-                show = !!show;
-
-                // Update and track if it changed
-                if (vm.filtersShown !== show) {
-                    vm.filtersShown = show;
-                    angularPiwik.track('map.filters', show ? 'open' : 'close');
-                }
-            };
-
-            /**
-             * Goes to the location list
-             */
-            vm.goToLocationList = function() {
-                $location.path('locations/');
             };
 
             /**
@@ -270,9 +228,8 @@
                         // Track it
                         angularPiwik.track('map.locations', 'map.locations.click');
 
-                        // Hide the product list and filters
+                        // Hide the product list
                         vm.showProductList(false);
-                        vm.showFilters(false);
                     });
                 }
                 // TODO: if not handled, should pass on the click to the map?
@@ -291,46 +248,20 @@
                         // When not adding a location, deselect currently active location
                         vm.locationSet.activate();
 
-                        // And hide product list and filters
+                        // And hide product list
                         vm.showProductList(false);
-                        vm.showFilters(false);
                     }
                 });
             });
-
-            // Watch the active filters
-            $scope.$watchCollection('mainMapVm.locationFilterService.activeFilters',
-                function(filters, filtersBefore) {
-                    // Track filter usage
-                    if (angular.isDefined(filtersBefore)) {
-                        // Note: this also tracks when the filter is changed through the url
-                        if (filters.recent !== filtersBefore.recent) {
-                            angularPiwik.track('map.filters', 'applyFilter.recent', filters.recent);
-                        }
-                        if (filters.type !== filtersBefore.type) {
-                            angularPiwik.track('map.filters', 'applyFilter.type', filters.type);
-                        }
-                    }
-
-                    mainMapService.onFiltersChanged();
-                }
-            );
 
             // Listen to explicit area changes
             $scope.$on('veganaut.area.pushToMap', function() {
                 mainMapService.showCurrentArea(vm.map);
             });
 
-            // When we go away from this page, reset the url and abort adding location
+            // When we go away from this page, abort adding location
             $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
-                    // Remove the search params if the event is still ongoing
-                    $location.search('zoom', null);
-                    $location.search('coords', null);
-                    $location.search('type', null);
-                    $location.search('recent', null);
-
-                    // Abort adding a new location
                     vm.locationSet.abortCreateLocation();
                 }
             });

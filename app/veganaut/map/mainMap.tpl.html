@@ -1,6 +1,6 @@
 <div>
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown || mainMapVm.filtersShown">
+     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
                 <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
@@ -29,19 +29,14 @@
                     </span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
-                 ng-click="mainMapVm.goToLocationList()"
+                 ng-click="mainMapVm.legacyGlobals.goToView('locations/')"
                  title="{{ 'action.showList.description' | translate }}">
                     <span class="glyphicon glyphicon-th-list"></span><br/>
                     <span class="small">{{ 'action.showList.name' | translate }}</span>
                 </button>
-                <button type="button" class="btn-show-location-filters btn btn-default btn-default--transparent"
-                 ng-if="!mainMapVm.legacyGlobals.isEmbedded"
-                 ng-click="mainMapVm.showFilters(true)"
-                 ng-class="{active: mainMapVm.locationFilterService.getNumActiveFilters() > 0}"
-                 title="{{ 'action.filterMap.description' | translate }}">
-                    <span class="glyphicon glyphicon-filter"></span><br/>
-                    <span class="small">{{ 'action.filterMap.name' | translate }}</span>
-                </button>
+                <vg-filter-button
+                 ng-if="!mainMapVm.legacyGlobals.isEmbedded">
+                </vg-filter-button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!mainMapVm.legacyGlobals.isLoggedIn() && !mainMapVm.legacyGlobals.isEmbedded"
                  ng-click="mainMapVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.mainMap'"
@@ -60,9 +55,7 @@
         </div>
     </div>
 
-    <!-- TODO: get rid of complicated ng-show in view -->
-    <div class="top-box container main-container"
-     ng-show="mainMapVm.locationSet.active">
+    <div class="top-box container main-container" ng-show="mainMapVm.locationSet.active">
         <div class="location-details" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
             <div class="pull-right clickable" ng-click="mainMapVm.locationSet.activate()">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -111,9 +104,6 @@
         </div>
     </div>
 
-    <vg-overlay ng-if="mainMapVm.filtersShown">
-        <ng-include src="'/veganaut/map/locationFilters.tpl.html'"></ng-include>
-    </vg-overlay>
     <vg-overlay ng-if="mainMapVm.locationSet.isCreatingLocation()">
         <vg-create-location-form
          vg-map="mainMapVm.map"

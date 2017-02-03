@@ -1,10 +1,10 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$q', '$location', '$routeParams', '$timeout', 'Leaflet', 'constants',
-        'Area', 'locationService', 'locationFilterService', 'areaService',
-        function($q, $location, $routeParams, $timeout, L, constants,
-            Area, locationService, locationFilterService, areaService) {
+        '$q', '$rootScope', '$location', '$routeParams', '$route', '$timeout', 'Leaflet',
+        'constants', 'Area', 'locationService', 'locationFilterService', 'areaService',
+        function($q, $rootScope, $location, $routeParams, $route, $timeout, L,
+            constants, Area, locationService, locationFilterService, areaService) {
 
             /**
              * Default and at the same time maximum zoom level used when
@@ -14,11 +14,40 @@
             var DEFAULT_ZOOM = 4;
 
             /**
+             * Name of the route where the main map is shown.
+             * @type {string}
+             */
+            var MAP_ROUTE_NAME = 'map';
+
+            /**
              * Service managing the main map. This mostly concerns the
              * storage and retrieval of the map center from different sources.
              * @constructor
              */
             var MainMapService = function() {
+                var that = this;
+
+                // Listen to filter changes
+                $rootScope.$on('veganaut.filters.changed', function() {
+                    // Only update when we are actually on the map page
+                    if ($route.current.routeName === MAP_ROUTE_NAME) {
+                        that._reloadLocations();
+                    }
+                });
+
+                // Listen to route changes to clean up URL
+                $rootScope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
+                    // If the event is still ongoing and we moved away from the map page,
+                    // remove our params from the URL.
+                    if (!event.defaultPrevented &&
+                        angular.isObject(oldRoute) &&
+                        oldRoute.routeName === MAP_ROUTE_NAME &&
+                        newRoute.routeName !== MAP_ROUTE_NAME)
+                    {
+                        $location.search('zoom', undefined);
+                        $location.search('coords', undefined);
+                    }
+                });
             };
 
             /**
@@ -49,40 +78,6 @@
             };
 
             /**
-             * Parses and sets all the filters from the URL.
-             * @private
-             */
-            MainMapService.prototype._setFiltersFromUrl = function() {
-                // TODO: don't duplicate, make generic
-                if ($routeParams.type) {
-                    // By default set the inactive value (if invalid value was given)
-                    var typeFilter = locationFilterService.INACTIVE_FILTER_VALUE.type;
-                    if (locationFilterService.POSSIBLE_FILTERS.type.indexOf($routeParams.type) >= 0) {
-                        // Found valid location type filter
-                        typeFilter = $routeParams.type;
-                    }
-
-                    // Set the new value
-                    locationFilterService.activeFilters.type = typeFilter;
-                }
-
-                if ($routeParams.recent) {
-                    // By default set the inactive value (if invalid value was given)
-                    var recentFilter = locationFilterService.INACTIVE_FILTER_VALUE.recent;
-                    if (locationFilterService.POSSIBLE_FILTERS.recent.indexOf($routeParams.recent) >= 0) {
-                        // Found valid recent filter
-                        recentFilter = $routeParams.recent;
-                    }
-
-                    // Set the new value
-                    locationFilterService.activeFilters.recent = recentFilter;
-                }
-
-                // Update the URL to make sure it's always well-formed
-                this._updateFiltersInUrl();
-            };
-
-            /**
              * Tells the location service to query for new locations based on the
              * currently shown map section
              * @private
@@ -95,28 +90,6 @@
                         area.getZoom()
                     );
                 });
-            };
-
-            /**
-             * Updates the URL params to correctly reflect the currently active filters.
-             * @private
-             */
-            MainMapService.prototype._updateFiltersInUrl = function() {
-                var typeFilter;
-                if (locationFilterService.activeFilters.type !== locationFilterService.INACTIVE_FILTER_VALUE.type) {
-                    typeFilter = locationFilterService.activeFilters.type;
-                }
-
-                var recentFilter;
-                if (locationFilterService.activeFilters.recent !== locationFilterService.INACTIVE_FILTER_VALUE.recent) {
-                    recentFilter = locationFilterService.activeFilters.recent;
-                }
-
-                // Replace the url hash (without adding a new history item)
-                // Can't use $route.updateParams as this will set all params, not only the ones we want
-                $location.replace();
-                $location.search('type', typeFilter);
-                $location.search('recent', recentFilter);
             };
 
             /**
@@ -199,7 +172,7 @@
                 var deferred = $q.defer();
 
                 // Set the filters from the url first
-                this._setFiltersFromUrl();
+                locationFilterService.setFiltersFromUrl();
 
                 // Try setting from the URL hash
                 this._setMapCenterFromUrl();
@@ -243,15 +216,6 @@
                     this._updateCenterInUrl();
                     this._reloadLocations();
                 }
-            };
-
-            /**
-             * Handler for changes in the filter settings.
-             * The controller is responsible for calling this method.
-             */
-            MainMapService.prototype.onFiltersChanged = function() {
-                this._updateFiltersInUrl();
-                this._reloadLocations();
             };
 
             return new MainMapService();

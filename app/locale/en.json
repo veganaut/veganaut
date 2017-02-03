@@ -121,9 +121,9 @@
       "name": "Search",
       "description": "Search on the map"
     },
-    "filterMap": {
+    "showFilters": {
       "name": "Filter",
-      "description": "Filter locations on the map"
+      "description": "Filter locations"
     },
     "showList": {
       "name": "Locations",
@@ -243,26 +243,26 @@
       "title": "Zoom in to show these {{numLocations}} locations."
     }
   },
-  "map": {
-    "filters": {
-      "recent": {
-        "title": "Filter for last activity",
-        "form": {
-          "anytime": "Anytime",
-          "month": "Month",
-          "week": "Week",
-          "day": "Day"
-        }
-      },
-      "type": {
-        "title": "Filter for location type",
-        "form": {
-          "anytype": "Both",
-          "gastronomy": "Gastronomy",
-          "retail": "Retail"
-        }
+  "globalFilters": {
+    "recent": {
+      "title": "Filter for last activity",
+      "form": {
+        "anytime": "Anytime",
+        "month": "Month",
+        "week": "Week",
+        "day": "Day"
       }
     },
+    "type": {
+      "title": "Filter for location type",
+      "form": {
+        "anytype": "Both",
+        "gastronomy": "Gastronomy",
+        "retail": "Retail"
+      }
+    }
+  },
+  "map": {
     "productList": {
       "title": {
         "gastronomy": "Vegan menu: food options found at gastronomy locations in this map section",

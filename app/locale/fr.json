@@ -121,9 +121,9 @@
       "name": "Recherche",
       "description": "Chercher sur la carte"
     },
-    "filterMap": {
+    "showFilters": {
       "name": "Filtrer",
-      "description": "Filtrer les endroits sur la carte"
+      "description": "Filtrer les endroits"
     },
     "showList": {
       "name": "Endroits",
@@ -243,26 +243,26 @@
       "title": "Zoomer pour voir ces {{numLocations}} endroits."
     }
   },
-  "map": {
-    "filters": {
-      "recent": {
-        "title": "Filtrer par activité récente",
-        "form": {
-          "anytime": "Égal",
-          "month": "Mois",
-          "week": "Semaine",
-          "day": "Jour"
-        }
-      },
-      "type": {
-        "title": "Filtrer par type d'endroit ",
-        "form": {
-          "anytype": "Tous",
-          "gastronomy": "Gastronomie",
-          "retail": "Shopping"
-        }
+  "globalFilters": {
+    "recent": {
+      "title": "Filtrer par activité récente",
+      "form": {
+        "anytime": "Égal",
+        "month": "Mois",
+        "week": "Semaine",
+        "day": "Jour"
       }
     },
+    "type": {
+      "title": "Filtrer par type d'endroit ",
+      "form": {
+        "anytype": "Tous",
+        "gastronomy": "Gastronomie",
+        "retail": "Shopping"
+      }
+    }
+  },
+  "map": {
     "productList": {
       "title": {
         "gastronomy": "Offres gastronomiques véganes trouvées dans cette partie de la carte",

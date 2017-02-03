@@ -1,13 +1,14 @@
 <div class="container--offset-top-box-nav">
     <div class="top-box top-box--full-width top-box--fixed container main-container">
         <div class="top-box--full-width__border-offset">
-            <div class="btn-group--top-box">
-                <button type="button" class="btn-map btn btn-default btn-default--transparent btn--width-100"
+            <div class="btn-group--top-box btn-group--top-box--list">
+                <button type="button" class="btn-map btn btn-default btn-default--transparent"
                  ng-click="locationListVm.legacyGlobals.goToView('map/')"
                  title="{{ 'action.showMap.description' | translate }}">
                     <span class="glyphicon glyphicon-map-marker"></span><br/>
                     <span class="small">{{ 'action.showMap.name' | translate }}</span>
                 </button>
+                <vg-filter-button></vg-filter-button>
             </div>
         </div>
     </div>

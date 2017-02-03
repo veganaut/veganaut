@@ -16,6 +16,7 @@
         'veganaut.angularPiwik',
         'veganaut.app.backend',
         'veganaut.app.community',
+        'veganaut.app.filter',
         'veganaut.app.home',
         'veganaut.app.location',
         'veganaut.app.main',
@@ -62,6 +63,7 @@
             });
             $routeProvider.when('/map/', {
                 routeName: 'map',
+                vgHasFilters: true,
                 template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
@@ -70,6 +72,7 @@
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
                 routeName: 'list',
+                vgHasFilters: true,
                 template: '<vg-location-list></vg-location-list>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
@@ -134,6 +137,7 @@
 
     // New and refactored modules are not exposed through a global anymore
     angular.module('veganaut.app.community', []);
+    angular.module('veganaut.app.filter', []);
     angular.module('veganaut.app.home', []);
     angular.module('veganaut.app.location', []);
     angular.module('veganaut.app.search', []);

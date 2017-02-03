@@ -1,23 +1,19 @@
 <form novalidate name="filterForm" class="filter-form">
-    <!-- TODO: create a component for this template -->
-    <div class="pull-right clickable" ng-click="mainMapVm.showFilters(false)">
-        <span class="glyphicon glyphicon-remove"></span>
-    </div>
-    <div><label>{{ 'map.filters.recent.title' | translate }}</label></div>
+    <div><label>{{ 'globalFilters.recent.title' | translate }}</label></div>
     <div class="btn-group form-group">
-        <button class="btn btn-default" ng-repeat="filter in mainMapVm.locationFilterService.POSSIBLE_FILTERS.recent"
-         ng-model="mainMapVm.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
+        <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.recent"
+         ng-model="$ctrl.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
             <vg-location-type-icon type="filter"></vg-location-type-icon>
-            {{ 'map.filters.recent.form.' + filter | translate }}
+            {{ 'globalFilters.recent.form.' + filter | translate }}
         </button>
     </div>
 
-    <div><label>{{ 'map.filters.type.title' | translate }}</label></div>
+    <div><label>{{ 'globalFilters.type.title' | translate }}</label></div>
     <div class="btn-group form-group">
-        <button class="btn btn-default" ng-repeat="filter in mainMapVm.locationFilterService.POSSIBLE_FILTERS.type"
-         ng-model="mainMapVm.locationFilterService.activeFilters.type" uib-btn-radio="filter">
+        <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
+         ng-model="$ctrl.locationFilterService.activeFilters.type" uib-btn-radio="filter">
             <vg-location-type-icon type="filter"></vg-location-type-icon>
-            {{ 'map.filters.type.form.' + filter | translate }}
+            {{ 'globalFilters.type.form.' + filter | translate }}
         </button>
     </div>
 </form>

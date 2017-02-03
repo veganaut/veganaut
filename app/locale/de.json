@@ -121,9 +121,9 @@
       "name": "Suchen",
       "description": "Auf der Karte suchen"
     },
-    "filterMap": {
+    "showFilters": {
       "name": "Filtern",
-      "description": "Orte auf der Karte filtern"
+      "description": "Locations filtern"
     },
     "showList": {
       "name": "Locations",
@@ -243,26 +243,26 @@
       "title": "Zoome herein um diese {{numLocations}} Locations anzuzeigen."
     }
   },
-  "map": {
-    "filters": {
-      "recent": {
-        "title": "Filtern nach letzter Aktivität",
-        "form": {
-          "anytime": "egal",
-          "month": "Monat",
-          "week": "Woche",
-          "day": "Tag"
-        }
-      },
-      "type": {
-        "title": "Filtern nach Art der Location",
-        "form": {
-          "anytype": "Beide",
-          "gastronomy": "Gastro",
-          "retail": "Shopping"
-        }
+  "globalFilters": {
+    "recent": {
+      "title": "Filtern nach letzter Aktivität",
+      "form": {
+        "anytime": "egal",
+        "month": "Monat",
+        "week": "Woche",
+        "day": "Tag"
       }
     },
+    "type": {
+      "title": "Filtern nach Art der Location",
+      "form": {
+        "anytype": "Beide",
+        "gastronomy": "Gastro",
+        "retail": "Shopping"
+      }
+    }
+  },
+  "map": {
     "productList": {
       "title": {
         "gastronomy": "Vegane Speisekarte: Angebote der Gastronomie-Locations in diesem Kartenausschnitt",

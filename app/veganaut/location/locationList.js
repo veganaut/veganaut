@@ -19,9 +19,9 @@
 
     var locationListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'locationService',
-        'angularPiwik', 'geocodeService', 'areaService', 'Area',
+        'angularPiwik', 'geocodeService', 'areaService', 'Area', 'locationFilterService',
         function($scope, $location, $routeParams, constants, locationService,
-            angularPiwik, geocodeService, areaService, Area)
+            angularPiwik, geocodeService, areaService, Area, locationFilterService)
         {
             var vm = this;
 
@@ -115,10 +115,6 @@
              */
             var compileList = function() {
                 vm.list = _.chain(locationSet.locations)
-                    // TODO: enable filtering
-                    //.filter(function(loc) {
-                    //    return !loc.isDisabled();
-                    //})
                     .sortByOrder(['quality.average', 'quality.numRatings', 'name'], ['desc', 'desc', 'asc'])
                     // TODO: should sort by rank, but don't have the rank in the frontend
                     .value()
@@ -137,6 +133,20 @@
                 }
             };
 
+            /**
+             * Last parameters that were used to query the locations
+             * @type {{}}
+             */
+            var lastParams = {};
+
+            /**
+             * Loads the locations with the currently set lastParams
+             */
+            var loadLocations = function() {
+                locationService.queryByRadius(lastParams.lat, lastParams.lng, lastParams.radius, vm.addressType)
+                    .then(compileList)
+                ;
+            };
 
             // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
             /**
@@ -145,10 +155,10 @@
              */
             var showArea = function(area) {
                 // Get the radius params from the area
-                var params = area.getRadiusParams();
+                lastParams = area.getRadiusParams();
 
                 // Expose if we are showing the whole world and reset all other variables
-                vm.wholeWorld = params.includesWholeWorld;
+                vm.wholeWorld = lastParams.includesWholeWorld;
                 vm.list = [];
                 vm.noResults = false;
                 vm.displayRadius = '';
@@ -156,31 +166,29 @@
                 vm.numShownLocations = 0;
 
                 // Check whether to show the city or street part of the address
-                vm.addressType = (params.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
+                vm.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
 
-                // Query
-                locationService.queryByRadius(params.lat, params.lng, params.radius, vm.addressType)
-                    .then(compileList)
-                ;
+                // Load locations with the newly set params
+                loadLocations();
 
                 // Replace the url params (without adding a new history item)
                 // TODO: de-duplicate this code with the one from mainMapService
                 var coords =
-                    params.lat.toFixed(constants.URL_FLOAT_PRECISION) + ',' +
-                    params.lng.toFixed(constants.URL_FLOAT_PRECISION);
+                    lastParams.lat.toFixed(constants.URL_FLOAT_PRECISION) + ',' +
+                    lastParams.lng.toFixed(constants.URL_FLOAT_PRECISION);
                 $location.replace();
                 $location.search('coords', coords);
-                $location.search('radius', params.radius);
+                $location.search('radius', lastParams.radius);
 
                 if (!vm.wholeWorld) {
                     // Simple fallback display name in case the reverse lookup doesn't work out.
                     // TODO: should be translated and displayed nicer
-                    var fallbackDisplayName = 'lat ' + params.lat.toFixed(3) + ' lng ' + params.lng.toFixed(3);
+                    var fallbackDisplayName = 'lat ' + lastParams.lat.toFixed(3) + ' lng ' + lastParams.lng.toFixed(3);
 
                     // Reverse lookup a place name for these coordinates
                     // Choose a zoom level based on the radius
-                    var reverseLookupZoom = (params.radius < 2000) ? 16 : 13;
-                    geocodeService.reverseSearch(params.lat, params.lng, reverseLookupZoom)
+                    var reverseLookupZoom = (lastParams.radius < 2000) ? 16 : 13;
+                    geocodeService.reverseSearch(lastParams.lat, lastParams.lng, reverseLookupZoom)
                         .then(function(place) {
                             if (place) {
                                 vm.displayName = place.getDisplayName();
@@ -196,8 +204,8 @@
 
                     // Round the radius to two significant digits and display it as meters or kms
                     // TODO: this should be a filter
-                    var roundingHelper = Math.pow(10, ('' + params.radius).length) / 100;
-                    var roundedRadius = Math.round(params.radius / roundingHelper) * roundingHelper;
+                    var roundingHelper = Math.pow(10, ('' + lastParams.radius).length) / 100;
+                    var roundedRadius = Math.round(lastParams.radius / roundingHelper) * roundingHelper;
                     if (roundedRadius < 1000) {
                         vm.displayRadius = roundedRadius + 'm';
                     }
@@ -226,7 +234,8 @@
                 }));
             }
 
-            // Initiate with the currently valid area
+            // Set the filters from the URL and initiate with the currently valid area
+            locationFilterService.setFiltersFromUrl();
             areaService.getCurrentArea().then(showArea);
 
             // Listen to explicit area changes
@@ -234,12 +243,15 @@
                 areaService.getCurrentArea().then(showArea);
             });
 
+            // Reload locations when filters change
+            $scope.$on('veganaut.filters.changed', loadLocations);
+
             // Reset search parameters when navigating away from this page
             $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {
                     // Remove the search params if the event is still ongoing
-                    $location.search('coords', null);
-                    $location.search('radius', null);
+                    $location.search('coords', undefined);
+                    $location.search('radius', undefined);
                 }
             });
         }

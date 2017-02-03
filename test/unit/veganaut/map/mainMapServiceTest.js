@@ -2,8 +2,8 @@
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('mainMapService.', function() {
-    var $location, $rootScope, $routeParams, areaService, locationService,
-        map, getCurrentAreaDeferred, activeFilters = {};
+    var $location, $rootScope, $routeParams, $route, areaService, locationService,
+        map, locationFilterService, getCurrentAreaDeferred, activeFilters = {};
 
     beforeEach(module('veganaut.app.main', 'veganaut.app.map'));
 
@@ -15,6 +15,11 @@ describe('mainMapService.', function() {
         };
 
         $routeParams = {};
+        $route = {
+            current: {
+                routeName: 'map'
+            }
+        };
 
         locationService = {
             queryByBounds: jasmine.createSpy('locationService.queryByBounds')
@@ -30,7 +35,7 @@ describe('mainMapService.', function() {
             getBoundsZoom: jasmine.createSpy('map.getBoundsZoom')
         };
 
-        var locationFilterService = {
+        locationFilterService = {
             POSSIBLE_FILTERS: {
                 type: ['retail', 'gastronomy', 'defaultTypeFilter'],
                 recent: ['week', 'month', 'defaultRecentFilter']
@@ -40,13 +45,15 @@ describe('mainMapService.', function() {
                 type: 'defaultTypeFilter',
                 recent: 'defaultRecentFilter'
             },
-            activeFilters: activeFilters
+            activeFilters: activeFilters,
+            setFiltersFromUrl: jasmine.createSpy('locationFilterService.setFiltersFromUrl')
         };
         activeFilters.type = locationFilterService.INACTIVE_FILTER_VALUE.type;
         activeFilters.recent = locationFilterService.INACTIVE_FILTER_VALUE.recent;
 
         $provide.value('$location', $location);
         $provide.value('$routeParams', $routeParams);
+        $provide.value('$route', $route);
         $provide.value('areaService', areaService);
         $provide.value('locationService', locationService);
         $provide.value('locationFilterService', locationFilterService);
@@ -56,12 +63,34 @@ describe('mainMapService.', function() {
         getCurrentAreaDeferred = $q.defer();
         areaService.getCurrentArea.andReturn(getCurrentAreaDeferred.promise);
         $rootScope = _$rootScope_;
+        spyOn($rootScope, '$on').andCallThrough();
     }));
 
     describe('constructor.', function() {
         it('does not initialise in constructor.', inject(function(mainMapService) { // jshint ignore:line
             expect(areaService.getCurrentArea).not.toHaveBeenCalled();
             expect(areaService.setArea).not.toHaveBeenCalled();
+        }));
+
+        it('cleans up URL when leaving map.', inject(function(mainMapService) { // jshint ignore:line
+            expect($rootScope.$on).toHaveBeenCalled();
+            // TODO: find a better way than accessing directly calls[1]
+            expect($rootScope.$on.calls[1].args[0]).toBe('$routeChangeStart', 'subscribed to route changes');
+
+            $rootScope.$broadcast(
+                '$routeChangeStart',
+                {
+                    // New route is not map
+                    routeName: 'home'
+                },
+                {
+                    // Old route is map
+                    routeName: 'map'
+                }
+            );
+
+            expect($location.search).toHaveBeenCalledWith('zoom', undefined);
+            expect($location.search).toHaveBeenCalledWith('coords', undefined);
         }));
     });
 
@@ -70,17 +99,9 @@ describe('mainMapService.', function() {
             expect(typeof mainMapService.initialiseMap).toBe('function');
         }));
 
-        it('loads the filters route params.', inject(function(mainMapService) {
-            $routeParams.type = 'retail';
-            $routeParams.recent = 'month';
+        it('tells the locationFilterService to load the filters.', inject(function(mainMapService) {
             mainMapService.initialiseMap(map);
-
-            expect(activeFilters.type).toBe('retail');
-            expect(activeFilters.recent).toBe('month');
-
-            expect($location.replace).toHaveBeenCalled();
-            expect($location.search).toHaveBeenCalledWith('type', 'retail');
-            expect($location.search).toHaveBeenCalledWith('recent', 'month');
+            expect(locationFilterService.setFiltersFromUrl).toHaveBeenCalled();
         }));
 
         it('loads the center from the route params.', inject(function(mainMapService) {
@@ -278,19 +299,12 @@ describe('mainMapService.', function() {
         }));
     });
 
-    describe('onFiltersChanged.', function() {
-        it('method exists.', inject(function(mainMapService) {
-            expect(typeof mainMapService.onFiltersChanged).toBe('function');
-        }));
+    describe('filter changes.', function() {
+        it('launches new query when filters change.', inject(function(mainMapService) { // jshint ignore:line
+            expect($rootScope.$on).toHaveBeenCalled();
+            expect($rootScope.$on.calls[0].args[0]).toBe('veganaut.filters.changed', 'subscribed to filter changes');
 
-        it('updates local storage and url and launches new query.', inject(function(mainMapService) {
-            activeFilters.type = 'gastronomy';
-            activeFilters.recent = 'week';
-            mainMapService.onFiltersChanged();
-
-            expect($location.replace).toHaveBeenCalled();
-            expect($location.search).toHaveBeenCalledWith('type', 'gastronomy');
-            expect($location.search).toHaveBeenCalledWith('recent', 'week');
+            $rootScope.$broadcast('veganaut.filters.changed');
 
             // Re-queries the locations
             expect(areaService.getCurrentArea).toHaveBeenCalled();
@@ -306,12 +320,6 @@ describe('mainMapService.', function() {
             });
             $rootScope.$apply();
             expect(locationService.queryByBounds).toHaveBeenCalled();
-
-            // Doesn't put the default in the URL
-            activeFilters.type = 'defaultTypeFilter';
-            mainMapService.onFiltersChanged();
-            expect($location.search).toHaveBeenCalledWith('type', undefined);
-            expect($location.search).toHaveBeenCalledWith('recent', 'week');
         }));
     });
 });

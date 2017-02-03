@@ -15,6 +15,7 @@ describe('locationList.', function() {
     var geocodeService = {};
     var angularPiwik = {};
     var playerService = {};
+    var locationFilterService = {};
 
     // Mock data returned by mock services
     var locationSet;
@@ -32,6 +33,7 @@ describe('locationList.', function() {
         $provide.value('geocodeService', geocodeService);
         $provide.value('angularPiwik', angularPiwik);
         $provide.value('playerService', playerService);
+        $provide.value('locationFilterService', locationFilterService);
     }));
 
     beforeEach(inject(function(_$rootScope_, $q, _Location_) {
@@ -76,6 +78,8 @@ describe('locationList.', function() {
                 return $q.defer().promise;
             })
         ;
+
+        locationFilterService.setFiltersFromUrl = jasmine.createSpy('locationFilterService.setFiltersFromUrl');
     }));
 
     describe('controller.', function() {
@@ -225,8 +229,22 @@ describe('locationList.', function() {
             expect($location.search).not.toHaveBeenCalled();
 
             scope.$broadcast('$routeChangeStart');
-            expect($location.search).toHaveBeenCalledWith('coords', null);
-            expect($location.search).toHaveBeenCalledWith('radius', null);
+            expect($location.search).toHaveBeenCalledWith('coords', undefined);
+            expect($location.search).toHaveBeenCalledWith('radius', undefined);
+        }));
+
+        it('initialises filters from URL', inject(function($controller) {
+            $controller('vgLocationListCtrl', {$scope: scope});
+
+            expect(locationFilterService.setFiltersFromUrl).toHaveBeenCalled();
+        }));
+
+        it('reloads locations on filter changes', inject(function($controller) {
+            $controller('vgLocationListCtrl', {$scope: scope});
+
+            expect(locationService.queryByRadius).not.toHaveBeenCalled();
+            $rootScope.$broadcast('veganaut.filters.changed');
+            expect(locationService.queryByRadius).toHaveBeenCalled();
         }));
     });
 });
