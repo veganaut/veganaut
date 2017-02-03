@@ -5,20 +5,11 @@
 //    module.value('backendUrl', 'https://veganaut.net/api');
     module.value('backendUrl', 'http://localhost:3000');
 
-    // Different possible map tiles
-    // var osmAttribution = '© <a href="http://www.openstreetmap.org/copyright" target="_blank" >OpenStreetMap</a> Data';
-    var mapDefaults = {
+    // Map default settings
+    module.value('mapDefaults', {
         zoomControlPosition: 'bottomleft',
         worldCopyJump: true
-    };
-
-    // Humanitarian OSM Team Tiles
-    // mapDefaults.tileLayer = 'https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png';
-    // mapDefaults.tileLayerOptions = {
-    //     attribution: osmAttribution + ' | <a href="https://hotosm.org/" target="_blank">HOT</a> Tiles'
-    // };
-
-    module.value('mapDefaults', mapDefaults);
+    });
 
     // General app settings
     module.constant('appSettings', {

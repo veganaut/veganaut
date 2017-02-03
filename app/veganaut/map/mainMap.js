@@ -55,14 +55,14 @@
              * Leaflet map object
              * @type {{}}
              */
-            vm.map = L.map('mainMap', {
+            vm.map = L.map('mainMap', _.defaults({
+                // TODO: move the layer definition also to the config
                 layers: [
                     L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     })
-                ],
-                worldCopyJump: true
-            });
+                ]
+            }, mapDefaults));
             vm.map.zoomControl.setPosition('bottomleft');
 
             /**
