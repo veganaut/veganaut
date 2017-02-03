@@ -135,7 +135,7 @@ angular.module('veganaut.app.main').factory('areaService', [
             // Check if infos are there and set the area
             if (angular.isObject(infos) && this.setArea(areaToShow)) {
                 // The area was set, check if we are already on the correct page
-                if ($route.current.routeName === infos.routeName) {
+                if ($route.current.vgRouteName === infos.routeName) {
                     // Emit an event to let the page know it should update
                     $rootScope.$broadcast(infos.eventName);
                 }

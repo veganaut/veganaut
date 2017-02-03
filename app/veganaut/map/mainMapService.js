@@ -30,7 +30,7 @@
                 // Listen to filter changes
                 $rootScope.$on('veganaut.filters.changed', function() {
                     // Only update when we are actually on the map page
-                    if ($route.current.routeName === MAP_ROUTE_NAME) {
+                    if ($route.current.vgRouteName === MAP_ROUTE_NAME) {
                         that._reloadLocations();
                     }
                 });
@@ -41,8 +41,8 @@
                     // remove our params from the URL.
                     if (!event.defaultPrevented &&
                         angular.isObject(oldRoute) &&
-                        oldRoute.routeName === MAP_ROUTE_NAME &&
-                        newRoute.routeName !== MAP_ROUTE_NAME)
+                        oldRoute.vgRouteName === MAP_ROUTE_NAME &&
+                        newRoute.vgRouteName !== MAP_ROUTE_NAME)
                     {
                         $location.search('zoom', undefined);
                         $location.search('coords', undefined);

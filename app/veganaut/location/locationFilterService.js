@@ -206,7 +206,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             });
 
             // Track opening of filters
-            angularPiwik.track('filters', 'filters.openModal', 'filters.openModal.' + $route.current.routeName);
+            angularPiwik.track('filters', 'filters.openModal', 'filters.openModal.' + $route.current.vgRouteName);
         };
 
         return new LocationFilterService();

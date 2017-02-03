@@ -84,8 +84,8 @@ angular.module('veganaut.app.search').factory('searchService', [
             // the action corresponding to the page that was last visited to be active.
             var that = this;
             $rootScope.$on('$routeChangeSuccess', function() {
-                if ($route.current.routeName === 'map' || $route.current.routeName === 'list') {
-                    that.geoAction = $route.current.routeName;
+                if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'list') {
+                    that.geoAction = $route.current.vgRouteName;
                 }
             });
         };
@@ -211,7 +211,7 @@ angular.module('veganaut.app.search').factory('searchService', [
                 ;
 
                 // Track showing of modal
-                angularPiwik.track('globalSearch', 'globalSearch.openModal', 'globalSearch.openModal.' + $route.current.routeName);
+                angularPiwik.track('globalSearch', 'globalSearch.openModal', 'globalSearch.openModal.' + $route.current.vgRouteName);
             }
 
         };

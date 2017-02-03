@@ -40,29 +40,29 @@
 
             // Set up routes
             $routeProvider.when('/register', {
-                routeName: 'register',
+                vgRouteName: 'register',
                 template: '<vg-register></vg-register>'
             });
             $routeProvider.when('/login', {
-                routeName: 'login',
+                vgRouteName: 'login',
                 templateUrl: '/veganaut/user/login.tpl.html',
                 controller: 'LoginCtrl'
             });
             $routeProvider.when('/forgot', {
-                routeName: 'forgotPassword',
+                vgRouteName: 'forgotPassword',
                 templateUrl: '/veganaut/user/forgot.tpl.html'
             });
             $routeProvider.when('/reset/:token', {
-                routeName: 'resetPassword',
+                vgRouteName: 'resetPassword',
                 templateUrl: '/veganaut/user/reset.tpl.html'
             });
 
             $routeProvider.when('/', {
-                routeName: 'home',
+                vgRouteName: 'home',
                 template: '<vg-home></vg-home>'
             });
             $routeProvider.when('/map/', {
-                routeName: 'map',
+                vgRouteName: 'map',
                 vgHasFilters: true,
                 template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
@@ -71,35 +71,35 @@
 
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
-                routeName: 'list',
+                vgRouteName: 'list',
                 vgHasFilters: true,
                 template: '<vg-location-list></vg-location-list>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
             $routeProvider.when('/location/:id', {
-                routeName: 'location',
+                vgRouteName: 'location',
                 templateUrl: '/veganaut/map/locationDetails.tpl.html',
                 controller: 'LocationDetailsCtrl'
             });
             $routeProvider.when('/location/:id/edit', {
-                routeName: 'location.edit',
+                vgRouteName: 'location.edit',
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
             $routeProvider.when('/me', {
-                routeName: 'ownProfile',
+                vgRouteName: 'ownProfile',
                 templateUrl: '/veganaut/user/profile.tpl.html'
             });
             $routeProvider.when('/me/edit', {
-                routeName: 'ownProfile.edit',
+                vgRouteName: 'ownProfile.edit',
                 templateUrl: '/veganaut/user/editProfile.tpl.html'
             });
             $routeProvider.when('/community', {
-                routeName: 'community',
+                vgRouteName: 'community',
                 template: '<vg-community></vg-community>'
             });
             $routeProvider.when('/veganaut/:personId', {
-                routeName: 'otherProfile',
+                vgRouteName: 'otherProfile',
                 templateUrl: '/veganaut/user/person.tpl.html',
                 controller: 'PersonCtrl'
             });

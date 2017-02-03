@@ -17,7 +17,7 @@ describe('mainMapService.', function() {
         $routeParams = {};
         $route = {
             current: {
-                routeName: 'map'
+                vgRouteName: 'map'
             }
         };
 
@@ -81,11 +81,11 @@ describe('mainMapService.', function() {
                 '$routeChangeStart',
                 {
                     // New route is not map
-                    routeName: 'home'
+                    vgRouteName: 'home'
                 },
                 {
                     // Old route is map
-                    routeName: 'map'
+                    vgRouteName: 'map'
                 }
             );
 

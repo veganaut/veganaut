@@ -20,7 +20,7 @@ describe('areaService.', function() {
         };
         $route = {
             current: {
-                routeName: ''
+                vgRouteName: ''
             }
         };
 

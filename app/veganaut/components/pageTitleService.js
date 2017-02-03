@@ -38,8 +38,8 @@
                     that._customTitle = undefined;
 
                     // Set route name, if it's valid
-                    if (_.isObject(newRoute) && _.isString(newRoute.routeName)) {
-                        that._routeName = newRoute.routeName;
+                    if (_.isObject(newRoute) && _.isString(newRoute.vgRouteName)) {
+                        that._routeName = newRoute.vgRouteName;
                     }
                 });
             };

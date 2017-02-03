@@ -16,7 +16,7 @@ describe('locationFilterService.', function() {
         $routeParams = {};
         $route = {
             current: {
-                routeName: 'map',
+                vgRouteName: 'map',
                 vgHasFilters: true
             }
         };
