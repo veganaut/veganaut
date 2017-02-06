@@ -25,8 +25,8 @@
         translate:{radius: locationListVm.displayRadius, place: locationListVm.displayName} }}
     </p>
 
-    <p ng-if="locationListVm.noResults">
-        {{ locationListVm.noResults | translate }}
+    <p ng-if="locationListVm.noResultsText">
+        {{ locationListVm.noResultsText | translate }}
     </p>
 
     <div ng-if="locationListVm.numShownLocations > 0">
