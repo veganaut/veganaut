@@ -263,7 +263,7 @@
             areaService.getCurrentArea().then(showArea);
 
             // Listen to explicit area changes
-            $scope.$on('veganaut.area.pushToList', function() {
+            $scope.$on('veganaut.area.changed', function() {
                 areaService.getCurrentArea().then(showArea);
             });
 

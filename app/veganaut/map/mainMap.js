@@ -218,7 +218,7 @@
             });
 
             // Listen to explicit area changes
-            $scope.$on('veganaut.area.pushToMap', function() {
+            $scope.$on('veganaut.area.changed', function() {
                 mainMapService.showCurrentArea(vm.map);
             });
 

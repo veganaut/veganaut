@@ -19,13 +19,11 @@ angular.module('veganaut.app.main').factory('areaService', [
         var AREA_PAGE_INFOS = {
             map: {
                 routeName: 'map',
-                path: '/map/',
-                eventName: 'veganaut.area.pushToMap'
+                path: '/map/'
             },
             list: {
                 routeName: 'list',
-                path: '/locations/',
-                eventName: 'veganaut.area.pushToList'
+                path: '/locations/'
             }
         };
 
@@ -137,7 +135,7 @@ angular.module('veganaut.app.main').factory('areaService', [
                 // The area was set, check if we are already on the correct page
                 if ($route.current.vgRouteName === infos.routeName) {
                     // Emit an event to let the page know it should update
-                    $rootScope.$broadcast(infos.eventName);
+                    $rootScope.$broadcast('veganaut.area.changed');
                 }
                 else {
                     // Go to the target page
