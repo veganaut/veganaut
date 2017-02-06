@@ -440,7 +440,8 @@
     "title": "Locations",
     "description": "Zeige Locations mit veganen Angeboten im Radius von {{ radius }} um {{ place }}.",
     "descriptionWholeWorld": "Zeige Locations mit veganen Angeboten auf der ganzen Welt.",
-    "noResults": "Im angegebenen Gebiet wurden keine Locations gefunden.", // TODO If no results only due to filter settings: alternative text: "Alle Locations wurden herausgefiltert."
+    "noResults": "Im angegebenen Gebiet wurden keine Locations gefunden.",
+    "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
     "showMore": "Weitere Locations anzeigen",
     "moreLocationsAvailable": "{{ available }} weitere Locations gefunden.",
     "allLocationsShown": "Alle {{ available }} gefunden Locations werden angezeigt."

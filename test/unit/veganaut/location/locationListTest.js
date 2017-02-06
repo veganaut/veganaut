@@ -80,6 +80,8 @@ describe('locationList.', function() {
         ;
 
         locationFilterService.setFiltersFromUrl = jasmine.createSpy('locationFilterService.setFiltersFromUrl');
+        locationFilterService.hasActiveFilters = jasmine.createSpy('locationFilterService.hasActiveFilters')
+            .andReturn(false);
     }));
 
     describe('controller.', function() {
@@ -96,7 +98,7 @@ describe('locationList.', function() {
 
             expect(angular.isArray(vm.list)).toBe(true, 'has a list defined');
             expect(vm.list.length).toBe(0, 'list is empty');
-            expect(vm.noResults).toBe(false, 'not yet declared that no results were found');
+            expect(vm.noResultsText).toBe(false, 'not yet declared that no results were found');
 
             getCurrentAreaDeferred.resolve({
                 getRadiusParams: function() {
@@ -118,7 +120,7 @@ describe('locationList.', function() {
             expect($location.search).toHaveBeenCalledWith('coords', '46.5000000,7.4000000');
             expect($location.search).toHaveBeenCalledWith('radius', 522);
 
-            expect(vm.noResults).toBe(false, 'still not declared that no results found');
+            expect(vm.noResultsText).toBe(false, 'still not declared that no results found');
             expect(vm.displayRadius).toBe('520m', 'set rounded display radius');
 
             locationSet.locations = {};
@@ -174,10 +176,10 @@ describe('locationList.', function() {
 
             // Resolve with an empty location list
             locationSet.locations = {};
-            expect(vm.noResults).toBe(false, 'not yet declared that no results found');
+            expect(vm.noResultsText).toBe(false, 'not yet declared that no results found');
             deferredQuery.resolve();
             $rootScope.$apply();
-            expect(vm.noResults).toBe(true, 'declared that no results found');
+            expect(vm.noResultsText).toBe('locationList.noResults', 'declared that no results found');
             expect(vm.list.length).toBe(0, 'list is empty');
             expect(vm.numShownLocations).toBe(0, 'no locations shown');
 

@@ -440,7 +440,8 @@
     "title": "Endroits",
     "description": "Showing locations with vegan offers in radius {{ radius }} around {{ place }}.",
     "descriptionWholeWorld": "Showing locations with vegan offers in the whole world.",
-    "noResults": "No locations can be found in the given area.", // TODO If no results only due to filter settings: alternative text: "All locations were filtered out."
+    "noResults": "No locations can be found in the given area.",
+    "noResultsFiltered": "All locations were filtered out.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
     "allLocationsShown": "Showing all {{ available }} found locations."

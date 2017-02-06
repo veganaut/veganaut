@@ -49,10 +49,12 @@
 
             /**
              * Whether no results were found (either because of invalid query parameters
-             * or because no locations are found in the given area)
-             * @type {boolean}
+             * or because no locations are found in the given area).
+             * If not false, it's the translation key that should be used to show the
+             * no results message (depends on the filters as well).
+             * @type {boolean|string}
              */
-            vm.noResults = false;
+            vm.noResultsText = false;
 
             /**
              * Whether the whole world is shown.
@@ -110,19 +112,39 @@
             };
 
             /**
+             * Resets the list to empty.
+             * Note: this doesn't reset the area of the list.
+             */
+            var resetList = function() {
+                // Reset list and related variables
+                vm.list = [];
+                vm.noResultsText = false;
+                vm.numShownLocations = 0;
+            };
+
+            /**
              * Sorts and filters the locations and stores them in vm.list
              * @param {LocationSet} locationSet
              */
             var compileList = function() {
+                // Make sure the list is reset
+                resetList();
+
                 vm.list = _.chain(locationSet.locations)
                     .sortByOrder(['quality.average', 'quality.numRatings', 'name'], ['desc', 'desc', 'asc'])
                     // TODO: should sort by rank, but don't have the rank in the frontend
+                    // TODO: actually, the backend should just give the list sorted and limited to certain amount of entries
                     .value()
                 ;
 
                 // Check if we found any results
                 if (vm.list.length === 0) {
-                    vm.noResults = true;
+                    if (locationFilterService.hasActiveFilters()) {
+                        vm.noResultsText = 'locationList.noResultsFiltered';
+                    }
+                    else {
+                        vm.noResultsText = 'locationList.noResults';
+                    }
                 }
                 else {
                     // Show the first batch of locations
@@ -143,6 +165,8 @@
              * Loads the locations with the currently set lastParams
              */
             var loadLocations = function() {
+                // Note: we don't reset the list here, as it's nicer when the list stays
+                // rendered when filters are applied.
                 locationService.queryByRadius(lastParams.lat, lastParams.lng, lastParams.radius, vm.addressType)
                     .then(compileList)
                 ;
@@ -157,13 +181,13 @@
                 // Get the radius params from the area
                 lastParams = area.getRadiusParams();
 
-                // Expose if we are showing the whole world and reset all other variables
+                // Expose if we are showing the whole world
                 vm.wholeWorld = lastParams.includesWholeWorld;
-                vm.list = [];
-                vm.noResults = false;
+
+                // Reset the area display variables and the list itself
+                resetList();
                 vm.displayRadius = '';
                 vm.displayName = '';
-                vm.numShownLocations = 0;
 
                 // Check whether to show the city or street part of the address
                 vm.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
