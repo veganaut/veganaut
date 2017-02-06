@@ -110,7 +110,7 @@ describe('map when logged out.', function() {
 
     describe('interaction with locations on the map', function() {
         it('should toggle showing details when selecting a location.', function() {
-            browser.get('/map#zoom:13,coords:46.945-7.449');
+            browser.get('/map?zoom=13&coords=46.945,7.449');
             var location = element(by.css('.marker[title="Reformhaus Ruprecht"]'));
             location.click();
 
@@ -206,7 +206,7 @@ describe('map when logged in.', function() {
 
     describe('add location.', function() {
         it('should be possible to add a new location.', function() {
-            browser.get('/map#zoom:13,coords:46.945-7.449');
+            browser.get('/map?zoom=13&coords=46.945,7.449');
 
             element(by.css('.create-location')).click();
 

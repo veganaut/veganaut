@@ -8,7 +8,7 @@ describe('location list accessed from map.', function() {
     var locationListButton;
     var mapLat = 46.96;
     var mapLng = 7.44;
-    var mapUrl = '/map#zoom:13,coords:' + mapLat.toFixed(7) + '-' + mapLng.toFixed(7);
+    var mapUrl = '/map?zoom=13&coords=' + mapLat.toFixed(7) + ',' + mapLng.toFixed(7);
 
     beforeEach(function() {
         // Only load fixtures if explicitly told
