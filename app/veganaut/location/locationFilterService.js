@@ -197,9 +197,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 '<vg-global-filters></vg-global-filters>',
                 controller: 'vgSimpleModalCtrl',
                 controllerAs: '$ctrl',
-                bindToController: true,
-                windowClass: 'modal--below-contextual-menu',
-                backdropClass: 'modal-backdrop--light'
+                bindToController: true
             }).result.finally(function() {
                 // Track closing of filters
                 angularPiwik.track('filters', 'filters.dismissModal');
