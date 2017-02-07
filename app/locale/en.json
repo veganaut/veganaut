@@ -181,7 +181,7 @@
           "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
           "retail": "What is the name of the shop / supermarket that you would like to add?"
         },
-        "selectCoordinates": "Place the dot to indicate where the location is or use the search.",
+        "selectCoordinates": "Where is the location? Mark the exact spot by hand and/or with the search function.",
         "search": "Search name or address",
         "showForm": "Show form",
         "next": "Next",
