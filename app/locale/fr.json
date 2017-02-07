@@ -181,7 +181,7 @@
           "gastronomy": "Comment s'appelle le restaurant / take-away / la cantine que tu veux ajouter?",
           "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?"
         },
-        "selectCoordinates": "Place le cercle là où se trouve l'endroit ou utilise la fonction recherche.",
+        "selectCoordinates": "Où est cet endroit? Marque le lieu exact en cliquant sur la carte et/ou en utilisant la fonction recherche.",
         "search": "Cherche par nom ou adresse",
         "showForm": "Afficher le formulaire",
         "next": "Continuer",
