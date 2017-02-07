@@ -181,7 +181,7 @@
           "gastronomy": "Wie heisst das Restaurant / Take-Away / Kantine, die du hinzufügen möchtest?",
           "retail": "Wie heisst der Laden / Supermarkt, den du hinzufügen möchtest?"
         },
-        "selectCoordinates": "Platziere den Punkt genau an dem Ort, wo sich die Location befindet.",
+        "selectCoordinates": "Wo befindet sich die Location? Markiere die genaue Stelle von Hand und/oder mit der Suchfunktion.",
         "search": "Nach Name oder Addresse suchen",
         "showForm": "Formular anzeigen",
         "next": "Weiter",
