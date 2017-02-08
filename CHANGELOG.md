@@ -1,6 +1,15 @@
 Veganaut Changelog
 ==================
 
+0.10.0: Such Forgetfulness (2017-02-08)
+-------------------------------------------
+It's been a while. There have been many changes. Too many to list them all.
+But for the occasion of commit number 1000, we'll make a release.
+And we'll promise to make more regular named and numbered releases again.
+
+Also, it's not like semantic versioning makes any sense here, but we'll
+just keep on putting a zero before and after the actual version number.
+
 0.9.0: Structured Intrigue (2015-12-20)
 -------------------------------------------
 * New feature: Locations can now be shown in a list (around a center in a given radius).
