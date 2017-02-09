@@ -21,7 +21,7 @@
   "pageTitle": {
     "community": "Communauté",
     "forgotPassword": "Mot de passe oublié",
-    "home": "A community-driven vegan guide",
+    "home": "Un guide végan participatif",
     "list": "Endroits avec des offres véganes",
     "location": "Endroit avec des offres véganes",
     "location.edit": "Modifier l'endroit",
@@ -135,7 +135,7 @@
     },
     "whatsNew": {
       "name": "Nouveautés",
-      "description": "See newest vegan offers"
+      "description": "Afficher les offres véganes les plus récentes"
     },
     "rate": {
       "name": "Évaluer"
@@ -181,7 +181,7 @@
           "gastronomy": "Comment s'appelle le restaurant / take-away / la cantine que tu veux ajouter?",
           "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?"
         },
-        "selectCoordinates": "Où est cet endroit? Marque le lieu exact en cliquant sur la carte et/ou en utilisant la fonction recherche.",
+        "selectCoordinates": "Où est cet endroit? Marques le lieu exact en cliquant sur la carte et/ou en utilisant la fonction recherche.",
         "search": "Cherche par nom ou adresse",
         "showForm": "Afficher le formulaire",
         "next": "Continuer",
@@ -236,7 +236,7 @@
       "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
       "noTags": "Personne n'a indiqué les offres véganes qu'ils aiment ici. Fais-le toi-même!"
     },
-    "approximateAddress": "This address was looked up automatically and is therefore approximate."
+    "approximateAddress": "Cette adresse a été déterminée automatiquement. Elle est donc approximative."
   },
   "locationCluster": {
     "marker": {
@@ -428,23 +428,23 @@
   },
   "globalSearch": {
     "title": {
-      "main": "Search for restaurants, shops and geographical places",
-      "locations": "Veganaut locations",
-      "geoPlaces": "Geographical results"
+      "main": "Recherches des restaurants, magasins et lieux géographiques",
+      "locations": "Endroits Véganaut",
+      "geoPlaces": "Résultats géographiques "
     },
-    "placeholder": "Name, city, address",
-    "submit": "Search",
-    "noResults": "No results were found."
+    "placeholder": "Nom, ville ou adresse",
+    "submit": "Recherche",
+    "noResults": "Pardon, aucun résultat n‘a été trouvé."
   },
   "locationList": {
     "title": "Endroits",
-    "description": "Showing locations with vegan offers in radius {{ radius }} around {{ place }}.",
-    "descriptionWholeWorld": "Showing locations with vegan offers in the whole world.",
-    "noResults": "No locations can be found in the given area.",
-    "noResultsFiltered": "All locations were filtered out.",
+    "description": "Afficher les offres véganes dans un rayon de {{ radius }} autour de {{ place }}.",
+    "descriptionWholeWorld": "Afficher les offres véganes n‘importe-où sur la terre.",
+    "noResults": "Aucune offre végane n‘a été trouvée dans la zone demandée.",
+    "noResultsFiltered": "Aucune offre végane n‘a passé le filtre.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
-    "allLocationsShown": "Showing all {{ available }} found locations."
+    "allLocationsShown": "Toutes les {{ available }} offres trouvées sont affichées."
   },
   "tags": {
     "groups": {
@@ -511,30 +511,30 @@
     }
   },
   "home": {
-    "tagLine": "A community-driven vegan guide",
+    "tagLine": "Un guide végan participatif",
     "callToAction": {
-      "text": "Show vegan offers in...",
-      "inputPlaceholder": "Enter a country or city",
-      "showList": "...as a list",
-      "showMap": "...on a map",
-      "geolocate": "My location"
+      "text": "Afficher les offres véganes à...",
+      "inputPlaceholder": "Saisis une ville ou un pays",
+      "showList": "...en liste",
+      "showMap": "...sur la carte",
+      "geolocate": "Ma position"
     },
     "open": {
-      "text1": "All our infos about vegan offers were contributed by people like you and can be used freely for your own projects: Veganaut is ",
-      "source": "open-source",
-      "text2": " and ",
-      "content": "open-content"
+      "text1": "Toutes nos informations sur les offres véganes ont été partagées par des gens comme toi et peuvent être utilisées pour tes propres projets: Véganaut est ",
+      "source": "Open Source",
+      "text2": " et ",
+      "content": "Open Content"
     },
     "participate": {
-      "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
-      "register": "Start sharing!"
+      "text": "Tu veux aider d‘autres personnes à explorer l‘univers végan? Tu peux partager et évaluer tes découvertes véganes sur Véganaut.",
+      "register": "Je veux participer!"
     }
   },
   "missingFeature": {
-    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!",
-    "whatsNew": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the \"New offers\" feature.",
-    "rate": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the \"Rate\" feature for people without an account. If you want to rate now, ",
-    "rateLink": "create an account",
+    "showMoreSearchResults": "Pardon, nous ne pouvons pas encore afficher plus de résultats. Nous sommes en train de programmer cette fonction. Merci de ta compréhension.",
+    "whatsNew": "Merci d‘avoir pressé ce bouton! Nous comptons le nombre de personnes qui le pressent pour décider si une fonction \"Nouveautés\" est nécessaire.",
+    "rate": "Merci d‘avoir pressé ce bouton! La fonction \"Évaluer\" n‘est pas encore disponible pour les utilisateurs qui ne se sont pas inscrits. Merci de ta compréhension. Si tu veux évaluer cet endroit maintenant ",
+    "rateLink": "inscris-toi.",
     "button": "OK"
   }
 }
