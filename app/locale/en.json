@@ -133,10 +133,6 @@
       "name": "Map",
       "description": "Show locations on map"
     },
-    "whatsNew": {
-      "name": "New offers",
-      "description": "See newest vegan offers"
-    },
     "rate": {
       "name": "Rate"
     },
@@ -531,10 +527,6 @@
     }
   },
   "missingFeature": {
-    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!",
-    "whatsNew": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the \"New offers\" feature.",
-    "rate": "Thanks for pushing this button. We're counting how many visitors push it to find out whether we should implement the \"Rate\" feature for people without an account. If you want to rate now, ",
-    "rateLink": "create an account",
-    "button": "OK"
+    "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!"
   }
 }

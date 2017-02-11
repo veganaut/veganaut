@@ -9,13 +9,6 @@
                         <ng-include src="'img/veganaut.svg'" class="logo logo--top-box"></ng-include>
                     </a>
                 </div>
-                <button type="button" class="btn-favourites btn btn-primary"
-                 ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                 ng-click="mainMapVm.openWhatsNew()"
-                 title="{{ 'action.whatsNew.description' | translate }}">
-                    <span class="glyphicon glyphicon-fire"></span><br/>
-                    <span class="small">{{ 'action.whatsNew.name' | translate }}</span>
-                </button>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.showProductList.' + mainMapVm.getProductListType() + '.description' | translate }}"
                  ng-click="mainMapVm.showProductList(true)">
@@ -38,14 +31,14 @@
                  ng-if="!mainMapVm.legacyGlobals.isEmbedded">
                 </vg-filter-button>
                 <button type="button" class="btn-register btn btn-primary"
-                 ng-if="!mainMapVm.legacyGlobals.isLoggedIn() && !mainMapVm.legacyGlobals.isEmbedded"
+                 ng-if="!mainMapVm.legacyGlobals.isLoggedIn()"
                  ng-click="mainMapVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.mainMap'"
                  title="{{ 'action.register.description' | translate }}">
                     <span class="glyphicon glyphicon-heart"></span><br/>
                     <span class="small">{{ 'action.register.name' | translate }}</span>
                 </button>
                 <button type="button" class="create-location btn btn-primary"
-                 ng-if="mainMapVm.legacyGlobals.isLoggedIn() && !mainMapVm.legacyGlobals.isEmbedded"
+                 ng-if="mainMapVm.legacyGlobals.isLoggedIn()"
                  ng-click="mainMapVm.startCreateLocation()"
                  title="{{ 'action.createLocation.description' | translate }}">
                     <span class="glyphicon glyphicon-plus-sign"></span><br/>
@@ -80,11 +73,10 @@
             </vg-location-product-summary>
 
             <div class="row mark-favourite-mock" ng-show="mainMapVm.locationSet.active.id"
-             ng-if="mainMapVm.legacyGlobals.isEmbedded">
+             ng-if="mainMapVm.legacyGlobals.isEmbedded && !mainMapVm.legacyGlobals.isLoggedIn()">
                 <p class="col-xs-6">
                     <button type="button" class="btn btn-block btn-primary"
-                     ng-if="mainMapVm.legacyGlobals.isEmbedded"
-                     ng-click="mainMapVm.openRate()">
+                     ng-click="mainMapVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.locationPreviewRate'">
                         <span class="glyphicon glyphicon-star-empty"></span>
                         <span>{{ 'action.rate.name' | translate }}</span>
                     </button>
@@ -98,7 +90,7 @@
             </div>
 
             <p ng-show="mainMapVm.locationSet.active.id"
-             ng-if="!mainMapVm.legacyGlobals.isEmbedded">
+             ng-if="!mainMapVm.legacyGlobals.isEmbedded || mainMapVm.legacyGlobals.isLoggedIn()">
                 <vg-location-visit-button vg-location="mainMapVm.locationSet.active"></vg-location-visit-button>
             </p>
         </div>

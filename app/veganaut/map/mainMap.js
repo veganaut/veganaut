@@ -24,9 +24,9 @@
     };
 
     var mainMapCtrl = [
-        '$scope', '$uibModal', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
+        '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
         'playerService', 'locationService', 'locationFilterService', 'mainMapService',
-        function($scope, $uibModal, L, angularPiwik, mapDefaults, constants,
+        function($scope, L, angularPiwik, mapDefaults, constants,
             playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
@@ -116,48 +116,6 @@
             vm.startCreateLocation = function() {
                 playerPromise.then(function(player) {
                     vm.locationSet.startCreateLocation(player, vm.map);
-                });
-            };
-
-            /**
-             * Temporary handler of the what's new test
-             */
-            vm.openWhatsNew = function() {
-                angularPiwik.track('test.whatsNew', 'test.whatsNew.click');
-                $uibModal.open({
-                    template: '<p>{{ "missingFeature.whatsNew" | translate }}</p>' +
-                    '<p><button class="btn btn-default btn-block" ng-click="modalVm.close()">' +
-                    '{{ "missingFeature.button" | translate }}</button></p>',
-                    controller: ['$modalInstance', function($modalInstance) {
-                        var vm = this;
-                        vm.close = function() {
-                            $modalInstance.close();
-                        };
-                    }],
-                    controllerAs: 'modalVm',
-                    bindToController: true
-                });
-            };
-
-            /**
-             * Temporary handler of the rate test
-             */
-            vm.openRate = function() {
-                angularPiwik.track('test.unregisteredRate', 'test.unregisteredRate.click');
-                $uibModal.open({
-                    template: '<p>{{ "missingFeature.rate" | translate }}' +
-                    '<a href="/register">' +
-                    '{{ "missingFeature.rateLink" | translate }}</a>.</p>' +
-                    '<p><button class="btn btn-default btn-block" ng-click="modalVm.close()">' +
-                    '{{ "missingFeature.button" | translate }}</button></p>',
-                    controller: ['$modalInstance', function($modalInstance) {
-                        var vm = this;
-                        vm.close = function() {
-                            $modalInstance.close();
-                        };
-                    }],
-                    controllerAs: 'modalVm',
-                    bindToController: true
                 });
             };
 

@@ -133,10 +133,6 @@
       "name": "Carte",
       "description": "Afficher les endroits sur la carte"
     },
-    "whatsNew": {
-      "name": "Nouveautés",
-      "description": "Afficher les offres véganes les plus récentes"
-    },
     "rate": {
       "name": "Évaluer"
     },
@@ -531,10 +527,6 @@
     }
   },
   "missingFeature": {
-    "showMoreSearchResults": "Pardon, nous ne pouvons pas encore afficher plus de résultats. Nous sommes en train de programmer cette fonction. Merci de ta compréhension.",
-    "whatsNew": "Merci d‘avoir pressé ce bouton! Nous comptons le nombre de personnes qui le pressent pour décider si une fonction \"Nouveautés\" est nécessaire.",
-    "rate": "Merci d‘avoir pressé ce bouton! La fonction \"Évaluer\" n‘est pas encore disponible pour les utilisateurs qui ne se sont pas inscrits. Merci de ta compréhension. Si tu veux évaluer cet endroit maintenant ",
-    "rateLink": "inscris-toi.",
-    "button": "OK"
+    "showMoreSearchResults": "Pardon, nous ne pouvons pas encore afficher plus de résultats. Nous sommes en train de programmer cette fonction. Merci de ta compréhension."
   }
 }
