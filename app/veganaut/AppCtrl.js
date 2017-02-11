@@ -106,32 +106,42 @@
 
             // If we're embedded, all links outside the map should open in a new window
             if ($scope.isEmbedded) {
+                // We need to store the last URL we changed to, so we can reset back to it
+                // in the handler of $routeChangeStart.
+                var lastUrl;
+                $scope.$on('$locationChangeSuccess', function() {
+                    lastUrl = $location.url();
+                });
+
                 $scope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
-                    var currentPath = $location.path();
-                    if (currentPath !== '/map/') {
-                        // Check if there was already an old route defined,
+                    // Check if we would leave the map
+                    if (newRoute.vgRouteName !== 'map') {
+                        // Check if there was already an old route defined (indicating the app hasn't just loaded)
                         if (angular.isDefined(oldRoute)) {
                             // The user is trying to navigate away from the map.
                             // We want to open a new window instead
                             event.preventDefault();
 
-                            // Get the current url, then remove some parts we don't want in the new window.
-                            var oldUrl = $location.url();
+                            // For the URL we want to open in a new window we don't want many of the parameters
+                            // that are set on the embedded map. We use Angular's $location service to manipulate
+                            // the URL easily and get the cleaned target. But we need to reset the URL here after,
+                            // because we don't really want to make a route change.
                             $location
                                 .hash(null)
                                 .search('mode', null)
                                 .search('pk_campaign', null)
                                 .search('pk_cpn', null)
                                 .search('pk_kwd', null)
-                                .search('coords', null)
-                                .search('zoom', null)
-                                .search('type', null)
-                                .search('recent', null)
                             ;
+                            // Note: If this code is every moved to a service, we need to make sure the listeners in
+                            // the mainMapService and locationFilterService are still executed first, so the
+                            // corresponding params are reset.
+
+                            // Open the new window with the cleaned URL
                             $window.open($location.absUrl());
 
                             // Restore the old URL so we don't trigger another location change
-                            $location.url(oldUrl);
+                            $location.url(lastUrl);
                         }
                         else {
                             // App has just loaded but not on the map. Redirect to the map
