@@ -1,7 +1,11 @@
-<button type="button" class="btn btn-default btn-default--transparent btn-show-filters"
+<button type="button" class="btn btn-default btn-default--transparent btn-filters"
  ng-click="$ctrl.locationFilterService.showFilterModal()"
- ng-class="{active: $ctrl.locationFilterService.hasActiveFilters()}"
  title="{{ 'action.showFilters.description' | translate }}">
     <span class="glyphicon glyphicon-filter"></span><br/>
-    <span class="small">{{ 'action.showFilters.name' | translate }}</span>
+    <span class="small">
+        {{ 'action.showFilters.name' | translate }}
+        <span class="badge" ng-show="$ctrl.locationFilterService.hasActiveFilters()">
+            {{ $ctrl.locationFilterService.getNumActiveFilters() }}
+        </span>
+    </span>
 </button>

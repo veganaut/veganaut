@@ -1,66 +1,42 @@
-<label class="top-box__first-line">
-    {{ 'map.productList.title.' + productListVm.locationType | translate }}
-</label>
-<div ng-show="productListVm.productsLoaded">
-    <p ng-show="productListVm.products.length === 0">
-        {{ 'map.productList.noProducts' | translate }}
-    </p>
-
-    <!-- TODO: de-duplicate this code with the one from locationDetails -->
-    <vg-accordion ng-show="productListVm.products.length > 0">
-        <vg-accordion-item
-         ng-repeat="product in productListVm.products"
-         vg-on-open-toggle="productListVm.onOpenToggle(product, isOpen)"
-         vg-tracking-category="productList.product"
-         class="product-list__product--{{ product.availability }}"
-        >
-            <vg-accordion-item-header class="product-list__product__header">
-                {{ product.name }}
-                <span class="pull-right-spaced">
-                    <vg-average-rating
-                     average="product.rating.average"
-                     num-ratings="product.rating.numRatings">
-                    </vg-average-rating>
-                </span>
-            </vg-accordion-item-header>
-            <vg-accordion-item-body>
-                <div ng-if="product.availability !== 'available'">
-                    <em>{{ 'product.availability.' + product.availability | translate }}</em>
+<!-- TODO: de-duplicate this code with the one from locationDetails -->
+<vg-accordion ng-show="productListVm.products.length > 0">
+    <vg-accordion-item
+     ng-repeat="product in productListVm.products"
+     vg-on-open-toggle="productListVm.onOpenToggle(product, isOpen)"
+     vg-tracking-category="productList.product"
+     class="product-list__product--{{ product.availability }}"
+    >
+        <vg-accordion-item-header class="product-list__product__header">
+            {{ product.name }}
+            <span class="pull-right-spaced">
+                <vg-average-rating
+                 average="product.rating.average"
+                 num-ratings="product.rating.numRatings">
+                </vg-average-rating>
+            </span>
+        </vg-accordion-item-header>
+        <vg-accordion-item-body>
+            <div ng-if="product.availability !== 'available'">
+                <em>{{ 'product.availability.' + product.availability | translate }}</em>
+            </div>
+            <div ng-if="product.availability === 'available'">
+                <div ng-show="product.rating.numRatings > 0"
+                 translate="product.rating.details"
+                 translate-values="{ rating: (product.rating.average | number:1),
+                      numRatings: product.rating.numRatings }">
                 </div>
-                <div ng-if="product.availability === 'available'">
-                    <div ng-show="product.rating.numRatings > 0"
-                     translate="product.rating.details"
-                     translate-values="{ rating: (product.rating.average | number:1),
-                          numRatings: product.rating.numRatings }">
-                    </div>
-                    <div ng-hide="product.rating.numRatings > 0">
-                        {{ 'product.rating.noRating' | translate }}
-                    </div>
+                <div ng-hide="product.rating.numRatings > 0">
+                    {{ 'product.rating.noRating' | translate }}
                 </div>
+            </div>
 
-                <hr class="hr--small"/>
+            <hr class="hr--small"/>
 
-                <vg-location-title
-                 vg-location="product.location"
-                 vg-address-type="{{ productListVm.addressType }}">
-                </vg-location-title>
-                <vg-location-visit-button vg-location="product.location"></vg-location-visit-button>
-            </vg-accordion-item-body>
-        </vg-accordion-item>
-    </vg-accordion>
-
-    <div ng-show="productListVm.totalProducts > productListVm.products.length">
-        <p>
-            {{ 'map.productList.moreProductsAvailable' |
-            translate:{ available: productListVm.totalProducts - productListVm.products.length} }}
-        </p>
-
-        <p>
-            <button type="button" class="btn btn-block btn-default"
-             ng-click="productListVm.loadMore()">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span ng-bind="'map.productList.showMore' | translate"></span>
-            </button>
-        </p>
-    </div>
-</div>
+            <vg-location-title
+             vg-location="product.location"
+             vg-address-type="{{ productListVm.addressType }}">
+            </vg-location-title>
+            <vg-location-visit-button vg-location="product.location"></vg-location-visit-button>
+        </vg-accordion-item-body>
+    </vg-accordion-item>
+</vg-accordion>

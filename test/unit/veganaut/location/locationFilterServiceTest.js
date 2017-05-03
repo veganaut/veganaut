@@ -17,7 +17,10 @@ describe('locationFilterService.', function() {
         $route = {
             current: {
                 vgRouteName: 'map',
-                vgHasFilters: true
+                vgFilters: {
+                    recent: true,
+                    type: true
+                }
             }
         };
 
@@ -65,17 +68,23 @@ describe('locationFilterService.', function() {
             $rootScope.$broadcast(
                 '$routeChangeStart',
                 {
-                    // New route has no filters
-                    vgHasFilters: false
+                    // New route has one filter
+                    vgFilters: {
+                        recent: true
+                    }
                 },
                 {
-                    // Old route had filters
-                    vgHasFilters: true
+                    // Old route had two filters
+                    vgFilters: {
+                        recent: true,
+                        type: true
+                    }
                 }
             );
 
+            // Only cleans up the filter that is no longer there on the new page
             expect($location.search).toHaveBeenCalledWith('type', undefined);
-            expect($location.search).toHaveBeenCalledWith('recent', undefined);
+            expect($location.search).not.toHaveBeenCalledWith('recent', undefined);
         }));
     });
 
@@ -151,7 +160,7 @@ describe('locationFilterService.', function() {
             var lfs = locationFilterService;
             lfs.activeFilters.type = 'retail';
             lfs.activeFilters.recent = 'day';
-            $route.current.vgHasFilters = undefined;
+            $route.current.vgFilters = undefined;
             lfs.onFiltersChanged();
 
             expect($location.replace).not.toHaveBeenCalled();

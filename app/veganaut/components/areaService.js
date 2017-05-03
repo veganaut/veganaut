@@ -24,6 +24,10 @@ angular.module('veganaut.app.main').factory('areaService', [
             list: {
                 routeName: 'list',
                 path: '/locations/'
+            },
+            productList: {
+                routeName: 'productList',
+                path: '/products/'
             }
         };
 

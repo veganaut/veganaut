@@ -6,6 +6,7 @@
     "logout": "Déconnexion",
     "map": "Carte",
     "locationList": "Endroits",
+    "productList": "Offres véganes",
     "community": "Communauté",
     "profile": "Profil",
     "about": "Qui sommes-nous",
@@ -23,6 +24,7 @@
     "forgotPassword": "Mot de passe oublié",
     "home": "Un guide végan participatif",
     "list": "Endroits avec des offres véganes",
+    "productList": "Offres véganes",
     "location": "Endroit avec des offres véganes",
     "location.edit": "Modifier l'endroit",
     "login": "Connexion",
@@ -108,14 +110,8 @@
       "description": "Ajouter nouvel endroit"
     },
     "showProductList": {
-      "gastronomy": {
-        "name": "Menu végan",
-        "description": "Afficher le menu végan pour cette partie de la carte."
-      },
-      "retail": {
-        "name": "Produits",
-        "description": "Afficher l'offre végane pour cette partie de la carte."
-      }
+      "name": "Offres véganes",
+      "description": "Afficher les offres véganes dans cette région"
     },
     "searchMap": {
       "name": "Recherche",
@@ -259,15 +255,6 @@
     }
   },
   "map": {
-    "productList": {
-      "title": {
-        "gastronomy": "Offres gastronomiques véganes trouvées dans cette partie de la carte",
-        "retail": "Produits végans trouvées aux endroits shopping dans cette partie de la carte"
-      },
-      "noProducts": "Pas d'offres trouvées.",
-      "showMore": "Afficher plus d'offres",
-      "moreProductsAvailable": "Encore {{ available }} offres additionnelles ont été trouvées."
-    },
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totaux des missions",
@@ -432,15 +419,28 @@
     "submit": "Recherche",
     "noResults": "Pardon, aucun résultat n‘a été trouvé."
   },
+  "lists": {
+    "area": {
+      "label": "Région",
+      "radius": "{{ radius }} autour de {{ place }}",
+      "wholeWorld": "Le monde entier"
+    }
+  },
   "locationList": {
-    "title": "Endroits",
-    "description": "Afficher les offres véganes dans un rayon de {{ radius }} autour de {{ place }}.",
-    "descriptionWholeWorld": "Afficher les offres véganes n‘importe-où sur la terre.",
-    "noResults": "Aucune offre végane n‘a été trouvée dans la zone demandée.",
-    "noResultsFiltered": "Aucune offre végane n‘a passé le filtre.",
+    "title": "Endroits avec des offres véganes",
+    "noResults": "Aucun endroit végan n‘a été trouvé dans la zone demandée.",
+    "noResultsFiltered": "Aucune endroit végan n‘a passé le filtre.",
     "showMore": "Afficher plus d'endroits",
     "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
-    "allLocationsShown": "Toutes les {{ available }} offres trouvées sont affichées."
+    "allLocationsShown": "Toutes les {{ available }} endroits trouvées sont affichées."
+  },
+  "productList": {
+    "title": "Repas et autres produits végans",
+    "noResults": "Aucune offre végane n‘a été trouvée dans la zone demandée.",
+    "noResultsFiltered": "Aucune offre n‘a passé le filtre.",
+    "showMore": "Afficher plus d'offres",
+    "moreProductsAvailable": "Encore {{ available }} offres additionnelles ont été trouvées.",
+    "allProductsShown": "Toutes les {{ available }} offres trouvées sont affichées."
   },
   "tags": {
     "groups": {

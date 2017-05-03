@@ -1,19 +1,23 @@
 <form novalidate name="filterForm" class="filter-form">
-    <div><label>{{ 'globalFilters.recent.title' | translate }}</label></div>
-    <div class="btn-group form-group">
-        <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.recent"
-         ng-model="$ctrl.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
-            <vg-location-type-icon type="filter"></vg-location-type-icon>
-            {{ 'globalFilters.recent.form.' + filter | translate }}
-        </button>
+    <div ng-if="$ctrl.locationFilterService.routeHasRecentFilter()">
+        <div><label>{{ 'globalFilters.recent.title' | translate }}</label></div>
+        <div class="btn-group form-group">
+            <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.recent"
+             ng-model="$ctrl.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
+                <vg-location-type-icon type="filter"></vg-location-type-icon>
+                {{ 'globalFilters.recent.form.' + filter | translate }}
+            </button>
+        </div>
     </div>
 
-    <div><label>{{ 'globalFilters.type.title' | translate }}</label></div>
-    <div class="btn-group form-group">
-        <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
-         ng-model="$ctrl.locationFilterService.activeFilters.type" uib-btn-radio="filter">
-            <vg-location-type-icon type="filter"></vg-location-type-icon>
-            {{ 'globalFilters.type.form.' + filter | translate }}
-        </button>
+    <div ng-if="$ctrl.locationFilterService.routeHasTypeFilter()">
+        <div><label>{{ 'globalFilters.type.title' | translate }}</label></div>
+        <div class="btn-group form-group">
+            <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
+             ng-model="$ctrl.locationFilterService.activeFilters.type" uib-btn-radio="filter">
+                <vg-location-type-icon type="filter"></vg-location-type-icon>
+                {{ 'globalFilters.type.form.' + filter | translate }}
+            </button>
+        </div>
     </div>
 </form>

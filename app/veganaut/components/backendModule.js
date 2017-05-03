@@ -9,8 +9,8 @@
      * TODO: split this up in different semantically grouped services
      */
     module.factory('backendService', [
-        '$q', '$http', '$rootScope', 'backendUrl', 'sessionService', 'i18nSettings',
-        function($q, $http, $rootScope, backendUrl, sessionService, i18nSettings) {
+        '$q', '$http', 'backendUrl', 'sessionService', 'i18nSettings',
+        function($q, $http, backendUrl, sessionService, i18nSettings) {
             var BackendService = function() {
             };
 
@@ -104,17 +104,21 @@
             };
 
             /**
-             * Gets the list of products within the given bounds, ordered by rating.
-             * @param {string} [bounds] 'southwest_lng,southwest_lat,northeast_lng,northeast_lat'
+             * Gets the list of products within the given area, ordered by rating.
+             * @param {number} lat
+             * @param {number} lng
+             * @param {number} radius
              * @param {string} [locationType] whether to only get products of a specific location type
              * @param {number} [skip] number of products to skip from the beginning of the list
              * @param {number} [limit] number of products to return
              * @returns {HttpPromise}
              */
-            BackendService.prototype.getProducts = function(bounds, locationType, skip, limit) {
+            BackendService.prototype.getProducts = function(lat, lng, radius, locationType, skip, limit) {
                 return $http.get(backendUrl + '/product/list', {
                     params: {
-                        bounds: bounds,
+                        lat: lat,
+                        lng: lng,
+                        radius: radius,
                         locationType: locationType,
                         limit: limit,
                         skip: skip

@@ -19,15 +19,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
             // Listen to route changes to clean up URL parameters
             $rootScope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
-                // If the event is still ongoing and the new route does not have filters,
-                // remove our params from the URL
-                if (!event.defaultPrevented &&
-                    angular.isObject(oldRoute) &&
-                    oldRoute.vgHasFilters === true &&
-                    newRoute.vgHasFilters !== true)
-                {
-                    $location.search('type', undefined);
-                    $location.search('recent', undefined);
+                // If the event is still ongoing and there is an old route, update URL params
+                if (!event.defaultPrevented && angular.isObject(oldRoute)) {
+                    // Check if any of the filters are not relevant on the new route
+                    var oldFilters = oldRoute.vgFilters || {};
+                    var newFilters = newRoute.vgFilters || {};
+                    if (oldFilters.type === true && newFilters.type !== true) {
+                        $location.search('type', undefined);
+                    }
+                    if (oldFilters.recent === true && newFilters.recent !== true) {
+                        $location.search('recent', undefined);
+                    }
                 }
             });
         };
@@ -94,15 +96,41 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns the number of currently active filters
+         * Returns whether the current route uses the recent filter
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.routeHasRecentFilter = function() {
+            return (
+                angular.isObject($route.current.vgFilters) &&
+                $route.current.vgFilters.recent === true
+            );
+        };
+
+        /**
+         * Returns whether the current route uses the type filter
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.routeHasTypeFilter = function() {
+            return (
+                angular.isObject($route.current.vgFilters) &&
+                $route.current.vgFilters.type === true
+            );
+        };
+
+        /**
+         * Returns the number of active filters relevant to the current page
          * @returns {number}
          */
         LocationFilterService.prototype.getNumActiveFilters = function() {
             var active = 0;
-            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent) {
+            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
+                this.routeHasRecentFilter())
+            {
                 active += 1;
             }
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
+            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
+                this.routeHasTypeFilter())
+            {
                 active += 1;
             }
 
@@ -110,7 +138,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns whether there are currently any filters active.
+         * Returns whether there are any filters active relevant to the current page.
          * @returns {boolean}
          */
         LocationFilterService.prototype.hasActiveFilters = function() {
@@ -156,25 +184,29 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.updateFiltersInUrl = function() {
             // Only change the URL when we are on a route that has filters
-            if ($route.current.vgHasFilters !== true) {
+            if (!angular.isObject($route.current.vgFilters)) {
                 return;
             }
 
-            var typeFilter;
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
-                typeFilter = this.activeFilters.type;
+            var recentFilter;
+            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
+                this.routeHasRecentFilter())
+            {
+                recentFilter = this.activeFilters.recent;
             }
 
-            var recentFilter;
-            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent) {
-                recentFilter = this.activeFilters.recent;
+            var typeFilter;
+            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
+                this.routeHasTypeFilter())
+            {
+                typeFilter = this.activeFilters.type;
             }
 
             // Replace the url hash (without adding a new history item)
             // Can't use $route.updateParams as this will set all params, not only the ones we want
             $location.replace();
-            $location.search('type', typeFilter);
             $location.search('recent', recentFilter);
+            $location.search('type', typeFilter);
         };
 
         /**

@@ -6,6 +6,7 @@
     "logout": "Logout",
     "map": "Karte",
     "locationList": "Locations",
+    "productList": "Vegane Angebote",
     "community": "Community",
     "profile": "Profil",
     "about": "Über uns",
@@ -23,6 +24,7 @@
     "forgotPassword": "Passwort vergessen",
     "home": "Ein Vegan-Guide zum Mitmachen",
     "list": "Locations mit veganen Angeboten",
+    "productList": "Vegane Angebote",
     "location": "Location mit veganen Angeboten",
     "location.edit": "Location bearbeiten",
     "login": "Login",
@@ -108,14 +110,8 @@
       "description": "Neue Location hinzufügen"
     },
     "showProductList": {
-      "gastronomy": {
-        "name": "Vegan-Menu",
-        "description": "Veganes Menu im Kartenausschnitt anzeigen"
-      },
-      "retail": {
-        "name": "Produkte",
-        "description": "Vegane Angebote im Kartenausschnitt anzeigen"
-      }
+      "name": "Vega Angebote",
+      "description": "Vegane Angebote im jetzigen Gebiet anzeigen"
     },
     "searchMap": {
       "name": "Suchen",
@@ -259,15 +255,6 @@
     }
   },
   "map": {
-    "productList": {
-      "title": {
-        "gastronomy": "Vegane Speisekarte: Angebote der Gastronomie-Locations in diesem Kartenausschnitt",
-        "retail": "Vegane Angebote der Shopping-Locations in diesem Kartenausschnitt"
-      },
-      "noProducts": "Keine Angebote gefunden.",
-      "showMore": "Weitere Angebote anzeigen",
-      "moreProductsAvailable": "{{ available }} weitere Angebote gefunden."
-    },
     "mission": {
       "title": "Missionen",
       "totalPoints": "Total Punkte aus Missionen",
@@ -432,15 +419,28 @@
     "submit": "Suchen",
     "noResults": "Es wurden keine Resultate gefunden."
   },
+  "lists": {
+    "area": {
+      "label": "Gebiet",
+      "radius": "{{ radius }} um {{ place }}",
+      "wholeWorld": "Ganze Welt"
+    }
+  },
   "locationList": {
-    "title": "Locations",
-    "description": "Zeige Locations mit veganen Angeboten im Radius von {{ radius }} um {{ place }}.",
-    "descriptionWholeWorld": "Zeige Locations mit veganen Angeboten auf der ganzen Welt.",
+    "title": "Locations mit veganen Angeboten",
     "noResults": "Im angegebenen Gebiet wurden keine Locations gefunden.",
     "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
     "showMore": "Weitere Locations anzeigen",
     "moreLocationsAvailable": "{{ available }} weitere Locations gefunden.",
     "allLocationsShown": "Alle {{ available }} gefunden Locations werden angezeigt."
+  },
+  "productList": {
+    "title": "Veganes Essen und andere Produkte",
+    "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
+    "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
+    "showMore": "Weitere Angebote anzeigen",
+    "moreProductsAvailable": "{{ available }} weitere Angebote gefunden.",
+    "allProductsShown": "Alle {{ available }} gefunden Angebote werden angezeigt."
   },
   "tags": {
     "groups": {

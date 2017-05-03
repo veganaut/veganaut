@@ -1,6 +1,6 @@
 <div>
     <div class="top-box top-box--full-width container main-container"
-     ng-hide="mainMapVm.locationSet.active || mainMapVm.productShown">
+     ng-hide="mainMapVm.locationSet.active">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
                 <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
@@ -10,15 +10,11 @@
                     </a>
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
-                 title="{{ 'action.showProductList.' + mainMapVm.getProductListType() + '.description' | translate }}"
-                 ng-click="mainMapVm.showProductList(true)">
-                    <span ng-show="mainMapVm.getProductListType() === 'gastronomy'"
-                     class="glyphicon glyphicon-cutlery"></span>
-                    <span ng-show="mainMapVm.getProductListType() === 'retail'"
-                     class="glyphicon glyphicon-shopping-cart"></span>
-                    <br/>
+                 title="{{ 'action.showProductList.description' | translate }}"
+                 ng-click="mainMapVm.legacyGlobals.goToView('products/')">
+                    <span class="glyphicon glyphicon-leaf"></span><br/>
                     <span class="small">
-                        {{ 'action.showProductList.' + mainMapVm.getProductListType() + '.name' | translate }}
+                        {{ 'action.showProductList.name' | translate }}
                     </span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
@@ -103,12 +99,6 @@
          vg-on-abort="mainMapVm.locationSet.abortCreateLocation()"
          vg-on-submit="mainMapVm.locationSet.submitCreateLocation()">
         </vg-create-location-form>
-    </vg-overlay>
-    <vg-overlay ng-if="mainMapVm.productShown">
-        <div class="top-box__close clickable" ng-click="mainMapVm.showProductList(false)">
-            <span class="glyphicon glyphicon-remove"></span>
-        </div>
-        <vg-product-list vg-address-type="{{ mainMapVm.addressType }}"></vg-product-list>
     </vg-overlay>
 
     <div id="mainMap" class="main-map"

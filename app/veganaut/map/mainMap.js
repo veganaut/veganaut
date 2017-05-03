@@ -25,9 +25,9 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'playerService', 'locationService', 'locationFilterService', 'mainMapService',
+        'playerService', 'locationService', 'mainMapService',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            playerService, locationService, locationFilterService, mainMapService)
+            playerService, locationService, mainMapService)
         {
             var vm = this;
 
@@ -44,12 +44,6 @@
              * @type {LocationSet}
              */
             vm.locationSet = locationService.getLocationSet();
-
-            /**
-             * Whether to show the location products
-             * @type {boolean}
-             */
-            vm.productShown = false;
 
             /**
              * Leaflet map object
@@ -94,45 +88,12 @@
             var playerPromise = playerService.getDeferredMe();
 
             /**
-             * Sets whether the product list is shown
-             * @param {boolean} [show=true]
-             */
-            vm.showProductList = function(show) {
-                if (typeof show === 'undefined') {
-                    show = true;
-                }
-                show = !!show;
-
-                // Update and track if it changed
-                if (vm.productShown !== show) {
-                    vm.productShown = show;
-                    angularPiwik.track('map.products', 'map.products.' + (show ? 'show' : 'hide'));
-                }
-            };
-
-            /**
              * Starts creating a new location
              */
             vm.startCreateLocation = function() {
                 playerPromise.then(function(player) {
                     vm.locationSet.startCreateLocation(player, vm.map);
                 });
-            };
-
-            /**
-             * Returns the location type to be shown on the product list
-             * @returns {string}
-             */
-            vm.getProductListType = function() {
-                // Default is gastronomy
-                var type = 'gastronomy';
-
-                // If filter is set to retail, then retail
-                if (locationFilterService.activeFilters.type === 'retail') {
-                    type = 'retail';
-                }
-
-                return type;
             };
 
             /**
@@ -148,9 +109,6 @@
 
                         // Track it
                         angularPiwik.track('map.locations', 'map.locations.click');
-
-                        // Hide the product list
-                        vm.showProductList(false);
                     });
                 }
                 // TODO: if not handled, should pass on the click to the map?
@@ -168,9 +126,6 @@
                     if (!vm.locationSet.isCreatingLocation()) {
                         // When not adding a location, deselect currently active location
                         vm.locationSet.activate();
-
-                        // And hide product list
-                        vm.showProductList(false);
                     }
                 });
             });

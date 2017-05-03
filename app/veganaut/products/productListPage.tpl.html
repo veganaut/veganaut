@@ -1,0 +1,77 @@
+<div class="container--offset-top-box-nav">
+    <div class="top-box top-box--full-width top-box--fixed container main-container">
+        <div class="top-box--full-width__border-offset">
+            <div class="btn-group--top-box">
+                <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent active"
+                 title="{{ 'action.showProductList.description' | translate }}"
+                 ng-click="$ctrl.legacyGlobals.goToView('products/')">
+                    <span class="glyphicon glyphicon-leaf"></span><br/>
+                    <span class="small">
+                        {{ 'action.showProductList.name' | translate }}
+                    </span>
+                </button>
+                <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
+                 ng-click="$ctrl.legacyGlobals.goToView('locations/')"
+                 title="{{ 'action.showList.description' | translate }}">
+                    <span class="glyphicon glyphicon-th-list"></span><br/>
+                    <span class="small">{{ 'action.showList.name' | translate }}</span>
+                </button>
+                <vg-filter-button></vg-filter-button>
+                <button type="button" class="btn-map btn btn-default btn-default--transparent"
+                 ng-click="$ctrl.legacyGlobals.goToView('map/')"
+                 title="{{ 'action.showMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-map-marker"></span><br/>
+                    <span class="small">{{ 'action.showMap.name' | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="h4">
+        {{ 'productList.title' | translate }}
+    </h1>
+
+    <p class="product-list__description">
+        <strong>{{ 'lists.area.label' | translate }}:</strong>
+        <span ng-if="$ctrl.wholeWorld">
+            {{ 'lists.area.wholeWorld' | translate }}
+        </span>
+        <span ng-if="!$ctrl.wholeWorld">
+            {{ 'lists.area.radius' |
+            translate:{radius: $ctrl.displayRadius, place: $ctrl.displayName} }}
+        </span>
+    </p>
+
+    <p ng-if="$ctrl.noResultsText">
+        {{ $ctrl.noResultsText | translate }}
+    </p>
+
+    <div ng-if="$ctrl.products.length > 0">
+        <vg-product-list
+         vg-products="$ctrl.products"
+         vg-address-type="{{ $ctrl.addressType }}">
+        </vg-product-list>
+
+        <div ng-show="$ctrl.totalProducts > $ctrl.products.length">
+            <p>
+                {{ 'productList.moreProductsAvailable' |
+                translate:{ available: $ctrl.totalProducts - $ctrl.products.length} }}
+            </p>
+
+            <p>
+                <button type="button" class="btn btn-block btn-default"
+                 ng-click="$ctrl.showMore()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span ng-bind="'productList.showMore' | translate"></span>
+                </button>
+            </p>
+        </div>
+
+        <p ng-show="$ctrl.totalProducts <= $ctrl.products.length">
+            {{
+            'productList.allProductsShown' |
+            translate:{ available: $ctrl.products.length }
+            }}
+        </p>
+    </div>
+</div>

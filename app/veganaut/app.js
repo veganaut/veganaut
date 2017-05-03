@@ -22,6 +22,7 @@
         'veganaut.app.main',
         'veganaut.app.map',
         'veganaut.app.missions',
+        'veganaut.app.products',
         'veganaut.app.search',
         'veganaut.app.session',
         'veganaut.app.templates',
@@ -63,7 +64,10 @@
             });
             $routeProvider.when('/map/', {
                 vgRouteName: 'map',
-                vgHasFilters: true,
+                vgFilters: {
+                    type: true,
+                    recent: true
+                },
                 template: '<vg-main-map></vg-main-map>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
@@ -72,7 +76,10 @@
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
                 vgRouteName: 'list',
-                vgHasFilters: true,
+                vgFilters: {
+                    type: true,
+                    recent: true
+                },
                 template: '<vg-location-list></vg-location-list>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
@@ -85,6 +92,15 @@
             $routeProvider.when('/location/:id/edit', {
                 vgRouteName: 'location.edit',
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
+            });
+            $routeProvider.when('/products', {
+                vgRouteName: 'productList',
+                vgFilters: {
+                    type: true
+                },
+                template: '<vg-product-list-page></vg-product-list-page>',
+                // Don't reload when get params or hash changes
+                reloadOnSearch: false
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
@@ -140,6 +156,7 @@
     angular.module('veganaut.app.filter', []);
     angular.module('veganaut.app.home', []);
     angular.module('veganaut.app.location', []);
+    angular.module('veganaut.app.products', []);
     angular.module('veganaut.app.search', []);
 
     // Make Leaflet available as angular service
