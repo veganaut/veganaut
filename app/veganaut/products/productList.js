@@ -20,7 +20,7 @@
             controller: 'vgProductListCtrl',
             controllerAs: 'productListVm',
             bindToController: true,
-            templateUrl: '/veganaut/map/productList.tpl.html'
+            templateUrl: '/veganaut/products/productList.tpl.html'
         };
     };
 
