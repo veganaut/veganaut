@@ -1,6 +1,11 @@
 Veganaut Changelog
 ==================
 
+ongoing:
+-------------------------------------------
+* New feature: Dedicated page for products.
+* Translations: Completed and corrected French translations.
+
 0.10.0: Such Forgetfulness (2017-02-08)
 -------------------------------------------
 It's been a while. There have been many changes. Too many to list them all.
