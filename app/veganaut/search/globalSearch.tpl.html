@@ -54,7 +54,7 @@
     <div ng-if="globalSearchVm.searchService.geoResults.length > 0">
         <h2 class="h4">
             <div class="btn-group global-search__geo-result-switch">
-                <label class="btn btn-default btn-sm" ng-repeat="type in ['map', 'list']"
+                <label class="btn btn-default btn-sm" ng-repeat="type in ['map', 'locationList']"
                  ng-model="globalSearchVm.searchService.geoAction" uib-btn-radio="type">
                     <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_ICONS[type] }}"></span>
                 </label>

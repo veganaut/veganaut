@@ -75,7 +75,7 @@
 
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
-                vgRouteName: 'list',
+                vgRouteName: 'locationList',
                 vgFilters: {
                     type: true,
                     recent: true

@@ -70,7 +70,7 @@ angular.module('veganaut.app.search').factory('searchService', [
              */
             this.GEO_ACTION_ICONS = {
                 map: 'map-marker',
-                list: 'th-list'
+                locationList: 'th-list'
             };
 
             /**
@@ -84,7 +84,7 @@ angular.module('veganaut.app.search').factory('searchService', [
             // the action corresponding to the page that was last visited to be active.
             var that = this;
             $rootScope.$on('$routeChangeSuccess', function() {
-                if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'list') {
+                if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'locationList') {
                     that.geoAction = $route.current.vgRouteName;
                 }
             });

@@ -13,22 +13,15 @@ angular.module('veganaut.app.main').factory('areaService', [
         var AREA_STORAGE_ID = 'veganautArea';
 
         /**
-         * Infos about pages where areas can be shown
+         * Infos about pages where areas can be shown.
+         * Maps the route name to the path of the route.
+         * TODO: one should be able to get this from the router directly.
          * @type {{}}
          */
         var AREA_PAGE_INFOS = {
-            map: {
-                routeName: 'map',
-                path: '/map/'
-            },
-            list: {
-                routeName: 'list',
-                path: '/locations/'
-            },
-            productList: {
-                routeName: 'productList',
-                path: '/products/'
-            }
+            map: '/map/',
+            locationList: '/locations/',
+            productList: '/products/'
         };
 
         /**
@@ -127,23 +120,23 @@ angular.module('veganaut.app.main').factory('areaService', [
          * Shows the given area on the given target page.
          *
          * @param {Area} areaToShow
-         * @param {string} page: either 'map' or 'list'
+         * @param {string} page: either 'map' or 'locationList'
          * @private
          */
         AreaService.prototype.showAreaOn = function(areaToShow, page) {
             // Get the infos for the target page
-            var infos = AREA_PAGE_INFOS[page];
+            var path = AREA_PAGE_INFOS[page];
 
             // Check if infos are there and set the area
-            if (angular.isObject(infos) && this.setArea(areaToShow)) {
+            if (angular.isString(path) && this.setArea(areaToShow)) {
                 // The area was set, check if we are already on the correct page
-                if ($route.current.vgRouteName === infos.routeName) {
+                if ($route.current.vgRouteName === page) {
                     // Emit an event to let the page know it should update
                     $rootScope.$broadcast('veganaut.area.changed');
                 }
                 else {
                     // Go to the target page
-                    $location.path(infos.path);
+                    $location.path(path);
                 }
 
                 // All went well

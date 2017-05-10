@@ -127,7 +127,7 @@
             /**
              * Handler for submission of the cta form.
              * Will go to the selected area on the map or list.
-             * @param {string} targetPage 'list' or 'map'
+             * @param {string} targetPage 'locationList' or 'map'
              */
             vm.onCtaSubmit = function(targetPage) {
                 // Show the area on the given page
@@ -136,7 +136,7 @@
                 // Track the submission
                 angularPiwik.track(
                     'home.cta',
-                    (targetPage === 'list' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
+                    (targetPage === 'locationList' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
                 );
             };
 
