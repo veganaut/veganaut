@@ -32,6 +32,12 @@
             $ctrl.products = [];
 
             /**
+             *
+             * @type {number}
+             */
+            $ctrl.totalProducts = 0;
+
+            /**
              * Whether no results were found (either because of invalid query parameters
              * or because no products are found in the given area).
              * If not false, it's the translation key that should be used to show the
@@ -72,7 +78,7 @@
             $ctrl.showMore = function() {
                 backendService.getProducts(
                     lastParams.lat, lastParams.lng, lastParams.radius,
-                    getLocationType(), $ctrl.products.length
+                    locationFilterService.getTypeFilterValue(), $ctrl.products.length
                 ).then(function(response) {
                     $ctrl.totalProducts = response.data.totalProducts;
                     $ctrl.products = $ctrl.products.concat(response.data.products);
@@ -123,24 +129,14 @@
             };
 
             /**
-             * Returns the location type for which to show products.
-             * If all products should be shown, returns undefined.
-             * @returns {string|undefined}
-             */
-            var getLocationType = function() {
-                if (locationFilterService.activeFilters.type !== locationFilterService.INACTIVE_FILTER_VALUE.type) {
-                    return locationFilterService.activeFilters.type;
-                }
-                return undefined;
-            };
-
-            /**
              * Loads the products with the currently set lastParams
              */
             var loadProducts = function() {
                 // Note: we don't reset the list here, as it's nicer when the list stays
                 // rendered when filters are applied.
-                backendService.getProducts(lastParams.lat, lastParams.lng, lastParams.radius, getLocationType())
+                backendService.getProducts(lastParams.lat, lastParams.lng, lastParams.radius,
+                    locationFilterService.getTypeFilterValue()
+                )
                     .then(compileList)
                 ;
             };

@@ -80,7 +80,7 @@
                     type: true,
                     recent: true
                 },
-                template: '<vg-location-list></vg-location-list>',
+                template: '<vg-location-list-page></vg-location-list-page>',
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });

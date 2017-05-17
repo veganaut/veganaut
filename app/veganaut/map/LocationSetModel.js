@@ -66,6 +66,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                 if (location.id !== 'new') {
                     // Get details (for the products)
                     // TODO: should only get data if not already gotten, or just use $http cache?
+                    // TODO: Would be better to use locationService.loadFullLocation() but cannot because of circular dep.
                     backendService.getLocation(location.id)
                         .then(function(res) {
                             location.update(res.data);

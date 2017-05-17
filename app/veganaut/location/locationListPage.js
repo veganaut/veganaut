@@ -4,35 +4,26 @@
     /**
      * This components shows a list of locations. Which locations to show is
      * determined based on coordinates and a radius that are read from GET parameters.
-     * @returns {directive}
+     * @type {{}}
      */
-    var locationListDirective = function() {
-        return {
-            restrict: 'E',
-            scope: {},
-            controller: 'vgLocationListCtrl',
-            controllerAs: 'locationListVm',
-            bindToController: true,
-            templateUrl: '/veganaut/location/locationList.tpl.html'
-        };
+    var locationListPageComponent = {
+        controller: 'vgLocationListPageCtrl',
+        templateUrl: '/veganaut/location/locationListPage.tpl.html'
     };
 
-    var locationListCtrl = [
+    var locationListPageCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'locationService',
         'angularPiwik', 'geocodeService', 'areaService', 'Area', 'locationFilterService',
         function($scope, $location, $routeParams, constants, locationService,
             angularPiwik, geocodeService, areaService, Area, locationFilterService)
         {
-            var vm = this;
+            var $ctrl = this;
 
             // Expose the global methods we still need
             // TODO: find a better way to do this
-            vm.legacyGlobals = {
+            $ctrl.legacyGlobals = {
                 goToView: $scope.$parent.goToView
             };
-
-            // Get the location set that we'll display
-            var locationSet = locationService.getLocationSet();
 
             /**
              * How many locations to show by default and then show more
@@ -45,7 +36,13 @@
              * Sorted list of locations to show
              * @type {Array}
              */
-            vm.list = [];
+            $ctrl.list = [];
+
+            /**
+             * Total number of locations found
+             * @type {number}
+             */
+            $ctrl.totalLocations = 0;
 
             /**
              * Whether no results were found (either because of invalid query parameters
@@ -54,105 +51,56 @@
              * no results message (depends on the filters as well).
              * @type {boolean|string}
              */
-            vm.noResultsText = false;
+            $ctrl.noResultsText = false;
 
             /**
              * Whether the whole world is shown.
              * @type {boolean}
              */
-            vm.wholeWorld = false;
+            $ctrl.wholeWorld = false;
 
             /**
              * Radius of this query formatted for display
              * @type {string}
              */
-            vm.displayRadius = '';
+            $ctrl.displayRadius = '';
 
             /**
              * Name of the approximate place that we are showing locations around
              * @type {string}
              */
-            vm.displayName = '';
-
-            /**
-             * Number of currently shown locations
-             * @type {number}
-             */
-            vm.numShownLocations = 0;
+            $ctrl.displayName = '';
 
             /**
              * Whether to show the 'city' or the 'street' part of the address.
              * Depends on the radius shown.
              * @type {string}
              */
-            vm.addressType = undefined;
+            $ctrl.addressType = undefined;
 
             /**
              * Handler for toggling the open state of a location in the list
              * @param {Location} location
              */
-            vm.onOpenToggle = function(location) {
-                // Activate the location (this will load the full location data)
-                // If it's already activated, this will de-activate it
-                locationSet.activate(location);
+            $ctrl.onOpenToggle = function(location) {
+                locationService.loadFullLocation(location);
             };
 
             /**
              * Shows the next batch of locations
              */
-            vm.showMore = function() {
-                // Increase by the step size, but don't go bigger than the max available
-                vm.numShownLocations = Math.min(
-                    vm.list.length,
-                    vm.numShownLocations + NUM_LOCATIONS_SHOWN_STEP
-                );
+            $ctrl.showMore = function() {
+                locationService.getLocationsByRadius(
+                    lastParams.lat, lastParams.lng, lastParams.radius,
+                    NUM_LOCATIONS_SHOWN_STEP, $ctrl.list.length,
+                    $ctrl.addressType
+                ).then(function(data) {
+                    $ctrl.totalLocations = data.totalLocations;
+                    $ctrl.list = $ctrl.list.concat(data.locations);
+                });
 
                 // Track it
                 angularPiwik.track('locationList', 'locationList.showMore');
-            };
-
-            /**
-             * Resets the list to empty.
-             * Note: this doesn't reset the area of the list.
-             */
-            var resetList = function() {
-                // Reset list and related variables
-                vm.list = [];
-                vm.noResultsText = false;
-                vm.numShownLocations = 0;
-            };
-
-            /**
-             * Sorts and filters the locations and stores them in vm.list
-             * @param {LocationSet} locationSet
-             */
-            var compileList = function() {
-                // Make sure the list is reset
-                resetList();
-
-                vm.list = _.chain(locationSet.locations)
-                    .sortByOrder(['quality.average', 'quality.numRatings', 'name'], ['desc', 'desc', 'asc'])
-                    // TODO: should sort by rank, but don't have the rank in the frontend
-                    // TODO: actually, the backend should just give the list sorted and limited to certain amount of entries
-                    .value()
-                ;
-
-                // Check if we found any results
-                if (vm.list.length === 0) {
-                    if (locationFilterService.hasActiveFilters()) {
-                        vm.noResultsText = 'locationList.noResultsFiltered';
-                    }
-                    else {
-                        vm.noResultsText = 'locationList.noResults';
-                    }
-                }
-                else {
-                    // Show the first batch of locations
-                    vm.numShownLocations = Math.min(
-                        vm.list.length,
-                        NUM_LOCATIONS_SHOWN_STEP
-                    );
-                }
             };
 
             /**
@@ -162,12 +110,48 @@
             var lastParams = {};
 
             /**
+             * Resets the list to empty.
+             * Note: this doesn't reset the area of the list.
+             */
+            var resetList = function() {
+                // Reset list and related variables
+                $ctrl.list = [];
+                $ctrl.totalLocations = 0;
+                $ctrl.noResultsText = false;
+            };
+
+            /**
+             * Sorts and filters the locations and stores them in $ctrl.list
+             */
+            var compileList = function(data) {
+                // Make sure the list is reset
+                resetList();
+
+                $ctrl.totalLocations = data.totalLocations;
+                $ctrl.list = data.locations;
+
+                // Check if we found any results
+                if ($ctrl.list.length === 0) {
+                    if (locationFilterService.hasActiveFilters()) {
+                        $ctrl.noResultsText = 'locationList.noResultsFiltered';
+                    }
+                    else {
+                        $ctrl.noResultsText = 'locationList.noResults';
+                    }
+                }
+            };
+
+            /**
              * Loads the locations with the currently set lastParams
              */
             var loadLocations = function() {
                 // Note: we don't reset the list here, as it's nicer when the list stays
                 // rendered when filters are applied.
-                locationService.queryByRadius(lastParams.lat, lastParams.lng, lastParams.radius, vm.addressType)
+                locationService.getLocationsByRadius(
+                    lastParams.lat, lastParams.lng, lastParams.radius,
+                    NUM_LOCATIONS_SHOWN_STEP, 0,
+                    $ctrl.addressType
+                )
                     .then(compileList)
                 ;
             };
@@ -182,15 +166,15 @@
                 lastParams = area.getRadiusParams();
 
                 // Expose if we are showing the whole world
-                vm.wholeWorld = lastParams.includesWholeWorld;
+                $ctrl.wholeWorld = lastParams.includesWholeWorld;
 
                 // Reset the area display variables and the list itself
                 resetList();
-                vm.displayRadius = '';
-                vm.displayName = '';
+                $ctrl.displayRadius = '';
+                $ctrl.displayName = '';
 
                 // Check whether to show the city or street part of the address
-                vm.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
+                $ctrl.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
 
                 // Load locations with the newly set params
                 loadLocations();
@@ -204,7 +188,7 @@
                 $location.search('coords', coords);
                 $location.search('radius', lastParams.radius);
 
-                if (!vm.wholeWorld) {
+                if (!$ctrl.wholeWorld) {
                     // Simple fallback display name in case the reverse lookup doesn't work out.
                     // TODO: should be translated and displayed nicer
                     var fallbackDisplayName = 'lat ' + lastParams.lat.toFixed(3) + ' lng ' + lastParams.lng.toFixed(3);
@@ -215,14 +199,14 @@
                     geocodeService.reverseSearch(lastParams.lat, lastParams.lng, reverseLookupZoom)
                         .then(function(place) {
                             if (place) {
-                                vm.displayName = place.getDisplayName();
+                                $ctrl.displayName = place.getDisplayName();
                             }
                             else {
-                                vm.displayName = fallbackDisplayName;
+                                $ctrl.displayName = fallbackDisplayName;
                             }
                         })
                         .catch(function() {
-                            vm.displayName = fallbackDisplayName;
+                            $ctrl.displayName = fallbackDisplayName;
                         })
                     ;
 
@@ -231,10 +215,10 @@
                     var roundingHelper = Math.pow(10, ('' + lastParams.radius).length) / 100;
                     var roundedRadius = Math.round(lastParams.radius / roundingHelper) * roundingHelper;
                     if (roundedRadius < 1000) {
-                        vm.displayRadius = roundedRadius + 'm';
+                        $ctrl.displayRadius = roundedRadius + 'm';
                     }
                     else {
-                        vm.displayRadius = (roundedRadius / 1000) + 'km';
+                        $ctrl.displayRadius = (roundedRadius / 1000) + 'km';
                     }
                 }
             };
@@ -281,9 +265,9 @@
         }
     ];
 
-    // Expose as directive
+    // Expose as component
     angular.module('veganaut.app.location')
-        .controller('vgLocationListCtrl', locationListCtrl)
-        .directive('vgLocationList', [locationListDirective])
+        .controller('vgLocationListPageCtrl', locationListPageCtrl)
+        .component('vgLocationListPage', locationListPageComponent)
     ;
 })();

@@ -170,24 +170,27 @@
              * @param {number} lat
              * @param {number} lng
              * @param {number} radius
+             * @param {number} limit
+             * @param {number} skip
              * @param {string} [addressType]
              * @returns {Promise} Will resolve when the locationSet has been updated.
              */
-            LocationService.prototype.queryByRadius = function(lat, lng, radius, addressType) {
-                // Create an id for this query
-                // TODO: Hash this more automatically
-                var queryId = 'radius' +
-                    lat.toFixed(constants.URL_FLOAT_PRECISION) + '-' +
-                    lng.toFixed(constants.URL_FLOAT_PRECISION) + '-' +
-                    radius.toFixed(0) + '-' +
-                    addressType;
-
-                // Set the query
-                return this._setQuery(queryId, {
+            LocationService.prototype.getLocationsByRadius = function(lat, lng, radius, limit, skip, addressType) {
+                return backendService.getLocations({
                     lat: lat,
                     lng: lng,
                     radius: radius,
-                    addressType: addressType
+                    limit: limit,
+                    skip: skip,
+                    addressType: addressType,
+                    type: locationFilterService.getTypeFilterValue(),
+                    updatedWithin: locationFilterService.getRecentFilterValue()
+                }).then(function(res) {
+                    // Instantiate the locations
+                    _.each(res.data.locations, function(locationData, i) {
+                        res.data.locations[i] = new Location(locationData);
+                    });
+                    return res.data;
                 });
             };
 
@@ -254,6 +257,21 @@
 
                 // Return the promise
                 return deferredLocation.promise;
+            };
+
+            /**
+             * Loads the full location data for the given location
+             * (that was previously loaded partially).
+             * @param {Location} location
+             * @returns {Promise}
+             */
+            LocationService.prototype.loadFullLocation = function(location) {
+                return backendService.getLocation(location.id)
+                    .then(function(res) {
+                        location.update(res.data);
+                        return location;
+                    })
+                ;
             };
 
             /**
