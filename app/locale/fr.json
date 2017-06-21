@@ -431,16 +431,16 @@
     "noResults": "Aucun endroit végan n‘a été trouvé dans la zone demandée.",
     "noResultsFiltered": "Aucune endroit végan n‘a passé le filtre.",
     "showMore": "Afficher plus d'endroits",
-    "moreLocationsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
-    "allLocationsShown": "Toutes les {{ available }} endroits trouvées sont affichées."
+    "moreItemsAvailable": "Encore {{ available }} endroits additionnels ont été trouvés.",
+    "allItemsShown": "Toutes les {{ available }} endroits trouvées sont affichées."
   },
   "productList": {
     "title": "Repas et autres produits végans",
     "noResults": "Aucune offre végane n‘a été trouvée dans la zone demandée.",
     "noResultsFiltered": "Aucune offre n‘a passé le filtre.",
     "showMore": "Afficher plus d'offres",
-    "moreProductsAvailable": "Encore {{ available }} offres additionnelles ont été trouvées.",
-    "allProductsShown": "Toutes les {{ available }} offres trouvées sont affichées."
+    "moreItemsAvailable": "Encore {{ available }} offres additionnelles ont été trouvées.",
+    "allItemsShown": "Toutes les {{ available }} offres trouvées sont affichées."
   },
   "tags": {
     "groups": {

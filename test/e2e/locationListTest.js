@@ -47,7 +47,7 @@ describe('location list accessed from map.', function() {
             var locations = element.all(by.css('.location-list__location'));
             expect(locations.count()).toBe(4, 'shows all four locations');
 
-            var description = element(by.css('.location-list__description'));
+            var description = element(by.css('.list__description'));
             expect(description.isPresent()).toBe(true, 'list description present');
             var descriptionText = description.getText();
             expect(descriptionText).toContain('Bern', 'description mentions Bern');

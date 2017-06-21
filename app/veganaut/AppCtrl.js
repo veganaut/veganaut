@@ -30,7 +30,7 @@
                 $scope.menu.shown = false;
             };
 
-            $scope.goToView = function(view) {
+            $rootScope.goToView = $scope.goToView = function(view) {
                 $scope.closeMenu();
                 $location.path(view);
             };

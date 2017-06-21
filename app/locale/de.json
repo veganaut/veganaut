@@ -431,16 +431,16 @@
     "noResults": "Im angegebenen Gebiet wurden keine Locations gefunden.",
     "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
     "showMore": "Weitere Locations anzeigen",
-    "moreLocationsAvailable": "{{ available }} weitere Locations gefunden.",
-    "allLocationsShown": "Alle {{ available }} gefunden Locations werden angezeigt."
+    "moreItemsAvailable": "{{ available }} weitere Locations gefunden.",
+    "allItemsShown": "Alle {{ available }} gefunden Locations werden angezeigt."
   },
   "productList": {
     "title": "Veganes Essen und andere Produkte",
     "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
     "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
     "showMore": "Weitere Angebote anzeigen",
-    "moreProductsAvailable": "{{ available }} weitere Angebote gefunden.",
-    "allProductsShown": "Alle {{ available }} gefunden Angebote werden angezeigt."
+    "moreItemsAvailable": "{{ available }} weitere Angebote gefunden.",
+    "allItemsShown": "Alle {{ available }} gefunden Angebote werden angezeigt."
   },
   "tags": {
     "groups": {

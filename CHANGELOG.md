@@ -4,6 +4,7 @@ Veganaut Changelog
 ongoing:
 -------------------------------------------
 * New feature: Dedicated page for products.
+* Enhancement: Pagination on the location list page is done through the backend.
 * Translations: Completed and corrected French translations.
 
 0.10.0: Such Forgetfulness (2017-02-08)

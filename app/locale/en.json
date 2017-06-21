@@ -431,16 +431,16 @@
     "noResults": "No locations can be found in the given area.",
     "noResultsFiltered": "All locations were filtered out.",
     "showMore": "Show more locations",
-    "moreLocationsAvailable": "Another {{ available }} locations were found.",
-    "allLocationsShown": "Showing all {{ available }} found locations."
+    "moreItemsAvailable": "Another {{ available }} locations were found.",
+    "allItemsShown": "Showing all {{ available }} found locations."
   },
   "productList": {
     "title": "Vegan food and other products",
     "noResults": "No options were found in the given area.",
     "noResultsFiltered": "All options were filtered out.",
     "showMore": "Show more options",
-    "moreProductsAvailable": "Another {{ available }} options were found.",
-    "allProductsShown": "Showing all {{ available }} found options."
+    "moreItemsAvailable": "Another {{ available }} options were found.",
+    "allItemsShown": "Showing all {{ available }} found options."
   },
   "activeFilterSummary": {
     "label": "Active filters"

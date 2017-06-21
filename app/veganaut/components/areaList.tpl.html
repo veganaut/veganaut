@@ -1,0 +1,109 @@
+<div class="container--offset-top-box-nav">
+    <div class="top-box top-box--full-width top-box--fixed container main-container">
+        <div class="top-box--full-width__border-offset">
+            <div class="btn-group--top-box">
+                <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
+                 ng-class="{ active: $ctrl.listName === 'productList' }"
+                 title="{{ 'action.showProductList.description' | translate }}"
+                 ng-click="$ctrl.legacyGlobals.goToView('products/')">
+                    <span class="glyphicon glyphicon-leaf"></span><br/>
+                    <span class="small">
+                        {{ 'action.showProductList.name' | translate }}
+                    </span>
+                </button>
+                <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
+                 ng-class="{ active: $ctrl.listName === 'locationList' }"
+                 ng-click="$ctrl.legacyGlobals.goToView('locations/')"
+                 title="{{ 'action.showList.description' | translate }}">
+                    <span class="glyphicon glyphicon-th-list"></span><br/>
+                    <span class="small">{{ 'action.showList.name' | translate }}</span>
+                </button>
+                <vg-filter-button></vg-filter-button>
+                <button type="button" class="btn-map btn btn-default btn-default--transparent"
+                 ng-click="$ctrl.legacyGlobals.goToView('map/')"
+                 title="{{ 'action.showMap.description' | translate }}">
+                    <span class="glyphicon glyphicon-map-marker"></span><br/>
+                    <span class="small">{{ 'action.showMap.name' | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="h4">
+        {{ $ctrl.listName + '.title' | translate }}
+    </h1>
+
+    <p class="list__description">
+        <strong>{{ 'lists.area.label' | translate }}:</strong>
+        <span ng-if="$ctrl.wholeWorld">
+            {{ 'lists.area.wholeWorld' | translate }}
+        </span>
+        <span ng-if="!$ctrl.wholeWorld">
+            {{ 'lists.area.radius' |
+            translate:{radius: $ctrl.displayRadius, place: $ctrl.displayName} }}
+        </span>
+    </p>
+
+    <p ng-if="$ctrl.noResultsText">
+        {{ $ctrl.noResultsText | translate }}
+    </p>
+
+    <div ng-if="$ctrl.list.length > 0">
+        <vg-accordion ng-if="$ctrl.listName === 'locationList'">
+            <vg-accordion-item
+             ng-repeat="location in $ctrl.list track by location.id"
+             vg-on-open-toggle="$ctrl.onOpenToggle({item: location, isOpen: isOpen})"
+             vg-tracking-category="locationList.location"
+             class="location-list__location"
+            >
+                <vg-accordion-item-header>
+                    <vg-location-title
+                     vg-location="location"
+                     vg-address-type="{{ $ctrl.addressType }}">
+                    </vg-location-title>
+                </vg-accordion-item-header>
+                <vg-accordion-item-body>
+                    <p ng-if="location.getShortDescription()">
+                        {{ location.getShortDescription() }}
+                    </p>
+
+                    <vg-location-product-summary
+                     vg-location="location"
+                     vg-limit-to="3">
+                    </vg-location-product-summary>
+
+                    <vg-location-visit-button vg-location="location"></vg-location-visit-button>
+                </vg-accordion-item-body>
+            </vg-accordion-item>
+        </vg-accordion>
+        <vg-product-list
+         ng-if="$ctrl.listName === 'productList'"
+         vg-products="$ctrl.list"
+         vg-address-type="{{ $ctrl.addressType }}">
+        </vg-product-list>
+
+        <div ng-show="$ctrl.totalItems > $ctrl.list.length">
+            <p>
+                {{
+                $ctrl.listName + '.moreItemsAvailable' |
+                translate:{ available: $ctrl.totalItems - $ctrl.list.length }
+                }}
+            </p>
+
+            <p>
+                <button type="button" class="btn btn-block btn-default"
+                 ng-click="$ctrl.showMore()">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span>{{ $ctrl.listName + '.showMore' | translate }}</span>
+                </button>
+            </p>
+        </div>
+
+        <p ng-show="$ctrl.totalItems <= $ctrl.list.length">
+            {{
+            $ctrl.listName + '.allItemsShown' |
+            translate:{ available: $ctrl.list.length }
+            }}
+        </p>
+    </div>
+</div>
