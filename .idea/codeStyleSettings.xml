@@ -109,7 +109,7 @@
         </codeStyleSettings>
         <codeStyleSettings language="yaml">
           <indentOptions>
-            <option name="INDENT_SIZE" value="4" />
+            <option name="INDENT_SIZE" value="2" />
           </indentOptions>
         </codeStyleSettings>
       </value>
