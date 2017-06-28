@@ -3,6 +3,9 @@ Veganaut Changelog
 
 ongoing:
 -------------------------------------------
+
+0.11.0: Much Products (2017-06-28)
+-------------------------------------------
 * New feature: Dedicated page for products.
 * Enhancement: Pagination on the location list page is done through the backend.
 * Translations: Completed and corrected French translations.
