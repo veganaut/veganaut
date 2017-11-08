@@ -10,7 +10,7 @@ To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and
 [mongodb](http://www.mongodb.org/). On a Mac, the easiest way to do so is `brew
 install node mongodb`.
 
-After that, checkout veganaut and veganaut-backend. Make sure the live in the same parent folder:
+After that, checkout veganaut and veganaut-backend. Make sure they live in the same parent folder:
 
     git clone https://github.com/veganaut/veganaut.git
     git clone https://github.com/veganaut/veganaut-backend.git
