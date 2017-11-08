@@ -14,5 +14,6 @@
     <orderEntry type="library" name="gulp-autoprefixer-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="gulp-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="browser-sync-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="angularjs-DefinitelyTyped" level="project" />
   </component>
 </module>

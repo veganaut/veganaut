@@ -1,0 +1,12 @@
+<header class="location-header">
+    {{ vm.location.name }}
+    <span ng-if="vm.location.getDisplayAddress(vm.addressType)"
+     class="location-title__address small">
+        - {{ vm.location.getDisplayAddress(vm.addressType) }}
+    </span>
+    <span class="location-title__icons">
+        <vg-location-effort-icon location="vm.location"></vg-location-effort-icon>
+        <vg-location-quality-icon location="vm.location"></vg-location-quality-icon>
+        <vg-location-type-badge location="vm.location"></vg-location-type-badge>
+    </span>
+</header>

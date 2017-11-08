@@ -84,10 +84,17 @@
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
-            $routeProvider.when('/location/:id', {
-                vgRouteName: 'location',
+            $routeProvider.when('/location-legacy/:id', {
+                vgRouteName: 'locationLegacy',
                 templateUrl: '/veganaut/map/locationDetails.tpl.html',
                 controller: 'LocationDetailsCtrl'
+            });
+            $routeProvider.when('/location/:id', {
+                vgRouteName: 'location',
+                template: '<vg-location-details vg-location="$resolve.location"></vg-location-details>',
+                resolve: {
+                    location: resolveLocation
+                }
             });
             $routeProvider.when('/location/:id/edit', {
                 vgRouteName: 'location.edit',
@@ -168,4 +175,10 @@
         missionsModule: missionsModule,
         userModule: userModule
     };
+
+    resolveLocation.$inject = ['$route', 'locationService'];
+    function resolveLocation($route, locationService) {
+        var locationId = $route.current.params.id;
+        return locationService.getLocation(locationId);
+    }
 })();

@@ -1,0 +1,21 @@
+<div class="map-card">
+    <p class="map-card__address">
+        {{ location.address.street }} {{ location.address.houseNumber }}
+        <a
+         href="#"
+         class="location-address__approx"
+         uib-tooltip="{{ 'location.approximateAddress' | translate }}"
+         tooltip-placement="bottom">
+            (ca.)
+        </a>,
+        {{ location.address.postcode }} {{ location.address.city }}, {{ location.address.country }}
+    </p>
+    <leaflet class="map-card__map" ng-if="vm.showMap" defaults="vm.mapDefaults" lf-center="vm.center">
+    </leaflet>
+    <vg-map-markers
+     ng-if="vm.map"
+     vg-location-items="[vm.location]"
+     vg-map="vm.map"
+     class="map-card__markers">
+    </vg-map-markers>
+</div>
