@@ -6,7 +6,7 @@
   "devDependencies": {
     "bower": "1.6.3",
     "jshint": "2.8.0",
-    "karma": "0.13.19",
+    "karma": "1.7.1",
     "karma-jasmine": "0.1.6",
     "karma-ng-scenario": "0.1.0",
     "karma-firefox-launcher": "0.1.7",
