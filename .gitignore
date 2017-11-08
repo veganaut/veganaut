@@ -5,3 +5,5 @@ log/
 mongodb/
 node_modules/
 tests.out
+npm-debug.log
+npm-debug.log*

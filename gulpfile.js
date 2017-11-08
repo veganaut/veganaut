@@ -4,6 +4,7 @@
  * The build is work in progress and is not fully functional yet.
  */
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -15,6 +16,15 @@ var tap = require('gulp-tap');
 var ngHtml2Js = require('gulp-ng-html2js');
 var minifyHtml = require('gulp-minify-html');
 var browserSync = require('browser-sync').create();
+
+// Error notification settings for plumber.
+// Plumber makes shure watcher tasks don't stop when an error occurs
+var plumberErrorHandler = {
+    errorHandler: function(error) {
+        console.log(error.message);
+        this.emit('end');
+    }
+};
 
 var files = {
     js: [
@@ -64,6 +74,7 @@ gulp.task('jsLib', function() {
 
 gulp.task('less', function() {
     return gulp.src(files.less)
+        .pipe(plumber(plumberErrorHandler))
         .pipe(less({
             compress: true
             // TODO: add urlArgs, but need to split up the vendor css from our own
@@ -72,7 +83,7 @@ gulp.task('less', function() {
         .pipe(rename('master.min.css'))
         .pipe(gulp.dest('app/build/'))
         .pipe(browserSync.stream());
-        ;
+    ;
 });
 
 gulp.task('ngTemplateConcat', function() {
@@ -151,7 +162,7 @@ gulp.task('indexProduction', function() {
     return createIndex();
 });
 
-gulp.task('serve-reload', ['indexDev'], function (done) {
+gulp.task('serve-reload', ['indexDev'], function(done) {
     // Used for hard reload incase we are not able to hot reload
     browserSync.reload();
     done();
@@ -166,12 +177,8 @@ gulp.task('serve', ['less', 'indexDev'], function() {
     gulp.watch(files.watchJs.concat(files.watchTemplates), ['serve-reload']);
 });
 
-// create a task that ensures the `js` task is complete before
-// reloading browsers
-
 gulp.task('watch', ['serve']);
 
-// TODO: create watch task for dev
 gulp.task('dev', ['less', 'indexDev']);
 
 gulp.task('production', ['js', 'jsLib', 'less', 'indexProduction']);
