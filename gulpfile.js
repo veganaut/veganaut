@@ -46,11 +46,11 @@ var files = {
         'app/lib/angular-translate/angular-translate.js',
         'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
     ],
-    less: 'app/less/master.less',
+    less: 'app/main.less',
     templates: 'app/**/*.tpl.html',
     index: 'app/index.ejs',
     watch: 'app/**/*',
-    watchLess: ['app/less/**/*.less'],
+    watchLess: ['app/**/*.less'],
     watchJs: ['app/components/**/*.js', 'app/veganaut/**/*.js'],
     watchTemplates: ['app/**/*.tpl.html']
 };

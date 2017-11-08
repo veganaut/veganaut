@@ -1,3 +1,5 @@
+@import 'variables.less';
+
 .btn {
     border-radius: @boxBorderRadius;
 }
@@ -19,7 +21,6 @@ button.btn {
     color: @color;
     background-color: @background;
     border-color: @border;
-    -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
 
     &:hover,
@@ -74,7 +75,7 @@ button.btn {
 
 // Primary button
 .btn-primary {
-    .button-variant(#fff; @colourBrandTurquoise; #fff);
+    .button-variant(#fff; @colorAccent; #fff);
 }
 
 .btn-default {

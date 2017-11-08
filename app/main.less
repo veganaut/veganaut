@@ -1,0 +1,64 @@
+// TODO: Refactordsf
+
+@import (less) 'lib/angular-loading-bar/build/loading-bar.css';
+@import (less) 'lib/leaflet/dist/leaflet.css';
+
+@import (less) 'less/iconFont.css';
+@import 'less/variables.less';
+@import 'less/buttons.less';
+
+@import 'less/layout.less';
+
+@import 'veganaut/community/community.less';
+@import 'veganaut/home/home.less';
+@import 'less/icons.less';
+@import 'veganaut/location/location.less';
+@import 'veganaut/map/map.less';
+@import 'veganaut/missions/missions.less';
+@import 'veganaut/products/products.less';
+@import 'less/typography.less';
+
+@import 'components/ui/accordion/accordion.less';
+@import 'components/ui/tag/tag.less';
+
+@import 'less/modules/averageRating.less';
+@import 'less/modules/geolocateButton.less';
+@import 'less/modules/globalSearch.less';
+@import 'less/modules/loadingBar.less';
+@import 'less/modules/locationScore.less';
+@import 'less/modules/navbar.less';
+
+@import 'lib/weather-icons/weather-icons/weather-icons.less';
+@weather-icons-path: '../lib/weather-icons/fonts';
+
+
+.clickable {
+    cursor: pointer;
+}
+
+.well-expansion {
+    margin-bottom: -6px;
+    font-size: 10px;
+}
+
+// No wrap helper class
+.nowrap {
+    white-space: nowrap;
+}
+
+// Make sure ng-cloak is around even if angular is not loaded yet
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+
+// TODO: make proper component
+.link-for-toggle {
+    display: block;
+    padding: 5px 0;
+    color: @colorDark;
+
+    &:hover, &:active, &:focus {
+        color: @colorDark;
+    }
+}
