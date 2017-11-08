@@ -14,6 +14,7 @@ var ejs = require('gulp-ejs');
 var tap = require('gulp-tap');
 var ngHtml2Js = require('gulp-ng-html2js');
 var minifyHtml = require('gulp-minify-html');
+var browserSync = require('browser-sync').create();
 
 var files = {
     js: [
@@ -38,7 +39,10 @@ var files = {
     less: 'app/less/master.less',
     templates: 'app/**/*.tpl.html',
     index: 'app/index.ejs',
-    watch: 'app/**/*'
+    watch: 'app/**/*',
+    watchLess: ['app/less/**/*.less'],
+    watchJs: ['app/components/**/*.js', 'app/veganaut/**/*.js'],
+    watchTemplates: ['app/**/*.tpl.html']
 };
 
 gulp.task('js', ['ngTemplateConcat'], function() {
@@ -64,9 +68,10 @@ gulp.task('less', function() {
             compress: true
             // TODO: add urlArgs, but need to split up the vendor css from our own
         }))
-        .pipe(postcss([ autoprefixer() ]))
+        .pipe(postcss([autoprefixer()]))
         .pipe(rename('master.min.css'))
         .pipe(gulp.dest('app/build/'))
+        .pipe(browserSync.stream());
         ;
 });
 
@@ -146,6 +151,25 @@ gulp.task('indexProduction', function() {
     return createIndex();
 });
 
+gulp.task('serve-reload', ['indexDev'], function (done) {
+    // Used for hard reload incase we are not able to hot reload
+    browserSync.reload();
+    done();
+});
+
+gulp.task('serve', ['less', 'indexDev'], function() {
+    browserSync.init({
+        proxy: 'localhost:8000'
+    });
+
+    gulp.watch(files.watchLess, ['less']);
+    gulp.watch(files.watchJs.concat(files.watchTemplates), ['serve-reload']);
+});
+
+// create a task that ensures the `js` task is complete before
+// reloading browsers
+
+gulp.task('watch', ['serve']);
 
 // TODO: create watch task for dev
 gulp.task('dev', ['less', 'indexDev']);

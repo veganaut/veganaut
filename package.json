@@ -6,6 +6,7 @@
   "devDependencies": {
     "autoprefixer": "7.1.6",
     "bower": "1.6.3",
+    "browser-sync": "2.18.13",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
     "gulp-ejs": "1.2.1",
@@ -27,6 +28,10 @@
   },
   "scripts": {
     "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update",
-    "test": "./node_modules/.bin/karma start config/karma-coverage.conf.js --single-run --browsers Firefox"
+    "test": "./node_modules/.bin/karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
+    "serve:dev": "gulp watch",
+    "serve": "npm run serve:dev",
+    "watch:dev": "npm run serve:dev",
+    "watch": "npm run watch:dev"
   }
 }
