@@ -56,6 +56,7 @@
         vm.filterOnlyZeroMissions = filterOnlyZeroMissions;
         vm.filterOnlyNonZeroMissions = filterOnlyNonZeroMissions;
         vm.getAvailableProductMissionsPoints = getAvailableProductMissionsPoints;
+        vm.onMapCardClickHandler = onMapCardClickHandler;
 
         vm.$onInit = function() {
             pageTitleService.addCustomTitle(vm.location.name);
@@ -90,6 +91,10 @@
                 points += mission.getAvailablePoints();
             });
             return points;
+        }
+
+        function onMapCardClickHandler() {
+
         }
     }
 })();

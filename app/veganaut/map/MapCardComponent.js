@@ -8,7 +8,8 @@
     function mapCardComponent() {
         var component = {
             bindings: {
-                location: '<vgLocation'
+                location: '<vgLocation',
+                onClick: '&vgOnClick'
             },
             controller: MapCardComponentController,
             controllerAs: 'vm',
@@ -27,20 +28,26 @@
     function MapCardComponentController($timeout, mapDefaults, leafletData) {
         var vm = this;
 
-        vm.mapDefaults = mapDefaults;
+        var defaults = angular.copy(mapDefaults);
+        defaults.zoomControl = false;
+        defaults.doubleClickZoom = false;
+        defaults.dragging = false;
+        defaults.boxZoom = false;
+        defaults.attributionControl = false;
+        vm.mapDefaults = defaults;
+
         vm.center = {
             lat: 0,
             lng: 0,
-            zoom: 16
+            zoom: 17
         };
+
+        vm.mapClickHandler = mapClickHandler;
 
         vm.$onInit = function() {
             // Maybe this has to go to $onChanges
             leafletData.getMap().then(function(map) {
-                var rawMap = angular.copy(map);
-                // Doesn't work yet
-                rawMap.options.zoomControl = false;
-                vm.map = rawMap;
+                vm.map = map;
             });
 
             // Show the map in the next cycle. This needs to be done
@@ -57,5 +64,9 @@
                 vm.center.lng = vm.location.lng;
             }
         };
+
+        function mapClickHandler() {
+            vm.onClick();
+        }
     }
 })();

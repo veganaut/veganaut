@@ -1,6 +1,11 @@
+.map-card {
+    position: relative;
+}
+
 // Location detail styles
 .map-card__map {
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 // Make the map square, see http://www.mademyday.de/css-height-equals-width-with-pure-css.html
@@ -8,4 +13,15 @@
     content: "";
     display: block;
     padding-top: 50%;
+}
+
+.map-card__address {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px;
+    margin: 0;
+    background-color: rgba(255,255,255,0.8);
 }

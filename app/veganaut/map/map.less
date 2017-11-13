@@ -91,6 +91,7 @@
 
     // Create hover and active style for the enabled marker
     &.marker--enabled {
+        .map-card__map--highlight-marker &,
         &:hover, &.marker--active {
             .marker-style(@sizeActive, @opacityActive);
             border-width: 4px;
