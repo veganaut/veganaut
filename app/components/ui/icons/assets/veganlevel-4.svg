@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#00A89F" d="M18 18c0 .202.021.398.06.588-.816.467-1.503.933-2.06 1.428v-3.177c0-2.188.822-3.252 3.092-4.542.52.433 1.179.703 1.908.703a3 3 0 1 0-2.94-2.412c-.816.467-1.503.933-2.06 1.429V6.816A2.99 2.99 0 0 0 18 4a3 3 0 1 0-6 0 2.99 2.99 0 0 0 2 2.816v5.2c-.557-.495-1.244-.961-2.06-1.428A3 3 0 1 0 9 13c.729 0 1.388-.27 1.908-.703C13.178 13.587 14 14.65 14 16.839v3.177c-.557-.495-1.244-.961-2.06-1.428A3 3 0 1 0 9 21c.729 0 1.388-.27 1.908-.703C13.178 21.586 14 22.65 14 24.839v2.63h2v-2.63c0-2.188.822-3.253 3.092-4.542.52.433 1.179.703 1.908.703a3 3 0 1 0-3-3z" opacity=".1"/>
+        <g transform="translate(15 15)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <g transform="translate(15 7)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <g transform="matrix(-1 0 0 1 15 15)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <path stroke="#00A89F" stroke-width="2" d="M15 27.02v-9.075"/>
+        <g transform="matrix(-1 0 0 1 15 7)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".2">
+            <path d="M3.548 2.09s.056 1.54-1.389 1.43M4.984 3.525s-1.541.055-1.43-1.389M3.549 4.962s-.056-1.542 1.389-1.43M2.112 3.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".2">
+            <path d="M26.548 12.09s.056 1.54-1.388 1.43M27.984 13.525s-1.541.055-1.43-1.389M26.549 14.962s-.056-1.542 1.389-1.43M25.112 13.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".2">
+            <path d="M24.032 2.06s.037 1.027-.926.953M24.99 3.016s-1.028.037-.954-.925M24.033 3.974s-.037-1.027.925-.953M23.075 3.017s1.027-.037.953.926"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".2">
+            <path d="M4.032 13.06s.037 1.027-.926.953M4.99 14.016s-1.028.037-.954-.925M4.033 14.974s-.037-1.027.925-.953M3.075 14.017s1.027-.037.953.926"/>
+        </g>
+        <rect width="12" height="1" x="9" y="27" fill="#00A89F" rx=".5"/>
+        <rect width="6" height="1" x="12" y="29" fill="#00A89F" rx=".5"/>
+    </g>
+</svg>

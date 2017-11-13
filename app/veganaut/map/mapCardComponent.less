@@ -1,8 +1,14 @@
+@import '../../less/typography.less';
+
 .vg-map-card {
     position: relative;
 }
 
-// Location detail styles
+.vg-map-card .vg-card > * {
+    padding: 0;
+}
+
+    // Location detail styles
 .vg-map-card__map {
     margin-bottom: 10px;
     cursor: pointer;
@@ -16,6 +22,7 @@
 }
 
 .vg-map-card__address {
+    .vg-typography-display-3();
     position: absolute;
     bottom: 0;
     left: 0;

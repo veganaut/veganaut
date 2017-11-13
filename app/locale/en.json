@@ -133,6 +133,7 @@
       "name": "Rate"
     },
     "locationVisitAction": "View location",
+    "openInMapApp": "Open route in Maps",
     "location": {
       "edit": "Edit location",
       "editAsAnonymous": "Edit",
@@ -219,7 +220,14 @@
     },
     "quality": {
       "explanation": "The more twigs the bigger and better the vegan offer here.",
-      "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
+      "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!",
+      "ratings": {
+        "level1": "No vegan offers",
+        "level2": "A few vegan offers",
+        "level3": "Good vegan offers",
+        "level4": "Great vegan offers",
+        "level5": "Can't get any better"
+      }
     },
     "effort": {
       "explanation": "The fairer the whether the greater the interest of the staff to fulfill vegan wishes."

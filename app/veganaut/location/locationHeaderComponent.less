@@ -1,5 +1,37 @@
 @import '../../less/typography';
 
-.location-header__location-name {
+.vg-location-header__location-name {
     .vg-typography-display-4();
+    margin: 0;
+}
+
+.vg-location-header__core-info {
+    display: flex;
+    margin-top: 10px;
+}
+
+.vg-location-header__title-description {
+    margin-left: 12px;
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vg-location-header__location-name {
+    line-height: 1.5;
+}
+
+.vg-location-header__rating-text {
+    .vg-typography-display-1-strong();
+    color: @color-accent-2;
+    width: 100%;
+    line-height: 1.5;
+}
+
+.vg-location-header__location-type-indicator {
+    margin-left: 8px;
+}
+
+.vg-location-header__quality-indicator {
+    order: 1;
 }

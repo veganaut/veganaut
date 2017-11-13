@@ -25,12 +25,21 @@
     }
 
     // Inject dependencies
-    // LocationHeaderComponentController.$inject = ['exampleService'];
+    LocationHeaderComponentController.$inject = ['$translate'];
 
-    function LocationHeaderComponentController() {
+    function LocationHeaderComponentController($translate) {
         var vm = this;
 
+        vm.quality = 1;
+        vm.locationType = null;
+
         vm.$onInit = function() {
+            vm.quality = vm.location.getRoundedQuality();
+            vm.locationType = vm.location.type;
+
+            $translate('location.quality.ratings.level' + vm.quality).then(function (rating) {
+                vm.ratingLabel = rating;
+            });
         };
     }
 })();

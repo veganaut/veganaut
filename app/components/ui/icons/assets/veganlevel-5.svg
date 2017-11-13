@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29">
+    <g fill="none" fill-rule="evenodd" transform="translate(1)">
+        <g transform="translate(13 14)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <g transform="translate(13 6)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <circle cx="3" cy="3" r="3" fill="#00A89F" transform="translate(10)"/>
+        <g transform="matrix(-1 0 0 1 13 6)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <g transform="matrix(-1 0 0 1 13 14)">
+            <path stroke="#00A89F" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#00A89F"/>
+        </g>
+        <path stroke="#00A89F" stroke-width="2" d="M13 26.02V2"/>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5">
+            <path d="M1.548 1.09S1.604 2.63.16 2.52M2.984 2.525s-1.541.055-1.43-1.389M1.549 3.962s-.056-1.542 1.389-1.43M.112 2.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5">
+            <path d="M24.548 11.09s.056 1.54-1.388 1.43M25.984 12.525s-1.541.055-1.43-1.389M24.549 13.962s-.056-1.542 1.389-1.43M23.112 12.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5">
+            <path d="M22.032 1.06s.037 1.027-.926.953M22.99 2.016s-1.028.037-.954-.925M22.033 2.974s-.037-1.027.925-.953M21.075 2.017s1.027-.037.953.926"/>
+        </g>
+        <g stroke="#00A89F" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5">
+            <path d="M2.032 12.06s.037 1.027-.926.953M2.99 13.016s-1.028.037-.954-.925M2.033 13.974s-.037-1.027.925-.953M1.075 13.017s1.027-.037.953.926"/>
+        </g>
+        <rect width="12" height="1" x="7" y="26" fill="#00A89F" rx=".5"/>
+        <rect width="6" height="1" x="10" y="28" fill="#00A89F" rx=".5"/>
+    </g>
+</svg>
