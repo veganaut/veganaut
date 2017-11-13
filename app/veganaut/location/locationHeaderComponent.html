@@ -1,5 +1,5 @@
 <header class="location-header">
-    {{ vm.location.name }}
+    <h2 class="location-header__location-name">{{ vm.location.name }}<h2>
     <span ng-if="vm.location.getDisplayAddress(vm.addressType)"
      class="location-title__address small">
         - {{ vm.location.getDisplayAddress(vm.addressType) }}
