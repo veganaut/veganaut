@@ -26,6 +26,7 @@
             // TODO: Add tests for this mode, it contains quite a few tricky changes
             $scope.isEmbedded = ($location.search()['mode'] === 'embedded');
 
+            // TODO: create a service to handle the menu state instead of having this duplicate in the nav bar component
             $scope.closeMenu = function() {
                 $scope.menu.shown = false;
             };
