@@ -3,6 +3,11 @@
     border-color: @bootstrapGreyBorder;
 }
 
+.navbar-container {
+    padding-left: @mainSidePadding;
+    padding-right: @mainSidePadding;
+}
+
 .navbar-header {
     padding-top: 15px;
     height: @navbarHeight;
@@ -15,12 +20,21 @@
     margin-bottom: 0;
 }
 
-.navbar-btn-search {
-    // Make it the same size and shape as the menu button
+.vg-navbar-right-side-actions {
     float: right;
-    margin: 8px 5px 0 0;
-    border-radius: 0;
+}
+
+.vg-navbar-button {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    margin: 10px 10px 0 0;
     padding: 6px 10px 3px 12px;
+}
+
+.vg-navbar-button__icon,
+.vg-navbar-button__icon svg {
+    height: 18px;
 }
 
 .navbar-footer {

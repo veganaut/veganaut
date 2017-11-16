@@ -38,9 +38,7 @@
              id="home-button-location"
              type="button"
              ng-click="homeVm.getUserLocation()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                    <path id="home-location" fill-rule="evenodd" d="M7.5 0C3.365 0 0 3.365 0 7.5S3.365 15 7.5 15 15 11.635 15 7.5 11.635 0 7.5 0zm.605 13.761v-2.027h-1.21v2.026A6.3 6.3 0 0 1 1.24 8.105h2.027v-1.21H1.239A6.3 6.3 0 0 1 6.895 1.24v2.026h1.209V1.24a6.299 6.299 0 0 1 5.655 5.656h-2.025v1.209h2.026a6.3 6.3 0 0 1-5.655 5.657z"></path>
-                </svg>
+                <vg-icon vg-name="'geo-location'" id="home-location"></vg-icon>
             </button>
         </div>
         <button class="btn btn-primary btn-large"
@@ -48,9 +46,7 @@
          ng-disabled="!homeVm.canSubmitCta()"
          ng-click="homeVm.onCtaSubmit('locationList')">
             <span class="h4">{{ 'home.callToAction.show' | translate }}&nbsp;</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" viewBox="0 0 6 10">
-                <path id="home-chevron-right" fill-rule="evenodd" d="M.228 8.729a.72.72 0 0 0 0 1.052.8.8 0 0 0 1.1 0l4.444-4.255a.72.72 0 0 0 0-1.052L1.328.219a.8.8 0 0 0-1.1 0 .72.72 0 0 0 0 1.052l3.896 3.731L.228 8.73z"></path>
-            </svg>
+            <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
         </button>
     </form>
 </div>

@@ -3,10 +3,10 @@
 
     module.controller('AppCtrl', [
         '$rootScope', '$scope', '$location', '$window', '$q',
-        'angularPiwik', 'featureToggle', 'searchService', 'pageTitleService',
+        'angularPiwik', 'featureToggle', 'pageTitleService',
         'backendService', 'playerService', 'localeService',
         function($rootScope, $scope, $location, $window, $q,
-            angularPiwik, featureToggle, searchService, pageTitleService,
+            angularPiwik, featureToggle, pageTitleService,
             backendService, playerService, localService)
         {
             /**
@@ -26,6 +26,7 @@
             // TODO: Add tests for this mode, it contains quite a few tricky changes
             $scope.isEmbedded = ($location.search()['mode'] === 'embedded');
 
+            // TODO: create a service to handle the menu state instead of having this duplicate in the nav bar component
             $scope.closeMenu = function() {
                 $scope.menu.shown = false;
             };
@@ -37,21 +38,9 @@
 
             // Expose some backend states and methods
             $scope.isLoggedIn = backendService.isLoggedIn.bind(backendService);
-            $scope.logout = function() {
-                backendService.logout().finally(function() {
-                    angularPiwik.track('logout', 'logout.success');
-                });
-            };
 
             $scope.menu = {
                 shown: false
-            };
-
-            /**
-             * Handler for clicks on search button in navbar
-             */
-            $scope.searchClick = function() {
-                searchService.toggleSearchModal();
             };
 
             // Reload the whole app when the session gets destroyed to clear all data
