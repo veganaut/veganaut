@@ -2,16 +2,16 @@
     <div class="navbar-inner">
         <div class="container navbar-container">
             <div class="navbar-header">
-                <button class="navbar-toggle menu-button" ng-click="$ctrl.menuShown = !$ctrl.menuShown">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <button type="button" class="btn btn-link navbar-btn-search"
-                 ng-click="$ctrl.searchClick()">
-                    <vg-icon vg-name="'search'" class="navbar-btn-search__icon"></vg-icon>
-                </button>
+                <div class="vg-navbar-right-side-actions">
+                    <button type="button" class="vg-navbar-button"
+                     ng-click="$ctrl.searchClick()">
+                        <vg-icon vg-name="'search'" class="vg-navbar-button__icon"></vg-icon>
+                    </button>
+                    <button class="vg-navbar-button" ng-click="$ctrl.menuShown = !$ctrl.menuShown">
+                        <span class="sr-only">Toggle navigation</span>
+                        <vg-icon vg-name="'hamburger'" class="vg-navbar-button__icon"></vg-icon>
+                    </button>
+                </div>
                 <a href="/" class="main-logo-link" ng-show="!$ctrl.isHomePage()">
                     <ng-include src="'img/veganaut-typo-logo.svg'" class="logo logo--main"></ng-include>
                 </a>
