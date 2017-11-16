@@ -36,29 +36,29 @@
                 </button>
 
                 <button class="btn btn-default btn-block nav-community" ng-click="$ctrl.goToView('community')"
-                 ng-if="isLoggedIn()">
+                 ng-if="$ctrl.isLoggedIn()">
                     <span class="glyphicon glyphicon-globe pull-right"></span>
                     <span data-translate="navigation.community"></span>
                 </button>
                 <button class="btn btn-default btn-block nav-profile" ng-click="$ctrl.goToView('me')"
-                 ng-if="isLoggedIn()">
+                 ng-if="$ctrl.isLoggedIn()">
                     <span class="glyphicon glyphicon-user pull-right"></span>
                     <span data-translate="navigation.profile"></span>
                 </button>
 
                 <button class="btn btn-default btn-block nav-register"
                  ng-click="$ctrl.goToView('register') | track:'linkToRegister':'linkToRegister.menu'"
-                 ng-if="!isLoggedIn()">
+                 ng-if="!$ctrl.isLoggedIn()">
                     <span class="glyphicon glyphicon-heart pull-right"></span>
                     <span data-translate="navigation.register"></span>
                 </button>
                 <button class="btn btn-default btn-block nav-login" ng-click="$ctrl.goToView('login')"
-                 ng-if="!isLoggedIn()">
+                 ng-if="!$ctrl.isLoggedIn()">
                     <span class="glyphicon glyphicon-log-in pull-right"></span>
                     <span data-translate="navigation.login"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-logout" ng-click="logout()"
-                 ng-if="isLoggedIn()">
+                <button class="btn btn-default btn-block nav-logout" ng-click="$ctrl.logout()"
+                 ng-if="$ctrl.isLoggedIn()">
                     <span class="glyphicon glyphicon-log-out pull-right"></span>
                     <span data-translate="navigation.logout"></span>
                 </button>

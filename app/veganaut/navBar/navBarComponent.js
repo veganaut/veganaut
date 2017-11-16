@@ -21,11 +21,13 @@
     NavBarController.$inject = [
         '$location',
         '$rootScope',
+        'angularPiwik',
+        'backendService',
         'localeService',
         'searchService'
     ];
 
-    function NavBarController($location, $rootScope, localeService, searchService) {
+    function NavBarController($location, $rootScope, angularPiwik, backendService, localeService, searchService) {
         var $ctrl = this;
 
         // Expose service
@@ -49,8 +51,18 @@
             $rootScope.goToView(view);
         };
 
+        $ctrl.logout = function() {
+            backendService.logout().finally(function() {
+                angularPiwik.track('logout', 'logout.success');
+            });
+        };
+
         $ctrl.isHomePage = function() {
             return $location.path() === '/';
+        };
+
+        $ctrl.isLoggedIn = function() {
+            return backendService.isLoggedIn();
         };
     }
 })();
