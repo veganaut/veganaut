@@ -23,6 +23,11 @@
     float: right;
 }
 
+.vg-navbar-center-actions {
+    display: inline-block;
+    margin-left: 20px;
+}
+
 .vg-navbar-button {
     display: inline-block;
     border: none;
@@ -34,6 +39,57 @@
 .vg-navbar-button__icon,
 .vg-navbar-button__icon svg {
     height: 18px;
+}
+
+.vg-navbar-button__icon svg path {
+    fill: @_color-dark-grey;
+}
+
+.vg-navbar-view-select {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.vg-navbar-view-select-item {
+    width: 40px;
+    height: 30px;
+    border: 1px solid @_color-dark-grey;
+    border-left-width: 0;
+    color: @_color-teal;
+    text-align: center;
+}
+
+.vg-navbar-view-select-item__icon {
+    margin-top: 6px;
+    display: block;
+}
+
+.vg-navbar-view-select-item__icon,
+.vg-navbar-view-select-item__icon svg{
+    height: 15px;
+}
+
+.vg-navbar-view-select-item__icon svg path,
+.vg-navbar-view-select-item__icon svg circle {
+    fill: currentColor;
+}
+
+.vg-navbar-view-select-item:first-child {
+    border-radius: 4px 0 0 4px;
+    border-left-width: 1px;
+}
+
+.vg-navbar-view-select-item:last-child {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.vg-navbar-view-select-item:hover,
+.vg-navbar-view-select-item--active {
+    background-color: @_color-dark-grey;
+    color: white;
+    cursor: pointer;
 }
 
 .navbar-footer {

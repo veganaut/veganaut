@@ -4,6 +4,7 @@
             <div class="navbar-header">
                 <div class="vg-navbar-right-side-actions">
                     <button type="button" class="vg-navbar-button"
+                     ng-hide="$ctrl.isHomePage()"
                      ng-click="$ctrl.searchClick()">
                         <vg-icon vg-name="'search'" class="vg-navbar-button__icon"></vg-icon>
                     </button>
@@ -12,9 +13,28 @@
                         <vg-icon vg-name="'hamburger'" class="vg-navbar-button__icon"></vg-icon>
                     </button>
                 </div>
-                <a href="/" class="main-logo-link" ng-show="!$ctrl.isHomePage()">
+                <a href="/" class="main-logo-link" ng-hide="$ctrl.isHomePage()">
                     <ng-include src="'img/veganaut-typo-logo.svg'" class="logo logo--main"></ng-include>
                 </a>
+                <div class="vg-navbar-center-actions">
+                    <nav class="vg-navbar-view-select" ng-hide="$ctrl.isHomePage()">
+                        <div class="vg-navbar-view-select-item"
+                         ng-class="{'vg-navbar-view-select-item--active': $ctrl.isCityPage()}"
+                         ng-click="$ctrl.goToView('city/')">
+                            <vg-icon vg-name="'location'" class="vg-navbar-view-select-item__icon"></vg-icon>
+                        </div>
+                        <div class="vg-navbar-view-select-item"
+                         ng-class="{'vg-navbar-view-select-item--active': $ctrl.isMapPage()}"
+                         ng-click="$ctrl.goToView('map/')">
+                            <vg-icon vg-name="'map'" class="vg-navbar-view-select-item__icon"></vg-icon>
+                        </div>
+                        <div class="vg-navbar-view-select-item"
+                         ng-class="{'vg-navbar-view-select-item--active': $ctrl.isListPage()}"
+                         ng-click="$ctrl.goToView('locations/')">
+                            <vg-icon vg-name="'list'" class="vg-navbar-view-select-item__icon"></vg-icon>
+                        </div>
+                    </nav>
+                </div>
             </div>
             <nav class="collapse" uib-collapse="!$ctrl.menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->

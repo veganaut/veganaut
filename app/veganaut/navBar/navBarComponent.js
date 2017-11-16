@@ -61,6 +61,19 @@
             return $location.path() === '/';
         };
 
+        $ctrl.isMapPage = function() {
+            return $location.path() === '/map/';
+        };
+
+        $ctrl.isListPage = function() {
+            return $location.path() === '/locations/';
+        };
+
+        $ctrl.isCityPage = function() {
+            return false; // TODO: update when city page is implemented
+        };
+
+
         $ctrl.isLoggedIn = function() {
             return backendService.isLoggedIn();
         };
