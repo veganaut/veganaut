@@ -21,10 +21,11 @@
     NavBarController.$inject = [
         '$location',
         '$rootScope',
-        'localeService'
+        'localeService',
+        'searchService'
     ];
 
-    function NavBarController($location, $rootScope, localeService) {
+    function NavBarController($location, $rootScope, localeService, searchService) {
         var $ctrl = this;
 
         // Expose service
@@ -38,9 +39,14 @@
             $ctrl.menuShown = false;
         };
 
-        // This does not get called. TODO: Figure out why and fix it
+        /**
+         * Handler for clicks on search button
+         */
+        $ctrl.searchClick = function() {
+            searchService.toggleSearchModal();
+        };
+
         $ctrl.goToView = function(view) {
-            console.log(view);
             $rootScope.goToView(view);
         };
     }

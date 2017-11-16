@@ -3,10 +3,10 @@
 
     module.controller('AppCtrl', [
         '$rootScope', '$scope', '$location', '$window', '$q',
-        'angularPiwik', 'featureToggle', 'searchService', 'pageTitleService',
+        'angularPiwik', 'featureToggle', 'pageTitleService',
         'backendService', 'playerService', 'localeService',
         function($rootScope, $scope, $location, $window, $q,
-            angularPiwik, featureToggle, searchService, pageTitleService,
+            angularPiwik, featureToggle, pageTitleService,
             backendService, playerService, localService)
         {
             /**
@@ -46,13 +46,6 @@
 
             $scope.menu = {
                 shown: false
-            };
-
-            /**
-             * Handler for clicks on search button in navbar
-             */
-            $scope.searchClick = function() {
-                searchService.toggleSearchModal();
             };
 
             // Reload the whole app when the session gets destroyed to clear all data
