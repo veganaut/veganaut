@@ -1,18 +1,22 @@
+@import 'variables';
+
+@font-replacement: "Source Sans Pro";
+@font-fallback: Helvetica Neue, Helvetica, Arial, sans-serif;
+@font-main: @font-replacement, @font-fallback;
+
 // refining fonts from bootstrap
 body, html, p {
-    font-family: "Source Sans Pro", Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @font-main;
     color: @colorDark;
     font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Source Sans Pro", Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     color: @colorDark;
 }
 
 label, strong, b {
-    font-family: "Source Sans Pro", Helvetica Neue, Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
 
@@ -34,4 +38,51 @@ a.link-unstyled {
 
 p.lead {
     font-size: 18px;
+}
+
+.vg-typography-display-4() {
+    font-size: 1.375rem;
+    font-weight: 500;
+    text-align: left;
+    //color: @color-dark-grey;
+}
+
+.vg-typography-display-3-strong() {
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-align: left;
+    color: @_color-dark-grey;
+}
+
+.vg-typography-display-3() {
+    font-size: 1.125rem;
+    line-height: 1.33;
+    text-align: left;
+    color: @_color-dark-grey;
+}
+
+.vg-typography-display-2-strong() {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: left;
+    color: @_color-dark-grey;
+}
+
+.vg-typography-display-2() {
+    font-size: 0.875rem;
+    text-align: left;
+    color: @_color-dark-grey;
+}
+
+.vg-typography-display-1-strong() {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    color: @_color-dark-grey;
+}
+
+.vg-typography-display-1() {
+    font-size: 0.75rem;
+    text-align: left;
+    color: @_color-grey;
 }

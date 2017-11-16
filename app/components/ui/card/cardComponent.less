@@ -1,0 +1,18 @@
+@import '../../../less/typography';
+
+.vg-card {
+    background-color: #ffffff;
+    display: block;
+    box-shadow: 0 1px 3px 0 rgba(63, 73, 83, 0.2);
+    position: relative;
+}
+
+.vg-card + .vg-card {
+    margin-top: 12px;
+}
+
+.vg-card > * {
+    .vg-typography-display-3();
+    padding: 16px 16px;
+    display: block;
+}

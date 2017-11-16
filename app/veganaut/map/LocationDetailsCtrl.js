@@ -1,7 +1,9 @@
 (function(module) {
     'use strict';
 
-    // TODO: this controller is getting way too big, split it up
+    /**
+     * @deprecated Use LocationDetailsComponent instead
+     */
     module.controller('LocationDetailsCtrl', [
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions', 'pageTitleService',
         'angularPiwik', 'locationService', 'backendService', 'playerService', 'alertService', 'missionService',

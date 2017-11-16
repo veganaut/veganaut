@@ -132,6 +132,7 @@
     "rate": {
       "name": "Bewerten"
     },
+    "openInMapApp": "Route in Karten App öffnen",
     "locationVisitAction": "Location anzeigen",
     "location": {
       "edit": "Location bearbeiten",
@@ -220,6 +221,13 @@
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
+      "ratings": {
+        "level1": "Wenig oder keine veganen Angebote",
+        "level2": "Einige wenige veganen Angebote",
+        "level3": "Gutes veganes Angebot",
+        "level4": "Sehr gutes veganes Angebot",
+        "level5": "Der heilige Gral veganischer Angebote"
+      }
     },
     "effort": {
       "explanation": "Je besser das Wetter, desto grösser das Interesse des Personals, vegane Wünsche zu erfüllen."
@@ -511,8 +519,7 @@
     "callToAction": {
       "text": "Zeige vegane Angebote in...",
       "inputPlaceholder": "Land oder Stadt eingeben",
-      "showList": "...als Liste",
-      "showMap": "...auf Karte",
+      "show": "Anzeigen",
       "geolocate": "Mein Standort"
     },
     "open": {

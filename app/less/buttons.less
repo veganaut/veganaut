@@ -1,3 +1,5 @@
+@import 'variables.less';
+
 .btn {
     border-radius: @boxBorderRadius;
 }
@@ -10,16 +12,13 @@ button.btn {
     margin-right: 4px;
 }
 
-
-
-// Mixins taken directly from bootstrap
+// Mixins taken directly from bootstrapw
 
 // button-variant from https://github.com/twbs/bootstrap/blob/master/less/mixins/buttons.less
 .button-variant(@color; @background; @border) {
     color: @color;
     background-color: @background;
     border-color: @border;
-    -webkit-transition: transform 0.5s easeinout;
     transition: transform 0.5s easeinout;
 
     &:hover,
@@ -74,7 +73,7 @@ button.btn {
 
 // Primary button
 .btn-primary {
-    .button-variant(#fff; @colourBrandTurquoise; #fff);
+    .button-variant(#fff; @color-accent; #fff);
 }
 
 .btn-default {
@@ -86,6 +85,7 @@ button.btn {
         box-shadow: none;
     }
 }
+
 .btn-default--transparent {
     background-color: transparent;
 }
@@ -117,4 +117,8 @@ button.menu-button {
         padding: 1px 5px;
         margin-left: 3px;
     }
+}
+
+.menu-button-home {
+    background-color: @_color-dark-grey
 }

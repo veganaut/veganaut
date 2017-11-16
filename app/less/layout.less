@@ -4,8 +4,7 @@ body {
 }
 
 .container {
-    padding-left: @mainSidePadding;
-    padding-right: @mainSidePadding;
+    padding: 0;
 }
 
 .main-container {
@@ -176,6 +175,12 @@ hr {
     .form-control {
         border-radius: 2px 0 0 2px;
         border-right: 0;
+        height: 48px;
+        font-size: 18px;
+
+        svg {
+            fill: #fff;
+        }
     }
 
     .btn {
