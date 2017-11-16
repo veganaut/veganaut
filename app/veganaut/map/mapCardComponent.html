@@ -1,0 +1,16 @@
+<vg-card class="vg-map-card">
+    <a ng-click="vm.mapClickHandler()">
+        <p class="vg-map-card__address">
+            {{ vm.location.address.street }} {{ vm.location.address.houseNumber }},
+            {{ vm.location.address.postcode }} {{ vm.location.address.city }}
+        </p>
+        <leaflet class="vg-map-card__map vg-map-card__map--highlight-marker" ng-if="vm.showMap" defaults="vm.mapDefaults" lf-center="vm.center">
+        </leaflet>
+    </a>
+    <vg-map-markers
+     ng-if="vm.map && vm.location"
+     vg-location-items="[vm.location]"
+     vg-map="vm.map"
+     class="vg-map-card__markers">
+    </vg-map-markers>
+</vg-card>

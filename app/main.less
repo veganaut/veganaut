@@ -1,4 +1,4 @@
-// TODO: Refactordsf
+// TODO: Refactor: Move all less files in the /less folder to the corresponding module or component folders
 
 @import (less) 'lib/angular-loading-bar/build/loading-bar.css';
 @import (less) 'lib/leaflet/dist/leaflet.css';
@@ -18,8 +18,7 @@
 @import 'veganaut/products/products.less';
 @import 'less/typography.less';
 
-@import 'components/ui/accordion/accordion.less';
-@import 'components/ui/tag/tag.less';
+@import 'components/ui/ui.less';
 
 @import 'less/modules/averageRating.less';
 @import 'less/modules/geolocateButton.less';
@@ -31,6 +30,9 @@
 @import 'lib/weather-icons/weather-icons/weather-icons.less';
 @weather-icons-path: '../lib/weather-icons/fonts';
 
+html, body {
+    background: @color-background-general;
+}
 
 .clickable {
     cursor: pointer;

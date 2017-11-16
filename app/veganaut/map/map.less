@@ -1,3 +1,5 @@
+@import 'mapCardComponent';
+
 // Mixing to create a marker with the given size, opacity and z-index
 .marker-style(@size, @opacity) {
     opacity: @opacity;
@@ -89,6 +91,7 @@
 
     // Create hover and active style for the enabled marker
     &.marker--enabled {
+        .map-card__map--highlight-marker &,
         &:hover, &.marker--active {
             .marker-style(@sizeActive, @opacityActive);
             border-width: 4px;
