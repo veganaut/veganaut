@@ -29,7 +29,6 @@
         var $ctrl = this;
 
         // Expose service
-        $ctrl.$location = $location;
         $ctrl.localeService = localeService;
 
         $ctrl.$onInit = function() {
@@ -48,6 +47,10 @@
 
         $ctrl.goToView = function(view) {
             $rootScope.goToView(view);
+        };
+
+        $ctrl.isHomePage = function() {
+            return $location.path() === '/';
         };
     }
 })();

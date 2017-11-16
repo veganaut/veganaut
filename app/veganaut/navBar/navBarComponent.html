@@ -12,7 +12,7 @@
                  ng-click="$ctrl.searchClick()">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
-                <a href="/" class="main-logo-link" ng-show="$location.path() !== '/'">
+                <a href="/" class="main-logo-link" ng-show="!$ctrl.isHomePage()">
                     <ng-include src="'img/veganaut.svg'" class="logo logo--main"></ng-include>
                 </a>
             </div>
