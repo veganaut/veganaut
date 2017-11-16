@@ -519,8 +519,7 @@
     "callToAction": {
       "text": "Zeige vegane Angebote in...",
       "inputPlaceholder": "Land oder Stadt eingeben",
-      "showList": "...als Liste",
-      "showMap": "...auf Karte",
+      "show": "Anzeigen",
       "geolocate": "Mein Standort"
     },
     "open": {

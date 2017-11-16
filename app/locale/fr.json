@@ -511,8 +511,7 @@
     "callToAction": {
       "text": "Afficher les offres véganes à...",
       "inputPlaceholder": "Saisis une ville ou un pays",
-      "showList": "...en liste",
-      "showMap": "...sur la carte",
+      "show": "Afficher",
       "geolocate": "Ma position"
     },
     "open": {

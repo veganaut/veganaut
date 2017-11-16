@@ -47,13 +47,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <button type="button" class="btn btn-link navbar-btn-search"
-                 ng-if="$location.path() !== '/search'"
+                 ng-hide="$location.path() == '/' || $location.path() == '/search'"
                  ng-click="searchClick()">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
-                <a href="/" class="main-logo-link" ng-show="$location.path() !== '/'">
-                    <ng-include src="'img/veganaut.svg'" class="logo logo--main"></ng-include>
-                </a>
             </div>
             <nav class="collapse" uib-collapse="!menu.shown">
                 <!-- TODO: make a nav component to get rid of duplication here -->
@@ -184,7 +181,6 @@
 </div>
 
 <div class="menu-backdrop" ng-show="menu.shown" ng-click="menu.shown = false"></div>
-
 <% if (jsFiles.length === 0) { -%>
 <script src="/build/lib.min.js?v=<%= bust %>"></script>
 <script src="/build/app.min.js?v=<%= bust %>"></script>

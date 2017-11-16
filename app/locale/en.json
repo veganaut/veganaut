@@ -522,8 +522,7 @@
     "callToAction": {
       "text": "Show vegan offers in...",
       "inputPlaceholder": "Enter a country or city",
-      "showList": "...as a list",
-      "showMap": "...on a map",
+      "show": "Show",
       "geolocate": "My location"
     },
     "open": {
