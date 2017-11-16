@@ -2,7 +2,7 @@
     <div class="navbar-inner">
         <div class="container navbar-container">
             <div class="navbar-header">
-                <button class="navbar-toggle menu-button" ng-click="menuShown = !menuShown">
+                <button class="navbar-toggle menu-button" ng-click="$ctrl.menuShown = !$ctrl.menuShown">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -17,43 +17,43 @@
                     <ng-include src="'img/veganaut.svg'" class="logo logo--main"></ng-include>
                 </a>
             </div>
-            <nav class="collapse" uib-collapse="!menuShown">
+            <nav class="collapse" uib-collapse="!$ctrl.menuShown">
                 <!-- TODO: make a nav component to get rid of duplication here -->
-                <button class="btn btn-default btn-block nav-home" ng-click="goToView('')">
+                <button class="btn btn-default btn-block nav-home" ng-click="$ctrl.goToView('')">
                     <span class="glyphicon glyphicon-home pull-right"></span>
                     <span data-translate="navigation.home"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-map" ng-click="goToView('map/')">
+                <button class="btn btn-default btn-block nav-map" ng-click="$ctrl.goToView('map/')">
                     <span class="glyphicon glyphicon-map-marker pull-right"></span>
                     <span data-translate="navigation.map"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-location-list" ng-click="goToView('locations/')">
+                <button class="btn btn-default btn-block nav-location-list" ng-click="$ctrl.goToView('locations/')">
                     <span class="glyphicon glyphicon-th-list pull-right"></span>
                     <span data-translate="navigation.locationList"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-product-list" ng-click="goToView('products/')">
+                <button class="btn btn-default btn-block nav-product-list" ng-click="$ctrl.goToView('products/')">
                     <span class="glyphicon glyphicon-leaf pull-right"></span>
                     <span data-translate="navigation.productList"></span>
                 </button>
 
-                <button class="btn btn-default btn-block nav-community" ng-click="goToView('community')"
+                <button class="btn btn-default btn-block nav-community" ng-click="$ctrl.goToView('community')"
                  ng-if="isLoggedIn()">
                     <span class="glyphicon glyphicon-globe pull-right"></span>
                     <span data-translate="navigation.community"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-profile" ng-click="goToView('me')"
+                <button class="btn btn-default btn-block nav-profile" ng-click="$ctrl.goToView('me')"
                  ng-if="isLoggedIn()">
                     <span class="glyphicon glyphicon-user pull-right"></span>
                     <span data-translate="navigation.profile"></span>
                 </button>
 
                 <button class="btn btn-default btn-block nav-register"
-                 ng-click="goToView('register') | track:'linkToRegister':'linkToRegister.menu'"
+                 ng-click="$ctrl.goToView('register') | track:'linkToRegister':'linkToRegister.menu'"
                  ng-if="!isLoggedIn()">
                     <span class="glyphicon glyphicon-heart pull-right"></span>
                     <span data-translate="navigation.register"></span>
                 </button>
-                <button class="btn btn-default btn-block nav-login" ng-click="goToView('login')"
+                <button class="btn btn-default btn-block nav-login" ng-click="$ctrl.goToView('login')"
                  ng-if="!isLoggedIn()">
                     <span class="glyphicon glyphicon-log-in pull-right"></span>
                     <span data-translate="navigation.login"></span>
@@ -103,7 +103,7 @@
                             <span ng-repeat="locale in availableLocales">
                                 <span ng-show="$index > 0">&nbsp;|&nbsp;</span>
                                 <a href="" ng-hide="locale === localeService.getLocale()"
-                                 ng-click="localeService.changeLocale(locale); closeMenu()">
+                                 ng-click="localeService.changeLocale(locale); $ctrl.closeMenu()">
                                     <span ng-bind="localeNames[locale]"></span>
                                 </a>
                                 <span ng-show="locale === localeService.getLocale()">
@@ -135,4 +135,4 @@
         </div>
     </div>
 </header>
-<div class="menu-backdrop" ng-show="menuShown" ng-click="menuShown = false"></div>
+<div class="menu-backdrop" ng-show="$ctrl.menuShown" ng-click="$ctrl.menuShown = false"></div>
