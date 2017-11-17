@@ -11,3 +11,8 @@
         <vg-icon vg-name="'chevron-big-right'" class="vg-list-select-separator" ng-repeat-end></vg-icon>
     </div>
 </nav>
+<vg-area-list
+ vg-list-name="{{$ctrl.listName}}"
+ vg-on-load-items="$ctrl.onLoadItems(lat, lng, radius, limit, skip, addressType)"
+ vg-on-open-toggle="$ctrl.onOpenToggle(item)">
+</vg-area-list>
