@@ -1,0 +1,13 @@
+<nav class="vg-list-select">
+    <div class="vg-list-select-group"
+     ng-repeat="group in $ctrl.typeFilters"
+     ng-class="{'vg-list-select-group--active': group.indexOf($ctrl.selectedType) !== -1}">
+        <div class="vg-list-select-item"
+         ng-repeat-start="type in group"
+         ng-click="$ctrl.setTypeFilter(type)"
+         ng-class="{'vg-list-select-item--active': $ctrl.selectedType === type}">
+            {{ 'lists.select.' + type | translate }}
+        </div>
+        <vg-icon vg-name="'chevron-big-right'" class="vg-list-select-separator" ng-repeat-end></vg-icon>
+    </div>
+</nav>

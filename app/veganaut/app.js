@@ -72,6 +72,14 @@
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
+            $routeProvider.when('/list/', {
+                vgRouteName: 'list',
+                vgFilters: {
+                    type: true,
+                    recent: true
+                },
+                template: '<vg-list></vg-list>'
+            });
 
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {

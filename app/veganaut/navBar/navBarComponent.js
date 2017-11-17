@@ -66,7 +66,7 @@
         };
 
         $ctrl.isListPage = function() {
-            return $location.path() === '/locations/';
+            return $location.path() === '/list/';
         };
 
         $ctrl.isCityPage = function() {
