@@ -69,8 +69,8 @@
             return $location.path() === '/locations/';
         };
 
-        $ctrl.isCityPage = function() {
-            return false; // TODO: update when city page is implemented
+        $ctrl.isAreaPage = function() {
+            return false; // TODO: update when area page is implemented
         };
 
 
