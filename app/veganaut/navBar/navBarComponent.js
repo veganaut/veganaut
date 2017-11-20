@@ -61,6 +61,19 @@
             return $location.path() === '/';
         };
 
+        $ctrl.isMapPage = function() {
+            return $location.path() === '/map/';
+        };
+
+        $ctrl.isListPage = function() {
+            return $location.path() === '/locations/';
+        };
+
+        $ctrl.isAreaPage = function() {
+            return false; // TODO: update when area page is implemented
+        };
+
+
         $ctrl.isLoggedIn = function() {
             return backendService.isLoggedIn();
         };
