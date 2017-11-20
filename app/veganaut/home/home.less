@@ -1,28 +1,22 @@
-.home__hero-image {
-    background: url('/img/home.jpg') no-repeat 50% 50%;
-    background-size: cover;
-
-    display: flex;
-    flex-direction: column;
-    margin-top: -@navbarHeight - @mainSidePadding;
-    margin-left: -@mainSidePadding;
-    margin-right: -@mainSidePadding;
-
-    height: 350px;
-    @media screen and (min-width: 350px) {
-        height: 400px;
-    }
-    @media screen and (min-width: 400px) {
-        height: 450px;
-    }
-    @media screen and (min-width: 450px) {
-        height: 500px;
-    }
-    @media screen and (min-width: 500px) {
-        height: 550px;
+#home-modal-top {
+    width: 100%;
+    background-color: #ffffff;
+    display: block;
+    box-shadow: 0 3px 3px -1px rgba(63, 73, 83, 0.2);
+    margin-top: -70px;
+    img {
+        position: relative;
+        width: 100%;
+        margin-top: -47px;
     }
 }
 
+#home-modal-bottom {
+    margin-top: 40px;
+   img {
+       width: 100%;
+   }
+}
 .home__logo {
     margin: auto;
     padding-top: 15%;
@@ -41,8 +35,11 @@
 }
 
 .home__tag-line {
-    color: white;
-    margin: 0;
+    color: @_color-dark-grey;
+    text-align: center;
+    top: 50px;
+    width: inherit;
+    position: relative;
 }
 
 // Style the call to action area
@@ -52,6 +49,7 @@
     padding: 10px;
     text-align: center;
 }
+
 .home__call-to-action__submit {
     // Less space between the columns
     margin-left: -5px;
@@ -67,21 +65,23 @@
 .form--auto-complete {
     position: relative;
 }
+
 .form--auto-complete__loading {
     color: @colorDark;
     background-color: white;
 
     position: absolute;
     right: 7px;
-    top: 7px;
+    top: 13px;
     padding-left: 7px;
 
     .glyphicon {
-        -webkit-animation:spin 2s linear infinite;
-        -moz-animation:spin 2s linear infinite;
-        animation:spin 2s linear infinite;
+        -webkit-animation: spin 2s linear infinite;
+        -moz-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
     }
 }
+
 .form--auto-complete__no-results {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -110,7 +110,7 @@
         background-color: transparent;
         border-color: transparent;
         .icon-bar {
-            background-color: white;
+            background-color: @_color-dark-grey;
         }
 
         &:focus, &:hover {
@@ -128,4 +128,44 @@
     .menu-backdrop {
         opacity: 0.5;
     }
+}
+
+#home-logo {
+    left: calc(~'50% - 65px');
+    top: 60px;
+    position: relative !important;
+    width: 130px !important;
+}
+
+.home-form {
+    padding: 0 16px;
+}
+
+#home-button-location {
+    height: 48px;
+    width: 48px;
+    padding: 14px;
+}
+
+.btn-large {
+    height: 48px;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: solid 1.5px @_color-blue;
+}
+
+.btn-small {
+    width: 30%;
+    min-height: 40px;
+    border-radius: 5px;
+    border: solid 1.5px @_color-blue;
+}
+
+#home-chevron-right{
+    fill: #fff;
+}
+
+#home-location {
+    fill: @_color-blue
 }
