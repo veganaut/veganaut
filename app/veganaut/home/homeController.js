@@ -1,21 +1,6 @@
 (function() {
     'use strict';
 
-    /**
-     * Component for the home page.
-     * @returns {directive}
-     */
-    var homeDirective = function() {
-        return {
-            restrict: 'E',
-            scope: {},
-            controller: 'vgHomeCtrl',
-            controllerAs: 'homeVm',
-            bindToController: true,
-            templateUrl: '/veganaut/home/home.tpl.html'
-        };
-    };
-
     var homeCtrl = [
         '$scope', '$location', '$translate', 'backendService', 'angularPiwik', 'Area',
         'areaService', 'mainMapService', 'geocodeService', 'alertService', 'localeService',
@@ -208,9 +193,6 @@
         }
     ];
 
-    // Expose as directive
     angular.module('veganaut.app.home')
-        .controller('vgHomeCtrl', homeCtrl)
-        .directive('vgHome', [homeDirective])
-    ;
+        .controller('vgHomeCtrl', homeCtrl);
 })();
