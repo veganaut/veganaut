@@ -84,6 +84,11 @@
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
+
+            $routeProvider.when('/area-overview/', {
+                vgRouteName: 'areaOverview',
+                template: '<vg-area-overview></vg-area-overview>'
+            });
             $routeProvider.when('/location-legacy/:id', {
                 vgRouteName: 'locationLegacy',
                 templateUrl: '/veganaut/map/locationDetails.tpl.html',

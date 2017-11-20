@@ -1,0 +1,62 @@
+<div id="earth-closeup-top">
+    <div class="area-wrapper">
+        <h1 class="h3">
+            <vg-icon vg-name="'location'" id="area-overview-location"></vg-icon>
+            Place
+        </h1>
+        <h2 class="h4">
+            {{ $ctrl.listName + '.title' | translate }}
+        </h2>
+        <p id="area-location-area">
+            <span>{{ 'lists.area.label' | translate }}:</span>
+            <span ng-if="$ctrl.wholeWorld">
+            {{ 'lists.area.wholeWorld' | translate }}
+        </span>
+            <span ng-if="!$ctrl.wholeWorld">
+            {{ 'lists.area.radius' |
+            translate:{radius: $ctrl.displayRadius, place: $ctrl.displayName} }}
+        </span>
+        </p>
+        <div class="row" id="veganlevel-wrapper">
+            <div class="col-xs-2">
+                <vg-icon vg-name="'veganlevel-1'"></vg-icon>
+                <span class="veganlevel-number">1</span>
+            </div>
+            <div class="col-xs-2">
+                <vg-icon vg-name="'veganlevel-2'"></vg-icon>
+                <span class="veganlevel-number">1</span>
+            </div>
+            <div class="col-xs-2">
+                <vg-icon vg-name="'veganlevel-3'"></vg-icon>
+                <span class="veganlevel-number">1</span>
+            </div>
+            <div class="col-xs-2">
+                <vg-icon vg-name="'veganlevel-4'"></vg-icon>
+                <span class="veganlevel-number">1</span>
+            </div>
+            <div class="col-xs-2">
+                <vg-icon vg-name="'veganlevel-5'"></vg-icon>
+                <span class="veganlevel-number">1</span>
+            </div>
+        </div>
+    </div>
+    <div class="tile-wrapper">
+        <div class="tile">
+
+        </div>
+        <div class="vertical-line"></div>
+        <div class="tile">
+
+        </div>
+    </div>
+    <div class="tile-wrapper">
+        <div class="tile">
+
+        </div>
+        <div class="tile">
+
+        </div>
+    </div>
+</div>
+<div id="earth-closeup-bottom">
+</div>

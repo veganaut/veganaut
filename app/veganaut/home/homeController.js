@@ -16,6 +16,12 @@
              */
             var GEO_LOCATION_ZOOM = 15;
 
+            /**
+             * Path of area-overview
+             * @type {string}
+             */
+            var AREA_OVERVIEW_PATH = '/area-overview/';
+
             // Expose the global methods we still need
             // TODO: find a better way to do this
             vm.legacyGlobals = {
@@ -114,14 +120,15 @@
              * Will go to the selected area on the map or list.
              * @param {string} targetPage 'locationList' or 'map'
              */
-            vm.onCtaSubmit = function(targetPage) {
-                // Show the area on the given page
-                areaService.showAreaOn(targetArea, targetPage);
+            vm.onCtaSubmit = function() {
+
+                $location.path(AREA_OVERVIEW_PATH);
 
                 // Track the submission
                 angularPiwik.track(
                     'home.cta',
-                    (targetPage === 'locationList' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
+                    'home.cta.areaOverview' // TODO ask Vibes what this 2nd param is...
+                    // (targetPage === 'locationList' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
                 );
             };
 

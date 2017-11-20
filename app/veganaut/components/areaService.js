@@ -16,6 +16,7 @@ angular.module('veganaut.app.main').factory('areaService', [
          * Infos about pages where areas can be shown.
          * Maps the route name to the path of the route.
          * TODO: one should be able to get this from the router directly.
+         * TODO: Check if still necessary after change to area-overview
          * @type {{}}
          */
         var AREA_PAGE_INFOS = {
