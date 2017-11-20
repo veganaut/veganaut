@@ -28,7 +28,6 @@
         vm.iconPath = null;
 
         vm.$onInit = function() {
-            debugger;
             vm.iconPath = '/components/ui/icons/assets/' + vm.name + '.svg';
         };
     }
