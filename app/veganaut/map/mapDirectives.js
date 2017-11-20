@@ -1,7 +1,7 @@
 (function(module) {
     'use strict';
 
-    // TODO: put all of these directives in separate files
+    // TODO: Move directives to veganaut/components in separate files
 
     module.directive('vgMissionPoints', [function() {
         return {
@@ -104,7 +104,8 @@
                 for (var i = 0; i < maxRating; i++) {
                     stars.push({
                         id: i,
-                        icon: ''
+                        icon: '', // Old/Obsolete. TODO: Remove with v1.0.0
+                        state: 0 // New
                     });
                 }
 
@@ -116,9 +117,12 @@
                     // Fill up the stars array with the right stars
                     for (var i = 0; i < maxRating; i++) {
                         // Either an empty or full star
+                        // Important: Don't access icon anymore and use state instead. icon is deprecated.
                         var icon = 'glyphicon-star-empty';
+                        var state = 0;
                         if (i <= ($scope.average - 0.5)) {
                             icon = 'glyphicon-star';
+                            state = 1;
                         }
 
                         // If the average is 0 (= no rating) make the middle star a question mark
@@ -128,6 +132,7 @@
 
                         // Set the icon
                         stars[i].icon = icon;
+                        stars[i].state = state;
                     }
                     return stars;
                 };

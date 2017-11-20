@@ -1,0 +1,19 @@
+@import '../../../less/typography.less';
+
+.vg-product-list-item {
+    display: flex;
+    padding: 10px 0;
+}
+
+.vg-product-list-item__product-name {
+    // Change order to keep semantically more accessible, but align visuals with design
+    order: 2;
+    margin-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    .vg-typography-display-2();
+}
+
+.vg-product-list-item__rating {
+    order: 1;
+}

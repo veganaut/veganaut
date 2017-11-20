@@ -1,0 +1,26 @@
+<h2 class="vg-location-products__title">
+    <vg-icon vg-name="'menu'" class="vg-location-products__title-icon"></vg-icon>
+    <span class="vg-location-products__title-text">
+        {{ 'location.products.title' | translate }}
+    </span>
+</h2>
+<div
+ ng-if="vm.location.getProducts().length > 0">
+    <div ng-repeat="product in vm.location.getProducts() |
+        limitTo:locationProductSummaryVm.limitTo
+        track by product.id"
+     class="clearfix vg-location-products--{{ product.availability }}">
+        <vg-product-list-item vg-product="product">
+    </div>
+    <div class="clearfix"></div>
+    <div
+     ng-if="vm.location.getProducts().length - vm.limitTo > 0"
+     class="small"
+    >
+        {{
+        'product.moreProducts' |
+        translate:{numProducts:
+        vm.location.getProducts().length - vm.limitTo }
+        }}
+    </div>
+</div>

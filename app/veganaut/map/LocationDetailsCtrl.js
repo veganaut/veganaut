@@ -2,7 +2,8 @@
     'use strict';
 
     /**
-     * @deprecated Use LocationDetailsComponent instead
+     * @deprecated Use LocationDetailsComponent in veganaut/location instead
+     * @todo Remove with v1.0.0
      */
     module.controller('LocationDetailsCtrl', [
         '$scope', '$routeParams', '$timeout', '$translate', 'leafletData', 'mapDefaults', 'missions', 'pageTitleService',

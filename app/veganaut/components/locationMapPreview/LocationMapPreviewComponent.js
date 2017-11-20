@@ -2,30 +2,30 @@
     'use strict';
 
     angular
-        .module('veganaut.app.map')
-        .component('vgMapCard', mapCardComponent());
+        .module('veganaut.app')
+        .component('vgLocationMapPreview', locationMapPreviewComponent());
 
-    function mapCardComponent() {
+    function locationMapPreviewComponent() {
         var component = {
             bindings: {
                 location: '<vgLocation',
                 onClick: '&vgOnClick'
             },
-            controller: MapCardComponentController,
+            controller: LocationMapPreviewComponentController,
             controllerAs: 'vm',
-            templateUrl: 'veganaut/map/mapCardComponent.html'
+            templateUrl: 'veganaut/components/locationMapPreview/locationMapPreviewComponent.html'
         };
 
         return component;
     }
 
-    MapCardComponentController.$inject = [
+    LocationMapPreviewComponentController.$inject = [
         '$timeout',
         'mapDefaults',
         'leafletData'
     ];
 
-    function MapCardComponentController($timeout, mapDefaults, leafletData) {
+    function LocationMapPreviewComponentController($timeout, mapDefaults, leafletData) {
         var vm = this;
 
         var defaults = angular.copy(mapDefaults);
