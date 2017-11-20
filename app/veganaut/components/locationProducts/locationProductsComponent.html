@@ -4,23 +4,26 @@
         {{ 'location.products.title' | translate }}
     </span>
 </h2>
-<div
- ng-if="vm.location.getProducts().length > 0">
-    <div ng-repeat="product in vm.location.getProducts() |
-        limitTo:locationProductSummaryVm.limitTo
-        track by product.id"
-     class="clearfix vg-location-products--{{ product.availability }}">
-        <vg-product-list-item vg-product="product">
-    </div>
-    <div class="clearfix"></div>
-    <div
-     ng-if="vm.location.getProducts().length - vm.limitTo > 0"
-     class="small"
-    >
-        {{
-        'product.moreProducts' |
-        translate:{numProducts:
-        vm.location.getProducts().length - vm.limitTo }
-        }}
-    </div>
-</div>
+<ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
+    <li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"
+     class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
+        <vg-product-list-item vg-product="product"></vg-product-list-item>
+    </li>
+    <li ng-if="vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() track by product.id"
+     class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
+        <vg-product-list-item vg-product="product"></vg-product-list-item>
+    </li>
+</ul>
+<button
+    class="vg-location-products__more-products"
+    ng-if="vm.location.getProducts().length > vm.limit"
+    ng-click="vm.onExpandCollapseToggleClick()"
+    ng-class="{'vg-location-products__more-products--expanded': vm.isProductListExpanded}">
+    <vg-icon class="vg-location-products__more-products-icon" vg-name="'chevron-small-down'"></vg-icon>
+    <span ng-show="!vm.isProductListExpanded">
+        {{ 'product.moreProducts' | translate:{numProducts: vm.location.getProducts().length - vm.limitTo} }}
+    </span>
+    <span ng-show="vm.isProductListExpanded">
+        {{ 'product.lessProducts' | translate }}
+    </span>
+</button>

@@ -2,8 +2,8 @@
     <vg-location-header class="vg-location-details__card" vg-location="vm.location">
     </vg-location-header>
 </vg-card>
-<vg-card class="vg-location-details__card">
-    <vg-location-products vg-location="vm.location"></vg-location-products>
+<vg-card class="vg-location-details__card vg-location-details__card--products">
+    <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">
     <vg-location-map-preview vg-location="vm.location" vg-on-click="$root.goToView('map/')">

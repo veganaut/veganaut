@@ -415,7 +415,8 @@
       "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
     },
-    "moreProducts": "und {{ numProducts }} weitere Angebote"
+    "moreProducts": "{{ numProducts }} weitere Produkte anzeigen",
+    "lessProducts": "Ausblenden"
   },
   "globalSearch": {
     "title": {

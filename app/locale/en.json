@@ -415,7 +415,8 @@
       "temporarilyUnavailable": "This product is currently not available.",
       "unavailable": "This product is no longer available or was entered by mistake."
     },
-    "moreProducts": "and {{ numProducts }} more options"
+    "moreProducts": "Show {{ numProducts }} more options",
+    "lessProducts": "Hide"
   },
   "globalSearch": {
     "title": {
