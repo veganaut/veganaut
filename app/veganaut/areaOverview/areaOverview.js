@@ -11,8 +11,7 @@
         return {
             controller: areaOverviewCtrl,
             controllerAs: 'ctrl',
-            template: '<h1>Hello</h1>'
-            //templateUrl: 'areaOverview.tpl.html'
+            templateUrl: 'veganaut/areaOverview/areaOverview.tpl.html'
 
         };
     }
@@ -20,11 +19,10 @@
     function areaOverviewCtrl() {
         var $ctrl = this;
         $ctrl.$onInit = function() {
-            console.log('Test')
         };
     }
 
     // Expose as component
     angular.module('veganaut.app.main')
-        .component('vgAreaOverview', areaOverviewComponent);
+        .component('vgAreaOverview', areaOverviewComponent());
 })();

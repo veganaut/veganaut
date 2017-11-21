@@ -3,6 +3,8 @@
     background-size: cover;
     width: 100%;
     height: 47vh;
+    margin-top: -5px;
+    padding-top: 5px;
 
 }
 
@@ -10,7 +12,6 @@
     background: url("../../img/background/earth-closeup-top.svg") center;
     background-size: cover;
     width: 100%;
-    height: 47vh;
 }
 
 #area-overview-location {
@@ -30,6 +31,7 @@
 #area-location-area {
     color: @_color-teal;
 }
+
 #veganlevel-wrapper {
     padding: 10px;
     margin-top: 20px;
@@ -41,14 +43,57 @@
         color: @_color-teal;
     }
 }
+
 .tile-wrapper {
     display: flex;
     flex-direction: row;
     margin: 5px 16px;
     background-color: #fff;
-    .tile{
+    .tile {
         min-height: 150px;
         width: 50%;
+        .category-counter {
+            font-size: 12px;
+            color: @_color-teal;
+            margin-left: 90%;
+            margin-top: 15px;
+            margin-bottom: -15px;
+        }
+
+        .category-wrapper {
+            padding-top: 25px;
+            text-align: center;
+            min-height: 100px;
+            svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        hr {
+            height: 1px;
+            color: #ffffff;
+            border: none;
+            background-image: linear-gradient(to right, #ffffff, @_color-grey-light 27%, @_color-grey-light 73%, #ffffff); //background: linear-gradient(to right, #ffffff, #e6e6e6 27%, #e6e6e6 73%, #ffffff);
+        }
+        .class-show-list-wrapper {
+            p {
+                height: 30px;
+                color: @_color-teal;
+                fill: @_color-teal;
+                span {
+                    line-height: 30px;
+                    vertical-align: bottom;
+                }
+            }
+            text-align: center;
+            padding: 2px 0;
+
+            vg-icon {
+                margin-right: 5px;
+            }
+        }
+
     }
     .vertical-line {
         width: 1px;
