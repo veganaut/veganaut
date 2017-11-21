@@ -1,7 +1,18 @@
+@import '../components/locationHeader/locationHeaderComponent.less';
+@import '../components/locationProducts/locationProductsComponent.less';
+
 .vg-location-details__card {
     display: block;
 }
 
 .vg-location-details__card + .vg-location-details__card {
     margin-top: 12px;
+}
+
+.vg-location-details__card--map .vg-card > * {
+    padding: 0;
+}
+
+.vg-location-details__card--products .vg-card > * {
+    padding-bottom: 0;
 }

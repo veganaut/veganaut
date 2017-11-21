@@ -1,4 +1,13 @@
-// Styles for the averageRating component
+@import '../../less/variables.less';
+
+@vg-average-rating-icon-width: 13px;
+@vg-average-rating-icon-gutter: 2px;
+
+.vg-average-rating {
+    display: inline-block;
+    // Add min width to optimize rendering when icons are not yet loaded
+    width: @vg-average-rating-icon-width * 5 + (@vg-average-rating-icon-gutter * 4);
+}
 
 // If there is no rating, lighten the colour
 .average-rating--no-rating {
@@ -6,4 +15,30 @@
     .glyphicon-star-empty {
         color: @colorMedium;
     }
+}
+
+.vg-average-rating__icon {
+    vertical-align: middle;
+}
+
+.vg-average-rating__icon path {
+    fill: @color-text;
+}
+
+.vg-average-rating__icon svg {
+    vertical-align: top;
+}
+
+.vg-average-rating__icon:not(.vg-average-rating__icon--active) {
+    opacity: 0.1;
+}
+
+.vg-average-rating__icon .vg-icon-wrapper {
+    width: @vg-average-rating-icon-width;
+    height: 12px;
+    display: inline-block;
+}
+
+.vg-average-rating__icon + .vg-average-rating__icon {
+    margin-left: @vg-average-rating-icon-gutter;
 }

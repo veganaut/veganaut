@@ -34,6 +34,7 @@
     "serve:dev": "gulp watch",
     "serve": "npm run serve:dev",
     "watch:dev": "npm run serve:dev",
-    "watch": "npm run watch:dev"
+    "watch": "npm run watch:dev",
+    "build": "gulp production"
   }
 }
