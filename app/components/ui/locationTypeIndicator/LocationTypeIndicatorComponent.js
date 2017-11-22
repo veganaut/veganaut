@@ -31,13 +31,11 @@
 
         var icons = {
             gastronomy: 'restaurant',
-            product: 'product',
-            menu: 'menu',
-            retail: 'shopping-cart'
+            retail: 'shop'
         };
 
         vm.$onInit = function() {
-            vm.activeIcon = icons[vm.value] || 'shopping-cart';
+            vm.activeIcon = icons[vm.value] || 'shop';
             vm.ratingLabel = vm.label || '';
         };
     }
