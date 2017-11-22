@@ -430,32 +430,37 @@
   },
   "lists": {
     "area": {
-      "label": "Area",
-      "radius": "{{ radius }} around {{ place }}",
+      "radius": "In a {{ radius }} perimeter",
       "wholeWorld": "The whole world"
     },
-    "select": {
-      "gastronomy": "Restaurants",
-      "meals": "Meals",
-      "retail": "Shops",
-      "products": "Products"
+    "restaurant": {
+      "name": "Restaurants",
+      "title": "{{ count }} vegan restaurants",
+      "noResults": "No restaurants can be found in the given area.",
+      "noResultsFiltered": "All restaurants were filtered out.",
+      "showMore": "Show more restaurants"
+    },
+    "shop": {
+      "name": "Shops",
+      "title": "{{ count }} vegan shops",
+      "noResults": "No shops can be found in the given area.",
+      "noResultsFiltered": "All shops were filtered out.",
+      "showMore": "Show more shops"
+    },
+    "meal": {
+      "name": "Meals",
+      "title": "{{ count }} vegan meals",
+      "noResults": "No options were found in the given area.",
+      "noResultsFiltered": "All options were filtered out.",
+      "showMore": "Show more options"
+    },
+    "product": {
+      "name": "Products",
+      "title": "{{ count }} vegan products",
+      "noResults": "No options were found in the given area.",
+      "noResultsFiltered": "All options were filtered out.",
+      "showMore": "Show more options"
     }
-  },
-  "locationList": {
-    "title": "Locations with vegan offers",
-    "noResults": "No locations can be found in the given area.",
-    "noResultsFiltered": "All locations were filtered out.",
-    "showMore": "Show more locations",
-    "moreItemsAvailable": "Another {{ available }} locations were found.",
-    "allItemsShown": "Showing all {{ available }} found locations."
-  },
-  "productList": {
-    "title": "Vegan food and other products",
-    "noResults": "No options were found in the given area.",
-    "noResultsFiltered": "All options were filtered out.",
-    "showMore": "Show more options",
-    "moreItemsAvailable": "Another {{ available }} options were found.",
-    "allItemsShown": "Showing all {{ available }} found options."
   },
   "activeFilterSummary": {
     "label": "Active filters"

@@ -1,18 +1,19 @@
 <nav class="vg-list-select">
     <div class="vg-list-select-group"
-     ng-repeat="group in $ctrl.typeFilters"
-     ng-class="{'vg-list-select-group--active': group.indexOf($ctrl.selectedType) !== -1}">
+     ng-repeat="type in $ctrl.typeFilters"
+     ng-class="{'vg-list-select-group--active': type.indexOf($ctrl.selectedType) !== -1}">
         <div class="vg-list-select-item"
-         ng-repeat-start="type in group"
-         ng-click="$ctrl.setTypeFilter(type)"
-         ng-class="{'vg-list-select-item--active': $ctrl.selectedType === type}">
-            {{ 'lists.select.' + type | translate }}
+         ng-repeat-start="kind in $ctrl.kindFilters"
+         ng-click="$ctrl.setFilter(type, kind)"
+         ng-class="{'vg-list-select-item--active': $ctrl.selectedType === type && $ctrl.selectedKind === kind}">
+            {{ 'lists.' + $ctrl.listNames[type][kind] + '.name' | translate }}
         </div>
         <vg-icon vg-name="'chevron-big-right'" class="vg-list-select-separator" ng-repeat-end></vg-icon>
     </div>
 </nav>
 <vg-area-list
  vg-list-name="{{$ctrl.listName}}"
+ vg-list-kind="{{$ctrl.selectedKind}}"
  vg-on-load-items="$ctrl.onLoadItems(lat, lng, radius, limit, skip, addressType)"
  vg-on-open-toggle="$ctrl.onOpenToggle(item)">
 </vg-area-list>

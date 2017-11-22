@@ -1,79 +1,70 @@
-<div class="container--offset-top-box-nav">
-    <h1 class="h4">
-        {{ $ctrl.listName + '.title' | translate }}
-    </h1>
+<div class="vg-list">
+    <div class="vg-list-header">
+        <div class="vg-list-header__type-icon">
+            <vg-icon vg-name="$ctrl.listName"></vg-icon>
+        </div>
+        <div class="vg-list-header__text">
+            <h1 class="vg-list-header__title">
+                {{ 'lists.' + $ctrl.listName + '.title' | translate: {count: $ctrl.totalItems} }}
+            </h1>
 
-    <p class="list__description">
-        <strong>{{ 'lists.area.label' | translate }}:</strong>
-        <span ng-if="$ctrl.wholeWorld">
-            {{ 'lists.area.wholeWorld' | translate }}
-        </span>
-        <span ng-if="!$ctrl.wholeWorld">
-            {{ 'lists.area.radius' |
-            translate:{radius: $ctrl.displayRadius, place: $ctrl.displayName} }}
-        </span>
-    </p>
-
-    <p ng-if="$ctrl.noResultsText">
-        {{ $ctrl.noResultsText | translate }}
-    </p>
-
-    <div ng-if="$ctrl.list.length > 0">
-        <vg-accordion ng-if="$ctrl.listName === 'locationList'">
-            <vg-accordion-item
-             ng-repeat="location in $ctrl.list track by location.id"
-             vg-on-open-toggle="$ctrl.onOpenToggle({item: location, isOpen: isOpen})"
-             vg-tracking-category="locationList.location"
-             class="location-list__location"
-            >
-                <vg-accordion-item-header>
-                    <vg-location-title
-                     vg-location="location"
-                     vg-address-type="{{ $ctrl.addressType }}">
-                    </vg-location-title>
-                </vg-accordion-item-header>
-                <vg-accordion-item-body>
-                    <p ng-if="location.getShortDescription()">
-                        {{ location.getShortDescription() }}
-                    </p>
-
-                    <vg-location-product-summary
-                     vg-location="location"
-                     vg-limit-to="3">
-                    </vg-location-product-summary>
-
-                    <vg-location-visit-button vg-location="location"></vg-location-visit-button>
-                </vg-accordion-item-body>
-            </vg-accordion-item>
-        </vg-accordion>
-        <vg-product-list
-         ng-if="$ctrl.listName === 'productList'"
-         vg-products="$ctrl.list"
-         vg-address-type="{{ $ctrl.addressType }}">
-        </vg-product-list>
-
-        <div ng-show="$ctrl.totalItems > $ctrl.list.length">
-            <p>
-                {{
-                $ctrl.listName + '.moreItemsAvailable' |
-                translate:{ available: $ctrl.totalItems - $ctrl.list.length }
-                }}
+            <p class="vg-list-header__area">
+                <span ng-if="$ctrl.wholeWorld">
+                    {{ 'lists.area.wholeWorld' | translate }}
+                </span>
+                <span ng-if="!$ctrl.wholeWorld">
+                    {{ 'lists.area.radius' |
+                    translate:{radius: $ctrl.displayRadius} }} &ndash; {{ $ctrl.displayName }}
+                </span>
             </p>
 
+            <p ng-if="$ctrl.noResultsText">
+                {{ $ctrl.noResultsText | translate }}
+            </p>
+        </div>
+        <div class="vg-list-header__filter" ng-click="$ctrl.showFilterModal()">
+            <vg-icon vg-name="'sort'" class="vg-list-header__filter__icon"></vg-icon>
+        </div>
+    </div>
+
+    <div ng-if="$ctrl.list.length > 0">
+        <div class="vg-list-body">
+            <div class="vg-list-item"
+             ng-class="{'vg-list-item--location': $ctrl.isLocationKind(), 'vg-list-item--product': $ctrl.isProductKind()}"
+             ng-repeat="item in $ctrl.list track by item.id"
+             ng-click="$ctrl.onItemClick(item)">
+                <div class="vg-list-item__vegan-level" ng-if="$ctrl.isLocationKind()">
+                    <vg-location-quality-icon location="item"></vg-location-quality-icon>
+                </div>
+                <div class="vg-list-item__rating" ng-if="$ctrl.isProductKind()">
+                    <vg-average-rating
+                     average="item.rating.average"
+                     num-ratings="item.rating.numRatings">
+                    </vg-average-rating>
+                </div>
+                <div class="vg-list-item__text">
+                    <h2 class="vg-list-item__title">
+                        {{ item.name }}
+                    </h2>
+                    <div class="vg-list-item__details" ng-if="item.address">
+                        {{ item.getDisplayAddress($ctrl.addressType) }}
+                    </div>
+                </div>
+                <div class="vg-list-item__type-icon">
+                    <vg-icon vg-name="$ctrl.listName"></vg-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- TODO: replace button with auto-loading on scroll -->
+        <div ng-show="$ctrl.totalItems > $ctrl.list.length">
             <p>
                 <button type="button" class="btn btn-block btn-default"
                  ng-click="$ctrl.showMore()">
                     <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span>{{ $ctrl.listName + '.showMore' | translate }}</span>
+                    <span>{{ 'lists.' + $ctrl.listName + '.showMore' | translate }}</span>
                 </button>
             </p>
         </div>
-
-        <p ng-show="$ctrl.totalItems <= $ctrl.list.length">
-            {{
-            $ctrl.listName + '.allItemsShown' |
-            translate:{ available: $ctrl.list.length }
-            }}
-        </p>
     </div>
 </div>

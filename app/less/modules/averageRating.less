@@ -1,6 +1,7 @@
 @import '../../less/variables.less';
 
 @vg-average-rating-icon-width: 13px;
+@vg-average-rating-icon-height: 12px;
 @vg-average-rating-icon-gutter: 2px;
 
 .vg-average-rating {
@@ -19,6 +20,8 @@
 
 .vg-average-rating__icon {
     vertical-align: middle;
+    display: inline-block;
+    height: @vg-average-rating-icon-height;
 }
 
 .vg-average-rating__icon path {
@@ -35,7 +38,7 @@
 
 .vg-average-rating__icon .vg-icon-wrapper {
     width: @vg-average-rating-icon-width;
-    height: 12px;
+    height: @vg-average-rating-icon-height;
     display: inline-block;
 }
 

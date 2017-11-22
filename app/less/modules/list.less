@@ -1,0 +1,117 @@
+.vg-list {
+
+}
+
+.vg-list-header {
+    background-color: white;
+    padding: 8px @mainSidePadding;
+    box-shadow: 0 1px 3px 0 @color-shadow;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    .vg-list-header__type-icon {
+        padding-top: 8px;
+        padding-right: 13px;
+    }
+
+    .vg-list-header__type-icon svg {
+        height: 15px;
+    }
+
+    .vg-list-header__text {
+        flex-grow: 1;
+    }
+
+    .vg-list-header__title {
+        .vg-typography-display-3-strong();
+        margin-top: 8px;
+    }
+
+    .vg-list-header__area {
+        .vg-typography-display-1-strong();
+        color: @_color-teal;
+    }
+
+    .vg-list-header__filter {
+        border-left: 1px solid @_color-grey-lighter;
+        color: @_color-teal;
+        padding-left: 13px;
+        cursor: pointer;
+
+        // To center vertically
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .vg-list-header__filter__icon svg {
+            height: 12px;
+        }
+
+        .vg-list-header__filter__icon svg path {
+            fill: currentColor;
+        }
+    }
+}
+
+.vg-list-item {
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+
+    background-color: white;
+    box-shadow: 0 1px 3px 0 @color-shadow;
+    margin-top: 1px;
+    cursor: pointer;
+
+    .vg-list-item__vegan-level {
+        margin-left: 12px;
+        margin-right: 13px;
+        color: @_color-teal;
+        height: 23px;
+        width: 23px
+    }
+
+    .vg-list-item__rating {
+        margin-left: 12px;
+        margin-right: 13px;
+        margin-top: -2px;
+    }
+
+    .vg-list-item__text {
+        flex-grow: 1;
+    }
+
+    .vg-list-item__title {
+        .vg-typography-display-3();
+        margin-top: 0;
+        margin-bottom: 0.1em;
+    }
+
+    .vg-list-item__details {
+        .vg-typography-display-1();
+        color: @_color-grey;
+    }
+
+    .vg-list-item__type-icon {
+        padding-left: 5px;
+        padding-right: 16px;
+    }
+
+    .vg-list-item__type-icon svg {
+        height: 14px;
+    }
+}
+
+.vg-list-item--location {
+
+}
+
+.vg-list-item--product {
+    align-items: center;
+
+    .vg-list-item__title {
+        .vg-typography-display-2();
+        margin-bottom: 0;
+    }
+}
