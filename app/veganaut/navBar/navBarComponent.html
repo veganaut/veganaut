@@ -2,7 +2,7 @@
     <div class="navbar-inner">
         <div class="container navbar-container">
             <div class="navbar-header">
-                <div class="vg-navbar-right-side-actions">
+                <div class="vg-navbar-right-side">
                     <button type="button" class="vg-navbar-button"
                      ng-hide="$ctrl.isHomePage()"
                      ng-click="$ctrl.searchClick()">
@@ -13,10 +13,17 @@
                         <vg-icon vg-name="'hamburger'" class="vg-navbar-button__icon"></vg-icon>
                     </button>
                 </div>
-                <a href="/" class="main-logo-link" ng-hide="$ctrl.isHomePage()">
-                    <ng-include src="'img/veganaut-typo-logo.svg'" class="logo logo--main"></ng-include>
-                </a>
-                <div class="vg-navbar-center-actions">
+                <div class="vg-navbar-left-side">
+                    <button type="button" class="vg-navbar-button"
+                     ng-show="$ctrl.isHomePage()"
+                     ng-click="$ctrl.searchClick()">
+                        <vg-icon vg-name="'search'" class="vg-navbar-button__icon"></vg-icon>
+                    </button>
+                    <a href="/" class="main-logo-link" ng-hide="$ctrl.isHomePage()">
+                        <ng-include src="'img/veganaut-typo-logo.svg'" class="logo logo--main"></ng-include>
+                    </a>
+                </div>
+                <div class="vg-navbar-center">
                     <nav class="vg-navbar-view-select" ng-hide="$ctrl.isHomePage()">
                         <div class="vg-navbar-view-select-item"
                          ng-class="{'vg-navbar-view-select-item--active': $ctrl.isAreaPage()}"
