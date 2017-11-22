@@ -424,6 +424,12 @@
       "label": "Région",
       "radius": "{{ radius }} autour de {{ place }}",
       "wholeWorld": "Le monde entier"
+    },
+    "select": {
+      "gastronomy": "Restaurants",
+      "meals": "Plats",
+      "retail": "Magasins",
+      "products": "Produits"
     }
   },
   "locationList": {

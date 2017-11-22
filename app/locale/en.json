@@ -433,6 +433,12 @@
       "label": "Area",
       "radius": "{{ radius }} around {{ place }}",
       "wholeWorld": "The whole world"
+    },
+    "select": {
+      "gastronomy": "Restaurants",
+      "meals": "Meals",
+      "retail": "Shops",
+      "products": "Products"
     }
   },
   "locationList": {

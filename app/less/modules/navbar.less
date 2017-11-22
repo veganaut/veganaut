@@ -9,10 +9,16 @@
 }
 
 .navbar-header {
-    padding-top: 15px;
     height: @navbarHeight;
     line-height: 1em;
     float: none;
+    text-align: center;
+}
+
+.navbar-container .navbar-header {
+    // Overriding bootstrap
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .navbar-toggle {
@@ -20,21 +26,32 @@
     margin-bottom: 0;
 }
 
-.vg-navbar-right-side-actions {
+.vg-navbar-right-side {
     float: right;
 }
 
-.vg-navbar-center-actions {
+.vg-navbar-left-side {
+    float: left;
+}
+
+.vg-navbar-center {
     display: inline-block;
-    margin-left: 20px;
 }
 
 .vg-navbar-button {
     display: inline-block;
     border: none;
     background-color: transparent;
-    margin: 10px 10px 0 0;
-    padding: 6px 10px 3px 12px;
+    margin: 10px 10px 0 10px;
+    padding: 6px 0 3px 0;
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
 .vg-navbar-button__icon,
@@ -56,6 +73,7 @@
     width: 40px;
     height: 30px;
     border: 1px solid @_color-dark-grey;
+    background-color: white;
     border-left-width: 0;
     color: @_color-teal;
     text-align: center;

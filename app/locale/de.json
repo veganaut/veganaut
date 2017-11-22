@@ -220,7 +220,7 @@
     },
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
-      "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
+      "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet.",
       "ratings": {
         "level1": "Wenig oder keine veganen Angebote",
         "level2": "Einige wenige veganen Angebote",
@@ -433,6 +433,12 @@
       "label": "Gebiet",
       "radius": "{{ radius }} um {{ place }}",
       "wholeWorld": "Ganze Welt"
+    },
+    "select": {
+      "gastronomy": "Restaurants",
+      "meals": "Gerchite",
+      "retails": "Läden",
+      "products": "Produkte"
     }
   },
   "locationList": {

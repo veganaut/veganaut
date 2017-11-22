@@ -1,0 +1,74 @@
+.vg-list-select {
+    background-color: white;
+    padding: 7px 0 8px 0;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+
+    .vg-list-select-group {
+        height: 28px;
+        border: 1px solid @_color-blue-light;
+        border-radius: 14px;
+        padding: 0;
+    }
+
+    .vg-list-select-group--active {
+        .vg-list-select-item:not(.vg-list-select-item--active):first-child {
+            padding-right: 0;
+            border-color: transparent;
+        }
+    }
+
+    .vg-list-select-item {
+        display: inline-block;
+        .vg-typography-display-2();
+        padding: 2px 10px 2px 0;
+        height: 28px;
+        border-radius: 14px;
+        position: relative;
+        top: -1px;
+        right: -1px;
+        cursor: pointer;
+    }
+
+    .vg-list-select-item:first-child {
+        border: 1px solid @_color-blue-light;
+        padding-left: 10px;
+        right: 0;
+        left: -1px;
+    }
+
+    .vg-list-select-item--active {
+        border: 1px solid @_color-blue;
+        background-color: @_color-blue;
+        color: white;
+        padding-left: 10px;
+
+        &:first-child {
+            border-color: @_color-blue;
+        }
+    }
+
+
+    .vg-list-select-separator {
+        display: inline-block;
+        color: @_color-teal;
+        margin: 0 7px;
+    }
+
+    .vg-list-select-separator svg {
+        height: 7px;
+    }
+
+    .vg-list-select-separator svg path {
+        fill: currentColor;
+    }
+
+    .vg-list-select-separator:last-child {
+        display: none;
+    }
+}
