@@ -1,27 +1,19 @@
-@import '../../less/typography.less';
-
-.vg-map-card {
-    position: relative;
-}
-
-.vg-map-card .vg-card > * {
-    padding: 0;
-}
+@import '../../../less/typography.less';
 
     // Location detail styles
-.vg-map-card__map {
+.vg-location-map-preview__map {
     margin-bottom: 10px;
     cursor: pointer;
 }
 
 // Make the map square, see http://www.mademyday.de/css-height-equals-width-with-pure-css.html
-.vg-map-card__map::before {
+.vg-location-map-preview__map::before {
     content: "";
     display: block;
     padding-top: 50%;
 }
 
-.vg-map-card__address {
+.vg-location-map-preview__address {
     .vg-typography-display-3();
     position: absolute;
     bottom: 0;

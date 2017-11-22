@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('veganaut.app.location')
+        .module('veganaut.app')
         .component('vgLocationHeader', locationHeaderComponent());
 
     function locationHeaderComponent() {
@@ -13,12 +13,12 @@
 
                 // Which part of the address (if any) should be shown
                 // Defaults to no address shown
-                addressType: '@?vgAddressType',
+                addressType: '@?vgAddressType'
 
             },
             controller: LocationHeaderComponentController,
             controllerAs: 'vm',
-            templateUrl: '/veganaut/location/locationHeaderComponent.html'
+            templateUrl: '/veganaut/components/locationHeader/locationHeaderComponent.html'
         };
 
         return component;

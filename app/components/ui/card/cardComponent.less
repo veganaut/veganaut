@@ -1,4 +1,5 @@
-@import '../../../less/typography';
+@import '../../../less/variables.less';
+@import '../../../less/typography.less';
 
 .vg-card {
     background-color: #ffffff;
@@ -13,6 +14,6 @@
 
 .vg-card > * {
     .vg-typography-display-3();
-    padding: 16px 16px;
+    padding: @vg-card-spacing;
     display: block;
 }

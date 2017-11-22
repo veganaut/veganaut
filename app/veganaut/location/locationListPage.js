@@ -15,7 +15,6 @@
         'locationService',
         function(locationService) {
             var $ctrl = this;
-            debugger;
 
             // Expose loading the full location from the service
             $ctrl.loadFullLocation = locationService.loadFullLocation;

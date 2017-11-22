@@ -5,6 +5,8 @@
      * Directive to show a summary of the products available at a location.
      * The number of products that are shown can be set with the limitTo parameter.
      * @returns {directive}
+     * @deprecated Use locationProductSummaryComponent in veganaut/components
+     * @todo Remove with v1.0.0
      *
      * @example
      * <vg-location-product-summary
