@@ -26,40 +26,12 @@
     function ListController(backendService, locationFilterService, locationService) {
         var $ctrl = this;
 
-        $ctrl.typeFilters = [
-            'gastronomy',
-            'retail'
-        ];
-
-        $ctrl.groupFilters = [
-            'location',
-            'product'
-        ];
-
-        $ctrl.listNames = {
-            gastronomy: {
-                location: 'restaurant',
-                product: 'meal'
-            },
-            retail: {
-                location: 'shop',
-                product: 'retailProduct'
-            }
-        };
+        $ctrl.listName = 'restaurant';
 
         locationFilterService.setFiltersFromUrl();
-        $ctrl.selectedType = locationFilterService.activeFilters.type;
         $ctrl.selectedGroup = locationFilterService.activeFilters.group;
 
         $ctrl.$onInit = function() {
-            if ($ctrl.typeFilters.indexOf(locationFilterService.activeFilters.type) === -1 ||
-                $ctrl.groupFilters.indexOf(locationFilterService.activeFilters.group) === -1) {
-                // If no type or group set, switch to restaurant by default
-                $ctrl.setFilter('gastronomy', 'location');
-                // This makes the component to be loaded twice. TODO: Find a better way to do it.
-            }
-
-            $ctrl.listName = $ctrl.listNames[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
 
             switch (locationFilterService.activeFilters.group) {
             case 'location':
@@ -95,12 +67,9 @@
             }
         };
 
-        $ctrl.setFilter = function(type, group) {
-            $ctrl.selectedType = type;
-            $ctrl.selectedGroup = group;
-            locationFilterService.activeFilters.type = type;
-            locationFilterService.activeFilters.group = group;
-            locationFilterService.onFiltersChanged();
+        $ctrl.onCategoryChange = function(listName) {
+            $ctrl.listName = listName;
         };
+
     }
 })();
