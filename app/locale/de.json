@@ -430,32 +430,37 @@
   },
   "lists": {
     "area": {
-      "label": "Gebiet",
-      "radius": "{{ radius }} um {{ place }}",
+      "radius": "Im Umkreis von {{ radius }}",
       "wholeWorld": "Ganze Welt"
     },
-    "select": {
-      "gastronomy": "Restaurants",
-      "meals": "Gerchite",
-      "retails": "Läden",
-      "products": "Produkte"
+    "restaurant": {
+      "name": "Restaurants",
+      "title": "{{ count }} Vegane Restaurants",
+      "noResults": "Im angegebenen Gebiet wurden keine Restaurants gefunden.",
+      "noResultsFiltered": "Alle Restaurants wurden herausgefiltert.",
+      "showMore": "Weitere Restaurants anzeigen"
+    },
+    "shop": {
+      "name": "Läden",
+      "title": "{{ count }} Vegane Läden",
+      "noResults": "Im angegebenen Gebiet wurden keine Läden gefunden.",
+      "noResultsFiltered": "Alle Läden wurden herausgefiltert.",
+      "showMore": "Weitere Läden anzeigen"
+    },
+    "meal": {
+      "name": "Gerchite",
+      "title": "{{ count }} Vegane Gerichte",
+      "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
+      "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
+      "showMore": "Weitere Angebote anzeigen"
+    },
+    "retailProduct": {
+      "name": "Produkte",
+      "title": "{{ count }} Vegane Produkte",
+      "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
+      "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
+      "showMore": "Weitere Angebote anzeigen"
     }
-  },
-  "locationList": {
-    "title": "Locations mit veganen Angeboten",
-    "noResults": "Im angegebenen Gebiet wurden keine Locations gefunden.",
-    "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
-    "showMore": "Weitere Locations anzeigen",
-    "moreItemsAvailable": "{{ available }} weitere Locations gefunden.",
-    "allItemsShown": "Alle {{ available }} gefunden Locations werden angezeigt."
-  },
-  "productList": {
-    "title": "Veganes Essen und andere Produkte",
-    "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
-    "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
-    "showMore": "Weitere Angebote anzeigen",
-    "moreItemsAvailable": "{{ available }} weitere Angebote gefunden.",
-    "allItemsShown": "Alle {{ available }} gefunden Angebote werden angezeigt."
   },
   "tags": {
     "groups": {

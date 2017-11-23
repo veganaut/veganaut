@@ -14,7 +14,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
              */
             this.activeFilters = {
                 recent: this.INACTIVE_FILTER_VALUE.recent,
-                type: this.INACTIVE_FILTER_VALUE.type
+                type: this.INACTIVE_FILTER_VALUE.type,
+                kind: this.INACTIVE_FILTER_VALUE.kind
             };
 
             // Listen to route changes to clean up URL parameters
@@ -30,6 +31,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     if (oldFilters.recent === true && newFilters.recent !== true) {
                         $location.search('recent', undefined);
                     }
+                    if (oldFilters.kind === true && newFilters.kind !== true) {
+                        $location.search('kind', undefined);
+                    }
                 }
             });
         };
@@ -40,7 +44,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
-            type: 'anytype'
+            type: 'anytype',
+            kind: 'anykind'
         };
 
         /**
@@ -58,6 +63,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 LocationFilterService.prototype.INACTIVE_FILTER_VALUE.type,
                 'gastronomy',
                 'retail'
+            ],
+            kind: [
+                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.kind,
+                'location',
+                'product'
             ]
         };
 
@@ -96,6 +106,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Returns the kind filter value or undefined if that filter is not active.
+         * @returns {string|undefined}
+         */
+        LocationFilterService.prototype.getKindFilterValue = function() {
+            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind) {
+                return this.activeFilters.kind;
+            }
+            return undefined;
+        };
+
+        /**
          * Returns whether the current route uses the recent filter
          * @returns {boolean}
          */
@@ -118,6 +139,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Returns whether the current route uses the kind filter
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.routeHasKindFilter = function() {
+            return (
+                angular.isObject($route.current.vgFilters) &&
+                $route.current.vgFilters.kind === true
+            );
+        };
+
+        /**
          * Returns the number of active filters relevant to the current page
          * @returns {number}
          */
@@ -130,6 +162,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
             if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
                 this.routeHasTypeFilter())
+            {
+                active += 1;
+            }
+            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind &&
+                this.routeHasKindFilter())
             {
                 active += 1;
             }
@@ -161,6 +198,18 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
                 // Set the new value
                 this.activeFilters.type = typeFilter;
+            }
+
+            if ($routeParams.kind) {
+                // By default set the inactive value (if invalid value was given)
+                var kindFilter = this.INACTIVE_FILTER_VALUE.kind;
+                if (this.POSSIBLE_FILTERS.kind.indexOf($routeParams.kind) >= 0) {
+                    // Found valid location kind filter
+                    kindFilter = $routeParams.kind;
+                }
+
+                // Set the new value
+                this.activeFilters.kind = kindFilter;
             }
 
             if ($routeParams.recent) {
@@ -202,11 +251,19 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 typeFilter = this.activeFilters.type;
             }
 
+            var kindFilter;
+            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind &&
+                this.routeHasKindFilter())
+            {
+                kindFilter = this.activeFilters.kind;
+            }
+
             // Replace the url hash (without adding a new history item)
             // Can't use $route.updateParams as this will set all params, not only the ones we want
             $location.replace();
             $location.search('recent', recentFilter);
             $location.search('type', typeFilter);
+            $location.search('kind', kindFilter);
         };
 
         /**

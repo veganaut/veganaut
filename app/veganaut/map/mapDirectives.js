@@ -45,7 +45,8 @@
         return {
             restrict: 'E',
             scope: {
-                location: '='
+                location: '=',
+                size: '='
             },
             templateUrl: '/veganaut/map/vgLocationQualityIcon.tpl.html'
         };

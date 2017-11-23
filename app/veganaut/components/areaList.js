@@ -11,6 +11,7 @@
         controller: 'vgAreaListCtrl',
         bindings: {
             listName: '@vgListName',
+            listKind: '@vgListKind',
             onLoadItems: '&vgOnLoadItems',
             onOpenToggle: '&?vgOnOpenToggle'
         },
@@ -19,9 +20,9 @@
 
     var areaListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'angularPiwik',
-        'geocodeService', 'areaService', 'Area', 'locationFilterService',
+        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService',
         function($scope, $location, $routeParams, constants, angularPiwik,
-            geocodeService, areaService, Area, locationFilterService)
+            geocodeService, areaService, Area, locationFilterService, locationService)
         {
             var $ctrl = this;
 
@@ -85,6 +86,12 @@
             $ctrl.addressType = undefined;
 
             /**
+             * Locations loaded from the backend
+             * @type {LocationSet}
+             */
+            $ctrl.locationSet = locationService.getLocationSet();
+
+            /**
              * Shows the next batch of items
              */
             $ctrl.showMore = function() {
@@ -101,7 +108,30 @@
                 });
 
                 // Track it
-                angularPiwik.track($ctrl.listName, $ctrl.listName + '.showMore');
+                angularPiwik.track($ctrl.listName + 'List', $ctrl.listName + 'List.showMore');
+            };
+
+            $ctrl.showFilterModal = function() {
+                locationFilterService.showFilterModal();
+            };
+
+            $ctrl.onItemClick = function(item) {
+                if ($ctrl.listKind === 'location') {
+                    // TODO: show the location preview
+                    console.log(item);
+                }
+                else if ($ctrl.listKind === 'product') {
+                    // TODO: show the product preview
+                    console.log(item);
+                }
+            };
+
+            $ctrl.isLocationKind = function() {
+                return $ctrl.listKind === 'location';
+            };
+
+            $ctrl.isProductKind = function() {
+                return $ctrl.listKind === 'product';
             };
 
             /**
@@ -136,10 +166,10 @@
                 // Check if we found any results
                 if ($ctrl.list.length === 0) {
                     if (locationFilterService.hasActiveFilters()) {
-                        $ctrl.noResultsText = $ctrl.listName + '.noResultsFiltered';
+                        $ctrl.noResultsText = 'lists.' + $ctrl.listName + '.noResultsFiltered';
                     }
                     else {
-                        $ctrl.noResultsText = $ctrl.listName + '.noResults';
+                        $ctrl.noResultsText = 'lists.' + $ctrl.listName + '.noResults';
                     }
                 }
             };

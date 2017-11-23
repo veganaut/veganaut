@@ -1,14 +1,15 @@
 <span class="location-quality-label">
     <span ng-if="location.getRoundedQuality() > 0"
-     class="icon icon-{{ location.getRoundedQuality() }} location-quality-label__twig-icon"
      tooltip-placement="bottom"
      uib-tooltip="{{ 'location.quality.explanation' | translate }}
      {{ 'location.rating.average' | translate }}: {{ location.quality.average | number:1 }},
      {{ 'location.rating.numRatings' | translate }}: {{ location.quality.numRatings }}">
+        <vg-icon vg-name="'veganlevel-' + location.getRoundedQuality()"></vg-icon>
     </span>
     <span ng-if="location.getRoundedQuality() === 0"
-     class="glyphicon glyphicon-question-sign location-quality-label__unknown-icon"
+     class="location-quality-label__unknown-icon"
      tooltip-placement="bottom"
      uib-tooltip="{{ 'location.quality.noRatingExplanation' | translate }}">
+        <vg-icon vg-name="'questionmark'"></vg-icon>
     </span>
 </span>
