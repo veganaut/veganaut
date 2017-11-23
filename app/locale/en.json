@@ -454,7 +454,7 @@
       "noResultsFiltered": "All options were filtered out.",
       "showMore": "Show more options"
     },
-    "product": {
+    "retailProduct": {
       "name": "Products",
       "title": "{{ count }} vegan products",
       "noResults": "No options were found in the given area.",

@@ -43,7 +43,7 @@
             },
             retail: {
                 location: 'shop',
-                product: 'product'
+                product: 'retailProduct'
             }
         };
 

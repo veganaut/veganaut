@@ -445,7 +445,7 @@
       "noResultsFiltered": "Aucune offre n‘a passé le filtre.",
       "showMore": "Afficher plus d'offres"
     },
-    "product": {
+    "retailProduct": {
       "name": "Produits",
       "title": "{{ count }} produits végans",
       "noResults": "Aucune offre végane n‘a été trouvée dans la zone demandée.",
