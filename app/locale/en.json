@@ -33,7 +33,8 @@
     "ownProfile": "My profile",
     "ownProfile.edit": "Edit my profile",
     "register": "Participate",
-    "resetPassword": "Reset password"
+    "resetPassword": "Reset password",
+    "areaOverview": "Overview"
   },
   "message": {
     "new": "new",

@@ -33,7 +33,8 @@
     "ownProfile": "Mein Profil",
     "ownProfile.edit": "Mein Profil bearbeiten",
     "register": "Mitmachen",
-    "resetPassword": "Passwort neu setzen"
+    "resetPassword": "Passwort neu setzen",
+    "areaOverview": "Übersicht"
   },
   "message": {
     "new": "neu",
@@ -486,7 +487,7 @@
     "gSnacks": {
       "name": "Snacks & Zwischenverpflegung"
     },
-    "gMilk":{
+    "gMilk": {
       "name": "Pflanzenmilch"
     },
     "rfDairy": {
@@ -507,7 +508,7 @@
     "rfSupplements": {
       "name": "B12 & Nahrungsergänzung"
     },
-    "rnClothes":{
+    "rnClothes": {
       "name": "Kleider"
     },
     "rnShoes": {
@@ -547,5 +548,24 @@
   },
   "missingFeature": {
     "showMoreSearchResults": "⁠⁠⁠Entschuldigung, mehr Resultate anzeigen funktioniert noch nicht. Wir arbeiten zur Zeit an diesem Feature. Danke für dein Verständnis!"
+  },
+  "areaOverview": {
+    "subtitle1": {
+      "searched": "Veganes Angebot um {{area}}",
+      "current": "Veganes Angebot im aktuellen Kartenausschnitt"
+    },
+    "subtitle2": "{{total}} Locations im Umkreis von {{radius}}km",
+    "rating": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": ""
+    },
+    "restaurant": "Restaurant",
+    "meals": "Gerichte",
+    "stores": "Läden",
+    "products": "Produkte",
+    "showInList": "In Liste anzeigen"
   }
 }

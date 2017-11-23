@@ -1,4 +1,4 @@
-#earth-closeup-bottom {
+.earth-closeup-bottom {
     background: url("../../img/background/earth-closeup-bottom.svg") center;
     background-size: cover;
     width: 100%;
@@ -8,13 +8,36 @@
 
 }
 
-#earth-closeup-top {
+.earth-closeup-top {
     background: url("../../img/background/earth-closeup-top.svg") center;
     background-size: cover;
     width: 100%;
 }
 
-#area-overview-location {
+.return-btn {
+    margin-top: -35px;
+    float: right;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 10px;
+    border: solid 1px @_color-blue;
+    width: fit-content;
+    color: @_color-blue;
+    svg {
+        width: 9px;
+        height: 7px;
+        margin-bottom: 1px;
+        fill: @_color-blue;
+    }
+    .return-btn-content{
+        margin: 2px 6px;
+    }
+
+}
+
+.area-overview-location {
     fill: @_color-teal;
     padding-right: 5px;
 }
@@ -22,26 +45,54 @@
 .area-wrapper {
     background-color: #fff;
     padding: 10px 30px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    height: 180px;
+    @media only screen and (max-device-width: 420px) {
+        height: 190px;
+    }
+    @media only screen and (max-device-width: 320px) {
+        height: 210px;
+    }
     .h4 {
         margin-bottom: 0;
     }
+
+    .row {
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
 }
 
-#area-location-area {
+.area-wrapper-open {
+    height: 250px;
+    @media only screen and (max-device-width: 420px) {
+        height: 260px;
+    }
+    @media only screen and (max-device-width: 320px) {
+        height: 280px;
+    }
+}
+
+.area-location-area {
+    margin-top: -4px;
     color: @_color-teal;
+    margin-bottom: 12px;
 }
 
-#veganlevel-wrapper {
+.veganlevel-wrapper {
     padding: 10px;
     margin-top: 20px;
     .col-xs-2 {
         padding: 0;
     }
-    .veganlevel-number {
-        font-size: 12px;
-        color: @_color-teal;
-    }
+
+}
+
+.veganlevel-number {
+    cursor: inherit;
+    font-size: 12px;
+    color: @_color-teal;
 }
 
 .tile-wrapper {
@@ -55,9 +106,12 @@
         .category-counter {
             font-size: 12px;
             color: @_color-teal;
-            margin-left: 90%;
+            margin-left: 88%;
             margin-top: 15px;
             margin-bottom: -15px;
+            @media only screen and (max-device-width: 380px) {
+                margin-left: 82%;
+            }
         }
 
         .category-wrapper {
@@ -78,6 +132,7 @@
         }
         .class-show-list-wrapper {
             p {
+                cursor: pointer;
                 height: 30px;
                 color: @_color-teal;
                 fill: @_color-teal;
@@ -97,7 +152,125 @@
     }
     .vertical-line {
         width: 1px;
-        height: 150px;
+        height: inherit;
         background-color: @_color-grey-light;
+    }
+}
+
+.plant-disabled {
+    opacity: 0.5;
+}
+
+.vg-icon-wrapper {
+    cursor: pointer;
+}
+
+.plant-tooltip {
+    display: none;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    padding: 7px 11px;
+    margin-bottom: 15px;
+    border: 1px solid @_color-teal;
+    min-height: 60px;
+
+    &:before, &:after {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    &:before {
+        border-color: rgba(0, 168, 159, 0);
+        border-top-color: #00a89f;
+        border-width: 8px;
+        margin-left: -8px;
+    }
+
+    &:after {
+        border-color: rgba(255, 255, 255, 0);
+        border-top-color: #ffffff;
+        border-width: 6px;
+        margin-left: -6px;
+    }
+    p {
+        margin: 0;
+    }
+}
+
+.plant1-tooltip {
+    display: inline-block;
+    &:before, &:after {
+        left: calc(~"5% - 10px");
+        @media only screen and (max-device-width: 550px) {
+            left: calc(~"5% - 5px");
+        }
+        @media only screen and (max-device-width: 420px) {
+            left: 5%;
+        }
+    }
+}
+
+.plant2-tooltip {
+    display: inline-block;
+    &:before, &:after {
+        left: calc(~"22% - 10px");
+        @media only screen and (max-device-width: 550px) {
+            left: calc(~"20% - 5px");
+        }
+        @media only screen and (max-device-width: 420px) {
+            left: 22%;
+        }
+    }
+}
+
+.plant3-tooltip {
+    display: inline-block;
+    &:before, &:after {
+        left: calc(~"39% - 10px");
+        @media only screen and (max-device-width: 550px) {
+            left: calc(~"35% - 5px");
+        }
+        @media only screen and (max-device-width: 420px) {
+            left: 39%;
+        }
+    }
+}
+
+.plant4-tooltip {
+    display: inline-block;
+    &:before, &:after {
+        left: calc(~"56% - 10px");
+        @media only screen and (max-device-width: 550px) {
+            left: calc(~"50% - 5px");
+        }
+        @media only screen and (max-device-width: 420px) {
+            left: 56%;
+        }
+    }
+}
+
+.plant5-tooltip {
+    display: inline-block;
+    &:before, &:after {
+        left: calc(~"73% - 10px");
+        @media only screen and (max-device-width: 550px) {
+            left: calc(~"65% - 5px");
+        }
+        @media only screen and (max-device-width: 420px) {
+            left: 73%;
+        }
+    }
+}
+
+.plant {
+    position: relative;
+    width: 17%;
+    @media only screen and (min-device-width: 420px) and (max-device-width: 550px) {
+        width: 15%;
     }
 }
