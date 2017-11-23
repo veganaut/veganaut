@@ -103,3 +103,6 @@ The frontend unit tests use [Karma](https://github.com/karma-runner/karma) which
 started by the `./scripts/run-all.sh` script. Run the tests by accessing
 [http://localhost:9876/](http://localhost:9876/) with a browser.
 Karma will automatically rerun all your tests if you change the code.
+
+### App architecture decisions
+Here's more information about the [app architecture decisions](app/README.md).
