@@ -7,9 +7,7 @@
 
     function categorySelectorComponent() {
         var component = {
-            bindings: {
-                onChange: '&vgOnChange'
-            },
+            bindings: {},
             controller: CategorySelectorController,
             controllerAs: '$ctrl',
             templateUrl: 'components/ui/categorySelector/categorySelectorComponent.html'
@@ -19,10 +17,11 @@
     }
 
     CategorySelectorController.$inject = [
-        'locationFilterService'
+        'locationFilterService',
+        'vgCategories'
     ];
 
-    function CategorySelectorController(locationFilterService) {
+    function CategorySelectorController(locationFilterService, vgCategories) {
         var $ctrl = this;
 
         $ctrl.typeFilters = [
@@ -35,18 +34,7 @@
             'product'
         ];
 
-        $ctrl.listNames = {
-            gastronomy: {
-                location: 'restaurant',
-                product: 'meal'
-            },
-            retail: {
-                location: 'shop',
-                product: 'retailProduct'
-            }
-        };
-
-        locationFilterService.setFiltersFromUrl();
+        $ctrl.categories = vgCategories;
         $ctrl.selectedType = locationFilterService.activeFilters.type;
         $ctrl.selectedGroup = locationFilterService.activeFilters.group;
 
@@ -65,7 +53,6 @@
             locationFilterService.activeFilters.type = type;
             locationFilterService.activeFilters.group = group;
             locationFilterService.onFiltersChanged();
-            $ctrl.onChange($ctrl.listNames[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group]);
         };
     }
 })();

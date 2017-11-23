@@ -10,8 +10,6 @@
     var areaListComponent = {
         controller: 'vgAreaListCtrl',
         bindings: {
-            listName: '@vgListName',
-            listGroup: '@vgListGroup',
             onLoadItems: '&vgOnLoadItems',
             onOpenToggle: '&?vgOnOpenToggle'
         },
@@ -20,9 +18,9 @@
 
     var areaListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'angularPiwik',
-        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService',
+        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService', 'vgCategories',
         function($scope, $location, $routeParams, constants, angularPiwik,
-            geocodeService, areaService, Area, locationFilterService, locationService)
+            geocodeService, areaService, Area, locationFilterService, locationService, vgCategories)
         {
             var $ctrl = this;
 
@@ -91,6 +89,8 @@
              */
             $ctrl.locationSet = locationService.getLocationSet();
 
+            $ctrl.listName = vgCategories[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
+
             /**
              * Shows the next batch of items
              */
@@ -116,22 +116,22 @@
             };
 
             $ctrl.onItemClick = function(item) {
-                if ($ctrl.listGroup === 'location') {
+                if (locationFilterService.activeFilters.group === 'location') {
                     // TODO: show the location preview
                     console.log(item);
                 }
-                else if ($ctrl.listGroup === 'product') {
+                else if (locationFilterService.activeFilters.group === 'product') {
                     // TODO: show the product preview
                     console.log(item);
                 }
             };
 
             $ctrl.isLocationGroup = function() {
-                return $ctrl.listGroup === 'location';
+                return locationFilterService.activeFilters.group === 'location';
             };
 
             $ctrl.isProductGroup = function() {
-                return $ctrl.listGroup === 'product';
+                return locationFilterService.activeFilters.group === 'product';
             };
 
             /**

@@ -1,8 +1,6 @@
-<vg-category-selector vg-on-change="$ctrl.onCategoryChange"></vg-category-selector>
+<vg-category-selector></vg-category-selector>
 <!-- TODO: We could get rid of the areaList component by merging it with this component as this is the only place we use <vg-area-list> -->
 <vg-area-list
- vg-list-name="{{$ctrl.listName}}"
- vg-list-group="{{$ctrl.selectedGroup}}"
  vg-on-load-items="$ctrl.onLoadItems(lat, lng, radius, limit, skip, addressType)"
  vg-on-open-toggle="$ctrl.onOpenToggle(item)">
 </vg-area-list>

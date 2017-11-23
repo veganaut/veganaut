@@ -6,7 +6,7 @@
          ng-repeat-start="group in $ctrl.groupFilters"
          ng-click="$ctrl.setFilter(type, group)"
          ng-class="{'vg-category-selector-item--active': $ctrl.selectedType === type && $ctrl.selectedGroup === group}">
-            {{ 'lists.' + $ctrl.listNames[type][group] + '.name' | translate }}
+            {{ 'lists.' + $ctrl.categories[type][group] + '.name' | translate }}
         </div>
         <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
     </div>

@@ -35,6 +35,18 @@
         }
     });
 
+    // Categories
+    module.constant('vgCategories',  {
+        gastronomy: {
+            location: 'restaurant',
+            product: 'meal'
+        },
+        retail: {
+            location: 'shop',
+            product: 'retailProduct'
+        }
+    });
+
     // Some global constants
     module.constant('constants', {
         /**

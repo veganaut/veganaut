@@ -26,13 +26,9 @@
     function ListController(backendService, locationFilterService, locationService) {
         var $ctrl = this;
 
-        $ctrl.listName = 'restaurant';
-
         locationFilterService.setFiltersFromUrl();
-        $ctrl.selectedGroup = locationFilterService.activeFilters.group;
 
         $ctrl.$onInit = function() {
-
             switch (locationFilterService.activeFilters.group) {
             case 'location':
                 $ctrl.onOpenToggle = locationService.loadFullLocation;
@@ -66,10 +62,5 @@
                 break;
             }
         };
-
-        $ctrl.onCategoryChange = function(listName) {
-            $ctrl.listName = listName;
-        };
-
     }
 })();
