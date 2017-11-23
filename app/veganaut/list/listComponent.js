@@ -31,7 +31,7 @@
             'retail'
         ];
 
-        $ctrl.kindFilters = [
+        $ctrl.groupFilters = [
             'location',
             'product'
         ];
@@ -49,19 +49,19 @@
 
         locationFilterService.setFiltersFromUrl();
         $ctrl.selectedType = locationFilterService.activeFilters.type;
-        $ctrl.selectedKind = locationFilterService.activeFilters.kind;
+        $ctrl.selectedGroup = locationFilterService.activeFilters.group;
 
         $ctrl.$onInit = function() {
             if ($ctrl.typeFilters.indexOf(locationFilterService.activeFilters.type) === -1 ||
-                $ctrl.kindFilters.indexOf(locationFilterService.activeFilters.kind) === -1) {
-                // If no type or kind set, switch to restaurant by default
+                $ctrl.groupFilters.indexOf(locationFilterService.activeFilters.group) === -1) {
+                // If no type or group set, switch to restaurant by default
                 $ctrl.setFilter('gastronomy', 'location');
                 // This makes the component to be loaded twice. TODO: Find a better way to do it.
             }
 
-            $ctrl.listName = $ctrl.listNames[locationFilterService.activeFilters.type][locationFilterService.activeFilters.kind];
+            $ctrl.listName = $ctrl.listNames[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
 
-            switch (locationFilterService.activeFilters.kind) {
+            switch (locationFilterService.activeFilters.group) {
             case 'location':
                 $ctrl.onOpenToggle = locationService.loadFullLocation;
                 $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
@@ -95,11 +95,11 @@
             }
         };
 
-        $ctrl.setFilter = function(type, kind) {
+        $ctrl.setFilter = function(type, group) {
             $ctrl.selectedType = type;
-            $ctrl.selectedKind = kind;
+            $ctrl.selectedGroup = group;
             locationFilterService.activeFilters.type = type;
-            locationFilterService.activeFilters.kind = kind;
+            locationFilterService.activeFilters.group = group;
             locationFilterService.onFiltersChanged();
         };
     }

@@ -11,7 +11,7 @@
         controller: 'vgAreaListCtrl',
         bindings: {
             listName: '@vgListName',
-            listKind: '@vgListKind',
+            listGroup: '@vgListGroup',
             onLoadItems: '&vgOnLoadItems',
             onOpenToggle: '&?vgOnOpenToggle'
         },
@@ -116,22 +116,22 @@
             };
 
             $ctrl.onItemClick = function(item) {
-                if ($ctrl.listKind === 'location') {
+                if ($ctrl.listGroup === 'location') {
                     // TODO: show the location preview
                     console.log(item);
                 }
-                else if ($ctrl.listKind === 'product') {
+                else if ($ctrl.listGroup === 'product') {
                     // TODO: show the product preview
                     console.log(item);
                 }
             };
 
-            $ctrl.isLocationKind = function() {
-                return $ctrl.listKind === 'location';
+            $ctrl.isLocationGroup = function() {
+                return $ctrl.listGroup === 'location';
             };
 
-            $ctrl.isProductKind = function() {
-                return $ctrl.listKind === 'product';
+            $ctrl.isProductGroup = function() {
+                return $ctrl.listGroup === 'product';
             };
 
             /**

@@ -15,7 +15,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             this.activeFilters = {
                 recent: this.INACTIVE_FILTER_VALUE.recent,
                 type: this.INACTIVE_FILTER_VALUE.type,
-                kind: this.INACTIVE_FILTER_VALUE.kind
+                group: this.INACTIVE_FILTER_VALUE.group
             };
 
             // Listen to route changes to clean up URL parameters
@@ -31,8 +31,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     if (oldFilters.recent === true && newFilters.recent !== true) {
                         $location.search('recent', undefined);
                     }
-                    if (oldFilters.kind === true && newFilters.kind !== true) {
-                        $location.search('kind', undefined);
+                    if (oldFilters.group === true && newFilters.group !== true) {
+                        $location.search('group', undefined);
                     }
                 }
             });
@@ -45,7 +45,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
             type: 'anytype',
-            kind: 'anykind'
+            group: 'anygroup'
         };
 
         /**
@@ -64,8 +64,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'gastronomy',
                 'retail'
             ],
-            kind: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.kind,
+            group: [
+                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.group,
                 'location',
                 'product'
             ]
@@ -106,12 +106,12 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns the kind filter value or undefined if that filter is not active.
+         * Returns the group filter value or undefined if that filter is not active.
          * @returns {string|undefined}
          */
-        LocationFilterService.prototype.getKindFilterValue = function() {
-            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind) {
-                return this.activeFilters.kind;
+        LocationFilterService.prototype.getGroupFilterValue = function() {
+            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group) {
+                return this.activeFilters.group;
             }
             return undefined;
         };
@@ -139,13 +139,13 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns whether the current route uses the kind filter
+         * Returns whether the current route uses the group filter
          * @returns {boolean}
          */
-        LocationFilterService.prototype.routeHasKindFilter = function() {
+        LocationFilterService.prototype.routeHasGroupFilter = function() {
             return (
                 angular.isObject($route.current.vgFilters) &&
-                $route.current.vgFilters.kind === true
+                $route.current.vgFilters.group === true
             );
         };
 
@@ -165,8 +165,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             {
                 active += 1;
             }
-            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind &&
-                this.routeHasKindFilter())
+            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group &&
+                this.routeHasGroupFilter())
             {
                 active += 1;
             }
@@ -200,16 +200,16 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 this.activeFilters.type = typeFilter;
             }
 
-            if ($routeParams.kind) {
+            if ($routeParams.group) {
                 // By default set the inactive value (if invalid value was given)
-                var kindFilter = this.INACTIVE_FILTER_VALUE.kind;
-                if (this.POSSIBLE_FILTERS.kind.indexOf($routeParams.kind) >= 0) {
-                    // Found valid location kind filter
-                    kindFilter = $routeParams.kind;
+                var groupFilter = this.INACTIVE_FILTER_VALUE.group;
+                if (this.POSSIBLE_FILTERS.group.indexOf($routeParams.group) >= 0) {
+                    // Found valid location group filter
+                    groupFilter = $routeParams.group;
                 }
 
                 // Set the new value
-                this.activeFilters.kind = kindFilter;
+                this.activeFilters.group = groupFilter;
             }
 
             if ($routeParams.recent) {
@@ -251,11 +251,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 typeFilter = this.activeFilters.type;
             }
 
-            var kindFilter;
-            if (this.activeFilters.kind !== this.INACTIVE_FILTER_VALUE.kind &&
-                this.routeHasKindFilter())
+            var groupFilter;
+            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group &&
+                this.routeHasGroupFilter())
             {
-                kindFilter = this.activeFilters.kind;
+                groupFilter = this.activeFilters.group;
             }
 
             // Replace the url hash (without adding a new history item)
@@ -263,7 +263,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             $location.replace();
             $location.search('recent', recentFilter);
             $location.search('type', typeFilter);
-            $location.search('kind', kindFilter);
+            $location.search('group', groupFilter);
         };
 
         /**
