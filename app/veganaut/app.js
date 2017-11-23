@@ -83,14 +83,7 @@
 
             // Location list (with trailing slash for Piwik)
             $routeProvider.when('/locations/', {
-                vgRouteName: 'locationList',
-                vgFilters: {
-                    type: true,
-                    recent: true
-                },
-                template: '<vg-location-list-page></vg-location-list-page>',
-                // Don't reload when get params or hash changes
-                reloadOnSearch: false
+                redirectTo: '/list/' // location list is now in the list page. TODO: This could be removed at some point
             });
             $routeProvider.when('/location-legacy/:id', {
                 vgRouteName: 'locationLegacy',
@@ -109,13 +102,7 @@
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
             $routeProvider.when('/products', {
-                vgRouteName: 'productList',
-                vgFilters: {
-                    type: true
-                },
-                template: '<vg-product-list-page></vg-product-list-page>',
-                // Don't reload when get params or hash changes
-                reloadOnSearch: false
+                redirectTo: '/list/' // product list is now in the list page. TODO: This could be removed at some point
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
