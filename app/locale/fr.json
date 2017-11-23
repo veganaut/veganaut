@@ -539,5 +539,24 @@
   },
   "missingFeature": {
     "showMoreSearchResults": "Pardon, nous ne pouvons pas encore afficher plus de résultats. Nous sommes en train de programmer cette fonction. Merci de ta compréhension."
+  },
+  "areaOverview": {
+    "subtitle1": {
+      "searched": "Vegan offer around{{area}}",
+      "current": "Show vegan offers in the current map area"
+    },
+    "subtitle2": "{{total}} Locations around {{radius}}km",
+    "rating": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": ""
+    },
+    "restaurant": "Restaurants",
+    "meals": "Meals",
+    "stores": "Stores",
+    "products": "Products",
+    "showInList": "Show in list"
   }
 }

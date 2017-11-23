@@ -20,19 +20,19 @@
             <span>{{ 'areaOverview.subtitle2' | translate: {total: $ctrl.areaOverview.totalLocations, radius: $ctrl.areaOverview.radius} }}</span>
         </p>
         <div class="plant-tooltip" ng-class="{'plant1-tooltip': $ctrl.ratingPlants.ratingPlant1.tooltip}">
-            <p>Hello Plant 1</p>
+            <p>{{ 'areaOverview.rating.1' | translate }}</p>
         </div>
         <div class="plant-tooltip" ng-class="{'plant2-tooltip': $ctrl.ratingPlants.ratingPlant2.tooltip}">
-            <p>Hello Plant 2</p>
+            <p>{{ 'areaOverview.rating.2' | translate }}</p>
         </div>
         <div class="plant-tooltip" ng-class="{'plant3-tooltip': $ctrl.ratingPlants.ratingPlant3.tooltip}">
-            <p>Hello Plant 3</p>
+            <p>{{ 'areaOverview.rating.3' | translate }}</p>
         </div>
         <div class="plant-tooltip" ng-class="{'plant4-tooltip': $ctrl.ratingPlants.ratingPlant4.tooltip}">
-            <p>Hello Plant 4</p>
+            <p>{{ 'areaOverview.rating.4' | translate }}</p>
         </div>
         <div class="plant-tooltip" ng-class="{'plant5-tooltip': $ctrl.ratingPlants.ratingPlant5.tooltip}">
-            <p>Hello Plant 5</p>
+            <p>{{ 'areaOverview.rating.5' | translate }}</p>
         </div>
         <div class="row" class="veganlevel-wrapper">
             <div class="plant plant1" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant1.visible}">
@@ -62,13 +62,13 @@
             <div class="category-counter">{{$ctrl.areaOverview.restaurants[0]}}</div>
             <div class="category-wrapper">
                 <vg-icon class="location-svg" vg-name="'restaurant-location'"></vg-icon>
-                <h3 class="h4">Restaurant</h3>
+                <h3 class="h4">{{ 'areaOverview.restaurants' | translate }}</h3>
             </div>
             <hr>
             <div class="class-show-list-wrapper">
                 <p ng-click="$ctrl.redirectTo(1,1)">
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>In Liste anzeigen</span>
+                    <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
             </div>
         </div>
@@ -77,13 +77,13 @@
             <div class="category-counter">{{$ctrl.areaOverview.restaurants[1]}}</div>
             <div class="category-wrapper">
                 <vg-icon class="location-svg" vg-name="'meal-location'"></vg-icon>
-                <h3 class="h4">Gerichte</h3>
+                <h3 class="h4">{{ 'areaOverview.meals' | translate }}</h3>
             </div>
             <hr>
             <div class="class-show-list-wrapper">
                 <p ng-click="$ctrl.redirectTo(1,2)">
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>In Liste anzeigen</span>
+                    <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
             </div>
         </div>
@@ -96,13 +96,13 @@
             <div class="category-counter">{{$ctrl.areaOverview.stores[0]}}</div>
             <div class="category-wrapper">
                 <vg-icon class="location-svg" vg-name="'shop-location'"></vg-icon>
-                <h3 class="h4">L&auml;den</h3>
+                <h3 class="h4">{{ 'areaOverview.stores' | translate }}</h3>
             </div>
             <hr>
             <div class="class-show-list-wrapper">
                 <p ng-click="$ctrl.redirectTo(2,1)">
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>In Liste anzeigen</span>
+                    <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
             </div>
         </div>
@@ -111,13 +111,13 @@
             <div class="category-counter">{{$ctrl.areaOverview.stores[1]}}</div>
             <div class="category-wrapper">
                 <vg-icon class="location-svg" vg-name="'product-location'"></vg-icon>
-                <h3 class="h4">Produkte</h3>
+                <h3 class="h4">{{ 'areaOverview.products' | translate }}</h3>
             </div>
             <hr>
             <div class="class-show-list-wrapper">
                 <p ng-click="$ctrl.redirectTo(2,2)">
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>In Liste anzeigen</span>
+                    <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
             </div>
         </div>
