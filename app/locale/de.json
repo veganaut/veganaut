@@ -462,6 +462,9 @@
       "showMore": "Weitere Angebote anzeigen"
     }
   },
+  "activeFilterSummary": {
+    "label": "Aktive Filter"
+  },
   "tags": {
     "groups": {
       "gastronomy": "Gastro",

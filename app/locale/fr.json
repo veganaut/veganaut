@@ -132,6 +132,7 @@
     "rate": {
       "name": "Évaluer"
     },
+    "openInMapApp": "Afficher l'itinéraire dans Plans",
     "locationVisitAction": "Afficher l'endroit",
     "location": {
       "edit": "Modifier",
@@ -220,6 +221,13 @@
     "quality": {
       "explanation": "Plus de branches signifie une offre végane plus large et meilleure.",
       "noRatingExplanation": "La qualité et étendue de l'offre végane n'a pas encore été évaluée ici. Évalue-la maintenant!"
+    },
+    "ratings": {
+      "level1": "Pas d'offres véganes",
+      "level2": "Peu d'offres véganes",
+      "level3": "Bonnes offres véganes",
+      "level4": "Très bonnes offres véganes",
+      "level5": "Le top du top des offres véganes"
     },
     "effort": {
       "explanation": "S'il fait beau temps cela signifie que le personnel est intéressé et se donne de la peine à contenter les vœux végans."
@@ -407,7 +415,8 @@
       "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
       "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
     },
-    "moreProducts": "et {{ numProducts }} autres offres"
+    "moreProducts": "et {{ numProducts }} autres offres",
+    "lessProducts": "Masquer"
   },
   "globalSearch": {
     "title": {
@@ -516,6 +525,9 @@
     "rnPets": {
       "name": "aliments etc. pour animaux"
     }
+  },
+  "activeFilterSummary": {
+    "label": "Filtres actifs"
   },
   "home": {
     "tagLine": "Un guide végan participatif",
