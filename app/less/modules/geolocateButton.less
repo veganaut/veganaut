@@ -2,11 +2,11 @@
 .geolocate-button {
     position: fixed;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    bottom: 22px;
-    right: 5px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    width: 54px;
+    height: 54px;
+    bottom: 134px;
+    right: 20px;
+    box-shadow: 0 1px 3px @color-shadow;
     border: none;
 
     &.geolocate-button--locating {
@@ -14,11 +14,15 @@
         -moz-animation:spin 2s linear infinite;
         animation:spin 2s linear infinite;
     }
-
     .geolocate-button__icon {
-        font-size: 20px;
-        left: -2px;
-        top: 3px;
+        position: relative;
+        top: 2px;
+    }
+
+    .geolocate-button__icon,
+    .geolocate-button__icon svg {
+        width: 18px;
+        height: 18px;
     }
 }
 
