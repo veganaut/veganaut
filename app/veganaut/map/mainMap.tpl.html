@@ -107,6 +107,11 @@
         </vg-create-location-form>
     </vg-overlay>
 
+    <!--
+        Currently, the category selector is hidden in the embedded view.
+        TODO: Once the embedded view get redesigned, it is possible it will need to be shown.
+    -->
+    <vg-category-selector ng-if="!mainMapVm.legacyGlobals.isEmbedded"></vg-category-selector>
     <div id="mainMap" class="main-map"
      ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}">
     </div>
