@@ -1,9 +1,15 @@
 <div>
+    <!--
+        The top-box bar is currently shown only for the embedded view.
+        It will eventually get a redesign.
+        TODO: Once the redesign is done, adapt the top-box or use the <vg-category-selector>
+    -->
     <div class="top-box top-box--full-width container main-container"
+     ng-if="mainMapVm.legacyGlobals.isEmbedded"
      ng-hide="mainMapVm.locationSet.active">
         <div class="top-box--full-width__border-offset">
             <div class="btn-group--top-box">
-                <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
+                <div>
                     <a type="button" class="btn-logo btn btn-default btn-default--transparent"
                      ng-click="mainMapVm.legacyGlobals.goToView('/')">
                         <ng-include src="'img/logo/veganaut.svg'" class="logo logo--top-box"></ng-include>
