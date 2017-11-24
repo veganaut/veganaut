@@ -66,6 +66,7 @@
                 vgRouteName: 'map',
                 vgFilters: {
                     type: true,
+                    group: true,
                     recent: true
                 },
                 template: '<vg-main-map></vg-main-map>',

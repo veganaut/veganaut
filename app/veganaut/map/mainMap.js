@@ -25,11 +25,14 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'playerService', 'locationService', 'mainMapService',
+        'playerService', 'locationService', 'locationFilterService', 'mainMapService', 'vgCategories',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            playerService, locationService, mainMapService)
+            playerService, locationService, locationFilterService, mainMapService, vgCategories)
         {
             var vm = this;
+
+            // Set the filters from the URL and initiate with the currently valid area
+            locationFilterService.setFiltersFromUrl();
 
             // Expose the global methods we still need
             // TODO: find a better way to do this
@@ -114,11 +117,21 @@
                 // TODO: if not handled, should pass on the click to the map?
             };
 
+            /**
+             * Set the category based on the location filter
+             */
+            vm.setCategory = function() {
+                vm.category = vgCategories[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
+            };
+
             // Register to map changes
             // We do it directly through leaflet, because watching the center
             // provided from leaflet-directive is buggy in some cases.
             vm.map.on('moveend', informCenterChanged);
             vm.map.on('viewreset', informCenterChanged);
+
+            // Register to filters changes
+            $scope.$on('veganaut.filters.changed', vm.setCategory);
 
             // Listen to clicks on the map
             vm.map.on('click', function() {
@@ -141,6 +154,9 @@
                     vm.locationSet.abortCreateLocation();
                 }
             });
+
+            // Set the category
+            vm.setCategory();
 
             // Finally, initialise the map
             mainMapService.initialiseMap(vm.map);

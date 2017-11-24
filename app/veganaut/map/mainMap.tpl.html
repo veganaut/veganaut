@@ -112,6 +112,7 @@
         TODO: Once the embedded view get redesigned, it is possible it will need to be shown.
     -->
     <vg-category-selector ng-if="!mainMapVm.legacyGlobals.isEmbedded"></vg-category-selector>
+
     <div id="mainMap" class="main-map"
      ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}">
     </div>
@@ -127,4 +128,19 @@
      ng-if="mainMapVm.map"
      vg-map="mainMapVm.map">
     </vg-geolocate-button>
+
+    <div class="vg-map-footer">
+        <div class="vg-map-footer-text">
+            <div class="vg-map-footer-text__locations-count">
+                {{ 'lists.' + mainMapVm.category + '.title' | translate: {count: 200} }} <!-- TODO: get value for count-->
+            </div>
+            <div class="vg-map-footer-text__radius">
+                {{ 'lists.area.radius' | translate: {radius: '5.8 km'} }} <!-- TODO: get value for radius -->
+            </div>
+        </div>
+        <div class="btn btn-primary btn-small" ng-click="mainMapVm.startCreateLocation()">
+            <vg-icon vg-name="'add-location'" class="btn__icon"></vg-icon>
+            {{ 'action.createLocation.name' | translate }}
+        </div>
+    </div>
 </div>

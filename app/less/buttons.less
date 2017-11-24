@@ -107,6 +107,36 @@ button.btn {
     }
 }
 
+.btn-large {
+    height: 48px;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    border: solid 1.5px @_color-blue;
+
+    .btn__icon,
+    .btn__icon svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.btn-small {
+    min-width: 30%;
+    min-height: 30px;
+    border-radius: 5px;
+    border: solid 1.5px @_color-blue;
+    .vg-typography-display-1-strong();
+    color: white;
+    text-align: center;
+
+    .btn__icon,
+    .btn__icon svg {
+        width: 13px;
+        height: 13px;
+    }
+}
+
 button.menu-button {
     .button-variant(@colorDark; @colorLight; @colorLighter);
     border-radius: 0;
@@ -121,4 +151,13 @@ button.menu-button {
 
 .menu-button-home {
     background-color: @_color-dark-grey
+}
+
+.btn__icon {
+    position: relative;
+    top: 2px;
+}
+
+.btn__icon svg path {
+    fill: currentColor;
 }

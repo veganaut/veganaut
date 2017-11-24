@@ -26,6 +26,7 @@
     function ListController(backendService, locationFilterService, locationService) {
         var $ctrl = this;
 
+        // Set the filters from the URL and initiate with the currently valid area
         locationFilterService.setFiltersFromUrl();
 
         $ctrl.$onInit = function() {

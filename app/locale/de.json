@@ -106,7 +106,7 @@
       "description": "Registrieren um die Karte zu bearbeiten"
     },
     "createLocation": {
-      "name": "Neue Location",
+      "name": "Hinzufügen",
       "description": "Neue Location hinzufügen"
     },
     "showProductList": {
