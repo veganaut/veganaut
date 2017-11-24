@@ -282,8 +282,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.showFilterModal = function() {
             $uibModal.open({
-                template: '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>' +
-                '<vg-global-filters></vg-global-filters>',
+                template: '<vg-global-filters></vg-global-filters>' +
+                    '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
                 controller: 'vgSimpleModalCtrl',
                 controllerAs: '$ctrl',
                 bindToController: true
