@@ -121,7 +121,7 @@
              * Set the category based on the location filter
              */
             vm.setCategory = function() {
-                vm.category = vgCategories[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
+                vm.category = vgCategories[locationFilterService.getTypeFilterValue()][locationFilterService.getGroupFilterValue()];
             };
 
             // Register to map changes

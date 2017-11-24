@@ -89,7 +89,7 @@
              */
             $ctrl.locationSet = locationService.getLocationSet();
 
-            $ctrl.listName = vgCategories[locationFilterService.activeFilters.type][locationFilterService.activeFilters.group];
+            $ctrl.listName = vgCategories[locationFilterService.getTypeFilterValue()][locationFilterService.getGroupFilterValue()];
 
             /**
              * Shows the next batch of items
@@ -116,22 +116,22 @@
             };
 
             $ctrl.onItemClick = function(item) {
-                if (locationFilterService.activeFilters.group === 'location') {
+                if (locationFilterService.getGroupFilterValue() === 'location') {
                     // TODO: show the location preview
                     console.log(item);
                 }
-                else if (locationFilterService.activeFilters.group === 'product') {
+                else if (locationFilterService.getGroupFilterValue() === 'product') {
                     // TODO: show the product preview
                     console.log(item);
                 }
             };
 
             $ctrl.isLocationGroup = function() {
-                return locationFilterService.activeFilters.group === 'location';
+                return locationFilterService.getGroupFilterValue() === 'location';
             };
 
             $ctrl.isProductGroup = function() {
-                return locationFilterService.activeFilters.group === 'product';
+                return locationFilterService.getGroupFilterValue() === 'product';
             };
 
             /**

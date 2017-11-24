@@ -35,12 +35,12 @@
         ];
 
         $ctrl.categories = vgCategories;
-        $ctrl.selectedType = locationFilterService.activeFilters.type;
-        $ctrl.selectedGroup = locationFilterService.activeFilters.group;
+        $ctrl.selectedType = locationFilterService.getTypeFilterValue();
+        $ctrl.selectedGroup = locationFilterService.getGroupFilterValue();
 
         $ctrl.$onInit = function() {
-            if ($ctrl.typeFilters.indexOf(locationFilterService.activeFilters.type) === -1 ||
-                $ctrl.groupFilters.indexOf(locationFilterService.activeFilters.group) === -1) {
+            if ($ctrl.typeFilters.indexOf(locationFilterService.getTypeFilterValue()) === -1 ||
+                $ctrl.groupFilters.indexOf(locationFilterService.getGroupFilterValue()) === -1) {
                 // If no type or group set, switch to restaurant by default
                 $ctrl.setFilter('gastronomy', 'location');
                 // This makes the component to be loaded twice. TODO: Find a better way to do it.

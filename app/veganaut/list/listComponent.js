@@ -30,7 +30,7 @@
         locationFilterService.setFiltersFromUrl();
 
         $ctrl.$onInit = function() {
-            switch (locationFilterService.activeFilters.group) {
+            switch (locationFilterService.getGroupFilterValue()) {
             case 'location':
                 $ctrl.onOpenToggle = locationService.loadFullLocation;
                 $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
