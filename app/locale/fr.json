@@ -96,6 +96,7 @@
   },
   "action": {
     "cancel": "Annuler",
+    "save": "Enregistrer",
     "profile": {
       "edit": "Modifier le profil",
       "save": "Enregistrer le profil",
@@ -245,6 +246,7 @@
   },
   "globalFilters": {
     "title": "Trier par",
+    "howSorted": "Comment les résultats doivent-ils être triés?",
     "recent": {
       "title": "Filtrer par activité récente",
       "form": {
@@ -261,6 +263,15 @@
         "gastronomy": "Gastronomie",
         "retail": "Shopping"
       }
+    },
+    "veganLevel": {
+      "title": "Niveau végan"
+    },
+    "distance": {
+      "title": "Distance"
+    },
+    "lastUpdate": {
+      "title": "Dernière mise à jour"
     }
   },
   "map": {
