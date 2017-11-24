@@ -244,6 +244,7 @@
     }
   },
   "globalFilters": {
+    "title": "Sort by",
     "recent": {
       "title": "Filter for last activity",
       "form": {

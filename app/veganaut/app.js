@@ -77,7 +77,8 @@
                 vgRouteName: 'list',
                 vgFilters: {
                     type: true,
-                    group: true
+                    group: true,
+                    recent: true
                 },
                 template: '<vg-list></vg-list>'
             });
