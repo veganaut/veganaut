@@ -111,8 +111,8 @@
                 angularPiwik.track($ctrl.listName + 'List', $ctrl.listName + 'List.showMore');
             };
 
-            $ctrl.showFilterModal = function() {
-                locationFilterService.showFilterModal();
+            $ctrl.showSortModal = function() {
+                locationFilterService.showSortModal();
             };
 
             $ctrl.onItemClick = function(item) {

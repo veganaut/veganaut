@@ -2,25 +2,27 @@
     'use strict';
 
     angular
-        .module('veganaut.app.filter')
-        .component('vgGlobalFilterSelect', globalFilterSelectComponent());
+        .module('veganaut.ui')
+        .component('vgSortToggle', sortToggleComponent());
 
-    function globalFilterSelectComponent() {
+    function sortToggleComponent() {
         var component = {
             bindings: {
-                filterName: '<vgFilterName'
+                name: '<vgName',
+                active: '<vgActive',
+                onChange: '&vgOnChange'
             },
-            controller: GlobalFilterSelectController,
+            controller: SortToggleController,
             controllerAs: '$ctrl',
-            templateUrl: '/veganaut/filter/globalFilterSelectComponent.html'
+            templateUrl: '/components/ui/sortToggle/sortToggleComponent.html'
         };
 
         return component;
     }
 
-    GlobalFilterSelectController.$inject = [];
+    SortToggleController.$inject = [];
 
-    function GlobalFilterSelectController() {
+    function SortToggleController() {
         var $ctrl = this;
 
         $ctrl.icons = {
@@ -29,8 +31,8 @@
         };
 
         $ctrl.$onInit = function() {
-            switch ($ctrl.filterName) {
-            case 'veganLevel':
+            switch ($ctrl.name) {
+            case 'quality':
                 $ctrl.icons.before = 'veganlevel-5';
                 $ctrl.icons.after = 'veganlevel-1';
                 break;
@@ -43,6 +45,11 @@
                 $ctrl.icons.after = 'calendar';
                 break;
             }
+        };
+
+        $ctrl.toggle = function() {
+            $ctrl.active = !$ctrl.active;
+            $ctrl.onChange({active: $ctrl.active});
         };
     }
 })();

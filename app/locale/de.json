@@ -268,8 +268,10 @@
         "gastronomy": "Gastro",
         "retail": "Shopping"
       }
-    },
-    "veganLevel": {
+    }
+  },
+  "sortToggle": {
+    "quality": {
       "title": "Vegan level"
     },
     "distance": {

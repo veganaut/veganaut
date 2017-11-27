@@ -10,12 +10,14 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         var LocationFilterService = function() {
             /**
              * List of active filters
+             * TODO: Remove sortBy from this service as it is not an actual filter
              * @type {{}}
              */
             this.activeFilters = {
                 recent: this.INACTIVE_FILTER_VALUE.recent,
                 type: this.INACTIVE_FILTER_VALUE.type,
-                group: this.INACTIVE_FILTER_VALUE.group
+                group: this.INACTIVE_FILTER_VALUE.group,
+                sortBy: this.INACTIVE_FILTER_VALUE.sortBy
             };
 
             // Listen to route changes to clean up URL parameters
@@ -34,6 +36,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     if (oldFilters.group === true && newFilters.group !== true) {
                         $location.search('group', undefined);
                     }
+                    if (oldFilters.sortBy === true && newFilters.sortBy !== true) {
+                        $location.search('sortBy', undefined);
+                    }
                 }
             });
         };
@@ -45,7 +50,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
             type: 'anytype',
-            group: 'anygroup'
+            group: 'anygroup',
+            sortBy: 'none'
         };
 
         /**
@@ -68,6 +74,12 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 LocationFilterService.prototype.INACTIVE_FILTER_VALUE.group,
                 'location',
                 'product'
+            ],
+            sortBy: [
+                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.sortBy,
+                'quality',
+                'distance',
+                'lastUpdate'
             ]
         };
 
@@ -117,6 +129,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Returns the sort by value or undefined if that filter is not active.
+         * @returns {string|undefined}
+         */
+        LocationFilterService.prototype.getSortByValue = function() {
+            if (this.activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy) {
+                return this.activeFilters.sortBy;
+            }
+            return undefined;
+        };
+
+        /**
          * Returns whether the current route uses the recent filter
          * @returns {boolean}
          */
@@ -150,6 +173,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Returns whether the current route uses the sort by
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.routeHasSortBy = function() {
+            return (
+                angular.isObject($route.current.vgFilters) &&
+                $route.current.vgFilters.sortBy === true
+            );
+        };
+
+        /**
          * Returns the number of active filters relevant to the current page
          * @returns {number}
          */
@@ -170,6 +204,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             {
                 active += 1;
             }
+
+            // We do not count `sortBy` as an active filter because it is not an actual filter.
 
             return active;
         };
@@ -224,6 +260,18 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 this.activeFilters.recent = recentFilter;
             }
 
+            if ($routeParams.sortBy) {
+                // By default set the inactive value (if invalid value was given)
+                var sortBy = this.INACTIVE_FILTER_VALUE.sortBy;
+                if (this.POSSIBLE_FILTERS.sortBy.indexOf($routeParams.sortBy) >= 0) {
+                    // Found valid sortBy value
+                    sortBy = $routeParams.sortBy;
+                }
+
+                // Set the new value
+                this.activeFilters.sortBy = sortBy;
+            }
+
             // Update the URL to make sure it's always well-formed
             this.updateFiltersInUrl();
         };
@@ -258,12 +306,20 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 groupFilter = this.activeFilters.group;
             }
 
+            var sortByValue;
+            if (this.activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy &&
+                this.routeHasSortBy())
+            {
+                sortByValue = this.activeFilters.sortBy;
+            }
+
             // Replace the url hash (without adding a new history item)
             // Can't use $route.updateParams as this will set all params, not only the ones we want
             $location.replace();
             $location.search('recent', recentFilter);
             $location.search('type', typeFilter);
             $location.search('group', groupFilter);
+            $location.search('sortBy', sortByValue);
         };
 
         /**
@@ -294,6 +350,22 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
             // Track opening of filters
             angularPiwik.track('filters', 'filters.openModal', 'filters.openModal.' + $route.current.vgRouteName);
+        };
+
+        LocationFilterService.prototype.showSortModal = function() {
+            $uibModal.open({
+                template: '<vg-global-sort vg-on-close="$ctrl.onClose()"></vg-global-sort>' +
+                '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
+                controller: 'vgSimpleModalCtrl',
+                controllerAs: '$ctrl',
+                bindToController: true
+            }).result.finally(function() {
+                // Track closing of sort modal
+                angularPiwik.track('sort', 'sort.dismissModal');
+            });
+
+            // Track opening of list sort modal
+            angularPiwik.track('sort', 'sort.openModal', 'sort.openModal.' + $route.current.vgRouteName);
         };
 
         return new LocationFilterService();

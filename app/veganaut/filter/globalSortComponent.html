@@ -1,0 +1,19 @@
+<div class="vg-global-sort">
+    <div class="vg-global-sort-header">
+        <vg-icon vg-name="'sort'" class="vg-global-sort-header__icon"></vg-icon>
+        <h1 class="vg-global-sort-header__title">{{ 'globalFilters.title' | translate }}</h1>
+    </div>
+    <form novalidate name="filterForm" class="vg-global-sort-form">
+        <vg-sort-toggle
+         ng-repeat="sortToggle in $ctrl.sortToggles"
+         vg-name="sortToggle"
+         vg-active="sortToggle === $ctrl.activeToggle"
+         vg-on-change="$ctrl.onChange(sortToggle, active)">
+        </vg-sort-toggle>
+        <p class="vg-global-sort-form__how-sorted">{{ 'globalFilters.howSorted' | translate }}</p>
+        <button type="submit" class="btn btn-primary btn-large vg-global-sort-form__button" ng-click="$ctrl.onSave()">
+            <vg-icon vg-name="'checkmark'" class="btn__icon"></vg-icon>
+            {{ 'action.save' | translate }}
+        </button>
+    </form>
+</div>

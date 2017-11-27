@@ -1,30 +1,23 @@
-<div class="vg-global-filters">
-    <div class="vg-global-filters-header">
-        <vg-icon vg-name="'sort'" class="vg-global-filters-header__icon"></vg-icon>
-        <h1 class="vg-global-filters-header__title">{{ 'globalFilters.title' | translate }}</h1>
+<form novalidate name="filterForm" class="filter-form">
+    <div ng-if="$ctrl.locationFilterService.routeHasRecentFilter()">
+        <div><label>{{ 'globalFilters.recent.title' | translate }}</label></div>
+        <div class="btn-group form-group">
+            <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.recent"
+             ng-model="$ctrl.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
+                <vg-location-type-icon type="filter"></vg-location-type-icon>
+                {{ 'globalFilters.recent.form.' + filter | translate }}
+            </button>
+        </div>
     </div>
-    <form novalidate name="filterForm" class="vg-global-filters-form">
 
-        <!-- Hiding the "recent" filtering as it is not designed yet. Will eventually be added back. -->
-        <!--<div ng-if="$ctrl.locationFilterService.routeHasRecentFilter()">
-            <div><label>{{ 'globalFilters.recent.title' | translate }}</label></div>
-            <div class="btn-group form-group">
-                <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.recent"
-                 ng-model="$ctrl.locationFilterService.activeFilters.recent" uib-btn-radio="filter">
-                    <vg-location-type-icon type="filter"></vg-location-type-icon>
-                    {{ 'globalFilters.recent.form.' + filter | translate }}
-                </button>
-            </div>
-        </div>-->
-
-        <vg-global-filter-select vg-filter-name="'veganLevel'"></vg-global-filter-select>
-        <vg-global-filter-select vg-filter-name="'distance'"></vg-global-filter-select>
-        <vg-global-filter-select vg-filter-name="'lastUpdate'"></vg-global-filter-select>
-
-        <p class="vg-global-filters-form__how-sorted">{{ 'globalFilters.howSorted' | translate }}</p>
-        <button type="submit" class="btn btn-primary btn-large vg-global-filters-form__button">
-            <vg-icon vg-name="'checkmark'" class="btn__icon"></vg-icon>
-            {{ 'action.save' | translate }}
-        </button>
-    </form>
-</div>
+    <div ng-if="$ctrl.locationFilterService.routeHasTypeFilter()">
+        <div><label>{{ 'globalFilters.type.title' | translate }}</label></div>
+        <div class="btn-group form-group">
+            <button class="btn btn-default" ng-repeat="filter in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
+             ng-model="$ctrl.locationFilterService.activeFilters.type" uib-btn-radio="filter">
+                <vg-location-type-icon type="filter"></vg-location-type-icon>
+                {{ 'globalFilters.type.form.' + filter | translate }}
+            </button>
+        </div>
+    </div>
+</form>

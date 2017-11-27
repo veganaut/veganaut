@@ -78,7 +78,8 @@
                 vgFilters: {
                     type: true,
                     group: true,
-                    recent: true
+                    recent: true,
+                    sortBy: true
                 },
                 template: '<vg-list></vg-list>'
             });
