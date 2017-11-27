@@ -26,42 +26,11 @@
     function ListController(backendService, locationFilterService, locationService) {
         var $ctrl = this;
 
-        $ctrl.typeFilters = [
-            'gastronomy',
-            'retail'
-        ];
-
-        $ctrl.kindFilters = [
-            'location',
-            'product'
-        ];
-
-        $ctrl.listNames = {
-            gastronomy: {
-                location: 'restaurant',
-                product: 'meal'
-            },
-            retail: {
-                location: 'shop',
-                product: 'retailProduct'
-            }
-        };
-
+        // Set the filters from the URL and initiate with the currently valid area
         locationFilterService.setFiltersFromUrl();
-        $ctrl.selectedType = locationFilterService.activeFilters.type;
-        $ctrl.selectedKind = locationFilterService.activeFilters.kind;
 
         $ctrl.$onInit = function() {
-            if ($ctrl.typeFilters.indexOf(locationFilterService.activeFilters.type) === -1 ||
-                $ctrl.kindFilters.indexOf(locationFilterService.activeFilters.kind) === -1) {
-                // If no type or kind set, switch to restaurant by default
-                $ctrl.setFilter('gastronomy', 'location');
-                // This makes the component to be loaded twice. TODO: Find a better way to do it.
-            }
-
-            $ctrl.listName = $ctrl.listNames[locationFilterService.activeFilters.type][locationFilterService.activeFilters.kind];
-
-            switch (locationFilterService.activeFilters.kind) {
+            switch (locationFilterService.getGroupFilterValue()) {
             case 'location':
                 $ctrl.onOpenToggle = locationService.loadFullLocation;
                 $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
@@ -93,14 +62,6 @@
                 // Should not happen because of check at the beginning of $onInit().
                 break;
             }
-        };
-
-        $ctrl.setFilter = function(type, kind) {
-            $ctrl.selectedType = type;
-            $ctrl.selectedKind = kind;
-            locationFilterService.activeFilters.type = type;
-            locationFilterService.activeFilters.kind = kind;
-            locationFilterService.onFiltersChanged();
         };
     }
 })();

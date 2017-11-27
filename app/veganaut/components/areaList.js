@@ -10,8 +10,6 @@
     var areaListComponent = {
         controller: 'vgAreaListCtrl',
         bindings: {
-            listName: '@vgListName',
-            listKind: '@vgListKind',
             onLoadItems: '&vgOnLoadItems',
             onOpenToggle: '&?vgOnOpenToggle'
         },
@@ -20,9 +18,9 @@
 
     var areaListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'angularPiwik',
-        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService',
+        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService', 'vgCategories',
         function($scope, $location, $routeParams, constants, angularPiwik,
-            geocodeService, areaService, Area, locationFilterService, locationService)
+            geocodeService, areaService, Area, locationFilterService, locationService, vgCategories)
         {
             var $ctrl = this;
 
@@ -91,6 +89,8 @@
              */
             $ctrl.locationSet = locationService.getLocationSet();
 
+            $ctrl.listName = vgCategories[locationFilterService.getTypeFilterValue()][locationFilterService.getGroupFilterValue()];
+
             /**
              * Shows the next batch of items
              */
@@ -116,22 +116,22 @@
             };
 
             $ctrl.onItemClick = function(item) {
-                if ($ctrl.listKind === 'location') {
+                if (locationFilterService.getGroupFilterValue() === 'location') {
                     // TODO: show the location preview
                     console.log(item);
                 }
-                else if ($ctrl.listKind === 'product') {
+                else if (locationFilterService.getGroupFilterValue() === 'product') {
                     // TODO: show the product preview
                     console.log(item);
                 }
             };
 
-            $ctrl.isLocationKind = function() {
-                return $ctrl.listKind === 'location';
+            $ctrl.isLocationGroup = function() {
+                return locationFilterService.getGroupFilterValue() === 'location';
             };
 
-            $ctrl.isProductKind = function() {
-                return $ctrl.listKind === 'product';
+            $ctrl.isProductGroup = function() {
+                return locationFilterService.getGroupFilterValue() === 'product';
             };
 
             /**

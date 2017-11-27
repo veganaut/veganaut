@@ -14,6 +14,7 @@ describe('areaList.', function() {
     var geocodeService = {};
     var angularPiwik = {};
     var playerService = {};
+    var locationService = {};
     var locationFilterService = {};
 
     // Mock data returned by mock services
@@ -33,6 +34,7 @@ describe('areaList.', function() {
         $provide.value('geocodeService', geocodeService);
         $provide.value('angularPiwik', angularPiwik);
         $provide.value('playerService', playerService);
+        $provide.value('locationService', locationService);
         $provide.value('locationFilterService', locationFilterService);
     }));
 
@@ -67,9 +69,15 @@ describe('areaList.', function() {
             })
         ;
 
+        locationService.getLocationSet = jasmine.createSpy('locationService.getLocationSet');
+
         locationFilterService.setFiltersFromUrl = jasmine.createSpy('locationFilterService.setFiltersFromUrl');
         locationFilterService.hasActiveFilters = jasmine.createSpy('locationFilterService.hasActiveFilters')
             .andReturn(false);
+        locationFilterService.getTypeFilterValue = jasmine.createSpy('locationFilterService.getTypeFilterValue')
+            .andReturn('gastronomy');
+        locationFilterService.getGroupFilterValue = jasmine.createSpy('locationFilterService.getGroupFilterValue')
+            .andReturn('location');
 
         deferredQuery = $q.defer();
         onLoadItems = jasmine.createSpy('onLoadItems')
@@ -82,7 +90,6 @@ describe('areaList.', function() {
     describe('controller.', function() {
         it('basic functionality (valid params with small radius)', inject(function($controller, $q) {
             var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {
-                listName: 'testList',
                 onLoadItems: onLoadItems
             });
             expect(typeof $ctrl).toBe('object', 'could instantiate controller');
@@ -176,12 +183,11 @@ describe('areaList.', function() {
             expect($ctrl.totalItems).toBe(30, 'still the same total items');
             expect($ctrl.list[3].id).toBe('a3', 'kept the locations from the first call');
             expect($ctrl.list[24].id).toBe('a24', 'concatenated the list from the second call to the end');
-            expect(angularPiwik.track).toHaveBeenCalledWith('testList', 'testList.showMore');
+            expect(angularPiwik.track).toHaveBeenCalledWith('restaurantList', 'restaurantList.showMore');
         }));
 
         it('with big radius, no results', inject(function($controller) {
             var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {
-                listName: 'testList',
                 onLoadItems: onLoadItems
             });
 
@@ -215,7 +221,7 @@ describe('areaList.', function() {
                 items: []
             });
             $rootScope.$apply();
-            expect($ctrl.noResultsText).toBe('testList.noResults', 'declared that no results found');
+            expect($ctrl.noResultsText).toBe('lists.restaurant.noResults', 'declared that no results found');
             expect($ctrl.list.length).toBe(0, 'list is empty');
             expect($ctrl.totalItems).toBe(0, '0 total items');
 
@@ -227,7 +233,6 @@ describe('areaList.', function() {
 
         it('with whole world radius, no results', inject(function($controller) {
             var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {
-                listName: 'testList',
                 onLoadItems: onLoadItems
             });
 

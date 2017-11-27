@@ -184,6 +184,8 @@ hr {
 
 // Styles for the bootstrap modal
 .modal {
+    top: @navbarHeight;
+
     .modal-dialog {
         margin: 0 auto;
         max-width: @maxContainerWidth;
@@ -192,6 +194,16 @@ hr {
         background-color: @colorLightTranslucent;
         border: 1px solid @bootstrapGreyBorder;
         border-radius: 0;
-        padding: 10px 10px 0;
+        padding: 0 0;
+        box-shadow: 0 1px 3px 0 @color-shadow;
+    }
+}
+
+.modal-backdrop {
+    top: @navbarHeight;
+    background-color: white;
+
+    &.in {
+        opacity: .8;
     }
 }

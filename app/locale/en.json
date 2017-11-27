@@ -97,6 +97,7 @@
   },
   "action": {
     "cancel": "Cancel",
+    "save": "Save",
     "profile": {
       "edit": "Edit profile",
       "save": "Save profile",
@@ -107,7 +108,7 @@
       "description": "Register to edit the map"
     },
     "createLocation": {
-      "name": "Add location",
+      "name": "Add",
       "description": "Add new location"
     },
     "showProductList": {
@@ -245,6 +246,8 @@
     }
   },
   "globalFilters": {
+    "title": "Sort by",
+    "howSorted": "How should the results be sorted?",
     "recent": {
       "title": "Filter for last activity",
       "form": {
@@ -261,6 +264,15 @@
         "gastronomy": "Gastronomy",
         "retail": "Retail"
       }
+    },
+    "veganLevel": {
+      "title": "Vegan level"
+    },
+    "distance": {
+      "title": "Distance"
+    },
+    "lastUpdate": {
+      "title": "Last update"
     }
   },
   "map": {

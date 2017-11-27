@@ -1,3 +1,6 @@
-<div class="top-box__close clickable" ng-click="$ctrl.onDismiss()">
-    <span class="glyphicon glyphicon-remove"></span>
+<div class="vg-dismiss-modal-button" ng-click="$ctrl.onDismiss()">
+    <vg-icon vg-name="'cross-big'" class="vg-dismiss-modal-button-icon"></vg-icon>
+    <div class="vg-dismiss-modal-button-text">
+        {{ 'action.cancel' | translate }}
+    </div>
 </div>

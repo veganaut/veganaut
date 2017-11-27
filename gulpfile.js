@@ -179,6 +179,19 @@ gulp.task('serve', ['less', 'indexDev'], function() {
 
 gulp.task('watch', ['serve']);
 
+gulp.task('simple-watch', function() {
+    // Watch less
+    gulp.watch(
+        files.watchLess,
+        ['less']
+    );
+    // Watch js
+    gulp.watch(
+        [files.watchJs.concat(files.watchTemplates)],
+        ['js']
+    );
+});
+
 gulp.task('dev', ['less', 'indexDev']);
 
 gulp.task('production', ['js', 'jsLib', 'less', 'indexProduction']);

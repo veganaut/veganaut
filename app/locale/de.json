@@ -97,6 +97,7 @@
   },
   "action": {
     "cancel": "Abbrechen",
+    "save": "Speichern",
     "profile": {
       "edit": "Profil bearbeiten",
       "save": "Profil speichern",
@@ -107,7 +108,7 @@
       "description": "Registrieren um die Karte zu bearbeiten"
     },
     "createLocation": {
-      "name": "Neue Location",
+      "name": "Hinzufügen",
       "description": "Neue Location hinzufügen"
     },
     "showProductList": {
@@ -245,6 +246,8 @@
     }
   },
   "globalFilters": {
+    "title": "Sortieren nach",
+    "howSorted": "Wie sollen die Ergebnisse sortiert werden?",
     "recent": {
       "title": "Filtern nach letzter Aktivität",
       "form": {
@@ -261,6 +264,15 @@
         "gastronomy": "Gastro",
         "retail": "Shopping"
       }
+    },
+    "veganLevel": {
+      "title": "Vegan level"
+    },
+    "distance": {
+      "title": "Distanz"
+    },
+    "lastUpdate": {
+      "title": "Letzte aktualisierung"
     }
   },
   "map": {
@@ -462,6 +474,9 @@
       "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
       "showMore": "Weitere Angebote anzeigen"
     }
+  },
+  "activeFilterSummary": {
+    "label": "Aktive Filter"
   },
   "tags": {
     "groups": {

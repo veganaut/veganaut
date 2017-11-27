@@ -1,24 +1,26 @@
-.vg-list-select {
+.vg-category-selector {
     background-color: white;
-    padding: 7px 0 8px 0;
+    padding: 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    height: @categorySelectorHeight;
 
-    .vg-list-select-group {
+    .vg-category-selector-type {
         height: 28px;
         border: 1px solid @_color-blue-light;
         border-radius: 14px;
         padding: 0;
     }
 
-    .vg-list-select-group--active {
-        .vg-list-select-item:not(.vg-list-select-item--active):first-child {
+    .vg-category-selector-type--active {
+        .vg-category-selector-item:not(.vg-category-selector-item--active):first-child {
             padding-right: 0;
             border-color: transparent;
         }
     }
 
-    .vg-list-select-item {
+    .vg-category-selector-item {
         display: inline-block;
         .vg-typography-display-2();
         padding: 2px 10px 2px 0;
@@ -30,14 +32,14 @@
         cursor: pointer;
     }
 
-    .vg-list-select-item:first-child {
+    .vg-category-selector-item:first-child {
         border: 1px solid @_color-blue-light;
         padding-left: 10px;
         right: 0;
         left: -1px;
     }
 
-    .vg-list-select-item--active {
+    .vg-category-selector-item--active {
         border: 1px solid @_color-blue;
         background-color: @_color-blue;
         color: white;
@@ -49,21 +51,21 @@
     }
 
 
-    .vg-list-select-separator {
+    .vg-category-selector-separator {
         display: inline-block;
         color: @_color-teal;
         margin: 0 7px;
     }
 
-    .vg-list-select-separator svg {
+    .vg-category-selector-separator svg {
         height: 7px;
     }
 
-    .vg-list-select-separator svg path {
+    .vg-category-selector-separator svg path {
         fill: currentColor;
     }
 
-    .vg-list-select-separator:last-child {
+    .vg-category-selector-separator:last-child {
         display: none;
     }
 }

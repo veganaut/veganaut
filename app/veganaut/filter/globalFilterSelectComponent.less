@@ -1,0 +1,43 @@
+.vg-global-filter {
+    border: 1px solid @_color-grey-light;
+    border-radius: 4px;
+    padding: 9px 15px;
+    margin: 20px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vg-global-filter-name {
+    .vg-typography-display-3();
+    color: @_color-grey;
+}
+
+.vg-global-filter-icons {
+    margin-top: 2px;
+
+    .vg-global-filter-icons__icon {
+        margin-left: 10px;
+    }
+
+    .vg-global-filter-icons__icon,
+    .vg-global-filter-icons__icon svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .vg-global-filter-icons__icon svg path,
+    .vg-global-filter-icons__icon svg circle {
+        fill: @_color-teal;
+    }
+
+    .vg-global-filter-icons__icon--arrow,
+    .vg-global-filter-icons__icon--arrow svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .vg-global-filter-icons__icon--arrow svg path {
+        fill: black;
+    }
+}

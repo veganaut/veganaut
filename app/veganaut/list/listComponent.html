@@ -1,19 +1,6 @@
-<nav class="vg-list-select">
-    <div class="vg-list-select-group"
-     ng-repeat="type in $ctrl.typeFilters"
-     ng-class="{'vg-list-select-group--active': type.indexOf($ctrl.selectedType) !== -1}">
-        <div class="vg-list-select-item"
-         ng-repeat-start="kind in $ctrl.kindFilters"
-         ng-click="$ctrl.setFilter(type, kind)"
-         ng-class="{'vg-list-select-item--active': $ctrl.selectedType === type && $ctrl.selectedKind === kind}">
-            {{ 'lists.' + $ctrl.listNames[type][kind] + '.name' | translate }}
-        </div>
-        <vg-icon vg-name="'chevron-big-right'" class="vg-list-select-separator" ng-repeat-end></vg-icon>
-    </div>
-</nav>
+<vg-category-selector></vg-category-selector>
+<!-- TODO: We could get rid of the areaList component by merging it with this component as this is the only place we use <vg-area-list> -->
 <vg-area-list
- vg-list-name="{{$ctrl.listName}}"
- vg-list-kind="{{$ctrl.selectedKind}}"
  vg-on-load-items="$ctrl.onLoadItems(lat, lng, radius, limit, skip, addressType)"
  vg-on-open-toggle="$ctrl.onOpenToggle(item)">
 </vg-area-list>

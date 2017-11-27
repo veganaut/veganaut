@@ -155,10 +155,10 @@
 
 .main-map {
     position: fixed;
-    top: @navbarHeight;
+    top: @navbarHeight + @categorySelectorHeight;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: @mapFooterHeight;
     overflow: hidden;
 }
 
@@ -225,6 +225,12 @@ body.embedded .main-map {
     }
 }
 
+// Action at the bottom of a product or product list
+.product-list__bottom-action {
+    text-align: center;
+    margin-top: 10px;
+}
+
 .location-type {
     font-size: 12px;
     color: @colorMedium;
@@ -247,5 +253,29 @@ body.embedded .main-map {
     .col-xs-6 {
         padding-left: 5px;
         padding-right: 5px;
+    }
+}
+
+.vg-map-footer {
+    height: @mapFooterHeight;
+    width: 100%;
+    padding: 0 16px;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vg-map-footer-text {
+
+    .vg-map-footer-text__locations-count {
+        .vg-typography-display-1-strong();
+    }
+
+    .vg-map-footer-text__radius {
+        .vg-typography-display-1-strong();
+        color: @_color-teal;
     }
 }
