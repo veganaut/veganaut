@@ -17,7 +17,12 @@
     "bugs": "Bugreport / GitHub",
     "termsOfUse": "Conditions d'utilisation",
     "privacyPolicy": "Protection de données",
-    "imprint": "Responsables du site"
+    "imprint": "Responsables du site",
+    "language" : {
+      "de": "Deutsch",
+      "fr": "Français",
+      "en": "English"
+    }
   },
   "pageTitle": {
     "community": "Communauté",

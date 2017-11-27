@@ -17,7 +17,12 @@
     "bugs": "Bugreport / GitHub",
     "termsOfUse": "Terms of use",
     "privacyPolicy": "Privacy policy",
-    "imprint": "Site operators"
+    "imprint": "Site operators",
+    "language": {
+      "de": "Deutsch",
+      "fr": "Français",
+      "en": "English"
+    }
   },
   "pageTitle": {
     "community": "Community",
@@ -501,7 +506,7 @@
     "gSnacks": {
       "name": "Snacks & small meals"
     },
-    "gMilk":{
+    "gMilk": {
       "name": "Plant milk"
     },
     "rfDairy": {
@@ -522,7 +527,7 @@
     "rfSupplements": {
       "name": "B12 & other supplements"
     },
-    "rnClothes":{
+    "rnClothes": {
       "name": "Clothes"
     },
     "rnShoes": {

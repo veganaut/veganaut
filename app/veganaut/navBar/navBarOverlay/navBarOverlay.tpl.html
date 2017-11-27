@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="overlay-modal-top">
+        <img src="img/background/view-on-earth.svg">
+    </div>
+    <div class="overlay-modal-bottom">
+        <img src="img/background/landscape.svg">
+    </div>
+    <div class="navbar-content-overlay">
+        <div class="container overlay-container">
+            <div class="overlay-cross">
+                <vg-icon ng-click="$ctrl.closeOverlay()" vg-name="'cross-big'"></vg-icon>
+            </div>
+            <div class="overlay-logo">
+                <img ng-click="$ctrl.goToView('home')" src="img/logo/veganaut.png">
+            </div>
+            <div class="overlay-content">
+                <h1 ng-click="$ctrl.goToView('community')" class="h4">{{'navigation.community' | translate}}</h1>
+            </div>
+            <div class="overlay-content">
+                <h1 ng-click="$ctrl.goToView('me')" class="h4">{{'navigation.profile' | translate}}</h1>
+            </div>
+            <div class="overlay-content">
+                <button ng-if="!$ctrl.isLoggedIn()" class="btn btn-primary btn-overlay"
+                 type="button">
+                    <span ng-click="$ctrl.goToView('register')" class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
+                    <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
+                </button>
+                <h1 ng-click="$ctrl.logout()" ng-if="$ctrl.isLoggedIn()" class="h4">{{'navigation.logout' | translate}}</h1>
+            </div>
+            <div class="overlay-row overlay-direction-row">
+                <div class="col-xs-4 overlay-border-right">
+                    <a class="h5 overlay-row-content" href="https://blog.veganaut.net/about/" target="_blank">
+                    {{'navigation.about' | translate}}
+                    </a>
+                </div>
+                <div class="col-xs-4 overlay-border-right">
+                    <a class="h5 overlay-row-content" href="https://blog.veganaut.net/contact" target="_blank">
+                    {{'navigation.contactForm' | translate}}
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="h5 overlay-row-content"href="https://blog.veganaut.net/" target="_blank">
+                    {{'navigation.blog' | translate}}
+                    </a>
+                </div>
+            </div>
+            <div class="overlay-row overlay-direction-row">
+                <div class="col-xs-4 overlay-icons">
+                    <a title="{{'navigation.bugs'| translate}}" href="https://github.com/veganaut/veganaut/issues" target="_blank">
+                        <vg-icon vg-name="'github'"></vg-icon>
+                    </a>
+                </div>
+                <div class="col-xs-4 overlay-icons">
+                    <a title="{{'navigation.facebook'| translate}}" href="https://www.facebook.com/veganautnet" target="_blank">
+                        <vg-icon vg-name="'facebook'"></vg-icon>
+                    </a>
+                </div>
+                <div class="col-xs-4 overlay-icons">
+                    <a title="{{'navigation.twitter'| translate}}" href="https://twitter.com/veganautnet" target="_blank">
+                        <vg-icon vg-name="'twitter'"></vg-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="overlay-row overlay-direction-row" ng-controller="ChangeLocaleCtrl">
+                <div class="col-xs-4" ng-class="{'overlay-border-right':!$last}" ng-repeat="locale in availableLocales">
+                    <h2 ng-click="localeService.changeLocale(locale); $ctrl.closeOverlay()" ng-class="{'current-locale':locale === localeService.getLocale()}" class="h5 overlay-row-content">
+                        {{'navigation.language.' + locale | translate}}
+                    </h2>
+                </div>
+            </div>
+            <div class="overlay-bottom">
+                <div class="col-4">
+                    <a class="h5" href="https://blog.veganaut.net/nutzungsbedingungen/" target="_blank">
+                        {{'navigation.termsOfUse' | translate}}
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="h5" href="https://blog.veganaut.net/datenschutzerklarung/" target="_blank">
+                        {{'navigation.privacyPolicy' | translate}}
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a class="h5" href="https://blog.veganaut.net/impressum/" target="_blank">
+                        {{'navigation.imprint' | translate}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

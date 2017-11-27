@@ -1,0 +1,141 @@
+.navbar-overlay {
+    z-index: 6666;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    opacity: 1;
+}
+
+.overlay-modal-top {
+    img {
+        width: 100%;
+        opacity: 0.6;
+    }
+
+}
+
+.overlay-modal-bottom {
+    img {
+        margin-top: 45vh;
+        position: absolute;
+        width: 550px;
+        opacity: 0.6;
+        @media screen and (max-height: 1100px) {
+            position: absolute;
+            width: 550px;
+            margin-top: 60vh;
+            bottom: 0;
+        }
+    }
+}
+
+.navbar-content-overlay {
+    z-index: 6667;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+
+    .h4 {
+        cursor: pointer;
+    }
+}
+
+.overlay-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.overlay-cross {
+    padding: 30px;
+    svg {
+        float: right;
+        fill: @_color-dark-grey;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.overlay-logo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 33%;
+    @media screen and (max-width: 420px) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.overlay-content {
+    margin: 4% 12%;
+    @media screen and (max-width: 420px) {
+        margin: 2% 12%;
+    }
+
+    svg {
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.btn-overlay {
+    padding: 15px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.overlay-row {
+    margin: 8% 20%;
+    @media screen and (max-width: 420px) {
+        margin: 6% 10%;
+    }
+
+    h2 {
+        cursor: pointer
+    }
+}
+
+.overlay-row-content {
+    margin: 0;
+}
+
+.overlay-direction-row {
+    flex-direction: row;
+}
+
+.overlay-icons svg {
+    width: 25px;
+    height: 25px;
+    fill: @_color-dark-grey;
+}
+
+.current-locale {
+    text-decoration: underline;
+}
+
+.overlay-bottom {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    @media screen and (max-width: 420px) {
+        margin-top: 5px;
+        flex-direction: column
+    }
+}
+
+.col-4 {
+    width: 33.3333333%;
+    @media screen and (max-width: 420px) {
+        width: 100%;
+    }
+}
