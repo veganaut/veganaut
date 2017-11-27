@@ -33,6 +33,7 @@
 }
 
 .navbar-content-overlay {
+    overflow-y: scroll;
     z-index: 6667;
     position: fixed;
     top: 0;
@@ -124,14 +125,17 @@
 }
 
 .overlay-bottom {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     @media screen and (max-width: 420px) {
-        margin-top: 5px;
         flex-direction: column
     }
-}
+    @media screen and (max-width: 350px) {
+        margin-top: 5px;
+
+    }
+    }
 
 .col-4 {
     width: 33.3333333%;
