@@ -566,10 +566,10 @@
   },
   "areaOverview": {
     "subtitle1": {
-      "searched": "Vegan offer around{{area}}",
-      "current": "Show vegan offers in the current map area"
+      "searched": "Vegan offer around {{area}}",
+      "current": "Vegan offer in the current map section"
     },
-    "subtitle2": "{{total}} Locations around {{radius}}km",
+    "subtitle2": "{{total}} Locations within a radius of {{radius}}km",
     "rating": {
       "1": "",
       "2": "",
