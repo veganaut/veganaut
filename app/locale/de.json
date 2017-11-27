@@ -571,11 +571,11 @@
     },
     "subtitle2": "{{total}} Locations im Umkreis von {{radius}}km",
     "rating": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": ""
+      "1": "Vegan Rating 1",
+      "2": "Vegan Rating 2",
+      "3": "Vegan Rating 3",
+      "4": "Vegan Rating 4",
+      "5": "Vegan Rating 5"
     },
     "restaurants": "Restaurants",
     "meals": "Gerichte",
