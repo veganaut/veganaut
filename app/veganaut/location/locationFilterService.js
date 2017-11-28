@@ -55,6 +55,21 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Categories based on type and group.
+         * @type {{gastronomy: {location: string, product: string}, retail: {location: string, product: string}}}
+         */
+        LocationFilterService.prototype.CATEGORIES = {
+            gastronomy: {
+                location: 'restaurant',
+                product: 'meal'
+            },
+            retail: {
+                location: 'shop',
+                product: 'retailProduct'
+            }
+        };
+
+        /**
          * Possible filter options for all the available filters
          * @type {{recent: string[]}}
          */
@@ -126,6 +141,21 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 return this.activeFilters.group;
             }
             return undefined;
+        };
+
+        /**
+         * Returns the category based on the active type and group
+         * @return {string|undefined}
+         */
+        LocationFilterService.prototype.getCategoryValue = function() {
+            if (this.routeHasGroupFilter() &&
+                this.routeHasTypeFilter() &&
+                this.CATEGORIES[this.activeFilters.type]) {
+                return this.CATEGORIES[this.activeFilters.type][this.activeFilters.group];
+            }
+            else {
+                return undefined;
+            }
         };
 
         /**

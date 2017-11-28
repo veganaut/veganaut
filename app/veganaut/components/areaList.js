@@ -18,9 +18,9 @@
 
     var areaListCtrl = [
         '$scope', '$location', '$routeParams', 'constants', 'angularPiwik',
-        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService', 'vgCategories',
+        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService',
         function($scope, $location, $routeParams, constants, angularPiwik,
-            geocodeService, areaService, Area, locationFilterService, locationService, vgCategories)
+            geocodeService, areaService, Area, locationFilterService, locationService)
         {
             var $ctrl = this;
 
@@ -89,7 +89,7 @@
              */
             $ctrl.locationSet = locationService.getLocationSet();
 
-            $ctrl.listName = vgCategories[locationFilterService.getTypeFilterValue()][locationFilterService.getGroupFilterValue()];
+            $ctrl.listName = locationFilterService.getCategoryValue();
 
             /**
              * Shows the next batch of items

@@ -25,9 +25,9 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'playerService', 'locationService', 'locationFilterService', 'mainMapService', 'vgCategories',
+        'playerService', 'locationService', 'locationFilterService', 'mainMapService',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            playerService, locationService, locationFilterService, mainMapService, vgCategories)
+            playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
 
@@ -121,7 +121,7 @@
              * Set the category based on the location filter
              */
             vm.setCategory = function() {
-                vm.category = vgCategories[locationFilterService.getTypeFilterValue()][locationFilterService.getGroupFilterValue()];
+                vm.category = locationFilterService.getCategoryValue();
             };
 
             // Register to map changes

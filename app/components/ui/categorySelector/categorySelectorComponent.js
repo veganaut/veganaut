@@ -17,11 +17,10 @@
     }
 
     CategorySelectorController.$inject = [
-        'locationFilterService',
-        'vgCategories'
+        'locationFilterService'
     ];
 
-    function CategorySelectorController(locationFilterService, vgCategories) {
+    function CategorySelectorController(locationFilterService) {
         var $ctrl = this;
 
         $ctrl.typeFilters = [
@@ -34,7 +33,7 @@
             'product'
         ];
 
-        $ctrl.categories = vgCategories;
+        $ctrl.categories = locationFilterService.CATEGORIES;
         $ctrl.selectedType = locationFilterService.getTypeFilterValue();
         $ctrl.selectedGroup = locationFilterService.getGroupFilterValue();
 
