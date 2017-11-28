@@ -89,7 +89,7 @@
                 redirectTo: '/list/' // location list is now in the list page. TODO: This could be removed at some point
             });
 
-            $routeProvider.when('/area-overview/', {
+            $routeProvider.when('/area/', {
                 vgRouteName: 'areaOverview',
                 template: '<vg-area-overview></vg-area-overview>'
             });

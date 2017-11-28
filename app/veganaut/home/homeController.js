@@ -17,10 +17,10 @@
             var GEO_LOCATION_ZOOM = 15;
 
             /**
-             * Path of area-overview
+             * Path of area
              * @type {string}
              */
-            var AREA_OVERVIEW_PATH = '/area-overview/';
+            var AREA_OVERVIEW_PATH = '/area/';
 
             // Expose the global methods we still need
             // TODO: find a better way to do this

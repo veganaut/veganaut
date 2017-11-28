@@ -70,7 +70,7 @@
         };
 
         $ctrl.isAreaPage = function() {
-            return false; // TODO: update when area page is implemented
+            return $location.path() === '/area/';
         };
 
 
