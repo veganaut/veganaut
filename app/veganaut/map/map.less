@@ -233,8 +233,16 @@ body.embedded .main-map {
 
 .location-type {
     font-size: 12px;
-    color: @colorMedium;
+    color: @color-text;
     margin-right: 5px;
+
+    svg {
+        height: 14px;
+
+        path {
+            fill: currentColor;
+        }
+    }
 }
 
 .leaflet-control-attribution {

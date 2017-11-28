@@ -1,19 +1,63 @@
 // Styles for the global search page and modal
 
-.global-search {
-    // Some space at the bottom of the button-list to separate the result categories
-    .button-list {
+.vg-global-search {
+    margin: 0 @mainSidePadding;
+
+    .vg-global-search-header {
+        .vg-typography-display-3();
+        padding: 20px 0;
+        font-weight: normal;
+    }
+
+    .vg-global-search-field {
+        height: 48px;
+    }
+
+    .vg-global-search-button {
         margin-bottom: 10px;
+    }
+
+    .vg-global-search-results-title {
+        .vg-typography-display-3();
+        margin-top: 10px;
+    }
+
+    .vg-global-search-results {
+        border: 1px solid @_color-grey-light;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .vg-global-search-result {
+        .vg-typography-display-2();
+        border-bottom: 1px solid @_color-grey-light;
+        padding: 10px 0;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .vg-global-search-result:last-child {
+        border-bottom: none;
+    }
+
+    .vg-global-search-result-icon {
+        margin-right: 10px;
+    }
+
+    .vg-global-search-result-icon,
+    .vg-global-search-result-icon svg {
+        height: 11px;
+        width: 8px;
+        color: @_color-teal;
+    }
+
+    .vg-global-search-result-icon svg path,
+    .vg-global-search-result-icon svg circle {
+        fill: currentColor;
     }
 
     // If the more results button is shown, it should stick directly below the list
     .btn--more-results {
         margin-top: -10px;
-    }
-
-    // Better spacing and alignment of the switch between map and list results
-    .global-search__geo-result-switch {
-        margin-right: 5px;
-        margin-top: -3px;
     }
 }

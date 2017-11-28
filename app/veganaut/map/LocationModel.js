@@ -103,6 +103,17 @@
             };
 
             /**
+             * Icon name used for the type of location
+             * @type {{gastronomy: string, retail: string}}
+             * @private
+             */
+            Location._NAME_FOR_TYPE = {
+                // TODO: this should be a directive
+                gastronomy: 'restaurant',
+                retail: 'shop'
+            };
+
+            /**
              * Returns the CSS icon class(es) for the given location type.
              * Returns false if no valid type is given.
              * @param {string} type
@@ -115,6 +126,21 @@
                 }
                 return false;
             };
+
+            /**
+             * Returns the icon name for the given location type.
+             * Returns false if no valid type is given.
+             * @param {string} type
+             * @returns {string|boolean}
+             */
+            Location.getIconNameForType = function(type) {
+                var name = Location._NAME_FOR_TYPE[type];
+                if (angular.isString(name)) {
+                    return name;
+                }
+                return false;
+            };
+
 
             /**
              * Returns whether this location is owned by the current player

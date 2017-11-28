@@ -223,8 +223,8 @@ angular.module('veganaut.app.search').factory('searchService', [
          */
         SearchService.prototype._createModal = function() {
             return $uibModal.open({
-                template: '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>' +
-                '<vg-global-search vg-on-select="$ctrl.onClose()"></vg-global-search>',
+                template: '<vg-global-search vg-on-select="$ctrl.onClose()"></vg-global-search>' +
+                '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
                 controller: 'vgSimpleModalCtrl',
                 controllerAs: '$ctrl',
                 bindToController: true

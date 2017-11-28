@@ -32,12 +32,12 @@
                 type: '='
             },
             controller: ['$scope', 'Location', function($scope, Location) {
-                this.getClassName = function() {
-                    return Location.getIconClassForType($scope.type);
+                this.getIconName = function() {
+                    return Location.getIconNameForType($scope.type);
                 };
             }],
             controllerAs: 'locationTypeIconCtrl',
-            template: '<span ng-class="locationTypeIconCtrl.getClassName()"></span>'
+            template: '<vg-icon vg-name="locationTypeIconCtrl.getIconName()"></vg-icon>'
         };
     }]);
 

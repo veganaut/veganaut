@@ -28,6 +28,12 @@
         function($scope, $location, $translate, angularPiwik, alertService, searchService, areaService) {
             var vm = this;
 
+            /**
+             * Path of area
+             * @type {string}
+             */
+            var AREA_OVERVIEW_PATH = '/area/';
+
             // Expose the search service
             vm.searchService = searchService;
 
@@ -50,7 +56,9 @@
              */
             vm.onGeoClick = function(geoResult) {
                 // Show the are on the currently selected page type
-                areaService.showAreaOn(geoResult.area, vm.searchService.geoAction);
+                areaService.setArea(geoResult.area);
+
+                $location.path(AREA_OVERVIEW_PATH);
 
                 // Track and tell parent
                 angularPiwik.track('globalSearch', 'globalSearch.selectResult.geo');

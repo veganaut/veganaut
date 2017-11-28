@@ -44,9 +44,5 @@ describe('search.', function() {
 
         searchButton.click();
         expect(geoResults.isDisplayed()).toBe(true, 'still shows geo results');
-
-        element.all(by.css('.global-search__geo-result-switch label')).last().click();
-        geoResults.all(by.css('button')).first().click();
-        expect(browser.getCurrentUrl()).toMatch(/\/locations\/\?coords=52\.5[0-9]+,13\.3[0-9]+&radius=[0-9]+/, 'shows list of berlin');
     });
 });

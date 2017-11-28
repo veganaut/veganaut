@@ -1,29 +1,27 @@
-<div class="global-search">
+<div class="vg-global-search">
     <form novalidate name="searchForm" class="clearfix">
         <label
          for="globalSearch"
-         class="top-box__first-line">
+         class="vg-global-search-header">
             {{ 'globalSearch.title.main' | translate }}
         </label>
-        <div class="one-line-input-and-submit">
-            <div class="form-group">
-                <input
-                 type="text"
-                 class="form-control"
-                 id="globalSearch"
-                 ng-model="globalSearchVm.searchService.searchString"
-                 autocomplete="off"
-                 placeholder="{{ 'globalSearch.placeholder' | translate }}"
-                >
-            </div>
-            <button class="btn btn-default"
-             type="submit"
-             ng-disabled="!globalSearchVm.searchService.isSearchStringValid()"
-             ng-click="globalSearchVm.searchService.startSearch()">
-                <span class="glyphicon glyphicon-search"></span>
-                {{ 'globalSearch.submit' | translate }}
-            </button>
+        <div class="form-group">
+            <input
+             type="text"
+             class="form-control vg-global-search-field"
+             id="globalSearch"
+             ng-model="globalSearchVm.searchService.searchString"
+             autocomplete="off"
+             placeholder="{{ 'globalSearch.placeholder' | translate }}"
+            >
         </div>
+        <button class="btn btn-primary btn-large vg-global-search-button"
+         type="submit"
+         ng-disabled="!globalSearchVm.searchService.isSearchStringValid()"
+         ng-click="globalSearchVm.searchService.startSearch()">
+            <vg-icon vg-name="'search'" class="btn__icon"></vg-icon>
+            {{ 'globalSearch.submit' | translate }}
+        </button>
     </form>
 
     <p ng-if="globalSearchVm.searchService.noResultsFound">
@@ -31,17 +29,17 @@
     </p>
 
     <div ng-if="globalSearchVm.searchService.locationResults.length > 0">
-        <h2 class="h4">{{ 'globalSearch.title.locations' | translate }}</h2>
-        <div class="button-list location-search-results">
+        <h2 class="vg-global-search-results-title">
+            {{ 'globalSearch.title.locations' | translate }}
+        </h2>
+        <div class="location-search-results vg-global-search-results">
             <div ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
-             class="button-list__item">
-                <button class="btn btn-block button-list__item__btn"
-                 ng-click="globalSearchVm.onLocationClick(location)">
-                    <vg-location-title
-                     vg-location="location"
-                     vg-address-type="city">
-                    </vg-location-title>
-                </button>
+             class="vg-global-search-result"
+             ng-click="globalSearchVm.onLocationClick(location)">
+                <vg-location-title
+                 vg-location="location"
+                 vg-address-type="city">
+                </vg-location-title>
             </div>
         </div>
         <button class="btn btn-link btn-block btn--more-results"
@@ -52,23 +50,15 @@
     </div>
 
     <div ng-if="globalSearchVm.searchService.geoResults.length > 0">
-        <h2 class="h4">
-            <div class="btn-group global-search__geo-result-switch">
-                <label class="btn btn-default btn-sm" ng-repeat="type in ['map', 'locationList']"
-                 ng-model="globalSearchVm.searchService.geoAction" uib-btn-radio="type">
-                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_ICONS[type] }}"></span>
-                </label>
-            </div>
+        <h2 class="vg-global-search-results-title">
             {{ 'globalSearch.title.geoPlaces' | translate }}
         </h2>
-        <div class="button-list geo-search-results">
+        <div class="geo-search-results vg-global-search-results">
             <div ng-repeat="result in globalSearchVm.searchService.geoResults"
-             class="button-list__item">
-                <button class="btn btn-block button-list__item__btn"
-                 ng-click="globalSearchVm.onGeoClick(result)">
-                    <span class="glyphicon glyphicon-{{ globalSearchVm.searchService.GEO_ACTION_ICONS[globalSearchVm.searchService.geoAction] }}"></span>
-                    {{ result.getDisplayName() }}
-                </button>
+             class="vg-global-search-result"
+             ng-click="globalSearchVm.onGeoClick(result)">
+                <vg-icon vg-name="'location'" class="vg-global-search-result-icon"></vg-icon>
+                {{ result.getDisplayName() }}
             </div>
         </div>
         <button class="btn btn-link btn-block btn--more-results"
