@@ -180,14 +180,16 @@
             var loadItems = function() {
                 // Note: we don't reset the list here, as it's nicer when the list stays
                 // rendered when filters are applied.
-                $ctrl.onLoadItems({
-                    lat: lastParams.lat,
-                    lng: lastParams.lng,
-                    radius: lastParams.radius,
-                    limit: NUM_ITEMS_SHOWN_STEP,
-                    skip: 0,
-                    addressType: $ctrl.addressType
-                }).then(compileList);
+                if ($ctrl.onLoadItems) {
+                    $ctrl.onLoadItems({
+                        lat: lastParams.lat,
+                        lng: lastParams.lng,
+                        radius: lastParams.radius,
+                        limit: NUM_ITEMS_SHOWN_STEP,
+                        skip: 0,
+                        addressType: $ctrl.addressType
+                    }).then(compileList);
+                }
             };
 
             // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
