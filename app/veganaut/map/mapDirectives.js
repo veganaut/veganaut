@@ -36,8 +36,8 @@
                     return Location.getIconNameForType($scope.type);
                 };
             }],
-            controllerAs: 'locationTypeIconCtrl',
-            template: '<vg-icon vg-name="locationTypeIconCtrl.getIconName()"></vg-icon>'
+            controllerAs: '$ctrl',
+            template: '<vg-icon ng-if="$ctrl.getIconName()" vg-name="$ctrl.getIconName()"></vg-icon>'
         };
     }]);
 
