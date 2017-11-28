@@ -20,9 +20,9 @@ angular.module('veganaut.app.main').factory('areaService', [
          * @type {{}}
          */
         var AREA_PAGE_INFOS = {
+            area: '/area/',
             map: '/map/',
-            locationList: '/locations/',
-            productList: '/products/'
+            list: '/list/'
         };
 
         /**

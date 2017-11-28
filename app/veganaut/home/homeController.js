@@ -16,12 +16,6 @@
              */
             var GEO_LOCATION_ZOOM = 15;
 
-            /**
-             * Path of area
-             * @type {string}
-             */
-            var AREA_OVERVIEW_PATH = '/area/';
-
             // Expose the global methods we still need
             // TODO: find a better way to do this
             vm.legacyGlobals = {
@@ -120,9 +114,9 @@
              * Will go to the selected area on the map or list.
              * @param {string} targetPage 'locationList' or 'map'
              */
-            vm.onCtaSubmit = function() {
-
-                $location.path(AREA_OVERVIEW_PATH);
+            vm.onCtaSubmit = function(targetPage) {
+                // Show the area on the given page
+                areaService.showAreaOn(targetArea, targetPage);
 
                 // Track the submission
                 angularPiwik.track(
