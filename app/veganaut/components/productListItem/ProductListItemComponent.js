@@ -24,8 +24,13 @@
     function ProductListItemComponentController() {
         var vm = this;
 
+        vm.isProductListExpanded = false;
+
         vm.$onInit = function() {
 
+        };
+        vm.onExpandCollapseToggleClick = function() {
+            vm.isProductListExpanded = !vm.isProductListExpanded;
         };
     }
 })();

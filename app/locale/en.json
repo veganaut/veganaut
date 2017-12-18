@@ -140,6 +140,7 @@
     },
     "locationVisitAction": "View location",
     "openInMapApp": "Open route in Maps",
+    "close": "Close",
     "location": {
       "edit": "Edit location",
       "editAsAnonymous": "Edit",
@@ -173,6 +174,7 @@
     "totalPeople": "Veganauts"
   },
   "location": {
+    "rate": "",
     "form": {
       "new": {
         "type": "What type of location would you like to add?",
@@ -207,7 +209,13 @@
     },
     "rating": {
       "average": "Average",
-      "numRatings": "Ratings"
+      "numRatings": "Ratings",
+      "noRating": "Keine Bewertung vorhanden.",
+      "1": "Vegan Rating 1",
+      "2": "Vegan Rating 2",
+      "3": "Vegan Rating 3",
+      "4": "Vegan Rating 4",
+      "5": "Vegan Rating 5"
     },
     "products": {
       "title": "Vegan products",
@@ -435,7 +443,8 @@
       "unavailable": "This product is no longer available or was entered by mistake."
     },
     "moreProducts": "Show {{ numProducts }} more options",
-    "lessProducts": "Hide"
+    "lessProducts": "Hide",
+    "rate": "Angebot bewerten"
   },
   "globalSearch": {
     "title": {

@@ -1,9 +1,4 @@
-<h2 class="vg-location-products__title">
-    <vg-icon vg-name="'meal'" class="vg-location-products__title-icon"></vg-icon>
-    <span class="vg-location-products__title-text">
-        {{ 'location.products.title' | translate }}
-    </span>
-</h2>
+
 <ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
     <li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"
      class="vg-location-products__list-item vg-location-products--{{ product.availability }}">

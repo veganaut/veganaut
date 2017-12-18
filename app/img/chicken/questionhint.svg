@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="35" viewBox="0 0 32 35">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#231F20" d="M15.204 29.923A13.989 13.989 0 0 1 12 29.264l-5.874 3.448c-.426.277-.875-.327-.631-.81l2.052-5.1c-3.456-2.945-5.465-7.522-5.034-12.45C3.206 6.427 9.995.544 17.715 1.22c7.721.676 13.385 7.648 12.692 15.572-.694 7.924-7.482 13.806-15.203 13.131z"/>
+        <text fill="#FFF" font-family="SourceSansPro-Bold, Source Sans Pro" font-size="20.02" font-weight="bold" transform="translate(2.057)">
+            <tspan x="10.337" y="22.877">?</tspan>
+        </text>
+    </g>
+</svg>

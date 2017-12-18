@@ -1,8 +1,20 @@
 <vg-card class="vg-location-details__card">
+    {{vm.location}}
     <vg-location-header class="vg-location-details__card" vg-location="vm.location">
     </vg-location-header>
 </vg-card>
+<vg-card class="vg-location-details__card">
+    <vg-location-rating-chick>
+    </vg-location-rating-chick>
+</vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--products">
+    <h2 class="vg-location-products__title">
+        <vg-icon vg-name="'meal'" class="vg-location-products__title-icon"></vg-icon>
+        <span class="vg-location-products__title-text">
+    {{ 'location.products.title' | translate }}
+    </span>
+    </h2>
+    <vg-location-tags vg-tags="vm.location.getSortedTags()" vg-limit="1"></vg-location-tags>
     <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">

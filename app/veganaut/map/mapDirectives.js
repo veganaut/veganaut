@@ -105,7 +105,6 @@
                 for (var i = 0; i < maxRating; i++) {
                     stars.push({
                         id: i,
-                        icon: '', // Old/Obsolete. TODO: Remove with v1.0.0
                         state: 0 // New
                     });
                 }

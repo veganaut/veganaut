@@ -8,22 +8,13 @@
         track by product.id"
      class="clearfix product--{{ product.availability }}"
     >
-        {{ product.name }}
         <vg-average-rating
-         class="pull-right"
          average="product.rating.average"
          num-ratings="product.rating.numRatings">
         </vg-average-rating>
-    </div>
-    <div class="clearfix"></div>
-    <div
-     ng-if="locationProductSummaryVm.location.getProducts().length - locationProductSummaryVm.limitTo > 0"
-     class="small"
-    >
-        {{
-        'product.moreProducts' |
-        translate:{numProducts:
-        locationProductSummaryVm.location.getProducts().length - locationProductSummaryVm.limitTo }
-        }}
+        <div class="product-description">
+            {{ product.name }}
+        </div>
+
     </div>
 </div>

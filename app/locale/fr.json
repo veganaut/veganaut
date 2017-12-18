@@ -140,6 +140,7 @@
     },
     "openInMapApp": "Afficher l'itinéraire dans Plans",
     "locationVisitAction": "Afficher l'endroit",
+    "close": "",
     "location": {
       "edit": "Modifier",
       "editAsAnonymous": "Modifier",
@@ -173,6 +174,7 @@
     "totalPeople": "Véganautes"
   },
   "location": {
+    "rate": "",
     "form": {
       "new": {
         "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
@@ -207,7 +209,13 @@
     },
     "rating": {
       "average": "Moyenne",
-      "numRatings": "Évaluations"
+      "numRatings": "Évaluations",
+      "noRating": "Keine Bewertung vorhanden.",
+      "1": "Vegan Rating 1",
+      "2": "Vegan Rating 2",
+      "3": "Vegan Rating 3",
+      "4": "Vegan Rating 4",
+      "5": "Vegan Rating 5"
     },
     "products": {
       "title": "Produits végans",
@@ -435,7 +443,8 @@
       "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
     },
     "moreProducts": "et {{ numProducts }} autres offres",
-    "lessProducts": "Masquer"
+    "lessProducts": "Masquer",
+    "rate": "Angebot bewerten"
   },
   "globalSearch": {
     "title": {

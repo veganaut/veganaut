@@ -52,49 +52,9 @@
 
     <div class="top-box container main-container" ng-show="mainMapVm.locationSet.active">
         <div class="location-details" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
-            <div class="pull-right clickable" ng-click="mainMapVm.locationSet.activate()">
-                <span class="glyphicon glyphicon-remove"></span>
-            </div>
-            <p>
-                <strong>
-                    <vg-location-title
-                     vg-location="mainMapVm.locationSet.active"
-                     vg-address-type="{{ mainMapVm.addressType }}"
-                     vg-icons-right="false">
-                    </vg-location-title>
-                </strong>
-            </p>
+            <vg-location-pane vg-location="mainMapVm.locationSet.active" vg-parent-vm="mainMapVm">
 
-            <p ng-if="mainMapVm.locationSet.active.getShortDescription()">
-                {{ mainMapVm.locationSet.active.getShortDescription() }}
-            </p>
-
-            <vg-location-product-summary
-             vg-location="mainMapVm.locationSet.active"
-             vg-limit-to="1">
-            </vg-location-product-summary>
-
-            <div class="row mark-favourite-mock" ng-show="mainMapVm.locationSet.active.id"
-             ng-if="mainMapVm.legacyGlobals.isEmbedded && !mainMapVm.legacyGlobals.isLoggedIn()">
-                <p class="col-xs-6">
-                    <button type="button" class="btn btn-block btn-primary"
-                     ng-click="mainMapVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.locationPreviewRate'">
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span>{{ 'action.rate.name' | translate }}</span>
-                    </button>
-                </p>
-                <p class="col-xs-6">
-                    <vg-location-visit-button
-                     vg-location="mainMapVm.locationSet.active"
-                     vg-is-primary="false">
-                    </vg-location-visit-button>
-                </p>
-            </div>
-
-            <p ng-show="mainMapVm.locationSet.active.id"
-             ng-if="!mainMapVm.legacyGlobals.isEmbedded || mainMapVm.legacyGlobals.isLoggedIn()">
-                <vg-location-visit-button vg-location="mainMapVm.locationSet.active"></vg-location-visit-button>
-            </p>
+            </vg-location-pane>
         </div>
     </div>
 

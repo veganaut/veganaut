@@ -1,14 +1,20 @@
-<span class="location-title">
+<div class="location-title">
     <div class="location-title__icon-before">
         <vg-location-quality-icon location="locationTitleVm.location"></vg-location-quality-icon>
     </div>
-    {{ locationTitleVm.location.name }}
-    <span ng-if="locationTitleVm.location.getDisplayAddress(locationTitleVm.addressType)"
-     class="location-title__address small">
-        - {{ locationTitleVm.location.getDisplayAddress(locationTitleVm.addressType) }}
-    </span>
-    <span class="location-title__icons"
-     ng-class="{ 'pull-right': locationTitleVm.showIconsRight() }">
-        <vg-location-type-badge location="locationTitleVm.location"></vg-location-type-badge>
-    </span>
-</span>
+    <div class="location-content">
+        <h1>{{ locationTitleVm.location.name }}
+            <span class="location-title__icons"
+             ng-class="{ 'pull-right': locationTitleVm.showIconsRight() }">
+            <vg-location-type-badge location="locationTitleVm.location"></vg-location-type-badge>
+            </span>
+        </h1>
+
+        <div ng-if="locationTitleVm.location.getRoundedQuality() > 0">
+            {{'location.rating.' + locationTitleVm.location.getRoundedQuality() | translate}}
+        </div>
+        <div ng-if="locationTitleVm.location.getRoundedQuality() === 0">
+            {{'location.rating.noRating' | translate}}
+        </div>
+    </div>
+</div>

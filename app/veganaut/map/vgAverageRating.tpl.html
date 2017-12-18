@@ -1,5 +1,5 @@
-<span class="vg-average-rating" ng-class="{ 'average-rating--no-rating': (average === 0) }"
+<div class="vg-average-rating" ng-class="{ 'average-rating--no-rating': (average === 0) }"
  uib-tooltip="{{ 'location.rating.average' | translate }}: {{ average | number:1 }},
  {{ 'location.rating.numRatings' | translate }}: {{ numRatings }}">
-    <vg-icon vg-name="'star'"  class="vg-average-rating__icon" ng-repeat="star in getStars() track by star.id" ng-class="{'vg-average-rating__icon--active': star.status === 1}"></vg-icon>
-</span>
+    <vg-icon vg-name="'star'"  class="vg-average-rating__icon" ng-repeat="star in getStars() track by star.id" ng-class="{'vg-average-rating__icon--active': star.state === 1}"></vg-icon>
+</div>

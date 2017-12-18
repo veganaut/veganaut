@@ -1,4 +1,9 @@
 <div class="vg-product-list-item">
+    <vg-icon
+     ng-click="vm.onExpandCollapseToggleClick()"
+     ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}"
+     class="location-details-chevron" vg-name="'chevron-big-down'">
+    </vg-icon>
     <p class="vg-product-list-item__product-name">
         {{ vm.product.name }}
     </p>
@@ -7,4 +12,14 @@
      average="vm.product.rating.average"
      num-ratings="vm.product.rating.numRatings">
     </vg-average-rating>
+</div>
+<div class="slider" ng-class="{'slider-closed': !vm.isProductListExpanded}">
+    <hr class="location-details-separator">
+    <div class="average-rating">
+        {{'product.rating.details' | translate:{ rating: vm.product.rating.average,
+        numRatings: vm.product.rating.numRatings } }}
+    </div>
+    <button type="button" class="btn-primary btn-small">
+        {{ 'product.rate' | translate }}
+    </button>
 </div>

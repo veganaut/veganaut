@@ -1,0 +1,32 @@
+@import '../../../less/typography.less';
+
+    // Location detail styles
+.vg-location-map-preview__map {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+// Make the map square, see http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+.vg-location-map-preview__map::before {
+    content: "";
+    display: block;
+    padding-top: 50%;
+}
+
+.vg-location-map-preview__address {
+    .vg-typography-display-3();
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 16px;
+    margin: 0;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.vg-location-pane {
+    vg-card > .vg-card {
+        box-shadow: unset;
+    }
+}

@@ -1,0 +1,37 @@
+<div class="vg-location-pane">
+    <vg-location-title
+     vg-location="vm.location"
+     vg-address-type="{{ vm.parentVm.addressType }}"
+     vg-icons-right="false">
+    </vg-location-title>
+    <vg-card>
+        <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
+    </vg-card>
+    <div class="row mark-favourite-mock" ng-show="vm.location.id"
+     ng-if="vm.parentVm.legacyGlobals.isEmbedded && !vm.parentVm.legacyGlobals.isLoggedIn()">
+        <p class="col-xs-6">
+            <button type="button" class="btn btn-block btn-primary"
+             ng-click="vm.parentVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.locationPreviewRate'">
+                <span class="glyphicon glyphicon-star-empty"></span>
+                <span>{{ 'action.rate.name' | translate }}</span>
+            </button>
+        </p>
+        <p class="col-xs-6">
+            <vg-location-visit-button
+             vg-location="vm.location"
+             vg-is-primary="false">
+            </vg-location-visit-button>
+        </p>
+    </div>
+
+    <p ng-show="vm.location.id"
+     class="btn-wrapper"
+     ng-if="!vm.parentVm.legacyGlobals.isEmbedded || vm.parentVm.legacyGlobals.isLoggedIn()">
+        <vg-location-visit-button vg-location="vm.location"></vg-location-visit-button>
+    </p>
+    <hr class="location-details-separator">
+    <div class="location-details-close" ng-click="vm.parentVm.locationSet.activate()">
+        <vg-icon vg-name="'cross-big'" id="cross-big"></vg-icon>
+        &nbsp;{{ 'action.close' | translate }}
+    </div>
+</div>

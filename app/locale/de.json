@@ -18,7 +18,7 @@
     "termsOfUse": "Nutzungsbedingungen",
     "privacyPolicy": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "language" : {
+    "language": {
       "de": "Deutsch",
       "fr": "Français",
       "en": "English"
@@ -139,7 +139,8 @@
       "name": "Bewerten"
     },
     "openInMapApp": "Route in Karten App öffnen",
-    "locationVisitAction": "Location anzeigen",
+    "locationVisitAction": "Mehr Infos",
+    "close": "Schliessen",
     "location": {
       "edit": "Location bearbeiten",
       "editAsAnonymous": "Bearbeiten",
@@ -173,6 +174,7 @@
     "totalPeople": "VeganautInnen"
   },
   "location": {
+    "rate": "Wie beurteilst du das Angebot dieser Location  aus veganautischer Sicht?",
     "form": {
       "new": {
         "type": "Welche Art von Location möchtest du hinzufügen?",
@@ -207,7 +209,13 @@
     },
     "rating": {
       "average": "Durchschnitt",
-      "numRatings": "Bewertungen"
+      "numRatings": "Bewertungen",
+      "noRating": "Keine Bewertung vorhanden.",
+      "1": "Vegan Rating 1",
+      "2": "Vegan Rating 2",
+      "3": "Vegan Rating 3",
+      "4": "Vegan Rating 4",
+      "5": "Vegan Rating 5"
     },
     "products": {
       "title": "Vegane Produkte",
@@ -427,15 +435,16 @@
   },
   "product": {
     "rating": {
-      "details": "Durchschnitt von {{rating}} von {{numRatings}} Bewertungen.",
+      "details": "Durchschnitt {{rating}} von {{numRatings}} Bewertungen.",
       "noRating": "Dieses Angebot wurde noch nicht bewertet."
     },
     "availability": {
       "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
     },
-    "moreProducts": "{{ numProducts }} weitere Produkte anzeigen",
-    "lessProducts": "Ausblenden"
+    "moreProducts": "Und {{ numProducts }} weitere Produkte",
+    "lessProducts": "Ausblenden",
+    "rate": "Produkt bewerten"
   },
   "globalSearch": {
     "title": {
@@ -467,7 +476,7 @@
       "showMore": "Weitere Läden anzeigen"
     },
     "meal": {
-      "name": "Gerchite",
+      "name": "Gerichte",
       "title": "{{ count }} Vegane Gerichte",
       "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
       "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",

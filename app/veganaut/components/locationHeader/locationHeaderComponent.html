@@ -1,17 +1,20 @@
 <header class="vg-location-header">
-    <div class="vg-location-header__core-info ">
-        <div class="vg-location-header__title-description">
-            <h2 class="vg-location-header__location-name">{{ vm.location.name }}</h2>
-            <vg-location-type-indicator vg-value="vm.locationType" class="vg-location-header__location-type-indicator"></vg-location-type-indicator>
-            <p class="vg-location-header__rating-text">
-                {{ vm.ratingLabel }}
-            </p>
+    <div class="row">
+        <vg-location-title
+         vg-location="vm.location"
+         vg-address-type="{{ vm.parentVm.addressType }}"
+         vg-icons-right="false"
+         class="col-xs-10">
+        </vg-location-title>
+        <div class="col-xs-2 edit-icon">
+            <vg-icon vg-name="'edit'"></vg-icon>
         </div>
-        <vg-quality-indicator vg-value="vm.quality" vg-label="vm.ratingLabel" class="vg-location-header__quality-indicator"></vg-quality-indicator>
+
     </div>
-    <!--<span class="location-title__icons">-->
-    <!--<vg-location-effort-icon location="vm.location"></vg-location-effort-icon>-->
-    <!--<vg-location-quality-icon location="vm.location"></vg-location-quality-icon>-->
-    <!--<vg-location-type-badge location="vm.location"></vg-location-type-badge>-->
-       <!--</span>-->
+
+
+    <p class="vg-location-header__description">{{vm.location.description}}</p>
+    <br>
+    <p class="vg-location-header__description">&Ouml;ffnungszeiten</p>
+
 </header>
