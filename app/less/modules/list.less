@@ -34,10 +34,13 @@
         color: @_color-teal;
     }
 
-    .vg-list-header__filter {
+    .vg-list-header__sort {
+        background: none;
+        border: none;
         border-left: 1px solid @_color-grey-lighter;
         color: @_color-teal;
         padding-left: 13px;
+        padding-right: 0;
         cursor: pointer;
 
         // To center vertically
@@ -45,11 +48,11 @@
         flex-direction: column;
         justify-content: center;
 
-        .vg-list-header__filter__icon svg {
+        .vg-list-header__sort__icon svg {
             height: 12px;
         }
 
-        .vg-list-header__filter__icon svg path {
+        .vg-list-header__sort__icon svg path {
             fill: currentColor;
         }
     }

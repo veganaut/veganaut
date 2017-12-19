@@ -22,9 +22,9 @@
                 {{ $ctrl.noResultsText | translate }}
             </p>
         </div>
-        <div class="vg-list-header__filter" ng-click="$ctrl.showSortModal()">
-            <vg-icon vg-name="'sort'" class="vg-list-header__filter__icon"></vg-icon>
-        </div>
+        <button class="vg-list-header__sort" ng-click="$ctrl.showSortModal()">
+            <vg-icon vg-name="'sort'" class="vg-list-header__sort__icon"></vg-icon>
+        </button>
     </div>
 
     <div ng-if="$ctrl.list.length > 0">
