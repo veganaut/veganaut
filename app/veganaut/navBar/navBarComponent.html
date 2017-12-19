@@ -25,21 +25,21 @@
                 </div>
                 <div class="vg-navbar-center">
                     <nav class="vg-navbar-view-select" ng-hide="$ctrl.isHomePage()">
-                        <div class="vg-navbar-view-select-item"
+                        <button class="vg-navbar-view-select-item"
                          ng-class="{'vg-navbar-view-select-item--active': $ctrl.isAreaPage()}"
                          ng-click="$ctrl.goToView('area/')">
                             <vg-icon vg-name="'location'" class="vg-navbar-view-select-item__icon"></vg-icon>
-                        </div>
-                        <div class="vg-navbar-view-select-item"
+                        </button>
+                        <button class="vg-navbar-view-select-item"
                          ng-class="{'vg-navbar-view-select-item--active': $ctrl.isMapPage()}"
                          ng-click="$ctrl.goToView('map/')">
                             <vg-icon vg-name="'map'" class="vg-navbar-view-select-item__icon"></vg-icon>
-                        </div>
-                        <div class="vg-navbar-view-select-item"
+                        </button>
+                        <button class="vg-navbar-view-select-item"
                          ng-class="{'vg-navbar-view-select-item--active': $ctrl.isListPage()}"
                          ng-click="$ctrl.goToView('list/')">
                             <vg-icon vg-name="'list'" class="vg-navbar-view-select-item__icon"></vg-icon>
-                        </div>
+                        </button>
                     </nav>
                 </div>
             </div>
