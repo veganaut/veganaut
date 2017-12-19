@@ -1,4 +1,4 @@
-<div class="vg-sort-toggle" ng-click="$ctrl.toggle()" ng-class="{'vg-sort-toggle--active': $ctrl.active}">
+<button class="vg-sort-toggle" ng-click="$ctrl.toggle()" ng-class="{'vg-sort-toggle--active': $ctrl.active}">
     <div class="vg-sort-toggle-name">
         {{ 'sortToggle.' + $ctrl.name + '.title' | translate }}
     </div>
@@ -7,4 +7,4 @@
         <vg-icon vg-name="'arrow-right'" class="vg-sort-toggle-icons__icon vg-sort-toggle-icons__icon--arrow"></vg-icon>
         <vg-icon vg-name="$ctrl.icons.after" class="vg-sort-toggle-icons__icon"></vg-icon>
     </div>
-</div>
+</button>
