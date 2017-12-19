@@ -25,9 +25,9 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'playerService', 'locationService', 'locationFilterService', 'mainMapService',
+        'backendService', 'playerService', 'locationService', 'locationFilterService', 'mainMapService',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            playerService, locationService, locationFilterService, mainMapService)
+            backendService, playerService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
 
@@ -89,6 +89,10 @@
 
             // Get the player
             var playerPromise = playerService.getDeferredMe();
+
+            vm.isCreateLocationButtonVisible = function() {
+                return backendService.isLoggedIn();
+            };
 
             /**
              * Starts creating a new location
