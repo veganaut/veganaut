@@ -1,0 +1,60 @@
+<header class="vg-location-header-edit">
+    <div class="row">
+        <div class="wrapper border">
+            <div class="col-xs-10">
+                <h1>{{ vm.location.name }}</h1>
+            </div>
+            <div class="col-xs-2 pen-aligner">
+                <button class="oval-edit-btn " ng-click="">
+                    <vg-icon vg-name="'pen'">
+                    </vg-icon>
+                </button>
+            </div>
+        </div>
+        <div class="wrapper border">
+            <div class="col-xs-10">
+
+                <div class="col-xs-2 col-sm-1">
+                    <vg-location-type-icon type="vm.location.type"></vg-location-type-icon>
+                </div>
+                <div class="col-xs-10 col-sm-11 text">
+                    {{ 'location.type.' + vm.location.type | translate }}
+                </div>
+            </div>
+            <div class="col-xs-2 pen-aligner">
+                <button class="oval-edit-btn " ng-click="">
+                    <vg-icon vg-name="'pen'">
+                    </vg-icon>
+                </button>
+            </div>
+        </div>
+        <div class="wrapper border">
+            <div class="col-xs-10" ng-if="vm.location.getRoundedQuality() > 0">
+                <div class="col-xs-2 col-sm-1">
+                    <vg-icon vg-name="'veganlevel-' + vm.location.getRoundedQuality()"></vg-icon>
+                </div>
+                <div class="col-xs-10 col-sm-11 text">
+                    {{'location.rating.' + vm.location.getRoundedQuality() | translate}}
+                </div>
+            </div>
+            <div class="col-xs-2 pen-aligner">
+                <button class="oval-edit-btn " ng-click="">
+                    <vg-icon vg-name="'pen'">
+                    </vg-icon>
+                </button>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="col-xs-10">
+                <span class="text"> {{ vm.location.description }} </span>
+            </div>
+            <div class="col-xs-2 pen-aligner">
+                <button class="oval-edit-btn " ng-click="">
+                    <vg-icon vg-name="'pen'">
+                    </vg-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</header>

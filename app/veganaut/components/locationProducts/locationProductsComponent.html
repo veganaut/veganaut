@@ -1,4 +1,11 @@
-
+<h1 class="vg-location-products__title">
+    <strong>{{vm.location.getProducts().length > 0 ? ('product.totalProducts' | translate: {numProducts: vm.location.getProducts().length - vm.limitTo}) : ('product.noProducts' | translate)}} </strong>
+    <span class="vg-location-products__add">
+        <button class="remove-btn">
+        <vg-icon vg-name="'add'"></vg-icon>
+        </button>
+    </span>
+</h1>
 <ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
     <li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"
      class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
@@ -10,13 +17,13 @@
     </li>
 </ul>
 <button
-    class="vg-location-products__more-products"
-    ng-if="vm.location.getProducts().length > vm.limit"
-    ng-click="vm.onExpandCollapseToggleClick()"
-    ng-class="{'vg-location-products__more-products--expanded': vm.isProductListExpanded}">
+ class="vg-location-products__more-products"
+ ng-if="vm.location.getProducts().length > vm.limit"
+ ng-click="vm.onExpandCollapseToggleClick()"
+ ng-class="{'vg-location-products__more-products--expanded': vm.isProductListExpanded}">
     <vg-icon class="vg-location-products__more-products-icon" vg-name="'chevron-small-down'"></vg-icon>
     <span ng-show="!vm.isProductListExpanded">
-        {{ 'product.moreProducts' | translate:{numProducts: vm.location.getProducts().length - vm.limitTo} }}
+        {{ 'product.moreProducts' | translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
     </span>
     <span ng-show="vm.isProductListExpanded">
         {{ 'product.lessProducts' | translate }}

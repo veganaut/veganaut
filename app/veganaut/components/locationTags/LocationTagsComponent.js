@@ -7,6 +7,9 @@
 
     function locationTagsComponent() {
         var component = {
+            require: {
+                parent: '^^vgLocationDetails'
+            },
             bindings: {
                 tags: '<vgTags',
 
@@ -33,7 +36,13 @@
         vm.onExpandCollapseToggleClick = onExpandCollapseToggleClick;
 
         vm.$onInit = function() {
-
+            // Destroy Sorting
+            vm.mockTags = [
+                {'name': 'gBreakfast', 'weight': 1}, {'name': 'gDinner', 'weight': 1},
+                {'name': 'gLunch', 'weight': 3}, {'name': 'gSweets', 'weight': 2}, {
+                    'name': 'rnBooks',
+                    'weight': 4
+                }, {'name': 'gLunch', 'weight': 3}, {'name': 'gSweets', 'weight': 2}, {'name': 'rnBooks', 'weight': 4}]
         };
 
         function onExpandCollapseToggleClick() {

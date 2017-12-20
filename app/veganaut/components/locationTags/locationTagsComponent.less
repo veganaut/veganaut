@@ -1,9 +1,82 @@
-.vg-location-tags{
-    display: flex;
-    .badge {
-        height: 20px;
-        border-radius: 99px;
-        background-color: @_color-grey-light;
-        color: @_color-dark-grey;
+.vg-location-tags {
+    overflow: hidden;
+    max-height: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    .tag-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        .badge {
+            height: 20px;
+            border-radius: 99px;
+            background-color: @_color-grey-light;
+            color: @_color-dark-grey;
+            margin: 0 5px;
+        }
+        .opacity-1 {
+            opacity: 0.25;
+        }
+
+        .opacity-2 {
+            opacity: 0.5;
+        }
+
+        .opacity-3 {
+            opacity: 0.75;
+        }
+
+        .opacity-4 {
+            opacity: 1;
+        }
+
     }
+    .chevron-aligner {
+        text-align: right;
+        padding-right: 25px;
+    }
+
+    .average-rating {
+        margin: 10px 10px;
+    }
+
+    .btn-small {
+        margin: 10px;
+
+        vg-icon {
+            padding-right: 3px;
+            svg {
+                height: 8px;
+                width: 8px;
+                fill: #fff;
+            }
+        }
+    }
+}
+
+.vg-location-tags-open {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    max-height: unset;
+
+}
+.pen-aligner {
+    text-align: right;
+    padding-right: 20px;
 }

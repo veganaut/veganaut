@@ -1,31 +1,35 @@
-<div class="vg-location-tags">
-    <div ng-repeat="tag in vm.tags">
-        <span class="badge clickable">
-            {{ 'tags.' + tag.name + '.name' | translate }}s
-        </span>
+<div class="vg-location-tags" ng-class=" {'vg-location-tags-open': vm.isProductListExpanded}">
+    <div class="row">
+        <div class="col-xs-10">
+            <div class="tag-wrapper">
+                <!--TODO Remove when API finished-->
+                <!--<div ng-repeat="tag in vm.Tags">-->
+                <div ng-repeat="tag in vm.mockTags">
+                <span class="badge clickable" ng-class="'opacity-' + tag.weight">
+                    {{ 'tags.' + tag.name + '.name' | translate }}s
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 chevron-aligner" ng-if="!vm.parent.edit">
+            <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
+                <vg-icon  ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
+                </vg-icon>
+            </button>
+        </div>
+        <div class="col-xs-2 pen-aligner" ng-if="vm.parent.edit">
+            <button class="oval-edit-btn" ng-click="">
+                <vg-icon vg-name="'pen'">
+                </vg-icon>
+            </button>
+        </div>
     </div>
+    <div class="average-rating ng-binding">
+        Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.
+    </div>
+    <button type="button" class="btn-primary btn-small">
+        <vg-icon vg-name="'plus'"></vg-icon>
+        Empfehlung hinzufügen
+    </button>
 </div>
 
-<!--<ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">-->
-<!--<li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"-->
-<!--class="vg-location-products__list-item vg-location-products&#45;&#45;{{ product.availability }}">-->
-<!--<vg-product-list-item vg-product="product"></vg-product-list-item>-->
-<!--</li>-->
-<!--<li ng-if="vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() track by product.id"-->
-<!--class="vg-location-products__list-item vg-location-products&#45;&#45;{{ product.availability }}">-->
-<!--<vg-product-list-item vg-product="product"></vg-product-list-item>-->
-<!--</li>-->
-<!--</ul>-->
-<!--<button-->
-<!--class="vg-location-products__more-products"-->
-<!--ng-if="vm.location.getProducts().length > vm.limit"-->
-<!--ng-click="vm.onExpandCollapseToggleClick()"-->
-<!--ng-class="{'vg-location-products__more-products&#45;&#45;expanded': vm.isProductListExpanded}">-->
-<!--<vg-icon class="vg-location-products__more-products-icon" vg-name="'chevron-small-down'"></vg-icon>-->
-<!--<span ng-show="!vm.isProductListExpanded">-->
-<!--{{ 'product.moreProducts' | translate:{numProducts: vm.location.getProducts().length - vm.limitTo} }}-->
-<!--</span>-->
-<!--<span ng-show="vm.isProductListExpanded">-->
-<!--{{ 'product.lessProducts' | translate }}-->
-<!--</span>-->
-<!--</button>-->

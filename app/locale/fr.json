@@ -18,7 +18,7 @@
     "termsOfUse": "Conditions d'utilisation",
     "privacyPolicy": "Protection de données",
     "imprint": "Responsables du site",
-    "language" : {
+    "language": {
       "de": "Deutsch",
       "fr": "Français",
       "en": "English"
@@ -175,6 +175,9 @@
   },
   "location": {
     "rate": "",
+    "veganize": {
+      "title": "Veganize"
+    },
     "form": {
       "new": {
         "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
@@ -444,7 +447,9 @@
     },
     "moreProducts": "et {{ numProducts }} autres offres",
     "lessProducts": "Masquer",
-    "rate": "Angebot bewerten"
+    "rate": "Angebot bewerten",
+    "totalProducts": "{{ numProducts }} Vegane Gerichte",
+    "noProducts": "Keine Vegane Gerichte"
   },
   "globalSearch": {
     "title": {
@@ -514,7 +519,7 @@
     "gSnacks": {
       "name": "snacks & collation"
     },
-    "gMilk":{
+    "gMilk": {
       "name": "lait végan"
     },
     "rfDairy": {
@@ -535,7 +540,7 @@
     "rfSupplements": {
       "name": "B12 & compléments"
     },
-    "rnClothes":{
+    "rnClothes": {
       "name": "vêtements"
     },
     "rnShoes": {

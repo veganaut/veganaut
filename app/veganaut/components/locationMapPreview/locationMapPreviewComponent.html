@@ -1,7 +1,12 @@
 <a ng-click="vm.mapClickHandler()">
     <p class="vg-location-map-preview__address">
+        <vg-icon vg-name="'location'" class="vg-location-details_icon"></vg-icon>
         {{ vm.location.address.street }} {{ vm.location.address.houseNumber }},
         {{ vm.location.address.postcode }} {{ vm.location.address.city }}
+        <button class="oval-edit-btn" ng-click="" ng-if="vm.parent.edit">
+            <vg-icon vg-name="'pen'">
+            </vg-icon>
+        </button>
     </p>
     <leaflet class="vg-location-map-preview__map vg-location-map-preview__map--highlight-marker" ng-if="vm.showMap" defaults="vm.mapDefaults" lf-center="vm.center">
     </leaflet>

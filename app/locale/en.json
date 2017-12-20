@@ -175,6 +175,9 @@
   },
   "location": {
     "rate": "",
+    "veganize": {
+      "title": "Veganize"
+    },
     "form": {
       "new": {
         "type": "What type of location would you like to add?",
@@ -444,7 +447,9 @@
     },
     "moreProducts": "Show {{ numProducts }} more options",
     "lessProducts": "Hide",
-    "rate": "Angebot bewerten"
+    "rate": "Angebot bewerten",
+    "totalProducts": "{{ numProducts }} Vegane Gerichte",
+    "noProducts": "Keine Vegane Gerichte"
   },
   "globalSearch": {
     "title": {

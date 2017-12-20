@@ -23,6 +23,9 @@
 @import "veganaut/components/locationPane/locationPaneComponent.less";
 @import "veganaut/components/locationRatingChick/locationRatingChickComponent.less";
 @import "veganaut/components/locationTags/locationTagsComponent.less";
+@import "veganaut/components/locationTasks/locationTasksComponent.less";
+@import "veganaut/components/locationTasksItem/locationTasksItemComponent.less";
+@import "veganaut/components/locationHeaderEdit/locationHeaderEditComponent.less";
 
 
 @import 'components/ui/ui.less';
@@ -43,7 +46,6 @@
 html, body {
     background: @color-background-general;
 }
-
 
 
 .clickable {
@@ -75,4 +77,11 @@ html, body {
     &:hover, &:active, &:focus {
         color: @colorDark;
     }
+}
+
+.remove-btn {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
 }

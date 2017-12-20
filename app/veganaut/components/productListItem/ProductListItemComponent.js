@@ -7,6 +7,9 @@
 
     function productListItemComponent() {
         var component = {
+            require: {
+                parent: '?^^vgLocationDetails'
+            },
             bindings: {
                 product: '<vgProduct'
             },
@@ -29,6 +32,8 @@
         vm.$onInit = function() {
 
         };
+
+
         vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;
         };

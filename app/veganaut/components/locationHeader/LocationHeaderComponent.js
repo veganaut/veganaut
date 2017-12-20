@@ -7,6 +7,9 @@
 
     function locationHeaderComponent() {
         var component = {
+            require: {
+                parent: '^^vgLocationDetails'
+            },
             bindings: {
                 // The location to show the title and icons for
                 location: '<vgLocation',

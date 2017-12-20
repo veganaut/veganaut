@@ -45,6 +45,8 @@
         vm.specialMissions = [];
         vm.error = undefined;
 
+        vm.edit = false;
+
         /**
          * Whether to show also the unavailable products
          * TODO: this is an object because we don't have controller-as so scopes get messed up *fuuu*
@@ -93,8 +95,18 @@
             return points;
         }
 
+        vm.tasks = [
+            {'task': 'Beurteile das Angebot dieser Location aus veganautischer Sicht.'},
+            {'task': 'Gib an, wie offen das Personal hier für "vegan" ist.'},
+            {'task': 'Sensibilisiere das Personal auf vegane Produkte.'}
+        ];
+
         function onMapCardClickHandler() {
 
+        }
+
+        vm.editLocation = function editLocation() {
+            vm.edit = !vm.edit;
         }
     }
 })();

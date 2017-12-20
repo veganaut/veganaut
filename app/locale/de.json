@@ -145,7 +145,10 @@
       "edit": "Location bearbeiten",
       "editAsAnonymous": "Bearbeiten",
       "save": "Location speichern",
-      "backToMap": "Zur Karte"
+      "backToMap": "Zur Karte",
+      "veganize": {
+        "title": "Veganize"
+      }
     }
   },
   "person": {
@@ -174,6 +177,10 @@
     "totalPeople": "VeganautInnen"
   },
   "location": {
+    "tasks": {
+      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
+      "lessTasks": "Ausblenden"
+    },
     "rate": "Wie beurteilst du das Angebot dieser Location  aus veganautischer Sicht?",
     "form": {
       "new": {
@@ -444,7 +451,10 @@
     },
     "moreProducts": "Und {{ numProducts }} weitere Produkte",
     "lessProducts": "Ausblenden",
-    "rate": "Produkt bewerten"
+    "rate": "Produkt bewerten",
+    "totalProducts": "{{ numProducts }} Vegane Gerichte",
+    "noProducts": "Keine Vegane Gerichte"
+
   },
   "globalSearch": {
     "title": {

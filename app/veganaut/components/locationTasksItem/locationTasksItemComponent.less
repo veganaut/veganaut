@@ -1,0 +1,49 @@
+.vg-location-tasks {
+    .vg-location-products__more-products {
+        color: @_color-green
+    }
+}
+
+.vg-location-tasks-item {
+    margin: 0 16px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    font-size: 14px;
+    color: @_color-dark-grey;
+
+    .task-text {
+        width: 250%;
+    }
+
+    .arrow-wrapper {
+        display: inherit;
+        padding: 0 15px 0 0;
+        vg-icon {
+            align-self: center;
+            justify-content: center;
+        }
+        .arrow-right {
+            svg {
+                width: 16px;
+                height: 15px;
+                fill: @_color-green;
+            }
+        }
+    }
+    .chevron-wrapper {
+        align-self: center;
+        justify-content: center;
+        padding-right: 10px;
+        .chevron-small-right {
+            padding-right: 10px;
+            svg {
+                width: 8px;
+                height: 10px;
+            }
+        }
+    }
+
+}
+
+

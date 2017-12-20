@@ -1,10 +1,23 @@
 <vg-card class="vg-location-details__card">
-    {{vm.location}}
-    <vg-location-header class="vg-location-details__card" vg-location="vm.location">
+    <div class="modification-banner" ng-if="vm.edit">
+        <div class="row">
+            <div class="col-xs-8">
+                <h1 class="h4">Location jetzt bearbeiten</h1>
+            </div>
+            <div class="col-xs-4">
+                <button ng-click="vm.editLocation()" class="btn btn-finish">
+                    Fertig
+                </button>
+            </div>
+        </div>
+    </div>
+    <vg-location-header class="vg-location-details__card" vg-location="vm.location" ng-if="!vm.edit">
     </vg-location-header>
+    <vg-location-header-edit  vg-location="vm.location" ng-if="vm.edit"></vg-location-header-edit>
+
 </vg-card>
 <vg-card class="vg-location-details__card">
-    <vg-location-rating-chick>
+    <vg-location-rating-chick ng-class="{'location-details-card-disabled' : vm.edit}">
     </vg-location-rating-chick>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--products">
@@ -14,15 +27,73 @@
     {{ 'location.products.title' | translate }}
     </span>
     </h2>
-    <vg-location-tags vg-tags="vm.location.getSortedTags()" vg-limit="1"></vg-location-tags>
+    <vg-location-tags vg-tags="vm.location.getSortedTags()" vg-limit="1" class="location-tags-card"></vg-location-tags>
     <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
+</vg-card>
+<vg-card class="vg-location-details__card vg-location-details__card--tasks" ng-class="{'location-details-card-disabled' : vm.edit}">
+    <h2 class="vg-location-products__title">
+        <vg-icon vg-name="'missions'" class="vg-location-products__title-icon vg-location-products__veganize-icon"></vg-icon>
+        <span class="vg-location-products__title-text">
+    {{ 'location.veganize.title' | translate }}
+    </span>
+    </h2>
+    <vg-location-tasks vg-tasks="vm.tasks" vg-limit="1">
+    </vg-location-tasks>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">
     <vg-location-map-preview vg-location="vm.location" vg-on-click="$root.goToView('map/')">
     </vg-location-map-preview>
 </vg-card>
 <vg-card class="vg-location-details__card">
-    <a href="#">
-        {{ 'action.openInMapApp' | translate }}
-    </a>
+    <div class="row">
+        <div class="col-xs-10">
+            <a href="#">
+                <vg-icon vg-name="'route'" class="vg-location-details_icon"></vg-icon>
+                {{ 'action.openInMapApp' | translate }}
+            </a>
+        </div>
+        <div class="col-xs-2 pen-aligner">
+            <button class="oval-edit-btn " ng-click="" ng-if="vm.edit">
+                <vg-icon vg-name="'pen'">
+                </vg-icon>
+            </button>
+        </div>
+    </div>
 </vg-card>
+
+<vg-card class="vg-location-details__card">
+    <div class="row">
+        <div class="col-xs-10">
+            <a href="#">
+                <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
+                http://www.google.com
+                <!-- TODO {{vm.location.website}}-->
+            </a>
+        </div>
+        <div class="col-xs-2 pen-aligner">
+            <button class="oval-edit-btn " ng-click="" ng-if="vm.edit">
+                <vg-icon vg-name="'pen'">
+                </vg-icon>
+            </button>
+        </div>
+    </div>
+</vg-card>
+
+<!--TODO Change Mock Data-->
+<div class="vg-location-details__footer-wrapper">
+    <div class="last-update">
+        <vg-icon vg-name="'clock'"></vg-icon>
+        <div class="text">Letzte Aktualisierung MOCK</div>
+    </div>
+    <div class="contributor">
+        <vg-icon vg-name="'profile'"></vg-icon>
+        <div class="text">Erstellt von <a href="#">Hans Muster</a></div>
+    </div>
+    <div class="contributors">
+        <div>Infos von <a href="#">Hans Muster</a>, <a href="#">Hans Muster</a>, <a href="#">Hans Muster</a></div>
+    </div>
+</div>
+
+<div class="overlay-modal-bottom vg-location-details__img">
+    <img src="img/background/landscape.svg">
+</div>
