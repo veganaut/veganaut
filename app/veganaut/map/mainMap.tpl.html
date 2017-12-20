@@ -139,12 +139,13 @@
                     {{ 'lists.area.radius' | translate: {radius: '5.8 km'} }} <!-- TODO: get value for radius -->
                 </div>
             </div>
-            <div class="btn btn-primary btn-small"
+            <button type="button"
+             class="btn btn-primary btn-small"
              ng-if="mainMapVm.isCreateLocationButtonVisible()"
              ng-click="mainMapVm.startCreateLocation()">
                 <vg-icon vg-name="'add-location'" class="btn__icon"></vg-icon>
                 {{ 'action.createLocation.name' | translate }}
-            </div>
+            </button>
         </div>
     </div>
 </div>
