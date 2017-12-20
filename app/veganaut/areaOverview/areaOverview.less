@@ -24,12 +24,11 @@
     .tile {
         min-height: 150px;
         width: 50%;
-        cursor: pointer;
         .category-counter {
             font-size: 12px;
             color: @_color-teal;
             margin-left: 88%;
-            margin-top: 15px;
+            padding-top: 15px;
             margin-bottom: 10px;
             text-align: left;
             @media only screen and (max-device-width: 380px) {
@@ -40,10 +39,15 @@
         .category-wrapper {
             text-align: center;
             min-height: 100px;
-            width: 100%;
-            background: none;
-            border: none;
+            display: block;
             padding-bottom: 10px;
+            color: inherit;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
             svg {
                 width: 40px;
                 height: 40px;
@@ -61,8 +65,9 @@
         .class-show-list-wrapper {
             p {
                 cursor: pointer;
-                height: 30px;
-                margin-top: 10px;
+                height: 50px;
+                margin: 0;
+                padding: 10px 0;
                 color: @_color-teal;
                 fill: @_color-teal;
                 span {
@@ -76,7 +81,12 @@
             background: none;
             border: none;
 
-            vg-icon {
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
+            .location-svg {
                 margin-right: 5px;
             }
         }
