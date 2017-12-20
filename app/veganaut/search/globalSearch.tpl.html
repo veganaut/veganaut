@@ -33,14 +33,15 @@
             {{ 'globalSearch.title.locations' | translate }}
         </h2>
         <div class="location-search-results vg-global-search-results">
-            <div ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
+            <a href="/location/{{location.id}}"
+             ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
              class="vg-global-search-result"
              ng-click="globalSearchVm.onLocationClick(location)">
                 <vg-location-title
                  vg-location="location"
                  vg-address-type="city">
                 </vg-location-title>
-            </div>
+            </a>
         </div>
         <button class="btn btn-link btn-block btn--more-results"
          ng-if="globalSearchVm.searchService.hasMoreLocations"
