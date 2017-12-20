@@ -17,10 +17,11 @@
     }
 
     CategorySelectorController.$inject = [
+        '$location',
         'locationFilterService'
     ];
 
-    function CategorySelectorController(locationFilterService) {
+    function CategorySelectorController($location, locationFilterService) {
         var $ctrl = this;
 
         $ctrl.typeFilters = [
@@ -32,6 +33,8 @@
             'location',
             'product'
         ];
+
+        $ctrl.locationPath = $location.path();
 
         $ctrl.categories = locationFilterService.CATEGORIES;
         $ctrl.selectedType = locationFilterService.getTypeFilterValue();

@@ -29,7 +29,7 @@
 
     <div ng-if="$ctrl.list.length > 0">
         <div class="vg-list-body">
-            <div class="vg-list-item"
+            <button class="vg-list-item"
              ng-class="{'vg-list-item--location': $ctrl.isLocationGroup(), 'vg-list-item--product': $ctrl.isProductGroup()}"
              ng-repeat="item in $ctrl.list track by item.id"
              ng-click="$ctrl.onItemClick(item)">
@@ -53,7 +53,7 @@
                 <div class="vg-list-item__type-icon">
                     <vg-icon vg-name="$ctrl.listName"></vg-icon>
                 </div>
-            </div>
+            </button>
         </div>
 
         <!-- TODO: replace button with auto-loading on scroll -->

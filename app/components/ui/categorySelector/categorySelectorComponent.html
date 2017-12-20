@@ -2,12 +2,13 @@
     <div class="vg-category-selector-type"
      ng-repeat="type in $ctrl.typeFilters"
      ng-class="{'vg-category-selector-type--active': type.indexOf($ctrl.selectedType) !== -1}">
-        <button class="vg-category-selector-item"
+        <a href="{{$ctrl.locationPath + '?type=' + type + '&group=' + group}}"
+         class="vg-category-selector-item"
          ng-repeat-start="group in $ctrl.groupFilters"
          ng-click="$ctrl.setFilter(type, group)"
          ng-class="{'vg-category-selector-item--active': $ctrl.selectedType === type && $ctrl.selectedGroup === group}">
             {{ 'lists.' + $ctrl.categories[type][group] + '.name' | translate }}
-        </button>
+        </a>
         <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
     </div>
 </nav>

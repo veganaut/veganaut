@@ -29,11 +29,17 @@
     }
 
     .vg-global-search-result {
+        display: block;
         .vg-typography-display-2();
         border-bottom: 1px solid @_color-grey-light;
         padding: 10px 0;
         margin: 0 10px;
         cursor: pointer;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
     }
 
     .vg-global-search-result:last-child {
