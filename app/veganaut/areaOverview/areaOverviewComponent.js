@@ -37,11 +37,11 @@
             // TODO Call to backend for data
         };
 
-        $ctrl.redirectTo = function(type, group) {
+        $ctrl.redirectTo = function(type, group, path) {
             locationFilterService.activeFilters.type = locationFilterService.POSSIBLE_FILTERS.type[type];
             locationFilterService.activeFilters.group = locationFilterService.POSSIBLE_FILTERS.group[group];
-            $location.path('/list');
-        }
+            $location.path(path);
+        };
     }
 
 

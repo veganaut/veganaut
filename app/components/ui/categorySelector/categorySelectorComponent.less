@@ -5,6 +5,8 @@
     justify-content: space-around;
     align-items: center;
     height: @categorySelectorHeight;
+    position: relative;
+    z-index: 1;
 
     .vg-category-selector-type {
         height: 28px;
@@ -30,6 +32,8 @@
         top: -1px;
         right: -1px;
         cursor: pointer;
+        border: none;
+        background-color: transparent;
     }
 
     .vg-category-selector-item:first-child {

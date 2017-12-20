@@ -90,17 +90,21 @@
     </vg-geolocate-button>
 
     <div class="vg-map-footer">
-        <div class="vg-map-footer-text">
-            <div class="vg-map-footer-text__locations-count">
-                {{ 'lists.' + mainMapVm.category + '.title' | translate: {count: 200} }} <!-- TODO: get value for count-->
+        <div class="vg-map-footer-content">
+            <div class="vg-map-footer-text">
+                <div class="vg-map-footer-text__locations-count">
+                    {{ 'lists.' + mainMapVm.category + '.title' | translate: {count: 200} }} <!-- TODO: get value for count-->
+                </div>
+                <div class="vg-map-footer-text__radius">
+                    {{ 'lists.area.radius' | translate: {radius: '5.8 km'} }} <!-- TODO: get value for radius -->
+                </div>
             </div>
-            <div class="vg-map-footer-text__radius">
-                {{ 'lists.area.radius' | translate: {radius: '5.8 km'} }} <!-- TODO: get value for radius -->
+            <div class="btn btn-primary btn-small"
+             ng-if="mainMapVm.isCreateLocationButtonVisible()"
+             ng-click="mainMapVm.startCreateLocation()">
+                <vg-icon vg-name="'add-location'" class="btn__icon"></vg-icon>
+                {{ 'action.createLocation.name' | translate }}
             </div>
-        </div>
-        <div class="btn btn-primary btn-small" ng-click="mainMapVm.startCreateLocation()">
-            <vg-icon vg-name="'add-location'" class="btn__icon"></vg-icon>
-            {{ 'action.createLocation.name' | translate }}
         </div>
     </div>
 </div>

@@ -2,33 +2,33 @@
     <vg-plant-rating></vg-plant-rating>
     <div class="tile-wrapper">
         <div class="tile">
-            <div class="category-counter">{{$ctrl.areaOverview.restaurants[0]}}</div>
-            <div class="category-wrapper">
+            <button class="category-wrapper" ng-click="$ctrl.redirectTo(1, 1, '/map')">
+                <div class="category-counter">{{$ctrl.areaOverview.restaurants[0]}}</div>
                 <vg-icon class="location-svg" vg-name="'restaurant-location'"></vg-icon>
                 <h3 class="h4">{{ 'areaOverview.restaurants' | translate }}</h3>
-            </div>
+            </button>
             <hr>
-            <div class="class-show-list-wrapper">
-                <p ng-click="$ctrl.redirectTo(1,1)">
+            <button class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(1, 1, '/list')">
+                <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
-            </div>
+            </button>
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <div class="category-counter">{{$ctrl.areaOverview.restaurants[1]}}</div>
-            <div class="category-wrapper">
+            <button class="category-wrapper" ng-click="$ctrl.redirectTo(1, 2, '/map')">
+                <div class="category-counter">{{$ctrl.areaOverview.restaurants[1]}}</div>
                 <vg-icon class="location-svg" vg-name="'meal-location'"></vg-icon>
                 <h3 class="h4">{{ 'areaOverview.meals' | translate }}</h3>
-            </div>
+            </button>
             <hr>
-            <div class="class-show-list-wrapper">
-                <p ng-click="$ctrl.redirectTo(1,2)">
+            <button class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(1, 2, '/list')">
+                <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
-            </div>
+            </button>
         </div>
     </div>
 
@@ -36,33 +36,33 @@
 <div class="earth-closeup-bottom">
     <div class="tile-wrapper">
         <div class="tile">
-            <div class="category-counter">{{$ctrl.areaOverview.stores[0]}}</div>
-            <div class="category-wrapper">
+            <button class="category-wrapper" ng-click="$ctrl.redirectTo(2, 1, '/map')">
+                <div class="category-counter">{{$ctrl.areaOverview.stores[0]}}</div>
                 <vg-icon class="location-svg" vg-name="'shop-location'"></vg-icon>
                 <h3 class="h4">{{ 'areaOverview.stores' | translate }}</h3>
-            </div>
+            </button>
             <hr>
-            <div class="class-show-list-wrapper">
-                <p ng-click="$ctrl.redirectTo(2,1)">
+            <button class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(2, 1, '/list')">
+                <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
-            </div>
+            </button>
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <div class="category-counter">{{$ctrl.areaOverview.stores[1]}}</div>
-            <div class="category-wrapper">
+            <button class="category-wrapper" ng-click="$ctrl.redirectTo(2, 2, '/map')">
+                <div class="category-counter">{{$ctrl.areaOverview.stores[1]}}</div>
                 <vg-icon class="location-svg" vg-name="'product-location'"></vg-icon>
                 <h3 class="h4">{{ 'areaOverview.products' | translate }}</h3>
-            </div>
+            </button>
             <hr>
-            <div class="class-show-list-wrapper">
-                <p ng-click="$ctrl.redirectTo(2,2)">
+            <button class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(2, 2, '/list')">
+                <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
                 </p>
-            </div>
+            </button>
         </div>
     </div>
 </div>

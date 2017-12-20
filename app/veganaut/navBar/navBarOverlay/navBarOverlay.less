@@ -55,6 +55,8 @@
 
 .overlay-cross {
     padding: 30px;
+    background: none;
+    border: none;
     svg {
         float: right;
         fill: @_color-dark-grey;
@@ -67,6 +69,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0 33%;
+    background: none;
+    border: none;
     @media screen and (max-width: 420px) {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -79,6 +83,9 @@
 
 .overlay-content {
     margin: 4% 12%;
+    padding: 0;
+    background: none;
+    border: none;
     @media screen and (max-width: 420px) {
         margin: 2% 12%;
     }
@@ -87,6 +94,13 @@
         height: 12px;
         width: 12px;
     }
+}
+
+.overlay-logout,
+.overlay-locale-change-button {
+    padding: 0;
+    background: none;
+    border: none;
 }
 
 .btn-overlay {

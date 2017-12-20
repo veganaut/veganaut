@@ -24,21 +24,26 @@
     .tile {
         min-height: 150px;
         width: 50%;
+        cursor: pointer;
         .category-counter {
             font-size: 12px;
             color: @_color-teal;
             margin-left: 88%;
             margin-top: 15px;
-            margin-bottom: -15px;
+            margin-bottom: 10px;
+            text-align: left;
             @media only screen and (max-device-width: 380px) {
                 margin-left: 82%;
             }
         }
 
         .category-wrapper {
-            padding-top: 25px;
             text-align: center;
             min-height: 100px;
+            width: 100%;
+            background: none;
+            border: none;
+            padding-bottom: 10px;
             svg {
                 width: 40px;
                 height: 40px;
@@ -49,12 +54,15 @@
             height: 1px;
             color: #ffffff;
             border: none;
+            margin-bottom: 0;
+            margin-top: 0;
             background-image: linear-gradient(to right, #ffffff, @_color-grey-light 27%, @_color-grey-light 73%, #ffffff); //background: linear-gradient(to right, #ffffff, #e6e6e6 27%, #e6e6e6 73%, #ffffff);
         }
         .class-show-list-wrapper {
             p {
                 cursor: pointer;
                 height: 30px;
+                margin-top: 10px;
                 color: @_color-teal;
                 fill: @_color-teal;
                 span {
@@ -64,6 +72,9 @@
             }
             text-align: center;
             padding: 2px 0;
+            width: 100%;
+            background: none;
+            border: none;
 
             vg-icon {
                 margin-right: 5px;

@@ -36,23 +36,33 @@
     </div>
     <div class="row" class="veganlevel-wrapper">
         <div class="plant plant1" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant1.visible}">
-            <vg-icon vg-name="'veganlevel-1'" ng-click="$ctrl.toggle('ratingPlant1')"></vg-icon>
+            <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant1')">
+                <vg-icon vg-name="'veganlevel-1'"></vg-icon>
+            </button>
             <span class="veganlevel-number">{{$ctrl.areaOverview.ratings[0]}}</span>
         </div>
         <div class="plant plant2" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant2.visible}">
-            <vg-icon vg-name="'veganlevel-2'" ng-click="$ctrl.toggle('ratingPlant2')"></vg-icon>
+            <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant2')">
+                <vg-icon vg-name="'veganlevel-2'"></vg-icon>
+            </button>
             <span class="veganlevel-number">{{$ctrl.areaOverview.ratings[1]}}</span>
         </div>
         <div class="plant plant3" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant3.visible}">
-            <vg-icon vg-name="'veganlevel-3'" ng-click="$ctrl.toggle('ratingPlant3')"></vg-icon>
+            <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant3')">
+                <vg-icon vg-name="'veganlevel-3'"></vg-icon>
+            </button>
             <span class="veganlevel-number">{{$ctrl.areaOverview.ratings[2]}}</span>
         </div>
         <div class="plant plant4" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant4.visible}">
-            <vg-icon vg-name="'veganlevel-4'" ng-click="$ctrl.toggle('ratingPlant4')"></vg-icon>
+            <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant4')">
+                <vg-icon vg-name="'veganlevel-4'"></vg-icon>
+            </button>
             <span class="veganlevel-number">{{$ctrl.areaOverview.ratings[3]}}</span>
         </div>
         <div class="plant plant5" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant5.visible}">
-            <vg-icon vg-name="'veganlevel-5'" ng-click="$ctrl.toggle('ratingPlant5')"></vg-icon>
+            <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant5')">
+                <vg-icon vg-name="'veganlevel-5'"></vg-icon>
+            </button>
             <span class="veganlevel-number">{{$ctrl.areaOverview.ratings[4]}}</span>
         </div>
     </div>

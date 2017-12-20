@@ -25,9 +25,10 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'playerService', 'locationService', 'locationFilterService', 'mainMapService',
+        'backendService', 'playerService', 'locationService', 'locationFilterService', 'mainMapService',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            playerService, locationService, locationFilterService, mainMapService) {
+            backendService, playerService, locationService, locationFilterService, mainMapService)
+        {
             var vm = this;
 
             // Set the filters from the URL and initiate with the currently valid area
@@ -68,8 +69,6 @@
              */
             vm.addressType = undefined;
 
-            vm.isProductListExpanded = false;
-
             /**
              * Method to inform service that the center changed
              */
@@ -90,6 +89,10 @@
 
             // Get the player
             var playerPromise = playerService.getDeferredMe();
+
+            vm.isCreateLocationButtonVisible = function() {
+                return backendService.isLoggedIn();
+            };
 
             /**
              * Starts creating a new location
@@ -158,10 +161,6 @@
 
             // Set the category
             vm.setCategory();
-
-            vm.onExpandCollapseToggleClick = function() {
-                vm.isProductListExpanded = !vm.isProductListExpanded;
-            };
 
             // Finally, initialise the map
             mainMapService.initialiseMap(vm.map);

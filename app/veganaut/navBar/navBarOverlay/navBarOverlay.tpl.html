@@ -7,25 +7,29 @@
     </div>
     <div class="navbar-content-overlay">
         <div class="container overlay-container">
-            <div class="overlay-cross">
-                <vg-icon ng-click="$ctrl.closeOverlay()" vg-name="'cross-big'"></vg-icon>
-            </div>
-            <div class="overlay-logo">
-                <img ng-click="$ctrl.goToView('home')" src="img/logo/veganaut.png">
-            </div>
+            <button class="overlay-cross" ng-click="$ctrl.closeOverlay()">
+                <vg-icon vg-name="'cross-big'"></vg-icon>
+            </button>
+            <button class="overlay-logo" ng-click="$ctrl.goToView('home')">
+                <img src="img/logo/veganaut.png">
+            </button>
+            <button class="overlay-content" ng-click="$ctrl.goToView('community')">
+                <h1 class="h4">{{'navigation.community' | translate}}</h1>
+            </button>
+            <button class="overlay-content" ng-click="$ctrl.goToView('me')">
+                <h1 class="h4">{{'navigation.profile' | translate}}</h1>
+            </button>
             <div class="overlay-content">
-                <h1 ng-click="$ctrl.goToView('community')" class="h4">{{'navigation.community' | translate}}</h1>
-            </div>
-            <div class="overlay-content">
-                <h1 ng-click="$ctrl.goToView('me')" class="h4">{{'navigation.profile' | translate}}</h1>
-            </div>
-            <div class="overlay-content">
-                <button ng-if="!$ctrl.isLoggedIn()" class="btn btn-primary btn-overlay"
+                <button ng-if="!$ctrl.isLoggedIn()"
+                 ng-click="$ctrl.goToView('register')"
+                 class="btn btn-primary btn-overlay"
                  type="button">
-                    <span ng-click="$ctrl.goToView('register')" class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
+                    <span class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
                     <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
                 </button>
-                <h1 ng-click="$ctrl.logout()" ng-if="$ctrl.isLoggedIn()" class="h4">{{'navigation.logout' | translate}}</h1>
+                <button class="overlay-logout" ng-click="$ctrl.logout()">
+                    <h1 ng-if="$ctrl.isLoggedIn()" class="h4">{{'navigation.logout' | translate}}</h1>
+                </button>
             </div>
             <div class="overlay-row overlay-direction-row">
                 <div class="col-xs-4 overlay-border-right">
@@ -62,11 +66,14 @@
                 </div>
             </div>
             <div class="overlay-row overlay-direction-row" ng-controller="ChangeLocaleCtrl">
-                <div class="col-xs-4" ng-class="{'overlay-border-right':!$last}" ng-repeat="locale in availableLocales">
-                    <h2 ng-click="localeService.changeLocale(locale); $ctrl.closeOverlay()" ng-class="{'current-locale':locale === localeService.getLocale()}" class="h5 overlay-row-content">
+                <button class="col-xs-4 overlay-locale-change-button"
+                 ng-class="{'overlay-border-right':!$last}"
+                 ng-repeat="locale in availableLocales"
+                 ng-click="localeService.changeLocale(locale); $ctrl.closeOverlay()">
+                    <h2 ng-class="{'current-locale':locale === localeService.getLocale()}" class="h5 overlay-row-content">
                         {{'navigation.language.' + locale | translate}}
                     </h2>
-                </div>
+                </button>
             </div>
             <div class="overlay-bottom">
                 <div class="col-4">
