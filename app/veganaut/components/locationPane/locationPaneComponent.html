@@ -5,7 +5,7 @@
      vg-icons-right="false">
     </vg-location-title>
     <vg-card>
-        <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
+        <vg-location-products vg-location="vm.location" vg-limit="1" vg-pane="true"></vg-location-products>
     </vg-card>
     <div class="row mark-favourite-mock" ng-show="vm.location.id"
      ng-if="vm.parentVm.legacyGlobals.isEmbedded && !vm.parentVm.legacyGlobals.isLoggedIn()">
@@ -30,8 +30,8 @@
         <vg-location-visit-button vg-location="vm.location"></vg-location-visit-button>
     </p>
     <hr class="location-details-separator">
-    <div class="location-details-close" ng-click="vm.parentVm.locationSet.activate()">
+    <button class="remove-btn location-details-close" ng-click="vm.parentVm.locationSet.activate()">
         <vg-icon vg-name="'cross-big'" id="cross-big"></vg-icon>
         &nbsp;{{ 'action.close' | translate }}
-    </div>
+    </button>
 </div>

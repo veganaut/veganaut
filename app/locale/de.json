@@ -177,6 +177,11 @@
     "totalPeople": "VeganautInnen"
   },
   "location": {
+    "pane": {
+      "save": "Speichern",
+      "abort": "Abbrechen",
+      "skip": "Frage {{from}}/{{to}} überspringen"
+    },
     "tasks": {
       "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
       "lessTasks": "Ausblenden"

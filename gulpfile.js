@@ -170,6 +170,7 @@ gulp.task('serve-reload', ['indexDev'], function(done) {
 
 gulp.task('serve', ['less', 'indexDev'], function() {
     browserSync.init({
+        port: 3001,
         proxy: 'localhost:8000'
     });
 
