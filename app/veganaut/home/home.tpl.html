@@ -1,76 +1,79 @@
-<div id="home-modal-top">
-    <img id="home-logo" src="img/logo/veganaut.svg">
+<div class="home">
 
-    <h5 class="home__tag-line">
-        {{ 'home.tagLine' | translate }}
-    </h5>
-    <img src="img/background/view-on-eart-incl-illus.svg">
+    <div id="home-modal-top">
+        <img id="home-logo" src="img/logo/veganaut.svg">
 
-    <form novalidate class="home-form">
-        <h5>
-            {{ 'home.callToAction.text' | translate }}
+        <h5 class="home__tag-line">
+            {{ 'home.tagLine' | translate }}
         </h5>
-        <div class="one-line-input-and-submit">
-            <div class="form-group form--auto-complete">
-                <label class="sr-only" for="homeCallToAction">{{ 'home.callToAction.text' | translate }}</label>
-                <input
-                 type="text"
-                 id="homeCallToAction"
-                 class="form-control"
-                 placeholder="{{ 'home.callToAction.inputPlaceholder' | translate }}"
-                 autocomplete="off"
-                 ng-model="homeVm.ctaFormInput"
-                 ng-focus="homeVm.onCtaInputFocus()"
-                 ng-blur="homeVm.onCtaInputBlur()"
-                 uib-typeahead="res.getDisplayName() for res in homeVm.getSearchResults($viewValue)"
-                 typeahead-min-length="3"
-                 typeahead-wait-ms="1000"
-                 typeahead-loading="homeVm.searching"
-                 typeahead-on-select="homeVm.onResultSelected($item)"
-                >
-                <div class="form--auto-complete__loading"
-                 ng-show="homeVm.searching || homeVm.geolocating">
-                    <i class="glyphicon glyphicon-refresh">
-                    </i>
+        <img src="img/background/view-on-eart-incl-illus.svg">
+
+        <form novalidate class="home-form">
+            <h5>
+                {{ 'home.callToAction.text' | translate }}
+            </h5>
+            <div class="one-line-input-and-submit">
+                <div class="form-group form--auto-complete">
+                    <label class="sr-only" for="homeCallToAction">{{ 'home.callToAction.text' | translate }}</label>
+                    <input
+                     type="text"
+                     id="homeCallToAction"
+                     class="form-control input-geo"
+                     placeholder="{{ 'home.callToAction.inputPlaceholder' | translate }}"
+                     autocomplete="off"
+                     ng-model="homeVm.ctaFormInput"
+                     ng-focus="homeVm.onCtaInputFocus()"
+                     ng-blur="homeVm.onCtaInputBlur()"
+                     uib-typeahead="res.getDisplayName() for res in homeVm.getSearchResults($viewValue)"
+                     typeahead-min-length="3"
+                     typeahead-wait-ms="1000"
+                     typeahead-loading="homeVm.searching"
+                     typeahead-on-select="homeVm.onResultSelected($item)"
+                    >
+                    <div class="form--auto-complete__loading"
+                     ng-show="homeVm.searching || homeVm.geolocating">
+                        <i class="glyphicon glyphicon-refresh">
+                        </i>
+                    </div>
                 </div>
+                <button class="btn btn-default btn-geo"
+                 id="home-button-location"
+                 type="button"
+                 ng-click="homeVm.getUserLocation()">
+                    <vg-icon vg-name="'geo-location'" class="home-location"></vg-icon>
+                </button>
             </div>
-            <button class="btn btn-default"
-             id="home-button-location"
-             type="button"
-             ng-click="homeVm.getUserLocation()">
-                <vg-icon vg-name="'geo-location'" id="home-location"></vg-icon>
+            <button class="btn btn-primary btn-large"
+             type="submit"
+             ng-disabled="!homeVm.canSubmitCta()"
+             ng-click="homeVm.onCtaSubmit('area')">
+                <span class="h4">{{ 'home.callToAction.show' | translate }}&nbsp;</span>
+                <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
-        </div>
-        <button class="btn btn-primary btn-large"
-         type="submit"
-         ng-disabled="!homeVm.canSubmitCta()"
-         ng-click="homeVm.onCtaSubmit('area')">
-            <span class="h4">{{ 'home.callToAction.show' | translate }}&nbsp;</span>
-            <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
-        </button>
-    </form>
-</div>
-<div class="vg-card">
-    <p class="text--home">
-        {{ 'home.participate.text' | translate }}
-    </p>
-    <p>
-        <button type="button" class="btn-register btn-primary btn-small"
-         ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-         ng-click="homeVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.home'"
-         title="{{ 'navigation.register' | translate }}">
-            {{ 'home.participate.register' | translate }}
-        </button>
-    </p>
-</div>
-<div class="vg-card">
-    <p class="text--home">
-        {{ 'home.open.text1' | translate }}
-        <a href="https://github.com/veganaut/veganaut/blob/master/LICENSE" target="_blank">{{ 'home.open.source' | translate }}</a>
-        {{ 'home.open.text2' | translate }}
-        <a href="https://creativecommons.org/licenses/by-sa/3.0/ch/" target="_blank">{{ 'home.open.content' | translate }}</a>.
-    </p>
-</div>
-<div id="home-modal-bottom">
-    <img src="img/background/landscape.svg">
+        </form>
+    </div>
+    <div class="vg-card">
+        <p class="text--home">
+            {{ 'home.participate.text' | translate }}
+        </p>
+        <p>
+            <button type="button" class="btn-register btn-primary btn-small"
+             ng-if="!homeVm.legacyGlobals.isLoggedIn()"
+             ng-click="homeVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.home'"
+             title="{{ 'navigation.register' | translate }}">
+                {{ 'home.participate.register' | translate }}
+            </button>
+        </p>
+    </div>
+    <div class="vg-card">
+        <p class="text--home">
+            {{ 'home.open.text1' | translate }}
+            <a href="https://github.com/veganaut/veganaut/blob/master/LICENSE" target="_blank">{{ 'home.open.source' | translate }}</a>
+            {{ 'home.open.text2' | translate }}
+            <a href="https://creativecommons.org/licenses/by-sa/3.0/ch/" target="_blank">{{ 'home.open.content' | translate }}</a>.
+        </p>
+    </div>
+    <div id="home-modal-bottom">
+        <img src="img/background/landscape.svg">
+    </div>
 </div>
