@@ -23,7 +23,14 @@
     function LocationEditSelectComponentController() {
         var vm = this;
 
+        vm.open = false;
+
         vm.$onInit = function() {
         };
+
+        // TODO Right now, all sliders open together
+        vm.openSlider = function openSlider() {
+            vm.open = !vm.open;
+        }
     }
 })();

@@ -8,6 +8,7 @@
     function locationEditStarComponent() {
         var component = {
             bindings: {
+                'edit': '<vgEdit'
             },
             controller: LocationEditStarComponentController,
             controllerAs: 'vm',

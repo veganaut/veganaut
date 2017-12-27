@@ -1,6 +1,6 @@
 <h1 class="vg-location-products__title">
     <strong>{{vm.location.getProducts().length > 0 ? ('product.totalProducts' | translate: {numProducts: vm.location.getProducts().length - vm.limitTo}) : ('product.noProducts' | translate)}} </strong>
-    <span class="vg-location-products__add">
+    <span class="vg-location-products__add" ng-if="!vm.pane">
         <button class="remove-btn">
         <vg-icon vg-name="'add'"></vg-icon>
         </button>

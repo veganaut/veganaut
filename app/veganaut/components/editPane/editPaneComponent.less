@@ -1,0 +1,110 @@
+@import "../../../less/typography";
+
+.edit-overlay {
+
+    overflow-y: scroll;
+    z-index: 6667;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    .edit-container {
+        padding: 16px 20px 0 20px;
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        z-index: 6668;
+        border: 1px solid #ddd;
+        background-color: #ffffff;
+
+        .sky {
+            width: 550px;
+            margin-top: -10px;
+            margin-left: -20px;
+            margin-bottom: -115px;
+        }
+
+        .h3 {
+            margin-top: -35px;
+            .vg-typography-display-3;
+        }
+
+        .h3-edit {
+            margin-top: unset;
+        }
+
+        .h4 {
+            .vg-typography-display-2
+        }
+
+        label {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        textarea[type="text"], input[type="text"] {
+            margin-top: 30px;
+            background: transparent;
+            .vg-typography-display-2;
+            margin-bottom: 30px;
+            padding: 10px;
+        }
+
+        button {
+            .checkmark, .cross-big {
+                margin-right: 10px;
+
+                svg {
+                    width: 11px;
+                    fill: #ffffff;
+                }
+
+            }
+            .chevron-small-right {
+                margin-right: -6px;
+            }
+        }
+
+        .button-wrapper {
+            margin: 0 -20px;
+            padding: 0 20px;
+            box-shadow: inset 0 1px 0 0 @_color-grey-light;
+            .btn-edit {
+                margin: 12px 0;
+                padding: 3px;
+                text-align: center;
+                color: @_color-blue;
+                width: 100%;
+
+                svg {
+                    width: 8px;
+                    height: 8px;
+                    fill: @_color-blue
+                }
+            }
+
+            .btn-skip {
+                box-shadow: inset 1px 0 0 0 @_color-grey-light;
+            }
+            .col-xs-5, .col-xs-7 {
+                padding: 0;
+            }
+        }
+        .plant-tooltip {
+            margin-bottom: 0;
+            border-color: @_color-blue;
+            &:before {
+                border-top-color: @_color-blue;
+            }
+            p {
+                .vg-typography-display-2;
+            }
+        }
+    }
+
+}
+
+

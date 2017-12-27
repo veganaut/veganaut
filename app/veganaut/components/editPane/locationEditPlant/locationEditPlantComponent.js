@@ -8,6 +8,7 @@
     function locationEditPlantComponent() {
         var component = {
             bindings: {
+                'edit': '<vgEdit'
             },
             controller: LocationEditPlantComponentController,
             controllerAs: 'vm',
@@ -22,6 +23,35 @@
 
     function LocationEditPlantComponentController() {
         var vm = this;
+        this.ratingPlants = {
+            'ratingPlant1': {
+                'visible': false
+            },
+            'ratingPlant2': {
+                'visible': false
+            },
+            'ratingPlant3': {
+                'visible': false
+            },
+            'ratingPlant4': {
+                'visible': false
+            },
+            'ratingPlant5': {
+                'visible': false
+            }
+        };
+        /**
+         * Function to show the plants right if clicked
+         * @param plantId
+         */
+        this.toggle = function(plantId) {
+            for (var plant in this.ratingPlants) {
+                if (this.ratingPlants.hasOwnProperty(plant)) {
+                    this.ratingPlants[plant].visible = plant === plantId;
+                }
+            }
+        };
+
 
         vm.$onInit = function() {
         };

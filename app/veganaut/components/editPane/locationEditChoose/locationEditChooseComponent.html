@@ -1,1 +1,64 @@
-<p>locationEditChoose</p>
+<div class="vg-location-edit-choose">
+    <div class="edit-overlay">
+        <div class="container edit-container">
+            <img class="sky" src="img/background/space-hills-2.svg" ng-if="vm.edit">
+            <div class="h3" ng-class="{'h3-edit': !vm.edit}">
+                <label>
+                    Lorem Ipsum
+                </label>
+            </div>
+            <div class="h4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+            <div class="row choose-wrapper">
+                <div class="plant-tooltip" ng-class="{'answer1-tooltip': vm.answers.yes.visible}">
+                    <p>{{ 'areaOverview.rating.1' | translate }}</p>
+                </div>
+                <div class="plant-tooltip" ng-class="{'answer2-tooltip': vm.answers.no.visible}">
+                    <p>{{ 'areaOverview.rating.2' | translate }}</p>
+                </div>
+                <div class="plant-tooltip" ng-class="{'answer3-tooltip': vm.answers.maybe.visible}">
+                    <p>{{ 'areaOverview.rating.3' | translate }}</p>
+                </div>
+                <div class="col-xs-3">
+                    <button class="btn btn-choose" ng-click="vm.toggle('yes')" ng-class="{'btn-choose-selected' : vm.answers.yes.visible}">
+                        Yes
+                    </button>
+                </div>
+                <div class="col-xs-3">
+                    <button class="btn btn-choose" ng-click="vm.toggle('no')" ng-class="{'btn-choose-selected' : vm.answers.no.visible}">
+                        No
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-choose" ng-click="vm.toggle('maybe')" ng-class="{'btn-choose-selected' : vm.answers.maybe.visible}">
+                        Maybe or not
+                    </button>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-large">
+                <vg-icon class="checkmark" vg-name="'checkmark'"></vg-icon>
+                {{'location.pane.save' | translate }}
+            </button>
+            <div class="button-wrapper" ng-if="!vm.edit">
+                <button class="remove-btn btn-edit">
+                    <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
+                    {{'location.pane.abort' | translate }}
+                </button>
+            </div>
+            <div class="button-wrapper row" ng-if="vm.edit">
+                <div class="col-xs-5">
+                    <button class="remove-btn btn-edit">
+                        <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
+                        {{'location.pane.abort' | translate }}
+                    </button>
+                </div>
+                <div class="col-xs-7">
+                    <button class="remove-btn btn-edit btn-skip">
+                        {{'location.pane.skip' | translate:{'from': 1, 'to': 3} }}
+                        <vg-icon class="chevron-small-right" vg-name="'chevron-small-right'"></vg-icon>
+                        <vg-icon class="chevron-small-right" vg-name="'chevron-small-right'"></vg-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

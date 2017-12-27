@@ -8,6 +8,7 @@
     function locationEditMultiComponent() {
         var component = {
             bindings: {
+                edit: '<vgEdit'
             },
             controller: LocationEditMultiComponentController,
             controllerAs: 'vm',
