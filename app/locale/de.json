@@ -177,6 +177,12 @@
     "totalPeople": "VeganautInnen"
   },
   "location": {
+    "edit": "Location jetzt bearbeiten",
+    "finish": "Fertig",
+    "tags": {
+      "rating": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
+      "add": "Empfehlung hinzufügen"
+    },
     "pane": {
       "save": "Speichern",
       "abort": "Abbrechen",
@@ -459,7 +465,6 @@
     "rate": "Produkt bewerten",
     "totalProducts": "{{ numProducts }} Vegane Gerichte",
     "noProducts": "Keine Vegane Gerichte"
-
   },
   "globalSearch": {
     "title": {

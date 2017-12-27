@@ -13,7 +13,7 @@
         </div>
         <div class="col-xs-2 chevron-aligner" ng-if="!vm.parent.edit">
             <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
-                <vg-icon  ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
+                <vg-icon ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
                 </vg-icon>
             </button>
         </div>
@@ -25,11 +25,11 @@
         </div>
     </div>
     <div class="average-rating ng-binding">
-        Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.
+        {{'location.tags.rating' | translate}}
     </div>
-    <button type="button" class="btn-primary btn-small">
+    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
         <vg-icon vg-name="'plus'"></vg-icon>
-        Empfehlung hinzufügen
+        {{'location.tags.add' | translate}}
     </button>
 </div>
 
