@@ -44,7 +44,8 @@ var files = {
         'app/lib/angular-simple-logger/dist/angular-simple-logger.light.js', // Needed for angular-leaflet-directive
         'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
         'app/lib/angular-translate/angular-translate.js',
-        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
+        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+        'node_modules/spiritjs/dist/spirit.min.js'
     ],
     less: 'app/main.less',
     templates: 'app/**/*.tpl.html',

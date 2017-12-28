@@ -36,5 +36,8 @@
     "watch:dev": "npm run serve:dev",
     "watch": "npm run watch:dev",
     "build": "gulp production"
+  },
+  "dependencies": {
+    "spiritjs": "^2.2.4"
   }
 }
