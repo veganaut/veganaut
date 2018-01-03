@@ -8,14 +8,14 @@
      */
     function areaOverviewComponent() {
         return {
-            controller: areaOverviewCtrl,
+            controller: AreaOverviewCtrl,
             controllerAs: '$ctrl',
             templateUrl: 'veganaut/areaOverview/areaOverview.tpl.html'
 
         };
     }
 
-    areaOverviewCtrl.$inject = [
+    AreaOverviewCtrl.$inject = [
         'areaOverview',
         'locationFilterService',
         '$location'
@@ -29,7 +29,7 @@
      * @param locationFilterService
      * @param $location
      */
-    function areaOverviewCtrl(areaOverview, locationFilterService, $location) {
+    function AreaOverviewCtrl(areaOverview, locationFilterService, $location) {
         var $ctrl = this;
         $ctrl.areaOverview = areaOverview;
         $ctrl.current = false;

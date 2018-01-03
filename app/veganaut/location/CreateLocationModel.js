@@ -14,7 +14,7 @@ angular.module('veganaut.app.location').factory('CreateLocation', [
              * The location that is being created
              * @type {Location}
              */
-            this.newLocation = new Location({owner: player});
+            this.newLocation = new Location();
             this.newLocation.setEditing(true);
 
             /**

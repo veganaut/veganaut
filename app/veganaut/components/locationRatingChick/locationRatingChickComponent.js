@@ -9,7 +9,7 @@
         var component = {
             bindings: {
             },
-            controller: locationRatingChickController,
+            controller: LocationRatingChickController,
             controllerAs: 'vm',
             templateUrl: 'veganaut/components/locationRatingChick/locationRatingChickComponent.html'
         };
@@ -17,10 +17,7 @@
         return component;
     }
 
-    // Inject dependencies
-    // productListItemComponentController.$inject = ['exampleService'];
-
-    function locationRatingChickController() {
+    function LocationRatingChickController() {
         var vm = this;
 
         vm.$onInit = function() {

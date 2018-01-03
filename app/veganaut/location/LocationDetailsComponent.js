@@ -107,6 +107,6 @@
 
         vm.editLocation = function editLocation() {
             vm.edit = !vm.edit;
-        }
+        };
     }
 })();

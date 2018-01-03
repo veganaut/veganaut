@@ -4,7 +4,7 @@
 <!--<vg-location-edit-star vg-edit="false"></vg-location-edit-star>-->
 <!--<vg-location-edit-plant vg-edit="true"></vg-location-edit-plant>-->
 <!--<vg-location-edit-choose vg-edit="false"></vg-location-edit-choose>-->
-<vg-location-edit-end></vg-location-edit-end>
+<!--<vg-location-edit-end></vg-location-edit-end>-->
 <vg-card class="vg-location-details__card">
     <div class="modification-banner" ng-if="vm.edit">
         <div class="row">
@@ -68,13 +68,13 @@
     </div>
 </vg-card>
 
-<vg-card class="vg-location-details__card">
+<vg-card class="vg-location-details__card" ng-if="vm.location.website">
+    <!-- TODO WIP: Always show when editing -->
     <div class="row">
         <div class="col-xs-10">
-            <a href="#">
+            <a ng-href="{{ vm.location.website }}" target="_blank">
                 <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
-                http://www.google.com
-                <!-- TODO {{vm.location.website}}-->
+                {{ vm.location.website }}
             </a>
         </div>
         <div class="col-xs-2 pen-aligner">

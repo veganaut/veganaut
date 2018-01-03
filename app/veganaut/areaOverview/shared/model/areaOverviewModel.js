@@ -5,11 +5,11 @@
         function AreaOverview() {
             this.areaOverview = this;
             this.location = [
-                this.name = "Bern",
-                this.area = "Stadtteil II, Bern, Schweiz",
+                this.name = 'Bern',
+                this.area = 'Stadtteil II, Bern, Schweiz',
                 this.totalLocations = 1233,
                 this.radius = 5.8
-            ],
+            ];
             this.ratings = [
                 this.one = 1,
                 this.two = 2,
@@ -27,5 +27,5 @@
             ];
             return this.areaOverview;
         }
-    )
+    );
 })(window.veganaut.mainModule);

@@ -39,20 +39,14 @@
                  * @type {string}
                  */
                 this.id = 'new';
-                this.owner = undefined;
                 this.lat = undefined;
                 this.lng = undefined;
                 this.name = undefined;
                 this.description = undefined;
-                this.link = undefined;
+                this.website = undefined;
                 this.type = undefined;
                 this.address = undefined;
-                this.points = {};
                 this.quality = {
-                    average: 0,
-                    numRatings: 0
-                };
-                this.effort = {
                     average: 0,
                     numRatings: 0
                 };
@@ -143,18 +137,6 @@
 
 
             /**
-             * Returns whether this location is owned by the current player
-             * @returns {boolean}
-             */
-            Location.prototype.isOwnedByPlayer = function() {
-                var me = playerService.getImmediateMe();
-                if (angular.isObject(me) && angular.isObject(this.owner)) {
-                    return (this.owner.id === me.id);
-                }
-                return false;
-            };
-
-            /**
              * Returns the marker definition to be used for this location.
              * The event 'veganaut.locationItem.marker.updated' will be broadcast
              * when the definition changes.
@@ -174,7 +156,6 @@
                     ' marker--type-' + this.type +
                     ' marker--quality-' + this.getRoundedQuality() +
                     (this._disabled ? ' marker--disabled' : ' marker--enabled') +
-                    (this.isOwnedByPlayer() ? ' marker--owner ' : '') +
                     (this._active ? ' marker--active' : '') +
                     (this._isBeingEdited ? ' marker--editing' : '');
             };
@@ -310,21 +291,6 @@
             };
 
             /**
-             * Returns the number of points the current owner has
-             * @returns {number}
-             */
-            Location.prototype.getOwnerPoints = function() {
-                var points = 0;
-                if (angular.isObject(this.owner) &&
-                    angular.isString(this.owner.id) &&
-                    angular.isNumber(this.points[this.owner.id]))
-                {
-                    points = this.points[this.owner.id];
-                }
-                return points;
-            };
-
-            /**
              * Sets the location to be disabled or enabled on the map.
              * Disabled locations are shown greyed out.
              * @param {boolean} [isDisabled=true]
@@ -344,24 +310,6 @@
              */
             Location.prototype.isDisabled = function() {
                 return this._disabled;
-            };
-
-            /**
-             * Returns an array of all the points starting with the highest:
-             * { player: id, points: 100 }
-             * @returns {{}}
-             */
-            Location.prototype.getSortedPoints = function() {
-                // TODO: should be possible to clear the memoiziation
-                this._sortedPoints = this._sortedPoints || _.chain(this.points)
-                    .map(function(value, key) {
-                        return {player: key, points: value};
-                    })
-                    .sortBy('points')
-                    .reverse()
-                    .value()
-                ;
-                return this._sortedPoints;
             };
 
             /**
@@ -415,7 +363,7 @@
                 if (showUnavailable) {
                     return this.products;
                 }
-                return this._getProductsByAvailability(['available', 'temporarilyUnavailable']);
+                return this._getProductsByAvailability(['always', 'sometimes', 'daily', 'weekly', 'seasonal']);
             };
 
             /**
@@ -423,7 +371,7 @@
              * @returns {boolean}
              */
             Location.prototype.hasUnavailableProducts = function() {
-                return (this._getProductsByAvailability('unavailable').length > 0);
+                return (this._getProductsByAvailability('not').length > 0);
             };
 
             /**
@@ -481,15 +429,15 @@
             };
 
             /**
-             * Makes sure the currently link is valid
+             * Makes sure the current website is valid
              * (starts with http:// or https://)
              */
-            Location.prototype.sanitiseLink = function() {
-                if (angular.isString(this.link) &&
-                    this.link.length > 0 &&
-                    !/^https?:\/\//.test(this.link))
+            Location.prototype.sanitiseWebsite = function() {
+                if (angular.isString(this.website) &&
+                    this.website.length > 0 &&
+                    !/^https?:\/\//.test(this.website))
                 {
-                    this.link = 'http://' + this.link;
+                    this.website = 'http://' + this.website;
                 }
             };
 
@@ -506,8 +454,8 @@
                         address = this.address.street;
 
                         // Add house number if present
-                        if (angular.isString(this.address.houseNumber)) {
-                            address += ' ' + this.address.houseNumber;
+                        if (angular.isString(this.address.house)) {
+                            address += ' ' + this.address.house;
                         }
                     }
                     else if (addressType === 'city' && angular.isString(this.address.city)) {

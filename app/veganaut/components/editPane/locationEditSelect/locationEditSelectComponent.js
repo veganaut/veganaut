@@ -31,6 +31,6 @@
         // TODO Right now, all sliders open together
         vm.openSlider = function openSlider() {
             vm.open = !vm.open;
-        }
+        };
     }
 })();

@@ -38,6 +38,6 @@
     "build": "gulp production"
   },
   "dependencies": {
-    "spiritjs": "^2.2.4"
+    "spiritjs": "2.2.4"
   }
 }

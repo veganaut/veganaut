@@ -8,25 +8,25 @@
      */
     function navBarOverlayComponent() {
         return {
-            require: {parent: "^^vgNavBar"},
-            controller: navBarOverlayCtrl,
+            require: {parent: '^^vgNavBar'},
+            controller: NavBarOverlayCtrl,
             controllerAs: '$ctrl',
             templateUrl: '/veganaut/navBar/navBarOverlay/navBarOverlay.tpl.html'
 
         };
     }
 
-    navBarOverlayCtrl.$inject = [
+    NavBarOverlayCtrl.$inject = [
         '$rootScope',
         'backendService'
     ];
 
 
-    function navBarOverlayCtrl($rootScope, backendService) {
+    function NavBarOverlayCtrl($rootScope, backendService) {
         var $ctrl = this;
 
         $ctrl.closeOverlay = function() {
-            $ctrl.parent.closeMenu()
+            $ctrl.parent.closeMenu();
         };
         $ctrl.goToView = function(view) {
             $rootScope.goToView(view);

@@ -93,11 +93,6 @@
                 vgRouteName: 'areaOverview',
                 template: '<vg-area-overview></vg-area-overview>'
             });
-            $routeProvider.when('/location-legacy/:id', {
-                vgRouteName: 'locationLegacy',
-                templateUrl: '/veganaut/map/locationDetails.tpl.html',
-                controller: 'LocationDetailsCtrl'
-            });
             $routeProvider.when('/location/:id', {
                 vgRouteName: 'location',
                 template: '<vg-location-details vg-location="$resolve.location"></vg-location-details>',

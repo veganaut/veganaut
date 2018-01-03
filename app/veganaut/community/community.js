@@ -43,17 +43,10 @@
                     vm.totalLocations = sumScores(scores.locationTypes.locations, 'locations');
                     vm.locationTypes = scores.locationTypes.locations;
 
-                    // Calculate the location owner ranking
-                    vm.locationOwnerRanks = preparePeopleRanks(
-                        scores.people.locations,
-                        'locations',
-                        player
-                    );
-
                     // Calculate the mission ranking
-                    vm.missionRanks = preparePeopleRanks(
-                        scores.people.missions,
-                        'missions',
+                    vm.taskRanks = preparePeopleRanks(
+                        scores.people.tasks,
+                        'tasks',
                         player
                     );
                 })

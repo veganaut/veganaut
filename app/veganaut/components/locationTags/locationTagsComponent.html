@@ -1,10 +1,11 @@
-<div class="vg-location-tags" ng-class=" {'vg-location-tags-open': vm.isProductListExpanded}">
+<div class="vg-location-tags" ng-class=" {'vg-location-tags-open': vm.isExpanded}">
     <div class="row">
         <div class="col-xs-10">
             <div class="tag-wrapper">
-                <!--TODO Remove when API finished-->
-                <!--<div ng-repeat="tag in vm.Tags">-->
-                <div ng-repeat="tag in vm.mockTags">
+                <div ng-if="!vm.tags || vm.tags.length === 0">
+                    {{ 'location.locationTags.noTags' | translate }}
+                </div>
+                <div ng-repeat="tag in vm.tags">
                 <span class="badge clickable" ng-class="'opacity-' + tag.weight">
                     {{ 'tags.' + tag.name + '.name' | translate }}s
                 </span>
@@ -13,7 +14,7 @@
         </div>
         <div class="col-xs-2 chevron-aligner" ng-if="!vm.parent.edit">
             <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
-                <vg-icon ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
+                <vg-icon ng-class="{'location-details-chevron-expanded': vm.isExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
                 </vg-icon>
             </button>
         </div>
@@ -24,12 +25,12 @@
             </button>
         </div>
     </div>
-    <div class="average-rating ng-binding">
-        {{'location.tags.rating' | translate}}
+    <div class="average-rating tags-explanation">
+        {{'location.locationTags.explanation' | translate}}
     </div>
-    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
+    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}">
         <vg-icon vg-name="'plus'"></vg-icon>
-        {{'location.tags.add' | translate}}
+        {{'location.locationTags.add' | translate}}
     </button>
 </div>
 

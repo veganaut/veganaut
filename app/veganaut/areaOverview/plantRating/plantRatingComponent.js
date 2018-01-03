@@ -66,10 +66,10 @@
                         this.ratingPlants[plant].tooltip = false;
                     }
                     else if (plant === plantId && !this.ratingPlants[plant].tooltip) {
-                        for (var p in this.ratingPlants) {
-                            if (this.ratingPlants.hasOwnProperty(p)) {
-                                this.ratingPlants[p].visible = false;
-                                this.ratingPlants[p].tooltip = false;
+                        for (var r in this.ratingPlants) {
+                            if (this.ratingPlants.hasOwnProperty(r)) {
+                                this.ratingPlants[r].visible = false;
+                                this.ratingPlants[r].tooltip = false;
                             }
                         }
                         this.ratingPlants[plant].tooltip = true;

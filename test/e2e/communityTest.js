@@ -36,15 +36,8 @@ describe('community.', function() {
             helpers.goToIfNotAlreadyThere('/community');
         });
 
-        it('should have owned location ranking.', function() {
-            var ranking = element(by.css('.ranking--location-owners'));
-            expect(ranking.isPresent()).toBe(true, 'has ranking table');
-
-            expect(ranking.getText()).toContain('Alice', 'Alice should be shown in the ranking');
-        });
-
-        it('should have owned location ranking.', function() {
-            var ranking = element(by.css('.ranking--missions'));
+        it('should have ranking by completed tasks.', function() {
+            var ranking = element(by.css('.ranking--tasks'));
             expect(ranking.isPresent()).toBe(true, 'has ranking table');
 
             expect(ranking.getText()).toContain('Alice', 'Alice should be shown in the ranking');
@@ -58,11 +51,7 @@ describe('community.', function() {
 
             var profileText = element(by.css('.profile')).getText();
             expect(profileText).toContain('Nickname');
-            expect(profileText).toContain('Completed Missions');
-            expect(profileText).toContain('Pioneer');
-            expect(profileText).toContain('Diplomat');
-            expect(profileText).toContain('Evaluator');
-            expect(profileText).toContain('Gourmet');
+            expect(profileText).toContain('Completed Tasks');
         });
     });
 });

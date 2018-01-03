@@ -11,11 +11,7 @@
                 parent: '^^vgLocationDetails'
             },
             bindings: {
-                tags: '<vgTags',
-
-
-                // Maximum number of products to show before displaying load more
-                limit: '<vgLimit'
+                tags: '<vgTags'
             },
             controller: LocationTagsComponentController,
             controllerAs: 'vm',
@@ -25,28 +21,13 @@
         return component;
     }
 
-    // Inject dependencies
-    // locationProductSummaryComponentController.$inject = ['exampleService'];
-
     function LocationTagsComponentController() {
         var vm = this;
 
-        vm.isProductListExpanded = false;
+        vm.isExpanded = false;
 
-        vm.onExpandCollapseToggleClick = onExpandCollapseToggleClick;
-
-        vm.$onInit = function() {
-            // Destroy Sorting
-            vm.mockTags = [
-                {'name': 'gBreakfast', 'weight': 1}, {'name': 'gDinner', 'weight': 1},
-                {'name': 'gLunch', 'weight': 3}, {'name': 'gSweets', 'weight': 2}, {
-                    'name': 'rnBooks',
-                    'weight': 4
-                }, {'name': 'gLunch', 'weight': 3}, {'name': 'gSweets', 'weight': 2}, {'name': 'rnBooks', 'weight': 4}]
+        vm.onExpandCollapseToggleClick = function onExpandCollapseToggleClick() {
+            vm.isExpanded = !vm.isExpanded;
         };
-
-        function onExpandCollapseToggleClick() {
-            vm.isProductListExpanded = !vm.isProductListExpanded;
-        }
     }
 })();

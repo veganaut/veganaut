@@ -51,6 +51,7 @@
              */
             LocationCluster.prototype._getMarkerIconClasses = function() {
                 // Set owner class if the user owns anything in this cluster
+                // TODO WIP: replace this with where the user has been?
                 var ownerClass = '';
                 if (angular.isNumber(this.clusterSize) &&
                     angular.isNumber(this.numOwned) &&

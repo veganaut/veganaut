@@ -158,19 +158,13 @@
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
       "password": "Passwort",
-      "attributes": "Attribute",
-      "pioneer": "Pionier",
-      "diplomat": "Diplomat",
-      "evaluator": "Evaluator",
-      "gourmet": "Gourmet",
-      "completedMissions": "Abgeschlossene Missionen"
+      "completedTasks": "Abgeschlossene Tasks"
     }
   },
   "community": {
     "points": "Punkte",
     "locationTypes": "Locations",
-    "locationOwners": "Rangliste nach Locations",
-    "missions": "Rangliste nach Missionen",
+    "tasks": "Rangliste nach Tasks",
     "and": "und",
     "numPeople": "{{ count }} VeganautInnen",
     "numOtherPeople": "{{ count }} andere VeganautInnen",
@@ -179,10 +173,6 @@
   "location": {
     "edit": "Location jetzt bearbeiten",
     "finish": "Fertig",
-    "tags": {
-      "rating": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
-      "add": "Empfehlung hinzufügen"
-    },
     "pane": {
       "save": "Speichern",
       "abort": "Abbrechen",
@@ -192,7 +182,7 @@
       "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
       "lessTasks": "Ausblenden"
     },
-    "rate": "Wie beurteilst du das Angebot dieser Location  aus veganautischer Sicht?",
+    "rate": "Wie beurteilst du das Angebot dieser Location aus veganautischer Sicht?",
     "form": {
       "new": {
         "type": "Welche Art von Location möchtest du hinzufügen?",
@@ -261,12 +251,10 @@
         "level5": "Der heilige Gral veganischer Angebote"
       }
     },
-    "effort": {
-      "explanation": "Je besser das Wetter, desto grösser das Interesse des Personals, vegane Wünsche zu erfüllen."
-    },
     "locationTags": {
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
-      "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!"
+      "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!",
+      "add": "Empfehlung hinzufügen"
     },
     "approximateAddress": "Diese Adresse wurde automatisch bestimmt und kann darum ungenau sein."
   },
@@ -414,17 +402,6 @@
         "explanation": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.",
         "outcome": {
           "description": "Dein Urteil:"
-        }
-      },
-      "effortValue": {
-        "title": "Gib an, wie offen das Personal hier für \"vegan\" ist.",
-        "description": "Wie offen ist das Personal hier für das Thema vegan? Wie stehen die Chancen, dass das vegane Angebot hier grösser und besser wird?",
-        "explanation": "In manchen Locations hat das Personal Null Interesse an \"vegan\" (schlechtes Wetter), anderswo sind sie offener und geben sich aufrichtig Mühe, vegane Wünsche zu befriedigen (schönes Wetter).",
-        "outcome": {
-          "yes": "Das Personal hier zeigt grosses Interesse an \"vegan\".",
-          "ratherYes": "Das Personal hier zeigt ein gewisses Interesse an \"vegan\".",
-          "ratherNo": "Das Personal hier zeigt nur wenig Interesse an \"vegan\".",
-          "no": "Das Personal hier zeigt gar kein Interesse an \"vegan\"."
         }
       },
       "locationTags": {

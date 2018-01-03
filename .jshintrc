@@ -85,6 +85,7 @@
     // Project Specific Globals
     "globals"        : {
         "angular": false,
+        "spirit": false,
         "_": false
     }
 }

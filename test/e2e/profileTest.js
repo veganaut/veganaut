@@ -30,10 +30,6 @@ describe('profile.', function() {
             expect(profileText).toContain('Alice Alison');
             expect(profileText).toContain('foo@bar.baz');
             expect(profileText).toContain('Completed Missions');
-            expect(profileText).toContain('Pioneer');
-            expect(profileText).toContain('Diplomat');
-            expect(profileText).toContain('Evaluator');
-            expect(profileText).toContain('Gourmet');
         });
     });
 

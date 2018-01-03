@@ -306,7 +306,7 @@
                     }]
                 }]
             };
-            return this
+            return this;
         }
-    )
+    );
 })(window.veganaut.mainModule);

@@ -33,6 +33,6 @@
 
         vm.onExpandCollapseToggleClick = function onExpandCollapseToggleClick() {
             vm.isTasksListExpanded = !vm.isTasksListExpanded;
-        }
+        };
     }
 })();

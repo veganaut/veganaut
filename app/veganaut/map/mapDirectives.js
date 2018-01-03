@@ -52,42 +52,6 @@
         };
     }]);
 
-    module.directive('vgLocationEffortIcon', [function() {
-        return {
-            restrict: 'E',
-            scope: {
-                location: '='
-            },
-            templateUrl: '/veganaut/map/vgLocationEffortIcon.tpl.html',
-            controller: ['$scope', function($scope) {
-                /**
-                 * Returns the icon name matching an average effortValue
-                 *
-                 * @param effortAverage
-                 * @returns iconName
-                 */
-                $scope.getEffortAverageIcon = function(effortAverage) {
-                    var iconName;
-                    if (effortAverage >= 0.75) {
-                        iconName = 'wi-day-sunny';
-                    }
-                    else if (effortAverage >= 0) {
-                        iconName = 'wi-day-cloudy';
-                    }
-                    else if (effortAverage >= -0.75) {
-                        iconName = 'wi-cloudy';
-                    }
-                    else {
-                        iconName = 'wi-thunderstorm';
-                    }
-                    return iconName;
-                };
-            }
-
-            ]
-        };
-    }]);
-
     module.directive('vgAverageRating', [function() {
         return {
             restrict: 'E',

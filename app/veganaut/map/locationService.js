@@ -276,20 +276,20 @@
 
             /**
              * Sends the current location data to the backend.
-             * Updates only name, description and link at the moment.
+             * Updates only name, description and website at the moment.
              * @param {Location} location
              * @returns {HttpPromise}
              */
             LocationService.prototype.updateLocation = function(location) {
-                // Sanitise the link before saving
-                location.sanitiseLink();
+                // Sanitise the website before saving
+                location.sanitiseWebsite();
 
                 // TODO: should find out what has been edited and only send that
                 return backendService.updateLocation(location.id, {
                         name: location.name,
                         description: location.description,
                         type: location.type,
-                        link: location.link,
+                        website: location.website,
                         lat: location.lat,
                         lng: location.lng
                     })

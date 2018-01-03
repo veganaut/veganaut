@@ -1,4 +1,3 @@
-
 (function() {
     'use strict';
 
@@ -25,7 +24,7 @@
         vm.animations = animations.animations;
 
         vm.$onInit = function() {
-            spirit.setup()
+            spirit.setup() // TODO WIP: inject spirit, remove from jshintrc
             // load animation data
                 .then(function() {
                     spirit.create(vm.animations).get('animation-01').construct()
@@ -33,9 +32,9 @@
                     // play gsap timeline
                         .yoyo(false)
                         .repeat(0)
-                        .resume()
+                        .resume();
 
-                })
+                });
 
         };
     }
