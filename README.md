@@ -7,8 +7,7 @@ Getting Started
 ---------------
 
 To run Veganaut, you'll need to install [nodejs](http://nodejs.org/) and
-[mongodb](http://www.mongodb.org/). On a Mac, the easiest way to do so is `brew
-install node mongodb`.
+[PostgreSQL](https://www.postgresql.org/).
 
 After that, checkout veganaut and veganaut-backend. Make sure they live in the same parent folder:
 
@@ -32,7 +31,7 @@ file for the backend in `veganaut-backend/app/config.js`
     (cd veganaut; npm install)
     (cd veganaut-backend; npm install)
 
-Start all the things:
+Start all the things (you have to start your PostgreSQL server before):
 
     cd veganaut; ./scripts/run-all.sh
 
@@ -42,7 +41,6 @@ Load the fixtures:
 
 The starting script does the following:
 
-* Start MongoDB if it isn't already started
 * Run `gulp dev` which creates the index.html file from index.ejs and compiles the less files
     * Note that at the moment there is no gulp watch task, so if you change index.ejs or any of the less files,
       you have to run `./node_modules/.bin/gulp dev` manually. If you use PHP/WebStorm,

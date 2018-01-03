@@ -2,7 +2,6 @@
 app/index.html
 build/
 log/
-mongodb/
 node_modules/
 tests.out
 npm-debug.log
