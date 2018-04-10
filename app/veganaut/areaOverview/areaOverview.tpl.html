@@ -1,14 +1,45 @@
 <div class="earth-closeup-top">
-    <vg-plant-rating></vg-plant-rating>
+    <div class="area-wrapper">
+        <h1 class="h3">
+            <vg-icon vg-name="'location'" class="area-overview-location"></vg-icon>
+            <span ng-switch="$ctrl.areaType">
+                <span ng-switch-when="world">{{ 'areaDescription.title.world' | translate }}</span>
+                <span ng-switch-when="areaWithId">{{ $ctrl.areaName }}</span>
+                <span ng-switch-when="areaWithoutId">{{ 'areaDescription.title.mapSection' | translate }}</span>
+            </span>
+        </h1>
+        <button ng-if="$ctrl.lastAreaWithId" class="return-btn" ng-click="$ctrl.backToLastAreaWithId()">
+            <div class="return-btn-content">
+                <vg-icon vg-name="'jump-back'"></vg-icon>
+                <span>{{ $ctrl.lastAreaWithId.name }}</span>
+            </div>
+        </button>
+        <p ng-switch="$ctrl.areaType">
+            <span ng-switch-when="world">
+                {{ 'areaOverview.subtitle.world' | translate }}
+            </span>
+            <span ng-switch-when="areaWithId">
+                {{ 'areaOverview.subtitle.areaWithId' | translate: {radius: $ctrl.displayRadius} }}
+            </span>
+            <span ng-switch-when="areaWithoutId">
+                {{ 'areaOverview.subtitle.mapSection' | translate: {radius: $ctrl.displayRadius, area: $ctrl.areaName} }}
+            </span>
+        </p>
+        <p class="area-location-area">
+            <span>{{ 'areaOverview.locationQualityTitle' |
+                translate: {total: $ctrl.areaOverview.locations.total} }}</span>
+        </p>
+        <vg-plant-rating vg-area-overview="$ctrl.areaOverview"></vg-plant-rating>
+    </div>
     <div class="tile-wrapper">
         <div class="tile">
-            <a href="/map/?type=gastronomy&group=location" class="category-wrapper" ng-click="$ctrl.redirectTo(1, 1, '/map')">
-                <div class="category-counter">{{$ctrl.areaOverview.restaurants[0]}}</div>
-                <vg-icon class="location-svg" vg-name="'restaurant-location'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.restaurants' | translate }}</h3>
+            <a href="/map/?type=gastronomy&group=location" class="category-wrapper">
+                <div class="category-counter">{{ $ctrl.areaOverview.locations.gastronomy }}</div>
+                <vg-icon class="area-overview-big-icon" vg-name="'gastronomyLocationSparkly'"></vg-icon>
+                <h3 class="h4">{{ 'areaOverview.gastronomyLocations' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=gastronomy&group=location" class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(1, 1, '/list')">
+            <a href="/list/?type=gastronomy&group=location" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
@@ -17,13 +48,13 @@
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <a href="/map/?type=gastronomy&group=product" class="category-wrapper" ng-click="$ctrl.redirectTo(1, 2, '/map')">
-                <div class="category-counter">{{$ctrl.areaOverview.restaurants[1]}}</div>
-                <vg-icon class="location-svg" vg-name="'meal-location'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.meals' | translate }}</h3>
+            <a href="/map/?type=gastronomy&group=product" class="category-wrapper">
+                <div class="category-counter">{{ $ctrl.areaOverview.products.gastronomy }}</div>
+                <vg-icon class="area-overview-big-icon" vg-name="'gastronomyProductSparkly'"></vg-icon>
+                <h3 class="h4">{{ 'areaOverview.gastronomyProducts' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=gastronomy&group=product" class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(1, 2, '/list')">
+            <a href="/list/?type=gastronomy&group=product" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
@@ -36,13 +67,13 @@
 <div class="earth-closeup-bottom">
     <div class="tile-wrapper">
         <div class="tile">
-            <a href="/map/?type=retail&group=location" class="category-wrapper" ng-click="$ctrl.redirectTo(2, 1, '/map')">
-                <div class="category-counter">{{$ctrl.areaOverview.stores[0]}}</div>
-                <vg-icon class="location-svg" vg-name="'shop-location'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.stores' | translate }}</h3>
+            <a href="/map/?type=retail&group=location" class="category-wrapper">
+                <div class="category-counter">{{ $ctrl.areaOverview.locations.retail }}</div>
+                <vg-icon class="area-overview-big-icon" vg-name="'retailLocationSparkly'"></vg-icon>
+                <h3 class="h4">{{ 'areaOverview.retailLocations' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=retail&group=location" class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(2, 1, '/list')">
+            <a href="/list/?type=retail&group=location" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>
@@ -51,13 +82,13 @@
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <a href="/map/?type=retail&product" class="category-wrapper" ng-click="$ctrl.redirectTo(2, 2, '/map')">
-                <div class="category-counter">{{$ctrl.areaOverview.stores[1]}}</div>
-                <vg-icon class="location-svg" vg-name="'product-location'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.products' | translate }}</h3>
+            <a href="/map/?type=retail&group=product" class="category-wrapper">
+                <div class="category-counter">{{ $ctrl.areaOverview.products.retail }}</div>
+                <vg-icon class="area-overview-big-icon" vg-name="'retailProductSparkly'"></vg-icon>
+                <h3 class="h4">{{ 'areaOverview.retailProducts' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=retail&product" class="class-show-list-wrapper" ng-click="$ctrl.redirectTo(2, 2, '/list')">
+            <a href="/list/?type=retail&group=product" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'areaOverview.showInList' | translate }}</span>

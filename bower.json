@@ -13,6 +13,7 @@
     "leaflet": "0.7.5",
     "bootstrap": "3.3.5",
     "lodash": "3.10.1",
+    "slug": "0.9.1",
     "weather-icons": "1.2.1"
   },
   "devDependencies": {

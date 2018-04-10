@@ -10,18 +10,18 @@
             <button class="overlay-cross" ng-click="$ctrl.closeOverlay()">
                 <vg-icon vg-name="'cross-big'"></vg-icon>
             </button>
-            <button class="overlay-logo" ng-click="$ctrl.goToView('home')">
+            <button class="overlay-logo" ng-click="$ctrl.goToView('/')">
                 <img src="img/logo/veganaut.png">
             </button>
-            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('community')">
+            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('/community')">
                 <span class="h4">{{'navigation.community' | translate}}</span>
             </button>
-            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('me')">
+            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('/me')">
                 <span class="h4">{{'navigation.profile' | translate}}</span>
             </button>
             <div class="overlay-content">
                 <button ng-if="!$ctrl.isLoggedIn()"
-                 ng-click="$ctrl.goToView('register')"
+                 ng-click="$ctrl.goToView('/register')"
                  class="btn btn-primary btn-overlay"
                  type="button">
                     <span class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>

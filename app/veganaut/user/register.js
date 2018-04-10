@@ -55,7 +55,7 @@
                         backendService.sendPasswordResetMail(email, true);
 
                         // Go to the map
-                        $location.path('map');
+                        $location.url('/map');
                     })
                     .error(function(data) {
                         alertService.addAlert($translate.instant('message.registration.error', {

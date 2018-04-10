@@ -2,11 +2,8 @@
     'use strict';
 
     var homeCtrl = [
-        '$scope', '$location', '$translate', 'backendService', 'angularPiwik', 'Area',
-        'areaService', 'mainMapService', 'geocodeService', 'alertService', 'localeService',
-        function($scope, $location, $translate, backendService, angularPiwik, Area,
-            areaService, mainMapService, geocodeService, alertService, localeService)
-        {
+        '$scope', '$translate', 'angularPiwik', 'Area', 'areaService', 'geocodeService', 'alertService',
+        function($scope, $translate, angularPiwik, Area, areaService, geocodeService, alertService) {
             var vm = this;
 
             /**
@@ -40,10 +37,11 @@
              * @type {Area}
              */
             var targetArea = new Area({
+                id: undefined,
+                name: vm.ctaFormInput,
                 lat: 0,
                 lng: 0,
-                zoom: 2,
-                name: vm.ctaFormInput
+                zoom: 2
             });
 
             /**
@@ -81,7 +79,7 @@
              */
             vm.onResultSelected = function(geoResult) {
                 // Set the target area
-                targetArea = geoResult.area;
+                targetArea = geoResult.getArea();
 
                 // We no longer want to clear the input field on focus
                 clearCtaInputOnFocus = false;
@@ -111,19 +109,14 @@
 
             /**
              * Handler for submission of the cta form.
-             * Will go to the selected area on the map or list.
-             * @param {string} targetPage 'locationList' or 'map'
+             * Will show the area overview for the selected area.
              */
-            vm.onCtaSubmit = function(targetPage) {
-                // Show the area on the given page
-                areaService.showAreaOn(targetArea, targetPage);
+            vm.onCtaSubmit = function() {
+                // Show the area on overview page
+                areaService.setAreaAndShowOn(targetArea, 'areaOverview');
 
                 // Track the submission
-                angularPiwik.track(
-                    'home.cta',
-                    'home.cta.areaOverview' // TODO ask Vibes what this 2nd param is...
-                    // (targetPage === 'locationList' ? 'home.cta.submitToList' : 'home.cta.submitToMap')
-                );
+                angularPiwik.track('home.cta');
             };
 
             /**
@@ -147,11 +140,13 @@
                         ;
 
                         // Set the target area
+                        // TODO WIP NOW: this needs to be another area type that has different titles on the list and overview
                         targetArea = new Area({
+                            id: undefined,
+                            name: vm.ctaFormInput,
                             lat: lat,
                             lng: lng,
-                            zoom: GEO_LOCATION_ZOOM,
-                            name: vm.ctaFormInput
+                            zoom: GEO_LOCATION_ZOOM
                         });
 
                         // When the user focuses the input field, clear it
@@ -175,21 +170,16 @@
                 angularPiwik.track('home.geolocation', 'home.geolocation.start');
             };
 
-            // Get the location (country) from the backend
-            // TODO: only do that if not already located (local storage?)
-            backendService.getGeoIP(localeService.getLocale()).then(function(res) {
-                var data = res.data;
-                if (_.isObject(data) && Object.keys(data).length > 0) {
-                    vm.ctaFormInput = data.countryName;
-
-                    targetArea = new Area({
-                        lat: data.lat,
-                        lng: data.lng,
-                        boundingBox: data.boundingBox,
-                        name: vm.ctaFormInput
-                    });
+            // Wait for the area service to be initialised to set the first target area
+            areaService.initialised().then(function() {
+                // If there's an area with id (and therefore name), set that as the first target
+                // TODO: When the app is first loaded and the area in the local storage has no id, the search field will stay empty. In that case might want to fall back to country?
+                var area = areaService.getLastAreaWithId();
+                if (angular.isDefined(area) && angular.isString(area.name)) {
+                    targetArea = area;
+                    vm.ctaFormInput = area.name;
                 }
-                // If nothing valid found, we can't do anything
+                // If there's no area with id, we just leave the form field empty
             });
         }
     ];

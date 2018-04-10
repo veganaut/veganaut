@@ -31,9 +31,6 @@
         {
             var vm = this;
 
-            // Set the filters from the URL and initiate with the currently valid area
-            locationFilterService.setFiltersFromUrl();
-
             // Expose the global methods we still need
             // TODO: find a better way to do this
             vm.legacyGlobals = {
@@ -87,6 +84,13 @@
                 });
             };
 
+            /**
+             * Set the category based on the location filter
+             */
+            var setMapCategory = function() {
+                vm.mapCategory = locationFilterService.getCategoryValue();
+            };
+
             // Get the player
             var playerPromise = playerService.getDeferredMe();
 
@@ -121,21 +125,13 @@
                 // TODO: if not handled, should pass on the click to the map?
             };
 
-            /**
-             * Set the category based on the location filter
-             */
-            vm.setCategory = function() {
-                vm.category = locationFilterService.getCategoryValue();
-            };
-
             // Register to map changes
             // We do it directly through leaflet, because watching the center
             // provided from leaflet-directive is buggy in some cases.
             vm.map.on('moveend', informCenterChanged);
-            vm.map.on('viewreset', informCenterChanged);
 
             // Register to filters changes
-            $scope.$on('veganaut.filters.changed', vm.setCategory);
+            $scope.$on('veganaut.filters.changed', setMapCategory);
 
             // Listen to clicks on the map
             vm.map.on('click', function() {
@@ -147,7 +143,7 @@
                 });
             });
 
-            // Listen to explicit area changes
+            // Listen to area changes from outside the map
             $scope.$on('veganaut.area.changed', function() {
                 mainMapService.showCurrentArea(vm.map);
             });
@@ -159,11 +155,11 @@
                 }
             });
 
-            // Set the category
-            vm.setCategory();
-
             // Finally, initialise the map
             mainMapService.initialiseMap(vm.map);
+
+            // Set the map category (do this after initialise, so the filters have been parsed from the URL
+            setMapCategory();
         }
     ];
 

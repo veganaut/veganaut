@@ -17,10 +17,10 @@
     };
 
     var areaListCtrl = [
-        '$scope', '$location', '$routeParams', 'constants', 'angularPiwik',
-        'geocodeService', 'areaService', 'Area', 'locationFilterService', 'locationService',
-        function($scope, $location, $routeParams, constants, angularPiwik,
-            geocodeService, areaService, Area, locationFilterService, locationService)
+        '$scope', 'constants', 'angularPiwik', 'geocodeService',
+        'areaService', 'locationFilterService', 'locationService',
+        function($scope, constants, angularPiwik, geocodeService,
+            areaService, locationFilterService, locationService)
         {
             var $ctrl = this;
 
@@ -59,22 +59,23 @@
             $ctrl.noResultsText = false;
 
             /**
-             * Whether the whole world is shown.
-             * @type {boolean}
+             * Type of area that is being shown.
+             * One of 'world', 'areaWithId', 'areaWithoutId'
+             * @type {string}
              */
-            $ctrl.wholeWorld = false;
+            $ctrl.areaType = undefined;
 
             /**
              * Radius of this query formatted for display
              * @type {string}
              */
-            $ctrl.displayRadius = '';
+            $ctrl.displayRadius = undefined;
 
             /**
-             * Name of the approximate place that we are showing items around
+             * Name to be shown for this area
              * @type {string}
              */
-            $ctrl.displayName = '';
+            $ctrl.areaName = undefined;
 
             /**
              * Whether to show the 'city' or the 'street' part of the address.
@@ -89,7 +90,11 @@
              */
             $ctrl.locationSet = locationService.getLocationSet();
 
-            $ctrl.listName = locationFilterService.getCategoryValue();
+            /**
+             * Type of the list that we are showing
+             * @type {string}
+             */
+            $ctrl.listType = undefined;
 
             /**
              * Shows the next batch of items
@@ -108,7 +113,7 @@
                 });
 
                 // Track it
-                angularPiwik.track($ctrl.listName + 'List', $ctrl.listName + 'List.showMore');
+                angularPiwik.track($ctrl.listType + 'List', $ctrl.listType + 'List.showMore');
             };
 
             $ctrl.showSortModal = function() {
@@ -166,10 +171,10 @@
                 // Check if we found any results
                 if ($ctrl.list.length === 0) {
                     if (locationFilterService.hasActiveFilters()) {
-                        $ctrl.noResultsText = 'lists.' + $ctrl.listName + '.noResultsFiltered';
+                        $ctrl.noResultsText = 'lists.' + $ctrl.listType + '.noResultsFiltered';
                     }
                     else {
-                        $ctrl.noResultsText = 'lists.' + $ctrl.listName + '.noResults';
+                        $ctrl.noResultsText = 'lists.' + $ctrl.listType + '.noResults';
                     }
                 }
             };
@@ -178,6 +183,9 @@
              * Loads the items with the currently set lastParams
              */
             var loadItems = function() {
+                // Update the list type
+                $ctrl.listType = locationFilterService.getCategoryValue();
+
                 // Note: we don't reset the list here, as it's nicer when the list stays
                 // rendered when filters are applied.
                 if ($ctrl.onLoadItems) {
@@ -193,6 +201,7 @@
             };
 
             // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
+            // TODO: it should also get de-duplicated with the areaOverview component
             /**
              * Shows the list of the given area
              * @param {Area} area
@@ -201,103 +210,73 @@
                 // Get the radius params from the area
                 lastParams = area.getRadiusParams();
 
-                // Expose if we are showing the whole world
-                $ctrl.wholeWorld = lastParams.includesWholeWorld;
-
                 // Reset the area display variables and the list itself
                 resetList();
-                $ctrl.displayRadius = '';
-                $ctrl.displayName = '';
+                $ctrl.areaType = undefined;
+                $ctrl.areaName = undefined;
+                $ctrl.displayRadius = undefined;
 
                 // Check whether to show the city or street part of the address
                 $ctrl.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
 
+                // Check what type of overview we have
+                if (lastParams.includesWholeWorld) {
+                    // Showing the whole world
+                    $ctrl.areaType = 'world';
+                }
+                else if (area.hasId()) {
+                    // We have an area with id and therefore name that we can show prominently
+                    $ctrl.areaType = 'areaWithId';
+                    $ctrl.areaName = area.name;
+                }
+                else {
+                    // Area without id, so coming from a map section
+                    $ctrl.areaType = 'areaWithoutId';
+
+                    // Retrieve a name for the center of the area
+                    areaService.getNameForArea(area).then(function(name) {
+                        $ctrl.areaName = name;
+                    });
+                }
+
+                // Round the radius to two significant digits and display it as meters or kms
+                // TODO: this should be a filter
+                var roundingHelper = Math.pow(10, ('' + lastParams.radius).length) / 100;
+                var roundedRadius = Math.round(lastParams.radius / roundingHelper) * roundingHelper;
+                if (roundedRadius < 1000) {
+                    $ctrl.displayRadius = roundedRadius + 'm';
+                }
+                else {
+                    $ctrl.displayRadius = (roundedRadius / 1000) + 'km';
+                }
+
                 // Load items with the newly set params
                 loadItems();
 
-                // Replace the url params (without adding a new history item)
-                // TODO: de-duplicate this code with the one from mainMapService
-                var coords =
-                    lastParams.lat.toFixed(constants.URL_FLOAT_PRECISION) + ',' +
-                    lastParams.lng.toFixed(constants.URL_FLOAT_PRECISION);
-                $location.replace();
-                $location.search('coords', coords);
-                $location.search('radius', lastParams.radius);
-
-                if (!$ctrl.wholeWorld) {
-                    // Simple fallback display name in case the reverse lookup doesn't work out.
-                    // TODO: should be translated and displayed nicer
-                    var fallbackDisplayName = 'lat ' + lastParams.lat.toFixed(3) + ' lng ' + lastParams.lng.toFixed(3);
-
-                    // Reverse lookup a place name for these coordinates
-                    // Choose a zoom level based on the radius
-                    var reverseLookupZoom = (lastParams.radius < 2000) ? 16 : 13;
-                    geocodeService.reverseSearch(lastParams.lat, lastParams.lng, reverseLookupZoom)
-                        .then(function(place) {
-                            if (place) {
-                                $ctrl.displayName = place.getDisplayName();
-                            }
-                            else {
-                                $ctrl.displayName = fallbackDisplayName;
-                            }
-                        })
-                        .catch(function() {
-                            $ctrl.displayName = fallbackDisplayName;
-                        })
-                    ;
-
-                    // Round the radius to two significant digits and display it as meters or kms
-                    // TODO: this should be a filter
-                    var roundingHelper = Math.pow(10, ('' + lastParams.radius).length) / 100;
-                    var roundedRadius = Math.round(lastParams.radius / roundingHelper) * roundingHelper;
-                    if (roundedRadius < 1000) {
-                        $ctrl.displayRadius = roundedRadius + 'm';
-                    }
-                    else {
-                        $ctrl.displayRadius = (roundedRadius / 1000) + 'km';
-                    }
-                }
+                // Update the url
+                areaService.writeAreaToUrl(); // TODO WIP NOW: when coming from search, it should replace the history entry
             };
 
-            // Parse params from url
-            // TODO: de-duplicate with code from mainMapService
-            var rawCoords = $routeParams.coords || '';
-            var lat, lng;
+            $ctrl.$onInit = function() {
+                // Set the filters from the URL
+                locationFilterService.setFiltersFromUrl();
 
-            // Parse the coordinates
-            var splitCoords = rawCoords.split(',');
-            if (splitCoords.length === 2) {
-                lat = parseFloat(splitCoords[0]);
-                lng = parseFloat(splitCoords[1]);
+                // Try to set the area from the URL params
+                areaService.setAreaFromUrl()
+                    .finally(function() {
+                        // Regardless if the area was set from the URL or not, show the current area
+                        showArea(areaService.getCurrentArea());
+                    })
+                ;
 
-                // Try to set it (will check if it's valid)
-                areaService.setArea(new Area({
-                    lat: lat,
-                    lng: lng,
-                    radius: parseInt($routeParams.radius, 10)
-                }));
-            }
+                // Listen to area changes
+                $scope.$on('veganaut.area.changed', function() {
+                    showArea(areaService.getCurrentArea());
+                });
 
-            // Set the filters from the URL and initiate with the currently valid area
-            locationFilterService.setFiltersFromUrl();
-            areaService.getCurrentArea().then(showArea);
-
-            // Listen to explicit area changes
-            $scope.$on('veganaut.area.changed', function() {
-                areaService.getCurrentArea().then(showArea);
-            });
-
-            // Reload items when filters change
-            $scope.$on('veganaut.filters.changed', loadItems);
-
-            // Reset search parameters when navigating away from this page
-            $scope.$on('$routeChangeStart', function(event) {
-                if (!event.defaultPrevented) {
-                    // Remove the search params if the event is still ongoing
-                    $location.search('coords', undefined);
-                    $location.search('radius', undefined);
-                }
-            });
+                // Reload items when filters change
+                $scope.$on('veganaut.filters.changed', loadItems);
+            };
         }
     ];
 

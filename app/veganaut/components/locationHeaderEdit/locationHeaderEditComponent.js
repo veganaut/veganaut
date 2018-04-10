@@ -23,16 +23,10 @@
         return component;
     }
 
-    // Inject dependencies
-    // LocationHeaderEditComponentController.$inject = ['$translate'];
-
     function LocationHeaderEditComponentController() {
         var vm = this;
 
         vm.quality = 1;
         vm.locationType = null;
-
-        vm.$onInit = function() {
-        };
     }
 })();

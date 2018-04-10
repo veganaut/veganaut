@@ -19,28 +19,46 @@ angular.module('veganaut.app.main').factory('Area', [
             data = data || {};
 
             /**
+             * Id of this Area. Note that an area doesn't necessarily have an id.
+             * It only has one if it's a clearly defined area that comes from a
+             * clearly identified source (such as OSM). The id has to be globally
+             * unique, so the source has to be encoded as part of the id.
              *
+             * @see Area.hasId()
+             * @type {string}
+             */
+            this.id = data.id;
+
+            /**
+             * Optional name of this area. For areas with ids, this should always
+             * be set, for others it's optional.
+             * @type {string}
+             */
+            this.name = data.name;
+
+            /**
+             * Latitude of the center of this area
              * @type {number}
              * @private
              */
             this._lat = data.lat;
 
             /**
-             *
+             * Longitude of the center of this area
              * @type {number}
              * @private
              */
             this._lng = data.lng;
 
             /**
-             *
+             * Zoom level of this area (for areas defined from the map)
              * @type {number}
              * @private
              */
             this._zoom = data.zoom;
 
             /**
-             *
+             * Bounding box of this area
              * @type {L.latLngBounds}
              * @private
              */
@@ -50,17 +68,11 @@ angular.module('veganaut.app.main').factory('Area', [
             }
 
             /**
-             *
+             * Radius from the center that delimits this area
              * @type {number}
              * @private
              */
             this._radius = data.radius;
-
-            /**
-             *
-             * @type {string}
-             */
-            this.name = data.name;
         };
 
         /**
@@ -90,6 +102,19 @@ angular.module('veganaut.app.main').factory('Area', [
             }
 
             return valid;
+        };
+
+        /**
+         * Returns whether this area has an id.
+         *
+         * Having an id indicates that it came from a well-known source (e.g. OSM),
+         * that is has a name that represents the area well and that the user most
+         * likely explicitly selected it.
+         *
+         * @returns {boolean}
+         */
+        Area.prototype.hasId = function() {
+            return angular.isString(this.id) && this.id.length > 0;
         };
 
         /**
@@ -171,7 +196,7 @@ angular.module('veganaut.app.main').factory('Area', [
             // Check if we have an explicit radius set
             if (!angular.isNumber(params.radius) || !isFinite(params.radius)) {
                 if (angular.isObject(this._boundingBox)) {
-                    // If not, we try to get the radius anc center from the bounding box
+                    // If not, we try to get the radius and center from the bounding box
                     var center = this._boundingBox.getCenter();
                     params = {
                         radius: this._getRadiusFromBounds(),
@@ -211,6 +236,8 @@ angular.module('veganaut.app.main').factory('Area', [
                 ];
             }
             return {
+                id: this.id,
+                name: this.name,
                 lat: this._lat,
                 lng: this._lng,
                 zoom: this.getZoom(),

@@ -287,6 +287,7 @@
     }
   },
   "map": {
+    "mapSectionDescription": "In the current map section",
     "mission": {
       "title": "Missions",
       "totalPoints": "Total points from missions",
@@ -445,25 +446,26 @@
     "noResults": "No results were found."
   },
   "lists": {
-    "area": {
-      "radius": "In a {{ radius }} perimeter",
-      "wholeWorld": "The whole world"
+    "subtitle": {
+      "world": "In the whole world",
+      "areaWithId": "In a radius of {{radius}}",
+      "mapSection": "In a radius of {{radius}} around {{area}}"
     },
-    "restaurant": {
+    "gastronomyLocation": {
       "name": "Restaurants",
       "title": "{{ count }} vegan restaurants",
       "noResults": "No restaurants can be found in the given area.",
       "noResultsFiltered": "All restaurants were filtered out.",
       "showMore": "Show more restaurants"
     },
-    "shop": {
+    "retailLocation": {
       "name": "Shops",
       "title": "{{ count }} vegan shops",
       "noResults": "No shops can be found in the given area.",
       "noResultsFiltered": "All shops were filtered out.",
       "showMore": "Show more shops"
     },
-    "meal": {
+    "gastronomyProduct": {
       "name": "Meals",
       "title": "{{ count }} vegan meals",
       "noResults": "No options were found in the given area.",
@@ -567,23 +569,31 @@
   "missingFeature": {
     "showMoreSearchResults": "Sorry, showing more results doesn't work yet. We're still programming this feature. Thanks for letting us know your interest!"
   },
+  "areaDescription": {
+    "title": {
+      "world": "Earth",
+      "mapSection": "Current map section"
+    }
+  },
   "areaOverview": {
-    "subtitle1": {
-      "searched": "Vegan offer around {{area}}",
-      "current": "Vegan offer in the current map section"
+    "subtitle": {
+      "world": "Vegan offer in the whole world",
+      "areaWithId": "Vegan offer in a radius of {{radius}}",
+      "mapSection": "Vegan offer in a radius of {{radius}} around {{area}}"
     },
-    "subtitle2": "{{total}} Locations within a radius of {{radius}}km",
+    "locationQualityTitle": "Total of {{total}} locations with the following ratings",
     "rating": {
+      "0": "Unrated",
       "1": "Vegan Rating 1",
       "2": "Vegan Rating 2",
       "3": "Vegan Rating 3",
       "4": "Vegan Rating 4",
       "5": "Vegan Rating 5"
     },
-    "restaurants": "Restaurants",
-    "meals": "Meals",
-    "stores": "Stores",
-    "products": "Products",
+    "gastronomyLocations": "Restaurants",
+    "gastronomyProducts": "Meals",
+    "retailLocations": "Stores",
+    "retailProducts": "Products",
     "showInList": "Show in list"
   }
 }

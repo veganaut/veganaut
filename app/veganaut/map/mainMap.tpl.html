@@ -17,14 +17,14 @@
                 </div>
                 <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
                  title="{{ 'action.showProductList.description' | translate }}"
-                 ng-click="mainMapVm.legacyGlobals.goToView('products/')">
+                 ng-click="mainMapVm.legacyGlobals.goToView('/products/')">
                     <span class="glyphicon glyphicon-leaf"></span><br/>
                     <span class="small">
                         {{ 'action.showProductList.name' | translate }}
                     </span>
                 </button>
                 <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
-                 ng-click="mainMapVm.legacyGlobals.goToView('locations/')"
+                 ng-click="mainMapVm.legacyGlobals.goToView('/locations/')"
                  title="{{ 'action.showList.description' | translate }}">
                     <span class="glyphicon glyphicon-th-list"></span><br/>
                     <span class="small">{{ 'action.showList.name' | translate }}</span>
@@ -34,7 +34,7 @@
                 </vg-filter-button>
                 <button type="button" class="btn-register btn btn-primary"
                  ng-if="!mainMapVm.legacyGlobals.isLoggedIn()"
-                 ng-click="mainMapVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.mainMap'"
+                 ng-click="mainMapVm.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.mainMap'"
                  title="{{ 'action.register.description' | translate }}">
                     <span class="glyphicon glyphicon-heart"></span><br/>
                     <span class="small">{{ 'action.register.name' | translate }}</span>
@@ -92,11 +92,12 @@
     <div class="vg-map-footer">
         <div class="vg-map-footer-content">
             <div class="vg-map-footer-text">
-                <div class="vg-map-footer-text__locations-count">
-                    {{ 'lists.' + mainMapVm.category + '.title' | translate: {count: 200} }} <!-- TODO: get value for count-->
+                <div class="vg-map-footer-text__locations-count" ng-show="mainMapVm.mapCategory">
+                    {{ 'lists.' + mainMapVm.mapCategory + '.title' |
+                        translate: {count: mainMapVm.locationSet.totalLocations} }}
                 </div>
                 <div class="vg-map-footer-text__radius">
-                    {{ 'lists.area.radius' | translate: {radius: '5.8 km'} }} <!-- TODO: get value for radius -->
+                    {{ 'map.mapSectionDescription' | translate }}
                 </div>
             </div>
             <button type="button"

@@ -30,7 +30,7 @@
                         alertService.addAlert($translate.instant('message.profile.update.error'), 'danger');
                     })
                 ;
-                $scope.goToView('me');
+                $scope.goToView('/me');
             };
         }])
     ;

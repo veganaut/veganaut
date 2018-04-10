@@ -39,6 +39,7 @@
             $locationProvider.html5Mode(appSettings.html5Mode);
             $compileProvider.debugInfoEnabled(appSettings.debugInfo);
 
+            // TODO WIP: make sure old routes are redirected in a way that makes sense
             // Set up routes
             $routeProvider.when('/register', {
                 vgRouteName: 'register',
@@ -70,6 +71,9 @@
                     recent: true
                 },
                 template: '<vg-main-map></vg-main-map>',
+                resolve: {
+                    areaInitialised: resolveInitialiseArea
+                },
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
@@ -81,7 +85,12 @@
                     recent: true,
                     sortBy: true
                 },
-                template: '<vg-list></vg-list>'
+                template: '<vg-list></vg-list>',
+                resolve: {
+                    areaInitialised: resolveInitialiseArea
+                },
+                // Don't reload when get params or hash changes
+                reloadOnSearch: false
             });
 
             // Location list (with trailing slash for Piwik)
@@ -91,7 +100,12 @@
 
             $routeProvider.when('/area/', {
                 vgRouteName: 'areaOverview',
-                template: '<vg-area-overview></vg-area-overview>'
+                template: '<vg-area-overview></vg-area-overview>',
+                resolve: {
+                    areaInitialised: resolveInitialiseArea
+                },
+                // Don't reload when get params or hash changes
+                reloadOnSearch: false
             });
             $routeProvider.when('/location/:id', {
                 vgRouteName: 'location',
@@ -105,7 +119,7 @@
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
             $routeProvider.when('/products', {
-                redirectTo: '/list/' // product list is now in the list page. TODO: This could be removed at some point
+                redirectTo: '/list/?group=product' // product list is now in the list page. TODO: This could be removed at some point
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
@@ -164,8 +178,9 @@
     angular.module('veganaut.app.products', []);
     angular.module('veganaut.app.search', []);
 
-    // Make Leaflet available as angular service
+    // Make Leaflet and other libraries available as angular service
     mapModule.value('Leaflet', window.L);
+    mapModule.value('slug', window.slug);
 
     window.veganaut = {
         mainModule: mainModule,
@@ -178,5 +193,10 @@
     function resolveLocation($route, locationService) {
         var locationId = $route.current.params.id;
         return locationService.getLocation(locationId);
+    }
+
+    resolveInitialiseArea.$inject = ['areaService'];
+    function resolveInitialiseArea(areaService) {
+        return areaService.initialised();
     }
 })();

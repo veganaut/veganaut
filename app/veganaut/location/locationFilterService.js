@@ -27,6 +27,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     // Check if any of the filters are not relevant on the new route
                     var oldFilters = oldRoute.vgFilters || {};
                     var newFilters = newRoute.vgFilters || {};
+
+                    // TODO WIP NOW: is resetting still necessary now? I think not.
+
                     if (oldFilters.type === true && newFilters.type !== true) {
                         $location.search('type', undefined);
                     }
@@ -60,11 +63,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.CATEGORIES = {
             gastronomy: {
-                location: 'restaurant',
-                product: 'meal'
+                location: 'gastronomyLocation',
+                product: 'gastronomyProduct'
             },
             retail: {
-                location: 'shop',
+                location: 'retailLocation',
                 product: 'retailProduct'
             }
         };
@@ -150,7 +153,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.getCategoryValue = function() {
             if (this.routeHasGroupFilter() &&
                 this.routeHasTypeFilter() &&
-                this.CATEGORIES[this.activeFilters.type]) {
+                this.CATEGORIES[this.activeFilters.type])
+            {
                 return this.CATEGORIES[this.activeFilters.type][this.activeFilters.group];
             }
             else {
@@ -224,18 +228,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             {
                 active += 1;
             }
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
-                this.routeHasTypeFilter())
-            {
-                active += 1;
-            }
-            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group &&
-                this.routeHasGroupFilter())
-            {
-                active += 1;
-            }
 
             // We do not count `sortBy` as an active filter because it is not an actual filter.
+            // Neither do we consider type & group a filter (otherwise there would always be an active filter)
 
             return active;
         };

@@ -46,7 +46,7 @@
             <button class="btn btn-primary btn-large"
              type="submit"
              ng-disabled="!homeVm.canSubmitCta()"
-             ng-click="homeVm.onCtaSubmit('area')">
+             ng-click="homeVm.onCtaSubmit()">
                 <span class="h4">{{ 'home.callToAction.show' | translate }}&nbsp;</span>
                 <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
@@ -59,7 +59,7 @@
         <p>
             <button type="button" class="btn-register btn-primary btn-small"
              ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-             ng-click="homeVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.home'"
+             ng-click="homeVm.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'"
              title="{{ 'navigation.register' | translate }}">
                 {{ 'home.participate.register' | translate }}
             </button>

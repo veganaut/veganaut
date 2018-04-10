@@ -24,7 +24,7 @@
 
             if (!backendService.isLoggedIn()) {
                 // TODO: this should be handled where the route is defined
-                $scope.$parent.goToView('login');
+                $scope.$parent.goToView('/login');
             }
 
             // Get the scores and the player

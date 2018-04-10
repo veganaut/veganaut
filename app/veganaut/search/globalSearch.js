@@ -37,7 +37,7 @@
              */
             vm.onLocationClick = function(location) {
                 // Go to the location detail page
-                $location.path('location/' + location.id);
+                $location.url('/location/' + location.id);
 
                 // Track and tell parent
                 angularPiwik.track('globalSearch', 'globalSearch.selectResult.location');
@@ -49,8 +49,8 @@
              * @param {GeocodeResult} geoResult
              */
             vm.onGeoClick = function(geoResult) {
-                // Show the are on the currently selected page type
-                areaService.showAreaOn(geoResult.area, 'area');
+                // Show the area on the currently selected page type
+                areaService.setAreaAndShowOn(geoResult.getArea(), searchService.getGeoResultTargetPage());
 
                 // Track and tell parent
                 angularPiwik.track('globalSearch', 'globalSearch.selectResult.geo');
@@ -77,13 +77,6 @@
                     vm.onSelect();
                 }
             };
-
-            // Track switching of geo action
-            $scope.$watch('globalSearchVm.searchService.geoAction', function(valueNow, valueBefore) {
-                if (valueNow !== valueBefore) {
-                    angularPiwik.track('globalSearch', 'globalSearch.switchGeoAction.' + valueNow);
-                }
-            });
         }
     ];
 

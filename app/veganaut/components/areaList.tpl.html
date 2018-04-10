@@ -1,20 +1,27 @@
 <div class="vg-list">
     <div class="vg-list-header">
         <div class="vg-list-header__type-icon">
-            <vg-icon vg-name="$ctrl.listName"></vg-icon>
+            <vg-icon vg-name="$ctrl.listType"></vg-icon>
         </div>
         <div class="vg-list-header__text">
             <h1 class="vg-list-header__title">
-                {{ 'lists.' + $ctrl.listName + '.title' | translate: {count: $ctrl.totalItems} }}
+                <span ng-switch="$ctrl.areaType">
+                    <span ng-switch-when="world">{{ 'areaDescription.title.world' | translate }}:</span>
+                    <span ng-switch-when="areaWithId">{{ $ctrl.areaName }}:</span>
+                    <span ng-switch-when="areaWithoutId">{{ 'areaDescription.title.mapSection' | translate }}:</span>
+                </span>
+                {{ 'lists.' + $ctrl.listType + '.title' | translate: {count: $ctrl.totalItems} }}
             </h1>
 
-            <p class="vg-list-header__area">
-                <span ng-if="$ctrl.wholeWorld">
-                    {{ 'lists.area.wholeWorld' | translate }}
+            <p class="vg-list-header__area" ng-switch="$ctrl.areaType">
+                <span ng-switch-when="world">
+                    {{ 'lists.subtitle.world' | translate }}
                 </span>
-                <span ng-if="!$ctrl.wholeWorld">
-                    {{ 'lists.area.radius' |
-                    translate:{radius: $ctrl.displayRadius} }} &ndash; {{ $ctrl.displayName }}
+                    <span ng-switch-when="areaWithId">
+                    {{ 'lists.subtitle.areaWithId' | translate: {radius: $ctrl.displayRadius} }}
+                </span>
+                    <span ng-switch-when="areaWithoutId">
+                    {{ 'lists.subtitle.mapSection' | translate: {radius: $ctrl.displayRadius, area: $ctrl.areaName} }}
                 </span>
             </p>
 
@@ -51,7 +58,7 @@
                     </div>
                 </div>
                 <div class="vg-list-item__type-icon">
-                    <vg-icon vg-name="$ctrl.listName"></vg-icon>
+                    <vg-icon vg-name="$ctrl.listType"></vg-icon>
                 </div>
             </button>
         </div>
@@ -62,7 +69,7 @@
                 <button type="button" class="btn btn-block btn-default"
                  ng-click="$ctrl.showMore()">
                     <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span>{{ 'lists.' + $ctrl.listName + '.showMore' | translate }}</span>
+                    <span>{{ 'lists.' + $ctrl.listType + '.showMore' | translate }}</span>
                 </button>
             </p>
         </div>

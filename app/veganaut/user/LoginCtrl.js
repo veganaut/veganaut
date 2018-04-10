@@ -4,7 +4,7 @@
     module.controller('LoginCtrl', ['$scope', '$translate', 'angularPiwik', 'backendService', 'alertService',
         function($scope, $translate, angularPiwik, backendService, alertService) {
             if (backendService.isLoggedIn()) {
-                $scope.goToView('');
+                $scope.goToView('/');
             }
 
             $scope.submit = function() {
@@ -12,7 +12,7 @@
                     .success(function () {
                         if (backendService.isLoggedIn()) {
                             angularPiwik.track('login', 'login.success');
-                            $scope.goToView('map/');
+                            $scope.goToView('/map/');
                         }
                     })
                     .error(function (data) {

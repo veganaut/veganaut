@@ -5,7 +5,7 @@
         '$scope', '$translate', 'backendService', 'alertService',
         function($scope, $translate, backendService, alertService) {
             if (backendService.isLoggedIn()) {
-                $scope.goToView('');
+                $scope.goToView('/');
             }
 
             $scope.submit = function() {

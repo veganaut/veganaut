@@ -47,9 +47,7 @@
             searchService.toggleSearchModal();
         };
 
-        $ctrl.goToView = function(view) {
-            $rootScope.goToView(view);
-        };
+        $ctrl.goToView = $rootScope.goToView;
 
         $ctrl.logout = function() {
             backendService.logout().finally(function() {
@@ -57,6 +55,7 @@
             });
         };
 
+        // TODO: Merge this with other places where this is checked
         $ctrl.isHomePage = function() {
             return $location.path() === '/';
         };

@@ -39,6 +39,12 @@ angular.module('veganaut.app.map').factory('LocationSet', [
              * @type {CreateLocation}
              */
             this.createLocation = undefined;
+
+            /**
+             * Total locations in this set (including all the ones that are clustered)
+             * @type {number}
+             */
+            this.totalLocations = 0;
         }
 
         /**
@@ -121,6 +127,8 @@ angular.module('veganaut.app.map').factory('LocationSet', [
         LocationSet.prototype.submitCreateLocation = function() {
             var that = this;
 
+            // TODO WIP NOW: the map should be in the correct mode (category) when the location is added otherwise it gets confusing
+
             // Check if we can actually submit the location
             if (that.isCreatingLocation() &&
                 that.createLocation.isLastStep() &&
@@ -148,6 +156,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
 
                         // Add to list
                         // TODO: make a helper method to add locations and locationClusters to not forget to update allLocationItems
+                        that.totalLocations += 1;
                         that.locations[newLocation.id] = newLocation;
                         that.allLocationItems[newLocation.id] = newLocation;
 
@@ -176,6 +185,9 @@ angular.module('veganaut.app.map').factory('LocationSet', [
          */
         LocationSet.prototype.updateSet = function(newData) {
             var that = this;
+
+            // Store the total locations in the set
+            that.totalLocations = newData.totalLocations;
 
             // Index the locations and clusters by id
             newData.locations = _.indexBy(newData.locations, 'id');

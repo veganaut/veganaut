@@ -45,6 +45,8 @@ var files = {
         'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
         'app/lib/angular-translate/angular-translate.js',
         'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+        'app/lib/slug/slug.js',
+        // 'app/lib/spirit.min.js'
         'node_modules/spiritjs/dist/spirit.min.js'
     ],
     less: 'app/main.less',
@@ -84,7 +86,6 @@ gulp.task('less', function() {
         .pipe(rename('master.min.css'))
         .pipe(gulp.dest('app/build/'))
         .pipe(browserSync.stream());
-    ;
 });
 
 gulp.task('ngTemplateConcat', function() {

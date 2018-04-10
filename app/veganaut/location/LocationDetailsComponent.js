@@ -20,23 +20,12 @@
     }
 
     LocationDetailsComponentController.$inject = [
-        '$routeParams',
-        '$timeout',
-        '$translate',
-        'leafletData',
-        'missions',
         'pageTitleService',
-        'angularPiwik',
-        'locationService',
         'backendService',
-        'playerService',
-        'alertService',
         'missionService'
     ];
 
-    function LocationDetailsComponentController($routeParams, $timeout, $translate, leafletData, missions, pageTitleService,
-        angularPiwik, locationService, backendService, playerService, alertService, missionService)
-    {
+    function LocationDetailsComponentController(pageTitleService, backendService, missionService) {
         var vm = this;
 
         // TODO: the missions should be stored directly on the location model
@@ -54,12 +43,6 @@
          */
         vm.showUnavailable = {products: false};
 
-        // TODO: Create proper filter from this?
-        vm.filterOnlyZeroMissions = filterOnlyZeroMissions;
-        vm.filterOnlyNonZeroMissions = filterOnlyNonZeroMissions;
-        vm.getAvailableProductMissionsPoints = getAvailableProductMissionsPoints;
-        vm.onMapCardClickHandler = onMapCardClickHandler;
-
         vm.$onInit = function() {
             pageTitleService.addCustomTitle(vm.location.name);
 
@@ -72,38 +55,11 @@
             }
         };
 
-        function filterOnlyZeroMissions(mission) {
-            return (mission.points > 0);
-        }
-
-        function filterOnlyNonZeroMissions(mission) {
-            return !vm.filterOnlyZeroMissions(mission);
-        }
-
-        /**
-         * Returns the number of points that can be made with missions
-         * for the given product.
-         * TODO: this should go in a model
-         * @param {Product} product
-         * @returns {number}
-         */
-        function getAvailableProductMissionsPoints(product) {
-            var points = 0;
-            _.each(vm.productMissions[product.id], function(mission) {
-                points += mission.getAvailablePoints();
-            });
-            return points;
-        }
-
         vm.tasks = [
             {'task': 'Beurteile das Angebot dieser Location aus veganautischer Sicht.'},
             {'task': 'Gib an, wie offen das Personal hier für "vegan" ist.'},
             {'task': 'Sensibilisiere das Personal auf vegane Produkte.'}
         ];
-
-        function onMapCardClickHandler() {
-
-        }
 
         vm.editLocation = function editLocation() {
             vm.edit = !vm.edit;

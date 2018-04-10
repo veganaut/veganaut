@@ -1,6 +1,6 @@
 angular.module('veganaut.app.search').factory('searchService', [
-    '$rootScope', '$q', '$uibModal', '$route', 'angularPiwik', 'locationService', 'geocodeService',
-    function($rootScope, $q, $uibModal, $route, angularPiwik, locationService, geocodeService) {
+    '$q', '$uibModal', '$route', 'angularPiwik', 'locationService', 'geocodeService',
+    function($q, $uibModal, $route, angularPiwik, locationService, geocodeService) {
         'use strict';
 
         /**
@@ -59,12 +59,6 @@ angular.module('veganaut.app.search').factory('searchService', [
             this.searchString = '';
 
             /**
-             * Current geo result action type (map or list)
-             * @type {string}
-             */
-            this.geoAction = 'map';
-
-            /**
              * Icons used for the geo result actions
              * @type {{map: string, list: string}}
              */
@@ -79,15 +73,19 @@ angular.module('veganaut.app.search').factory('searchService', [
              * @private
              */
             this._modalInstance = undefined;
+        };
 
-            // Listen to route changes ot set the geo action. We always want
-            // the action corresponding to the page that was last visited to be active.
-            var that = this;
-            $rootScope.$on('$routeChangeSuccess', function() {
-                if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'locationList') {
-                    that.geoAction = $route.current.vgRouteName;
-                }
-            });
+        /**
+         * Gets the target page when the user selects a geo (=area) result.
+         * @returns {string} 'areaOverview', 'map' or 'list'
+         */
+        SearchService.prototype.getGeoResultTargetPage = function() {
+            if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'list') {
+                return $route.current.vgRouteName;
+            }
+
+            // If not on one of map or list page, always go to the overview
+            return 'areaOverview';
         };
 
         /**

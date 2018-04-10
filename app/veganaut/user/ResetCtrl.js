@@ -26,7 +26,7 @@
                     $scope.validToken = true;
                 }).error(function() {
                     alertService.addAlert($translate.instant('message.resetPassword.invalidToken'), 'danger');
-                    $location.path('/forgot');
+                    $location.url('/forgot');
                 })
             ;
 
@@ -34,7 +34,7 @@
                 backendService.resetPassword(token, $scope.form.password)
                     .success(function() {
                         alertService.addAlert($translate.instant('message.resetPassword.success'), 'success');
-                        $location.path('/login');
+                        $location.url('/login');
                     })
                     .error(function(response) {
                         alertService.addAlert(response.error, 'danger');

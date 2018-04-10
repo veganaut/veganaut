@@ -1,11 +1,8 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$q', '$rootScope', '$location', '$routeParams', '$route', '$timeout', 'Leaflet',
-        'constants', 'Area', 'locationService', 'locationFilterService', 'areaService',
-        function($q, $rootScope, $location, $routeParams, $route, $timeout, L,
-            constants, Area, locationService, locationFilterService, areaService) {
-
+        '$rootScope', '$route', 'Leaflet', 'Area', 'locationService', 'locationFilterService', 'areaService',
+        function($rootScope, $route, L, Area, locationService, locationFilterService, areaService) {
             /**
              * Default and at the same time maximum zoom level used when
              * showing an area that doesn't have an explicit zoom set.
@@ -27,6 +24,18 @@
             var MainMapService = function() {
                 var that = this;
 
+                /**
+                 * The area shown on the map might be different than the one from the
+                 * areaService as we can't fit the area perfectly. We store the area that
+                 * we are actually showing for the current area from the service here, as
+                 * we don't want to overwrite the area with id on the service. We only
+                 * overwrite the are in the service, if the user really moves the map.
+                 *
+                 * @type {Area}
+                 * @private
+                 */
+                that._mapAreaForCurrentArea = undefined;
+
                 // Listen to filter changes
                 $rootScope.$on('veganaut.filters.changed', function() {
                     // Only update when we are actually on the map page
@@ -35,46 +44,11 @@
                     }
                 });
 
-                // Listen to route changes to clean up URL
-                $rootScope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
-                    // If the event is still ongoing and we moved away from the map page,
-                    // remove our params from the URL.
-                    if (!event.defaultPrevented &&
-                        angular.isObject(oldRoute) &&
-                        oldRoute.vgRouteName === MAP_ROUTE_NAME &&
-                        newRoute.vgRouteName !== MAP_ROUTE_NAME)
-                    {
-                        $location.search('zoom', undefined);
-                        $location.search('coords', undefined);
-                    }
+                $rootScope.$on('veganaut.area.changed', function() {
+                    // When a new area is just pushed, we no longer know which area
+                    // corresponds to it on the map.
+                    that._mapAreaForCurrentArea = undefined;
                 });
-            };
-
-            /**
-             * Try to read the map center from the url hash
-             * @private
-             */
-            MainMapService.prototype._setMapCenterFromUrl = function() {
-                var rawZoom = $routeParams.zoom || '';
-                var rawCoords = $routeParams.coords || '';
-                var zoom, lat, lng;
-
-                // Parse the raw zoom
-                zoom = parseInt(rawZoom, 10);
-
-                // Parse the coordinates
-                var splitCoords = rawCoords.split(',');
-                if (splitCoords.length === 2) {
-                    lat = parseFloat(splitCoords[0]);
-                    lng = parseFloat(splitCoords[1]);
-                }
-
-                // Try to set as current area
-                areaService.setArea(new Area({
-                    lat: lat,
-                    lng: lng,
-                    zoom: zoom
-                }));
             };
 
             /**
@@ -83,32 +57,12 @@
              * @private
              */
             MainMapService.prototype._reloadLocations = function() {
-                areaService.getCurrentArea().then(function(area) {
-                    // TODO: should make sure we have a bbox and zoom
+                if (this._mapAreaForCurrentArea) {
                     locationService.queryByBounds(
-                        area.getBoundingBox().toBBoxString(),
-                        area.getZoom()
+                        this._mapAreaForCurrentArea.getBoundingBox().toBBoxString(),
+                        this._mapAreaForCurrentArea.getZoom()
                     );
-                });
-            };
-
-            /**
-             * Updates the URL to represent the currently displayed map.
-             * The zoom as well as the coordinates are set.
-             */
-            MainMapService.prototype._updateCenterInUrl = function() {
-                areaService.getCurrentArea().then(function(area) {
-                    var coords =
-                        area.getLat().toFixed(constants.URL_FLOAT_PRECISION) + ',' +
-                        area.getLng().toFixed(constants.URL_FLOAT_PRECISION);
-
-                    // Replace the url params (without adding a new history item)
-                    // Can't use $route.updateParams as this will set all params, not only the ones we want
-                    // TODO: should make sure we have zoom
-                    $location.replace();
-                    $location.search('zoom', area.getZoom());
-                    $location.search('coords', coords);
-                });
+                }
             };
 
             /**
@@ -166,32 +120,24 @@
              * Initialises the main map by setting the filters, center and zoom.
              * If an area is provided in the URL, will set that as the current area.
              * It will then initialise the map based on the areaService's current area.
+             * @param {L.map} map
              */
             MainMapService.prototype.initialiseMap = function(map) {
                 var that = this;
-                var deferred = $q.defer();
+
+                // Reset map area
+                that._mapAreaForCurrentArea = undefined;
 
                 // Set the filters from the url first
                 locationFilterService.setFiltersFromUrl();
 
-                // Try setting from the URL hash
-                this._setMapCenterFromUrl();
-
-                // Get the area from the area service
-                areaService.getCurrentArea()
-                    .then(function(area) {
-                        if (angular.isObject(area)) {
-                            // Show the area and resolve the deferred
-                            that._showArea(area, map);
-                            deferred.resolve();
-                        }
-                    })
-                    .catch(function() {
-                        deferred.reject();
+                // Try to set the area from the URL params
+                areaService.setAreaFromUrl()
+                    .finally(function() {
+                        // Initialise with the current area (regardless of whether the area was set from the URL)
+                        that.showCurrentArea(map);
                     })
                 ;
-
-                return deferred.promise;
             };
 
             /**
@@ -199,9 +145,7 @@
              * @param {L.map} map
              */
             MainMapService.prototype.showCurrentArea = function(map) {
-                areaService.getCurrentArea().then(function(area) {
-                    this._showArea(area, map);
-                }.bind(this));
+                this._showArea(areaService.getCurrentArea(), map);
             };
 
             /**
@@ -210,10 +154,27 @@
              * @param {{}} newCenter
              */
             MainMapService.prototype.onCenterChanged = function(newCenter) {
-                // Try to set the new center as area
-                if (areaService.setArea(new Area(newCenter))) {
-                    // Update url and locations if the area was valid
-                    this._updateCenterInUrl();
+                // Create an area from the new center
+                var newArea = new Area(newCenter);
+
+                // Only proceed if the area is valid
+                if (newArea.isValid()) {
+                    // The first time the center changes (so when _mapAreaForCurrentArea
+                    // is undefined), the map just shows the area as defined by the
+                    // areaService. This area is not exactly the same, but close enough.
+                    // We therefore don't want to trigger an actual change in area. If
+                    // we wouldn't do this, just switching from the overview to the map
+                    // and back would change the area..
+                    if (angular.isDefined(this._mapAreaForCurrentArea)) {
+                        // TODO: improve to also not set area when doing actions such as resizing the window
+                        areaService.setArea(newArea);
+                    }
+
+                    // Store that we are now showing this area
+                    this._mapAreaForCurrentArea = newArea;
+
+                    // Update URL and reload locations
+                    areaService.writeAreaToUrl();
                     this._reloadLocations();
                 }
             };

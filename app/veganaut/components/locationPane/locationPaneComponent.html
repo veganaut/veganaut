@@ -11,7 +11,7 @@
      ng-if="vm.parentVm.legacyGlobals.isEmbedded && !vm.parentVm.legacyGlobals.isLoggedIn()">
         <p class="col-xs-6">
             <button type="button" class="btn btn-block btn-primary"
-             ng-click="vm.parentVm.legacyGlobals.goToView('register') | track:'linkToRegister':'linkToRegister.locationPreviewRate'">
+             ng-click="vm.parentVm.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.locationPreviewRate'">
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span>{{ 'action.rate.name' | translate }}</span>
             </button>

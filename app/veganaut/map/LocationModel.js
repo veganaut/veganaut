@@ -103,8 +103,8 @@
              */
             Location._NAME_FOR_TYPE = {
                 // TODO: this should be a directive
-                gastronomy: 'restaurant',
-                retail: 'shop'
+                gastronomy: 'gastronomyLocation',
+                retail: 'retailLocation'
             };
 
             /**
@@ -114,6 +114,7 @@
              * @returns {string|boolean}
              */
             Location.getIconClassForType = function(type) {
+                // TODO WIP: replace with new icons
                 var cls = Location._CLASS_FOR_TYPE[type];
                 if (angular.isString(cls)) {
                     return cls;

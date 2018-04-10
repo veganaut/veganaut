@@ -234,7 +234,7 @@
              */
             BackendService.prototype.sendPasswordResetMail = function(email, isRegistration) {
                 var type = (isRegistration === true) ? 'registration' : 'reset';
-                return $http.post(backendUrl + '/passwordResetEmail',  {
+                return $http.post(backendUrl + '/passwordResetEmail', {
                     email: email,
                     type: type
                 });
@@ -246,7 +246,7 @@
              * @returns {HttpPromise}
              */
             BackendService.prototype.isValidToken = function(token) {
-                 return $http.get(backendUrl + '/person/isValidToken/' + token);
+                return $http.get(backendUrl + '/person/isValidToken/' + token);
             };
 
             /**
@@ -280,6 +280,25 @@
              */
             BackendService.prototype.getAvailableMissions = function(locationId) {
                 return $http.get(backendUrl + '/location/' + locationId + '/availableMission/list');
+            };
+
+            /**
+             * Gets the area overview info: how many locations and products of which type
+             * @param lat
+             * @param lng
+             * @param radius
+             * @returns {Promise}
+             */
+            BackendService.prototype.getAreaOverview = function(lat, lng, radius) {
+                return $http.get(backendUrl + '/areaOverview', {
+                    params: {
+                        lat: lat,
+                        lng: lng,
+                        radius: radius
+                    }
+                }).then(function(res) {
+                    return res.data;
+                });
             };
 
             // Instantiate and return the service

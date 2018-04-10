@@ -4,7 +4,7 @@
     module.controller('ProfileCtrl', ['$scope', 'playerService', 'backendService',
         function($scope, playerService, backendService) {
             if (!backendService.isLoggedIn()) {
-                $scope.goToView('login');
+                $scope.goToView('/login');
             }
 
             // Get the force-reloaded player data

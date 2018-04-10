@@ -7,7 +7,7 @@
         'backendService', 'playerService', 'localeService',
         function($rootScope, $scope, $location, $window, $q,
             angularPiwik, featureToggle, pageTitleService,
-            backendService, playerService, localService)
+            backendService, playerService, localeService)
         {
             /**
              * Whether the app has finished initialising
@@ -33,7 +33,7 @@
 
             $rootScope.goToView = $scope.goToView = function(view) {
                 $scope.closeMenu();
-                $location.path(view);
+                $location.url(view);
             };
 
             // Expose some backend states and methods
@@ -78,7 +78,7 @@
                     }
 
                     // Set the current locale
-                    angularPiwik.setCustomVariable(2, 'locale', localService.getLocale(), 'visit');
+                    angularPiwik.setCustomVariable(2, 'locale', localeService.getLocale(), 'visit');
 
                     // Set the mode (for the visit and the page)
                     var newMode = $scope.isEmbedded ? 'embedded' : 'default';
@@ -134,7 +134,7 @@
                         }
                         else {
                             // App has just loaded but not on the map. Redirect to the map
-                            $location.path('/map/');
+                            $location.url('/map/');
                         }
                     }
                 });

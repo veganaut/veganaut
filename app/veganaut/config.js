@@ -38,6 +38,12 @@
     // Some global constants
     module.constant('constants', {
         /**
+         * String to separate the area name from the area id in the URL.
+         * @type {string}
+         */
+        URL_PLACE_NAME_ID_SEPARATOR: '---',
+
+        /**
          * Radius used when including the whole world on the location list.
          * @type {number} in meters
          */

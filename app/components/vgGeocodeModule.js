@@ -33,9 +33,21 @@
         'landuse'
     ];
 
+    /**
+     * Mapping of OSM long type to short type.
+     * See https://wiki.openstreetmap.org/wiki/Nominatim#Reverse_Geocoding
+     * @type {{}}
+     */
+    var OSM_TYPE_MAPPING = {
+        node: 'N',
+        relation: 'R',
+        way: 'W'
+    };
+
     module.factory('GeocodeResult', ['Area', function(Area) {
         /**
          * Represents a geocoding results
+         * TODO: Is there any use in having a separate model here and not just using Area?
          * @param {{}} data JSON returned by the geocoding service
          * @constructor
          */
@@ -61,15 +73,22 @@
                 ];
             }
 
-            /**
-             * Area that corresponds to this GeocodeResult
-             * @type {Area}
-             */
-            this.area = new Area({
+            // Store id and type to generate the areaId
+            this._osmId = data['osm_id'];
+            this._osmType = data['osm_type'];
+        };
+
+        /**
+         * Returns an Area that corresponds to this GeocodeResult
+         * @returns {Area}
+         */
+        GeocodeResult.prototype.getArea = function() {
+            return new Area({
+                id: this._getAreaId(),
+                name: this.getDisplayName(),
                 lat: this.lat,
                 lng: this.lng,
-                boundingBox: this.bounds,
-                name: this.getDisplayName()
+                boundingBox: this.bounds
             });
         };
 
@@ -100,6 +119,39 @@
 
             // Join them all by commas
             return parts.join(', ');
+        };
+
+
+        /**
+         * Gets the unique id of this OSM geocode result. The id will always start
+         * with an "o" so that it can be distinguished from areas from other sources
+         * than OSM.
+         *
+         * Note also that the id should never contain the string "---" (this assumption
+         * is used when parsing it from the URL). See URL_PLACE_NAME_ID_SEPARATOR.
+         *
+         * @returns {string}
+         * @returns {string}
+         * @private
+         */
+        GeocodeResult.prototype._getAreaId = function() {
+            // First part of the unique id is an "o", indicating that this is an
+            // id from open street map
+            var areaId = 'o';
+
+            // Next part is the osm type
+            if (OSM_TYPE_MAPPING.hasOwnProperty(this._osmType)) {
+                areaId += OSM_TYPE_MAPPING[this._osmType];
+            }
+            else {
+                // Shouldn't really happen, but who knows when OSM changes
+                areaId += this._osmType;
+            }
+
+            // Last part is the integer id from OSM
+            areaId += this._osmId;
+
+            return areaId;
         };
 
         return GeocodeResult;
@@ -190,6 +242,52 @@
                     deferred.reject(data);
                 })
             ;
+
+            return deferred.promise;
+        };
+
+        /**
+         * Gets a geocode result by the areaId.
+         * @param {string} areaId
+         * @returns {Promise<GeocodeResult>}
+         */
+        GeocodeService.prototype.getByAreaId = function(areaId) {
+            var deferred = $q.defer();
+
+            var osmAreaIdParts = areaId.match(/^o([a-zA-Z]+)([0-9]+)$/);
+            if (osmAreaIdParts) {
+                var osmType = osmAreaIdParts[1];
+                var osmId = osmAreaIdParts[2];
+
+                $http.get(BASE_URL + '/reverse',
+                    {
+                        params: {
+                            'osm_id': osmId,
+                            'osm_type': osmType,
+                            'accept-language': localeService.getLocale(),
+                            addressdetails: true,
+                            format: 'json'
+                        }
+                    })
+                    .success(function(data) {
+                        // TODO: De-duplicate this with the reverseSearch method
+                        // API doesn't use correct HTTP return codes for errors
+                        if (angular.isObject(data) && angular.isString(data.error)) {
+                            deferred.reject(data);
+                        }
+                        else {
+                            var result = new GeocodeResult(data);
+                            deferred.resolve(result);
+                        }
+                    })
+                    .error(function(data) {
+                        deferred.reject(data);
+                    })
+                ;
+            }
+            else {
+                deferred.reject('Invalid OSM area id');
+            }
 
             return deferred.promise;
         };
