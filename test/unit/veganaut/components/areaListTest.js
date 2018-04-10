@@ -152,7 +152,7 @@ describe('areaList.', function() {
             expect($ctrl.totalItems).toBe(30, 'exposes total items');
 
             deferredGeocodeSearch.resolve({
-                getDisplayName: function() {
+                getLongName: function() {
                     return 'test place';
                 }
             });

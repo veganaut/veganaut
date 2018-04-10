@@ -85,7 +85,8 @@
         GeocodeResult.prototype.getArea = function() {
             return new Area({
                 id: this._getAreaId(),
-                name: this.getDisplayName(),
+                shortName: this.getShortName(),
+                longName: this.getLongName(),
                 lat: this.lat,
                 lng: this.lng,
                 boundingBox: this.bounds
@@ -93,17 +94,50 @@
         };
 
         /**
-         * Formats a nice display name for this geocode result
+         * Gets a long name (~complete address if it makes sense) for this
+         * geocode result.
+         * TODO: merge this with the method in the backend doing roughly the same thing
          * @returns {string}
          */
-        GeocodeResult.prototype.getDisplayName = function() {
+        GeocodeResult.prototype.getLongName = function() {
             // TODO: add tests for this
+            var that = this;
+            var parts = this._getRelevantAddressParts();
+
+            // Join them all by commas
+            return _.map(parts, function(partName) {
+                return that.address[partName];
+            }).join(', ');
+        };
+
+
+        /**
+         * Gets a short name for this geocode result (only for example the
+         * city name or street name)
+         * @returns {string}
+         */
+        GeocodeResult.prototype.getShortName = function() {
+            // Get the relevant parts and return the first one
+            var parts = this._getRelevantAddressParts();
+            if (parts.length > 0) {
+                return this.address[parts[0]];
+            }
+            return undefined;
+        };
+
+        /**
+         * Returns the parts of the address that should be used for displaying
+         * the name of this GeocodeResult.
+         * @returns {string[]}
+         * @private
+         */
+        GeocodeResult.prototype._getRelevantAddressParts = function() {
             var that = this;
             var parts = [];
 
             // Check if there is a valid type in the address
             if (angular.isString(that.type) && angular.isString(that.address[that.type])) {
-                parts.push(that.address[that.type]);
+                parts.push(that.type);
             }
 
             // Add other parts
@@ -112,15 +146,14 @@
                 function(partName) {
                     // Include the given part if wasn't already added as type and if it actually exists
                     if (partName !== that.type && angular.isString(that.address[partName])) {
-                        parts.push(that.address[partName]);
+                        parts.push(partName);
                     }
                 }
             );
 
-            // Join them all by commas
-            return parts.join(', ');
+            // Return the found parts
+            return parts;
         };
-
 
         /**
          * Gets the unique id of this OSM geocode result. The id will always start

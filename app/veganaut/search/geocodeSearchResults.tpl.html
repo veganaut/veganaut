@@ -2,7 +2,7 @@
     <ul class="list-unstyled list-spaced">
         <li ng-repeat="result in geocodeSearchResultsVm.results">
             <a href="" ng-click="geocodeSearchResultsVm.selectResult(result)">
-                {{ result.getDisplayName() }}
+                {{ result.getLongName() }}
             </a>
         </li>
     </ul>

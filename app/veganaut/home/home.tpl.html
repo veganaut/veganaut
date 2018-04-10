@@ -24,7 +24,7 @@
                      ng-model="homeVm.ctaFormInput"
                      ng-focus="homeVm.onCtaInputFocus()"
                      ng-blur="homeVm.onCtaInputBlur()"
-                     uib-typeahead="res.getDisplayName() for res in homeVm.getSearchResults($viewValue)"
+                     uib-typeahead="res.getLongName() for res in homeVm.getSearchResults($viewValue)"
                      typeahead-min-length="3"
                      typeahead-wait-ms="1000"
                      typeahead-loading="homeVm.searching"

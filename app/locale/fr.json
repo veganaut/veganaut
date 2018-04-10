@@ -448,8 +448,8 @@
   "lists": {
     "subtitle": {
       "world": "Dans le monde entier",
-      "areaWithId": "Dans un périmètre de {{ radius }}",
-      "mapSection": "Dans un périmètre de {{ radius }} autour {{area}}"
+      "withId": "Dans un périmètre de {{ radius }} autour {{area}}",
+      "withoutId": "Dans un périmètre de {{ radius }} autour {{area}}"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -552,8 +552,7 @@
     "callToAction": {
       "text": "Afficher les offres véganes à...",
       "inputPlaceholder": "Saisis une ville ou un pays",
-      "show": "Afficher",
-      "geolocate": "Ma position"
+      "show": "Afficher"
     },
     "open": {
       "text1": "Toutes nos informations sur les offres véganes ont été partagées par des gens comme toi et peuvent être utilisées pour tes propres projets: Véganaut est ",
@@ -572,14 +571,15 @@
   "areaDescription": {
     "title": {
       "world": "Earth",
-      "mapSection": "Current map section"
+      "withId": "{{area}}",
+      "withoutId": "Autour: {{area}}"
     }
   },
   "areaOverview": {
     "subtitle": {
       "world": "Vegan offer in the whole world",
-      "areaWithId": "Vegan offer in a radius of {{radius}}",
-      "mapSection": "Vegan offer in a radius of {{radius}} around {{area}}"
+      "withId": "Vegan offer in a radius of {{radius}} around {{area}}",
+      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}"
     },
     "locationQualityTitle": "Total of {{total}} locations with the following ratings",
     "rating": {

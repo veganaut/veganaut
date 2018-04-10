@@ -457,8 +457,8 @@
   "lists": {
     "subtitle": {
       "world": "Auf der ganzen Welt",
-      "areaWithId": "Im Umkreis von {{radius}}",
-      "mapSection": "Im Ukreis von {{radius}} um {{area}}"
+      "withId": "Im Ukreis von {{radius}} um {{area}}",
+      "withoutId": "Im Ukreis von {{radius}} um {{area}}"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -561,8 +561,7 @@
     "callToAction": {
       "text": "Zeige vegane Angebote in...",
       "inputPlaceholder": "Land oder Stadt eingeben",
-      "show": "Anzeigen",
-      "geolocate": "Mein Standort"
+      "show": "Anzeigen"
     },
     "open": {
       "text1": "Alle unsere Infos über vegane Angebote stammen von Menschen wie dir und stehen für deine eigenen Projekte frei zur Verfügung: Veganaut ist ",
@@ -581,14 +580,15 @@
   "areaDescription": {
     "title": {
       "world": "Erde",
-      "mapSection": "Im Kartenausschnitt"
+      "withId": "{{area}}",
+      "withoutId": "Um: {{area}}"
     }
   },
   "areaOverview": {
     "subtitle": {
       "world": "Veganes Angebot auf der ganzen Welt",
-      "areaWithId": "Veganes Angebot im Radius von {{radius}}",
-      "mapSection": "Veganes Angebot im Radius von {{radius}} um {{area}}"
+      "withId": "Veganes Angebot im Radius von {{radius}} um {{area}}",
+      "withoutId": "Veganes Angebot im Radius von {{radius}} um {{area}}"
     },
     "locationQualityTitle": "{{total}} Locations mit den folgenden Bewertungen",
     "rating": {

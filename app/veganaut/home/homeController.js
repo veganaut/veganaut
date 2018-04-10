@@ -38,7 +38,8 @@
              */
             var targetArea = new Area({
                 id: undefined,
-                name: vm.ctaFormInput,
+                shortName: vm.ctaFormInput,
+                longName: vm.ctaFormInput,
                 lat: 0,
                 lng: 0,
                 zoom: 2
@@ -70,7 +71,7 @@
              */
             vm.canSubmitCta = function() {
                 // Can only submit when we have a target and it's currently shown in the input field
-                return (angular.isObject(targetArea) && targetArea.name === vm.ctaFormInput);
+                return (angular.isObject(targetArea) && targetArea.longName === vm.ctaFormInput);
             };
 
             /**
@@ -103,7 +104,7 @@
                 // If the user leaves the input and we cannot submit the form
                 // but we have a target area, set that area again
                 if (!vm.canSubmitCta() && angular.isObject(targetArea)) {
-                    vm.ctaFormInput = targetArea.name;
+                    vm.ctaFormInput = targetArea.longName;
                 }
             };
 
@@ -128,29 +129,27 @@
                 // TODO: disable input while searching?
                 navigator.geolocation.getCurrentPosition(function(position) {
                     $scope.$apply(function() {
-                        vm.geolocating = false;
-
-                        // Extract the lat and lng
-                        var lat = position.coords.latitude;
-                        var lng = position.coords.longitude;
-
-                        // Set the display name to some value that the user recognises it worked
-                        vm.ctaFormInput = $translate.instant('home.callToAction.geolocate') +
-                            ': ' + lat.toFixed(3) + ', ' + lng.toFixed(3)
-                        ;
-
-                        // Set the target area
-                        // TODO WIP NOW: this needs to be another area type that has different titles on the list and overview
-                        targetArea = new Area({
-                            id: undefined,
-                            name: vm.ctaFormInput,
-                            lat: lat,
-                            lng: lng,
+                        // Extract the lat and lng and create an Area
+                        var locatedArea = new Area({
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
                             zoom: GEO_LOCATION_ZOOM
                         });
 
-                        // When the user focuses the input field, clear it
-                        clearCtaInputOnFocus = true;
+                        // Retrieve a name for it
+                        areaService.retrieveNameForArea(locatedArea)
+                            .then(function() {
+                                // Set the target area and name in the input field
+                                targetArea = locatedArea;
+                                vm.ctaFormInput = locatedArea.longName;
+
+                                // When the user focuses the input field, clear it
+                                clearCtaInputOnFocus = true;
+                            })
+                            .finally(function() {
+                                vm.geolocating = false;
+                            })
+                        ;
 
                         angularPiwik.track('home.geolocation', 'home.geolocation.found');
                     });
@@ -175,9 +174,9 @@
                 // If there's an area with id (and therefore name), set that as the first target
                 // TODO: When the app is first loaded and the area in the local storage has no id, the search field will stay empty. In that case might want to fall back to country?
                 var area = areaService.getLastAreaWithId();
-                if (angular.isDefined(area) && angular.isString(area.name)) {
+                if (angular.isDefined(area) && angular.isString(area.longName)) {
                     targetArea = area;
-                    vm.ctaFormInput = area.name;
+                    vm.ctaFormInput = area.longName;
                 }
                 // If there's no area with id, we just leave the form field empty
             });

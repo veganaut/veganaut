@@ -59,8 +59,7 @@
             $ctrl.noResultsText = false;
 
             /**
-             * Type of area that is being shown.
-             * One of 'world', 'areaWithId', 'areaWithoutId'
+             * Type of area that is being shown
              * @type {string}
              */
             $ctrl.areaType = undefined;
@@ -72,10 +71,10 @@
             $ctrl.displayRadius = undefined;
 
             /**
-             * Name to be shown for this area
-             * @type {string}
+             * Area showing a list for
+             * @type {Area}
              */
-            $ctrl.areaName = undefined;
+            $ctrl.area = undefined;
 
             /**
              * Whether to show the 'city' or the 'street' part of the address.
@@ -212,31 +211,17 @@
 
                 // Reset the area display variables and the list itself
                 resetList();
-                $ctrl.areaType = undefined;
-                $ctrl.areaName = undefined;
+                $ctrl.areaType = area.getAreaType();
+                $ctrl.area = area;
                 $ctrl.displayRadius = undefined;
 
                 // Check whether to show the city or street part of the address
                 $ctrl.addressType = (lastParams.radius > constants.ADDRESS_TYPE_BOUNDARY_RADIUS ? 'city' : 'street');
 
-                // Check what type of overview we have
-                if (lastParams.includesWholeWorld) {
-                    // Showing the whole world
-                    $ctrl.areaType = 'world';
-                }
-                else if (area.hasId()) {
-                    // We have an area with id and therefore name that we can show prominently
-                    $ctrl.areaType = 'areaWithId';
-                    $ctrl.areaName = area.name;
-                }
-                else {
-                    // Area without id, so coming from a map section
-                    $ctrl.areaType = 'areaWithoutId';
-
-                    // Retrieve a name for the center of the area
-                    areaService.getNameForArea(area).then(function(name) {
-                        $ctrl.areaName = name;
-                    });
+                if ($ctrl.areaType === 'withoutId') {
+                    // Area without id and therefore probably without name, ask the
+                    // service to retrieve a name for the center of the area
+                    areaService.retrieveNameForArea(area);
                 }
 
                 // Round the radius to two significant digits and display it as meters or kms

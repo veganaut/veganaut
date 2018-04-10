@@ -5,24 +5,13 @@
         </div>
         <div class="vg-list-header__text">
             <h1 class="vg-list-header__title">
-                <span ng-switch="$ctrl.areaType">
-                    <span ng-switch-when="world">{{ 'areaDescription.title.world' | translate }}:</span>
-                    <span ng-switch-when="areaWithId">{{ $ctrl.areaName }}:</span>
-                    <span ng-switch-when="areaWithoutId">{{ 'areaDescription.title.mapSection' | translate }}:</span>
-                </span>
+                {{ 'areaDescription.title.' + $ctrl.areaType | translate: {area: $ctrl.area.shortName} }}:
                 {{ 'lists.' + $ctrl.listType + '.title' | translate: {count: $ctrl.totalItems} }}
             </h1>
 
-            <p class="vg-list-header__area" ng-switch="$ctrl.areaType">
-                <span ng-switch-when="world">
-                    {{ 'lists.subtitle.world' | translate }}
-                </span>
-                    <span ng-switch-when="areaWithId">
-                    {{ 'lists.subtitle.areaWithId' | translate: {radius: $ctrl.displayRadius} }}
-                </span>
-                    <span ng-switch-when="areaWithoutId">
-                    {{ 'lists.subtitle.mapSection' | translate: {radius: $ctrl.displayRadius, area: $ctrl.areaName} }}
-                </span>
+            <p class="vg-list-header__area">
+                {{ 'lists.subtitle.' + $ctrl.areaType |
+                    translate: {radius: $ctrl.displayRadius, area: $ctrl.area.longName} }}
             </p>
 
             <p ng-if="$ctrl.noResultsText">

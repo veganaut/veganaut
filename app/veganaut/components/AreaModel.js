@@ -30,11 +30,18 @@ angular.module('veganaut.app.main').factory('Area', [
             this.id = data.id;
 
             /**
-             * Optional name of this area. For areas with ids, this should always
-             * be set, for others it's optional.
+             * Optional short name of this area.
+             * For areas with ids, this should always be set, for others it's optional.
              * @type {string}
              */
-            this.name = data.name;
+            this.shortName = data.shortName;
+
+            /**
+             * Optional longer name of this area (e.g. the whole address).
+             * Same as for the shortName, should always be set for areas with ids.
+             * @type {string}
+             */
+            this.longName = data.longName;
 
             /**
              * Latitude of the center of this area
@@ -102,6 +109,31 @@ angular.module('veganaut.app.main').factory('Area', [
             }
 
             return valid;
+        };
+
+        /**
+         * Gets the type of this area that can help to determine
+         * how to describe this area to the user.
+         *
+         * @returns {string} One of 'world', 'withId', 'withoutId' or undefined
+         */
+        Area.prototype.getAreaType = function() {
+            var type;
+            if (this.isValid()) {
+                // Check what type of area this is
+                if (this.getRadiusParams().includesWholeWorld) {
+                    type = 'world';
+                }
+                else if (this.hasId()) {
+                    type = 'withId';
+                }
+                else {
+                    type = 'withoutId';
+                }
+            }
+            // If not valid, return undefined
+
+            return type;
         };
 
         /**
@@ -237,7 +269,8 @@ angular.module('veganaut.app.main').factory('Area', [
             }
             return {
                 id: this.id,
-                name: this.name,
+                shortName: this.shortName,
+                longName: this.longName,
                 lat: this._lat,
                 lng: this._lng,
                 zoom: this.getZoom(),

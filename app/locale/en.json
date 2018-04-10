@@ -448,8 +448,8 @@
   "lists": {
     "subtitle": {
       "world": "In the whole world",
-      "areaWithId": "In a radius of {{radius}}",
-      "mapSection": "In a radius of {{radius}} around {{area}}"
+      "withId": "In a radius of {{radius}} around {{area}}",
+      "withoutId": "In a radius of {{radius}} around {{area}}"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -552,8 +552,7 @@
     "callToAction": {
       "text": "Show vegan offers in...",
       "inputPlaceholder": "Enter a country or city",
-      "show": "Show",
-      "geolocate": "My location"
+      "show": "Show"
     },
     "open": {
       "text1": "All our infos about vegan offers were contributed by people like you and can be used freely for your own projects: Veganaut is ",
@@ -572,14 +571,15 @@
   "areaDescription": {
     "title": {
       "world": "Earth",
-      "mapSection": "Current map section"
+      "withId": "{{area}}",
+      "withoutId": "Around: {{area}}"
     }
   },
   "areaOverview": {
     "subtitle": {
       "world": "Vegan offer in the whole world",
-      "areaWithId": "Vegan offer in a radius of {{radius}}",
-      "mapSection": "Vegan offer in a radius of {{radius}} around {{area}}"
+      "withId": "Vegan offer in a radius of {{radius}} around {{area}}",
+      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}"
     },
     "locationQualityTitle": "Total of {{total}} locations with the following ratings",
     "rating": {

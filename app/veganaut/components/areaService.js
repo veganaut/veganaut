@@ -37,8 +37,6 @@ angular.module('veganaut.app.main').factory('areaService', [
              * @private
              */
             this._currentArea = new Area({
-                id: undefined,
-                name: undefined,
                 lat: 0,
                 lng: 0,
                 zoom: 2,
@@ -83,7 +81,8 @@ angular.module('veganaut.app.main').factory('areaService', [
                                 if (_.isObject(data) && Object.keys(data).length > 0) {
                                     that.setArea(new Area({
                                         id: data.areaId,
-                                        name: data.countryName,
+                                        shortName: data.countryName,
+                                        longName: data.countryName,
                                         lat: data.lat,
                                         lng: data.lng,
                                         boundingBox: data.boundingBox
@@ -150,19 +149,19 @@ angular.module('veganaut.app.main').factory('areaService', [
         };
 
         /**
-         * Returns a name for the given area.
+         * Makes sure the given area has a long and short name set.
          *
          * The difference to just accessing the name property of the Area is that this
          * will performs a reverse lookup to get an approximate name if the Area has
          * no name yet. The retrieved name is written to the passed area instance.
          *
          * @param {Area} area
-         * @returns {Promise<string>}
+         * @returns {Promise}
          */
-        AreaService.prototype.getNameForArea = function(area) {
-            // If the area already has a name, return that
-            if (angular.isDefined(area.name)) {
-                return $q.when(area.name);
+        AreaService.prototype.retrieveNameForArea = function(area) {
+            // If the area already has a name, return immediately
+            if (angular.isDefined(area.shortName)) {
+                return $q.when();
             }
             else {
                 // We use the center from the radius params as that will set the most
@@ -180,19 +179,21 @@ angular.module('veganaut.app.main').factory('areaService', [
                     .then(function(place) {
                         if (place) {
                             // Set the area name to not retrieve it again
-                            area.name = place.getDisplayName();
-                            return area.name;
+                            area.shortName = place.getShortName();
+                            area.longName = place.getLongName();
 
                         }
                         else {
                             // Could not find a name, resolve with fallback
-                            // TODO: Should this result be stored? There might just be nothing to geocode, or there's a problem with the API
-                            return fallbackDisplayName;
+                            // TODO: Should this result not be stored? There might just be nothing to geocode, or there's a problem with the API
+                            area.shortName = fallbackDisplayName;
+                            area.longName = fallbackDisplayName;
                         }
                     })
                     .catch(function() {
                         // Could not find a name, resolve with fallback
-                        return fallbackDisplayName;
+                        area.shortName = fallbackDisplayName;
+                        area.longName = fallbackDisplayName;
                     })
                 ;
             }
@@ -339,7 +340,7 @@ angular.module('veganaut.app.main').factory('areaService', [
 
             if (this._currentArea.hasId()) {
                 // If the current area has an id, use that in the URL
-                areaParam = slug((this._currentArea.name || ''), {lower: true}) +
+                areaParam = slug((this._currentArea.longName || ''), {lower: true}) +
                     constants.URL_PLACE_NAME_ID_SEPARATOR + this._currentArea.id;
             }
             else {

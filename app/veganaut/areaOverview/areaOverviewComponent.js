@@ -48,7 +48,7 @@
             $ctrl.areaOverview = {};
 
             $ctrl.areaType = undefined;
-            $ctrl.areaName = undefined;
+            $ctrl.area = undefined;
             $ctrl.lastAreaWithId = undefined;
             $ctrl.displayRadius = undefined;
         };
@@ -68,37 +68,22 @@
 
             // Reset the area display variables and the list itself
             resetOverview();
+            $ctrl.area = area;
 
-            // Check what type of overview we have
-            if (lastParams.includesWholeWorld) {
-                // Showing the whole world
-                $ctrl.areaType = 'world';
-            }
-            else if (area.hasId()) {
-                // We have an area with id and therefore name that we can show prominently
-                $ctrl.areaType = 'areaWithId';
-                $ctrl.areaName = area.name;
-            }
-            else {
-                // Area without id, so coming from a map section
-                $ctrl.areaType = 'areaWithoutId';
-
-                // Retrieve a name for the center of the area
-                areaService.getNameForArea(area).then(function(name) {
-                    $ctrl.areaName = name;
-                });
+            // Check what type of area we have
+            $ctrl.areaType = area.getAreaType();
+            if ($ctrl.areaType === 'withoutId') {
+                // Area without id and therefore probably without name, ask the
+                // service to retrieve a name for the center of the area
+                areaService.retrieveNameForArea(area);
             }
 
-            // If we are showing the whole world or an area without id, we can show a button
-            // to go back to the last area with id (= the last one the user selected explicitly)
-            if ($ctrl.areaType !== 'areaWithId') {
-                var areaWithId = areaService.getLastAreaWithId();
-
-                // If there is a last area with id and it's not the same as the current one,
-                // expose it to the template to show the button
-                if (angular.isDefined(areaWithId) && area.id !== areaWithId.id) {
-                    $ctrl.lastAreaWithId = areaWithId;
-                }
+            // If we have a last area with id and it's not the one already shown, we show a
+            // button to go back to that area (= the last one the user selected explicitly)
+            var lastAreaWithId = areaService.getLastAreaWithId();
+            if (angular.isDefined(lastAreaWithId) && area.id !== lastAreaWithId.id) {
+                // Expose the area to the template to show the button
+                $ctrl.lastAreaWithId = lastAreaWithId;
             }
 
             // Round the radius to two significant digits and display it as meters or kms

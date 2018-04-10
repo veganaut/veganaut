@@ -2,32 +2,21 @@
     <div class="area-wrapper">
         <h1 class="h3">
             <vg-icon vg-name="'location'" class="area-overview-location"></vg-icon>
-            <span ng-switch="$ctrl.areaType">
-                <span ng-switch-when="world">{{ 'areaDescription.title.world' | translate }}</span>
-                <span ng-switch-when="areaWithId">{{ $ctrl.areaName }}</span>
-                <span ng-switch-when="areaWithoutId">{{ 'areaDescription.title.mapSection' | translate }}</span>
-            </span>
+            {{ 'areaDescription.title.' + $ctrl.areaType | translate: {area: $ctrl.area.shortName} }}
         </h1>
         <button ng-if="$ctrl.lastAreaWithId" class="return-btn" ng-click="$ctrl.backToLastAreaWithId()">
             <div class="return-btn-content">
                 <vg-icon vg-name="'jump-back'"></vg-icon>
-                <span>{{ $ctrl.lastAreaWithId.name }}</span>
+                <span>{{ $ctrl.lastAreaWithId.shortName }}</span>
             </div>
         </button>
-        <p ng-switch="$ctrl.areaType">
-            <span ng-switch-when="world">
-                {{ 'areaOverview.subtitle.world' | translate }}
-            </span>
-            <span ng-switch-when="areaWithId">
-                {{ 'areaOverview.subtitle.areaWithId' | translate: {radius: $ctrl.displayRadius} }}
-            </span>
-            <span ng-switch-when="areaWithoutId">
-                {{ 'areaOverview.subtitle.mapSection' | translate: {radius: $ctrl.displayRadius, area: $ctrl.areaName} }}
-            </span>
+        <p>
+            {{ 'areaOverview.subtitle.' + $ctrl.areaType |
+                translate: {radius: $ctrl.displayRadius, area: $ctrl.area.longName} }}
         </p>
         <p class="area-location-area">
-            <span>{{ 'areaOverview.locationQualityTitle' |
-                translate: {total: $ctrl.areaOverview.locations.total} }}</span>
+            {{ 'areaOverview.locationQualityTitle' |
+                translate: {total: $ctrl.areaOverview.locations.total} }}
         </p>
         <vg-plant-rating vg-area-overview="$ctrl.areaOverview"></vg-plant-rating>
     </div>

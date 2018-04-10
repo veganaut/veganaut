@@ -76,7 +76,7 @@ describe('areaService.', function() {
                 expect(area.getLng()).toBe(0.12, 'correct lng');
                 expect(area.getBoundingBox().toBBoxString()).toBe('-78,-42.6,70.9,68.31', 'correct bounds');
                 expect(typeof area.getZoom()).toBe('undefined', 'no zoom');
-                expect(area.name).toBe('Landy', 'correct name');
+                expect(area.shortName).toBe('Landy', 'correct name');
             });
             $rootScope.$apply();
             expect(resolved).toBeFalsy('does not return area yet');
