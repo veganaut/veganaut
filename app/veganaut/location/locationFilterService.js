@@ -19,31 +19,6 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 group: this.INACTIVE_FILTER_VALUE.group,
                 sortBy: this.INACTIVE_FILTER_VALUE.sortBy
             };
-
-            // Listen to route changes to clean up URL parameters
-            $rootScope.$on('$routeChangeStart', function(event, newRoute, oldRoute) {
-                // If the event is still ongoing and there is an old route, update URL params
-                if (!event.defaultPrevented && angular.isObject(oldRoute)) {
-                    // Check if any of the filters are not relevant on the new route
-                    var oldFilters = oldRoute.vgFilters || {};
-                    var newFilters = newRoute.vgFilters || {};
-
-                    // TODO WIP NOW: is resetting still necessary now? I think not.
-
-                    if (oldFilters.type === true && newFilters.type !== true) {
-                        $location.search('type', undefined);
-                    }
-                    if (oldFilters.recent === true && newFilters.recent !== true) {
-                        $location.search('recent', undefined);
-                    }
-                    if (oldFilters.group === true && newFilters.group !== true) {
-                        $location.search('group', undefined);
-                    }
-                    if (oldFilters.sortBy === true && newFilters.sortBy !== true) {
-                        $location.search('sortBy', undefined);
-                    }
-                }
-            });
         };
 
         /**
@@ -305,6 +280,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * Updates the URL params to correctly reflect the currently active filters.
          */
         LocationFilterService.prototype.updateFiltersInUrl = function() {
+            // TODO WIP: make the category filters more readable in the URL? Just using 1 instead of 2 params?
             // Only change the URL when we are on a route that has filters
             if (!angular.isObject($route.current.vgFilters)) {
                 return;
