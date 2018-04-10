@@ -2,8 +2,7 @@
     <div class="vg-category-selector-type"
      ng-repeat="type in $ctrl.typeFilters"
      ng-class="{'vg-category-selector-type--active': type.indexOf($ctrl.selectedType) !== -1}">
-        <a href="{{$ctrl.locationPath + '?type=' + type + '&group=' + group}}"
-         class="vg-category-selector-item"
+        <a href="" class="vg-category-selector-item"
          ng-repeat-start="group in $ctrl.groupFilters"
          ng-click="$ctrl.setFilter(type, group)"
          ng-class="{'vg-category-selector-item--active': $ctrl.selectedType === type && $ctrl.selectedGroup === group}">
