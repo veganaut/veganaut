@@ -182,7 +182,6 @@
       "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
       "lessTasks": "Ausblenden"
     },
-    "rate": "Wie beurteilst du das Angebot dieser Location aus veganautischer Sicht?",
     "form": {
       "new": {
         "type": "Welche Art von Location möchtest du hinzufügen?",
