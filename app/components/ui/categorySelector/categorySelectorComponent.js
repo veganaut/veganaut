@@ -36,9 +36,8 @@
 
         $ctrl.locationPath = $location.path();
 
+        $ctrl.locationFilterService = locationFilterService;
         $ctrl.categories = locationFilterService.CATEGORIES;
-        $ctrl.selectedType = locationFilterService.getTypeFilterValue();
-        $ctrl.selectedGroup = locationFilterService.getGroupFilterValue();
 
         $ctrl.$onInit = function() {
             if ($ctrl.typeFilters.indexOf(locationFilterService.getTypeFilterValue()) === -1 ||
@@ -50,8 +49,6 @@
         };
 
         $ctrl.setFilter = function(type, group) {
-            $ctrl.selectedType = type;
-            $ctrl.selectedGroup = group;
             locationFilterService.activeFilters.type = type;
             locationFilterService.activeFilters.group = group;
             locationFilterService.onFiltersChanged();

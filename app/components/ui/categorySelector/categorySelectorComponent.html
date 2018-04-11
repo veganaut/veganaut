@@ -1,11 +1,14 @@
 <nav class="vg-category-selector">
     <div class="vg-category-selector-type"
      ng-repeat="type in $ctrl.typeFilters"
-     ng-class="{'vg-category-selector-type--active': type.indexOf($ctrl.selectedType) !== -1}">
+     ng-class="{'vg-category-selector-type--active':
+     type.indexOf($ctrl.locationFilterService.getTypeFilterValue()) !== -1}">
         <a href="" class="vg-category-selector-item"
          ng-repeat-start="group in $ctrl.groupFilters"
          ng-click="$ctrl.setFilter(type, group)"
-         ng-class="{'vg-category-selector-item--active': $ctrl.selectedType === type && $ctrl.selectedGroup === group}">
+         ng-class="{'vg-category-selector-item--active':
+          $ctrl.locationFilterService.getTypeFilterValue() === type &&
+          $ctrl.locationFilterService.getGroupFilterValue() === group}">
             {{ 'lists.' + $ctrl.categories[type][group] + '.name' | translate }}
         </a>
         <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
