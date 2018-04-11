@@ -181,6 +181,7 @@
     // Make Leaflet and other libraries available as angular service
     mapModule.value('Leaflet', window.L);
     mapModule.value('slug', window.slug);
+    mapModule.value('spirit', window.spirit);
 
     window.veganaut = {
         mainModule: mainModule,

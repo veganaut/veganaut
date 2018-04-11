@@ -17,14 +17,14 @@
     }
 
     // Inject dependencies
-    LocationEditEndComponentController.$inject = ['animations'];
+    LocationEditEndComponentController.$inject = ['spirit', 'animations'];
 
-    function LocationEditEndComponentController(animations) {
+    function LocationEditEndComponentController(spirit, animations) {
         var vm = this;
         vm.animations = animations.animations;
 
         vm.$onInit = function() {
-            spirit.setup() // TODO WIP: inject spirit, remove from jshintrc
+            spirit.setup()
             // load animation data
                 .then(function() {
                     spirit.create(vm.animations).get('animation-01').construct()
