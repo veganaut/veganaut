@@ -327,8 +327,10 @@ angular.module('veganaut.app.main').factory('areaService', [
         /**
          * Writes the currently set area to the URL if we are on one
          * of the pages that shows areas.
+         * @param {boolean} [addHistoryEntry=false] Whether to replace (default) or
+         *      add a history entry.
          */
-        AreaService.prototype.writeAreaToUrl = function() {
+        AreaService.prototype.writeAreaToUrl = function(addHistoryEntry) {
             var currentPage = $route.current.vgRouteName;
 
             if (!AREA_PAGE_INFOS.hasOwnProperty(currentPage)) {
@@ -371,7 +373,9 @@ angular.module('veganaut.app.main').factory('areaService', [
 
             // Replace the url params (without adding a new history item)
             // Can't use $route.updateParams as this will set all params, not only the ones we want
-            $location.replace();
+            if (!addHistoryEntry) {
+                $location.replace();
+            }
             $location.search('zoom', zoomParam);
             $location.search('coords', coordsParam);
             $location.search('radius', radiusParam);

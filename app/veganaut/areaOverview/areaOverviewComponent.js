@@ -31,7 +31,8 @@
          */
         $ctrl.backToLastAreaWithId = function() {
             areaService.setArea(areaService.getLastAreaWithId());
-            showArea(areaService.getCurrentArea());
+            // Show the area and add a new history entry
+            showArea(areaService.getCurrentArea(), true);
         };
 
         /**
@@ -62,7 +63,7 @@
             });
         };
 
-        var showArea = function(area) {
+        var showArea = function(area, addHistoryEntry) {
             // Get the radius params from the area
             lastParams = area.getRadiusParams();
 
@@ -101,8 +102,7 @@
             loadItems();
 
             // Update the url
-            // TODO WIP NOW: when going back to the last area with id or coming from search, it should add a new history entry
-            areaService.writeAreaToUrl();
+            areaService.writeAreaToUrl(addHistoryEntry);
         };
 
         $ctrl.$onInit = function() {
@@ -116,7 +116,28 @@
 
             // Listen to area changes
             $scope.$on('veganaut.area.changed', function() {
-                showArea(areaService.getCurrentArea());
+                // Explicit area change coming in, show area and add new history entry
+                showArea(areaService.getCurrentArea(), true);
+            });
+
+
+            // Correctly handle the back/forward functionality. See areaList for detailed docu.
+            // TODO: De-duplicate this code with the one from areaList
+            var routeUpdateFired = false;
+            $scope.$on('$routeUpdate', function() {
+                routeUpdateFired = true;
+            });
+
+            $scope.$on('veganaut.history.onPopState', function() {
+                if (routeUpdateFired) {
+                    areaService.setAreaFromUrl()
+                        .finally(function() {
+                            // Regardless if the area was set from the URL or not, show the current area
+                            showArea(areaService.getCurrentArea());
+                        })
+                    ;
+                }
+                routeUpdateFired = false;
             });
         };
     }

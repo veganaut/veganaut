@@ -145,6 +145,7 @@
 
             // Listen to area changes from outside the map
             $scope.$on('veganaut.area.changed', function() {
+                // TODO: Add a new history entry when changing the map like this. The tricky part is to find a way to handle back/forward correctly then.
                 mainMapService.showCurrentArea(vm.map);
             });
 

@@ -43,6 +43,13 @@
                 shown: false
             };
 
+            // Listen to onpopstate to be able to detect when the browser back/forward
+            // functionality was used
+            $window.onpopstate = function() {
+                // Broadcast this in the angular world
+                $rootScope.$broadcast('veganaut.history.onPopState');
+            };
+
             // Reload the whole app when the session gets destroyed to clear all data
             $scope.$on('veganaut.session.destroyed', function() {
                 $window.location.reload();

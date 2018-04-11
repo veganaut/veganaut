@@ -204,8 +204,10 @@
             /**
              * Shows the list of the given area
              * @param {Area} area
+             * @param {boolean} [addHistoryEntry] Whether showing this area should
+             *      create a new history entry (or default to updating the current one)
              */
-            var showArea = function(area) {
+            var showArea = function(area, addHistoryEntry) {
                 // Get the radius params from the area
                 lastParams = area.getRadiusParams();
 
@@ -239,7 +241,7 @@
                 loadItems();
 
                 // Update the url
-                areaService.writeAreaToUrl(); // TODO WIP NOW: when coming from search, it should replace the history entry
+                areaService.writeAreaToUrl(addHistoryEntry);
             };
 
             $ctrl.$onInit = function() {
@@ -256,11 +258,41 @@
 
                 // Listen to area changes
                 $scope.$on('veganaut.area.changed', function() {
-                    showArea(areaService.getCurrentArea());
+                    // Explicit area change coming in, show area and add new history entry
+                    showArea(areaService.getCurrentArea(), true);
                 });
 
                 // Reload items when filters change
                 $scope.$on('veganaut.filters.changed', loadItems);
+
+
+                // When the user clicks on back/forward in the browser, we don't get notified
+                // by default that the URL changed (cause we have reloadOnSearch set to false).
+                // To still provide the back/forward functionality, we have to listen to $routeUpdate
+                // (this fires when the URL changes but we stay in this controller) and to the
+                // browser onPopState event. Always when the latter event fired and we previously
+                // had a $routeUpdate, this means that we stayed in this controller and that
+                // back/forward was used, so we have to re-render.
+                var routeUpdateFired = false;
+                $scope.$on('$routeUpdate', function() {
+                    routeUpdateFired = true;
+                });
+
+                $scope.$on('veganaut.history.onPopState', function() {
+                    if (routeUpdateFired) {
+                        // Read the URL and re-render the content
+                        locationFilterService.setFiltersFromUrl();
+                        areaService.setAreaFromUrl()
+                            .finally(function() {
+                                // Regardless if the area was set from the URL or not, show the current area
+                                showArea(areaService.getCurrentArea());
+                            })
+                        ;
+                    }
+
+                    // Reset the flag
+                    routeUpdateFired = false;
+                });
             };
         }
     ];
