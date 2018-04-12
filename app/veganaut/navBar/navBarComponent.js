@@ -21,13 +21,12 @@
     NavBarController.$inject = [
         '$location',
         '$rootScope',
-        'angularPiwik',
         'backendService',
         'localeService',
         'searchService'
     ];
 
-    function NavBarController($location, $rootScope, angularPiwik, backendService, localeService, searchService) {
+    function NavBarController($location, $rootScope, backendService, localeService, searchService) {
         var $ctrl = this;
 
         // Expose service
@@ -48,12 +47,6 @@
         };
 
         $ctrl.goToView = $rootScope.goToView;
-
-        $ctrl.logout = function() {
-            backendService.logout().finally(function() {
-                angularPiwik.track('logout', 'logout.success');
-            });
-        };
 
         // TODO: Merge this with other places where this is checked
         $ctrl.isHomePage = function() {

@@ -18,11 +18,12 @@
 
     NavBarOverlayCtrl.$inject = [
         '$rootScope',
+        'angularPiwik',
         'backendService'
     ];
 
 
-    function NavBarOverlayCtrl($rootScope, backendService) {
+    function NavBarOverlayCtrl($rootScope, angularPiwik, backendService) {
         var $ctrl = this;
 
         $ctrl.closeOverlay = function() {
@@ -31,6 +32,10 @@
         $ctrl.goToView = function(view) {
             $rootScope.goToView(view);
             $ctrl.closeOverlay();
+        };
+        $ctrl.logout = function() {
+            angularPiwik.track('logout', 'logout');
+            backendService.logout();
         };
         $ctrl.isLoggedIn = function() {
             return backendService.isLoggedIn();

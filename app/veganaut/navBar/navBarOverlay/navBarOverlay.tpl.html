@@ -19,18 +19,17 @@
             <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('/me')">
                 <span class="h4">{{'navigation.profile' | translate}}</span>
             </button>
-            <div class="overlay-content">
-                <button ng-if="!$ctrl.isLoggedIn()"
-                 ng-click="$ctrl.goToView('/register')"
-                 class="btn btn-primary btn-overlay"
-                 type="button">
-                    <span class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
-                    <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
-                </button>
-                <button class="overlay-logout" ng-click="$ctrl.logout()">
-                    <span ng-if="$ctrl.isLoggedIn()" class="h4">{{'navigation.logout' | translate}}</span>
-                </button>
-            </div>
+            <button ng-if="!$ctrl.isLoggedIn()"
+             ng-click="$ctrl.goToView('/register')"
+             class="btn btn-primary btn-overlay overlay-content">
+                <span class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
+                <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
+            </button>
+            <button ng-if="$ctrl.isLoggedIn()"
+             ng-click="$ctrl.logout()"
+             class="overlay-logout overlay-content">
+                <span class="h4">{{'navigation.logout' | translate}}</span>
+            </button>
             <div class="row overlay-content">
                 <div class="col-xs-4 overlay-border-right">
                     <a class="h5 overlay-row-content" href="https://blog.veganaut.net/about/" target="_blank">
