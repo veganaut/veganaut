@@ -12,7 +12,7 @@
                 location: '<vgLocation'
             },
             controller: LocationDetailsComponentController,
-            controllerAs: 'vm',
+            controllerAs: '$ctrl',
             templateUrl: '/veganaut/location/locationDetailsComponent.html'
         };
 
@@ -20,49 +20,54 @@
     }
 
     LocationDetailsComponentController.$inject = [
-        'pageTitleService',
-        'backendService',
-        'missionService'
+        'pageTitleService'
     ];
 
-    function LocationDetailsComponentController(pageTitleService, backendService, missionService) {
-        var vm = this;
+    function LocationDetailsComponentController(pageTitleService) {
+        var $ctrl = this;
 
-        // TODO: the missions should be stored directly on the location model
-        vm.locationMissions = [];
-        vm.productMissions = {};
-        vm.specialMissions = [];
-        vm.error = undefined;
+        // TODO WIP: handle location not found nicely
 
-        vm.edit = false;
+        /**
+         * Whether we are currently in edit mode
+         * @type {boolean}
+         */
+        $ctrl.editMode = false;
+
+        /**
+         * Which edit task is currently shown in the overlay
+         * @type {string}
+         */
+        $ctrl.editTask = undefined;
 
         /**
          * Whether to show also the unavailable products
          * TODO: this is an object because we don't have controller-as so scopes get messed up *fuuu*
          * @type {boolean}
          */
-        vm.showUnavailable = {products: false};
+        $ctrl.showUnavailable = {products: false};
 
-        vm.$onInit = function() {
-            pageTitleService.addCustomTitle(vm.location.name);
-
-            if (backendService.isLoggedIn()) {
-                missionService.getAvailableMissions(location).then(function(availableMissions) {
-                    vm.locationMissions = availableMissions.locationMissions;
-                    vm.specialMissions = availableMissions.specialMissions;
-                    vm.productMissions = availableMissions.productMissions;
-                });
-            }
+        $ctrl.$onInit = function() {
+            pageTitleService.addCustomTitle($ctrl.location.name);
         };
 
-        vm.tasks = [
+        $ctrl.tasks = [
             {'task': 'Beurteile das Angebot dieser Location aus veganautischer Sicht.'},
             {'task': 'Gib an, wie offen das Personal hier für "vegan" ist.'},
             {'task': 'Sensibilisiere das Personal auf vegane Produkte.'}
         ];
 
-        vm.editLocation = function editLocation() {
-            vm.edit = !vm.edit;
+        $ctrl.toggleEditMode = function() {
+            // TODO WIP: call setEditing() on location model?
+            $ctrl.editMode = !$ctrl.editMode;
+        };
+
+        $ctrl.closeEditOverlay = function() {
+            $ctrl.editTask = undefined;
+        };
+
+        $ctrl.startEditTask = function(property) {
+            $ctrl.editTask = property;
         };
     }
 })();

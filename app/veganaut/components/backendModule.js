@@ -275,6 +275,7 @@
 
             /**
              * Gets the list of available missions at a location
+             * TODO WIP: get rid of this method
              * @param locationId
              * @returns {HttpPromise}
              */
@@ -299,6 +300,29 @@
                 }).then(function(res) {
                     return res.data;
                 });
+            };
+
+            /**
+             * Submit a task of a certain type with the given outcome and for
+             * the given location
+             * @param {string} taskType
+             * @param {Location} location
+             * @param {{}} outcome
+             * @returns {Promise}
+             */
+            BackendService.prototype.submitLocationTask = function(taskType, location, outcome) {
+                return $http
+                    .post(backendUrl + '/task', {
+                        location: location.id,
+                        type: taskType,
+                        outcome: outcome
+                    })
+                    .then(function(res) {
+                        return res.data;
+                    })
+                    .catch(function(res) {
+                        return $q.reject(res.data);
+                    });
             };
 
             // Instantiate and return the service

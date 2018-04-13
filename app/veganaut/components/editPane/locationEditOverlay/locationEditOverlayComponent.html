@@ -1,0 +1,103 @@
+<div class="vg-location-edit-overlay">
+    <div class="edit-overlay">
+        <div class="container edit-container">
+            <img class="sky" src="img/background/space-hills-2.svg" ng-if="$ctrl.isQuestionnaire">
+            <div class="h3" ng-class="{'h3-edit': !$ctrl.isQuestionnaire}">
+                <label for="location-edit-input-field">
+                    {{ 'location.form.edit.' + $ctrl.editTask + '.title' | translate }}
+                </label>
+            </div>
+            <div class="h4" ng-if="$ctrl.getDescription()">
+                {{ $ctrl.getDescription() }}
+            </div>
+
+            <form novalidate name="editLocationForm" ng-switch="$ctrl.editTask">
+
+                <input type="text" id="location-edit-input-field" class="input-one-line"
+                 ng-switch-when="SetLocationName"
+                 required
+                 ng-model="$ctrl.inputModel"
+                 ng-disabled="$ctrl.isSaving"
+                />
+
+                <div class="row choose-wrapper"
+                 ng-switch-when="SetLocationType">
+                    <!-- TODO WIP: rename "plant-tooltip" -->
+                    <!-- TODO WIP: use constants for gastronomy/retail -->
+                    <div class="plant-tooltip"
+                     ng-class="{'answer1-tooltip': editLocationForm.$dirty && $ctrl.inputModel === 'gastronomy'}">
+                        <p>{{ 'location.form.edit.type.tooltip.gastronomy' | translate }}</p>
+                    </div>
+                    <div class="plant-tooltip"
+                     ng-class="{'answer2-tooltip': editLocationForm.$dirty && $ctrl.inputModel === 'retail'}">
+                        <p>{{ 'location.form.edit.type.tooltip.retail' | translate }}</p>
+                    </div>
+                    <div class="col-xs-6" ng-repeat="type in ['gastronomy', 'retail']">
+                        <button class="btn btn-choose"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.inputModel"
+                         uib-btn-radio="type">
+                            <vg-location-type-icon type="type"></vg-location-type-icon>
+                            {{ 'location.type.' + type | translate }}
+                        </button>
+                    </div>
+                </div>
+
+                <textarea id="location-edit-input-field" class="input-multi-line" type="text" rows="5"
+                 ng-switch-when="SetLocationDescription"
+                 placeholder="{{ 'location.form.edit.description.placeholder' | translate }}"
+                 ng-model="$ctrl.inputModel"
+                 ng-disabled="$ctrl.isSaving">
+                </textarea>
+
+                <div ng-switch-when="RateLocationQuality">
+                    <div class="plant-tooltip"
+                     ng-if="$ctrl.inputModel"
+                     ng-class="'plant' + $ctrl.inputModel + '-tooltip'">
+                        <p>{{ 'areaOverview.rating.' + $ctrl.inputModel | translate }}</p>
+                    </div>
+                    <div class="plant-wrapper">
+                        <button class="remove-btn"
+                         ng-repeat="quality in [1,2,3,4,5]"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.inputModel"
+                         uib-btn-radio="quality">
+                            <vg-icon vg-name="'level-' + quality + ($ctrl.inputModel === quality ? '-selected' : '')"
+                             class="rating-plant">
+                            </vg-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" type="submit"
+                 ng-disabled="editLocationForm.$invalid || editLocationForm.$pristine || $ctrl.isSaving"
+                 ng-click="$ctrl.save()">
+                    <vg-icon class="checkmark" vg-name="'checkmark'"></vg-icon>
+                    {{ 'location.pane.save' | translate }}
+                </button>
+            </form>
+
+            <div class="button-wrapper" ng-if="!$ctrl.isQuestionnaire">
+                <button class="remove-btn btn-edit" ng-click="$ctrl.onClose()" ng-disabled="$ctrl.isSaving">
+                    <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
+                    {{ 'location.pane.abort' | translate }}
+                </button>
+            </div>
+            <div class="button-wrapper row" ng-if="$ctrl.isQuestionnaire">
+                <div class="col-xs-5">
+                    <button class="remove-btn btn-edit" ng-click="$ctrl.onClose()" ng-disabled="$ctrl.isSaving">
+                        <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
+                        {{ 'location.pane.abort' | translate }}
+                    </button>
+                </div>
+                <div class="col-xs-7">
+                    <button class="remove-btn btn-edit btn-skip" ng-disabled="$ctrl.isSaving">
+                        {{ 'location.pane.skip' | translate:{'from': 1, 'to': 3} }}
+                        <vg-icon class="chevron-small-right" vg-name="'chevron-small-right'"></vg-icon>
+                        <vg-icon class="chevron-small-right" vg-name="'chevron-small-right'"></vg-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

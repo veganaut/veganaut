@@ -1,30 +1,56 @@
-<!--<vg-location-edit-single vg-edit="true"></vg-location-edit-single>-->
-<!--<vg-location-edit-multi vg-edit="false"></vg-location-edit-multi>-->
 <!--<vg-location-edit-select vg-edit="true"></vg-location-edit-select>-->
 <!--<vg-location-edit-star vg-edit="false"></vg-location-edit-star>-->
-<!--<vg-location-edit-plant vg-edit="true"></vg-location-edit-plant>-->
-<!--<vg-location-edit-choose vg-edit="false"></vg-location-edit-choose>-->
 <!--<vg-location-edit-end></vg-location-edit-end>-->
+<!--
+TODO WIP: AddLocation
+TODO WIP: AddProduct
+DONE: SetLocationName
+DONE: SetLocationType
+DONE: SetLocationDescription
+TODO WIP: SetLocationCoordinates
+TODO WIP: SetLocationWebsite
+TODO WIP: SetLocationProductListComplete
+TODO WIP: SetLocationExistence
+TODO WIP: SetProductName
+TODO WIP: SetProductAvailability
+TODO WIP: HowWellDoYouKnowThisLocation
+DONE: RateLocationQuality
+TODO WIP: TagLocation
+TODO WIP: RateProduct
+TODO WIP: HaveYouBeenHereRecently
+TODO WIP: GiveFeedback
+TODO WIP: MentionVegan
+TODO WIP: BuyProduct
+-->
+
+<vg-location-edit-overlay
+ ng-if="$ctrl.editTask"
+ vg-is-questionnaire="false"
+ vg-edit-task="$ctrl.editTask"
+ vg-location="$ctrl.location"
+ vg-on-close="$ctrl.closeEditOverlay()">
+</vg-location-edit-overlay>
+
 <vg-card class="vg-location-details__card">
-    <div class="modification-banner" ng-if="vm.edit">
+    <div class="modification-banner" ng-if="$ctrl.editMode">
         <div class="row">
             <div class="col-xs-8">
-                <h1 class="h4">{{'location.edit' | translate}}</h1>
+                <h1 class="h4">{{ 'location.edit' | translate }}</h1>
             </div>
             <div class="col-xs-4">
-                <button ng-click="vm.editLocation()" class="btn btn-finish">
-                    {{'location.finish' | translate}}
+                <button ng-click="$ctrl.toggleEditMode()" class="btn btn-finish">
+                    {{ 'location.finish' | translate }}
                 </button>
             </div>
         </div>
     </div>
-    <vg-location-header class="vg-location-details__card" vg-location="vm.location" ng-if="!vm.edit">
+    <vg-location-header class="vg-location-details__card" vg-location="$ctrl.location" ng-if="!$ctrl.editMode">
     </vg-location-header>
-    <vg-location-header-edit  vg-location="vm.location" ng-if="vm.edit"></vg-location-header-edit>
+    <vg-location-header-edit  vg-location="$ctrl.location" ng-if="$ctrl.editMode"></vg-location-header-edit>
 
 </vg-card>
 <vg-card class="vg-location-details__card">
-    <vg-location-rating-chick ng-class="{'location-details-card-disabled' : vm.edit}">
+    <vg-location-rating-chick ng-class="{'location-details-card-disabled' : $ctrl.editMode}">
     </vg-location-rating-chick>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--products">
@@ -34,21 +60,21 @@
     {{ 'location.products.title' | translate }}
     </span>
     </h2>
-    <vg-location-tags vg-tags="vm.location.getSortedTags()" vg-limit="1" class="location-tags-card"></vg-location-tags>
-    <vg-location-products vg-location="vm.location" vg-limit="1"></vg-location-products>
+    <vg-location-tags vg-tags="$ctrl.location.getSortedTags()" vg-limit="1" class="location-tags-card"></vg-location-tags>
+    <vg-location-products vg-location="$ctrl.location" vg-limit="1"></vg-location-products>
 </vg-card>
-<vg-card class="vg-location-details__card vg-location-details__card--tasks" ng-class="{'location-details-card-disabled' : vm.edit}">
+<vg-card class="vg-location-details__card vg-location-details__card--tasks" ng-class="{'location-details-card-disabled' : $ctrl.editMode}">
     <h2 class="vg-location-products__title">
         <vg-icon vg-name="'missions'" class="vg-location-products__title-icon vg-location-products__veganize-icon"></vg-icon>
         <span class="vg-location-products__title-text">
     {{ 'location.veganize.title' | translate }}
     </span>
     </h2>
-    <vg-location-tasks vg-tasks="vm.tasks" vg-limit="1">
+    <vg-location-tasks vg-tasks="$ctrl.tasks" vg-limit="1">
     </vg-location-tasks>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">
-    <vg-location-map-preview vg-location="vm.location" vg-on-click="$root.goToView('/map/')">
+    <vg-location-map-preview vg-location="$ctrl.location" vg-on-click="$root.goToView('/map/')">
     </vg-location-map-preview>
 </vg-card>
 <vg-card class="vg-location-details__card">
@@ -60,7 +86,7 @@
             </a>
         </div>
         <div class="col-xs-2 pen-aligner">
-            <button class="oval-edit-btn " ng-click="" ng-if="vm.edit">
+            <button class="oval-edit-btn " ng-click="" ng-if="$ctrl.editMode">
                 <vg-icon vg-name="'pen'">
                 </vg-icon>
             </button>
@@ -68,17 +94,17 @@
     </div>
 </vg-card>
 
-<vg-card class="vg-location-details__card" ng-if="vm.location.website">
+<vg-card class="vg-location-details__card" ng-if="$ctrl.location.website">
     <!-- TODO WIP: Always show when editing -->
     <div class="row">
         <div class="col-xs-10">
-            <a ng-href="{{ vm.location.website }}" target="_blank">
+            <a ng-href="{{ $ctrl.location.website }}" target="_blank">
                 <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
-                {{ vm.location.website }}
+                {{ $ctrl.location.website }}
             </a>
         </div>
         <div class="col-xs-2 pen-aligner">
-            <button class="oval-edit-btn " ng-click="" ng-if="vm.edit">
+            <button class="oval-edit-btn " ng-click="" ng-if="$ctrl.editMode">
                 <vg-icon vg-name="'pen'">
                 </vg-icon>
             </button>
@@ -86,7 +112,7 @@
     </div>
 </vg-card>
 
-<!--TODO Change Mock Data-->
+<!-- TODO WIP Change Mock Data -->
 <div class="vg-location-details__footer-wrapper">
     <div class="last-update">
         <vg-icon vg-name="'clock'"></vg-icon>

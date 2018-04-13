@@ -5,9 +5,8 @@
                 <h1>{{ vm.location.name }}</h1>
             </div>
             <div class="col-xs-2 pen-aligner">
-                <button class="oval-edit-btn " ng-click="">
-                    <vg-icon vg-name="'pen'">
-                    </vg-icon>
+                <button class="oval-edit-btn " ng-click="vm.parent.startEditTask('SetLocationName')">
+                    <vg-icon vg-name="'pen'"></vg-icon>
                 </button>
             </div>
         </div>
@@ -22,9 +21,8 @@
                 </div>
             </div>
             <div class="col-xs-2 pen-aligner">
-                <button class="oval-edit-btn " ng-click="">
-                    <vg-icon vg-name="'pen'">
-                    </vg-icon>
+                <button class="oval-edit-btn" ng-click="vm.parent.startEditTask('SetLocationType')">
+                    <vg-icon vg-name="'pen'"></vg-icon>
                 </button>
             </div>
         </div>
@@ -34,24 +32,22 @@
                     <vg-icon vg-name="'veganlevel-' + vm.location.getRoundedQuality()"></vg-icon>
                 </div>
                 <div class="col-xs-10 col-sm-11 text">
-                    {{'location.rating.' + vm.location.getRoundedQuality() | translate}}
+                    {{ 'location.rating.' + vm.location.getRoundedQuality() | translate }}
                 </div>
             </div>
             <div class="col-xs-2 pen-aligner">
-                <button class="oval-edit-btn " ng-click="">
-                    <vg-icon vg-name="'pen'">
-                    </vg-icon>
+                <button class="oval-edit-btn" ng-click="vm.parent.startEditTask('RateLocationQuality')">
+                    <vg-icon vg-name="'pen'"></vg-icon>
                 </button>
             </div>
         </div>
         <div class="wrapper">
             <div class="col-xs-10">
-                <span class="text"> {{ vm.location.description }} </span>
+                <span class="text description">{{ vm.location.description }}</span>
             </div>
             <div class="col-xs-2 pen-aligner">
-                <button class="oval-edit-btn " ng-click="">
-                    <vg-icon vg-name="'pen'">
-                    </vg-icon>
+                <button class="oval-edit-btn " ng-click="vm.parent.startEditTask('SetLocationDescription')">
+                    <vg-icon vg-name="'pen'"></vg-icon>
                 </button>
             </div>
         </div>

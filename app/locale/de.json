@@ -56,6 +56,15 @@
       "success": "Mission erfolgreich abgeschlossen. Du hast {{ points }} Punkte gemacht.",
       "error": "Sorry, die Mission konnte nicht gespeichert werden: "
     },
+    "locationTask": {
+      "error": "Sorry, es gab ein Problem beim speichern: "
+    },
+    "locationTaskEdit": {
+      "success": "Location aktualisiert, Danke!"
+    },
+    "locationTaskOpinion": {
+      "success": "Meinung gespeichert, Danke!"
+    },
     "profile": {
       "update": {
         "success": "Profil wurde erfolgreich aktualisiert.",
@@ -197,14 +206,28 @@
         "submit": "Fertig"
       },
       "edit": {
-        "name": "Name der Location",
-        "type": "Art der Location",
-        "description": "Beschreibung",
+        "SetLocationName": {
+          "title": "Name der Location"
+        },
+        "SetLocationType": {
+          "title": "Art der Location",
+          "tooltip": {
+            "gastronomy": "Gastronomy Erklaerung",
+            "retail": "Retail Erklaerung"
+          }
+        },
+        "SetLocationDescription": {
+          "title": "Beschreibung",
+          "placeholder": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente."
+        },
+        "RateLocationQuality": {
+          "title": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
+          "description": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt."
+        },
         "link": "Webseite",
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
         "changeCoordinates": "Ändere die Position",
         "placeholder": {
-          "description": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente.",
           "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
         }
       }

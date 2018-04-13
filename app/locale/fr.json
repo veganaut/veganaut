@@ -56,6 +56,15 @@
       "success": "Mission accomplie. Tu as gagné {{ points }} points.",
       "error": "Désolé, la mission n'a pas pu être enregistrée: "
     },
+    "locationTask": {
+      "error": "Sorry, there was a problem when trying to save: "
+    },
+    "locationTaskEdit": {
+      "success": "Location updates, thanks!"
+    },
+    "locationTaskOpinion": {
+      "success": "Opinion noted, thanks!"
+    },
     "profile": {
       "update": {
         "success": "Profil modifié.",
@@ -168,8 +177,8 @@
     "totalPeople": "Véganautes"
   },
   "location": {
-    "edit": "",
-    "finish": "",
+    "edit": "Editing location",
+    "finish": "Done",
     "veganize": {
       "title": "Veganize"
     },
@@ -188,14 +197,28 @@
         "submit": "Enregistrer"
       },
       "edit": {
-        "name": "Nom de l'endroit",
-        "type": "Genre de l'endroit",
-        "description": "Description",
+        "SetLocationName": {
+          "title": "Nom de l'endroit"
+        },
+        "SetLocationType": {
+          "title": "Genre de l'endroit",
+          "tooltip": {
+            "gastronomy": "Gastronomy Erklaerung",
+            "retail": "Retail Erklaerung"
+          }
+        },
+        "SetLocationDescription": {
+          "title": "Description",
+          "placeholder": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance."
+        },
+        "RateLocationQuality": {
+          "title": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
+          "description": "Les véganautes veulent avoir le choix entre beaucoup d'options véganes. À quelques endroits il n'y a pas ou presque pas d'options véganes ou les options véganes ne sont pas convaincantes encore. À d'autres endroits il y a déjà deux ou trois options véganes dont une ou deux sont satisfaisantes. D'autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement, il y a des endroits où l'offre végane est énorme et toutes les options sont fantastiques."
+        },
         "link": "Site web",
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
         "changeCoordinates": "Changer les coordonnées",
         "placeholder": {
-          "description": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance.",
           "link": "Le  site web de cet endroit, p. ex. http://example.com"
         }
       }
