@@ -321,7 +321,12 @@
                 // TODO: should be possible to clear the memoiziation
                 this._sortedTags = this._sortedTags ||  _.chain(this.tags)
                     .map(function(value, key) {
-                        return {name: key, count: value};
+                        // TODO WIP: use better weighting (we need a 1, 2, 3 or 4)
+                        var weight = 1;
+                        if (angular.isNumber(value)) {
+                            weight = Math.min(4, Math.max(1, value));
+                        }
+                        return {name: key, weight: weight};
                     })
                     .sortByOrder(['count', 'name'], ['desc', 'asc'])
                     .value()
