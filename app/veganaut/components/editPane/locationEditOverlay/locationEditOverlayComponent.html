@@ -26,11 +26,11 @@
                     <!-- TODO WIP: use constants for gastronomy/retail -->
                     <div class="plant-tooltip"
                      ng-class="{'answer1-tooltip': editLocationForm.$dirty && $ctrl.inputModel === 'gastronomy'}">
-                        <p>{{ 'location.form.edit.type.tooltip.gastronomy' | translate }}</p>
+                        <p>{{ 'location.form.edit.SetLocationType.tooltip.gastronomy' | translate }}</p>
                     </div>
                     <div class="plant-tooltip"
                      ng-class="{'answer2-tooltip': editLocationForm.$dirty && $ctrl.inputModel === 'retail'}">
-                        <p>{{ 'location.form.edit.type.tooltip.retail' | translate }}</p>
+                        <p>{{ 'location.form.edit.SetLocationType.tooltip.retail' | translate }}</p>
                     </div>
                     <div class="col-xs-6" ng-repeat="type in ['gastronomy', 'retail']">
                         <button class="btn btn-choose"
