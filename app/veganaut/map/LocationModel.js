@@ -435,16 +435,20 @@
             };
 
             /**
-             * Makes sure the current website is valid
+             * Adds "http://" to the URL if not already present
              * (starts with http:// or https://)
+             * TODO: move somewhere else
+             * @param url
+             * @returns {string}
              */
-            Location.prototype.sanitiseWebsite = function() {
-                if (angular.isString(this.website) &&
-                    this.website.length > 0 &&
-                    !/^https?:\/\//.test(this.website))
+            Location.prototype.sanitiseUrl = function(url) {
+                if (angular.isString(url) &&
+                    url.length > 0 &&
+                    !/^https?:\/\//.test(url))
                 {
-                    this.website = 'http://' + this.website;
+                    return 'http://' + url;
                 }
+                return url;
             };
 
             /**

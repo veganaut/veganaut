@@ -220,23 +220,19 @@
           "title": "Beschreibung",
           "placeholder": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente."
         },
+        "SetLocationWebsite": {
+          "title": "Webseite",
+          "placeholder": "Die Webseite dieser Location, z.B. http://beispiel.ch"
+        },
         "RateLocationQuality": {
           "title": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
           "description": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt."
         },
-        "link": "Webseite",
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
-        "changeCoordinates": "Ändere die Position",
-        "placeholder": {
-          "link": "Die Webseite dieser Location, z.B. http://beispiel.ch"
-        }
+        "changeCoordinates": "Ändere die Position"
       }
     },
-    "label": {
-      "description": "Beschreibung",
-      "link": "Webseite",
-      "updatedAt": "Letzte Aktualisierung"
-    },
+    "updatedAt": "Letzte Aktualisierung",
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
@@ -277,6 +273,9 @@
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
       "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!",
       "add": "Empfehlung hinzufügen"
+    },
+    "website": {
+      "missing": "Webseite eintragen"
     },
     "approximateAddress": "Diese Adresse wurde automatisch bestimmt und kann darum ungenau sein."
   },

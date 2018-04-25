@@ -218,48 +218,30 @@ describe('LocationModel.', function() {
         });
     });
 
-    describe('sanitiseWebsite.', function() {
+    describe('sanitiseUrl.', function() {
         var loc;
         beforeEach(function() {
             loc = new Location();
         });
 
         it('method exists', function() {
-            expect(typeof loc.sanitiseWebsite).toBe('function');
+            expect(typeof loc.sanitiseUrl).toBe('function');
         });
 
         it('does not modify a valid website', function() {
-            loc.website = 'http://example.com';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('http://example.com', 'http website not modified');
-
-            loc.website = 'https://www.bla.ch';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('https://www.bla.ch', 'https website not modified');
+            expect(loc.sanitiseUrl('http://example.com')).toBe('http://example.com', 'http website not modified');
+            expect(loc.sanitiseUrl('https://www.bla.ch')).toBe('https://www.bla.ch', 'https website not modified');
         });
 
         it('adds http:// if not already there', function() {
-            loc.website = 'example.com';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('http://example.com', 'test 1');
-
-            loc.website = 'a';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('http://a', 'test 2');
-
-            loc.website = 'ablahttp://';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('http://ablahttp://', 'test 3');
+            expect(loc.sanitiseUrl('example.com')).toBe('http://example.com', 'test 1');
+            expect(loc.sanitiseUrl('a')).toBe('http://a', 'test 2');
+            expect(loc.sanitiseUrl('ablahttp://')).toBe('http://ablahttp://', 'test 3');
         });
 
         it('does not modify empty website', function() {
-            // Don't set any value
-            loc.sanitiseWebsite();
-            expect(typeof loc.website).toBe('undefined', 'test 1');
-
-            loc.website = '';
-            loc.sanitiseWebsite();
-            expect(loc.website).toBe('', 'test 2');
+            expect(typeof loc.sanitiseUrl(undefined)).toBe('undefined', 'test 1');
+            expect(loc.sanitiseUrl('')).toBe('', 'test 1');
         });
     });
 

@@ -49,6 +49,11 @@
             reloadLocationAfterSubmit: false,
             successMessage: 'message.locationTaskEdit.success'
         },
+        SetLocationWebsite: {
+            outcomeName: 'website',
+            reloadLocationAfterSubmit: false,
+            successMessage: 'message.locationTaskEdit.success'
+        },
         RateLocationQuality: {
             outcomeName: 'quality',
             reloadLocationAfterSubmit: true,
@@ -74,8 +79,20 @@
         $ctrl.save = function() {
             $ctrl.isSaving = true;
 
+            // Prepare the outcome
+            // TODO WIP: refactor this?
             var outcome = {};
             outcome[TASK_CONFIGURATION[$ctrl.editTask].outcomeName] = $ctrl.inputModel;
+            switch ($ctrl.editTask) {
+            case 'SetLocationWebsite':
+                // TODO: let the backend sanitise
+                outcome[TASK_CONFIGURATION[$ctrl.editTask].outcomeName] =
+                    $ctrl.location.sanitiseUrl(outcome[TASK_CONFIGURATION[$ctrl.editTask].outcomeName]);
+                outcome.isAvailable = $ctrl.inputModel.length > 0;
+                break;
+            default:
+                break;
+            }
 
             backendService
                 .submitLocationTask($ctrl.editTask, $ctrl.location, outcome)
@@ -89,6 +106,9 @@
                         break;
                     case 'SetLocationDescription':
                         $ctrl.location.description = data.outcome[TASK_CONFIGURATION[$ctrl.editTask].outcomeName];
+                        break;
+                    case 'SetLocationWebsite':
+                        $ctrl.location.website = data.outcome[TASK_CONFIGURATION[$ctrl.editTask].outcomeName];
                         break;
                     case 'RateLocationQuality':
                         // Not doing anything, will reload location
@@ -129,6 +149,9 @@
                 break;
             case 'SetLocationDescription':
                 $ctrl.inputModel = $ctrl.location.description;
+                break;
+            case 'SetLocationWebsite':
+                $ctrl.inputModel = $ctrl.location.website;
                 break;
             case 'RateLocationQuality':
                 $ctrl.inputModel = undefined; // TODO WIP: get latest rating of user?

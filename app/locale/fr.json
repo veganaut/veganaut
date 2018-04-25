@@ -211,23 +211,19 @@
           "title": "Description",
           "placeholder": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance."
         },
+        "SetLocationWebsite": {
+          "title": "Site web",
+          "placeholder": "Le site web de cet endroit, p. ex. http://example.com"
+        },
         "RateLocationQuality": {
           "title": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
           "description": "Les véganautes veulent avoir le choix entre beaucoup d'options véganes. À quelques endroits il n'y a pas ou presque pas d'options véganes ou les options véganes ne sont pas convaincantes encore. À d'autres endroits il y a déjà deux ou trois options véganes dont une ou deux sont satisfaisantes. D'autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement, il y a des endroits où l'offre végane est énorme et toutes les options sont fantastiques."
         },
-        "link": "Site web",
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
-        "changeCoordinates": "Changer les coordonnées",
-        "placeholder": {
-          "link": "Le  site web de cet endroit, p. ex. http://example.com"
-        }
+        "changeCoordinates": "Changer les coordonnées"
       }
     },
-    "label": {
-      "description": "Description",
-      "link": "Site web",
-      "updatedAt": "Dernière mise à jour"
-    },
+    "updatedAt": "Dernière mise à jour",
     "rating": {
       "average": "Moyenne",
       "numRatings": "Évaluations",
@@ -268,6 +264,9 @@
       "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
       "noTags": "Personne n'a indiqué les offres véganes qu'ils aiment ici. Fais-le toi-même!",
       "add": "Empfehlung hinzufügen"
+    },
+    "website": {
+      "missing": "Ajouter site web"
     },
     "approximateAddress": "Cette adresse a été déterminée automatiquement. Elle est donc approximative."
   },

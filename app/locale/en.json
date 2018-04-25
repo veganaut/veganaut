@@ -211,23 +211,19 @@
           "title": "Description",
           "placeholder": "Short description of this location, e.g. opening hours or ambience."
         },
+        "SetLocationWebsite": {
+          "title": "Website",
+          "placeholder": "This location's website, e.g. http://example.com"
+        },
         "RateLocationQuality": {
           "title": "How well does this location satisfy veganautic needs?",
           "description": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic."
         },
-        "link": "Website",
         "selectCoordinates": "Click in the map below to select the new location",
-        "changeCoordinates": "Change coordinates",
-        "placeholder": {
-          "link": "This location's website, e.g. http://example.com"
-        }
+        "changeCoordinates": "Change coordinates"
       }
     },
-    "label": {
-      "description": "Description",
-      "link": "Website",
-      "updatedAt": "Last update"
-    },
+    "updatedAt": "Last update",
     "rating": {
       "average": "Average",
       "numRatings": "Ratings",
@@ -268,6 +264,9 @@
       "explanation": "The tags show which vegan offers were liked by how many people here.",
       "noTags": "No one has indicated which vegan offers they like here. Be the first to do so!",
       "add": "Empfehlung hinzufügen"
+    },
+    "website": {
+      "missing": "Enter website"
     },
     "approximateAddress": "This address was looked up automatically and is therefore approximate."
   },

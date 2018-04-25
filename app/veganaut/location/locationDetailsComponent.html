@@ -8,7 +8,7 @@ DONE: SetLocationName
 DONE: SetLocationType
 DONE: SetLocationDescription
 TODO WIP: SetLocationCoordinates
-TODO WIP: SetLocationWebsite
+DONE: SetLocationWebsite
 TODO WIP: SetLocationProductListComplete
 TODO WIP: SetLocationExistence
 TODO WIP: SetProductName
@@ -78,35 +78,30 @@ TODO WIP: BuyProduct
     </vg-location-map-preview>
 </vg-card>
 <vg-card class="vg-location-details__card">
-    <div class="row">
-        <div class="col-xs-10">
-            <a href="#">
-                <vg-icon vg-name="'route'" class="vg-location-details_icon"></vg-icon>
-                {{ 'action.openInMapApp' | translate }}
-            </a>
-        </div>
-        <div class="col-xs-2 pen-aligner">
-            <button class="oval-edit-btn " ng-click="" ng-if="$ctrl.editMode">
-                <vg-icon vg-name="'pen'">
-                </vg-icon>
-            </button>
-        </div>
+    <div ng-class="{'location-details-card-disabled' : $ctrl.editMode}">
+        <a href="#">
+            <vg-icon vg-name="'route'" class="vg-location-details_icon"></vg-icon>
+            {{ 'action.openInMapApp' | translate }}
+        </a>
     </div>
 </vg-card>
 
-<vg-card class="vg-location-details__card" ng-if="$ctrl.location.website">
-    <!-- TODO WIP: Always show when editing -->
+<vg-card class="vg-location-details__card" ng-if="$ctrl.location.website || $ctrl.editMode">
     <div class="row">
-        <div class="col-xs-10">
-            <a ng-href="{{ $ctrl.location.website }}" target="_blank">
+        <!-- TODO WIP: Find better markup/css solution for edit mode -->
+        <div ng-class="($ctrl.editMode ? 'col-xs-10' : 'col-xs-12')">
+            <a ng-href="{{ $ctrl.location.website }}" target="_blank" ng-if="$ctrl.location.website">
                 <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
                 {{ $ctrl.location.website }}
             </a>
+            <div ng-if="!$ctrl.location.website">
+                <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
+                <em>{{ 'location.website.missing' | translate }}</em>
+            </div>
         </div>
-        <div class="col-xs-2 pen-aligner">
-            <button class="oval-edit-btn " ng-click="" ng-if="$ctrl.editMode">
-                <vg-icon vg-name="'pen'">
-                </vg-icon>
+        <div class="col-xs-2 pen-aligner" ng-if="$ctrl.editMode">
+            <button class="oval-edit-btn" ng-click="$ctrl.startEditTask('SetLocationWebsite')">
+                <vg-icon vg-name="'pen'"></vg-icon>
             </button>
         </div>
     </div>

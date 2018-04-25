@@ -45,10 +45,17 @@
 
                 <textarea id="location-edit-input-field" class="input-multi-line" type="text" rows="5"
                  ng-switch-when="SetLocationDescription"
-                 placeholder="{{ 'location.form.edit.description.placeholder' | translate }}"
+                 placeholder="{{ 'location.form.edit.SetLocationDescription.placeholder' | translate }}"
                  ng-model="$ctrl.inputModel"
                  ng-disabled="$ctrl.isSaving">
                 </textarea>
+
+                <input type="text" id="location-edit-input-field" class="input-one-line"
+                 ng-switch-when="SetLocationWebsite"
+                 placeholder="{{ 'location.form.edit.SetLocationWebsite.placeholder' | translate }}"
+                 ng-model="$ctrl.inputModel"
+                 ng-disabled="$ctrl.isSaving"
+                />
 
                 <div ng-switch-when="RateLocationQuality">
                     <div class="plant-tooltip"
