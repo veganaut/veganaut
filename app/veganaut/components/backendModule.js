@@ -186,17 +186,6 @@
             };
 
             /**
-             * Submits the given Mission to the backend
-             * @param {{}} missionData
-             * @param {Location} location
-             * @returns {HttpPromise}
-             */
-            BackendService.prototype.submitMission = function(missionData, location) {
-                missionData.location = location.id;
-                return $http.post(backendUrl + '/mission', missionData);
-            };
-
-            /**
              * Submits the given Location
              * @param {Location} location
              * @returns {HttpPromise}
@@ -213,15 +202,6 @@
              */
             BackendService.prototype.updateLocation = function(locationId, locationData) {
                 return $http.put(backendUrl + '/location/' + locationId, locationData);
-            };
-
-            /**
-             * Retrieves the recent missions at the given location
-             * @param {string} locationId
-             * @returns {HttpPromise}
-             */
-            BackendService.prototype.getLocationMissionList = function(locationId) {
-                return $http.get(backendUrl + '/location/' + locationId + '/mission/list');
             };
 
             /**
