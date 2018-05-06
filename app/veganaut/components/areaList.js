@@ -161,9 +161,6 @@
              * @param {{}} data Object with totalItems and items property.
              */
             var compileList = function(data) {
-                // Make sure the list is reset
-                resetList();
-
                 $ctrl.totalItems = data.totalItems;
                 $ctrl.list = data.items;
 
@@ -182,6 +179,9 @@
              * Loads the items with the currently set lastParams
              */
             var loadItems = function() {
+                // Reset the list first
+                resetList();
+
                 // Update the list type
                 $ctrl.listType = locationFilterService.getCategoryValue();
 

@@ -7,8 +7,7 @@
 
     function listComponent() {
         var component = {
-            bindings: {
-            },
+            bindings: {},
             controller: ListController,
             controllerAs: '$ctrl',
             templateUrl: '/veganaut/list/listComponent.html'
@@ -29,37 +28,39 @@
         // Set the filters from the URL and initiate with the currently valid area
         locationFilterService.setFiltersFromUrl();
 
-        $ctrl.$onInit = function() {
+        $ctrl.onOpenToggle = function() {
+            // Only need to do something when showing locations
+            if (locationFilterService.getGroupFilterValue() === 'location') {
+                locationService.loadFullLocation();
+            }
+        };
+
+        $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
             switch (locationFilterService.getGroupFilterValue()) {
             case 'location':
-                $ctrl.onOpenToggle = locationService.loadFullLocation;
-                $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
-                    return locationService.getLocationsByRadius(lat, lng, radius, limit, skip, addressType)
-                        .then(function(data) {
-                            return {
-                                totalItems: data.totalLocations,
-                                items: data.locations
-                            };
-                        });
-                };
-                break;
+                return locationService
+                    .getLocationsByRadius(lat, lng, radius, limit, skip, addressType)
+                    .then(function(data) {
+                        return {
+                            totalItems: data.totalLocations,
+                            items: data.locations
+                        };
+                    });
             case 'product':
-                // $ctrl.onOpenToggle =
-                $ctrl.onLoadItems = function(lat, lng, radius, limit, skip) {
-                    return backendService.getProducts(
+                return backendService
+                    .getProducts(
                         lat, lng, radius,
                         locationFilterService.getTypeFilterValue(),
                         skip, limit
-                    ).then(function(res) {
+                    )
+                    .then(function(res) {
                         return {
                             totalItems: res.data.totalProducts,
                             items: res.data.products
                         };
                     });
-                };
-                break;
             default:
-                // Should not happen because of check at the beginning of $onInit().
+                // Should not happen
                 break;
             }
         };
