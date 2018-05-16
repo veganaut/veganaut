@@ -1,3 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-    <path fill="#00A89F" fill-rule="evenodd" d="M1.243 4.961h1.419C2.53 3.652 4.18 3.245 4.18 1.881 4.18.583 3.245 0 2.002 0 1.188 0 .495.407 0 1.001l.891.814c.297-.297.594-.506 1.001-.506.44 0 .737.242.737.693 0 .825-1.606 1.452-1.386 2.959zM.979 6.622c0 .572.407 1.012.968 1.012.561 0 .979-.44.979-1.012 0-.583-.418-1.023-.979-1.023-.561 0-.968.44-.968 1.023z"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+    <defs>
+        <circle id="a" cx="6" cy="3" r="3"/>
+        <rect id="b" width="12" height="1" x="9" y="27" rx=".5"/>
+        <rect id="c" width="6" height="1" x="12" y="29" rx=".5"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E6E6E6" stroke="#E6E6E6" stroke-width="2" d="M15 27.02V3"/>
+        <path stroke="#E6E6E6" stroke-width="2" d="M15 27.469v-2.63c0-3.495 2.344-4.777 4.375-5.839"/>
+        <g transform="translate(15 15)">
+            <use fill="#00A89F" xlink:href="#a"/>
+            <circle cx="6" cy="3" r="3.5" stroke="#FFF"/>
+        </g>
+        <g transform="translate(15 7)">
+            <path stroke="#E6E6E6" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#E6E6E6"/>
+        </g>
+        <circle cx="3" cy="3" r="3" fill="#E6E6E6" transform="translate(12 1)"/>
+        <g transform="matrix(-1 0 0 1 15 7)">
+            <path stroke="#E6E6E6" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#E6E6E6"/>
+        </g>
+        <g transform="matrix(-1 0 0 1 23 2)">
+            <path stroke="#E6E6E6" stroke-width="2" d="M8 25.469v-2.63c0-3.495 2.344-4.776 4.375-5.839"/>
+            <circle cx="14" cy="16" r="3" fill="#E6E6E6"/>
+            <circle cx="14" cy="16" r="2" fill="#FFF"/>
+            <circle cx="14" cy="8" r="2" fill="#FFF"/>
+            <circle cx="2" cy="8" r="2" fill="#FFF"/>
+            <circle cx="8" cy="2" r="2" fill="#FFF"/>
+        </g>
+        <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
+            <path d="M3.548 2.09s.056 1.54-1.389 1.43M4.984 3.525s-1.541.055-1.43-1.389M3.549 4.962s-.056-1.542 1.389-1.43M2.112 3.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
+            <path d="M26.548 12.09s.056 1.54-1.388 1.43M27.984 13.525s-1.541.055-1.43-1.389M26.549 14.962s-.056-1.542 1.389-1.43M25.112 13.525s1.542-.055 1.43 1.39"/>
+        </g>
+        <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
+            <path d="M24.032 2.06s.037 1.027-.926.953M24.99 3.016s-1.028.037-.954-.925M24.033 3.974s-.037-1.027.925-.953M23.075 3.017s1.027-.037.953.926"/>
+        </g>
+        <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
+            <path d="M4.032 13.06s.037 1.027-.926.953M4.99 14.016s-1.028.037-.954-.925M4.033 14.974s-.037-1.027.925-.953M3.075 14.017s1.027-.037.953.926"/>
+        </g>
+        <g>
+            <use fill="#E6E6E6" xlink:href="#b"/>
+            <rect width="11" height="1" x="9.5" y="27.5" stroke="#E6E6E6" rx=".5"/>
+        </g>
+        <g>
+            <use fill="#E6E6E6" xlink:href="#c"/>
+            <rect width="5" height="1" x="12.5" y="29.5" stroke="#E6E6E6" rx=".5"/>
+        </g>
+        <path fill="#FFF" d="M20.595 18.61h.679c-.063-.61.726-.799.726-1.434 0-.604-.447-.876-1.042-.876-.39 0-.721.19-.958.466l.426.38c.142-.139.285-.236.48-.236.21 0 .352.112.352.322 0 .385-.769.677-.663 1.379zm-.127.774c0 .267.195.472.464.472a.46.46 0 0 0 .468-.472c0-.271-.2-.476-.468-.476a.457.457 0 0 0-.464.476z"/>
+    </g>
 </svg>
