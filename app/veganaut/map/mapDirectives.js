@@ -32,6 +32,7 @@
                 type: '='
             },
             controller: ['$scope', 'Location', function($scope, Location) {
+                // TOOD WIP: replace with new icons (or replace whole component)
                 this.getIconName = function() {
                     return Location.getIconNameForType($scope.type);
                 };

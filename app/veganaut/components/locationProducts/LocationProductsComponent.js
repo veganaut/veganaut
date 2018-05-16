@@ -9,7 +9,7 @@
         var component = {
             bindings: {
                 location: '<vgLocation',
-                pane: '<vgPane',
+                isPreview: '<vgIsPreview',
 
                 // Maximum number of products to show before displaying load more
                 limit: '<vgLimit'

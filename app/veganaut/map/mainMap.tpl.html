@@ -51,10 +51,8 @@
     </div>
 
     <div class="top-box container main-container" ng-show="mainMapVm.locationSet.active">
-        <div class="location-details" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
-            <vg-location-pane vg-location="mainMapVm.locationSet.active" vg-parent-vm="mainMapVm">
-
-            </vg-location-pane>
+        <div class="location-preview" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
+            <vg-location-pane vg-location="mainMapVm.locationSet.active"></vg-location-pane>
         </div>
     </div>
 
@@ -74,7 +72,8 @@
     <vg-category-selector ng-if="!mainMapVm.legacyGlobals.isEmbedded"></vg-category-selector>
 
     <div id="mainMap" class="main-map"
-     ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}">
+     ng-class="[(mainMapVm.locationSet.createLocation.isPlacingLocation() ? 'map--placing-location' : ''),
+     ('main-map--' + mainMapVm.mapCategory)]">
     </div>
 
     <vg-map-markers

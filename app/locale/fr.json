@@ -144,9 +144,6 @@
       "name": "Carte",
       "description": "Afficher les endroits sur la carte"
     },
-    "rate": {
-      "name": "Évaluer"
-    },
     "openInMapApp": "Afficher l'itinéraire dans Plans",
     "locationVisitAction": "Afficher l'endroit",
     "close": "",

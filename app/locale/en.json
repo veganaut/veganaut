@@ -144,9 +144,6 @@
       "name": "Map",
       "description": "Show locations on map"
     },
-    "rate": {
-      "name": "Rate"
-    },
     "locationVisitAction": "View location",
     "openInMapApp": "Open route in Maps",
     "close": "Close",

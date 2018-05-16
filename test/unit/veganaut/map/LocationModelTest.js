@@ -244,23 +244,4 @@ describe('LocationModel.', function() {
             expect(loc.sanitiseUrl('')).toBe('', 'test 1');
         });
     });
-
-    describe('getIconClassForType static method.', function() {
-        it('method exists', function() {
-            expect(typeof Location.getIconClassForType).toBe('function');
-        });
-
-        it('returns false if no type given', function() {
-            expect(Location.getIconClassForType()).toBe(false);
-        });
-
-        it('returns false if type is invalid', function() {
-            expect(Location.getIconClassForType('bla')).toBe(false);
-        });
-
-        it('returns the correct icon per type', function() {
-            expect(Location.getIconClassForType('gastronomy')).toBe('glyphicon glyphicon-cutlery');
-            expect(Location.getIconClassForType('retail')).toBe('glyphicon glyphicon-shopping-cart');
-        });
-    });
 });

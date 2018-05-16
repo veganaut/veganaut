@@ -8,7 +8,8 @@
     function productListItemComponent() {
         var component = {
             require: {
-                parent: '?^^vgLocationDetails'
+                locationDetailsVm: '?^^vgLocationDetails',
+                parentVm: '^vgLocationProducts'
             },
             bindings: {
                 product: '<vgProduct'
@@ -21,18 +22,10 @@
         return component;
     }
 
-    // Inject dependencies
-    // productListItemComponentController.$inject = ['exampleService'];
-
     function ProductListItemComponentController() {
         var vm = this;
 
         vm.isProductListExpanded = false;
-
-        vm.$onInit = function() {
-
-        };
-
 
         vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;

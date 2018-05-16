@@ -1,28 +1,37 @@
-<div class="vg-product-list-item">
-    <button class="remove-btn location-details-button" ng-click="vm.onExpandCollapseToggleClick()" ng-if="!vm.parent.edit">
-        <vg-icon
-         ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}"
-         class="location-details-chevron" vg-name="'chevron-big-down'">
-        </vg-icon>
-    </button>
-    <button style="margin-right: 5px;" class="location-details-button oval-edit-btn" ng-click="" ng-if="vm.parent.edit">
-        <vg-icon vg-name="'pen'">
-        </vg-icon>
-    </button>
-    <p class="vg-product-list-item__product-name">
-        {{ vm.product.name }}
-    </p>
-    <vg-average-rating
-     class="vg-product-list-item__rating"
-     average="vm.product.rating.average"
-     num-ratings="vm.product.rating.numRatings">
-    </vg-average-rating>
-</div>
+<button class="vg-product-list-item remove-btn"
+ ng-disabled="vm.parentVm.isPreview"
+ ng-click="vm.onExpandCollapseToggleClick()">
+    <div class="vg-product-list-item__container">
+        <vg-average-rating
+         class="vg-product-list-item__rating"
+         average="vm.product.rating.average"
+         num-ratings="vm.product.rating.numRatings">
+        </vg-average-rating>
+        <p class="vg-product-list-item__product-name">
+            {{ vm.product.name }}
+        </p>
+        <span class="vg-product-list-item__expand"
+         ng-if="!vm.parentVm.isPreview">
+            <vg-icon
+             ng-class="{'location-details-chevron-expanded': vm.isProductListExpanded}"
+             class="location-details-chevron" vg-name="'chevron-big-down'">
+            </vg-icon>
+        </span>
+        <!-- TODO WIP: what to do in edit mode?-->
+        <!--<button style="margin-right: 5px;"-->
+        <!--class="location-details-button oval-edit-btn"-->
+        <!--ng-click="" ng-if="vm.locationDetailsVm.edit">-->
+        <!--<vg-icon vg-name="'pen'">-->
+        <!--</vg-icon>-->
+        <!--</button>-->
+    </div>
+</button>
 <div class="slider" ng-class="{'slider-closed': !vm.isProductListExpanded}">
-    <hr class="location-details-separator">
-    <div class="average-rating">
-        {{'product.rating.details' | translate:{ rating: vm.product.rating.average,
-        numRatings: vm.product.rating.numRatings } }}
+    <hr class="vg-product-list-item__separator">
+    <div class="average-rating"
+      translate="product.rating.details"
+      translate-value-rating="{{ vm.product.rating.average | number:2 }}"
+      translat-value-num-ratings="{{ vm.product.rating.numRatings }}">
     </div>
     <button type="button" class="btn-primary btn-small" tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
         {{ 'product.rate' | translate }}

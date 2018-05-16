@@ -8,7 +8,7 @@
     function locationTagsComponent() {
         var component = {
             require: {
-                parent: '^^vgLocationDetails'
+                parent: '^^?vgLocationDetails'
             },
             bindings: {
                 tags: '<vgTags'

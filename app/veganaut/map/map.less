@@ -7,11 +7,6 @@
     height: @size;
     margin-left: -@size / 2;
     margin-top: -@size / 2;
-
-    // Align the icon nicely, formula comes from trial & error
-    .marker__icon--type {
-        top: round(@size / 2) - 8px;
-    }
 }
 
 // Define all the sizes, opacities and z-indices of the markers for different offer qualities
@@ -34,6 +29,8 @@
 
 .marker {
     background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
     color: black;
     border: 1px solid black;
     border-radius: 50%;
@@ -65,12 +62,14 @@
         border-color: @colorLight;
     }
 
-    // Icon representing the location type inside the marker
-    .marker__icon--type {
-        width: 100%;
-        text-align: center;
-        top: 3px;
-        left: -1px;
+    &.marker--type-gastronomy {
+        background-size: 45% auto;
+        background-image: url('/components/ui/icons/assets/gastronomyLocation.svg');
+    }
+
+    &.marker--type-retail {
+        background-size: 60% auto;
+        background-image: url('/components/ui/icons/assets/retailLocation.svg');
     }
 
     &.marker--editing {
@@ -95,11 +94,6 @@
         &:hover, &.marker--active {
             .marker-style(@sizeActive, @opacityActive);
             border-width: 4px;
-
-            // Correct the icon location because of the thicker boarder
-            .marker__icon--type {
-                top: 5px;
-            }
         }
     }
 }
@@ -160,6 +154,17 @@
     right: 0;
     bottom: @mapFooterHeight;
     overflow: hidden;
+
+    // Override marker to use the product icons if the map shows products
+    &.main-map--gastronomyProduct .marker--type-gastronomy {
+        background-size: 60% auto;
+        background-image: url('/components/ui/icons/assets/gastronomyProduct.svg');
+    }
+
+    &.main-map--retailProduct .marker--type-retail {
+        background-size: 55% auto;
+        background-image: url('/components/ui/icons/assets/retailProduct.svg');
+    }
 }
 
 body.embedded .main-map {
@@ -251,16 +256,6 @@ body.embedded .main-map {
 
     a {
         color: @colorDark;
-    }
-}
-
-.mark-favourite-mock {
-    margin-left: -5px;
-    margin-right: -5px;
-
-    .col-xs-6 {
-        padding-left: 5px;
-        padding-right: 5px;
     }
 }
 

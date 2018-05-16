@@ -22,6 +22,12 @@
             var Z_INDEX_OFFSET_DISABLED = -1000;
 
             /**
+             * Maximum weight of the location tags.
+             * @type {number}
+             */
+            var MAX_TAG_WEIGHT = 4;
+
+            /**
              * Represents a location on the map.
              * A location has general information (name, type, ...), coordinates
              * and aggregated data from missions as well as missions themselves.
@@ -86,17 +92,6 @@
             }
 
             /**
-             * Icon CSS classes used for the type of location
-             * @type {{gastronomy: string, retail: string}}
-             * @private
-             */
-            Location._CLASS_FOR_TYPE = {
-                // TODO: this should be a directive
-                gastronomy: 'glyphicon glyphicon-cutlery',
-                retail: 'glyphicon glyphicon-shopping-cart'
-            };
-
-            /**
              * Icon name used for the type of location
              * @type {{gastronomy: string, retail: string}}
              * @private
@@ -105,21 +100,6 @@
                 // TODO: this should be a directive
                 gastronomy: 'gastronomyLocation',
                 retail: 'retailLocation'
-            };
-
-            /**
-             * Returns the CSS icon class(es) for the given location type.
-             * Returns false if no valid type is given.
-             * @param {string} type
-             * @returns {string|boolean}
-             */
-            Location.getIconClassForType = function(type) {
-                // TODO WIP: replace with new icons
-                var cls = Location._CLASS_FOR_TYPE[type];
-                if (angular.isString(cls)) {
-                    return cls;
-                }
-                return false;
             };
 
             /**
@@ -159,20 +139,6 @@
                     (this._disabled ? ' marker--disabled' : ' marker--enabled') +
                     (this._active ? ' marker--active' : '') +
                     (this._isBeingEdited ? ' marker--editing' : '');
-            };
-
-            /**
-             * Get the HTML markup to be used for the marker icon.
-             * @returns {string}
-             * @private
-             */
-            Location.prototype._getMarkerIconHtml = function() {
-                // Check if this type has a valid icon
-                var typeIcon = Location.getIconClassForType(this.type);
-                if (typeIcon) {
-                    return '<span class="marker__icon marker__icon--type ' + typeIcon + '"></span>';
-                }
-                return '';
             };
 
             /**
@@ -232,16 +198,14 @@
                     },
                     icon: {
                         iconSize: null, // Needs to be set to null so it can be specified in CSS
-                        className: this._getMarkerIconClasses(),
-                        html: this._getMarkerIconHtml()
+                        className: this._getMarkerIconClasses()
                     },
                     zIndexOffset: this._getMarkerZIndexOffset()
                 };
 
                 // Send updated event if it changed (but not if it was previously undefined;
                 // in this case the location is just being initialised).
-                if (angular.isObject(oldDefinition) && !_.isEqual(oldDefinition, this._markerDefinition))
-                {
+                if (angular.isObject(oldDefinition) && !_.isEqual(oldDefinition, this._markerDefinition)) {
                     $rootScope.$broadcast('veganaut.locationItem.marker.updated', this);
                 }
             };
@@ -319,16 +283,23 @@
              */
             Location.prototype.getSortedTags = function() {
                 // TODO: should be possible to clear the memoiziation
+
+                // Get the max rating that should be at least 4 (if there are less ratings,
+                // we want to show the tag less strongly)
+                var maxRating = _.reduce(this.tags, function(max, value) {
+                    return Math.max(max, (angular.isNumber(value) ? value : 0));
+                }, MAX_TAG_WEIGHT);
+
                 this._sortedTags = this._sortedTags ||  _.chain(this.tags)
-                    .map(function(value, key) {
-                        // TODO WIP: use better weighting (we need a 1, 2, 3 or 4)
+                    .map(function(value, tagName) {
+                        // Calculate a weight between 1 and MAX_TAG_WEIGHT
                         var weight = 1;
                         if (angular.isNumber(value)) {
-                            weight = Math.min(4, Math.max(1, value));
+                            weight = Math.ceil(value / maxRating * MAX_TAG_WEIGHT);
                         }
-                        return {name: key, weight: weight};
+                        return {name: tagName, weight: weight};
                     })
-                    .sortByOrder(['count', 'name'], ['desc', 'asc'])
+                    .sortByOrder(['weight', 'name'], ['desc', 'asc'])
                     .value()
                 ;
                 return this._sortedTags;
@@ -405,7 +376,7 @@
                 }
 
                 // Limit if longer than certain length
-                var MAX_LENGTH = 80;
+                var MAX_LENGTH = 160;
                 if (desc.length > MAX_LENGTH) {
                     // Find the last space to not cut words
                     desc = desc.substring(0, MAX_LENGTH);
@@ -417,7 +388,7 @@
                     // Add an ellipsis
                     desc += '…';
                 }
-                return desc;
+                return desc.replace(/\n/g, '; ');
             };
 
             /**

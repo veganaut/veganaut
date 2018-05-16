@@ -7,9 +7,12 @@
 
     function locationPaneComponent() {
         var component = {
+            require: {
+                locationDetailsVm: '?^^vgLocationDetails',
+                parentVm: '^vgMainMap'
+            },
             bindings: {
-                location: '<vgLocation',
-                parentVm: '<vgParentVm',
+                location: '<vgLocation'
             },
             controller: LocationPaneComponentController,
             controllerAs: 'vm',
@@ -19,15 +22,11 @@
         return component;
     }
 
-    LocationPaneComponentController.$inject = [
-    ];
-
     function LocationPaneComponentController() {
         var vm = this;
 
         vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;
         };
-
     }
 })();

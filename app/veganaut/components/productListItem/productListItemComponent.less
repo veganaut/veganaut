@@ -1,15 +1,18 @@
 @import '../../../less/typography.less';
 
 .vg-product-list-item {
+    width: 100%;
+}
+
+.vg-product-list-item__container {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    margin: 0 16px;
+    padding: 5px 16px;
+    min-height: 45px;
 }
 
 .vg-product-list-item__product-name {
     // Change order to keep semantically more accessible, but align visuals with design
-    order: 2;
     margin-left: 20px;
     margin-top: 0;
     margin-bottom: 0;
@@ -18,10 +21,13 @@
 }
 
 .vg-product-list-item__rating {
-    order: 1;
     height: 12px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.vg-product-list-item__expand {
+    padding-left: 10px;
 }
 
 .vg-product-list-item .vg-average-rating__icon {
@@ -31,8 +37,13 @@
     display: inline-block;
 }
 
+.vg-product-list-item__separator {
+    margin: 0 0 10px;
+    height: 1px;
+    border-top: 1px solid rgba(63, 73, 83, 0.1);
+}
+
 .location-details-chevron {
-    order: 3;
     width: 100%;
     text-align: right;
 }
@@ -75,10 +86,5 @@
     -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-}
-
-.location-details-button {
-    order: 3;
-    padding-right: 10px !important;
 }
 

@@ -144,9 +144,6 @@
       "name": "Karte",
       "description": "Locations auf der Karte anzeigen"
     },
-    "rate": {
-      "name": "Bewerten"
-    },
     "openInMapApp": "Route in Karten App öffnen",
     "locationVisitAction": "Mehr Infos",
     "close": "Schliessen",
