@@ -8,11 +8,14 @@
     function locationPaneComponent() {
         var component = {
             require: {
-                locationDetailsVm: '?^^vgLocationDetails',
-                parentVm: '^vgMainMap'
+                locationDetailsVm: '?^^vgLocationDetails'
             },
             bindings: {
-                location: '<vgLocation'
+                location: '<vgLocation',
+                onClose: '&vgOnClose',
+
+                // One of gastronomyLocation, retailLocation, gastronomyProduct and retailProduct
+                viewCategory: '<vgViewCategory'
             },
             controller: LocationPaneComponentController,
             controllerAs: 'vm',

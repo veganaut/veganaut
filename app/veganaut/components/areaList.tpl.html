@@ -1,4 +1,12 @@
 <div class="vg-list">
+    <div class="top-box container main-container" ng-if="$ctrl.locationSet.active">
+        <vg-location-pane
+         vg-location="$ctrl.locationSet.active"
+         vg-view-category="$ctrl.listType"
+         vg-on-close="$ctrl.locationSet.activate()">
+        </vg-location-pane>
+    </div>
+
     <div class="vg-list-header">
         <div class="vg-list-header__type-icon">
             <vg-icon vg-name="$ctrl.listType"></vg-icon>

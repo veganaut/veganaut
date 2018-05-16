@@ -1,15 +1,14 @@
 <div class="vg-location-pane">
     <vg-location-title
      vg-location="vm.location"
-     vg-address-type="{{ vm.parentVm.addressType }}"
      vg-icons-right="false">
     </vg-location-title>
 
-    <div ng-if="vm.parentVm.mapCategory === 'gastronomyLocation' || vm.parentVm.mapCategory === 'retailLocation'">
+    <div ng-if="vm.viewCategory === 'gastronomyLocation' || vm.viewCategory === 'retailLocation'">
         <span class="location-pane__description">{{ vm.location.getShortDescription() }}</span>
     </div>
     <vg-location-products
-     ng-if="vm.parentVm.mapCategory === 'gastronomyProduct' || vm.parentVm.mapCategory === 'retailProduct'"
+     ng-if="vm.viewCategory === 'gastronomyProduct' || vm.viewCategory === 'retailProduct'"
      vg-location="vm.location"
      vg-limit="3"
      vg-is-preview="true">
@@ -19,7 +18,7 @@
         <vg-location-visit-button vg-location="vm.location"></vg-location-visit-button>
     </div>
     <hr class="location-pane__separator" />
-    <button class="remove-btn location-details-close" ng-click="vm.parentVm.locationSet.activate()">
+    <button class="remove-btn location-details-close" ng-click="vm.onClose()">
         <vg-icon vg-name="'cross-big'" id="cross-big"></vg-icon>
         &nbsp;{{ 'action.close' | translate }}
     </button>

@@ -447,7 +447,7 @@
       "temporarilyUnavailable": "This product is currently not available.",
       "unavailable": "This product is no longer available or was entered by mistake."
     },
-    "moreProducts": "Show {{ numProducts }} more options",
+    "moreProducts": "And {{ numProducts }} more options",
     "lessProducts": "Hide",
     "rate": "Angebot bewerten",
     "totalProducts": "{{ numProducts }} Vegane Gerichte",

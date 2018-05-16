@@ -50,10 +50,13 @@
         </div>
     </div>
 
-    <div class="top-box container main-container" ng-show="mainMapVm.locationSet.active">
-        <div class="location-preview" ng-show="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
-            <vg-location-pane vg-location="mainMapVm.locationSet.active"></vg-location-pane>
-        </div>
+    <div class="top-box container main-container"
+     ng-if="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
+        <vg-location-pane
+         vg-location="mainMapVm.locationSet.active"
+         vg-view-category="mainMapVm.mapCategory"
+         vg-on-close="mainMapVm.locationSet.activate()">
+        </vg-location-pane>
     </div>
 
     <vg-overlay ng-if="mainMapVm.locationSet.isCreatingLocation()">

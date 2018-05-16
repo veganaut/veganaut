@@ -121,11 +121,10 @@
 
             $ctrl.onItemClick = function(item) {
                 if (locationFilterService.getGroupFilterValue() === 'location') {
-                    // TODO: show the location preview
-                    console.log(item);
+                    $ctrl.locationSet.activate(item);
                 }
                 else if (locationFilterService.getGroupFilterValue() === 'product') {
-                    // TODO: show the product preview
+                    // TODO WIP: show the product preview
                     console.log(item);
                 }
             };
