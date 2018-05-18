@@ -22,22 +22,13 @@
         return component;
     }
 
-    // Inject dependencies
-    // locationProductSummaryComponentController.$inject = ['exampleService'];
-
     function LocationProductsComponentController() {
         var vm = this;
 
         vm.isProductListExpanded = false;
 
-        vm.onExpandCollapseToggleClick = onExpandCollapseToggleClick;
-
-        vm.$onInit = function() {
-
-        };
-
-        function onExpandCollapseToggleClick() {
+        vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;
-        }
+        };
     }
 })();
