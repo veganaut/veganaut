@@ -17,9 +17,9 @@
     };
 
     var areaListCtrl = [
-        '$scope', 'constants', 'angularPiwik', 'geocodeService',
+        '$scope', 'constants', 'angularPiwik', 'Location', 'geocodeService',
         'areaService', 'locationFilterService', 'locationService',
-        function($scope, constants, angularPiwik, geocodeService,
+        function($scope, constants, angularPiwik, Location, geocodeService,
             areaService, locationFilterService, locationService)
         {
             var $ctrl = this;
@@ -124,8 +124,10 @@
                     $ctrl.locationSet.activate(item);
                 }
                 else if (locationFilterService.getGroupFilterValue() === 'product') {
-                    // TODO WIP: show the product preview
-                    console.log(item);
+                    // Create an empty location that will then be loaded then it's activated
+                    var loc = new Location({id: item.location});
+                    loc.setShownProduct(item);
+                    $ctrl.locationSet.activate(loc);
                 }
             };
 

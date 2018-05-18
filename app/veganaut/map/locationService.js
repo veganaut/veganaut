@@ -48,6 +48,13 @@
                  * @private
                  */
                 this._requestInProgressQueryId = undefined;
+
+                // Reset the activated location on route change. This doesn't work properly
+                // yet, so we don't try for now.
+                var that = this;
+                $rootScope.$on('$routeChangeSuccess', function() {
+                    that._locationSet.activate(undefined);
+                });
             };
 
             /**

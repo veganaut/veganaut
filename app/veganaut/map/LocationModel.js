@@ -61,6 +61,14 @@
                 this._isBeingEdited = false;
 
                 /**
+                 * Product that should be shown as the only one of that location.
+                 * Used for the product list view where only one product is highlighted
+                 * @type {{}}
+                 * @private
+                 */
+                this._shownProduct = undefined;
+
+                /**
                  * Whether this location shows as active on the map
                  * @type {boolean}
                  * @private
@@ -306,6 +314,15 @@
             };
 
             /**
+             * Sets the given product to be shown as the only one of this location.
+             * Call without arguments to reset.
+             * @param {{}} product
+             */
+            Location.prototype.setShownProduct = function(product) {
+                this._shownProduct = product;
+            };
+
+            /**
              * Returns the Product with the given id if it exists
              * @param {string} productId
              * @return {Product}
@@ -337,6 +354,10 @@
              * @returns {Product[]}
              */
             Location.prototype.getProducts = function(showUnavailable) {
+                if (this._shownProduct) {
+                    // If there is a shown product set, return only that
+                    return [this._shownProduct];
+                }
                 if (showUnavailable) {
                     return this.products;
                 }
@@ -388,7 +409,7 @@
                     // Add an ellipsis
                     desc += '…';
                 }
-                return desc.replace(/\n/g, '; ');
+                return desc.replace(/\n[\n ]*/g, '; ');
             };
 
             /**
