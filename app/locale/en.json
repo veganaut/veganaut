@@ -599,14 +599,14 @@
       "withId": "Vegan offer in a radius of {{radius}} around {{area}}",
       "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}"
     },
-    "locationQualityTitle": "Total of {{total}} locations with the following ratings",
+    "locationQualityTitle": "Total of {{total}} locations with these vegan levels:",
     "rating": {
-      "0": "Unrated",
-      "1": "Vegan Rating 1",
-      "2": "Vegan Rating 2",
-      "3": "Vegan Rating 3",
-      "4": "Vegan Rating 4",
-      "5": "Vegan Rating 5"
+      "0": "In the given radius there are {{numLocations}} locations that nobody has rated yet. You could be the first to rate them!",
+      "1": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 1.",
+      "2": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 2.",
+      "3": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 3.",
+      "4": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 4.",
+      "5": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 5."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
