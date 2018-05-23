@@ -225,11 +225,11 @@
           "title": "Bewerte das Vegan-Level dieser Location",
           "description": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
           "rating": {
-            "1": "Vegan Rating 1",
-            "2": "Vegan Rating 2",
-            "3": "Vegan Rating 3",
-            "4": "Vegan Rating 4",
-            "5": "Vegan Rating 5"
+            "1": "Hier gibt es so gut wie kein veganes Angebot.",
+            "2": "Hier hat es nur wenige vegane Angebote.",
+            "3": "Das vegane Angebot hier ist OK.",
+            "4": "Das vegane Angebot hier ist gut.",
+            "5": "Das vegane Angebot hier ist hervorragend."
           }
         },
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
