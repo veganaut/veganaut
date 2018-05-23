@@ -241,11 +241,11 @@
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
       "noRating": "Keine Bewertung vorhanden.",
-      "1": "Vegan-Level 1",
-      "2": "Vegan-Level 2",
-      "3": "Vegan-Level 3",
-      "4": "Vegan-Level 4",
-      "5": "Vegan-Level 5"
+      "1": "Location mit so gut wie keinem veganen Angebot",
+      "2": "Location mit wenig veganen Angeboten",
+      "3": "Location mit OK veganem Angebot",
+      "4": "Location mit gutem veganen Angebot",
+      "5": "Location mit hervorragendem veganen Angebot"
     },
     "products": {
       "title": "Vegane Produkte",
@@ -610,12 +610,12 @@
     },
     "locationQualityTitle": "Total {{total}} Locations mit diesen Vegan-Levels:",
     "rating": {
-      "0": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level noch niemand bewertet hat. Du könntest sie als erste*r bewerten!",
-      "1": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 1 bewertet wurden.",
-      "2": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 2 bewertet wurden.",
-      "3": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 3 bewertet wurden.",
-      "4": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 4 bewertet wurden.",
-      "5": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 5 bewertet wurden."
+      "0": "{{numLocations}} Locations hat noch niemand bewertet. Du könntest die erste Bewertung abgeben!",
+      "1": "{{numLocations}} Locations hatten laut den letzten Bewertungen so gut wie kein veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
+      "2": "{{numLocations}} Locations hatten laut den letzten Bewertungen nur wenig vegane Angebote - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
+      "3": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein OK veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
+      "4": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein gutes veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
+      "5": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein hervorragendes veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!"
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",
