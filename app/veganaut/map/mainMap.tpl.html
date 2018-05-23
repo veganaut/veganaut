@@ -75,8 +75,7 @@
     <vg-category-selector ng-if="!mainMapVm.legacyGlobals.isEmbedded"></vg-category-selector>
 
     <div id="mainMap" class="main-map"
-     ng-class="[(mainMapVm.locationSet.createLocation.isPlacingLocation() ? 'map--placing-location' : ''),
-     ('main-map--' + mainMapVm.mapCategory)]">
+     ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation()}">
     </div>
 
     <vg-map-markers

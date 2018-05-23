@@ -10,20 +10,20 @@
 }
 
 // Define all the sizes, opacities and z-indices of the markers for different offer qualities
-@sizeQuality0: 22px;
-@sizeQuality1: 22px;
-@sizeQuality2: 23px;
-@sizeQuality3: 25px;
-@sizeQuality4: 27px;
-@sizeQuality5: 28px;
+@sizeProminence0: 22px;
+@sizeProminence1: 22px;
+@sizeProminence2: 23px;
+@sizeProminence3: 25px;
+@sizeProminence4: 27px;
+@sizeProminence5: 28px;
 @sizeDisabled: 16px;
 @sizeActive: 32px;
-@opacityQuality0: 0.4;
-@opacityQuality1: 0.4;
-@opacityQuality2: 0.48;
-@opacityQuality3: 0.56;
-@opacityQuality4: 0.64;
-@opacityQuality5: 0.72;
+@opacityProminence0: 0.4;
+@opacityProminence1: 0.4;
+@opacityProminence2: 0.48;
+@opacityProminence3: 0.56;
+@opacityProminence4: 0.64;
+@opacityProminence5: 0.72;
 @opacityDisabled: 0.4;
 @opacityActive: 1;
 
@@ -35,25 +35,25 @@
     border: 1px solid black;
     border-radius: 50%;
 
-    // Create all the marker styles based on the location quality
+    // Create all the marker styles based on the location prominence (quality or product rating)
     // This should be done with a loop, but less makes this less readable than having it copy pasted.
-    &.marker--quality-0 {
-        .marker-style(@sizeQuality3, @opacityQuality3);
+    &.marker--prominence-0 {
+        .marker-style(@sizeProminence0, @opacityProminence0);
     }
-    &.marker--quality-1 {
-        .marker-style(@sizeQuality1, @opacityQuality1);
+    &.marker--prominence-1 {
+        .marker-style(@sizeProminence1, @opacityProminence1);
     }
-    &.marker--quality-2 {
-        .marker-style(@sizeQuality2, @opacityQuality2);
+    &.marker--prominence-2 {
+        .marker-style(@sizeProminence2, @opacityProminence2);
     }
-    &.marker--quality-3 {
-        .marker-style(@sizeQuality3, @opacityQuality3);
+    &.marker--prominence-3 {
+        .marker-style(@sizeProminence3, @opacityProminence3);
     }
-    &.marker--quality-4 {
-        .marker-style(@sizeQuality4, @opacityQuality4);
+    &.marker--prominence-4 {
+        .marker-style(@sizeProminence4, @opacityProminence4);
     }
-    &.marker--quality-5 {
-        .marker-style(@sizeQuality5, @opacityQuality5);
+    &.marker--prominence-5 {
+        .marker-style(@sizeProminence5, @opacityProminence5);
     }
 
     &.marker--owner {
@@ -62,14 +62,24 @@
         border-color: @colorLight;
     }
 
-    &.marker--type-gastronomy {
+    &.marker--type-gastronomy.marker--group-location {
         background-size: 45% auto;
         background-image: url('/components/ui/icons/assets/gastronomyLocation.svg');
     }
 
-    &.marker--type-retail {
+    &.marker--type-retail.marker--group-location {
         background-size: 60% auto;
         background-image: url('/components/ui/icons/assets/retailLocation.svg');
+    }
+
+    &.marker--type-gastronomy.marker--group-product {
+        background-size: 60% auto;
+        background-image: url('/components/ui/icons/assets/gastronomyProduct.svg');
+    }
+
+    &.marker--type-retail.marker--group-product {
+        background-size: 55% auto;
+        background-image: url('/components/ui/icons/assets/retailProduct.svg');
     }
 
     &.marker--editing {
@@ -154,17 +164,6 @@
     right: 0;
     bottom: @mapFooterHeight;
     overflow: hidden;
-
-    // Override marker to use the product icons if the map shows products
-    &.main-map--gastronomyProduct .marker--type-gastronomy {
-        background-size: 60% auto;
-        background-image: url('/components/ui/icons/assets/gastronomyProduct.svg');
-    }
-
-    &.main-map--retailProduct .marker--type-retail {
-        background-size: 55% auto;
-        background-image: url('/components/ui/icons/assets/retailProduct.svg');
-    }
 }
 
 body.embedded .main-map {

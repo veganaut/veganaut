@@ -89,6 +89,9 @@
                 params.type = locationFilterService.getTypeFilterValue();
                 queryId += '-type' + params.type;
 
+                params.group = locationFilterService.getGroupFilterValue();
+                queryId += '-group' + params.group;
+
                 params.updatedWithin = locationFilterService.getRecentFilterValue();
                 queryId += '-updatedWithin' + params.updatedWithin;
 

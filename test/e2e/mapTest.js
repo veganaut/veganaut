@@ -130,9 +130,9 @@ describe('map when logged out.', function() {
         var quality0, quality3, quality4;
 
         beforeEach(function() {
-            allQuality0 = element.all(by.css('.marker.marker--quality-0'));
-            allQuality3 = element.all(by.css('.marker.marker--quality-3'));
-            allQuality4 = element.all(by.css('.marker.marker--quality-4'));
+            allQuality0 = element.all(by.css('.marker.marker--prominence-0'));
+            allQuality3 = element.all(by.css('.marker.marker--prominence-3'));
+            allQuality4 = element.all(by.css('.marker.marker--prominence-4'));
             quality0 = allQuality0.first();
             quality3 = allQuality3.first();
             quality4 = allQuality4.first();

@@ -1,8 +1,9 @@
 (function(module) {
     'use strict';
 
-    module.factory('Location', ['$rootScope', 'playerService',
-        function($rootScope, playerService) {
+    // TODO: This model is getting too big. The parts for the map should be separated from the rest.
+    module.factory('Location', ['$rootScope', 'playerService', 'locationFilterService',
+        function($rootScope, playerService, locationFilterService) {
             /**
              * Z-index offset to use for the marker when the location is active
              * @type {number}
@@ -58,6 +59,10 @@
                 };
                 this.products = [];
                 this.updatedAt = undefined;
+
+                // Rank of the best product of this location. Only set on the map views showing products
+                this.topProductRank = undefined;
+
                 this._isBeingEdited = false;
 
                 /**
@@ -143,7 +148,8 @@
                 // Compose the icon class name
                 return 'marker' +
                     ' marker--type-' + this.type +
-                    ' marker--quality-' + this.getRoundedQuality() +
+                    ' marker--group-' + locationFilterService.getGroupFilterValue() +
+                    ' marker--prominence-' + Math.round(this._getProminence()) +
                     (this._disabled ? ' marker--disabled' : ' marker--enabled') +
                     (this._active ? ' marker--active' : '') +
                     (this._isBeingEdited ? ' marker--editing' : '');
@@ -160,10 +166,8 @@
                 // the rounded average. We then make sure the last 3 digits are
                 // always 0. Those will be used by Leaflet to set a latitude
                 // based offset.
-                // Locations with no rating are counted as if they had a rating of 3
                 // TODO: add a test for this
-                // TODO: should use the rank, but isn't in frontend yet
-                var zIndexOffset = Math.round((this.quality.average || 3) * 100) * 1000;
+                var zIndexOffset = Math.max(100000, Math.round(this._getProminence() * 100) * 1000);
 
                 // Active markers should be in front of all others (except hover)
                 if (this._active) {
@@ -176,6 +180,26 @@
                 }
 
                 return zIndexOffset;
+            };
+
+            /**
+             * Gets a number representing how prominently this location should be
+             * displayed on the map.
+             * Depending on whether the focus is on the location or the products,
+             * uses the location quality or top product rating (rank).
+             * @returns {number} A (decimal) number between 0 and 5
+             * @private
+             */
+            Location.prototype._getProminence = function() {
+                var prominence;
+                if (locationFilterService.getGroupFilterValue() === 'product') {
+                    prominence = this.topProductRank;
+                }
+                else {
+                    // TODO: Use the quality rank, not average once the backend sends that
+                    prominence = this.quality.average;
+                }
+                return Math.min(5, Math.max(0, prominence || 0));
             };
 
             /**
