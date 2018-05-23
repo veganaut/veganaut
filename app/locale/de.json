@@ -57,7 +57,7 @@
       "error": "Sorry, die Mission konnte nicht gespeichert werden: "
     },
     "locationTask": {
-      "error": "Sorry, es gab ein Problem beim speichern: "
+      "error": "Sorry, es gab ein Problem beim Speichern: "
     },
     "locationTaskEdit": {
       "success": "Location aktualisiert, Danke!"
@@ -172,8 +172,8 @@
     "locationTypes": "Locations",
     "tasks": "Rangliste nach Tasks",
     "and": "und",
-    "numPeople": "{{ count }} VeganautInnen",
-    "numOtherPeople": "{{ count }} andere VeganautInnen",
+    "numPeople": "{{ count }} Veganaut*innen",
+    "numOtherPeople": "{{ count }} andere Veganaut*innen",
     "totalPeople": "VeganautInnen"
   },
   "location": {
@@ -222,8 +222,8 @@
           "placeholder": "Die Webseite dieser Location, z.B. http://beispiel.ch"
         },
         "RateLocationQuality": {
-          "title": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
-          "description": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt."
+          "title": "Bewerte das Vegan-Level dieser Location",
+          "description": "Je mehr Zweige, desto grösser und besser das vegane Angebot."
         },
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
         "changeCoordinates": "Ändere die Position"
@@ -234,11 +234,11 @@
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
       "noRating": "Keine Bewertung vorhanden.",
-      "1": "Vegan Rating 1",
-      "2": "Vegan Rating 2",
-      "3": "Vegan Rating 3",
-      "4": "Vegan Rating 4",
-      "5": "Vegan Rating 5"
+      "1": "Vegan-Level 1",
+      "2": "Vegan-Level 2",
+      "3": "Vegan-Level 3",
+      "4": "Vegan-Level 4",
+      "5": "Vegan-Level 5"
     },
     "products": {
       "title": "Vegane Produkte",
@@ -257,13 +257,7 @@
     },
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
-      "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet.",
-      "ratings": {
-        "level1": "Wenig oder keine veganen Angebote",
-        "level2": "Einige wenige veganen Angebote",
-        "level3": "Gutes veganes Angebot",
-        "level4": "Sehr gutes veganes Angebot",
-        "level5": "Der heilige Gral veganischer Angebote"
+      "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
       }
     },
     "locationTags": {
@@ -310,7 +304,7 @@
       "title": "Distanz"
     },
     "lastUpdate": {
-      "title": "Letzte aktualisierung"
+      "title": "Letzte Aktualisierung"
     }
   },
   "map": {
@@ -480,14 +474,14 @@
     },
     "gastronomyLocation": {
       "name": "Restaurants",
-      "title": "{{ count }} Vegane Restaurants",
+      "title": "{{ count }} Restaurants",
       "noResults": "Im angegebenen Gebiet wurden keine Restaurants gefunden.",
       "noResultsFiltered": "Alle Restaurants wurden herausgefiltert.",
       "showMore": "Weitere Restaurants anzeigen"
     },
     "retailLocation": {
       "name": "Läden",
-      "title": "{{ count }} Vegane Läden",
+      "title": "{{ count }} Läden",
       "noResults": "Im angegebenen Gebiet wurden keine Läden gefunden.",
       "noResultsFiltered": "Alle Läden wurden herausgefiltert.",
       "showMore": "Weitere Läden anzeigen"
@@ -610,7 +604,7 @@
     },
     "locationQualityTitle": "{{total}} Locations mit den folgenden Bewertungen",
     "rating": {
-      "0": "Unrated",
+      "0": "Noch unbewertet",
       "1": "Vegan Rating 1",
       "2": "Vegan Rating 2",
       "3": "Vegan Rating 3",
