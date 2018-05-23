@@ -213,8 +213,8 @@
           "placeholder": "This location's website, e.g. http://example.com"
         },
         "RateLocationQuality": {
-          "title": "How well does this location satisfy veganautic needs?",
-          "description": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic."
+          "title": "Rate the vegan level of this location!",
+          "description": "The more twigs the bigger and better the vegan offer."
         },
         "selectCoordinates": "Click in the map below to select the new location",
         "changeCoordinates": "Change coordinates"
@@ -225,11 +225,11 @@
       "average": "Average",
       "numRatings": "Ratings",
       "noRating": "Keine Bewertung vorhanden.",
-      "1": "Vegan Rating 1",
-      "2": "Vegan Rating 2",
-      "3": "Vegan Rating 3",
-      "4": "Vegan Rating 4",
-      "5": "Vegan Rating 5"
+      "1": "Vegan Level 1",
+      "2": "Vegan Level 2",
+      "3": "Vegan Level 3",
+      "4": "Vegan Level 4",
+      "5": "Vegan Level 5"
     },
     "products": {
       "title": "Vegan products",
@@ -248,13 +248,7 @@
     },
     "quality": {
       "explanation": "The more twigs the bigger and better the vegan offer here.",
-      "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!",
-      "ratings": {
-        "level1": "No vegan offers",
-        "level2": "A few vegan offers",
-        "level3": "Good vegan offers",
-        "level4": "Great vegan offers",
-        "level5": "Can't get any better"
+      "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
       }
     },
     "locationTags": {
@@ -471,14 +465,14 @@
     },
     "gastronomyLocation": {
       "name": "Restaurants",
-      "title": "{{ count }} vegan restaurants",
+      "title": "{{ count }} restaurants",
       "noResults": "No restaurants can be found in the given area.",
       "noResultsFiltered": "All restaurants were filtered out.",
       "showMore": "Show more restaurants"
     },
     "retailLocation": {
       "name": "Shops",
-      "title": "{{ count }} vegan shops",
+      "title": "{{ count }} shops",
       "noResults": "No shops can be found in the given area.",
       "noResultsFiltered": "All shops were filtered out.",
       "showMore": "Show more shops"
