@@ -223,7 +223,14 @@
         },
         "RateLocationQuality": {
           "title": "Bewerte das Vegan-Level dieser Location",
-          "description": "Je mehr Zweige, desto grösser und besser das vegane Angebot."
+          "description": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
+          "rating": {
+            "1": "Vegan Rating 1",
+            "2": "Vegan Rating 2",
+            "3": "Vegan Rating 3",
+            "4": "Vegan Rating 4",
+            "5": "Vegan Rating 5"
+          }
         },
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
         "changeCoordinates": "Ändere die Position"
@@ -258,7 +265,6 @@
     "quality": {
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
-      }
     },
     "locationTags": {
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
@@ -604,12 +610,12 @@
     },
     "locationQualityTitle": "{{total}} Locations mit den folgenden Bewertungen",
     "rating": {
-      "0": "Noch unbewertet",
-      "1": "Vegan Rating 1",
-      "2": "Vegan Rating 2",
-      "3": "Vegan Rating 3",
-      "4": "Vegan Rating 4",
-      "5": "Vegan Rating 5"
+      "0": "Noch unbewertet: {{numLocations}}",
+      "1": "Vegan Rating 1: {{numLocations}}",
+      "2": "Vegan Rating 2: {{numLocations}}",
+      "3": "Vegan Rating 3: {{numLocations}}",
+      "4": "Vegan Rating 4: {{numLocations}}",
+      "5": "Vegan Rating 5: {{numLocations}}"
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",

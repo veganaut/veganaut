@@ -214,7 +214,14 @@
         },
         "RateLocationQuality": {
           "title": "Evalue le niveau végan de cet endroit",
-          "description": "Plus de branches signifie une offre végane plus large et meilleure."
+          "description": "Plus de branches signifie une offre végane plus large et meilleure.",
+          "rating": {
+            "1": "Vegan Rating 1",
+            "2": "Vegan Rating 2",
+            "3": "Vegan Rating 3",
+            "4": "Vegan Rating 4",
+            "5": "Vegan Rating 5"
+          }
         },
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
         "changeCoordinates": "Changer les coordonnées"

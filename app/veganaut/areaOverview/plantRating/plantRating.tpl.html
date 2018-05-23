@@ -1,21 +1,21 @@
 <div>
     <div class="plant-tooltip" ng-class="{'plant0-tooltip': $ctrl.ratingPlants.ratingPlant0.tooltip}">
-        <p>{{ 'areaOverview.rating.0' | translate }}</p>
+        <p>{{ 'areaOverview.rating.0' | translate: { numLocations: $ctrl.areaOverview.locations.quality[0] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant1-tooltip': $ctrl.ratingPlants.ratingPlant1.tooltip}">
-        <p>{{ 'areaOverview.rating.1' | translate }}</p>
+        <p>{{ 'areaOverview.rating.1' | translate: { numLocations: $ctrl.areaOverview.locations.quality[1] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant2-tooltip': $ctrl.ratingPlants.ratingPlant2.tooltip}">
-        <p>{{ 'areaOverview.rating.2' | translate }}</p>
+        <p>{{ 'areaOverview.rating.2' | translate: { numLocations: $ctrl.areaOverview.locations.quality[2] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant3-tooltip': $ctrl.ratingPlants.ratingPlant3.tooltip}">
-        <p>{{ 'areaOverview.rating.3' | translate }}</p>
+        <p>{{ 'areaOverview.rating.3' | translate: { numLocations: $ctrl.areaOverview.locations.quality[3] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant4-tooltip': $ctrl.ratingPlants.ratingPlant4.tooltip}">
-        <p>{{ 'areaOverview.rating.4' | translate }}</p>
+        <p>{{ 'areaOverview.rating.4' | translate: { numLocations: $ctrl.areaOverview.locations.quality[4] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant5-tooltip': $ctrl.ratingPlants.ratingPlant5.tooltip}">
-        <p>{{ 'areaOverview.rating.5' | translate  }}</p>
+        <p>{{ 'areaOverview.rating.5' | translate: { numLocations: $ctrl.areaOverview.locations.quality[5] } }}</p>
     </div>
     <div class="row" class="veganlevel-wrapper">
         <div class="plant plant0" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant0.visible}">

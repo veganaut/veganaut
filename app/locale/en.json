@@ -214,7 +214,14 @@
         },
         "RateLocationQuality": {
           "title": "Rate the vegan level of this location!",
-          "description": "The more twigs the bigger and better the vegan offer."
+          "description": "The more twigs the bigger and better the vegan offer.",
+          "rating": {
+            "1": "Vegan Rating 1",
+            "2": "Vegan Rating 2",
+            "3": "Vegan Rating 3",
+            "4": "Vegan Rating 4",
+            "5": "Vegan Rating 5"
+          }
         },
         "selectCoordinates": "Click in the map below to select the new location",
         "changeCoordinates": "Change coordinates"
@@ -249,7 +256,6 @@
     "quality": {
       "explanation": "The more twigs the bigger and better the vegan offer here.",
       "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
-      }
     },
     "locationTags": {
       "explanation": "The tags show which vegan offers were liked by how many people here.",

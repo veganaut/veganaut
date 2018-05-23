@@ -27,10 +27,7 @@
         return component;
     }
 
-    // Inject dependencies
-    LocationHeaderComponentController.$inject = ['$translate'];
-
-    function LocationHeaderComponentController($translate) {
+    function LocationHeaderComponentController() {
         var vm = this;
 
         vm.quality = 1;
@@ -39,10 +36,6 @@
         vm.$onInit = function() {
             vm.quality = vm.location.getRoundedQuality();
             vm.locationType = vm.location.type;
-
-            $translate('location.quality.ratings.level' + vm.quality).then(function (rating) {
-                vm.ratingLabel = rating;
-            });
         };
     }
 })();
