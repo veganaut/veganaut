@@ -216,11 +216,11 @@
           "title": "Rate the vegan level of this location!",
           "description": "The more twigs the bigger and better the vegan offer.",
           "rating": {
-            "1": "Vegan Rating 1",
-            "2": "Vegan Rating 2",
-            "3": "Vegan Rating 3",
-            "4": "Vegan Rating 4",
-            "5": "Vegan Rating 5"
+            "1": "There is more or less no vegan offer here.",
+            "2": "There are only few vegan offers here.",
+            "3": "The vegan offer here is OK.",
+            "4": "The vegan offer here is good.",
+            "5": "The vegan offer here is excellent."
           }
         },
         "selectCoordinates": "Click in the map below to select the new location",
