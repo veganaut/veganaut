@@ -231,12 +231,12 @@
     "rating": {
       "average": "Average",
       "numRatings": "Ratings",
-      "noRating": "Keine Bewertung vorhanden.",
-      "1": "Vegan Level 1",
-      "2": "Vegan Level 2",
-      "3": "Vegan Level 3",
-      "4": "Vegan Level 4",
-      "5": "Vegan Level 5"
+      "noRating": "Not rated yet",
+      "1": "Location with as good as no vegan offer",
+      "2": "Location with few vegan offers",
+      "3": "Location with an OK vegan offer",
+      "4": "Location with a good vegan offer",
+      "5": "Location with an excellent vegan offer"
     },
     "products": {
       "title": "Vegan products",
@@ -601,12 +601,12 @@
     },
     "locationQualityTitle": "Total of {{total}} locations with these vegan levels:",
     "rating": {
-      "0": "In the given radius there are {{numLocations}} locations that nobody has rated yet. You could be the first to rate them!",
-      "1": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 1.",
-      "2": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 2.",
-      "3": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 3.",
-      "4": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 4.",
-      "5": "In the given radius there are {{numLocations}} locations with an average vegan level rating of 5."
+      "0": "{{numLocations}} locations that nobody has rated yet. You could be the first to rate them!",
+      "1": "According to the last evaluations {{numLocations}} locations had more or less no vegan offer - if this has changed you can indicate it with your own evaluations.",
+      "2": "According to the last evaluations {{numLocations}} locations had only few vegan offers - if this has changed you can indicate it with your own evaluations.",
+      "3": "According to the last evaluations {{numLocations}} locations had an OK vegan offer - if this has changed you can indicate it with your own evaluations.",
+      "4": "According to the last evaluations {{numLocations}} locations had a good vegan offer - if this has changed you can indicate it with your own evaluations.",
+      "5": "According to the last evaluations {{numLocations}} locations had an excellent vegan offer - if this has changed you can indicate it with your own evaluations."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
