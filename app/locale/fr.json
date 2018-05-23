@@ -213,8 +213,8 @@
           "placeholder": "Le site web de cet endroit, p. ex. http://example.com"
         },
         "RateLocationQuality": {
-          "title": "Comment est-ce que cet endroit satisfait les besoins véganautiques?",
-          "description": "Les véganautes veulent avoir le choix entre beaucoup d'options véganes. À quelques endroits il n'y a pas ou presque pas d'options véganes ou les options véganes ne sont pas convaincantes encore. À d'autres endroits il y a déjà deux ou trois options véganes dont une ou deux sont satisfaisantes. D'autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement, il y a des endroits où l'offre végane est énorme et toutes les options sont fantastiques."
+          "title": "Evalue le niveau végan de cet endroit",
+          "description": "Plus de branches signifie une offre végane plus large et meilleure."
         },
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
         "changeCoordinates": "Changer les coordonnées"
@@ -225,11 +225,11 @@
       "average": "Moyenne",
       "numRatings": "Évaluations",
       "noRating": "Keine Bewertung vorhanden.",
-      "1": "Vegan Rating 1",
-      "2": "Vegan Rating 2",
-      "3": "Vegan Rating 3",
-      "4": "Vegan Rating 4",
-      "5": "Vegan Rating 5"
+      "1": "Niveau végan 1",
+      "2": "Niveau végan 2",
+      "3": "Niveau végan 3",
+      "4": "Niveau végan 4",
+      "5": "Niveau végan 5"
     },
     "products": {
       "title": "Produits végans",
@@ -249,13 +249,6 @@
     "quality": {
       "explanation": "Plus de branches signifie une offre végane plus large et meilleure.",
       "noRatingExplanation": "La qualité et étendue de l'offre végane n'a pas encore été évaluée ici. Évalue-la maintenant!"
-    },
-    "ratings": {
-      "level1": "Pas d'offres véganes",
-      "level2": "Peu d'offres véganes",
-      "level3": "Bonnes offres véganes",
-      "level4": "Très bonnes offres véganes",
-      "level5": "Le top du top des offres véganes"
     },
     "locationTags": {
       "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
@@ -471,14 +464,14 @@
     },
     "gastronomyLocation": {
       "name": "Restaurants",
-      "title": "{{ count }} restaurants végans",
+      "title": "{{ count }} restaurants",
       "noResults": "Aucun restaurant n'a été trouvé dans la zone demandée.",
       "noResultsFiltered": "Aucun restaurant n'a passé le filtre.",
       "showMore": "Afficher plus de restaurants"
     },
     "retailLocation": {
       "name": "Magasins",
-      "title": "{{ count }} magasins végans",
+      "title": "{{ count }} magasins",
       "noResults": "Aucun magasin n'a été trouvé dans la zone demandée.",
       "noResultsFiltered": "Aucun magasin n'a passé le filtre.",
       "showMore": "Afficher plus de magasins"
