@@ -608,14 +608,14 @@
       "withId": "Veganes Angebot im Radius von {{radius}} um {{area}}",
       "withoutId": "Veganes Angebot im Radius von {{radius}} um {{area}}"
     },
-    "locationQualityTitle": "{{total}} Locations mit den folgenden Bewertungen",
+    "locationQualityTitle": "Total {{total}} Locations mit diesen Vegan-Levels:",
     "rating": {
-      "0": "Noch unbewertet: {{numLocations}}",
-      "1": "Vegan Rating 1: {{numLocations}}",
-      "2": "Vegan Rating 2: {{numLocations}}",
-      "3": "Vegan Rating 3: {{numLocations}}",
-      "4": "Vegan Rating 4: {{numLocations}}",
-      "5": "Vegan Rating 5: {{numLocations}}"
+      "0": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level noch niemand bewertet hat. Du könntest sie als erste*r bewerten!",
+      "1": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 1 bewertet wurden.",
+      "2": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 2 bewertet wurden.",
+      "3": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 3 bewertet wurden.",
+      "4": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 4 bewertet wurden.",
+      "5": "Im angegebenen Radius hat es {{numLocations}} Locations, deren Vegan-Level im Schnitt mit 5 bewertet wurden."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",
