@@ -151,10 +151,7 @@
       "edit": "Location bearbeiten",
       "editAsAnonymous": "Bearbeiten",
       "save": "Location speichern",
-      "backToMap": "Zur Karte",
-      "veganize": {
-        "title": "Veganize"
-      }
+      "backToMap": "Zur Karte"
     }
   },
   "person": {
@@ -179,6 +176,9 @@
   "location": {
     "edit": "Location jetzt bearbeiten",
     "finish": "Fertig",
+    "veganize": {
+      "title": "Veganize"
+    },
     "pane": {
       "save": "Speichern",
       "abort": "Abbrechen",
@@ -209,8 +209,8 @@
         "SetLocationType": {
           "title": "Art der Location",
           "tooltip": {
-            "gastronomy": "Gastronomy Erklaerung",
-            "retail": "Retail Erklaerung"
+            "gastronomy": "Restaurant, Take-Away o.ä.",
+            "retail": "Laden, Supermarkt o.ä."
           }
         },
         "SetLocationDescription": {
@@ -222,14 +222,14 @@
           "placeholder": "Die Webseite dieser Location, z.B. http://beispiel.ch"
         },
         "RateLocationQuality": {
-          "title": "Bewerte das Vegan-Level dieser Location",
-          "description": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
+          "title": "Bewerte die vegane Auswahl dieser Location",
+          "description": "Je mehr Zweige, desto grösser und besser die vegane Auswahl.",
           "rating": {
-            "1": "Hier gibt es so gut wie kein veganes Angebot.",
-            "2": "Hier hat es nur wenige vegane Angebote.",
-            "3": "Das vegane Angebot hier ist OK.",
-            "4": "Das vegane Angebot hier ist gut.",
-            "5": "Das vegane Angebot hier ist hervorragend."
+            "1": "Hier gibt es noch so gut wie keine vegane Auswahl.",
+            "2": "Hier hat es erst eine kleine vegane Auswahl.",
+            "3": "Die vegane Auswahl hier ist OK.",
+            "4": "Die vegane Auswahl hier ist gut.",
+            "5": "Die vegane Auswahl hier ist hervorragend."
           }
         },
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
@@ -241,11 +241,11 @@
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
       "noRating": "Keine Bewertung vorhanden.",
-      "1": "Location mit so gut wie keinem veganen Angebot",
-      "2": "Location mit wenig veganen Angeboten",
-      "3": "Location mit OK veganem Angebot",
-      "4": "Location mit gutem veganen Angebot",
-      "5": "Location mit hervorragendem veganen Angebot"
+      "1": "Location mit so gut wie keiner veganen Auswahl",
+      "2": "Location mit einer kleinen veganen Auswahl",
+      "3": "Location mit OK veganer Auswahl",
+      "4": "Location mit guter veganer Auswahl",
+      "5": "Location mit hervorragender veganer Auswahl"
     },
     "products": {
       "title": "Veganes Angebot",
