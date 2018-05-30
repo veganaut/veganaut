@@ -179,6 +179,15 @@
     "veganize": {
       "title": "Veganize"
     },
+    "pane": {
+      "save": "Speichern",
+      "abort": "Abbrechen",
+      "skip": "Frage {{from}}/{{to}} überspringen"
+    },
+    "tasks": {
+      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
+      "lessTasks": "Ausblenden"
+    },
     "form": {
       "new": {
         "type": "What type of location would you like to add?",
@@ -200,8 +209,8 @@
         "SetLocationType": {
           "title": "Location type",
           "tooltip": {
-            "gastronomy": "Gastronomy Erklaerung",
-            "retail": "Retail Erklaerung"
+            "gastronomy": "Restaurant, takeaway or the like",
+            "retail": "Shop, supermarket or the like"
           }
         },
         "SetLocationDescription": {
@@ -213,14 +222,14 @@
           "placeholder": "This location's website, e.g. http://example.com"
         },
         "RateLocationQuality": {
-          "title": "Rate the vegan level of this location!",
-          "description": "The more twigs the bigger and better the vegan offer.",
+          "title": "Rate the vegan choice at this location!",
+          "description": "The more twigs the bigger and better the vegan choice.",
           "rating": {
-            "1": "There is more or less no vegan offer here.",
-            "2": "There are only few vegan offers here.",
-            "3": "The vegan offer here is OK.",
-            "4": "The vegan offer here is good.",
-            "5": "The vegan offer here is excellent."
+            "1": "As of yet, there is more or less no vegan choice here.",
+            "2": "So far, there is only a small vegan choice here.",
+            "3": "The vegan choice here is OK.",
+            "4": "The vegan choice here is good.",
+            "5": "The vegan choice here is excellent."
           }
         },
         "selectCoordinates": "Click in the map below to select the new location",
@@ -232,11 +241,11 @@
       "average": "Average",
       "numRatings": "Ratings",
       "noRating": "Not rated yet",
-      "1": "Location with as good as no vegan offer",
-      "2": "Location with few vegan offers",
-      "3": "Location with an OK vegan offer",
-      "4": "Location with a good vegan offer",
-      "5": "Location with an excellent vegan offer"
+      "1": "Location with as good as no vegan choice",
+      "2": "Location with only a small vegan choice",
+      "3": "Location with an OK vegan choice",
+      "4": "Location with a good vegan choice",
+      "5": "Location with an excellent vegan choice"
     },
     "products": {
       "title": "Vegan offer",
