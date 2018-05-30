@@ -174,19 +174,19 @@
     "totalPeople": "Véganautes"
   },
   "location": {
-    "edit": "Editing location",
-    "finish": "Done",
+    "edit": "Modifier l'endroit",
+    "finish": "C'est fait!",
     "veganize": {
       "title": "Veganize"
     },
     "pane": {
-      "save": "Speichern",
-      "abort": "Abbrechen",
-      "skip": "Frage {{from}}/{{to}} überspringen"
+      "save": "Enregistrer",
+      "abort": "Annuler",
+      "skip": "Sauter question {{from}}/{{to}}"
     },
     "tasks": {
-      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
-      "lessTasks": "Ausblenden"
+      "moreTasks": "Afficher {{numTasks}} autres suggestions",
+      "lessTasks": "Masquer"
     },
     "form": {
       "new": {
@@ -605,17 +605,17 @@
   "areaOverview": {
     "subtitle": {
       "world": "Vegan offer in the whole world",
-      "withId": "Vegan offer in a radius of {{radius}} around {{area}}",
-      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}"
+      "withId": "Vegan offer in a radius of {{radius}} around {{area}}:",
+      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}:"
     },
-    "locationQualityTitle": "Total de {{total}} endroits avec les niveaus végans suivants:",
+    "locationQualityTitle": "Total de {{total}} endroits trouvés:",
     "rating": {
-      "0": "{{numLocations}} endroits que personne n'a encore évalués. Tu pourrais faire la première évaluation!",
-      "1": "Selon les dernières évaluations, {{numLocations}} endroits avaiten guère d'offre végane - si ça a changé, tu peux le montrer avec tes évaluations.",
-      "2": "Selon les dernières évaluations, {{numLocations}} endroits n'avaiten que peu d'offres véganes - si ça a changé, tu peux le montrer avec tes évaluations",
-      "3": "Selon les dernières évaluations, {{numLocations}} endroits avaiten une offre végane OK - si ça a changé, tu peux le montrer avec tes évaluations",
-      "4": "Selon les dernières évaluations, {{numLocations}} endroits avaiten une bonne offre végane - si ça a changé, tu peux le montrer avec tes évaluations",
-      "5": "Selon les dernières évaluations, {{numLocations}} endroits avaiten une excellente offre végane - si ça a changé, tu peux le montrer avec tes évaluations"
+      "0": "Le choix végan de {{numLocations}} endroits n'a pas encore été évalué. Tu pourrais faire la première évaluation!",
+      "1": "Guère de choix végan à {{numLocations}} endroits selon les dernières évaluations des Véganautes.",
+      "2": "Qu'un petit choix végan à {{numLocations}} endroits selon les dernières évaluations des Véganautes.",
+      "3": "Un OK choix végan à {{numLocations}} endroits selon les dernières évaluations des Véganautes.",
+      "4": "Un bon choix végan à {{numLocations}} endroits selon les dernières évaluations des Véganautes.",
+      "5": "Un excellent choix végan à {{numLocations}} endroits selon les dernières évaluations des Véganautes."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
