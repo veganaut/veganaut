@@ -161,13 +161,13 @@
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
       "password": "Passwort",
-      "completedTasks": "Abgeschlossene Tasks"
+      "completedTasks": "Anzahl Bearbeitungen"
     }
   },
   "community": {
     "points": "Punkte",
     "locationTypes": "Locations",
-    "tasks": "Rangliste nach Tasks",
+    "tasks": "Rangliste nach Anzahl Bearbeitungen",
     "and": "und",
     "numPeople": "{{ count }} Veganaut*innen",
     "numOtherPeople": "{{ count }} andere Veganaut*innen",
