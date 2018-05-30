@@ -180,13 +180,13 @@
       "title": "Veganize"
     },
     "pane": {
-      "save": "Speichern",
-      "abort": "Abbrechen",
-      "skip": "Frage {{from}}/{{to}} überspringen"
+      "save": "Save",
+      "abort": "Cancel",
+      "skip": "Skip question {{from}}/{{to}}"
     },
     "tasks": {
-      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
-      "lessTasks": "Ausblenden"
+      "moreTasks": "Show {{numTasks}} more suggestions",
+      "lessTasks": "Hide"
     },
     "form": {
       "new": {
@@ -605,17 +605,17 @@
   "areaOverview": {
     "subtitle": {
       "world": "Vegan offer in the whole world",
-      "withId": "Vegan offer in a radius of {{radius}} around {{area}}",
-      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}"
+      "withId": "Vegan offer in a radius of {{radius}} around {{area}}:",
+      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}:"
     },
-    "locationQualityTitle": "Total of {{total}} locations with these vegan levels:",
+    "locationQualityTitle": "Total of {{total}} locations found",
     "rating": {
-      "0": "{{numLocations}} locations that nobody has rated yet. You could be the first to rate them!",
-      "1": "According to the last evaluations {{numLocations}} locations had more or less no vegan offer - if this has changed you can indicate it with your own evaluations.",
-      "2": "According to the last evaluations {{numLocations}} locations had only few vegan offers - if this has changed you can indicate it with your own evaluations.",
-      "3": "According to the last evaluations {{numLocations}} locations had an OK vegan offer - if this has changed you can indicate it with your own evaluations.",
-      "4": "According to the last evaluations {{numLocations}} locations had a good vegan offer - if this has changed you can indicate it with your own evaluations.",
-      "5": "According to the last evaluations {{numLocations}} locations had an excellent vegan offer - if this has changed you can indicate it with your own evaluations."
+      "0": "The vegan offers of {{numLocations}} locations have not been rated by any Veganauts yet. You could be the first to rate them!",
+      "1": "More or less no vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
+      "2": "Only a small vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
+      "3": "An OK vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
+      "4": "A good vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
+      "5": "An excellent vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
