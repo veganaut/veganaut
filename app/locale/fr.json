@@ -179,6 +179,15 @@
     "veganize": {
       "title": "Veganize"
     },
+    "pane": {
+      "save": "Speichern",
+      "abort": "Abbrechen",
+      "skip": "Frage {{from}}/{{to}} überspringen"
+    },
+    "tasks": {
+      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
+      "lessTasks": "Ausblenden"
+    },
     "form": {
       "new": {
         "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
@@ -200,8 +209,8 @@
         "SetLocationType": {
           "title": "Genre de l'endroit",
           "tooltip": {
-            "gastronomy": "Gastronomy Erklaerung",
-            "retail": "Retail Erklaerung"
+            "gastronomy": "Restaurant, Snack-Bar ou similaire",
+            "retail": "Magasin, supermarché ou similaire"
           }
         },
         "SetLocationDescription": {
@@ -213,14 +222,14 @@
           "placeholder": "Le site web de cet endroit, p. ex. http://example.com"
         },
         "RateLocationQuality": {
-          "title": "Evalue le niveau végan de cet endroit",
-          "description": "Plus de branches signifie une offre végane plus large et meilleure.",
+          "title": "Evalue le choix végan à cet endroit",
+          "description": "Plus de branches signifie un choix végan plus large et meilleure.",
           "rating": {
-            "1": "Ici il'n y a guère d'offre végane.",
-            "2": "Ici il'n y a que peu d'offres véganes.",
-            "3": "L'offre végane est OK ici.",
-            "4": "L'offre végane est bonne ici.",
-            "5": "L'offre végane est excellente ici."
+            "1": "Justqu'à présent, il'n y a guère de choix végan ici.",
+            "2": "Il'n y a encore qu'un petit choix végan ici.",
+            "3": "Le choix végan est OK ici.",
+            "4": "Le choix végan est bon ici.",
+            "5": "Le choix végan est excellent ici."
           }
         },
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
@@ -231,12 +240,12 @@
     "rating": {
       "average": "Moyenne",
       "numRatings": "Évaluations",
-      "noRating": "Keine Bewertung vorhanden.",
-      "1": "Endroit avec guère d'offre végane",
-      "2": "Endroit avec peu d'offres véganes",
-      "3": "Endroit avec une offre végan OK",
-      "4": "Endroit avec une bonne offre végane",
-      "5": "Endroit avec une excellente offre végane"
+      "noRating": "Pas encore evalué.",
+      "1": "Endroit avec guère de choix végan",
+      "2": "Endroit avec qu'un petit choix végan",
+      "3": "Endroit avec un choix végan OK",
+      "4": "Endroit avec un bon choix végan",
+      "5": "Endroit avec un excellent choix végan"
     },
     "products": {
       "title": "Offre végane",
