@@ -60,7 +60,7 @@
       "error": "Sorry, there was a problem when trying to save: "
     },
     "locationTaskEdit": {
-      "success": "Location updates, thanks!"
+      "success": "Location updated, thanks!"
     },
     "locationTaskOpinion": {
       "success": "Opinion noted, thanks!"
@@ -161,13 +161,13 @@
       "fullName": "First name and family name",
       "nickname": "Nickname",
       "password": "Password",
-      "completedTasks": "Completed Tasks"
+      "completedTasks": "Completed edits"
     }
   },
   "community": {
     "points": "Points",
     "locationTypes": "Locations",
-    "tasks": "Ranking by tasks",
+    "tasks": "Ranking by completed edits",
     "and": "and",
     "numPeople": "{{ count }} Veganauts",
     "numOtherPeople": "{{ count }} other Veganauts",
