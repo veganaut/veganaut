@@ -174,7 +174,7 @@
     "totalPeople": "VeganautInnen"
   },
   "location": {
-    "edit": "Location jetzt bearbeiten",
+    "edit": "Location bearbeiten",
     "finish": "Fertig",
     "veganize": {
       "title": "Veganize"
@@ -185,7 +185,7 @@
       "skip": "Frage {{from}}/{{to}} überspringen"
     },
     "tasks": {
-      "moreTasks": "{{numTasks}} Weitere Missionen anzeigen",
+      "moreTasks": "{{numTasks}} weitere Vorschläge anzeigen",
       "lessTasks": "Ausblenden"
     },
     "form": {
@@ -605,17 +605,17 @@
   "areaOverview": {
     "subtitle": {
       "world": "Veganes Angebot auf der ganzen Welt",
-      "withId": "Veganes Angebot im Radius von {{radius}} um {{area}}",
-      "withoutId": "Veganes Angebot im Radius von {{radius}} um {{area}}"
+      "withId": "Veganes Angebot im Radius von {{radius}} um {{area}}:",
+      "withoutId": "Veganes Angebot im Radius von {{radius}} um {{area}}:"
     },
-    "locationQualityTitle": "Total {{total}} Locations mit diesen Vegan-Levels:",
+    "locationQualityTitle": "Total {{total}} Locations gefunden",
     "rating": {
-      "0": "{{numLocations}} Locations hat noch niemand bewertet. Du könntest die erste Bewertung abgeben!",
-      "1": "{{numLocations}} Locations hatten laut den letzten Bewertungen so gut wie kein veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
-      "2": "{{numLocations}} Locations hatten laut den letzten Bewertungen nur wenig vegane Angebote - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
-      "3": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein OK veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
-      "4": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein gutes veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!",
-      "5": "{{numLocations}} Locations hatten laut den letzten Bewertungen ein hervorragendes veganes Angebot - Falls sich daran etwas geändert hat, kannst du das mit deinen Bewertungen zeigen!"
+      "0": "Noch nicht bewertet wurde die vegane Auswahl in {{numLocations}} Locations. Du könntest die erste Bewertung abgeben!",
+      "1": "So gut wie keine vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
+      "2": "Nur eine kleine vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
+      "3": "Eine OK vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
+      "4": "Eine gute vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
+      "5": "Eine hervorragende vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",
