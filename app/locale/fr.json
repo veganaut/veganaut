@@ -57,13 +57,13 @@
       "error": "Désolé, la mission n'a pas pu être enregistrée: "
     },
     "locationTask": {
-      "error": "Sorry, there was a problem when trying to save: "
+      "error": "Désolé, il y a eu un problème quand on a essayé d'enregistrer: "
     },
     "locationTaskEdit": {
-      "success": "Location updates, thanks!"
+      "success": "Endroit mise à jour, merci!"
     },
     "locationTaskOpinion": {
-      "success": "Opinion noted, thanks!"
+      "success": "Opinion notée, merci!"
     },
     "profile": {
       "update": {
@@ -161,13 +161,13 @@
       "fullName": "Prénom et nom de famille",
       "nickname": "Pseudo",
       "password": "Mot de passe",
-      "completedTasks": "Tâches accomplies"
+      "completedTasks": "Modifications complétées"
     }
   },
   "community": {
     "points": "Points",
     "locationTypes": "Endroits",
-    "tasks": "Classement par tâches",
+    "tasks": "Classement par modifications complétées",
     "and": "et",
     "numPeople": "{{ count }} Véganautes",
     "numOtherPeople": "{{ count }} autres Véganautes",
