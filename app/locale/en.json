@@ -464,7 +464,7 @@
       "lessProducts": "Hide",
       "rate": "Rate",
       "totalProducts": "{{ numProducts }} vegan meals/beverages",
-      "noProducts": "No vegan meals/beverages added yet,
+      "noProducts": "No vegan meals/beverages added yet",
       "addProduct": "Add vegan meal/beverage"
     },
     "retail": {
