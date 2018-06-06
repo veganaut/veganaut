@@ -132,15 +132,20 @@ button.btn {
     min-width: 30%;
     min-height: 30px;
     border-radius: 5px;
-    border: solid 1.5px @_color-blue;
+    border: solid 1.5px @color-accent;
     .vg-typography-display-1-strong();
     color: white;
     text-align: center;
+
+    .btn__icon {
+        margin-right: 5px;
+    }
 
     .btn__icon,
     .btn__icon svg {
         width: 13px;
         height: 13px;
+        color: #fff;
     }
 }
 
@@ -177,13 +182,31 @@ button.menu-button {
     border: none;
     width: 24px;
     height: 24px;
-    background-color: @_color-blue;
+    background-color: @color-accent;
+    color: #fff;
     border-radius: 15px;
     padding-top: 0;
     padding-right: 5px;
     padding-left: 6px;
+    display: inline-block;
+}
+
+.btn-link-style {
+    .remove-btn;
+    .vg-typography-display-2-strong();
+    color: @color-accent;
 
     svg {
-        fill: #fff;
+        fill: @color-accent;
+        margin-right: 5px;
+    }
+}
+.btn-link-style--add-icon {
+    // Link style button with the "add" icon
+    svg {
+        height: 19px; // Needs to be a bit higher for some reason otherwise not the full icon is visible
+        width: 18px;
+        position: relative;
+        top: 4px;
     }
 }

@@ -7,6 +7,9 @@
 
     function locationProductsComponent() {
         var component = {
+            require: {
+                parent: '^^?vgLocationDetails'
+            },
             bindings: {
                 location: '<vgLocation',
                 isPreview: '<vgIsPreview',

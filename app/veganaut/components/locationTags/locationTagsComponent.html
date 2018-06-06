@@ -1,35 +1,43 @@
-<div class="vg-location-tags" ng-class=" {'vg-location-tags-open': vm.isExpanded}">
-    <div class="row">
-        <div class="col-xs-10">
-            <div class="tag-wrapper">
-                <div ng-if="!vm.tags || vm.tags.length === 0">
-                    {{ 'location.locationTags.noTags' | translate }}
-                </div>
-                <div ng-repeat="tag in vm.tags">
-                <span class="badge clickable" ng-class="'opacity-' + tag.weight">
-                    {{ 'tags.' + tag.name + '.name' | translate }}
-                </span>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-2 chevron-aligner" ng-if="!vm.parent.edit">
-            <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
-                <vg-icon ng-class="{'location-details-chevron-expanded': vm.isExpanded}" class="location-details-chevron ng-isolate-scope" vg-name="'chevron-big-down'">
-                </vg-icon>
+<div class="vg-location-tags" ng-class=" {'vg-location-tags--open': vm.isExpanded}">
+    <div ng-if="vm.hasTags()"
+     class="card__right-float"
+     ng-class="{'is-edit-mode': vm.parent.editMode}">
+        <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
+            <vg-icon class="location-details-chevron"
+             ng-class="{'location-details-chevron-expanded': vm.isExpanded}"
+             vg-name="'chevron-big-down'">
+            </vg-icon>
+            <span class="edit-icon" ng-if="vm.parent.editMode">
+                <vg-icon vg-name="'pen'"></vg-icon>
+            </span>
+        </button>
+    </div>
+    <div ng-if="!vm.hasTags() && vm.parent.editMode"
+     class="card__right-float">
+        <button class="remove-btn" ng-click="">
+            <span class="edit-icon">
+                <vg-icon vg-name="'pen'"></vg-icon>
+            </span>
+        </button>
+    </div>
+    <div class="tag-wrapper">
+        <div ng-if="!vm.hasTags()">
+            <button type="button" class="btn-link-style btn-link-style--add-icon">
+                <vg-icon vg-name="'add'"></vg-icon>
+                {{'location.locationTags.add' | translate}}
             </button>
         </div>
-        <div class="col-xs-2 pen-aligner" ng-if="vm.parent.edit">
-            <button class="oval-edit-btn" ng-click="">
-                <vg-icon vg-name="'pen'">
-                </vg-icon>
-            </button>
+        <div ng-repeat="tag in vm.tags">
+            <span class="badge clickable" ng-class="'opacity-' + tag.weight">
+                {{ 'tags.' + tag.name + '.name' | translate }}
+            </span>
         </div>
     </div>
     <div class="average-rating tags-explanation">
         {{'location.locationTags.explanation' | translate}}
     </div>
     <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}">
-        <vg-icon vg-name="'plus'"></vg-icon>
+        <vg-icon vg-name="'plus'" class="btn__icon"></vg-icon>
         {{'location.locationTags.add' | translate}}
     </button>
 </div>

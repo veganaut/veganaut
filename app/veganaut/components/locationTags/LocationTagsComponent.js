@@ -29,5 +29,9 @@
         vm.onExpandCollapseToggleClick = function onExpandCollapseToggleClick() {
             vm.isExpanded = !vm.isExpanded;
         };
+
+        vm.hasTags = function() {
+            return (angular.isArray(vm.tags) && vm.tags.length > 0);
+        };
     }
 })();

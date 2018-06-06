@@ -1,1 +1,4 @@
-<span class="vg-icon-wrapper" ng-include="'/components/ui/icons/assets/' + $ctrl.name + '.svg'"></span>
+<span class="vg-icon-wrapper"
+ ng-class="{ 'vg-icon-wrapper--colourable': $ctrl.isColourable() }"
+ ng-include="'/components/ui/icons/assets/' + $ctrl.name + '.svg'">
+</span>

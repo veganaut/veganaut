@@ -460,7 +460,8 @@
     "lessProducts": "Hide",
     "rate": "Angebot bewerten",
     "totalProducts": "{{ numProducts }} Vegane Gerichte",
-    "noProducts": "Keine Vegane Gerichte"
+    "noProducts": "Keine Vegane Gerichte",
+    "addProduct": "Add product"
   },
   "globalSearch": {
     "title": {
