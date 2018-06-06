@@ -457,20 +457,20 @@
       "unavailable": "This product is no longer available or was entered by mistake."
     },
     "gastronomy": {
-      "moreProducts": "And {{ numProducts }} more options",
+      "moreProducts": "And {{ numProducts }} more meals/beverages",
       "lessProducts": "Hide",
-      "rate": "Angebot bewerten",
-      "totalProducts": "{{ numProducts }} Vegane Gerichte",
-      "noProducts": "Keine Vegane Gerichte",
-      "addProduct": "Add product"
+      "rate": "Rate",
+      "totalProducts": "{{ numProducts }} vegan meals/beverages",
+      "noProducts": "No vegan meals/beverages added yet,
+      "addProduct": "Add vegan meal/beverage"
     },
     "retail": {
-      "moreProducts": "And {{ numProducts }} more options",
+      "moreProducts": "And {{ numProducts }} more products",
       "lessProducts": "Hide",
-      "rate": "Angebot bewerten",
-      "totalProducts": "{{ numProducts }} Vegane Gerichte",
-      "noProducts": "Keine Vegane Gerichte",
-      "addProduct": "Add product"
+      "rate": "Rate",
+      "totalProducts": "{{ numProducts }} vegan meals/beverages",
+      "noProducts": "No vegan products added yet",
+      "addProduct": "Add vegan product"
     }
   },
   "globalSearch": {
@@ -619,19 +619,19 @@
       "withId": "Vegan offer in a radius of {{radius}} around {{area}}:",
       "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}:"
     },
-    "locationQualityTitle": "Total of {{total}} locations found",
+    "locationQualityTitle": "{{total}} locations found",
     "rating": {
-      "0": "The vegan offers of {{numLocations}} locations have not been rated by any Veganauts yet. You could be the first to rate them!",
-      "1": "More or less no vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
-      "2": "Only a small vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
-      "3": "An OK vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
-      "4": "A good vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts.",
-      "5": "An excellent vegan choice in {{numLocations}} locations according to the latest evaluations by Veganauts."
+      "0": "{{numLocations}} locations which have not been rated by any Veganauts yet. You could be the first to rate them!",
+      "1": "{{numLocations}} locations with more or less no vegan choice (according to the latest evaluations by Veganauts).",
+      "2": "{{numLocations}} locations with only a small vegan choice (according to the latest evaluations by Veganauts).",
+      "3": "{{numLocations}} locations with an OK vegan choice (according to the latest evaluations by Veganauts).",
+      "4": "{{numLocations}} locations with a good vegan choice (according to the latest evaluations by Veganauts).",
+      "5": "{{numLocations}} locations with an excellent vegan choice (according to the latest evaluations by Veganauts)."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
     "retailLocations": "Stores",
     "retailProducts": "Products",
-    "showInList": "Show in list"
+    "showInList": " Show list"
   }
 }
