@@ -44,10 +44,31 @@ TODO WIP: BuyProduct
             </div>
         </div>
     </div>
-    <vg-location-header class="vg-location-details__card" vg-location="$ctrl.location" ng-if="!$ctrl.editMode">
-    </vg-location-header>
-    <vg-location-header-edit  vg-location="$ctrl.location" ng-if="$ctrl.editMode"></vg-location-header-edit>
 
+    <div>
+        <vg-location-header vg-location="$ctrl.location" ng-if="!$ctrl.editMode"></vg-location-header>
+        <vg-location-header-edit vg-location="$ctrl.location" ng-if="$ctrl.editMode"></vg-location-header-edit>
+
+        <div class="vg-location-details__description" ng-class="{ 'is-edit-mode': $ctrl.editMode }">
+            <div ng-if="$ctrl.editMode" class="card__right-float">
+                <button class="remove-btn" ng-click="$ctrl.startEditTask('SetLocationDescription')">
+                    <span class="edit-icon">
+                        <vg-icon vg-name="'pen'"></vg-icon>
+                    </span>
+                </button>
+            </div>
+
+            <div class="vg-location-details__description__content"
+             ng-if="$ctrl.location.description">{{ $ctrl.location.description }}</div>
+            <div ng-if="!$ctrl.location.description">
+                <button type="button" class="btn-link-style btn-link-style--add-icon"
+                 ng-click="$ctrl.startEditTask('SetLocationDescription')">
+                    <vg-icon vg-name="'add'"></vg-icon>
+                    {{ 'location.description.add' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
 </vg-card>
 <vg-card class="vg-location-details__card">
     <vg-location-rating-chick ng-class="{'location-details-card-disabled' : $ctrl.editMode}">

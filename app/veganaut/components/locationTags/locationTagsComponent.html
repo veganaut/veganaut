@@ -24,7 +24,7 @@
         <div ng-if="!vm.hasTags()">
             <button type="button" class="btn-link-style btn-link-style--add-icon">
                 <vg-icon vg-name="'add'"></vg-icon>
-                {{'location.locationTags.add' | translate}}
+                {{'location.locationTags.addEmptyState' | translate}}
             </button>
         </div>
         <div ng-repeat="tag in vm.tags">

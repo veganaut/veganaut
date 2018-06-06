@@ -240,12 +240,15 @@
     "rating": {
       "average": "Average",
       "numRatings": "Ratings",
-      "noRating": "Not rated yet",
+      "0": "Not rated yet",
       "1": "Location with as good as no vegan choice",
       "2": "Location with only a small vegan choice",
       "3": "Location with an OK vegan choice",
       "4": "Location with a good vegan choice",
       "5": "Location with an excellent vegan choice"
+    },
+    "description": {
+      "add": "Add description"
     },
     "products": {
       "title": "Vegan offer",
@@ -268,7 +271,7 @@
     },
     "locationTags": {
       "explanation": "The tags show which vegan offers were liked by how many people here.",
-      "noTags": "No one has indicated which vegan offers they like here. Be the first to do so!",
+      "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
     },
     "website": {

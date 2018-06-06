@@ -240,12 +240,15 @@
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
-      "noRating": "Keine Bewertung vorhanden",
+      "0": "Keine Bewertung vorhanden",
       "1": "Location mit so gut wie keiner veganen Auswahl",
       "2": "Location mit nur kleiner veganer Auswahl",
       "3": "Location mit OK veganer Auswahl",
       "4": "Location mit guter veganer Auswahl",
       "5": "Location mit hervorragender veganer Auswahl"
+    },
+    "description": {
+      "add": "Beschreibung hinzufügen"
     },
     "products": {
       "title": "Veganes Angebot",
@@ -268,7 +271,7 @@
     },
     "locationTags": {
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
-      "noTags": "Bis jetzt hat niemand angegeben, welche veganen Angebote hier besonders gefallen. Mach du den Anfang!",
+      "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
     },
     "website": {

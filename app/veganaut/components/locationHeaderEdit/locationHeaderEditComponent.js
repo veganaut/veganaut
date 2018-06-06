@@ -13,10 +13,8 @@
             bindings: {
                 // The location to show the title and icons for
                 location: '<vgLocation'
-
             },
             controller: LocationHeaderEditComponentController,
-            controllerAs: 'vm',
             templateUrl: '/veganaut/components/locationHeaderEdit/locationHeaderEditComponent.html'
         };
 
@@ -24,9 +22,5 @@
     }
 
     function LocationHeaderEditComponentController() {
-        var vm = this;
-
-        vm.quality = 1;
-        vm.locationType = null;
     }
 })();

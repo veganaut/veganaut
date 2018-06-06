@@ -7,9 +7,8 @@
         <vg-icon vg-name="'veganlevel-' + location.getRoundedQuality()"></vg-icon>
     </span>
     <span ng-if="location.getRoundedQuality() === 0"
-     class="location-quality-label__unknown-icon"
      tooltip-placement="bottom"
      uib-tooltip="{{ 'location.quality.noRatingExplanation' | translate }}">
-        <vg-icon vg-name="'questionmark'"></vg-icon>
+        <vg-icon vg-name="'veganlevel-0'"></vg-icon>
     </span>
 </span>

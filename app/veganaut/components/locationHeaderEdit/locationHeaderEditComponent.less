@@ -1,40 +1,29 @@
 .vg-location-header-edit {
-    h1 {
-        font-size: 24px;
-        margin-top: unset;
-        margin-bottom: 18px;
-    }
+    margin-top: -16px;
 
-    .wrapper {
-        padding-top: 13px;
-        height: 54px;
-
-        .col-xs-2 {
-            padding-left: 0;
-        }
-    }
-
-    .border {
+    .vg-location-header-edit__row {
+        clear: both;
+        margin: 0 -16px;
+        padding: 16px;
         border-bottom: 0.5px solid @_color-grey-light;
     }
 
-    .text {
-        font-size: 14px;
-        color: @_color-dark-grey;
-        padding-top: 5px;
-    }
+    .vg-location-header-edit__row__icon {
+        position: absolute;
 
-    .description {
-        white-space: pre-wrap;
-    }
-
-    .col-xs-10 {
-        vg-icon {
-            padding-right: 10px;
-        }
         svg {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
         }
+    }
+
+    .vg-location-header-edit__row__content {
+        padding-left: 30px;
+        .vg-typography-display-2();
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 0;
     }
 }

@@ -10,11 +10,8 @@
             </span>
         </h1>
 
-        <div ng-if="locationTitleVm.location.getRoundedQuality() > 0">
+        <div>
             {{'location.rating.' + locationTitleVm.location.getRoundedQuality() | translate}}
-        </div>
-        <div ng-if="locationTitleVm.location.getRoundedQuality() === 0">
-            {{'location.rating.noRating' | translate}}
         </div>
     </div>
 </div>
