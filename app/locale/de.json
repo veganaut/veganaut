@@ -457,20 +457,20 @@
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
     },
     "gastronomy": {
-      "moreProducts": "Und {{ numProducts }} weitere Produkte",
+      "moreProducts": "Und {{ numProducts }} weitere Gerichte/Getränke",
       "lessProducts": "Ausblenden",
-      "rate": "Produkt bewerten",
-      "totalProducts": "{{ numProducts }} Vegane Gerichte",
-      "noProducts": "Keine Vegane Gerichte",
-      "addProduct": "Produkt hinzufügen"
+      "rate": "Bewerten",
+      "totalProducts": "{{ numProducts }} vegane Gerichte/Getränke",
+      "noProducts": "Noch keine veganen Gerichte/Getränke eingetragen",
+      "addProduct": "Veganes Gericht/Getränk hinzufügen"
     },
     "retail": {
       "moreProducts": "Und {{ numProducts }} weitere Produkte",
       "lessProducts": "Ausblenden",
-      "rate": "Produkt bewerten",
-      "totalProducts": "{{ numProducts }} Vegane Gerichte",
-      "noProducts": "Keine Vegane Gerichte",
-      "addProduct": "Produkt hinzufügen"
+      "rate": "Bewerten",
+      "totalProducts": "{{ numProducts }} vegane Produkte",
+      "noProducts": "Noch keine vegane Produkte eingetragen",
+      "addProduct": "Veganes Produkt hinzufügen"
     }
   },
   "globalSearch": {
@@ -619,19 +619,19 @@
       "withId": "Veganes Angebot im Radius von {{radius}} um {{area}}:",
       "withoutId": "Veganes Angebot im Radius von {{radius}} um {{area}}:"
     },
-    "locationQualityTitle": "Total {{total}} Locations gefunden",
+    "locationQualityTitle": "{{total}} Locations gefunden",
     "rating": {
-      "0": "Noch nicht bewertet wurde die vegane Auswahl in {{numLocations}} Locations. Du könntest die erste Bewertung abgeben!",
-      "1": "So gut wie keine vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
-      "2": "Nur eine kleine vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
-      "3": "Eine OK vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
-      "4": "Eine gute vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations.",
-      "5": "Eine hervorragende vegane Auswahl hat es laut den letzten Bewertungen in {{numLocations}} Locations."
+      "0": "{{numLocations}} Locations, deren veganes Angebot noch nicht bewertet wurden. Du könntest die erste Bewertung abgeben!",
+      "1": "{{numLocations}} Locations mit so gut wie keiner veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen).",
+      "2": "{{numLocations}} Locations mit nur einer kleinen veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen).",
+      "3": "{{numLocations}} Locations mit einer OK veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen).",
+      "4": "{{numLocations}} Locations mit einer guten veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen).",
+      "5": "{{numLocations}} Locations mit einer hervorragenden veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen)."
     },
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",
     "retailLocations": "Läden",
     "retailProducts": "Produkte",
-    "showInList": "In Liste anzeigen"
+    "showInList": " Liste anzeigen"
   }
 }
