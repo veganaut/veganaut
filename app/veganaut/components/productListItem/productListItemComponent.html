@@ -34,6 +34,6 @@
       translate-value-num-ratings="{{ vm.product.rating.numRatings }}">
     </div>
     <button type="button" class="btn-primary btn-small" tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
-        {{ 'product.rate' | translate }}
+        {{ 'product.' + vm.parentVm.location.type + '.rate' | translate }}
     </button>
 </div>

@@ -240,7 +240,7 @@
     "rating": {
       "average": "Moyenne",
       "numRatings": "Évaluations",
-      "noRating": "Pas encore evalué.",
+      "noRating": "Pas encore evalué",
       "1": "Endroit avec guère de choix végan",
       "2": "Endroit avec qu'un petit choix végan",
       "3": "Endroit avec un choix végan OK",
@@ -456,12 +456,22 @@
       "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
       "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
     },
-    "moreProducts": "et {{ numProducts }} autres offres",
-    "lessProducts": "Masquer",
-    "rate": "Angebot bewerten",
-    "totalProducts": "{{ numProducts }} Vegane Gerichte",
-    "noProducts": "Keine Vegane Gerichte",
-    "addProduct": "Add product"
+    "gastronomy": {
+      "moreProducts": "et {{ numProducts }} autres offres",
+      "lessProducts": "Masquer",
+      "rate": "Angebot bewerten",
+      "totalProducts": "{{ numProducts }} Vegane Gerichte",
+      "noProducts": "Keine Vegane Gerichte",
+      "addProduct": "Add product"
+    },
+    "retail": {
+      "moreProducts": "et {{ numProducts }} autres offres",
+      "lessProducts": "Masquer",
+      "rate": "Angebot bewerten",
+      "totalProducts": "{{ numProducts }} Vegane Gerichte",
+      "noProducts": "Keine Vegane Gerichte",
+      "addProduct": "Add product"
+    }
   },
   "globalSearch": {
     "title": {

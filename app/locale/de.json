@@ -240,7 +240,7 @@
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
-      "noRating": "Keine Bewertung vorhanden.",
+      "noRating": "Keine Bewertung vorhanden",
       "1": "Location mit so gut wie keiner veganen Auswahl",
       "2": "Location mit nur kleiner veganer Auswahl",
       "3": "Location mit OK veganer Auswahl",
@@ -456,12 +456,22 @@
       "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
       "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
     },
-    "moreProducts": "Und {{ numProducts }} weitere Produkte",
-    "lessProducts": "Ausblenden",
-    "rate": "Produkt bewerten",
-    "totalProducts": "{{ numProducts }} Vegane Gerichte",
-    "noProducts": "Keine Vegane Gerichte",
-    "addProduct": "Produkt hinzufügen"
+    "gastronomy": {
+      "moreProducts": "Und {{ numProducts }} weitere Produkte",
+      "lessProducts": "Ausblenden",
+      "rate": "Produkt bewerten",
+      "totalProducts": "{{ numProducts }} Vegane Gerichte",
+      "noProducts": "Keine Vegane Gerichte",
+      "addProduct": "Produkt hinzufügen"
+    },
+    "retail": {
+      "moreProducts": "Und {{ numProducts }} weitere Produkte",
+      "lessProducts": "Ausblenden",
+      "rate": "Produkt bewerten",
+      "totalProducts": "{{ numProducts }} Vegane Gerichte",
+      "noProducts": "Keine Vegane Gerichte",
+      "addProduct": "Produkt hinzufügen"
+    }
   },
   "globalSearch": {
     "title": {

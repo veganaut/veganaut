@@ -9,8 +9,8 @@
     <h1 class="vg-location-products__title" ng-if="!vm.isPreview">
         <strong>
             {{ vm.location.getProducts().length > 0 ?
-            ('product.totalProducts' | translate: {numProducts: vm.location.getProducts().length - vm.limitTo}) :
-            ('product.noProducts' | translate) }}
+            ('product.' + vm.location.type + '.totalProducts' | translate: {numProducts: vm.location.getProducts().length - vm.limitTo}) :
+            ('product.' + vm.location.type + '.noProducts' | translate) }}
         </strong>
     </h1>
     <div ng-if="vm.location.getProducts().length === 0 && vm.parent.editMode"
@@ -25,7 +25,7 @@
      class="vg-location-products__empty-add-product">
         <button type="button" class="btn-link-style btn-link-style--add-icon">
             <vg-icon vg-name="'add'"></vg-icon>
-            {{'product.addProduct' | translate}}
+            {{ 'product.' + vm.location.type + '.addProduct' | translate }}
         </button>
     </div>
     <ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
@@ -41,7 +41,7 @@
     <div ng-if="vm.isProductListExpanded" class="vg-location-products__add-product">
         <button type="button" class="btn-primary btn-small">
             <vg-icon vg-name="'plus'" class="btn__icon"></vg-icon>
-            {{ 'product.addProduct' | translate }}
+            {{ 'product.' + vm.location.type + '.addProduct' | translate }}
         </button>
     </div>
     <button
@@ -55,10 +55,11 @@
          ng-if="!vm.isPreview">
         </vg-icon>
         <span ng-show="!vm.isProductListExpanded">
-            {{ 'product.moreProducts' | translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
+            {{ 'product.' + vm.location.type + '.moreProducts' |
+            translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
         </span>
         <span ng-show="vm.isProductListExpanded">
-            {{ 'product.lessProducts' | translate }}
+            {{ 'product.' + vm.location.type + '.lessProducts' | translate }}
         </span>
     </button>
 </div>
