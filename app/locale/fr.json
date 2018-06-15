@@ -611,7 +611,7 @@
   },
   "areaDescription": {
     "title": {
-      "world": "Earth",
+      "world": "Monde",
       "withId": "{{area}}",
       "withoutId": "Autour: {{area}}"
     }
