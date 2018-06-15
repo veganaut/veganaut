@@ -618,9 +618,9 @@
   },
   "areaOverview": {
     "subtitle": {
-      "world": "Vegan offer in the whole world",
-      "withId": "Vegan offer in a radius of {{radius}} around {{area}}:",
-      "withoutId": "Vegan offer in a radius of {{radius}} around {{area}}:"
+      "world": "Offre végan dans le monde entier",
+      "withId": "Offre végan dans un rayon de {{radius}} autour de {{area}}:",
+      "withoutId": "Offre végan dans un rayon de {{radius}} autour de {{area}}:"
     },
     "locationQualityTitle": "{{total}} endroits trouvés:",
     "rating": {
