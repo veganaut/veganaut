@@ -1,5 +1,6 @@
 (function(module) {
     'use strict';
+    // TODO WIP: delete this
     module.factory('missionService', [
         '$q', 'backendService', 'missions',
         function($q, backendService, missions) {

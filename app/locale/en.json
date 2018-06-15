@@ -232,6 +232,10 @@
             "5": "The vegan choice here is excellent."
           }
         },
+        "TagLocation": {
+          "title": "Which vegan offers of this location do you like?",
+          "numSelected": "{{ num }} selected"
+        },
         "selectCoordinates": "Click in the map below to select the new location",
         "changeCoordinates": "Change coordinates"
       }
@@ -269,7 +273,7 @@
       "explanation": "The more twigs the bigger and better the vegan offer here.",
       "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
     },
-    "locationTags": {
+    "tags": {
       "explanation": "The tags show which vegan offers were liked by how many people here.",
       "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
@@ -425,11 +429,6 @@
         "outcome": {
           "description": "Your evaluation:"
         }
-      },
-      "locationTags": {
-        "title": "Your preferences",
-        "description": "Which vegan offers of this location do you like?",
-        "numSelected": "{{ num }} selected"
       },
       "rateProduct": {
         "title": "Your rating",

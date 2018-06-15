@@ -232,6 +232,10 @@
             "5": "Die vegane Auswahl hier ist hervorragend."
           }
         },
+        "TagLocation": {
+          "title": "Welche veganen Angebote dieser Location gefallen dir?",
+          "numSelected": "{{ num }} ausgewählt"
+        },
         "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
         "changeCoordinates": "Ändere die Position"
       }
@@ -269,7 +273,7 @@
       "explanation": "Je mehr Zweige, desto grösser und besser das vegane Angebot.",
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
     },
-    "locationTags": {
+    "tags": {
       "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
       "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
@@ -425,11 +429,6 @@
         "outcome": {
           "description": "Dein Urteil:"
         }
-      },
-      "locationTags": {
-        "title": "Deine Vorlieben",
-        "description": "Welche veganen Angebote dieser Location gefallen dir?",
-        "numSelected": "{{ num }} ausgewählt"
       },
       "rateProduct": {
         "title": "Deine Bewertung",

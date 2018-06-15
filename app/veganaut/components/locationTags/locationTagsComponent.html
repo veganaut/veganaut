@@ -14,7 +14,7 @@
     </div>
     <div ng-if="!vm.hasTags() && vm.parent.editMode"
      class="card__right-float">
-        <button class="remove-btn" ng-click="">
+        <button class="remove-btn" ng-click="vm.parent.startEditTask('TagLocation')">
             <span class="edit-icon">
                 <vg-icon vg-name="'pen'"></vg-icon>
             </span>
@@ -22,9 +22,10 @@
     </div>
     <div class="tag-wrapper">
         <div ng-if="!vm.hasTags()">
-            <button type="button" class="btn-link-style btn-link-style--add-icon">
+            <button type="button" class="btn-link-style btn-link-style--add-icon"
+             ng-click="vm.parent.startEditTask('TagLocation')">
                 <vg-icon vg-name="'add'"></vg-icon>
-                {{'location.locationTags.addEmptyState' | translate}}
+                {{'location.tags.addEmptyState' | translate}}
             </button>
         </div>
         <div ng-repeat="tag in vm.tags">
@@ -34,11 +35,12 @@
         </div>
     </div>
     <div class="average-rating tags-explanation">
-        {{'location.locationTags.explanation' | translate}}
+        {{'location.tags.explanation' | translate}}
     </div>
-    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}">
+    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}"
+     ng-click="vm.parent.startEditTask('TagLocation')">
         <vg-icon vg-name="'plus'" class="btn__icon"></vg-icon>
-        {{'location.locationTags.add' | translate}}
+        {{'location.tags.add' | translate}}
     </button>
 </div>
 

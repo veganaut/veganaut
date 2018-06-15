@@ -1,5 +1,6 @@
 (function(module) {
     'use strict';
+    // TODO WIP: delete this directive
 
     module.directive('vgProductMission', function() {
         return {

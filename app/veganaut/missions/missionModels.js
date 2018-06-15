@@ -1,6 +1,8 @@
 (function(module) {
     'use strict';
 
+    // TODO WIP: Delete all this (including translations)
+
     /**
      * Order that the missions will be shown in
      * @type {string[]}

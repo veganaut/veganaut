@@ -232,6 +232,10 @@
             "5": "Le choix végan est excellent ici."
           }
         },
+        "TagLocation": {
+          "title": "Quelles offres véganes de cet endroit est-ce que tu aimes?",
+          "numSelected": "{{ num }} sélectionnées"
+        },
         "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
         "changeCoordinates": "Changer les coordonnées"
       }
@@ -269,7 +273,7 @@
       "explanation": "Plus de branches signifie une offre végane plus large et meilleure.",
       "noRatingExplanation": "La qualité et étendue de l'offre végane n'a pas encore été évaluée ici. Évalue-la maintenant!"
     },
-    "locationTags": {
+    "tags": {
       "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
       "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
@@ -425,11 +429,6 @@
         "outcome": {
           "description": "Ton évaluation:"
         }
-      },
-      "locationTags": {
-        "title": "Tes préférences",
-        "description": "Quelles offres véganes de cet endroit est-ce que tu aimes?",
-        "numSelected": "{{ num }} sélectionnées"
       },
       "rateProduct": {
         "title": "Ton évaluation",
