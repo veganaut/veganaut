@@ -624,7 +624,7 @@
     },
     "locationQualityTitle": "{{total}} locations found",
     "rating": {
-      "0": "{{numLocations}} locations which have not been rated by any Veganauts yet. You could be the first to rate them!",
+      "0": "{{numLocations}} locations which have not yet been rated by any Veganauts. You could be the first to rate them!",
       "1": "{{numLocations}} locations with more or less no vegan choice (according to the latest evaluations by Veganauts).",
       "2": "{{numLocations}} locations with only a small vegan choice (according to the latest evaluations by Veganauts).",
       "3": "{{numLocations}} locations with an OK vegan choice (according to the latest evaluations by Veganauts).",
