@@ -343,6 +343,18 @@
         return outcome;
     };
 
+    // SetLocationProductListComplete /////////////////////////////////////////
+    function SetLocationProductListCompleteTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'SetLocationProductListComplete', false, 'message.locationTaskEdit.success', 'completionState', 'productListComplete',
+            location.productListComplete, location, lastCompletedDate, lastCompletedOutcome)
+        ;
+
+        this.possibleAnswers = ['complete', 'incompleteGoodSummary', 'incomplete'];
+    }
+
+    SetLocationProductListCompleteTask.prototype = Object.create(Task.prototype);
+    SetLocationProductListCompleteTask.prototype.constructor = SetLocationProductListCompleteTask;
+
     // SetProductNameMission //////////////////////////////////////////////////
     // TODO: there should be a way to just confirm the current name
     function SetProductNameMission(location, lastCompletedDate, lastCompletedOutcome, product) {
@@ -514,6 +526,7 @@
         SetLocationType: SetLocationTypeTask,
         SetLocationDescription: SetLocationDescriptionTask,
         SetLocationWebsite: SetLocationWebsiteTask,
+        SetLocationProductListComplete: SetLocationProductListCompleteTask,
         setProductName: SetProductNameMission, // TODO WIP
         setProductAvail: SetProductAvailMission, // TODO WIP
         RateLocationQuality: RateLocationQualityTask,

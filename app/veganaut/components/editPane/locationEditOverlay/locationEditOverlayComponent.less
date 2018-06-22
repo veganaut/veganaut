@@ -1,9 +1,9 @@
 .vg-location-edit-overlay {
     .edit-overlay {
         .edit-container {
-            // For SetLocationType
+            // For SetLocationType and SetLocationProductListComplete
             .choose-wrapper {
-                margin: 0 0 10px;
+                margin: 0;
 
                 .plant-tooltip {
                     margin-bottom: 15px;
@@ -41,13 +41,14 @@
                     border: solid 1px @_color-grey-light;
                     font-size: 18px;
                     color: @_color-grey;
-                    height: 42px;
+                    min-height: 42px;
                     padding: 8px 12px;
+                    margin-bottom: 10px;
 
                     &:hover, &:active, &.active {
                         color: #ffffff;
-                        background-color: #419fd9;
-                        border: 0;
+                        background-color: @color-accent;
+                        border-color: @color-accent;
                     }
                 }
             }

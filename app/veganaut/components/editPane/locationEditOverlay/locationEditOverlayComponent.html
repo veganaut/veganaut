@@ -27,6 +27,18 @@
                  ng-disabled="$ctrl.isSaving"
                 />
 
+                <div class="choose-wrapper"
+                 ng-switch-when="SetLocationProductListComplete">
+                    <div ng-repeat="state in $ctrl.task.possibleAnswers">
+                        <button class="btn btn-choose"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.task.inputModel"
+                         uib-btn-radio="state">
+                            {{ 'location.form.edit.SetLocationProductListComplete.completeness.' + state | translate }}
+                        </button>
+                    </div>
+                </div>
+
                 <div class="row choose-wrapper"
                  ng-switch-when="SetLocationType">
                     <!-- TODO WIP: rename "plant-tooltip" -->
