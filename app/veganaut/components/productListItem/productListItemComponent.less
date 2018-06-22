@@ -17,7 +17,7 @@
     margin-top: 0;
     margin-bottom: 0;
     .vg-typography-display-2();
-    width: 250%;
+    flex-grow: 1;
 }
 
 .vg-product-list-item__rating {
@@ -28,6 +28,14 @@
 
 .vg-product-list-item__expand {
     padding-left: 10px;
+}
+
+.is-edit-mode .vg-product-list-item__expand {
+    padding-right: 4px;
+
+    .location-details-chevron {
+        color: @color-accent;
+    }
 }
 
 .vg-product-list-item .vg-average-rating__icon {
@@ -45,8 +53,6 @@
 
 .average-rating {
     margin: 0 16px;
-    font-size: 12px;
-    color: @_color-grey
 }
 
 .slider {

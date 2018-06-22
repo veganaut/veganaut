@@ -1,26 +1,13 @@
-<div class="vg-location-products">
-    <div ng-if="vm.parent.editMode" class="card__right-float">
-        <button class="remove-btn" ng-click="">
-            <span class="edit-icon">
-                <vg-icon vg-name="'pen'"></vg-icon>
-            </span>
-        </button>
-    </div>
-    <h1 class="vg-location-products__title" ng-if="!vm.isPreview">
+<div class="vg-location-products"
+ ng-class="{ 'is-edit-mode': vm.parent.editMode }">
+    <!-- Show the title only if not in preview or if the preview would show no products -->
+    <h3 class="vg-location-products__title" ng-if="!vm.isPreview || vm.location.getProducts().length === 0">
         <strong>
             {{ vm.location.getProducts().length > 0 ?
             ('product.' + vm.location.type + '.totalProducts' | translate: {numProducts: vm.location.getProducts().length - vm.limitTo}) :
             ('product.' + vm.location.type + '.noProducts' | translate) }}
         </strong>
-    </h1>
-    <div ng-if="vm.location.getProducts().length === 0 && vm.parent.editMode"
-     class="card__right-float">
-        <button class="remove-btn" ng-click="">
-            <span class="edit-icon">
-                <vg-icon vg-name="'pen'"></vg-icon>
-            </span>
-        </button>
-    </div>
+    </h3>
     <ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
         <li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"
          class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
@@ -33,12 +20,29 @@
     </ul>
     <!-- Directly show an add product button if there 0 or 1 products as we never
     show the button int the expanded list in that case -->
-    <div ng-if="vm.location.getProducts().length < 2"
+    <div ng-if="vm.location.getProducts().length < 2 && !vm.isPreview"
      class="vg-location-products__few-products-add-btn">
+        <div ng-if="vm.parent.editMode" class="card__right-float">
+            <button class="remove-btn" ng-click="">
+                <span class="edit-icon">
+                    <vg-icon vg-name="'pen'"></vg-icon>
+                </span>
+            </button>
+        </div>
         <button type="button" class="btn-link-style btn-link-style--add-icon">
             <vg-icon vg-name="'add'"></vg-icon>
             {{ 'product.' + vm.location.type + '.addProduct' | translate }}
         </button>
+    </div>
+    <div ng-if="vm.isProductListExpanded" class="vg-location-products__list-complete text--small-note">
+        {{ 'location.products.listCompleteness.' + vm.location.productListComplete | translate }}
+        <div ng-if="vm.parent.editMode" class="card__right-float">
+            <button class="remove-btn" ng-click="">
+                <span class="edit-icon">
+                    <vg-icon vg-name="'pen'"></vg-icon>
+                </span>
+            </button>
+        </div>
     </div>
     <div ng-if="vm.isProductListExpanded" class="vg-location-products__add-product">
         <button type="button" class="btn-primary btn-small">
@@ -46,22 +50,34 @@
             {{ 'product.' + vm.location.type + '.addProduct' | translate }}
         </button>
     </div>
-    <button
-     class="vg-location-products__more-products"
-     ng-if="vm.location.getProducts().length > vm.limit"
-     ng-disabled="vm.isPreview"
-     ng-click="vm.onExpandCollapseToggleClick()"
-     ng-class="{'vg-location-products__more-products--expanded': vm.isProductListExpanded}">
-        <vg-icon class="vg-location-products__more-products-icon"
-         vg-name="'chevron-small-down'"
-         ng-if="!vm.isPreview">
-        </vg-icon>
-        <span ng-show="!vm.isProductListExpanded">
-            {{ 'product.' + vm.location.type + '.moreProducts' |
-            translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
-        </span>
-        <span ng-show="vm.isProductListExpanded">
-            {{ 'product.' + vm.location.type + '.lessProducts' | translate }}
-        </span>
-    </button>
+    <div class="vg-location-products__expand-list-container">
+        <button
+         class="vg-location-products__more-products"
+         ng-if="vm.location.getProducts().length > vm.limit"
+         ng-disabled="vm.isPreview"
+         ng-click="vm.onExpandCollapseToggleClick()"
+         ng-class="{'vg-location-products__more-products--expanded': vm.isProductListExpanded}">
+            <vg-icon class="vg-location-products__more-products__icon"
+             vg-name="'chevron-small-down'"
+             ng-if="!vm.isPreview">
+            </vg-icon>
+            <span class="vg-location-products__more-products__text">
+                <span ng-show="!vm.isProductListExpanded">
+                    {{ 'product.' + vm.location.type + '.moreProducts' |
+                    translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
+                </span>
+                <span ng-show="vm.isProductListExpanded">
+                    {{ 'product.' + vm.location.type + '.lessProducts' | translate }}
+                </span>
+            </span>
+            <vg-icon class="location-details-chevron"
+             ng-class="{'location-details-chevron--expanded': vm.isProductListExpanded}"
+             ng-if="vm.parent.editMode"
+             vg-name="'chevron-big-down'">
+            </vg-icon>
+            <span class="edit-icon" ng-if="vm.parent.editMode">
+                <vg-icon vg-name="'pen'"></vg-icon>
+            </span>
+        </button>
+    </div>
 </div>

@@ -204,9 +204,10 @@ button.menu-button {
 .btn-link-style--add-icon {
     // Link style button with the "add" icon
     svg {
-        height: 19px; // Needs to be a bit higher for some reason otherwise not the full icon is visible
+        height: 18px;
         width: 18px;
         position: relative;
         top: 4px;
+        overflow: visible;  // For some reason there's always one part of the icon that overflows; make it visible
     }
 }

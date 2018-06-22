@@ -4,7 +4,7 @@
      ng-class="{'is-edit-mode': vm.parent.editMode}">
         <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
             <vg-icon class="location-details-chevron"
-             ng-class="{'location-details-chevron-expanded': vm.isExpanded}"
+             ng-class="{ 'location-details-chevron--expanded': vm.isExpanded }"
              vg-name="'chevron-big-down'">
             </vg-icon>
             <span class="edit-icon" ng-if="vm.parent.editMode">
@@ -34,7 +34,7 @@
             </span>
         </div>
     </div>
-    <div class="average-rating tags-explanation">
+    <div class="tags-explanation text--small-note">
         {{'location.tags.explanation' | translate}}
     </div>
     <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}"

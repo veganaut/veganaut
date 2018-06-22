@@ -259,12 +259,11 @@
     },
     "products": {
       "title": "Veganes Angebot",
-      "description": "An dieser Location werden folgende vegane Produkte angeboten:",
-      "noProducts": {
-        "anonymousPart1": "Es wurden noch keine Produkte eingetragen. ",
-        "anonymousLink": "Registriere",
-        "anonymousPart2": " dich, um vegane Produkte einzutragen.",
-        "user": "Es wurden noch keine Produkte eingetragen. Mit einer der Missionen kannst du Produkte eintragen."
+      "listCompleteness": {
+        "": "List completeness is not known.",
+        "complete": "List is complete.",
+        "incompleteGoodSummary": "Lists is incomplete but good summary.",
+        "incomplete": "List is incomplete."
       },
       "showUnavailableProducts": "Zeige nicht verfügbare Produkte"
     },
