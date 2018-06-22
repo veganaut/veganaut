@@ -203,6 +203,10 @@
         "submit": "Fertig"
       },
       "edit": {
+        "AddProduct": {
+          "title": "Welche veganen Produkte gibt es hier?",
+          "placeholder": "Hier ein veganes Produkt eintragen"
+        },
         "SetLocationName": {
           "title": "Name der Location"
         },
@@ -397,13 +401,7 @@
         "title": "Finde heraus, was für vegane Produkte es hier gibt.",
         "description": "Welche veganen Produkte gibt es hier?",
         "description2": "Die folgenden musst du nicht mehr eintragen:",
-        "explanation": "Hilf mit, dass die Liste der veganen Produkte hier möglichst aktuell und vollständig ist. Füge vegane Produkte hinzu, die noch nicht auf der Liste sind, bestätige vegane Produkte, die bereits da stehen, und gib an, welche Produkte auf der Liste (im Moment) nicht mehr verfügbar sind.",
-        "form": {
-          "placeholder": "Hier ein veganes Produkt eintragen"
-        },
-        "outcome": {
-          "description": "Du hast diese veganen Produkte eingetragen:"
-        }
+        "explanation": "Hilf mit, dass die Liste der veganen Produkte hier möglichst aktuell und vollständig ist. Füge vegane Produkte hinzu, die noch nicht auf der Liste sind, bestätige vegane Produkte, die bereits da stehen, und gib an, welche Produkte auf der Liste (im Moment) nicht mehr verfügbar sind."
       },
       "buyOptions": {
         "title": "Kauf etwas Veganes.",

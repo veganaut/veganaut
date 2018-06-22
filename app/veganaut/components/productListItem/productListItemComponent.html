@@ -32,7 +32,7 @@
       translate-value-num-ratings="{{ vm.product.rating.numRatings }}">
     </div>
     <button type="button" class="btn-primary btn-small"
-     ng-click="vm.locationDetailsVm.startEditTask('RateProduct', vm.product)"
+     ng-click="vm.locationDetailsVm.startTask('RateProduct', vm.product)"
      tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
         {{ 'product.' + vm.parentVm.location.type + '.rate' | translate }}
     </button>

@@ -13,7 +13,14 @@
 
             <form novalidate name="editLocationForm" ng-switch="$ctrl.editTask">
 
-                <input type="text" id="location-edit-input-field" class="input-one-line"
+                <div ng-switch-when="AddProduct">
+                    <vg-list-input vg-list="$ctrl.task.inputModel" vg-num-required="1"
+                     vg-placeholder="{{ 'location.form.edit.AddProduct.placeholder' | translate }}">
+                    </vg-list-input>
+                </div>
+
+                <input type="text" id="location-edit-input-field"
+                 class="vg-form__input"
                  ng-switch-when="SetLocationName"
                  required
                  ng-model="$ctrl.task.inputModel"
@@ -43,14 +50,15 @@
                     </div>
                 </div>
 
-                <textarea id="location-edit-input-field" class="input-multi-line" type="text" rows="5"
+                <textarea id="location-edit-input-field" class="vg-form__input" type="text" rows="5"
                  ng-switch-when="SetLocationDescription"
                  placeholder="{{ 'location.form.edit.SetLocationDescription.placeholder' | translate }}"
                  ng-model="$ctrl.task.inputModel"
                  ng-disabled="$ctrl.isSaving">
                 </textarea>
 
-                <input type="text" id="location-edit-input-field" class="input-one-line"
+                <input type="text" id="location-edit-input-field"
+                 class="vg-form__input"
                  ng-switch-when="SetLocationWebsite"
                  placeholder="{{ 'location.form.edit.SetLocationWebsite.placeholder' | translate }}"
                  ng-model="$ctrl.task.inputModel"

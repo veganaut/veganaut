@@ -203,6 +203,10 @@
         "submit": "Enregistrer"
       },
       "edit": {
+        "AddProduct": {
+          "title": "Quels produits végans est-ce qu'ils offrent ici?",
+          "placeholder": "Saisir un produit végan ici"
+        },
         "SetLocationName": {
           "title": "Nom de l'endroit"
         },
@@ -397,13 +401,7 @@
         "title": "Découvre quels produits végans ils offrent ici.",
         "description": "Quels produits végans est-ce qu'ils offrent ici?",
         "description2": "Tu ne dois pas enregistrer ces produits une deuxième fois:",
-        "explanation": "Le but est d'avoir une liste complète et à jour de toutes les produits végans offerts ici. Ajoute les produits disponibles mais manquants dans la liste, confirme les produits qui se trouvent déjà dans la liste et indique lesquels des produits ne sont pas ou plus disponibles (en ce moment).",
-        "form": {
-          "placeholder": "Saisir un produit végan ici"
-        },
-        "outcome": {
-          "description": "Tu a saisi ces produits végans:"
-        }
+        "explanation": "Le but est d'avoir une liste complète et à jour de toutes les produits végans offerts ici. Ajoute les produits disponibles mais manquants dans la liste, confirme les produits qui se trouvent déjà dans la liste et indique lesquels des produits ne sont pas ou plus disponibles (en ce moment)."
       },
       "buyOptions": {
         "title": "Achète quelque chose de végan.",

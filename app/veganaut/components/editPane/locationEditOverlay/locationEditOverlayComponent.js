@@ -22,9 +22,9 @@
 
     // TODO: rename this component to something with "Task"?
     LocationEditOverlayComponentController.$inject = [
-        '$translate', 'tasks', 'backendService', 'alertService', 'locationService'
+        '$q', '$translate', 'tasks', 'backendService', 'alertService', 'locationService'
     ];
-    function LocationEditOverlayComponentController($translate, tasks, backendService, alertService, locationService) {
+    function LocationEditOverlayComponentController($q, $translate, tasks, backendService, alertService, locationService) {
         var $ctrl = this;
 
         $ctrl.getDescription = function() {
@@ -42,8 +42,25 @@
             // Prepare the outcome
             var outcome = $ctrl.task.getOutcome();
 
-            backendService
-                .submitTask($ctrl.editTask, outcome, $ctrl.location, $ctrl.product)
+            // Handle AddProduct separately as we need to submit one Task for every product added
+            var submitPromise;
+            if ($ctrl.editTask === 'AddProduct') {
+                var submitPromises = [];
+                _.each(outcome, function(o) {
+                    submitPromises.push(backendService
+                        .submitTask($ctrl.editTask, o, $ctrl.location)
+                    );
+                });
+                submitPromise = $q.all(submitPromises);
+            }
+            else {
+                submitPromise = backendService
+                    .submitTask($ctrl.editTask, outcome, $ctrl.location, $ctrl.product)
+                ;
+            }
+
+            // Handle response from backend
+            submitPromise
                 .then(function(data) {
                     // Update location if required by this task
                     if ($ctrl.task.updatePropertyAfterSubmit) {

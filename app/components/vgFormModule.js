@@ -80,8 +80,8 @@
             }],
             controllerAs: 'listInputVm',
             bindToController: true,
-            template: '<div class="form-group" ng-repeat="elem in listInputVm.inputFields">' +
-                '<input type="text" ng-required="$index < listInputVm.numRequired" class="form-control" ' +
+            template: '<div ng-repeat="elem in listInputVm.inputFields">' +
+                '<input type="text" ng-required="$index < listInputVm.numRequired" class="vg-form__input" ' +
                 'ng-model="elem.text" placeholder="{{ listInputVm.placeholder }}"/> ' +
                 '</div>'
         };

@@ -171,29 +171,32 @@
         return (this.getOutcome().length > 0);
     };
 
-    // WhatOptionsMission /////////////////////////////////////////////////////
-    function WhatOptionsMission(location, lastCompletedDate, lastCompletedOutcome) {
-        Task.call(this, 'whatOptions', [], location, lastCompletedDate, lastCompletedOutcome);
+    // AddProduct /////////////////////////////////////////////////////
+    function AddProductTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'AddProduct', true, 'message.locationTaskEdit.success', 'name', undefined,
+            [], location, lastCompletedDate, lastCompletedOutcome)
+        ;
     }
 
-    WhatOptionsMission.prototype = Object.create(Task.prototype);
-    WhatOptionsMission.prototype.constructor = WhatOptionsMission;
+    AddProductTask.prototype = Object.create(Task.prototype);
+    AddProductTask.prototype.constructor = AddProductTask;
 
-    WhatOptionsMission.prototype.hasValidOutcome = function() {
+    AddProductTask.prototype.hasValidOutcome = function() {
         return (this.getOutcome().length > 0);
     };
 
-    WhatOptionsMission.prototype.getOutcome = function() {
+    AddProductTask.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
+
+        // Note: the backend actually expects one Task per product, so the outcome here
+        // looks a bit different. The conversion is done in the locationEditOverlayComponent.
         var outcome = [];
         _.each(this.inputModel, function(o) {
             outcome.push({
-                product: {
-                    name: o
-                },
-                info: 'available'
+                productAdded: true,
+                name: o
             });
         });
         return outcome;
@@ -503,7 +506,7 @@
     module.value('tasks', {
         hasOptions: HasOptionsMission, // TODO WIP
         wantVegan: WantVeganMission, // TODO WIP
-        whatOptions: WhatOptionsMission, // TODO WIP
+        AddProduct: AddProductTask,
         buyOptions: BuyOptionsMission, // TODO WIP
         giveFeedback: GiveFeedbackMission, // TODO WIP
         RateProduct: RateProductTask,

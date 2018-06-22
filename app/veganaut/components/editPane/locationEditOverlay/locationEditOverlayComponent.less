@@ -1,17 +1,9 @@
 .vg-location-edit-overlay {
     .edit-overlay {
         .edit-container {
-            // For SetLocationName
-            .input-one-line {
-                height: 48px;
-                width: 100%;
-                border: solid 1px @_color-grey-light;
-            }
-
-
             // For SetLocationType
             .choose-wrapper {
-                margin: 30px 0;
+                margin: 0 0 10px;
 
                 .plant-tooltip {
                     margin-bottom: 15px;
@@ -42,7 +34,6 @@
                     width: 100%;
                     overflow: hidden;
                     white-space: normal;
-                    height: 100%;
                 }
                 .btn-choose {
                     border-radius: 4px;
@@ -50,21 +41,15 @@
                     border: solid 1px @_color-grey-light;
                     font-size: 18px;
                     color: @_color-grey;
+                    height: 42px;
+                    padding: 8px 12px;
 
                     &:hover, &:active, &.active {
                         color: #ffffff;
                         background-color: #419fd9;
+                        border: 0;
                     }
                 }
-            }
-
-
-            // For SetLocationDescription
-            .input-multi-line {
-                resize: none;
-                width: 100%;
-                border: solid 1px @_color-grey-light;
-                font-weight: 100;
             }
 
 
@@ -110,15 +95,13 @@
                 }
             }
             .plant-wrapper {
-                margin: 20px 0 30px 0;
+                margin: 20px -20px 10px;
                 text-align: center;
                 .rating-plant {
-                    width: 40px;
-                    height: 40px;
-                    margin: 9px;
+                    margin: 0 8px;
                     svg {
-                        width: 40px;
-                        height: 40px;
+                        width: 44px;
+                        height: 44px;
                     }
                 }
             }

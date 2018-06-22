@@ -74,7 +74,7 @@
             $ctrl.editProduct = undefined;
         };
 
-        $ctrl.startEditTask = function(property, product) {
+        $ctrl.startTask = function(property, product) {
             $ctrl.editTask = property;
             $ctrl.editProduct = product;
         };

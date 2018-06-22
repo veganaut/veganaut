@@ -1,7 +1,7 @@
 <!--<vg-location-edit-end></vg-location-edit-end>-->
 <!--
 TODO WIP: AddLocation
-TODO WIP: AddProduct
+DONE: AddProduct
 DONE: SetLocationName
 DONE: SetLocationType
 DONE: SetLocationDescription
@@ -50,7 +50,7 @@ TODO WIP: BuyProduct
 
         <div class="vg-location-details__description" ng-class="{ 'is-edit-mode': $ctrl.editMode }">
             <div ng-if="$ctrl.editMode" class="card__right-float">
-                <button class="remove-btn" ng-click="$ctrl.startEditTask('SetLocationDescription')">
+                <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationDescription')">
                     <span class="edit-icon">
                         <vg-icon vg-name="'pen'"></vg-icon>
                     </span>
@@ -61,7 +61,7 @@ TODO WIP: BuyProduct
              ng-if="$ctrl.location.description">{{ $ctrl.location.description }}</div>
             <div ng-if="!$ctrl.location.description">
                 <button type="button" class="btn-link-style btn-link-style--add-icon"
-                 ng-click="$ctrl.startEditTask('SetLocationDescription')">
+                 ng-click="$ctrl.startTask('SetLocationDescription')">
                     <vg-icon vg-name="'add'"></vg-icon>
                     {{ 'location.description.add' | translate }}
                 </button>
@@ -121,7 +121,7 @@ TODO WIP: BuyProduct
             </div>
         </div>
         <div class="col-xs-2 pen-aligner" ng-if="$ctrl.editMode">
-            <button class="oval-edit-btn" ng-click="$ctrl.startEditTask('SetLocationWebsite')">
+            <button class="oval-edit-btn" ng-click="$ctrl.startTask('SetLocationWebsite')">
                 <vg-icon vg-name="'pen'"></vg-icon>
             </button>
         </div>
