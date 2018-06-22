@@ -11,6 +11,7 @@
                 isQuestionnaire: '<vgIsQuestionnaire',
                 editTask: '<vgEditTask',
                 location: '=vgLocation',
+                product: '=vgProduct',
                 onClose: '&vgOnClose'
             },
             controller: LocationEditOverlayComponentController,
@@ -19,6 +20,7 @@
         };
     }
 
+    // TODO: rename this component to something with "Task"?
     LocationEditOverlayComponentController.$inject = [
         '$translate', 'tasks', 'backendService', 'alertService', 'locationService'
     ];
@@ -41,7 +43,7 @@
             var outcome = $ctrl.task.getOutcome();
 
             backendService
-                .submitLocationTask($ctrl.editTask, $ctrl.location, outcome)
+                .submitTask($ctrl.editTask, outcome, $ctrl.location, $ctrl.product)
                 .then(function(data) {
                     // Update location if required by this task
                     if ($ctrl.task.updatePropertyAfterSubmit) {
@@ -75,7 +77,7 @@
 
             if (tasks.hasOwnProperty($ctrl.editTask)) {
                 // TODO WIP: get last completed task
-                $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined);
+                $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
             }
             else {
                 console.error('Unknown location edit property:', $ctrl.editTask);

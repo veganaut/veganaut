@@ -232,6 +232,9 @@
             "5": "Le choix végan est excellent ici."
           }
         },
+        "RateProduct": {
+          "title": "Comment est-ce que tu évalues cette option végane?"
+        },
         "TagLocation": {
           "title": "Quelles offres véganes de cet endroit est-ce que tu aimes?",
           "numSelected": "{{ num }} sélectionnées"
@@ -429,10 +432,6 @@
         "outcome": {
           "description": "Ton évaluation:"
         }
-      },
-      "rateProduct": {
-        "title": "Ton évaluation",
-        "description": "Comment est-ce que tu évalues cette option végane?"
       },
       "setProductName": {
         "title": "Modifier le nom",

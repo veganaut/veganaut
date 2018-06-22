@@ -240,48 +240,49 @@
     };
 
 
-    // RateProductMission /////////////////////////////////////////////////////
-    function RateProductMission(location, lastCompletedDate, lastCompletedOutcome, product) {
-        var initialOutcome;
+    // RateProduct ////////////////////////////////////////////////////////////
+    function RateProductTask(location, lastCompletedDate, lastCompletedOutcome, product) {
+        var initialInput;
         if (angular.isObject(lastCompletedOutcome)) {
-            initialOutcome = lastCompletedOutcome.info;
+            initialInput = lastCompletedOutcome.rating;
         }
-        Task.call(this, 'rateProduct', initialOutcome, location, lastCompletedDate, lastCompletedOutcome, product);
+
+        Task.call(this, 'RateProduct', true, 'message.locationTaskOpinion.success', 'rating', undefined,
+            initialInput, location, lastCompletedDate, lastCompletedOutcome, product)
+        ;
+
         this.maxRating = 5;
     }
 
-    RateProductMission.prototype = Object.create(Task.prototype);
-    RateProductMission.prototype.constructor = RateProductMission;
+    RateProductTask.prototype = Object.create(Task.prototype);
+    RateProductTask.prototype.constructor = RateProductTask;
 
-    RateProductMission.prototype.hasValidOutcome = function() {
+    RateProductTask.prototype.hasValidOutcome = function() {
         var outcome = this.getOutcome();
 
         // Check if the outcome is the same as the last one.
         // If yes, the outcome is not valid yet
         if (angular.isObject(this.lastCompletedOutcome) &&
             angular.isObject(outcome) &&
-            this.lastCompletedOutcome.info === outcome.info)
+            this.lastCompletedOutcome[this.mainOutcomeName] === outcome[this.mainOutcomeName])
         {
-            outcome = undefined;
+            outcome = {};
         }
 
         return angular.isDefined(outcome[this.mainOutcomeName]);
     };
 
-    RateProductMission.prototype.getOutcome = function() {
+    RateProductTask.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
 
-        var outcome;
+        var outcome = {};
         if (angular.isNumber(this.inputModel) &&
             this.inputModel > 0 &&
             this.inputModel <= this.maxRating)
         {
-            outcome = {
-                product: this.product.id,
-                info: this.inputModel
-            };
+            outcome[this.mainOutcomeName] = this.inputModel;
         }
 
         return outcome;
@@ -505,7 +506,7 @@
         whatOptions: WhatOptionsMission, // TODO WIP
         buyOptions: BuyOptionsMission, // TODO WIP
         giveFeedback: GiveFeedbackMission, // TODO WIP
-        rateProduct: RateProductMission, // TODO WIP
+        RateProduct: RateProductTask,
         SetLocationName: SetLocationNameTask,
         SetLocationType: SetLocationTypeTask,
         SetLocationDescription: SetLocationDescriptionTask,

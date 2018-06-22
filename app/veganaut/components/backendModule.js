@@ -284,16 +284,18 @@
 
             /**
              * Submit a task of a certain type with the given outcome and for
-             * the given location
+             * the given location and optionally product
              * @param {string} taskType
-             * @param {Location} location
              * @param {{}} outcome
+             * @param {Location} location
+             * @param {{}} [product=undefined]
              * @returns {Promise}
              */
-            BackendService.prototype.submitLocationTask = function(taskType, location, outcome) {
+            BackendService.prototype.submitTask = function(taskType, outcome, location, product) {
                 return $http
                     .post(backendUrl + '/task', {
                         location: location.id,
+                        product: (angular.isObject(product) ? product.id : undefined),
                         type: taskType,
                         outcome: outcome
                     })

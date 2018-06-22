@@ -76,6 +76,10 @@
                     </div>
                 </div>
 
+                <div ng-switch-when="RateProduct" class="rating-wrapper">
+                    <uib-rating ng-model="$ctrl.task.inputModel" readonly="$ctrl.isSaving" max="5"></uib-rating>
+                </div>
+
                 <div ng-switch-when="TagLocation">
                     <div class="tag-location__wrapper"
                      ng-repeat="(answerType, answers) in $ctrl.task.possibleAnswers">

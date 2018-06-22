@@ -41,6 +41,13 @@
         $ctrl.editTask = undefined;
 
         /**
+         * Product that is edited (or undefined if not editing or not a
+         * product edit task)
+         * @type {{}}
+         */
+        $ctrl.editProduct = undefined;
+
+        /**
          * Whether to show also the unavailable products
          * TODO: this is an object because we don't have controller-as so scopes get messed up *fuuu*
          * @type {boolean}
@@ -64,10 +71,12 @@
 
         $ctrl.closeEditOverlay = function() {
             $ctrl.editTask = undefined;
+            $ctrl.editProduct = undefined;
         };
 
-        $ctrl.startEditTask = function(property) {
+        $ctrl.startEditTask = function(property, product) {
             $ctrl.editTask = property;
+            $ctrl.editProduct = product;
         };
     }
 })();

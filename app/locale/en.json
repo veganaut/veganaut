@@ -232,6 +232,9 @@
             "5": "The vegan choice here is excellent."
           }
         },
+        "RateProduct": {
+          "title": "How do you rate this offer?"
+        },
         "TagLocation": {
           "title": "Which vegan offers of this location do you like?",
           "numSelected": "{{ num }} selected"
@@ -429,10 +432,6 @@
         "outcome": {
           "description": "Your evaluation:"
         }
-      },
-      "rateProduct": {
-        "title": "Your rating",
-        "description": "How do you rate this offer?"
       },
       "setProductName": {
         "title": "Edit name",

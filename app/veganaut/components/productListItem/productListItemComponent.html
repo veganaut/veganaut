@@ -33,7 +33,9 @@
       translate-value-rating="{{ vm.product.rating.average | number:2 }}"
       translate-value-num-ratings="{{ vm.product.rating.numRatings }}">
     </div>
-    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
+    <button type="button" class="btn-primary btn-small"
+     ng-click="vm.locationDetailsVm.startEditTask('RateProduct', vm.product)"
+     tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
         {{ 'product.' + vm.parentVm.location.type + '.rate' | translate }}
     </button>
 </div>
