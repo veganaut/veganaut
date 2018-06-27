@@ -290,9 +290,9 @@
       "noRatingExplanation": "La qualité et étendue de l'offre végane n'a pas encore été évaluée ici. Évalue-la maintenant!"
     },
     "tags": {
-      "explanation": "Les étiquettes montrent combien de gens aiment quelles offres véganes ici.",
-      "addEmptyState": "Erste Empfehlung hinzufügen",
-      "add": "Empfehlung hinzufügen"
+      "explanation": "Les tags indiquent ce que les gens aiment ici.",
+      "addEmptyState": "Ajouter des tags",
+      "add": "Ajouter des recommandations"
     },
     "website": {
       "missing": "Ajouter site web"
