@@ -341,7 +341,6 @@
     "mission": {
       "title": "Missionen",
       "totalPoints": "Total Punkte aus Missionen",
-      "showAllMissions": "Alle Editierfunktionen anzeigen",
       "missionForm": {
         "submit": "Fertig",
         "cancel": "Abbrechen"
@@ -456,13 +455,19 @@
     }
   },
   "product": {
+    "action": {
+      "showAllEditingOptions": "Alle Editierfunktionen anzeigen",
+      "editAvailability": "Verfügbarkeit ändern",
+      "editName": "Name bearbeiten"
+    },
     "rating": {
       "details": "Durchschnitt {{rating}} von {{numRatings}} Bewertungen.",
       "noRating": "Dieses Angebot wurde noch nicht bewertet."
     },
     "availability": {
-      "temporarilyUnavailable": "Dieses Angebot ist momentan nicht verfügbar.",
-      "unavailable": "Dieses Angebot ist nicht mehr verfügbar oder wurde fälschlicherweise eingegeben."
+      "always": "Dieses Angebot ist immer verfügbar.",
+      "sometimes": "Dieses Angebot ist nur manchmal oder vorübergehend verfügbar.",
+      "not": "Dieses Angebot ist nicht mehr verfügbar."
     },
     "gastronomy": {
       "moreProducts": "Und {{ numProducts }} weitere Gerichte/Getränke",

@@ -373,7 +373,7 @@
             /**
              * Get the products that should be displayed for this location
              * @param {boolean} [showUnavailable=false] Whether to also include unavailable products.
-             *      By default only available and temporarilyUnavailable products are shown.
+             *      By default only "always" and "sometimes" products are shown.
              * @returns {Product[]}
              */
             Location.prototype.getProducts = function(showUnavailable) {
@@ -384,7 +384,7 @@
                 if (showUnavailable) {
                     return this.products;
                 }
-                return this._getProductsByAvailability(['always', 'sometimes', 'daily', 'weekly', 'seasonal']);
+                return this._getProductsByAvailability(['always', 'sometimes']);
             };
 
             /**

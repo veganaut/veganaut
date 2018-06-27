@@ -10,11 +10,11 @@
     </h3>
     <ul ng-if="vm.location.getProducts().length > 0" class="vg-location-products__list">
         <li ng-if="!vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() | limitTo: vm.limit track by product.id"
-         class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
+         class="vg-location-products__list-item vg-location-products--availability-{{ product.availability }}">
             <vg-product-list-item vg-product="product"></vg-product-list-item>
         </li>
         <li ng-if="vm.isProductListExpanded" ng-repeat="product in vm.location.getProducts() track by product.id"
-         class="vg-location-products__list-item vg-location-products--{{ product.availability }}">
+         class="vg-location-products__list-item vg-location-products--availability-{{ product.availability }}">
             <vg-product-list-item vg-product="product"></vg-product-list-item>
         </li>
     </ul>

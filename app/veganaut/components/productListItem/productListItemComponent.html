@@ -1,39 +1,62 @@
 <button class="vg-product-list-item remove-btn"
- ng-class="{ 'is-edit-mode': vm.locationDetailsVm.editMode }"
- ng-disabled="vm.parentVm.isPreview"
- ng-click="vm.onExpandCollapseToggleClick()">
+ ng-class="{ 'is-edit-mode': $ctrl.locationDetailsVm.editMode }"
+ ng-disabled="$ctrl.parentVm.isPreview"
+ ng-click="$ctrl.onExpandCollapseToggleClick()">
     <div class="vg-product-list-item__container">
         <vg-average-rating
          class="vg-product-list-item__rating"
-         average="vm.product.rating.average"
-         num-ratings="vm.product.rating.numRatings">
+         average="$ctrl.product.rating.average"
+         num-ratings="$ctrl.product.rating.numRatings">
         </vg-average-rating>
         <p class="vg-product-list-item__product-name">
-            {{ vm.product.name }}
+            {{ $ctrl.product.name }}
         </p>
         <span class="vg-product-list-item__expand"
-         ng-if="!vm.parentVm.isPreview">
+         ng-if="!$ctrl.parentVm.isPreview">
             <vg-icon
-             ng-class="{'location-details-chevron--expanded': vm.isProductListExpanded}"
+             ng-class="{'location-details-chevron--expanded': $ctrl.isProductListExpanded}"
              class="location-details-chevron" vg-name="'chevron-big-down'">
             </vg-icon>
         </span>
         <span class="edit-icon"
-         ng-if="!vm.parentVm.isPreview && vm.locationDetailsVm.editMode">
+         ng-if="!$ctrl.parentVm.isPreview && $ctrl.locationDetailsVm.editMode">
             <vg-icon vg-name="'pen'"></vg-icon>
         </span>
     </div>
 </button>
-<div class="slider" ng-class="{'slider-closed': !vm.isProductListExpanded}">
-    <hr class="vg-product-list-item__separator">
-    <div class="average-rating text--small-note"
+<div class="vg-product-list-item__expanded-container"
+ ng-class="{'vg-product-list-item__expanded-container--closed': !$ctrl.isProductListExpanded}">
+    <div class="text--small-note">
+        {{ 'product.availability.' + $ctrl.product.availability | translate }}
+    </div>
+    <div class="text--small-note"
       translate="product.rating.details"
-      translate-value-rating="{{ vm.product.rating.average | number:2 }}"
-      translate-value-num-ratings="{{ vm.product.rating.numRatings }}">
+      translate-value-rating="{{ $ctrl.product.rating.average | number:2 }}"
+      translate-value-num-ratings="{{ $ctrl.product.rating.numRatings }}">
     </div>
     <button type="button" class="btn-primary btn-small"
-     ng-click="vm.locationDetailsVm.startTask('RateProduct', vm.product)"
-     tabindex="{{vm.isProductListExpanded ? 0 : -1}}">
-        {{ 'product.' + vm.parentVm.location.type + '.rate' | translate }}
+     ng-click="$ctrl.locationDetailsVm.startTask('RateProduct', $ctrl.product)"
+     tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
+        {{ 'product.' + $ctrl.parentVm.location.type + '.rate' | translate }}
     </button>
+    <div ng-if="$ctrl.isShowingAllEditingOptions()">
+        <button type="button" class="btn-primary btn-small"
+         ng-click="$ctrl.locationDetailsVm.startTask('SetProductAvailability', $ctrl.product)"
+         tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
+            {{ 'product.action.editAvailability' | translate }}
+        </button>
+        <br/>
+        <button type="button" class="btn-primary btn-small"
+         ng-click="$ctrl.locationDetailsVm.startTask('SetProductName', $ctrl.product)"
+         tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
+            {{ 'product.action.editName' | translate }}
+        </button>
+    </div>
+    <div class="vg-product-list-item__show-all-edit-options" ng-if="!$ctrl.isShowingAllEditingOptions()">
+        <button type="button" class="remove-btn"
+         ng-click="$ctrl.onShowAllEditingOptionsClick()"
+         tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
+            {{ 'product.action.showAllEditingOptions' | translate }}
+        </button>
+    </div>
 </div>

@@ -15,7 +15,6 @@
                 product: '<vgProduct'
             },
             controller: ProductListItemComponentController,
-            controllerAs: 'vm',
             templateUrl: 'veganaut/components/productListItem/productListItemComponent.html'
         };
 
@@ -23,12 +22,27 @@
     }
 
     function ProductListItemComponentController() {
-        var vm = this;
+        var $ctrl = this;
 
-        vm.isProductListExpanded = false;
+        var showAllEditingOptions = false;
 
-        vm.onExpandCollapseToggleClick = function() {
-            vm.isProductListExpanded = !vm.isProductListExpanded;
+        $ctrl.isProductListExpanded = false;
+
+        $ctrl.onExpandCollapseToggleClick = function() {
+            $ctrl.isProductListExpanded = !$ctrl.isProductListExpanded;
+
+            // When collapsing, hide the editing options again
+            if (!$ctrl.isProductListExpanded) {
+                showAllEditingOptions = false;
+            }
+        };
+
+        $ctrl.onShowAllEditingOptionsClick = function() {
+            showAllEditingOptions = true;
+        };
+
+        $ctrl.isShowingAllEditingOptions = function() {
+            return (showAllEditingOptions || ($ctrl.locationDetailsVm && $ctrl.locationDetailsVm.editMode));
         };
     }
 })();

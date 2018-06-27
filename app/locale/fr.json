@@ -341,7 +341,6 @@
     "mission": {
       "title": "Missions",
       "totalPoints": "Points totaux des missions",
-      "showAllMissions": "Afficher toutes les modifications possibles",
       "missionForm": {
         "submit": "Accomplie",
         "cancel": "Annuler"
@@ -456,13 +455,19 @@
     }
   },
   "product": {
+    "action": {
+      "showAllEditingOptions": "Afficher toutes les modifications possibles",
+      "editAvailability": "Change availability",
+      "editName": "Modifier le nom"
+    },
     "rating": {
       "details": "Moyenne de {{rating}} de {{numRatings}} évaluations.",
       "noRating": "Cette option n'a pas encore été évaluée."
     },
     "availability": {
-      "temporarilyUnavailable": "Cette option n'est pas disponible en ce moment.",
-      "unavailable": "Cette option n'est plus disponible ou a été enregistrée par erreur."
+      "always": "Cette option est toujour disponsible.",
+      "sometimes": "Cette option n'est pas toujour disponible.",
+      "not": "Cette option n'est plus disponible."
     },
     "gastronomy": {
       "moreProducts": "et {{ numProducts }} autres plats/boissons",
