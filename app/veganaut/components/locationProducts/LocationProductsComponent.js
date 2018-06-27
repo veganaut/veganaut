@@ -30,8 +30,15 @@
 
         vm.isProductListExpanded = false;
 
+        vm.showNotAvailableProducts = false;
+
         vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;
+
+            // Hide the not available products again when collapsing
+            if (vm.isProductListExpanded === false) {
+                vm.showNotAvailableProducts = false;
+            }
         };
     }
 })();
