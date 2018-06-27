@@ -222,11 +222,11 @@
           "placeholder": "Short description of this location, e.g. opening hours or ambience."
         },
         "SetLocationProductListComplete": {
-          "title": "Ist die Liste der veganen Angebote komplett?",
+          "title": "Is the list of vegan offers complete?",
           "completeness": {
-            "complete": "Ja, ist komplett",
-            "incompleteGoodSummary": "Nein, aber eine gute Zusammenfassung und daher ausreichend",
-            "incomplete": "Nein, da fehlt noch was"
+            "complete": "Yes, it's complete.",
+            "incompleteGoodSummary": "No, but it's a good summary of the offer here.",
+            "incomplete": "No, and it's not a good summary either."
           }
         },
         "SetLocationWebsite": {
@@ -272,10 +272,10 @@
     "products": {
       "title": "Vegan offer",
       "listCompleteness": {
-        "": "List completeness is not known.",
-        "complete": "List is complete.",
-        "incompleteGoodSummary": "Lists is incomplete but good summary.",
-        "incomplete": "List is incomplete."
+        "": "List complete? - Switch to edit-mode and tell us!",
+        "complete": "List complete? - Yes! (At least it was once.)",
+        "incompleteGoodSummary": "List complete? - No, but a good summary.",
+        "incomplete": "List complete? - No, not yet."
       },
       "showUnavailableProducts": "Show unavailable products"
     },
