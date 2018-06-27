@@ -84,6 +84,26 @@
                  ng-disabled="$ctrl.isSaving"
                 />
 
+                <div class="choose-wrapper"
+                 ng-switch-when="SetProductAvailability">
+                    <div ng-repeat="state in $ctrl.task.possibleAnswers">
+                        <button class="btn btn-choose"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.task.inputModel"
+                         uib-btn-radio="state">
+                            {{ 'location.form.edit.SetProductAvailability.availability.' + state | translate }}
+                        </button>
+                    </div>
+                </div>
+
+                <input type="text" id="location-edit-input-field"
+                 class="vg-form__input"
+                 ng-switch-when="SetProductName"
+                 placeholder="{{ 'location.form.edit.SetProductName.placeholder' | translate }}"
+                 ng-model="$ctrl.task.inputModel"
+                 ng-disabled="$ctrl.isSaving"
+                />
+
                 <div ng-switch-when="RateLocationQuality">
                     <div class="plant-tooltip"
                      ng-if="$ctrl.task.inputModel"

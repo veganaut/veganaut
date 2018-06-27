@@ -388,52 +388,29 @@
     SetLocationProductListCompleteTask.prototype = Object.create(Task.prototype);
     SetLocationProductListCompleteTask.prototype.constructor = SetLocationProductListCompleteTask;
 
-    // SetProductNameMission //////////////////////////////////////////////////
-    // TODO: there should be a way to just confirm the current name
-    function SetProductNameMission(location, lastCompletedDate, lastCompletedOutcome, product) {
-        var productName = product.name;
-        Task.call(this, 'setProductName', productName, location, lastCompletedDate, lastCompletedOutcome, product);
+    // SetProductNameTask /////////////////////////////////////////////////////
+    function SetProductNameTask(location, lastCompletedDate, lastCompletedOutcome, product) {
+        // TODO: don't reload the whole location? (although: careful with sorting of products)
+        Task.call(this, 'SetProductName', true, 'message.locationTaskEdit.success', 'name', undefined,
+            product.name, location, lastCompletedDate, lastCompletedOutcome, product)
+        ;
     }
 
-    SetProductNameMission.prototype = Object.create(Task.prototype);
-    SetProductNameMission.prototype.constructor = SetProductNameMission;
+    SetProductNameTask.prototype = Object.create(Task.prototype);
+    SetProductNameTask.prototype.constructor = SetProductNameTask;
 
-    SetProductNameMission.prototype.getOutcome = function() {
-        if (this.completed) {
-            return this._finalOutcome;
-        }
-        var outcome;
-        if (typeof this.inputModel === 'string' && this.inputModel.length > 0 && this.inputModel !== this.product.name) {
-            outcome = {
-                product: this.product.id,
-                info: this.inputModel
-            };
-        }
-        return outcome;
-    };
+    // SetProductAvailabilityTask /////////////////////////////////////////////
+    function SetProductAvailabilityTask(location, lastCompletedDate, lastCompletedOutcome, product) {
+        // TODO: don't reload the whole location? (although: careful with sorting of products)
+        Task.call(this, 'SetProductAvailability', true, 'message.locationTaskEdit.success', 'availability', undefined,
+            product.availability, location, lastCompletedDate, lastCompletedOutcome, product)
+        ;
 
-    // SetProductAvailMission /////////////////////////////////////////////////
-    function SetProductAvailMission(location, lastCompletedDate, lastCompletedOutcome, product) {
-        Task.call(this, 'setProductAvail', undefined, location, lastCompletedDate, lastCompletedOutcome, product);
-        this.possibleAnswers = ['available', 'temporarilyUnavailable', 'unavailable'];
+        this.possibleAnswers = ['always', 'sometimes', 'not'];
     }
 
-    SetProductAvailMission.prototype = Object.create(Task.prototype);
-    SetProductAvailMission.prototype.constructor = SetProductAvailMission;
-
-    SetProductAvailMission.prototype.getOutcome = function() {
-        if (this.completed) {
-            return this._finalOutcome;
-        }
-        var outcome;
-        if (typeof this.inputModel === 'string' && this.possibleAnswers.indexOf(this.inputModel) > -1) {
-            outcome = {
-                product: this.product.id,
-                info: this.inputModel
-            };
-        }
-        return outcome;
-    };
+    SetProductAvailabilityTask.prototype = Object.create(Task.prototype);
+    SetProductAvailabilityTask.prototype.constructor = SetProductAvailabilityTask;
 
     // RateLocationQualityTask //////////////////////////////////////////////////////
     function RateLocationQualityTask(location, lastCompletedDate, lastCompletedOutcome) {
@@ -561,8 +538,8 @@
         SetLocationDescription: SetLocationDescriptionTask,
         SetLocationWebsite: SetLocationWebsiteTask,
         SetLocationProductListComplete: SetLocationProductListCompleteTask,
-        setProductName: SetProductNameMission, // TODO WIP
-        setProductAvail: SetProductAvailMission, // TODO WIP
+        SetProductName: SetProductNameTask,
+        SetProductAvailability: SetProductAvailabilityTask,
         RateLocationQuality: RateLocationQualityTask,
         TagLocation: TagLocationTask
     });

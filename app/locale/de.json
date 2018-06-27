@@ -228,14 +228,26 @@
         "SetLocationProductListComplete": {
           "title": "Ist die Liste der veganen Angebote komplett?",
           "completeness": {
-            "complete": "Ja, ist komplett.",
-            "incompleteGoodSummary": "Nein, aber eine gute Zusammenfassung des Angebots hier.",
-            "incomplete": "Nein, und auch keine gute Zusammenfassung."
+            "complete": "Ja, ist komplett",
+            "incompleteGoodSummary": "Nein, aber eine gute Zusammenfassung des Angebots hier",
+            "incomplete": "Nein, und auch keine gute Zusammenfassung"
           }
         },
         "SetLocationWebsite": {
           "title": "Webseite",
           "placeholder": "Die Webseite dieser Location, z.B. http://beispiel.ch"
+        },
+        "SetProductAvailability": {
+          "title": "Verfügbarkeit des Angebotes",
+          "availability": {
+            "always": "Immer verfügbar",
+            "sometimes": "Manchmal oder vorübergehend verfügbar",
+            "not": "Nicht (mehr) verfügbar"
+          }
+        },
+        "SetProductName": {
+          "title": "Name des Angebots",
+          "placeholder": "Name oder kurze Beschreibung"
         },
         "RateLocationQuality": {
           "title": "Bewerte die vegane Auswahl dieser Location",
@@ -437,19 +449,6 @@
         "explanation": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.",
         "outcome": {
           "description": "Dein Urteil:"
-        }
-      },
-      "setProductName": {
-        "title": "Edit name",
-        "description": "Correct or improve the name."
-      },
-      "setProductAvail": {
-        "title": "Verfügbarkeit",
-        "description": "Ist dieses Angebot verfügbar?",
-        "outcome": {
-          "available": "Ja",
-          "temporarilyUnavailable": "Momentan nicht",
-          "unavailable": "Nein"
         }
       }
     }

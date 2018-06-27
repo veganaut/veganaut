@@ -228,14 +228,26 @@
         "SetLocationProductListComplete": {
           "title": "La liste des offres véganes est-elle complète?",
           "completeness": {
-            "complete": "Oui, elle est complète.",
-            "incompleteGoodSummary": "Non, mais elle est un bon résumé de l'offre ici.",
-            "incomplete": "Non, et elle n'est pas un bon résumé non plus."
+            "complete": "Oui, elle est complète",
+            "incompleteGoodSummary": "Non, mais elle est un bon résumé de l'offre ici",
+            "incomplete": "Non, et elle n'est pas un bon résumé non plus"
           }
         },
         "SetLocationWebsite": {
           "title": "Site web",
           "placeholder": "Le site web de cet endroit, p. ex. http://example.com"
+        },
+        "SetProductAvailability": {
+          "title": "Disponibilité de l'offre",
+          "availability": {
+            "always": "Immer verfügbar",
+            "sometimes": "Manchmal oder vorübergehend verfügbar",
+            "not": "Nicht (mehr) verfügbar"
+          }
+        },
+        "SetProductName": {
+          "title": "Nom de l'offre",
+          "placeholder": "Name or short description"
         },
         "RateLocationQuality": {
           "title": "Evalue le choix végan à cet endroit",
@@ -437,19 +449,6 @@
         "explanation": "Les véganautes veulent avoir le choix entre beaucoup d'options véganes. À quelques endroits il n'y a pas ou presque pas d'options véganes ou les options véganes ne sont pas convaincantes encore. À d'autres endroits il y a déjà deux ou trois options véganes dont une ou deux sont satisfaisantes. D'autres endroits offrent pas mal d'options véganes dont plusieurs sont excellentes. Et finalement, il y a des endroits où l'offre végane est énorme et toutes les options sont fantastiques.",
         "outcome": {
           "description": "Ton évaluation:"
-        }
-      },
-      "setProductName": {
-        "title": "Modifier le nom",
-        "description": "Corriger ou améliorer le nom"
-      },
-      "setProductAvail": {
-        "title": "Disponibilité",
-        "description": "Cette option est-elle disponible?",
-        "outcome": {
-          "available": "Oui",
-          "temporarilyUnavailable": "Pas en ce moment",
-          "unavailable": "Non"
         }
       }
     }

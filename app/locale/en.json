@@ -228,14 +228,26 @@
         "SetLocationProductListComplete": {
           "title": "Is the list of vegan offers complete?",
           "completeness": {
-            "complete": "Yes, it's complete.",
-            "incompleteGoodSummary": "No, but it's a good summary of the offer here.",
-            "incomplete": "No, and it's not a good summary either."
+            "complete": "Yes, it's complete",
+            "incompleteGoodSummary": "No, but it's a good summary of the offer here",
+            "incomplete": "No, and it's not a good summary either"
           }
         },
         "SetLocationWebsite": {
           "title": "Website",
           "placeholder": "This location's website, e.g. http://example.com"
+        },
+        "SetProductAvailability": {
+          "title": "Availability of the offer",
+          "availability": {
+            "always": "Immer verfügbar",
+            "sometimes": "Manchmal oder vorübergehend verfügbar",
+            "not": "Nicht (mehr) verfügbar"
+          }
+        },
+        "SetProductName": {
+          "title": "Name of the offer",
+          "placeholder": "Name or short description"
         },
         "RateLocationQuality": {
           "title": "Rate the vegan choice at this location!",
@@ -437,19 +449,6 @@
         "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
         "outcome": {
           "description": "Your evaluation:"
-        }
-      },
-      "setProductName": {
-        "title": "Edit name",
-        "description": "Correct or improve the name."
-      },
-      "setProductAvail": {
-        "title": "Availability",
-        "description": "Is this product available?",
-        "outcome": {
-          "available": "Yes",
-          "temporarilyUnavailable": "Currently not",
-          "unavailable": "No"
         }
       }
     }
