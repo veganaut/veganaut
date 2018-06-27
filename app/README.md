@@ -3,7 +3,7 @@
 *This README is not (yet) explaining all the app architecture decisions.*
 
 ## Categorization
-The app lists two **groups** of items, *locations* and *products*.
+The app lists two **granularity** of items, *locations* and *products*.
 
 All these items can be of **type** *gastronomy* or *retail*.
 

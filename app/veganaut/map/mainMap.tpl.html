@@ -76,8 +76,8 @@
 
     <div id="mainMap" class="main-map"
      ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation(),
-     'map--group-location': mainMapVm.locationSet.locationGroup === 'location',
-     'map--group-product': mainMapVm.locationSet.locationGroup === 'product'}">
+     'map--granularity-location': mainMapVm.locationSet.granularity === 'location',
+     'map--granularity-product': mainMapVm.locationSet.granularity === 'product'}">
     </div>
 
     <vg-map-markers

@@ -76,7 +76,7 @@ describe('areaList.', function() {
             .andReturn(false);
         locationFilterService.getTypeFilterValue = jasmine.createSpy('locationFilterService.getTypeFilterValue')
             .andReturn('gastronomy');
-        locationFilterService.getGroupFilterValue = jasmine.createSpy('locationFilterService.getGroupFilterValue')
+        locationFilterService.getGranularityFilterValue = jasmine.createSpy('locationFilterService.getGranularityFilterValue')
             .andReturn('location');
 
         deferredQuery = $q.defer();

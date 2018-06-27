@@ -16,7 +16,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             this.activeFilters = {
                 recent: this.INACTIVE_FILTER_VALUE.recent,
                 type: this.INACTIVE_FILTER_VALUE.type,
-                group: this.INACTIVE_FILTER_VALUE.group,
+                granularity: this.INACTIVE_FILTER_VALUE.granularity,
                 sortBy: this.INACTIVE_FILTER_VALUE.sortBy
             };
         };
@@ -28,12 +28,12 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
             type: 'anytype',
-            group: 'anygroup',
+            granularity: 'anygranularity',
             sortBy: 'none'
         };
 
         /**
-         * Categories based on type and group.
+         * Categories based on type and granularity.
          * @type {{gastronomy: {location: string, product: string}, retail: {location: string, product: string}}}
          */
         LocationFilterService.prototype.CATEGORIES = {
@@ -63,8 +63,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'gastronomy',
                 'retail'
             ],
-            group: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.group,
+            granularity: [
+                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.granularity,
                 'location',
                 'product'
             ],
@@ -111,26 +111,26 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns the group filter value or undefined if that filter is not active.
+         * Returns the granularity filter value or undefined if that filter is not active.
          * @returns {string|undefined}
          */
-        LocationFilterService.prototype.getGroupFilterValue = function() {
-            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group) {
-                return this.activeFilters.group;
+        LocationFilterService.prototype.getGranularityFilterValue = function() {
+            if (this.activeFilters.granularity !== this.INACTIVE_FILTER_VALUE.granularity) {
+                return this.activeFilters.granularity;
             }
             return undefined;
         };
 
         /**
-         * Returns the category based on the active type and group
+         * Returns the category based on the active type and granularity
          * @return {string|undefined}
          */
         LocationFilterService.prototype.getCategoryValue = function() {
-            if (this.routeHasGroupFilter() &&
+            if (this.routeHasGranularityFilter() &&
                 this.routeHasTypeFilter() &&
                 this.CATEGORIES[this.activeFilters.type])
             {
-                return this.CATEGORIES[this.activeFilters.type][this.activeFilters.group];
+                return this.CATEGORIES[this.activeFilters.type][this.activeFilters.granularity];
             }
             else {
                 return undefined;
@@ -171,13 +171,13 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns whether the current route uses the group filter
+         * Returns whether the current route uses the granularity filter
          * @returns {boolean}
          */
-        LocationFilterService.prototype.routeHasGroupFilter = function() {
+        LocationFilterService.prototype.routeHasGranularityFilter = function() {
             return (
                 angular.isObject($route.current.vgFilters) &&
-                $route.current.vgFilters.group === true
+                $route.current.vgFilters.granularity === true
             );
         };
 
@@ -205,7 +205,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             // We do not count `sortBy` as an active filter because it is not an actual filter.
-            // Neither do we consider type & group a filter (otherwise there would always be an active filter)
+            // Neither do we consider type & granularity a filter (otherwise there would always be an active filter)
 
             return active;
         };
@@ -236,16 +236,16 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 this.activeFilters.type = typeFilter;
             }
 
-            if ($routeParams.group) {
+            if ($routeParams.granularity) {
                 // By default set the inactive value (if invalid value was given)
-                var groupFilter = this.INACTIVE_FILTER_VALUE.group;
-                if (this.POSSIBLE_FILTERS.group.indexOf($routeParams.group) >= 0) {
-                    // Found valid location group filter
-                    groupFilter = $routeParams.group;
+                var granularityFilter = this.INACTIVE_FILTER_VALUE.granularity;
+                if (this.POSSIBLE_FILTERS.granularity.indexOf($routeParams.granularity) >= 0) {
+                    // Found valid location granularity filter
+                    granularityFilter = $routeParams.granularity;
                 }
 
                 // Set the new value
-                this.activeFilters.group = groupFilter;
+                this.activeFilters.granularity = granularityFilter;
             }
 
             if ($routeParams.recent) {
@@ -300,11 +300,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 typeFilter = this.activeFilters.type;
             }
 
-            var groupFilter;
-            if (this.activeFilters.group !== this.INACTIVE_FILTER_VALUE.group &&
-                this.routeHasGroupFilter())
+            var granularityFilter;
+            if (this.activeFilters.granularity !== this.INACTIVE_FILTER_VALUE.granularity &&
+                this.routeHasGranularityFilter())
             {
-                groupFilter = this.activeFilters.group;
+                granularityFilter = this.activeFilters.granularity;
             }
 
             var sortByValue;
@@ -319,7 +319,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             $location.replace();
             $location.search('recent', recentFilter);
             $location.search('type', typeFilter);
-            $location.search('group', groupFilter);
+            $location.search('granularity', granularityFilter);
             $location.search('sortBy', sortByValue);
         };
 

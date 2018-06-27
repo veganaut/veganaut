@@ -67,7 +67,7 @@
                 vgRouteName: 'map',
                 vgFilters: {
                     type: true,
-                    group: true,
+                    granularity: true,
                     recent: true
                 },
                 template: '<vg-main-map></vg-main-map>',
@@ -81,7 +81,7 @@
                 vgRouteName: 'list',
                 vgFilters: {
                     type: true,
-                    group: true,
+                    granularity: true,
                     recent: true,
                     sortBy: true
                 },
@@ -119,7 +119,7 @@
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
             $routeProvider.when('/products', {
-                redirectTo: '/list/?group=product' // product list is now in the list page. TODO: This could be removed at some point
+                redirectTo: '/list/?granularity=product' // product list is now in the list page. TODO: This could be removed at some point
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',

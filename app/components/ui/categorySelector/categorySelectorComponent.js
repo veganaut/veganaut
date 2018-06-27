@@ -29,7 +29,7 @@
             'retail'
         ];
 
-        $ctrl.groupFilters = [
+        $ctrl.granularityFilters = [
             'location',
             'product'
         ];
@@ -41,16 +41,16 @@
 
         $ctrl.$onInit = function() {
             if ($ctrl.typeFilters.indexOf(locationFilterService.getTypeFilterValue()) === -1 ||
-                $ctrl.groupFilters.indexOf(locationFilterService.getGroupFilterValue()) === -1) {
-                // If no type or group set, switch to restaurant by default
+                $ctrl.granularityFilters.indexOf(locationFilterService.getGranularityFilterValue()) === -1) {
+                // If no type or granularity set, switch to restaurant by default
                 $ctrl.setFilter('gastronomy', 'location');
                 // This makes the component to be loaded twice. TODO: Find a better way to do it.
             }
         };
 
-        $ctrl.setFilter = function(type, group) {
+        $ctrl.setFilter = function(type, granularity) {
             locationFilterService.activeFilters.type = type;
-            locationFilterService.activeFilters.group = group;
+            locationFilterService.activeFilters.granularity = granularity;
             locationFilterService.onFiltersChanged();
         };
     }

@@ -120,10 +120,10 @@
             };
 
             $ctrl.onItemClick = function(item) {
-                if (locationFilterService.getGroupFilterValue() === 'location') {
+                if (locationFilterService.getGranularityFilterValue() === 'location') {
                     $ctrl.locationSet.activate(item);
                 }
-                else if (locationFilterService.getGroupFilterValue() === 'product') {
+                else if (locationFilterService.getGranularityFilterValue() === 'product') {
                     // Create an empty location that will then be loaded then it's activated
                     var loc = new Location({id: item.location});
                     loc.setShownProduct(item);
@@ -131,12 +131,12 @@
                 }
             };
 
-            $ctrl.isLocationGroup = function() {
-                return locationFilterService.getGroupFilterValue() === 'location';
+            $ctrl.isLocationGranularity = function() {
+                return locationFilterService.getGranularityFilterValue() === 'location';
             };
 
-            $ctrl.isProductGroup = function() {
-                return locationFilterService.getGroupFilterValue() === 'product';
+            $ctrl.isProductGranularity = function() {
+                return locationFilterService.getGranularityFilterValue() === 'product';
             };
 
             /**

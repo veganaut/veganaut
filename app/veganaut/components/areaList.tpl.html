@@ -35,13 +35,13 @@
     <div ng-if="$ctrl.list.length > 0">
         <div class="vg-list-body">
             <button class="vg-list-item"
-             ng-class="{'vg-list-item--location': $ctrl.isLocationGroup(), 'vg-list-item--product': $ctrl.isProductGroup()}"
+             ng-class="{'vg-list-item--location': $ctrl.isLocationGranularity(), 'vg-list-item--product': $ctrl.isProductGranularity()}"
              ng-repeat="item in $ctrl.list track by item.id"
              ng-click="$ctrl.onItemClick(item)">
-                <div class="vg-list-item__vegan-level" ng-if="$ctrl.isLocationGroup()">
+                <div class="vg-list-item__vegan-level" ng-if="$ctrl.isLocationGranularity()">
                     <vg-location-quality-icon location="item"></vg-location-quality-icon>
                 </div>
-                <div class="vg-list-item__rating" ng-if="$ctrl.isProductGroup()">
+                <div class="vg-list-item__rating" ng-if="$ctrl.isProductGranularity()">
                     <vg-average-rating
                      average="item.rating.average"
                      num-ratings="item.rating.numRatings">

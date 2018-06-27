@@ -191,7 +191,7 @@
              */
             Location.prototype._getProminence = function() {
                 var prominence;
-                if (locationFilterService.getGroupFilterValue() === 'product') {
+                if (locationFilterService.getGranularityFilterValue() === 'product') {
                     prominence = this.topProductRank;
                 }
                 else {

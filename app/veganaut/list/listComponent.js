@@ -30,13 +30,13 @@
 
         $ctrl.onOpenToggle = function() {
             // Only need to do something when showing locations
-            if (locationFilterService.getGroupFilterValue() === 'location') {
+            if (locationFilterService.getGranularityFilterValue() === 'location') {
                 locationService.loadFullLocation();
             }
         };
 
         $ctrl.onLoadItems = function(lat, lng, radius, limit, skip, addressType) {
-            switch (locationFilterService.getGroupFilterValue()) {
+            switch (locationFilterService.getGranularityFilterValue()) {
             case 'location':
                 return locationService
                     .getLocationsByRadius(lat, lng, radius, limit, skip, addressType)

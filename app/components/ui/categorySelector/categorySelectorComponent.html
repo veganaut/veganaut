@@ -4,12 +4,12 @@
      ng-class="{'vg-category-selector-type--active':
      type.indexOf($ctrl.locationFilterService.getTypeFilterValue()) !== -1}">
         <a href="" class="vg-category-selector-item"
-         ng-repeat-start="group in $ctrl.groupFilters"
-         ng-click="$ctrl.setFilter(type, group)"
+         ng-repeat-start="granularity in $ctrl.granularityFilters"
+         ng-click="$ctrl.setFilter(type, granularity)"
          ng-class="{'vg-category-selector-item--active':
           $ctrl.locationFilterService.getTypeFilterValue() === type &&
-          $ctrl.locationFilterService.getGroupFilterValue() === group}">
-            {{ 'lists.' + $ctrl.categories[type][group] + '.name' | translate }}
+          $ctrl.locationFilterService.getGranularityFilterValue() === granularity}">
+            {{ 'lists.' + $ctrl.categories[type][granularity] + '.name' | translate }}
         </a>
         <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
     </div>

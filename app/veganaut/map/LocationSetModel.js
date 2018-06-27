@@ -47,10 +47,10 @@ angular.module('veganaut.app.map').factory('LocationSet', [
             this.totalLocations = 0;
 
             /**
-             * Group that is shown (location/product/undefined(=both))
+             * Granularity at which to show this set (location/product/undefined(=both))
              * @type {string}
              */
-            this.locationGroup = undefined;
+            this.granularity = undefined;
         }
 
         /**
@@ -188,13 +188,13 @@ angular.module('veganaut.app.map').factory('LocationSet', [
         /**
          * Updates this set with the given new data
          * @param {{}} newData Raw location data from the backend (clusters and locations)
-         * @param {string} locationGroup Location group this data is for
+         * @param {string} granularity Granularity at which to show this data
          */
-        LocationSet.prototype.updateSet = function(newData, locationGroup) {
+        LocationSet.prototype.updateSet = function(newData, granularity) {
             var that = this;
 
-            // Store the group
-            that.locationGroup = locationGroup;
+            // Store the granularity
+            that.granularity = granularity;
 
             // Store the total locations in the set
             that.totalLocations = newData.totalLocations;
