@@ -171,7 +171,7 @@
     "and": "und",
     "numPeople": "{{ count }} Veganaut*innen",
     "numOtherPeople": "{{ count }} andere Veganaut*innen",
-    "totalPeople": "VeganautInnen"
+    "totalPeople": "Veganaut*innen"
   },
   "location": {
     "edit": "Location bearbeiten",
@@ -224,9 +224,9 @@
         "SetLocationProductListComplete": {
           "title": "Ist die Liste der veganen Angebote komplett?",
           "completeness": {
-            "complete": "Ja, ist komplett",
-            "incompleteGoodSummary": "Nein, aber eine gute Zusammenfassung und daher ausreichend",
-            "incomplete": "Nein, da fehlt noch was"
+            "complete": "Ja, ist komplett.",
+            "incompleteGoodSummary": "Nein, aber eine gute Zusammenfassung des Angebots hier.",
+            "incomplete": "Nein, und auch keine gute Zusammenfassung."
           }
         },
         "SetLocationWebsite": {
@@ -272,10 +272,10 @@
     "products": {
       "title": "Veganes Angebot",
       "listCompleteness": {
-        "": "List completeness is not known.",
-        "complete": "List is complete.",
-        "incompleteGoodSummary": "Lists is incomplete but good summary.",
-        "incomplete": "List is incomplete."
+        "": "Liste komplett? - Im Edit-Modus kannst du es angeben!",
+        "complete": "Liste komplett? - Ja! (Jedenfalls war sie's mal.)",
+        "incompleteGoodSummary": "Liste komplett? - Nein, aber gute Zusammenfassung.",
+        "incomplete": "Liste komplett? - Nein, noch nicht."
       },
       "showUnavailableProducts": "Zeige nicht verfügbare Produkte"
     },
@@ -288,7 +288,7 @@
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
     },
     "tags": {
-      "explanation": "Die Tags zeigen, welche veganen Angebote dieser Location wie vielen Leuten gefallen.",
+      "explanation": "Je prominenter die Kategorie, desto mehr Leuten empfehlen dieses Angebot hier.",
       "addEmptyState": "Erste Empfehlung hinzufügen",
       "add": "Empfehlung hinzufügen"
     },
