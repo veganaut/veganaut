@@ -20,10 +20,10 @@
     }
 
     LocationDetailsComponentController.$inject = [
-        'pageTitleService'
+        '$location', 'pageTitleService'
     ];
 
-    function LocationDetailsComponentController(pageTitleService) {
+    function LocationDetailsComponentController($location, pageTitleService) {
         var $ctrl = this;
 
         // TODO WIP: handle location not found nicely
@@ -77,6 +77,16 @@
         $ctrl.startTask = function(property, product) {
             $ctrl.editTask = property;
             $ctrl.editProduct = product;
+        };
+
+        $ctrl.mapClickHandler = function() {
+            if ($ctrl.editMode) {
+                $ctrl.startTask('SetLocationCoordinates');
+            }
+            else {
+                // TODO WIP: show the map around the location
+                $location.url('/map/');
+            }
         };
     }
 })();

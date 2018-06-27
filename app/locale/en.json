@@ -217,6 +217,10 @@
             "retail": "Shop, supermarket or the like"
           }
         },
+        "SetLocationCoordinates": {
+          "title": "Change coordinates",
+          "description": "Click in the map below to select the new location."
+        },
         "SetLocationDescription": {
           "title": "Description",
           "placeholder": "Short description of this location, e.g. opening hours or ambience."
@@ -250,9 +254,7 @@
         "TagLocation": {
           "title": "Which vegan offers of this location do you like?",
           "numSelected": "{{ num }} selected"
-        },
-        "selectCoordinates": "Click in the map below to select the new location",
-        "changeCoordinates": "Change coordinates"
+        }
       }
     },
     "updatedAt": "Last update",

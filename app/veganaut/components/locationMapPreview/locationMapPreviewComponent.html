@@ -1,18 +1,19 @@
-<a ng-click="vm.mapClickHandler()">
+<a ng-click="$ctrl.mapClickHandler()">
     <p class="vg-location-map-preview__address">
         <vg-icon vg-name="'location'" class="vg-location-details_icon"></vg-icon>
-        {{ vm.location.address.street }} {{ vm.location.address.house }},
-        {{ vm.location.address.postcode }} {{ vm.location.address.city }}
-        <button class="oval-edit-btn" ng-click="" ng-if="vm.parent.editMode">
+        {{ $ctrl.location.address.street }} {{ $ctrl.location.address.house }},
+        {{ $ctrl.location.address.postcode }} {{ $ctrl.location.address.city }}
+        <button class="oval-edit-btn" ng-click="" ng-if="$ctrl.parent.editMode">
             <vg-icon vg-name="'pen'"></vg-icon>
         </button>
     </p>
-    <leaflet class="vg-location-map-preview__map vg-location-map-preview__map--highlight-marker" ng-if="vm.showMap" defaults="vm.mapDefaults" lf-center="vm.center">
+    <leaflet class="vg-location-map-preview__map vg-location-map-preview__map--highlight-marker"
+     ng-if="$ctrl.showMap" defaults="$ctrl.mapDefaults" lf-center="$ctrl.center">
     </leaflet>
 </a>
 <vg-map-markers
- ng-if="vm.map && vm.location"
- vg-location-items="[vm.location]"
- vg-map="vm.map"
+ ng-if="$ctrl.map && $ctrl.location"
+ vg-location-items="[$ctrl.location]"
+ vg-map="$ctrl.map"
  class="vg-location-map-preview__markers">
 </vg-map-markers>

@@ -148,7 +148,6 @@
                 // Compose the icon class name
                 return 'marker' +
                     ' marker--type-' + this.type +
-                    ' marker--group-' + locationFilterService.getGroupFilterValue() +
                     ' marker--prominence-' + Math.round(this._getProminence()) +
                     (this._disabled ? ' marker--disabled' : ' marker--enabled') +
                     (this._active ? ' marker--active' : '') +

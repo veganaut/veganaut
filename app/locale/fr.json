@@ -217,6 +217,10 @@
             "retail": "Magasin, supermarché ou similaire"
           }
         },
+        "SetLocationCoordinates": {
+          "title": "Changer les coordonnées",
+          "description": "Clique sur la carte pour placer le cercle là où se trouve cet endroit."
+        },
         "SetLocationDescription": {
           "title": "Description",
           "placeholder": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance."
@@ -250,9 +254,7 @@
         "TagLocation": {
           "title": "Quelles offres véganes de cet endroit est-ce que tu aimes?",
           "numSelected": "{{ num }} sélectionnées"
-        },
-        "selectCoordinates": "Clique sur la carte pour placer le cercle là où se trouve cet endroit.",
-        "changeCoordinates": "Changer les coordonnées"
+        }
       }
     },
     "updatedAt": "Dernière mise à jour",

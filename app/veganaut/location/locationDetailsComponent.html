@@ -5,7 +5,7 @@ DONE: AddProduct
 DONE: SetLocationName
 DONE: SetLocationType
 DONE: SetLocationDescription
-TODO WIP: SetLocationCoordinates
+DONE: SetLocationCoordinates
 DONE: SetLocationWebsite
 DONE: SetLocationProductListComplete
 TODO WIP: SetLocationExistence
@@ -95,7 +95,7 @@ TODO WIP: BuyProduct
     </vg-location-tasks>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">
-    <vg-location-map-preview vg-location="$ctrl.location" vg-on-click="$root.goToView('/map/')">
+    <vg-location-map-preview vg-location="$ctrl.location" vg-on-click="$ctrl.mapClickHandler()">
     </vg-location-map-preview>
 </vg-card>
 <vg-card class="vg-location-details__card">

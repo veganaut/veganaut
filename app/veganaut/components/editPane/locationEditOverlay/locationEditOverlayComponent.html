@@ -19,6 +19,13 @@
                     </vg-list-input>
                 </div>
 
+                <vg-location-edit-coordinates
+                 vg-location="$ctrl.location"
+                 ng-switch-when="SetLocationCoordinates"
+                 vg-form="editLocationForm"
+                 vg-input-model="$ctrl.task.inputModel">
+                </vg-location-edit-coordinates>
+
                 <input type="text" id="location-edit-input-field"
                  class="vg-form__input"
                  ng-switch-when="SetLocationName"

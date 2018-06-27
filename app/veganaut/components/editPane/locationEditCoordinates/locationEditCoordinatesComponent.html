@@ -1,0 +1,8 @@
+<leaflet class="location-detail-map map--placing-location" id="editCoordinatesMap"
+ defaults="$ctrl.mapDefaults" lf-center="$ctrl.center">
+</leaflet>
+<vg-map-markers
+ ng-if="$ctrl.map && $ctrl.showMap"
+ vg-location-items="[$ctrl.editLocation]"
+ vg-map="$ctrl.map">
+</vg-map-markers>

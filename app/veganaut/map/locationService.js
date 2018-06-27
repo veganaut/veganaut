@@ -49,6 +49,14 @@
                  */
                 this._requestInProgressQueryId = undefined;
 
+                /**
+                 * Which location group (retail, gastronomy, undefined (=both)) the
+                 * current query is requesting.
+                 * @type {string}
+                 * @private
+                 */
+                this._requestInProgressLocationGroup = undefined;
+
                 // Reset the activated location on route change. This doesn't work properly
                 // yet, so we don't try for now.
                 var that = this;
@@ -66,11 +74,12 @@
             /**
              * Handles map data received from the backend by updating the location set.
              * @param {[]} data
+             * @param {string} locationGroup Which group of location this data contains
              * @private
              */
-            LocationService.prototype._handleLocationResult = function(data) {
+            LocationService.prototype._handleLocationResult = function(data, locationGroup) {
                 // Pass the new data to the location set
-                this._locationSet.updateSet(data);
+                this._locationSet.updateSet(data, locationGroup);
 
                 // Broadcast that we updated the set
                 $rootScope.$broadcast('veganaut.locationSet.updated');
@@ -105,6 +114,8 @@
                         // Asked for a new query, cancel the ongoing request
                         this._requestInProgress.cancelRequest();
                         this._requestInProgress = false;
+                        this.__requestInProgressQueryId = undefined;
+                        this._requestInProgressLocationGroup = undefined;
 
                         // Reject last request
                         // TODO: what message to reject it with?
@@ -122,6 +133,7 @@
                 else {
                     // Query not fulfilled yet, start backend request
                     this._requestInProgressQueryId = queryId;
+                    this._requestInProgressLocationGroup = params.group;
                     this._requestInProgressDeferred = $q.defer();
 
                     this._requestInProgress = backendService.getLocations(params);
@@ -134,7 +146,7 @@
                         this._currentQueryId = this._requestInProgressQueryId;
 
                         // Handle result
-                        this._handleLocationResult(data.data);
+                        this._handleLocationResult(data.data, this._requestInProgressLocationGroup);
 
                         // Resolve deferred
                         this._requestInProgressDeferred.resolve();

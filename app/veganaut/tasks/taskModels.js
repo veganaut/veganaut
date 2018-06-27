@@ -291,6 +291,39 @@
         return outcome;
     };
 
+    // SetLocationCoordinates /////////////////////////////////////////////////
+    function SetLocationCoordinatesTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'SetLocationCoordinates', true, 'message.locationTaskEdit.success', undefined, undefined,
+            {}, location, lastCompletedDate, lastCompletedOutcome)
+        ;
+    }
+
+    SetLocationCoordinatesTask.prototype = Object.create(Task.prototype);
+    SetLocationCoordinatesTask.prototype.constructor = SetLocationCoordinatesTask;
+
+    SetLocationCoordinatesTask.prototype.hasValidOutcome = function() {
+        return angular.isDefined(this.getOutcome());
+    };
+
+    SetLocationCoordinatesTask.prototype.getOutcome = function() {
+        if (this.completed) {
+            return this._finalOutcome;
+        }
+
+        var outcome;
+        if (angular.isObject(this.inputModel) &&
+            angular.isNumber(this.inputModel.latitude) &&
+            angular.isNumber(this.inputModel.longitude))
+        {
+            outcome = {
+                latitude: this.inputModel.latitude,
+                longitude: this.inputModel.longitude
+            };
+        }
+
+        return outcome;
+    };
+
     // SetLocationName //////////////////////////////////////////////////////
     function SetLocationNameTask(location, lastCompletedDate, lastCompletedOutcome) {
         Task.call(this, 'SetLocationName', false, 'message.locationTaskEdit.success', 'name', 'name',
@@ -522,6 +555,7 @@
         buyOptions: BuyOptionsMission, // TODO WIP
         giveFeedback: GiveFeedbackMission, // TODO WIP
         RateProduct: RateProductTask,
+        SetLocationCoordinates: SetLocationCoordinatesTask,
         SetLocationName: SetLocationNameTask,
         SetLocationType: SetLocationTypeTask,
         SetLocationDescription: SetLocationDescriptionTask,

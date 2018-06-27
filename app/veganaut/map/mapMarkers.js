@@ -124,7 +124,10 @@
 
             // Listen for updated location item markers
             $scope.$on('veganaut.locationItem.marker.updated', function(event, location) {
-                updateMarker(location);
+                // Only update the marker if we already have it (as updateMarker would also add a new one)
+                if (angular.isObject(markers[location.id])) {
+                    updateMarker(location);
+                }
             });
 
             // Initialise the markers for the locations that are already around.

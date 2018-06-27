@@ -217,6 +217,10 @@
             "retail": "Laden, Supermarkt o.ä."
           }
         },
+        "SetLocationCoordinates": {
+          "title": "Ändere die Position",
+          "description": "Klick in die Karte, um die neue Position zu bestimmen."
+        },
         "SetLocationDescription": {
           "title": "Beschreibung",
           "placeholder": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente."
@@ -250,9 +254,7 @@
         "TagLocation": {
           "title": "Welche veganen Angebote dieser Location gefallen dir?",
           "numSelected": "{{ num }} ausgewählt"
-        },
-        "selectCoordinates": "Klick in die Karte, um die neue Position zu bestimmen",
-        "changeCoordinates": "Ändere die Position"
+        }
       }
     },
     "updatedAt": "Letzte Aktualisierung",

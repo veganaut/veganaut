@@ -15,7 +15,6 @@
                 onClick: '&vgOnClick'
             },
             controller: LocationMapPreviewComponentController,
-            controllerAs: 'vm',
             templateUrl: 'veganaut/components/locationMapPreview/locationMapPreviewComponent.html'
         };
 
@@ -23,13 +22,11 @@
     }
 
     LocationMapPreviewComponentController.$inject = [
-        '$timeout',
-        'mapDefaults',
-        'leafletData'
+        '$scope', '$timeout', 'mapDefaults', 'leafletData'
     ];
 
-    function LocationMapPreviewComponentController($timeout, mapDefaults, leafletData) {
-        var vm = this;
+    function LocationMapPreviewComponentController($scope, $timeout, mapDefaults, leafletData) {
+        var $ctrl = this;
 
         var defaults = angular.copy(mapDefaults);
         defaults.zoomControl = false;
@@ -37,39 +34,39 @@
         defaults.dragging = false;
         defaults.boxZoom = false;
         defaults.attributionControl = false;
-        vm.mapDefaults = defaults;
+        $ctrl.mapDefaults = defaults;
 
-        vm.center = {
+        $ctrl.center = {
             lat: 0,
             lng: 0,
             zoom: 17
         };
 
-        vm.mapClickHandler = mapClickHandler;
+        $ctrl.mapClickHandler = mapClickHandler;
 
-        vm.$onInit = function() {
+        $ctrl.$onInit = function() {
             // Maybe this has to go to $onChanges
             leafletData.getMap().then(function(map) {
-                vm.map = map;
+                $ctrl.map = map;
             });
 
             // Show the map in the next cycle. This needs to be done
             // because leaflet somehow doesn't like to be initialised
             // while the page is still hidden.
             $timeout(function() {
-                vm.showMap = true;
+                $ctrl.showMap = true;
             }, 0);
         };
 
-        vm.$onChanges = function(changes) {
-            if(changes.location && changes.location.currentValue) {
-                vm.center.lat = vm.location.lat;
-                vm.center.lng = vm.location.lng;
-            }
-        };
+        // Watch for changes in the coordinates to update the map center
+        // Note that $onChanges somehow doesn't trigger when only a property of $ctrl.location changes
+        $scope.$watchGroup(['$ctrl.location.lat', '$ctrl.location.lng'], function() {
+            $ctrl.center.lat = $ctrl.location.lat;
+            $ctrl.center.lng = $ctrl.location.lng;
+        });
 
         function mapClickHandler() {
-            vm.onClick();
+            $ctrl.onClick();
         }
     }
 })();

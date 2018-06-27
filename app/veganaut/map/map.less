@@ -62,25 +62,16 @@
         border-color: @colorLight;
     }
 
-    &.marker--type-gastronomy.marker--group-location {
+    &.marker--type-gastronomy {
         background-size: 45% auto;
         background-image: url('/components/ui/icons/assets/gastronomyLocation.svg');
     }
 
-    &.marker--type-retail.marker--group-location {
+    &.marker--type-retail {
         background-size: 60% auto;
         background-image: url('/components/ui/icons/assets/retailLocation.svg');
     }
-
-    &.marker--type-gastronomy.marker--group-product {
-        background-size: 60% auto;
-        background-image: url('/components/ui/icons/assets/gastronomyProduct.svg');
-    }
-
-    &.marker--type-retail.marker--group-product {
-        background-size: 55% auto;
-        background-image: url('/components/ui/icons/assets/retailProduct.svg');
-    }
+    // Icons for product granularity are set further down
 
     &.marker--editing {
         border-color: #000;
@@ -164,6 +155,18 @@
     right: 0;
     bottom: @mapFooterHeight;
     overflow: hidden;
+}
+
+.map--group-product {
+    .marker--type-gastronomy {
+        background-size: 60% auto;
+        background-image: url('/components/ui/icons/assets/gastronomyProduct.svg');
+    }
+
+    .marker--type-retail {
+        background-size: 55% auto;
+        background-image: url('/components/ui/icons/assets/retailProduct.svg');
+    }
 }
 
 body.embedded .main-map {
