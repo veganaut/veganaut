@@ -290,9 +290,9 @@
       "noRatingExplanation": "Die Qualität des veganen Angebotes wurde noch nicht bewertet."
     },
     "tags": {
-      "explanation": "Je prominenter die Kategorie, desto mehr Leuten empfehlen dieses Angebot hier.",
-      "addEmptyState": "Erste Empfehlung hinzufügen",
-      "add": "Empfehlung hinzufügen"
+      "explanation": "Die Tags zeigen an, was den Leuten hier gefällt.",
+      "addEmptyState": "Tags hinzufügen",
+      "add": "Empfehlungen hinzufügen"
     },
     "website": {
       "missing": "Webseite eintragen"
