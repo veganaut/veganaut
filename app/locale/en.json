@@ -290,9 +290,9 @@
       "noRatingExplanation": "The quality of the vegan offer has not been evaluated yet. Be the first to rate it!"
     },
     "tags": {
-      "explanation": "The tags show which vegan offers were liked by how many people here.",
-      "addEmptyState": "Erste Empfehlung hinzufügen",
-      "add": "Empfehlung hinzufügen"
+      "explanation": "The tags show what people like here.",
+      "addEmptyState": "Add tags",
+      "add": "Add recommendations"
     },
     "website": {
       "missing": "Enter website"
