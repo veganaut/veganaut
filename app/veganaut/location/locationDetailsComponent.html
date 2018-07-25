@@ -108,23 +108,20 @@ TODO WIP: BuyProduct
 </vg-card>
 
 <vg-card class="vg-location-details__card" ng-if="$ctrl.location.website || $ctrl.editMode">
-    <div class="row">
-        <!-- TODO WIP: Find better markup/css solution for edit mode -->
-        <div ng-class="($ctrl.editMode ? 'col-xs-10' : 'col-xs-12')">
-            <a ng-href="{{ $ctrl.location.website }}" target="_blank" ng-if="$ctrl.location.website">
-                <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
-                {{ $ctrl.location.website }}
-            </a>
-            <div ng-if="!$ctrl.location.website">
-                <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
-                <em>{{ 'location.website.missing' | translate }}</em>
-            </div>
-        </div>
-        <div class="col-xs-2 pen-aligner" ng-if="$ctrl.editMode">
-            <button class="oval-edit-btn" ng-click="$ctrl.startTask('SetLocationWebsite')">
+    <div ng-if="$ctrl.editMode" class="card__right-float">
+        <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationWebsite')">
+            <span class="edit-icon">
                 <vg-icon vg-name="'pen'"></vg-icon>
-            </button>
-        </div>
+            </span>
+        </button>
+    </div>
+    <a ng-if="$ctrl.location.website" ng-href="{{ $ctrl.location.website }}" target="_blank">
+        <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
+        {{ $ctrl.location.website }}
+    </a>
+    <div ng-if="!$ctrl.location.website">
+        <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
+        <em>{{ 'location.website.missing' | translate }}</em>
     </div>
 </vg-card>
 

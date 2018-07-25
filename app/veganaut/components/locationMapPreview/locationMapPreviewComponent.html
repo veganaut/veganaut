@@ -1,11 +1,15 @@
 <a ng-click="$ctrl.mapClickHandler()">
     <p class="vg-location-map-preview__address">
+        <span ng-if="$ctrl.parent.editMode" class="card__right-float">
+            <button class="remove-btn">
+                <span class="edit-icon">
+                    <vg-icon vg-name="'pen'"></vg-icon>
+                </span>
+            </button>
+        </span>
         <vg-icon vg-name="'location'" class="vg-location-details_icon"></vg-icon>
         {{ $ctrl.location.address.street }} {{ $ctrl.location.address.house }},
         {{ $ctrl.location.address.postcode }} {{ $ctrl.location.address.city }}
-        <button class="oval-edit-btn" ng-click="" ng-if="$ctrl.parent.editMode">
-            <vg-icon vg-name="'pen'"></vg-icon>
-        </button>
     </p>
     <leaflet class="vg-location-map-preview__map vg-location-map-preview__map--highlight-marker"
      ng-if="$ctrl.showMap" defaults="$ctrl.mapDefaults" lf-center="$ctrl.center">
