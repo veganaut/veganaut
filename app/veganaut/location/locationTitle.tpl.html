@@ -3,7 +3,12 @@
         <vg-location-quality-icon location="locationTitleVm.location"></vg-location-quality-icon>
     </div>
     <div class="location-content">
-        <h1>{{ locationTitleVm.location.name }}
+        <h1>
+            <span ng-if="locationTitleVm.location.getExistence() !== 'existing'"
+             class="location-title__existence">
+                {{ 'location.existenceTitleTag.' + locationTitleVm.location.getExistence() | translate }}
+            </span>
+            {{ locationTitleVm.location.name }}
             <span class="location-title__icons"
              ng-class="{ 'pull-right': locationTitleVm.showIconsRight() }">
             <vg-location-type-badge location="locationTitleVm.location"></vg-location-type-badge>
@@ -11,7 +16,7 @@
         </h1>
 
         <div>
-            {{'location.rating.' + locationTitleVm.location.getRoundedQuality() | translate}}
+            {{ 'location.rating.' + locationTitleVm.location.getRoundedQuality() | translate }}
         </div>
     </div>
 </div>

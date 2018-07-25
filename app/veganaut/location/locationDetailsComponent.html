@@ -8,7 +8,7 @@ DONE: SetLocationDescription
 DONE: SetLocationCoordinates
 DONE: SetLocationWebsite
 DONE: SetLocationProductListComplete
-TODO WIP: SetLocationExistence
+DONE: SetLocationExistence
 DONE: SetProductName
 DONE: SetProductAvailability
 TODO WIP: HowWellDoYouKnowThisLocation
@@ -122,6 +122,25 @@ TODO WIP: BuyProduct
     <div ng-if="!$ctrl.location.website">
         <vg-icon vg-name="'home'" class="vg-location-details_icon"></vg-icon>
         <em>{{ 'location.website.missing' | translate }}</em>
+    </div>
+</vg-card>
+
+<vg-card class="vg-location-details__card" ng-if="$ctrl.editMode">
+    <div class="card__right-float">
+        <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationExistence')">
+            <span class="edit-icon">
+                <vg-icon vg-name="'pen'"></vg-icon>
+            </span>
+        </button>
+    </div>
+    <div>
+        <vg-icon vg-name="'cross-big'" class="vg-location-details_icon"
+         ng-if="$ctrl.location.getExistence() !== 'existing'">
+        </vg-icon>
+        <vg-icon vg-name="'checkmark'" class="vg-location-details_icon"
+         ng-if="$ctrl.location.getExistence() === 'existing'">
+        </vg-icon>
+        {{ 'location.existence.' + $ctrl.location.getExistence() | translate }}
     </div>
 </vg-card>
 

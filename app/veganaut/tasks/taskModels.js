@@ -324,6 +324,19 @@
         return outcome;
     };
 
+    // SetLocationExistence ///////////////////////////////////////////////////
+    function SetLocationExistenceTask(location, lastCompletedDate, lastCompletedOutcome) {
+        // Default to existing if nothing else set on the location
+        Task.call(this, 'SetLocationExistence', false, 'message.locationTaskEdit.success', 'existence', 'existence',
+            location.getExistence(), location, lastCompletedDate, lastCompletedOutcome)
+        ;
+
+        this.possibleAnswers = ['existing', 'closedDown', 'wronglyEntered'];
+    }
+
+    SetLocationExistenceTask.prototype = Object.create(Task.prototype);
+    SetLocationExistenceTask.prototype.constructor = SetLocationExistenceTask;
+
     // SetLocationName //////////////////////////////////////////////////////
     function SetLocationNameTask(location, lastCompletedDate, lastCompletedOutcome) {
         Task.call(this, 'SetLocationName', false, 'message.locationTaskEdit.success', 'name', 'name',
@@ -533,6 +546,7 @@
         giveFeedback: GiveFeedbackMission, // TODO WIP
         RateProduct: RateProductTask,
         SetLocationCoordinates: SetLocationCoordinatesTask,
+        SetLocationExistence: SetLocationExistenceTask,
         SetLocationName: SetLocationNameTask,
         SetLocationType: SetLocationTypeTask,
         SetLocationDescription: SetLocationDescriptionTask,

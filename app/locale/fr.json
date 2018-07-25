@@ -188,6 +188,10 @@
       "moreTasks": "Afficher {{numTasks}} autres suggestions",
       "lessTasks": "Masquer"
     },
+    "existenceTitleTag": {
+      "closedDown": "Closed",
+      "wronglyEntered": "Wrongly entered"
+    },
     "form": {
       "new": {
         "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
@@ -224,6 +228,15 @@
         "SetLocationDescription": {
           "title": "Description",
           "placeholder": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance."
+        },
+        "SetLocationExistence": {
+          "title": "Location existence",
+          "description": "Existence description",
+          "existence": {
+            "existing": "Existiert",
+            "closedDown": "Closed down",
+            "wronglyEntered": "Wrongly entered"
+          }
         },
         "SetLocationProductListComplete": {
           "title": "La liste des offres véganes est-elle complète?",
@@ -309,7 +322,11 @@
     "website": {
       "missing": "Ajouter site web"
     },
-    "approximateAddress": "Cette adresse a été déterminée automatiquement. Elle est donc approximative."
+    "existence": {
+      "existing": "This location exists",
+      "closedDown": "This location is closed down",
+      "wronglyEntered": "This location was wrongly entered"
+    }
   },
   "locationCluster": {
     "marker": {

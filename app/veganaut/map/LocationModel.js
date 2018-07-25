@@ -59,6 +59,7 @@
                 };
                 this.products = [];
                 this.updatedAt = undefined;
+                this.existence = undefined;
 
                 // Rank of the best product of this location. Only set on the map views showing products
                 this.topProductRank = undefined;
@@ -306,6 +307,17 @@
              */
             Location.prototype.isDisabled = function() {
                 return this._disabled;
+            };
+
+            /**
+             * Returns the existence state of this location
+             * (existing, closedDown, wronglyEntered)
+             * @returns {string}
+             */
+            Location.prototype.getExistence = function() {
+                // The backend doesn't send the 'existing' state to save some space,
+                // so default to 'existing' if it's not set.
+                return this.existence ? this.existence : 'existing';
             };
 
             /**

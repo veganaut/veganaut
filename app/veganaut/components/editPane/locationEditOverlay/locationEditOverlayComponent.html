@@ -26,6 +26,18 @@
                  vg-input-model="$ctrl.task.inputModel">
                 </vg-location-edit-coordinates>
 
+                <div class="choose-wrapper"
+                 ng-switch-when="SetLocationExistence">
+                    <div ng-repeat="state in $ctrl.task.possibleAnswers">
+                        <button class="btn btn-choose"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.task.inputModel"
+                         uib-btn-radio="state">
+                            {{ 'location.form.edit.SetLocationExistence.existence.' + state | translate }}
+                        </button>
+                    </div>
+                </div>
+
                 <input type="text" id="location-edit-input-field"
                  class="vg-form__input"
                  ng-switch-when="SetLocationName"
