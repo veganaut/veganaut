@@ -283,6 +283,30 @@
             };
 
             /**
+             * Gets a randomly selected Veganize task of the given task type.
+             * @param {string} taskType
+             * @param {string} locationType
+             * @param {string} locationId
+             * @returns {Promise}
+             */
+            BackendService.prototype.getRelatedVeganizeTask = function(taskType, locationType, locationId) {
+                return $http
+                    .get(backendUrl + '/task/relatedVeganize', {
+                        params: {
+                            type: taskType,
+                            locationType: locationType,
+                            locationId: locationId
+                        }
+                    })
+                    .then(function(res) {
+                        return res.data;
+                    })
+                    .catch(function(res) {
+                        return $q.reject(res.data);
+                    });
+            };
+
+            /**
              * Submit a task of a certain type with the given outcome and for
              * the given location and optionally product
              * @param {string} taskType

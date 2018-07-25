@@ -223,6 +223,22 @@
             "never": "I've never been here"
           }
         },
+        "MentionVegan": {
+          "title": "Use the word \"vegan\" when talking to the staff here!",
+          "commitment": {
+            "yes": "Yes!",
+            "maybe": "OK, maybe"
+          },
+          "notesTitle": {
+            "yes": "Inspire others by sharing what you are saying to them!",
+            "maybe": "Inspire others by sharing what you might say to them"
+          },
+          "completedTasks": {
+            "thisLocation": "Here's an example what someone wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Here's an example what someone wrote at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "You might for example say ..."
+          }
+        },
         "SetLocationName": {
           "title": "Name of the location"
         },

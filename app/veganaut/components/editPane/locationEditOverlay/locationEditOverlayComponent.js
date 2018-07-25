@@ -95,6 +95,29 @@
             if (tasks.hasOwnProperty($ctrl.editTask)) {
                 // TODO WIP: get last completed task
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
+
+                // For the veganize tasks, load related tasks to display for inspiration
+                if ($ctrl.editTask === 'MentionVegan') {
+                    backendService.getRelatedVeganizeTask($ctrl.editTask, $ctrl.location.type, $ctrl.location.id)
+                        .then(function(task) {
+                            var translateKey = 'location.form.edit.' + $ctrl.editTask + '.completedTasks.';
+                            if (task) {
+                                translateKey += (task.location.id === $ctrl.location.id) ? 'thisLocation' : 'otherLocation';
+                                $ctrl.relatedVeganizeTaskText = $translate.instant(translateKey, {
+                                    text: task.outcome.notes,
+                                    person: task.person.nickname,
+                                    location: task.location.name,
+                                    city: task.location.address.city,
+                                    year: task.createdAt.substr(0, 4)
+                                });
+                            }
+                            else {
+                                translateKey += 'fallback';
+                                $ctrl.relatedVeganizeTaskText = $translate.instant(translateKey);
+                            }
+                        })
+                    ;
+                }
             }
             else {
                 console.error('Unknown location edit property:', $ctrl.editTask);

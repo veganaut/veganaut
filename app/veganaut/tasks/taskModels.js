@@ -124,51 +124,39 @@
         return outcome;
     };
 
-    // WantVeganMission //////////////////////////////////////////////////////
-    function WantVeganMission(location, lastCompletedDate, lastCompletedOutcome) {
-        Task.call(this, 'wantVegan', {
-            builtin: {},
-            custom: []
-        }, location, lastCompletedDate, lastCompletedOutcome);
+    // MentionVegan ///////////////////////////////////////////////////////////
+    function MentionVeganTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'MentionVegan', false, 'message.locationTaskRelation.success', undefined, undefined,
+            {}, location, lastCompletedDate, lastCompletedOutcome)
+        ;
 
-        this.builtinExpressions = [
-            'vegan',
-            'plantbased',
-            'noAnimalproducts',
-            'noMeat',
-            'noMilk',
-            'noEggs',
-            'noHoney'
-        ];
+        this.possibleAnswers = ['yes', 'maybe'];
     }
 
-    WantVeganMission.prototype = Object.create(Task.prototype);
-    WantVeganMission.prototype.constructor = WantVeganMission;
+    MentionVeganTask.prototype = Object.create(Task.prototype);
+    MentionVeganTask.prototype.constructor = MentionVeganTask;
 
-    WantVeganMission.prototype.getOutcome = function() {
+    MentionVeganTask.prototype.hasValidOutcome = function() {
+        return angular.isDefined(this.getOutcome());
+    };
+
+    MentionVeganTask.prototype.getOutcome = function() {
         if (this.completed) {
             return this._finalOutcome;
         }
-        var outcome = [];
-        _.forOwn(this.inputModel.builtin, function(isSelected, exp) {
-            if (isSelected === true) {
-                outcome.push({
-                    expression: exp,
-                    expressionType: 'builtin'
-                });
-            }
-        });
-        _.each(this.inputModel.custom, function(exp) {
-            outcome.push({
-                expression: exp,
-                expressionType: 'custom'
-            });
-        });
-        return outcome;
-    };
 
-    WantVeganMission.prototype.hasValidOutcome = function() {
-        return (this.getOutcome().length > 0);
+        var outcome;
+        if (angular.isObject(this.inputModel) && angular.isString(this.inputModel.commitment)) {
+            outcome = {
+                commitment: this.inputModel.commitment
+            };
+
+            if (this.inputModel.notes) {
+                outcome.notes = this.inputModel.notes;
+            }
+        }
+
+        return outcome;
     };
 
     // AddProduct /////////////////////////////////////////////////////
@@ -550,7 +538,7 @@
     // TODO: get rid of the two identifiers for missions ("visitBonus" and "VisitBonusMission")
     module.value('tasks', {
         hasOptions: HasOptionsMission, // TODO WIP
-        wantVegan: WantVeganMission, // TODO WIP
+        MentionVegan: MentionVeganTask,
         AddProduct: AddProductTask,
         buyOptions: BuyOptionsMission, // TODO WIP
         giveFeedback: GiveFeedbackMission, // TODO WIP

@@ -2,11 +2,11 @@
     <div class="edit-overlay">
         <div class="container edit-container">
             <img class="sky" src="img/background/space-hills-2.svg" ng-if="$ctrl.isQuestionnaire">
-            <div class="h3" ng-class="{'h3-edit': !$ctrl.isQuestionnaire}">
+            <h2 class="h3" ng-class="{'h3-edit': !$ctrl.isQuestionnaire}">
                 <label for="location-edit-input-field">
                     {{ 'location.form.edit.' + $ctrl.editTask + '.title' | translate }}
                 </label>
-            </div>
+            </h2>
             <div class="h4" ng-if="$ctrl.getDescription()">
                 {{ $ctrl.getDescription() }}
             </div>
@@ -28,6 +28,30 @@
                          uib-btn-radio="state">
                             {{ 'location.form.edit.HowWellDoYouKnowThisLocation.knowLocation.' + state | translate }}
                         </button>
+                    </div>
+                </div>
+
+                <div ng-switch-when="MentionVegan">
+                    <div class="row choose-wrapper">
+                        <div class="col-xs-6" ng-repeat="state in $ctrl.task.possibleAnswers">
+                            <button class="btn btn-choose"
+                             ng-disabled="$ctrl.isSaving"
+                             ng-model="$ctrl.task.inputModel.commitment"
+                             uib-btn-radio="state">
+                                {{ 'location.form.edit.MentionVegan.commitment.' + state | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div ng-if="$ctrl.task.inputModel.commitment">
+                        <p>
+                            {{ 'location.form.edit.MentionVegan.notesTitle.' + $ctrl.task.inputModel.commitment | translate }}
+                        </p>
+                        <textarea class="vg-form__input" type="text" rows="3"
+                         placeholder="{{ $ctrl.relatedVeganizeTaskText }}"
+                         ng-model="$ctrl.task.inputModel.notes"
+                         ng-disabled="$ctrl.isSaving">
+                        </textarea>
                     </div>
                 </div>
 
