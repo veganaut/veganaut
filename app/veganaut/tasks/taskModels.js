@@ -242,6 +242,17 @@
         return (outcome.length > 0);
     };
 
+    // HowWellDoYouKnowThisLocation ///////////////////////////////////////////
+    function HowWellDoYouKnowThisLocationTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'HowWellDoYouKnowThisLocation', false, 'message.locationTaskRelation.success', 'knowLocation', undefined,
+            undefined, location, lastCompletedDate, lastCompletedOutcome)
+        ;
+
+        this.possibleAnswers = ['regular', 'fewTimes', 'once', 'never'];
+    }
+
+    HowWellDoYouKnowThisLocationTask.prototype = Object.create(Task.prototype);
+    HowWellDoYouKnowThisLocationTask.prototype.constructor = HowWellDoYouKnowThisLocationTask;
 
     // RateProduct ////////////////////////////////////////////////////////////
     function RateProductTask(location, lastCompletedDate, lastCompletedOutcome, product) {
@@ -326,7 +337,6 @@
 
     // SetLocationExistence ///////////////////////////////////////////////////
     function SetLocationExistenceTask(location, lastCompletedDate, lastCompletedOutcome) {
-        // Default to existing if nothing else set on the location
         Task.call(this, 'SetLocationExistence', false, 'message.locationTaskEdit.success', 'existence', 'existence',
             location.getExistence(), location, lastCompletedDate, lastCompletedOutcome)
         ;
@@ -544,6 +554,7 @@
         AddProduct: AddProductTask,
         buyOptions: BuyOptionsMission, // TODO WIP
         giveFeedback: GiveFeedbackMission, // TODO WIP
+        HowWellDoYouKnowThisLocation: HowWellDoYouKnowThisLocationTask,
         RateProduct: RateProductTask,
         SetLocationCoordinates: SetLocationCoordinatesTask,
         SetLocationExistence: SetLocationExistenceTask,

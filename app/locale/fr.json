@@ -65,6 +65,9 @@
     "locationTaskOpinion": {
       "success": "Opinion notée, merci!"
     },
+    "locationTaskRelation": {
+      "success": "Antwort gespeichert, Danke!"
+    },
     "profile": {
       "update": {
         "success": "Profil modifié.",
@@ -210,6 +213,15 @@
         "AddProduct": {
           "title": "Quels produits végans est-ce qu'ils offrent ici?",
           "placeholder": "Saisir un produit végan ici"
+        },
+        "HowWellDoYouKnowThisLocation": {
+          "title": "How well do you know this location?",
+          "knowLocation": {
+            "regular": "I'm a regular",
+            "fewTimes": "I've been here a few times",
+            "once": "I've been here once",
+            "never": "I've never been here"
+          }
         },
         "SetLocationName": {
           "title": "Nom de l'endroit"

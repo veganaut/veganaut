@@ -19,6 +19,18 @@
                     </vg-list-input>
                 </div>
 
+                <div class="choose-wrapper"
+                 ng-switch-when="HowWellDoYouKnowThisLocation">
+                    <div ng-repeat="state in $ctrl.task.possibleAnswers">
+                        <button class="btn btn-choose"
+                         ng-disabled="$ctrl.isSaving"
+                         ng-model="$ctrl.task.inputModel"
+                         uib-btn-radio="state">
+                            {{ 'location.form.edit.HowWellDoYouKnowThisLocation.knowLocation.' + state | translate }}
+                        </button>
+                    </div>
+                </div>
+
                 <vg-location-edit-coordinates
                  vg-location="$ctrl.location"
                  ng-switch-when="SetLocationCoordinates"
