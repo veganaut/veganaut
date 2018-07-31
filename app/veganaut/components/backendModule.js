@@ -244,16 +244,6 @@
             };
 
             /**
-             * Gets the list of available missions at a location
-             * TODO WIP: get rid of this method
-             * @param locationId
-             * @returns {HttpPromise}
-             */
-            BackendService.prototype.getAvailableMissions = function(locationId) {
-                return $http.get(backendUrl + '/location/' + locationId + '/availableMission/list');
-            };
-
-            /**
              * Gets the area overview info: how many locations and products of which type
              * @param lat
              * @param lng

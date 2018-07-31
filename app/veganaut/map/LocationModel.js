@@ -31,7 +31,7 @@
             /**
              * Represents a location on the map.
              * A location has general information (name, type, ...), coordinates
-             * and aggregated data from missions as well as missions themselves.
+             * and aggregated data from tasks.
              *
              * @param {{}} [jsonData={}]
              * @constructor

@@ -47,13 +47,6 @@
          */
         $ctrl.editProduct = undefined;
 
-        /**
-         * Whether to show also the unavailable products
-         * TODO: this is an object because we don't have controller-as so scopes get messed up *fuuu*
-         * @type {boolean}
-         */
-        $ctrl.showUnavailable = {products: false};
-
         $ctrl.$onInit = function() {
             pageTitleService.addCustomTitle($ctrl.location.name);
         };

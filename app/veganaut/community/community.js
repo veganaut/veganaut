@@ -43,7 +43,7 @@
                     vm.totalLocations = sumScores(scores.locationTypes.locations, 'locations');
                     vm.locationTypes = scores.locationTypes.locations;
 
-                    // Calculate the mission ranking
+                    // Calculate the task ranking
                     vm.taskRanks = preparePeopleRanks(
                         scores.people.tasks,
                         'tasks',

@@ -30,7 +30,7 @@ describe('community.', function() {
         expect(browser.getCurrentUrl()).toMatch(/\/community/);
     });
 
-    // TODO: extend to test the rankings and the impact of doing missions more precisely
+    // TODO: extend to test the rankings and the impact of doing tasks more precisely
     describe('visit community.', function() {
         beforeEach(function() {
             helpers.goToIfNotAlreadyThere('/community');

@@ -90,23 +90,6 @@ button.btn {
     background-color: transparent;
 }
 
-.btn-no-styles {
-    .button-variant(@colorDark; transparent; transparent);
-    .btn-reset-styles();
-    padding: 0;
-
-    // Reset transform of glyphicon
-    &:hover,
-    &:focus,
-    &:active,
-    &.active,
-    .open > .dropdown-toggle & {
-        .glyphicon {
-            transform: none;
-        }
-    }
-}
-
 .btn-large {
     height: 48px;
     width: 100%;

@@ -52,10 +52,6 @@
     "geolocate": {
       "error": "Position konnte nicht ermittelt werden."
     },
-    "mission": {
-      "success": "Mission erfolgreich abgeschlossen. Du hast {{ points }} Punkte gemacht.",
-      "error": "Sorry, die Mission konnte nicht gespeichert werden: "
-    },
     "locationTask": {
       "error": "Sorry, es gab ein Problem beim Speichern: "
     },
@@ -405,17 +401,6 @@
   "map": {
     "mapSectionDescription": "In the current map section",
     "mission": {
-      "title": "Missionen",
-      "totalPoints": "Total Punkte aus Missionen",
-      "missionForm": {
-        "submit": "Fertig",
-        "cancel": "Abbrechen"
-      },
-      "visitBonus": {
-        "title": "Besuche diese Location.",
-        "explanation": "Für deinen ersten Besuch innerhalb von ein paar Wochen erhälst du Punkte.",
-        "description": "Schliesse diese Mission nur ab, wenn du diese Location jetzt besuchst."
-      },
       "hasOptions": {
         "title": "Frag das Personal nach veganen Angeboten.",
         "description": "Gibt es hier laut dem Personal etwas Veganes?",
@@ -472,12 +457,6 @@
           "description": "Du hast nach diesen veganen Produkten gefragt:"
         }
       },
-      "whatOptions": {
-        "title": "Finde heraus, was für vegane Produkte es hier gibt.",
-        "description": "Welche veganen Produkte gibt es hier?",
-        "description2": "Die folgenden musst du nicht mehr eintragen:",
-        "explanation": "Hilf mit, dass die Liste der veganen Produkte hier möglichst aktuell und vollständig ist. Füge vegane Produkte hinzu, die noch nicht auf der Liste sind, bestätige vegane Produkte, die bereits da stehen, und gib an, welche Produkte auf der Liste (im Moment) nicht mehr verfügbar sind."
-      },
       "buyOptions": {
         "title": "Kauf etwas Veganes.",
         "description": "Was hast du gekauft?",
@@ -495,14 +474,6 @@
         },
         "outcome": {
           "description": "Du hast diese unmögliche Mission versucht:"
-        }
-      },
-      "offerQuality": {
-        "title": "Beurteile das Angebot dieser Location aus veganautischer Sicht.",
-        "description": "Wie gut befriedigt diese Location veganautische Bedürfnisse?",
-        "explanation": "Veganautinnen und Veganauten wollen ein möglichst grosses und möglichst gutes veganes Angebot. In manchen Locations hat es kaum etwas oder gar nichts Veganes, oder das vegane Angebot ist noch nicht befriedigend. In anderen Locations gibt es bereits eine gewisse vegane Auswahl, die z.T. auch überzeugt. Wieder andere Locations haben ein beachtliches veganes Angebot, sowohl was die Auswahl als auch die Qualität angeht. Schliesslich gibt es Locations, deren veganes Angebot nichts zu wünschen übrig lässt.",
-        "outcome": {
-          "description": "Dein Urteil:"
         }
       }
     }

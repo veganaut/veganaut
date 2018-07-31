@@ -14,13 +14,13 @@
      *      to update from the main outcome when the Task was successfully
      *      submitted. Undefined for no update.
      * @param {{}|[]} inputModel Model used for the input form for this task
-     * @param {Location} location Where this mission is done
+     * @param {Location} location Where this task is done
      * @param {Date} [lastCompletedDate] When (if ever) the user last
-     *      completed this mission
+     *      completed this task
      * @param {{}|[]} [lastCompletedOutcome] outcome of the last time
-     *      the user did this mission (if ever)
-     * @param {Product} [product] The product this mission is about
-     *      (if it's a product mission)
+     *      the user did this task (if ever)
+     * @param {Product} [product] The product this task is about
+     *      (if it's a product task)
      * @constructor
      */
     function Task(type, reloadLocationAfterSubmit, successMessage, mainOutcomeName, updatePropertyAfterSubmit,
@@ -44,7 +44,7 @@
     }
 
     /**
-     * Checks whether this mission has a valid outcome.
+     * Checks whether this task has a valid outcome.
      * @returns {boolean}
      */
     Task.prototype.hasValidOutcome = function() {
@@ -52,8 +52,8 @@
     };
 
     /**
-     * Aborts the mission and resets the outcome.
-     * Once the mission is completed, it won't change anything anymore
+     * Aborts the task and resets the outcome.
+     * Once the task is completed, it won't change anything anymore
      * TODO WIP: delete this?
      */
     Task.prototype.abort = function() {
@@ -64,19 +64,7 @@
     };
 
     /**
-     * TODO WIP: this is not used?
-     * Converts this mission to JSON ready to be sent to the backend
-     * @returns {{type: string, outcome: {}}}
-     */
-    Task.prototype.toJson = function() {
-        return {
-            type: this.type,
-            outcome: this.getOutcome()
-        };
-    };
-
-    /**
-     * Returns the outcome of this mission. To be overwritten
+     * Returns the outcome of this task. To be overwritten
      * by child classes.
      * @returns {{}}
      */
@@ -90,7 +78,7 @@
     };
 
     /**
-     * Concludes this mission. Should only be called once there is a valid outcome.
+     * Concludes this task. Should only be called once there is a valid outcome.
      * TODO WIP: this is not used?
      */
     Task.prototype.finish = function() {
@@ -535,7 +523,6 @@
     };
 
 
-    // TODO: get rid of the two identifiers for missions ("visitBonus" and "VisitBonusMission")
     module.value('tasks', {
         hasOptions: HasOptionsMission, // TODO WIP
         MentionVegan: MentionVeganTask,
@@ -556,4 +543,4 @@
         RateLocationQuality: RateLocationQualityTask,
         TagLocation: TagLocationTask
     });
-})(window.veganaut.missionsModule);
+})(window.veganaut.tasksModule);

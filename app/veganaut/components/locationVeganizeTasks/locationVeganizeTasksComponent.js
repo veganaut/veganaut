@@ -5,7 +5,7 @@
         .module('veganaut.app')
         .component('vgLocationVeganizeTasks', locationVeganizeTasksComponent());
 
-    // TODO WIP: figure out how to use the styling from vg-location-products without using the CSS class names from there
+    // TODO: figure out how to use the styling from vg-location-products without using the CSS class names from there
     function locationVeganizeTasksComponent() {
         var component = {
             bindings: {

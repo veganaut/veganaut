@@ -3,18 +3,6 @@
 
     // TODO: Move directives to veganaut/components in separate files
 
-    module.directive('vgMissionPoints', [function() {
-        return {
-            restrict: 'E',
-            scope: {
-                points: '=vgPoints',
-                completed: '=vgCompleted',
-                hidePoints: '=vgHidePoints'
-            },
-            templateUrl: '/veganaut/map/vgMissionPoints.tpl.html'
-        };
-    }]);
-
     module.directive('vgLocationTypeBadge', [function() {
         return {
             restrict: 'E',
@@ -32,7 +20,7 @@
                 type: '='
             },
             controller: ['$scope', 'Location', function($scope, Location) {
-                // TOOD WIP: replace with new icons (or replace whole component)
+                // TODO WIP: replace with new icons (or replace whole component)
                 this.getIconName = function() {
                     return Location.getIconNameForType($scope.type);
                 };

@@ -21,7 +21,7 @@
         'veganaut.app.location',
         'veganaut.app.main',
         'veganaut.app.map',
-        'veganaut.app.missions',
+        'veganaut.app.tasks',
         'veganaut.app.products',
         'veganaut.app.search',
         'veganaut.app.session',
@@ -167,7 +167,7 @@
 
     // Define the different modules of the app
     var mapModule = angular.module('veganaut.app.map', []);
-    var missionsModule = angular.module('veganaut.app.missions', []);
+    var tasksModule = angular.module('veganaut.app.tasks', []);
     var userModule = angular.module('veganaut.app.user', []);
 
     // New and refactored modules are not exposed through a global anymore
@@ -186,7 +186,7 @@
     window.veganaut = {
         mainModule: mainModule,
         mapModule: mapModule,
-        missionsModule: missionsModule,
+        tasksModule: tasksModule,
         userModule: userModule
     };
 

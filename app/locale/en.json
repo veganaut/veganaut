@@ -52,10 +52,6 @@
     "geolocate": {
       "error": "Position could not be retrieved."
     },
-    "mission": {
-      "success": "Mission completed. You made {{ points }} points.",
-      "error": "Sorry, mission could not be saved: "
-    },
     "locationTask": {
       "error": "Sorry, there was a problem when trying to save: "
     },
@@ -405,17 +401,6 @@
   "map": {
     "mapSectionDescription": "In the current map section",
     "mission": {
-      "title": "Missions",
-      "totalPoints": "Total points from missions",
-      "missionForm": {
-        "submit": "Complete",
-        "cancel": "Cancel"
-      },
-      "visitBonus": {
-        "title": "Visit this location.",
-        "explanation": "For your first visit at a location within a few weeks you get points.",
-        "description": "Only complete this mission if you are currently visiting this location."
-      },
       "hasOptions": {
         "title": "Ask the staff for vegan options.",
         "description": "According to the staff, are there any vegan options available here?",
@@ -472,12 +457,6 @@
           "description": "You asked for these vegan products:"
         }
       },
-      "whatOptions": {
-        "title": "Find out what vegan products are available here.",
-        "description": "What vegan products are available here?",
-        "description2": "You don't have to re-enter the following products:",
-        "explanation": "The goal is to make the list of vegan products as complete and as up-to-date as possible. Add vegan products that aren't on the list yet, confirm vegan products that are already listed and indicate which vegan products on the list are not available (at the moment)."
-      },
       "buyOptions": {
         "title": "Buy something vegan.",
         "description": "What did you buy?",
@@ -495,14 +474,6 @@
         },
         "outcome": {
           "description": "You tried this mission impossible here:"
-        }
-      },
-      "offerQuality": {
-        "title": "Evaluate the offer at this location from a veganautic standpoint.",
-        "description": "How well does this location satisfy veganautic needs?",
-        "explanation": "Veganauts want to be able to choose from a lot of high-quality vegan options. At some places there are no or hardly any vegan options, or the vegan options aren't convincing yet. At other places there already are a few vegan options, some of which are satisfying. Yet other places have a quite remarkable range of vegan options, many of which are great. Finally, there are places where there are tons of vegan options and they are all fantastic.",
-        "outcome": {
-          "description": "Your evaluation:"
         }
       }
     }
