@@ -195,16 +195,6 @@
             };
 
             /**
-             * Updates the given location
-             * @param {string} locationId
-             * @param {{}} locationData
-             * @returns {HttpPromise}
-             */
-            BackendService.prototype.updateLocation = function(locationId, locationData) {
-                return $http.put(backendUrl + '/location/' + locationId, locationData);
-            };
-
-            /**
              * Send a password reset email
              * @param {string} email
              * @param {boolean} [isRegistration=false] Whether this is the "reset" during

@@ -296,37 +296,6 @@
                 ;
             };
 
-            /**
-             * Sends the current location data to the backend.
-             * Updates only name, description and website at the moment.
-             * TODO WIP: remove this once it's not used any more
-             * @param {Location} location
-             * @returns {HttpPromise}
-             */
-            LocationService.prototype.updateLocation = function(location) {
-                // Sanitise the website before saving
-                location.sanitiseUrl();
-
-                // TODO: should find out what has been edited and only send that
-                return backendService.updateLocation(location.id, {
-                        name: location.name,
-                        description: location.description,
-                        type: location.type,
-                        website: location.website,
-                        lat: location.lat,
-                        lng: location.lng
-                    })
-                    .success(function(data) {
-                        // Update the location
-                        location.update(data);
-                        alertService.addAlert('Updated location "' + location.name + '"', 'success');
-                    })
-                    .error(function(data) {
-                        // TODO: should reset the location data to what it previously was
-                        alertService.addAlert('Failed to update location: ' + data.error, 'danger');
-                    });
-            };
-
             return new LocationService();
         }
     ]);
