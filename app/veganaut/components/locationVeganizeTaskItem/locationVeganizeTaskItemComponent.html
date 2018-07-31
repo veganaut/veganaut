@@ -1,9 +1,9 @@
 <button class="vg-product-list-item remove-btn"
- ng-click="vm.locationDetailsCtrl.startTask(vm.task)">
+ ng-click="$ctrl.locationDetailsCtrl.startTask($ctrl.task)">
     <div class="vg-product-list-item__container">
         <vg-icon vg-name="'arrow-right'" class="arrow-right"></vg-icon>
         <p class="vg-product-list-item__product-name">
-            {{ 'location.form.edit.' + vm.task + '.standaloneCallToAction' | translate }}
+            {{ 'location.form.edit.' + $ctrl.task + '.standaloneCallToAction' | translate }}
         </p>
         <span class="vg-product-list-item__expand">
             <vg-icon vg-name="'chevron-big-right'" class="location-details-chevron"></vg-icon>

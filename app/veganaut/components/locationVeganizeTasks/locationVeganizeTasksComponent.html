@@ -1,0 +1,29 @@
+<div class="vg-location-veganize-tasks">
+    <ul ng-if="$ctrl.tasks.length > 0" class="vg-location-products__list">
+        <li ng-repeat="task in $ctrl.tasks | limitTo: ($ctrl.isListExpanded ? undefined : $ctrl.limit)"
+         class="vg-location-products__list-item">
+            <vg-location-veganize-task-item vg-task="task"></vg-location-veganize-task-item>
+        </li>
+    </ul>
+
+    <div class="vg-location-products__expand-list-container">
+        <button
+         class="vg-location-products__more-products"
+         ng-if="$ctrl.tasks.length > $ctrl.limit"
+         ng-click="$ctrl.onExpandCollapseToggleClick()"
+         ng-class="{'vg-location-products__more-products--expanded': $ctrl.isListExpanded}">
+            <vg-icon class="vg-location-products__more-products__icon"
+             vg-name="'chevron-small-down'">
+            </vg-icon>
+            <span class="vg-location-products__more-products__text">
+                <span ng-show="!$ctrl.isListExpanded">
+                    {{ 'location.tasks.moreTasks' | translate: {numTasks: $ctrl.tasks.length - $ctrl.limit} }}
+                </span>
+                <span ng-show="$ctrl.isListExpanded">
+                    {{ 'location.tasks.lessTasks' | translate }}
+                </span>
+            </span>
+        </button>
+    </div>
+
+</div>
