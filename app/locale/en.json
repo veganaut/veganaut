@@ -214,6 +214,14 @@
           "title": "What vegan products are available here?",
           "placeholder": "Enter a vegan product here"
         },
+        "BuyProduct": {
+          "title": "Buy something vegan!",
+          "standaloneCallToAction": "Buy something vegan"
+        },
+        "GiveFeedback": {
+          "title": "Give feedback!",
+          "standaloneCallToAction": "Give feedback"
+        },
         "HowWellDoYouKnowThisLocation": {
           "title": "How well do you know this location?",
           "knowLocation": {
@@ -225,6 +233,7 @@
         },
         "MentionVegan": {
           "title": "Use the word \"vegan\" when talking to the staff here!",
+          "standaloneCallToAction": "Use the word \"vegan\" when talking to the staff",
           "commitment": {
             "yes": "Yes!",
             "maybe": "OK, maybe"

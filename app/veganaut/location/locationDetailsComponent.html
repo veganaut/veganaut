@@ -87,10 +87,10 @@ TODO WIP: BuyProduct
     <h2 class="vg-location-products__title">
         <vg-icon vg-name="'missions'" class="vg-location-products__title-icon vg-location-products__veganize-icon"></vg-icon>
         <span class="vg-location-products__title-text">
-    {{ 'location.veganize.title' | translate }}
-    </span>
+            {{ 'location.veganize.title' | translate }}
+        </span>
     </h2>
-    <vg-location-tasks vg-tasks="$ctrl.tasks" vg-limit="1">
+    <vg-location-tasks vg-tasks="$ctrl.veganizeTasks" vg-limit="1" class="location-tasks-card">
     </vg-location-tasks>
 </vg-card>
 <vg-card class="vg-location-details__card vg-location-details__card--map">

@@ -7,9 +7,11 @@
 
     function locationTasksItemComponent() {
         var component = {
+            require: {
+                locationDetailsCtrl: '^^vgLocationDetails'
+            },
             bindings: {
                 task: '<vgTask'
-
             },
             controller: LocationTasksItemComponentController,
             controllerAs: 'vm',
@@ -19,16 +21,6 @@
         return component;
     }
 
-    // Inject dependencies
-    // LocationTasksItemComponentController.$inject = ['exampleService'];
-
     function LocationTasksItemComponentController() {
-        var vm = this;
-
-
-        vm.$onInit = function() {
-
-        };
-
     }
 })();

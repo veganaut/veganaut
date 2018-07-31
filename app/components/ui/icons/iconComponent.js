@@ -24,6 +24,7 @@
      */
     var COLOURABLE_ICONS = [
         'chevron-big-down',
+        'chevron-big-right',
         'edit',
         'pen'
     ];

@@ -58,11 +58,7 @@
             pageTitleService.addCustomTitle($ctrl.location.name);
         };
 
-        $ctrl.tasks = [
-            {'task': 'Beurteile das Angebot dieser Location aus veganautischer Sicht.'},
-            {'task': 'Gib an, wie offen das Personal hier für "vegan" ist.'},
-            {'task': 'Sensibilisiere das Personal auf vegane Produkte.'}
-        ];
+        $ctrl.veganizeTasks = ['MentionVegan', 'GiveFeedback', 'BuyProduct'];
 
         $ctrl.toggleEditMode = function() {
             // TODO WIP: call setEditing() on location model?
