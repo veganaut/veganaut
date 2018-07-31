@@ -3,3 +3,5 @@
  {{ 'location.rating.numRatings' | translate }}: {{ numRatings }}">
     <vg-icon vg-name="'star'"  class="vg-average-rating__icon" ng-repeat="star in getStars() track by star.id" ng-class="{'vg-average-rating__icon--active': star.state === 1}"></vg-icon>
 </div>
+
+<!-- TODO WIP: implement empty state as designed (Zeplin Location-01d)-->
