@@ -43,7 +43,7 @@
   "message": {
     "new": "neu",
     "registration": {
-      "success": "Willkommen bei Veganaut.net {{ name }}! Du bist jetzt eingeloggt. Wir schicken dir eine E-Mail mit einem Link, um dein Passwort für spätere Logins zu setzen.",
+      "success": "Willkommen bei Veganaut.net {{ name }}! Du bist jetzt eingeloggt. Wir schicken dir eine E-Mail mit einem Link, mit dem du dein Passwort für spätere Logins setzen kannst.",
       "error": "Registrierung fehlgeschlagen: {{ reason }}"
     },
     "login": {
@@ -117,7 +117,7 @@
     },
     "register": {
       "name": "Mitmachen",
-      "description": "Registrieren um die Karte zu bearbeiten"
+      "description": "Registrieren, um die Karte zu bearbeiten"
     },
     "createLocation": {
       "name": "Hinzufügen",
@@ -188,8 +188,8 @@
       "lessTasks": "Ausblenden"
     },
     "existenceTitleTag": {
-      "closedDown": "Closed",
-      "wronglyEntered": "Wrongly entered"
+      "closedDown": "Geschlossen",
+      "wronglyEntered": "Fälschlicherweise eingetragen"
     },
     "form": {
       "new": {
@@ -207,7 +207,7 @@
       },
       "edit": {
         "AddProduct": {
-          "title": "Welche veganen Produkte gibt es hier?",
+          "title": "Welche (weiteren) veganen Produkte gibt es hier?",
           "placeholder": "Hier ein veganes Produkt eintragen"
         },
         "BuyProduct": {
@@ -219,29 +219,29 @@
           "standaloneCallToAction": "Give feedback"
         },
         "HowWellDoYouKnowThisLocation": {
-          "title": "How well do you know this location?",
+          "title": "Wie gut kennst du diese Location?",
           "knowLocation": {
-            "regular": "I'm a regular",
-            "fewTimes": "I've been here a few times",
-            "once": "I've been here once",
-            "never": "I've never been here"
+            "regular": "Ich gehöre zur Stammkundschaft",
+            "fewTimes": "Ich war schon ein paarmal hier",
+            "once": "Ich war genau einmal hier",
+            "never": "Ich bin da noch nie hingegangen"
           }
         },
         "MentionVegan": {
-          "title": "Use the word \"vegan\" when talking to the staff here!",
-          "standaloneCallToAction": "Use the word \"vegan\" when talking to the staff",
+          "title": "Brauch das Wort \"vegan\" im Gespräch mit dem Personal hier!",
+          "standaloneCallToAction": "Brauch das Wort \"vegan\" im Gespräch mit dem Personal",
           "commitment": {
-            "yes": "Yes!",
-            "maybe": "OK, maybe"
+            "yes": "Ja, mache ich!",
+            "maybe": "OK, vielleicht"
           },
           "notesTitle": {
-            "yes": "Inspire others by sharing what you are saying to them!",
-            "maybe": "Inspire others by sharing what you might say to them"
+            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst!",
+            "maybe": "Inspiriere andere, indem du teilst, was du ihnen sagen könntest!"
           },
           "completedTasks": {
-            "thisLocation": "Here's an example what someone wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "Here's an example what someone wrote at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
-            "fallback": "You might for example say ..."
+            "thisLocation": "Als Inspiration für dich: Jemand anderes hat hier z.B. das geschrieben: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Als Inspiration für dich: Bei einer anderen Location hat hier jemand z.B. folgendes geschrieben: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Hier könnte jemand z.B. schreiben: \"Ich hab dem Personal gesagt, das ich hier bin, weil eine Freundin meinte, hier gäb's tolle vegane Desserts. Ich liebe vegane Desserts!\" "
           }
         },
         "SetLocationName": {
@@ -263,12 +263,12 @@
           "placeholder": "Kurze Beschreibung dieser Location, z.B. Öffnungszeiten oder Ambiente."
         },
         "SetLocationExistence": {
-          "title": "Location existence",
-          "description": "Existence description",
+          "title": "Status dieser Location",
+          "description": "Gibt es diese Location überhaupt? Läuft der Betrieb noch oder wurde die Geschäftstätigkeit eingestellt? Oder wurde diese Location vielleicht doppelt eingetragen und dieser Eintrag ist der weniger informative und kann gelöscht werden?",
           "existence": {
-            "existing": "Existiert",
-            "closedDown": "Closed down",
-            "wronglyEntered": "Wrongly entered"
+            "existing": "In Betrieb",
+            "closedDown": "Permanent geschlossen (Eintrag archivieren!)",
+            "wronglyEntered": "Fälschlicherweise eingetragen (Eintrag löschen!)"
           }
         },
         "SetLocationProductListComplete": {
@@ -287,8 +287,8 @@
           "title": "Verfügbarkeit des Angebotes",
           "availability": {
             "always": "Immer verfügbar",
-            "sometimes": "Manchmal oder vorübergehend verfügbar",
-            "not": "Nicht (mehr) verfügbar"
+            "sometimes": "Nur manchmal oder vorübergehend verfügbar",
+            "not": "Nie (mehr) verfügbar"
           }
         },
         "SetProductName": {
@@ -356,9 +356,9 @@
       "missing": "Webseite eintragen"
     },
     "existence": {
-      "existing": "This location exists",
-      "closedDown": "This location is closed down",
-      "wronglyEntered": "This location was wrongly entered"
+      "existing": "Diese Location ist noch in Betrieb",
+      "closedDown": "Diese Location ist permanent geschlossen",
+      "wronglyEntered": "Dieser Location-Eintrag wurde fälschlicherweise erstellt"
     }
   },
   "locationCluster": {
