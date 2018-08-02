@@ -43,7 +43,7 @@
   "message": {
     "new": "new",
     "registration": {
-      "success": "Welcome to Veganaut.net {{ name }}! You are now logged in. We're sending you an e-mail with a link to set your password for later logins.",
+      "success": "Welcome to Veganaut.net {{ name }}! You are now logged in. We're sending you an e-mail with a link so you can set your password for later logins.",
       "error": "Registration failed: {{ reason }}"
     },
     "login": {
@@ -189,7 +189,7 @@
     },
     "existenceTitleTag": {
       "closedDown": "Closed",
-      "wronglyEntered": "Wrongly entered"
+      "wronglyEntered": "Entered by mistake"
     },
     "form": {
       "new": {
@@ -207,7 +207,7 @@
       },
       "edit": {
         "AddProduct": {
-          "title": "What vegan products are available here?",
+          "title": "What (additional) vegan products are available here?",
           "placeholder": "Enter a vegan product here"
         },
         "BuyProduct": {
@@ -222,16 +222,16 @@
           "title": "How well do you know this location?",
           "knowLocation": {
             "regular": "I'm a regular",
-            "fewTimes": "I've been here a few times",
-            "once": "I've been here once",
-            "never": "I've never been here"
+            "fewTimes": "I've come here a few times",
+            "once": "I've come here once",
+            "never": "I've never gone there"
           }
         },
         "MentionVegan": {
           "title": "Use the word \"vegan\" when talking to the staff here!",
           "standaloneCallToAction": "Use the word \"vegan\" when talking to the staff",
           "commitment": {
-            "yes": "Yes!",
+            "yes": "Yes, I'm doing it!",
             "maybe": "OK, maybe"
           },
           "notesTitle": {
@@ -239,9 +239,9 @@
             "maybe": "Inspire others by sharing what you might say to them"
           },
           "completedTasks": {
-            "thisLocation": "Here's an example what someone wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "Here's an example what someone wrote at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
-            "fallback": "You might for example say ..."
+            "thisLocation": "To inspire you, here's what someone else wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "To inspire you, here's what someone else wrote here at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Here's an example of what someone might write here: \"I told the staff that I came here because a friend said they have great vegan deserts. I love vegan deserts!\" "
           }
         },
         "SetLocationName": {
@@ -263,12 +263,12 @@
           "placeholder": "Short description of this location, e.g. opening hours or ambience."
         },
         "SetLocationExistence": {
-          "title": "Location existence",
-          "description": "Existence description",
+          "title": "Location status",
+          "description": "Does this location even exist? Is the business still running or has it been discontinued? Or has this location been entered twice and this entry is the less informative one and can be deleted?",
           "existence": {
-            "existing": "Existiert",
-            "closedDown": "Closed down",
-            "wronglyEntered": "Wrongly entered"
+            "existing": "Up and running",
+            "closedDown": "Permanently closed (archive the entry!)",
+            "wronglyEntered": "Entered by mistake (delete the entry!)"
           }
         },
         "SetLocationProductListComplete": {
@@ -286,9 +286,9 @@
         "SetProductAvailability": {
           "title": "Availability of the offer",
           "availability": {
-            "always": "Immer verfügbar",
-            "sometimes": "Manchmal oder vorübergehend verfügbar",
-            "not": "Nicht (mehr) verfügbar"
+            "always": "Always available",
+            "sometimes": "Only sometimes or temporarily available",
+            "not": "Never available (any more)"
           }
         },
         "SetProductName": {
@@ -356,9 +356,9 @@
       "missing": "Enter website"
     },
     "existence": {
-      "existing": "This location exists",
-      "closedDown": "This location is closed down",
-      "wronglyEntered": "This location was wrongly entered"
+      "existing": "This location is still in business",
+      "closedDown": "This location is permanently closed",
+      "wronglyEntered": "This location entry was made by mistake"
     }
   },
   "locationCluster": {
