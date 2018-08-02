@@ -188,8 +188,8 @@
       "lessTasks": "Masquer"
     },
     "existenceTitleTag": {
-      "closedDown": "Closed",
-      "wronglyEntered": "Wrongly entered"
+      "closedDown": "Fermé",
+      "wronglyEntered": "Saisi par erreur"
     },
     "form": {
       "new": {
@@ -207,7 +207,7 @@
       },
       "edit": {
         "AddProduct": {
-          "title": "Quels produits végans est-ce qu'ils offrent ici?",
+          "title": "Quels produits végans (en plus) est-ce qu'ils offrent ici?",
           "placeholder": "Saisir un produit végan ici"
         },
         "BuyProduct": {
@@ -219,29 +219,29 @@
           "standaloneCallToAction": "Give feedback"
         },
         "HowWellDoYouKnowThisLocation": {
-          "title": "How well do you know this location?",
+          "title": "Tu connais bien cet endroit?",
           "knowLocation": {
-            "regular": "I'm a regular",
-            "fewTimes": "I've been here a few times",
-            "once": "I've been here once",
-            "never": "I've never been here"
+            "regular": "Je suis un client régulier",
+            "fewTimes": "Je suis venu ici plusieurs fois",
+            "once": "Je suis venu ici exactement une fois",
+            "never": "Je n'y suis jamais allé"
           }
         },
         "MentionVegan": {
-          "title": "Use the word \"vegan\" when talking to the staff here!",
-          "standaloneCallToAction": "Use the word \"vegan\" when talking to the staff",
+          "title": "Utilise le mot \"végan\" quand tu parles au personnel ici!",
+          "standaloneCallToAction": "Utilise le mot \"végan\" quand tu parles au personnel",
           "commitment": {
-            "yes": "Yes!",
-            "maybe": "OK, maybe"
+            "yes": "Oui, c'est ce que je fais!",
+            "maybe": "OK, peut-être"
           },
           "notesTitle": {
-            "yes": "Inspire others by sharing what you are saying to them!",
-            "maybe": "Inspire others by sharing what you might say to them"
+            "yes": "Inspire les autres en partageant ce que tu leur dis!",
+            "maybe": "Inspire les autres en partageant ce que tu pourrais leur dire!"
           },
           "completedTasks": {
-            "thisLocation": "Here's an example what someone wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "Here's an example what someone wrote at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
-            "fallback": "You might for example say ..."
+            "thisLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici à un autre endroit: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Par exemple, voilà ce que quelqu'un pourrait écrire ici : \"J'ai dit au personnel que je suis venu ici parce qu'un ami m'a dit qu'ils ont de grands déserts végans. J'adore les déserts végans!\" "
           }
         },
         "SetLocationName": {
@@ -263,12 +263,12 @@
           "placeholder": "Brève description de cet endroit, p. ex. les heures d'ouverture ou l'ambiance."
         },
         "SetLocationExistence": {
-          "title": "Location existence",
-          "description": "Existence description",
+          "title": "Statut de cet endroit",
+          "description": "Est-ce que cet endroit existe? L'entreprise est-elle toujours en opération ou a-t-elle été abandonnée? Ou est-ce que cet endroit a p. ex. été entré deux fois et cette entrée-ci est la moins informative et peut être efacée?",
           "existence": {
-            "existing": "Existiert",
-            "closedDown": "Closed down",
-            "wronglyEntered": "Wrongly entered"
+            "existing": "En opération",
+            "closedDown": "Fermé en permanence (archiver cette entrée!)",
+            "wronglyEntered": "Entrée par erreur (effacer cette entrée!)"
           }
         },
         "SetLocationProductListComplete": {
@@ -286,9 +286,9 @@
         "SetProductAvailability": {
           "title": "Disponibilité de l'offre",
           "availability": {
-            "always": "Immer verfügbar",
-            "sometimes": "Manchmal oder vorübergehend verfügbar",
-            "not": "Nicht (mehr) verfügbar"
+            "always": "Toujours disponible",
+            "sometimes": "Disponible que parfois ou temporairement",
+            "not": "(Plus) jamais disponible "
           }
         },
         "SetProductName": {
@@ -327,7 +327,7 @@
       "5": "Endroit avec un excellent choix végan"
     },
     "description": {
-      "add": "Add description"
+      "add": "Ajouter une description"
     },
     "products": {
       "title": "Offre végane",
@@ -356,9 +356,9 @@
       "missing": "Ajouter site web"
     },
     "existence": {
-      "existing": "This location exists",
-      "closedDown": "This location is closed down",
-      "wronglyEntered": "This location was wrongly entered"
+      "existing": "Cet endroit est toujours en opération",
+      "closedDown": "Cet endroit est fermé en permanence",
+      "wronglyEntered": "Cette entrée a été saisie par erreur"
     }
   },
   "locationCluster": {
@@ -489,8 +489,8 @@
       "noRating": "Cette option n'a pas encore été évaluée."
     },
     "availability": {
-      "always": "Cette option est toujour disponsible.",
-      "sometimes": "Cette option n'est pas toujour disponible.",
+      "always": "Cette option est toujours disponsible.",
+      "sometimes": "Cette option n'est pas toujours disponible.",
       "not": "Cette option n'est plus disponible."
     },
     "gastronomy": {
