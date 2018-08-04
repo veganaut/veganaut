@@ -529,30 +529,30 @@
     "gastronomyLocation": {
       "name": "Restaurants",
       "title": "{{ count }} restaurants",
-      "noResults": "No restaurants can be found in the given area.",
+      "noResults": "So far, nobody has enterd any restaurants in the given area.",
       "noResultsFiltered": "All restaurants were filtered out.",
       "showMore": "Show more restaurants"
     },
     "retailLocation": {
       "name": "Shops",
       "title": "{{ count }} shops",
-      "noResults": "No shops can be found in the given area.",
+      "noResults": "So far, nobody has enterd any shops in the given area.",
       "noResultsFiltered": "All shops were filtered out.",
       "showMore": "Show more shops"
     },
     "gastronomyProduct": {
       "name": "Meals",
       "title": "{{ count }} vegan meals",
-      "noResults": "No options were found in the given area.",
-      "noResultsFiltered": "All options were filtered out.",
-      "showMore": "Show more options"
+      "noResults": "So far, nobody has enterd any meals in the given area.",
+      "noResultsFiltered": "All meals were filtered out.",
+      "showMore": "Show more meals"
     },
     "retailProduct": {
       "name": "Products",
       "title": "{{ count }} vegan products",
-      "noResults": "No options were found in the given area.",
-      "noResultsFiltered": "All options were filtered out.",
-      "showMore": "Show more options"
+      "noResults": "So far, nobody has enterd any products in the given area.",
+      "noResultsFiltered": "All products were filtered out.",
+      "showMore": "Show more products"
     }
   },
   "activeFilterSummary": {
