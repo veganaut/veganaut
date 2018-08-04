@@ -529,30 +529,30 @@
     "gastronomyLocation": {
       "name": "Restaurants",
       "title": "{{ count }} Restaurants",
-      "noResults": "Im angegebenen Gebiet wurden keine Restaurants gefunden.",
+      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Restaurants eingetragen.",
       "noResultsFiltered": "Alle Restaurants wurden herausgefiltert.",
       "showMore": "Weitere Restaurants anzeigen"
     },
     "retailLocation": {
       "name": "Läden",
       "title": "{{ count }} Läden",
-      "noResults": "Im angegebenen Gebiet wurden keine Läden gefunden.",
+      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Läden eingetragen.",
       "noResultsFiltered": "Alle Läden wurden herausgefiltert.",
       "showMore": "Weitere Läden anzeigen"
     },
     "gastronomyProduct": {
       "name": "Gerichte",
-      "title": "{{ count }} Vegane Gerichte",
-      "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
-      "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
-      "showMore": "Weitere Angebote anzeigen"
+      "title": "{{ count }} vegane Gerichte",
+      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Gerichte eingetragen.",
+      "noResultsFiltered": "Alle Gerichte wurden herausgefiltert.",
+      "showMore": "Weitere Gerichte anzeigen"
     },
     "retailProduct": {
       "name": "Produkte",
-      "title": "{{ count }} Vegane Produkte",
-      "noResults": "Keine Angebote im angegebenen Gebiet gefunden.",
-      "noResultsFiltered": "Alle Angebote wurden herausgefiltert.",
-      "showMore": "Weitere Angebote anzeigen"
+      "title": "{{ count }} vegane Produkte",
+      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Produkte eingetragen.",
+      "noResultsFiltered": "Alle Produkte wurden herausgefiltert.",
+      "showMore": "Weitere Produkte anzeigen"
     }
   },
   "activeFilterSummary": {
