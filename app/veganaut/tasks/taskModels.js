@@ -129,6 +129,7 @@
     };
 
     MentionVeganTask.prototype.getOutcome = function() {
+        // TODO: de-duplicate with other veganize missions
         if (this.completed) {
             return this._finalOutcome;
         }
@@ -178,30 +179,39 @@
         return outcome;
     };
 
-    // BuyOptionsMission //////////////////////////////////////////////////////
-    function BuyOptionsMission(location, lastCompletedDate, lastCompletedOutcome) {
-        Task.call(this, 'buyOptions', {}, location, lastCompletedDate, lastCompletedOutcome);
+    // BuyProduct /////////////////////////////////////////////////////////////
+    function BuyProductTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'BuyProduct', false, 'message.locationTaskRelation.success', undefined, undefined,
+            {}, location, lastCompletedDate, lastCompletedOutcome)
+        ;
+
+        this.possibleAnswers = ['yes'];
     }
 
-    BuyOptionsMission.prototype = Object.create(Task.prototype);
-    BuyOptionsMission.prototype.constructor = BuyOptionsMission;
+    BuyProductTask.prototype = Object.create(Task.prototype);
+    BuyProductTask.prototype.constructor = BuyProductTask;
 
-    BuyOptionsMission.prototype.hasValidOutcome = function() {
-        return (this.getOutcome().length > 0);
+    BuyProductTask.prototype.hasValidOutcome = function() {
+        return angular.isDefined(this.getOutcome());
     };
 
-    BuyOptionsMission.prototype.getOutcome = function() {
+    BuyProductTask.prototype.getOutcome = function() {
+        // TODO: de-duplicate with other veganize missions
         if (this.completed) {
             return this._finalOutcome;
         }
-        var outcome = [];
-        _.each(this.inputModel, function(isSelected, productId) {
-            if (isSelected) {
-                outcome.push({
-                    product: productId
-                });
+
+        var outcome;
+        if (angular.isObject(this.inputModel) && angular.isString(this.inputModel.commitment)) {
+            outcome = {
+                commitment: this.inputModel.commitment
+            };
+
+            if (this.inputModel.notes) {
+                outcome.notes = this.inputModel.notes;
             }
-        });
+        }
+
         return outcome;
     };
 
@@ -550,7 +560,7 @@
         hasOptions: HasOptionsMission, // TODO WIP
         MentionVegan: MentionVeganTask,
         AddProduct: AddProductTask,
-        buyOptions: BuyOptionsMission, // TODO WIP
+        BuyProduct: BuyProductTask,
         GiveFeedback: GiveFeedbackTask,
         HowWellDoYouKnowThisLocation: HowWellDoYouKnowThisLocationTask,
         RateProduct: RateProductTask,

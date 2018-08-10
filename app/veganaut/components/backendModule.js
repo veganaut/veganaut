@@ -266,7 +266,7 @@
              * Gets a randomly selected Veganize task of the given task type.
              * @param {string} taskType
              * @param {string} locationType
-             * @param {string} locationId
+             * @param {number} locationId
              * @returns {Promise}
              */
             BackendService.prototype.getRelatedVeganizeTask = function(taskType, locationType, locationId) {
@@ -275,6 +275,28 @@
                         params: {
                             type: taskType,
                             locationType: locationType,
+                            locationId: locationId
+                        }
+                    })
+                    .then(function(res) {
+                        return res.data;
+                    })
+                    .catch(function(res) {
+                        return $q.reject(res.data);
+                    });
+            };
+
+            /**
+             * Returns the statistics of the given task at the given location.
+             * @param {string} taskType
+             * @param {number} locationId
+             * @returns {Promise}
+             */
+            BackendService.prototype.getTaskStatistics = function(taskType, locationId) {
+                return $http
+                    .get(backendUrl + '/task/statistics', {
+                        params: {
+                            type: taskType,
                             locationId: locationId
                         }
                     })

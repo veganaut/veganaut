@@ -97,13 +97,14 @@
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
 
                 // For the veganize tasks, load related tasks to display for inspiration
-                if (['MentionVegan', 'GiveFeedback'].indexOf($ctrl.editTask) > -1) { // TODO: the task should know what type it is
+                // TODO: The task should know what is needed for it and that code probably moved to the model
+                if (['MentionVegan', 'GiveFeedback'].indexOf($ctrl.editTask) > -1) {
                     backendService.getRelatedVeganizeTask($ctrl.editTask, $ctrl.location.type, $ctrl.location.id)
                         .then(function(task) {
                             var translateKey = 'location.form.edit.' + $ctrl.editTask + '.completedTasks.';
                             if (task) {
                                 translateKey += (task.location.id === $ctrl.location.id) ? 'thisLocation' : 'otherLocation';
-                                $ctrl.relatedVeganizeTaskText = $translate.instant(translateKey, {
+                                $ctrl.completedVeganizeTaskText = $translate.instant(translateKey, {
                                     text: task.outcome.notes,
                                     person: task.person.nickname,
                                     location: task.location.name,
@@ -113,7 +114,24 @@
                             }
                             else {
                                 translateKey += 'fallback';
-                                $ctrl.relatedVeganizeTaskText = $translate.instant(translateKey);
+                                $ctrl.completedVeganizeTaskText = $translate.instant(translateKey);
+                            }
+                        })
+                    ;
+                }
+                else if ($ctrl.editTask === 'BuyProduct') {
+                    backendService.getTaskStatistics($ctrl.editTask, $ctrl.location.id)
+                        .then(function(statistics) {
+                            var translateKey = 'location.form.edit.' + $ctrl.editTask + '.completedTasks.';
+                            if (angular.isObject(statistics) && statistics.count > 0) {
+                                translateKey += 'some';
+                                $ctrl.completedVeganizeTaskText = $translate.instant(translateKey, {
+                                    count: statistics.count
+                                });
+                            }
+                            else {
+                                translateKey += 'none';
+                                $ctrl.completedVeganizeTaskText = $translate.instant(translateKey);
                             }
                         })
                     ;

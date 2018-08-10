@@ -51,6 +51,7 @@
             pageTitleService.addCustomTitle($ctrl.location.name);
         };
 
+        // TODO: list of veganize tasks should come from config
         $ctrl.veganizeTasks = _.shuffle(['MentionVegan', 'GiveFeedback', 'BuyProduct']);
 
         $ctrl.toggleEditMode = function() {

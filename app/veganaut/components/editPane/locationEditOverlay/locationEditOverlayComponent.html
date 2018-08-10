@@ -19,6 +19,25 @@
                     </vg-list-input>
                 </div>
 
+                <div ng-switch-when="BuyProduct">
+                    <div class="choose-wrapper">
+                        <div ng-repeat="state in $ctrl.task.possibleAnswers">
+                            <button class="btn btn-choose"
+                             ng-disabled="$ctrl.isSaving"
+                             ng-model="$ctrl.task.inputModel.commitment"
+                             uib-btn-radio="state">
+                                {{ 'location.form.edit.BuyProduct.commitment.' + state | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div ng-if="$ctrl.task.inputModel.commitment">
+                        <p>
+                            {{ $ctrl.completedVeganizeTaskText }}
+                        </p>
+                    </div>
+                </div>
+
                 <div ng-switch-when="GiveFeedback">
                     <div class="row choose-wrapper">
                         <div class="col-xs-6" ng-repeat="state in $ctrl.task.possibleAnswers">
@@ -36,7 +55,7 @@
                             {{ 'location.form.edit.GiveFeedback.notesTitle.' + $ctrl.task.inputModel.commitment | translate }}
                         </p>
                         <textarea class="vg-form__input" type="text" rows="3"
-                         placeholder="{{ $ctrl.relatedVeganizeTaskText }}"
+                         placeholder="{{ $ctrl.completedVeganizeTaskText }}"
                          ng-model="$ctrl.task.inputModel.notes"
                          ng-disabled="$ctrl.isSaving">
                         </textarea>
@@ -71,7 +90,7 @@
                             {{ 'location.form.edit.MentionVegan.notesTitle.' + $ctrl.task.inputModel.commitment | translate }}
                         </p>
                         <textarea class="vg-form__input" type="text" rows="3"
-                         placeholder="{{ $ctrl.relatedVeganizeTaskText }}"
+                         placeholder="{{ $ctrl.completedVeganizeTaskText }}"
                          ng-model="$ctrl.task.inputModel.notes"
                          ng-disabled="$ctrl.isSaving">
                         </textarea>

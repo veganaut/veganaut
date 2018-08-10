@@ -212,7 +212,14 @@
         },
         "BuyProduct": {
           "title": "Buy something vegan!",
-          "standaloneCallToAction": "Buy something vegan"
+          "standaloneCallToAction": "Buy something vegan",
+          "commitment": {
+            "yes": "Ja, mache ich!"
+          },
+          "completedTasks": {
+            "none": "Du bist die erste!",
+            "some": "Hier haben schon {{ count }} mal Leute was veganes gekauft."
+          }
         },
         "GiveFeedback": {
           "title": "Give feedback!",
