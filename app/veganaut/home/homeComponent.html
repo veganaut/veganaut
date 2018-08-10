@@ -21,17 +21,17 @@
                      class="form-control input-geo"
                      placeholder="{{ 'home.callToAction.inputPlaceholder' | translate }}"
                      autocomplete="off"
-                     ng-model="homeVm.ctaFormInput"
-                     ng-focus="homeVm.onCtaInputFocus()"
-                     ng-blur="homeVm.onCtaInputBlur()"
-                     uib-typeahead="res.getLongName() for res in homeVm.getSearchResults($viewValue)"
+                     ng-model="$ctrl.ctaFormInput"
+                     ng-focus="$ctrl.onCtaInputFocus()"
+                     ng-blur="$ctrl.onCtaInputBlur()"
+                     uib-typeahead="res.getLongName() for res in $ctrl.getSearchResults($viewValue)"
                      typeahead-min-length="3"
                      typeahead-wait-ms="1000"
-                     typeahead-loading="homeVm.searching"
-                     typeahead-on-select="homeVm.onResultSelected($item)"
+                     typeahead-loading="$ctrl.searching"
+                     typeahead-on-select="$ctrl.onResultSelected($item)"
                     >
                     <div class="form--auto-complete__loading"
-                     ng-show="homeVm.searching || homeVm.geolocating">
+                     ng-show="$ctrl.searching || $ctrl.geolocating">
                         <i class="glyphicon glyphicon-refresh">
                         </i>
                     </div>
@@ -39,14 +39,14 @@
                 <button class="btn btn-default btn-geo"
                  id="home-button-location"
                  type="button"
-                 ng-click="homeVm.getUserLocation()">
+                 ng-click="$ctrl.getUserLocation()">
                     <vg-icon vg-name="'geo-location'" class="home-location"></vg-icon>
                 </button>
             </div>
             <button class="btn btn-primary btn-large"
              type="submit"
-             ng-disabled="!homeVm.canSubmitCta()"
-             ng-click="homeVm.onCtaSubmit()">
+             ng-disabled="!$ctrl.canSubmitCta()"
+             ng-click="$ctrl.onCtaSubmit()">
                 <span class="h4">{{ 'home.callToAction.show' | translate }}&nbsp;</span>
                 <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
@@ -58,8 +58,8 @@
         </p>
         <p>
             <button type="button" class="btn-register btn-primary btn-small"
-             ng-if="!homeVm.legacyGlobals.isLoggedIn()"
-             ng-click="homeVm.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'"
+             ng-if="!$ctrl.legacyGlobals.isLoggedIn()"
+             ng-click="$ctrl.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'"
              title="{{ 'navigation.register' | translate }}">
                 {{ 'home.participate.register' | translate }}
             </button>
