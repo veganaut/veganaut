@@ -211,14 +211,15 @@
           "placeholder": "Hier ein veganes Produkt eintragen"
         },
         "BuyProduct": {
-          "title": "Buy something vegan!",
-          "standaloneCallToAction": "Buy something vegan",
+          "title": "Kauf hier etwas Veganes!",
+          "standaloneCallToAction": "Bring das Geld-Argument!",
+          "description": "Geld ist wahrscheinlich das einzige Argument für den Veganismus, das alle verstehen. Darum: Gib dein Geld hier für etwas Veganes aus!",
           "commitment": {
-            "yes": "Ja, mache ich!"
+            "yes": "Klar, mache ich!"
           },
           "completedTasks": {
-            "none": "Du bist die erste!",
-            "some": "Hier haben schon {{ count }} mal Leute was veganes gekauft."
+            "none": "Du bist der/die erste Veganaut*in, der/die hier das Geld-Argument bringt. Danke! Damit motivierst du andere, es dir gleichzutun.",
+            "some": "Hier wurde das Geld-Argument jetzt bereits {{ count }} Mal gebracht. Danke fürs +1! Das ist zusätzliche Motivation für andere, dieses Argument hier auch zu bringen."
           }
         },
         "GiveFeedback": {
