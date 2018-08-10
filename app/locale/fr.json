@@ -213,13 +213,13 @@
         "BuyProduct": {
           "title": "Achète quelque chose de végan ici!",
           "standaloneCallToAction": "Utilise l'argument de l'argent!",
-          "description": "L'argent est probablement le seul argument en faveur du véganisme que tout le monde comprend. Alors, plaidez pour le véganisme en dépensant votre argent pour quelque chose de végan ici!",
+          "description": "L'argent est probablement le seul argument en faveur du véganisme que tout le monde comprend. Alors, plaide pour le véganisme en dépensant ton argent pour quelque chose de végan ici!",
           "commitment": {
             "yes": "Oui, c'est ce que je fais!"
           },
           "completedTasks": {
             "none": "Tu es le/la premier/e veganaut/e à utiliser l'argument de l'argent ici. Merci! Cela motivera les autres à faire de même.",
-            "some": "L'argument de l'argent a maintenant été utilisé {{ count }} fois ici. Merci pour le +1 ! C'est une motivation supplémentaire pour les autres à faire de même."
+            "some": "L'argument de l'argent a maintenant été utilisé {{ count }} fois ici. Merci pour ton +1 ! C'est une motivation supplémentaire pour les autres à faire de même."
           }
         },
         "GiveFeedback": {
