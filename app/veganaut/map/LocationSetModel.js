@@ -133,7 +133,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
         LocationSet.prototype.submitCreateLocation = function() {
             var that = this;
 
-            // TODO WIP NOW: the map should be in the correct mode (category) when the location is added otherwise it gets confusing
+            // TODO WIP: the map should be in the correct mode (category) when the location is added otherwise it gets confusing
 
             // Check if we can actually submit the location
             if (that.isCreatingLocation() &&

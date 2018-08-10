@@ -72,7 +72,7 @@
 
                     // Check if we have to reload
                     if ($ctrl.task.reloadLocationAfterSubmit) {
-                        // TODO WIP: what if this fails? The catch further down will do the wrong thing.
+                        // TODO: what if this fails? The catch further down will do the wrong thing.
                         // Reload the location
                         return locationService.loadFullLocation($ctrl.location);
                     }

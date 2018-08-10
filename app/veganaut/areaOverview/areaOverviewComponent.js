@@ -106,6 +106,8 @@
         };
 
         $ctrl.$onInit = function() {
+            // TODO WIP: Set page title with pageTitleService (also on map & list)
+
             // Try to set the area from the URL params
             areaService.setAreaFromUrl()
                 .finally(function() {

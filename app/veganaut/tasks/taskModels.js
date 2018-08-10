@@ -52,18 +52,6 @@
     };
 
     /**
-     * Aborts the task and resets the outcome.
-     * Once the task is completed, it won't change anything anymore
-     * TODO WIP: delete this?
-     */
-    Task.prototype.abort = function() {
-        if (!this.completed) {
-            // Reset the input
-            this.inputModel = this._initialInput;
-        }
-    };
-
-    /**
      * Returns the outcome of this task. To be overwritten
      * by child classes.
      * @returns {{}}
@@ -79,7 +67,7 @@
 
     /**
      * Concludes this task. Should only be called once there is a valid outcome.
-     * TODO WIP: this is not used?
+     * TODO: this is not used anymore, remove it
      */
     Task.prototype.finish = function() {
         if (!this.completed) {
