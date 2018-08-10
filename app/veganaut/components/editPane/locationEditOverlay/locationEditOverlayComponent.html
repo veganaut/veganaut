@@ -19,8 +19,31 @@
                     </vg-list-input>
                 </div>
 
-                <div class="choose-wrapper"
-                 ng-switch-when="HowWellDoYouKnowThisLocation">
+                <div ng-switch-when="GiveFeedback">
+                    <div class="row choose-wrapper">
+                        <div class="col-xs-6" ng-repeat="state in $ctrl.task.possibleAnswers">
+                            <button class="btn btn-choose"
+                             ng-disabled="$ctrl.isSaving"
+                             ng-model="$ctrl.task.inputModel.commitment"
+                             uib-btn-radio="state">
+                                {{ 'location.form.edit.GiveFeedback.commitment.' + state | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div ng-if="$ctrl.task.inputModel.commitment">
+                        <p>
+                            {{ 'location.form.edit.GiveFeedback.notesTitle.' + $ctrl.task.inputModel.commitment | translate }}
+                        </p>
+                        <textarea class="vg-form__input" type="text" rows="3"
+                         placeholder="{{ $ctrl.relatedVeganizeTaskText }}"
+                         ng-model="$ctrl.task.inputModel.notes"
+                         ng-disabled="$ctrl.isSaving">
+                        </textarea>
+                    </div>
+                </div>
+
+                <div ng-switch-when="HowWellDoYouKnowThisLocation" class="choose-wrapper">
                     <div ng-repeat="state in $ctrl.task.possibleAnswers">
                         <button class="btn btn-choose"
                          ng-disabled="$ctrl.isSaving"

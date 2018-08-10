@@ -205,17 +205,40 @@
         return outcome;
     };
 
-    // GiveFeedbackMission ////////////////////////////////////////////////////
-    function GiveFeedbackMission(location, lastCompletedDate, lastCompletedOutcome) {
-        Task.call(this, 'giveFeedback', '', location, lastCompletedDate, lastCompletedOutcome);
+    // GiveFeedback ///////////////////////////////////////////////////////////
+    function GiveFeedbackTask(location, lastCompletedDate, lastCompletedOutcome) {
+        Task.call(this, 'GiveFeedback', false, 'message.locationTaskRelation.success', undefined, undefined,
+            {}, location, lastCompletedDate, lastCompletedOutcome)
+        ;
+
+        this.possibleAnswers = ['yes', 'maybe'];
     }
 
-    GiveFeedbackMission.prototype = Object.create(Task.prototype);
-    GiveFeedbackMission.prototype.constructor = GiveFeedbackMission;
+    GiveFeedbackTask.prototype = Object.create(Task.prototype);
+    GiveFeedbackTask.prototype.constructor = GiveFeedbackTask;
 
-    GiveFeedbackMission.prototype.hasValidOutcome = function() {
-        var outcome = this.getOutcome() || '';
-        return (outcome.length > 0);
+    GiveFeedbackTask.prototype.hasValidOutcome = function() {
+        return angular.isDefined(this.getOutcome());
+    };
+
+    GiveFeedbackTask.prototype.getOutcome = function() {
+        // TODO: de-duplicate with other veganize missions
+        if (this.completed) {
+            return this._finalOutcome;
+        }
+
+        var outcome;
+        if (angular.isObject(this.inputModel) && angular.isString(this.inputModel.commitment)) {
+            outcome = {
+                commitment: this.inputModel.commitment
+            };
+
+            if (this.inputModel.notes) {
+                outcome.notes = this.inputModel.notes;
+            }
+        }
+
+        return outcome;
     };
 
     // HowWellDoYouKnowThisLocation ///////////////////////////////////////////
@@ -528,7 +551,7 @@
         MentionVegan: MentionVeganTask,
         AddProduct: AddProductTask,
         buyOptions: BuyOptionsMission, // TODO WIP
-        giveFeedback: GiveFeedbackMission, // TODO WIP
+        GiveFeedback: GiveFeedbackTask,
         HowWellDoYouKnowThisLocation: HowWellDoYouKnowThisLocationTask,
         RateProduct: RateProductTask,
         SetLocationCoordinates: SetLocationCoordinatesTask,

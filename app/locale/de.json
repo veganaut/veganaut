@@ -216,7 +216,20 @@
         },
         "GiveFeedback": {
           "title": "Give feedback!",
-          "standaloneCallToAction": "Give feedback"
+          "standaloneCallToAction": "Give feedback",
+          "commitment": {
+            "yes": "Ja, mache ich!",
+            "maybe": "OK, vielleicht"
+          },
+          "notesTitle": {
+            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst!",
+            "maybe": "Inspiriere andere, indem du teilst, was du ihnen sagen könntest!"
+          },
+          "completedTasks": {
+            "thisLocation": "Als Inspiration für dich: Jemand anderes hat hier z.B. das geschrieben: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Als Inspiration für dich: Bei einer anderen Location hat hier jemand z.B. folgendes geschrieben: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Hier könnte jemand z.B. schreiben: \"Ich hab dem Personal gesagt, das ich hier bin, weil eine Freundin meinte, hier gäb's tolle vegane Desserts. Ich liebe vegane Desserts!\" "
+          }
         },
         "HowWellDoYouKnowThisLocation": {
           "title": "Wie gut kennst du diese Location?",

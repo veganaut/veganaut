@@ -97,7 +97,7 @@
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
 
                 // For the veganize tasks, load related tasks to display for inspiration
-                if ($ctrl.editTask === 'MentionVegan') {
+                if (['MentionVegan', 'GiveFeedback'].indexOf($ctrl.editTask) > -1) { // TODO: the task should know what type it is
                     backendService.getRelatedVeganizeTask($ctrl.editTask, $ctrl.location.type, $ctrl.location.id)
                         .then(function(task) {
                             var translateKey = 'location.form.edit.' + $ctrl.editTask + '.completedTasks.';

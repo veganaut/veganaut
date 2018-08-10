@@ -216,7 +216,20 @@
         },
         "GiveFeedback": {
           "title": "Give feedback!",
-          "standaloneCallToAction": "Give feedback"
+          "standaloneCallToAction": "Give feedback",
+          "commitment": {
+            "yes": "Oui, c'est ce que je fais!",
+            "maybe": "OK, peut-être"
+          },
+          "notesTitle": {
+            "yes": "Inspire les autres en partageant ce que tu leur dis!",
+            "maybe": "Inspire les autres en partageant ce que tu pourrais leur dire!"
+          },
+          "completedTasks": {
+            "thisLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici à un autre endroit: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Par exemple, voilà ce que quelqu'un pourrait écrire ici : \"J'ai dit au personnel que je suis venu ici parce qu'un ami m'a dit qu'ils ont de grands déserts végans. J'adore les déserts végans!\" "
+          }
         },
         "HowWellDoYouKnowThisLocation": {
           "title": "Tu connais bien cet endroit?",

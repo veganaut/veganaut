@@ -51,7 +51,7 @@
             pageTitleService.addCustomTitle($ctrl.location.name);
         };
 
-        $ctrl.veganizeTasks = ['MentionVegan', 'GiveFeedback', 'BuyProduct'];
+        $ctrl.veganizeTasks = _.shuffle(['MentionVegan', 'GiveFeedback', 'BuyProduct']);
 
         $ctrl.toggleEditMode = function() {
             // TODO WIP: call setEditing() on location model?
