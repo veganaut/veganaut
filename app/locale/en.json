@@ -221,7 +221,6 @@
             "some": "Hier haben schon {{ count }} mal Leute was veganes gekauft."
           }
         },
-        },
         "GiveFeedback": {
           "title": "Give feedback!",
           "standaloneCallToAction": "Give feedback",
