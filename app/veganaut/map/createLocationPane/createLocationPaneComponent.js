@@ -41,7 +41,7 @@
             controller: 'vgCreateLocationFormCtrl',
             controllerAs: 'createLocationFormVm',
             bindToController: true,
-            templateUrl: '/veganaut/map/createLocationForm.tpl.html'
+            templateUrl: '/veganaut/map/createLocationPane/createLocationPaneComponent.html'
         };
     };
 
