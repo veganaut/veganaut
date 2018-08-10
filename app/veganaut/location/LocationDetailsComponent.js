@@ -20,10 +20,10 @@
     }
 
     LocationDetailsComponentController.$inject = [
-        '$location', 'pageTitleService'
+        '$location', 'constants', 'pageTitleService'
     ];
 
-    function LocationDetailsComponentController($location, pageTitleService) {
+    function LocationDetailsComponentController($location, constants, pageTitleService) {
         var $ctrl = this;
 
         // TODO WIP: handle location not found nicely
@@ -74,8 +74,12 @@
                 $ctrl.startTask('SetLocationCoordinates');
             }
             else {
-                // TODO WIP: show the map around the location
-                $location.url('/map/');
+                // TODO: show the location as selected when going to the map
+                $location.url('/map/?zoom=17&coords=' +
+                    $ctrl.location.lat.toFixed(constants.URL_FLOAT_PRECISION) + ',' +
+                    $ctrl.location.lng.toFixed(constants.URL_FLOAT_PRECISION) +
+                    '&type=' + $ctrl.location.type + '&granularity=location'
+                );
             }
         };
     }
