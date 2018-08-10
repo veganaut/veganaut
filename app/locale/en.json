@@ -211,14 +211,15 @@
           "placeholder": "Enter a vegan product here"
         },
         "BuyProduct": {
-          "title": "Buy something vegan!",
-          "standaloneCallToAction": "Buy something vegan",
+          "title": "Buy something vegan here!",
+          "standaloneCallToAction": "Use the money argument!",
+          "description": "Money is probably the only argument for veganism that everyone understands. So, argue for veganism by spending your money on something vegan here!",
           "commitment": {
-            "yes": "Ja, mache ich!"
+            "yes": "Sure, I'm doing it!"
           },
           "completedTasks": {
-            "none": "Du bist die erste!",
-            "some": "Hier haben schon {{ count }} mal Leute was veganes gekauft."
+            "none": "You're the first veganaut to use the money argument here. Thanks! This will motivate ohters to do the same.",
+            "some": "The money argument has now been used {{ count }} times here. Thanks for the +1! This is additional motivation for ohters to do the same."
           }
         },
         "GiveFeedback": {
