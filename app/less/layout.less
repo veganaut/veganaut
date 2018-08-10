@@ -47,13 +47,14 @@ body.embedded .main-container {
 
 .top-box {
     background-color: #ffffff;
-    top: -5px;
+    top: 0;
     left: 0;
     right: 0;
+    margin-top: 0;
     border: 1px solid @bootstrapGreyBorder;
     border-top: 0;
     position: fixed;
-    z-index: 1005;
+    z-index: 1040;
     box-shadow: 0 2px 3px @colorLighter;
 }
 
@@ -179,14 +180,12 @@ hr {
 
 // Styles for the bootstrap modal
 .modal {
-    top: @navbarHeight;
-
     .modal-dialog {
         margin: 0 auto;
         max-width: @maxContainerWidth;
     }
     .modal-content {
-        background-color: @colorLightTranslucent;
+        background-color: @colorLight;
         border: 1px solid @bootstrapGreyBorder;
         border-radius: 0;
         padding: 0 0;
@@ -195,7 +194,6 @@ hr {
 }
 
 .modal-backdrop {
-    top: @navbarHeight;
     background-color: white;
 
     &.in {
