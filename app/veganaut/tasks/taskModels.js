@@ -88,30 +88,6 @@
         }
     };
 
-    // HasOptionsMission //////////////////////////////////////////////////////
-    function HasOptionsMission(location, lastCompletedDate, lastCompletedOutcome) {
-        Task.call(this, 'hasOptions', {}, location, lastCompletedDate, lastCompletedOutcome);
-        this.firstAnswers = ['yes', 'no', 'theyDoNotKnow'];
-        this.secondAnswers = ['ratherYes', 'ratherNo', 'noClue'];
-    }
-
-    HasOptionsMission.prototype = Object.create(Task.prototype);
-    HasOptionsMission.prototype.constructor = HasOptionsMission;
-
-    HasOptionsMission.prototype.getOutcome = function() {
-        if (this.completed) {
-            return this._finalOutcome;
-        }
-        var outcome;
-        if (this.inputModel.first === 'theyDoNotKnow') {
-            outcome = this.inputModel.second;
-        }
-        else {
-            outcome = this.inputModel.first;
-        }
-        return outcome;
-    };
-
     // MentionVegan ///////////////////////////////////////////////////////////
     function MentionVeganTask(location, lastCompletedDate, lastCompletedOutcome) {
         Task.call(this, 'MentionVegan', false, 'message.locationTaskRelation.success', undefined, undefined,
@@ -557,7 +533,6 @@
 
 
     module.value('tasks', {
-        hasOptions: HasOptionsMission, // TODO WIP
         MentionVegan: MentionVeganTask,
         AddProduct: AddProductTask,
         BuyProduct: BuyProductTask,
