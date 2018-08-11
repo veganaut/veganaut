@@ -212,14 +212,14 @@
         },
         "BuyProduct": {
           "title": "Achète quelque chose de végan ici!",
-          "standaloneCallToAction": "Utilise l'argument de l'argent!",
+          "standaloneCallToAction": "Présente l'argument du fric!",
           "description": "L'argent est probablement le seul argument en faveur du véganisme que tout le monde comprend. Alors, plaide pour le véganisme en dépensant ton argent pour quelque chose de végan ici!",
           "commitment": {
-            "yes": "Oui, c'est ce que je fais!"
+            "yes": "Oui, je le fais!"
           },
           "completedTasks": {
-            "none": "Tu es le/la premier/e veganaut/e à utiliser l'argument de l'argent ici. Merci! Cela motivera les autres à faire de même.",
-            "some": "L'argument de l'argent a maintenant été utilisé {{ count }} fois ici. Merci pour ton +1 ! C'est une motivation supplémentaire pour les autres à faire de même."
+            "none": "Avant toi, personne n'a présenté l'argument du fric ici. Merci d'avoir mis la balle en marche! Cela motivera les autres à faire de même.",
+            "some": "L'argument du fric a maintenant été utilisé {{ count }} fois ici. Merci pour ton +1 ! C'est une motivation supplémentaire pour les autres à faire de même."
           }
         },
         "GiveFeedback": {
@@ -658,7 +658,7 @@
     },
     "participate": {
       "text": "Tu veux aider d‘autres personnes à explorer l‘univers végan? Tu peux partager et évaluer tes découvertes véganes sur Véganaut.",
-      "register": "Je veux participer!"
+      "register": "Je participe!"
     }
   },
   "missingFeature": {
