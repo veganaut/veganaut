@@ -226,7 +226,7 @@
           "title": "Give feedback!",
           "standaloneCallToAction": "Give feedback",
           "commitment": {
-            "yes": "Oui, c'est ce que je fais!",
+            "yes": "Oui, je le fais!",
             "maybe": "OK, peut-être"
           },
           "notesTitle": {
@@ -252,7 +252,7 @@
           "title": "Utilise le mot \"végan\" quand tu parles au personnel ici!",
           "standaloneCallToAction": "Utilise le mot \"végan\" quand tu parles au personnel",
           "commitment": {
-            "yes": "Oui, c'est ce que je fais!",
+            "yes": "Oui, je le fais!",
             "maybe": "OK, peut-être"
           },
           "notesTitle": {
