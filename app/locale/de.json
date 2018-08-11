@@ -218,7 +218,7 @@
             "yes": "Klar, mache ich!"
           },
           "completedTasks": {
-            "none": "Du bist der/die erste Veganaut*in, der/die hier das Geld-Argument bringt. Danke! Damit motivierst du andere, es dir gleichzutun.",
+            "none": "Vor dir hat hier noch niemand das Geld-Argument gebracht. Danke für die Pionierleistung! Damit motivierst du andere, es dir gleichzutun.",
             "some": "Hier wurde das Geld-Argument jetzt bereits {{ count }} Mal gebracht. Danke fürs +1! Das ist zusätzliche Motivation für andere, dieses Argument hier auch zu bringen."
           }
         },
@@ -527,7 +527,7 @@
       "lessProducts": "Ausblenden",
       "rate": "Bewerten",
       "totalProducts": "{{ numProducts }} vegane Produkte",
-      "noProducts": "Noch keine vegane Produkte eingetragen",
+      "noProducts": "Noch keine veganen Produkte eingetragen",
       "addProduct": "Veganes Produkt hinzufügen"
     }
   },
@@ -658,7 +658,7 @@
     },
     "participate": {
       "text": "Willst du anderen helfen, das vegane Universum zu erkunden? Auf Veganaut kannst du vegane Entdeckungen teilen und bewerten.",
-      "register": "Ich will mitmachen!"
+      "register": "Ich mache mit!"
     }
   },
   "missingFeature": {
