@@ -5,7 +5,7 @@
     var module = angular.module('veganaut.ui');
 
     /**
-     * TODO WIP: remove this component? Or use it again?
+     * TODO: remove this component? Or use it again?
      * Accordion component with a header and a body.
      *
      * The optional onOpenToggle handler on the accordionItem will be called
