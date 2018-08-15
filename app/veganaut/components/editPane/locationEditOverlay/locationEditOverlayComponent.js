@@ -126,7 +126,7 @@
                             if (angular.isObject(statistics) && statistics.count > 0) {
                                 translateKey += 'some';
                                 $ctrl.completedVeganizeTaskText = $translate.instant(translateKey, {
-                                    count: statistics.count
+                                    count: statistics.count + 1 // Add one to include the current task
                                 });
                             }
                             else {
