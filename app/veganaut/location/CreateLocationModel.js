@@ -5,11 +5,10 @@ angular.module('veganaut.app.location').factory('CreateLocation', [
         /**
          * Model for creating a new Veganaut location
          *
-         * @param {Player} player
          * @param {Leaflet.Map} map
          * @constructor
          */
-        var CreateLocation = function(player, map) {
+        var CreateLocation = function(map) {
             /**
              * The location that is being created
              * @type {Location}

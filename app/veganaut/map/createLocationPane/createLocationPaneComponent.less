@@ -1,0 +1,105 @@
+.vg-create-location-pane {
+    .vg-create-location-pane__form {
+        padding: 15px;
+
+        // TODO WIP: de-duplicate with locationEditOverlay
+        .choose-wrapper {
+            margin: 0;
+
+            .col-xs-6 {
+                padding-right: 5px;
+                padding-left: 0;
+            }
+            .col-xs-6 + .col-xs-6 {
+                padding-right: 0;
+                padding-left: 5px;
+            }
+
+            .btn {
+                width: 100%;
+                overflow: hidden;
+                white-space: normal;
+            }
+            .btn-choose {
+                border-radius: 4px;
+                background: #ffffff;
+                border: solid 1px @_color-grey-light;
+                font-size: 18px;
+                color: @_color-grey;
+                min-height: 42px;
+                padding: 8px 12px;
+                margin-bottom: 10px;
+
+                &:hover, &:active, &.active {
+                    color: #ffffff;
+                    background-color: @color-accent;
+                    border-color: @color-accent;
+                }
+            }
+        }
+
+        label {
+            .vg-typography-display-3();
+            margin: 0;
+            padding: 5px 0 30px;
+            display: block;
+        }
+    }
+
+
+    .vg-create-location-pane__submit {
+        padding: 20px 0 5px;
+
+        .btn-large {
+            margin-bottom: 0;
+        }
+    }
+
+    .vg-create-location-pane__toggle {
+        .vg-typography-display-3-strong();
+        margin: -15px -5px -15px -15px;
+        padding: 15px;
+        svg {
+            margin-bottom: 3px;
+            -webkit-transition: -webkit-transform .2s ease-in-out;
+            transition: -webkit-transform .2s ease-in-out;
+            transition: transform .2s ease-in-out;
+            will-change: transform;
+        }
+    }
+
+    .vg-create-location-pane__toggle--opened {
+        float: left;
+        svg {
+            -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+        }
+    }
+
+
+    .vg-create-location-pane__footer {
+        border-top: 1px solid @color-horizontal-separator;
+        display: flex;
+    }
+
+    .vg-create-location-pane__footer__action {
+        flex-basis: 100%;
+        padding: 10px 0;
+        color: @color-accent;
+    }
+
+    .vg-create-location-pane__footer__action__content {
+        padding: 5px 15px;
+        display: inline-block;
+        width: 100%;
+        border-right: 1px solid @color-horizontal-separator;
+        svg {
+            height: 10px;
+            fill: @color-accent;
+        }
+    }
+
+    .vg-create-location-pane__footer__action:last-child .vg-create-location-pane__footer__action__content {
+        border: none;
+    }
+}

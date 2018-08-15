@@ -59,20 +59,24 @@
         </vg-location-pane>
     </div>
 
-    <vg-overlay ng-if="mainMapVm.locationSet.isCreatingLocation()">
-        <vg-create-location-form
+    <div class="top-box container main-container"
+     ng-if="mainMapVm.locationSet.isCreatingLocation()">
+        <vg-create-location-pane
          vg-map="mainMapVm.map"
          vg-create-location="mainMapVm.locationSet.createLocation"
          vg-on-abort="mainMapVm.locationSet.abortCreateLocation()"
          vg-on-submit="mainMapVm.locationSet.submitCreateLocation()">
-        </vg-create-location-form>
-    </vg-overlay>
+        </vg-create-location-pane>
+    </div>
 
+    <!-- TODO WIP: re-implement the embedded view -->
     <!--
         Currently, the category selector is hidden in the embedded view.
         TODO: Once the embedded view get redesigned, it is possible it will need to be shown.
     -->
-    <vg-category-selector ng-if="!mainMapVm.legacyGlobals.isEmbedded"></vg-category-selector>
+    <vg-category-selector
+     ng-if="!mainMapVm.legacyGlobals.isEmbedded && !mainMapVm.locationSet.isCreatingLocation()">
+    </vg-category-selector>
 
     <div id="mainMap" class="main-map"
      ng-class="{'map--placing-location': mainMapVm.locationSet.createLocation.isPlacingLocation(),

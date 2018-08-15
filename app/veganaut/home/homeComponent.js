@@ -15,10 +15,12 @@
     }
 
     HomeComponentController.$inject = [
-        '$scope', '$translate', 'angularPiwik', 'Area', 'areaService', 'geocodeService', 'alertService',
+        '$scope', '$translate', 'angularPiwik', 'Area',
+        'areaService', 'geocodeService', 'alertService', 'mainMapService'
     ];
-
-    function HomeComponentController($scope, $translate, angularPiwik, Area, areaService, geocodeService, alertService) {
+    function HomeComponentController($scope, $translate, angularPiwik, Area,
+        areaService, geocodeService, alertService, mainMapService)
+    {
         var $ctrl = this;
 
         /**
@@ -182,6 +184,13 @@
             });
 
             angularPiwik.track('home.geolocation', 'home.geolocation.start');
+        };
+
+        /**
+         * Go to the map to add a new location
+         */
+        $ctrl.addLocation = function() {
+            mainMapService.goToMapAndAddLocation();
         };
 
         // Wait for the area service to be initialised to set the first target area

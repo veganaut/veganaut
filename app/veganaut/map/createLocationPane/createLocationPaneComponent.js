@@ -1,23 +1,25 @@
 (function() {
     'use strict';
 
+    angular
+        .module('veganaut.app.map')
+        .component('vgCreateLocationPane', createLocationPaneComponent());
+
     /**
      * Component showing a multi-step form for creating a new location.
-     * @returns {directive}
      */
-    var createLocationFormDirective = function() {
-        return {
-            restrict: 'E',
-            scope: {
+    function createLocationPaneComponent() {
+        var component = {
+            bindings: {
                 /**
                  * Leaflet map object.
                  */
-                map: '=vgMap',
+                map: '<vgMap',
 
                 /**
                  * The CreateLocation model instance used for this form
                  */
-                createLocation: '=vgCreateLocation',
+                createLocation: '<vgCreateLocation',
 
                 /**
                  * Handler method called when the user aborts creating the location.
@@ -29,71 +31,73 @@
                  */
                 onSubmit: '&vgOnSubmit'
             },
-            link: function(scope, el, attrs, vm) {
-                // Register event handlers
-                vm.map.on('click', vm._mapClickHandler);
-
-                // Remove on $destroy
-                scope.$on('$destroy', function() {
-                    vm.map.off('click', vm._mapClickHandler);
-                });
-            },
-            controller: 'vgCreateLocationFormCtrl',
-            controllerAs: 'createLocationFormVm',
-            bindToController: true,
+            controller: CreateLocationPaneComponentController,
             templateUrl: '/veganaut/map/createLocationPane/createLocationPaneComponent.html'
         };
-    };
 
-    var createLocationFormCtrl = [
-        '$scope', 'angularPiwik', 'locationService',
-        function($scope, angularPiwik, locationService)
-        {
-            var vm = this;
+        return component;
+    }
 
-            // Expose location types
-            vm.LOCATION_TYPES = locationService.LOCATION_TYPES;
-
-            /**
-             * Handles when the user select a location from the geocode search.
-             * @param {GeocodeResult} result
-             */
-            vm.onGeocodeResultSelect = function(result) {
-                // Set coordinates according to search result
-                vm.createLocation.setNewLocationCoordinates(
-                    result.lat,
-                    result.lng
-                );
-
-                angularPiwik.track('map.addLocation', 'searchResultClick');
-            };
-
-            /**
-             * Handler for clicks on the map
-             * @param event
-             * @private
-             */
-            vm._mapClickHandler = function(event) {
-                $scope.$apply(function() {
-                    if (vm.createLocation.isPlacingLocation()) {
-                        // When adding a new location, take the click
-                        // as the coordinates of this new location
-                        vm.createLocation.setNewLocationCoordinates(
-                            event.latlng.lat,
-                            event.latlng.lng
-                        );
-
-                        angularPiwik.track('map.addLocation', 'mapClick');
-                    }
-                    // TODO: else what? We are adding a location but clicked one -> should show some info of the clicked place
-                });
-            };
-        }
+    CreateLocationPaneComponentController.$inject = [
+        '$scope', 'angularPiwik', 'locationService', 'locationFilterService'
     ];
+    function CreateLocationPaneComponentController($scope, angularPiwik, locationService, locationFilterService) {
+        var $ctrl = this;
 
-    // Expose as directive
-    angular.module('veganaut.app.map')
-        .controller('vgCreateLocationFormCtrl', createLocationFormCtrl)
-        .directive('vgCreateLocationForm', [createLocationFormDirective])
-    ;
+        // Expose location types
+        $ctrl.LOCATION_TYPES = locationService.LOCATION_TYPES;
+
+        /**
+         * Handles when the user select a location from the geocode search.
+         * @param {GeocodeResult} result
+         */
+        $ctrl.onGeocodeResultSelect = function(result) {
+            // Set coordinates according to search result
+            $ctrl.createLocation.setNewLocationCoordinates(
+                result.lat,
+                result.lng
+            );
+
+            angularPiwik.track('map.addLocation', 'searchResultClick');
+        };
+
+        /**
+         * Handler for clicks on the map
+         * @param event
+         * @private
+         */
+        $ctrl._mapClickHandler = function(event) {
+            $scope.$apply(function() {
+                if ($ctrl.createLocation.isPlacingLocation()) {
+                    // When placing the location, take the click
+                    // as the coordinates of the new location
+                    $ctrl.createLocation.setNewLocationCoordinates(
+                        event.latlng.lat,
+                        event.latlng.lng
+                    );
+
+                    angularPiwik.track('map.addLocation', 'mapClick');
+                }
+            });
+        };
+
+        $ctrl.$onInit = function() {
+            // Register event handler
+            $ctrl.map.on('click', $ctrl._mapClickHandler);
+        };
+
+        $ctrl.$onDestroy = function() {
+            // De-register event handler
+            $ctrl.map.off('click', $ctrl._mapClickHandler);
+        };
+
+        // As uib-btn-radio doesn't have a onChange method, we need to do a good old $watch
+        $scope.$watch('$ctrl.createLocation.newLocation.type', function() {
+            if (angular.isDefined($ctrl.createLocation.newLocation.type)) {
+                // Show the type of location on the map that we are about to add
+                locationFilterService.activeFilters.type = $ctrl.createLocation.newLocation.type;
+                locationFilterService.onFiltersChanged();
+            }
+        });
+    }
 })();

@@ -658,7 +658,8 @@
     },
     "participate": {
       "text": "Do you want to help others to explore the vegan universe? Veganaut lets you share and rate vegan discoveries.",
-      "register": "Start sharing!"
+      "register": "Start sharing!",
+      "addLocation": "Add location"
     }
   },
   "missingFeature": {

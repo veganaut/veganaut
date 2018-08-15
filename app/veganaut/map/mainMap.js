@@ -25,9 +25,9 @@
 
     var mainMapCtrl = [
         '$scope', 'Leaflet', 'angularPiwik', 'mapDefaults', 'constants',
-        'backendService', 'playerService', 'locationService', 'locationFilterService', 'mainMapService',
+        'backendService', 'locationService', 'locationFilterService', 'mainMapService',
         function($scope, L, angularPiwik, mapDefaults, constants,
-            backendService, playerService, locationService, locationFilterService, mainMapService)
+            backendService, locationService, locationFilterService, mainMapService)
         {
             var vm = this;
 
@@ -91,20 +91,15 @@
                 vm.mapCategory = locationFilterService.getCategoryValue();
             };
 
-            // Get the player
-            var playerPromise = playerService.getDeferredMe();
-
             vm.isCreateLocationButtonVisible = function() {
-                return backendService.isLoggedIn();
+                return backendService.isLoggedIn() && !vm.locationSet.isCreatingLocation();
             };
 
             /**
              * Starts creating a new location
              */
             vm.startCreateLocation = function() {
-                playerPromise.then(function(player) {
-                    vm.locationSet.startCreateLocation(player, vm.map);
-                });
+                vm.locationSet.startCreateLocation(vm.map);
             };
 
             /**

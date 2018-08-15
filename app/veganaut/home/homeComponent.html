@@ -63,6 +63,11 @@
              title="{{ 'navigation.register' | translate }}">
                 {{ 'home.participate.register' | translate }}
             </button>
+            <button type="button" class="btn-primary btn-small"
+             ng-if="$ctrl.legacyGlobals.isLoggedIn()"
+             ng-click="$ctrl.addLocation() | track:'startAddLocation':'startAddLocation.home'">
+                {{ 'home.participate.addLocation' | translate }}
+            </button>
         </p>
     </div>
     <div class="vg-card">

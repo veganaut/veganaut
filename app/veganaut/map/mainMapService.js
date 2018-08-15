@@ -1,8 +1,8 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$rootScope', '$route', 'Leaflet', 'Area', 'locationService', 'locationFilterService', 'areaService',
-        function($rootScope, $route, L, Area, locationService, locationFilterService, areaService) {
+        '$rootScope', '$route', '$location', 'Leaflet', 'Area', 'locationService', 'locationFilterService', 'areaService',
+        function($rootScope, $route, $location, L, Area, locationService, locationFilterService, areaService) {
             /**
              * Default and at the same time maximum zoom level used when
              * showing an area that doesn't have an explicit zoom set.
@@ -35,6 +35,13 @@
                  * @private
                  */
                 that._mapAreaForCurrentArea = undefined;
+
+                /**
+                 * Whether to start adding a location the next time the map is initialised
+                 * @type {boolean}
+                 * @private
+                 */
+                that._onMapInitialiseStartAddLocation = false;
 
                 // Listen to filter changes
                 $rootScope.$on('veganaut.filters.changed', function() {
@@ -136,6 +143,14 @@
                     .finally(function() {
                         // Initialise with the current area (regardless of whether the area was set from the URL)
                         that.showCurrentArea(map);
+
+                        // Check if we should start adding a location right away
+                        if (that._onMapInitialiseStartAddLocation) {
+                            locationService.getLocationSet().startCreateLocation(map);
+
+                            // Reset, to not add a location again next time
+                            that._onMapInitialiseStartAddLocation = false;
+                        }
                     })
                 ;
             };
@@ -146,6 +161,14 @@
              */
             MainMapService.prototype.showCurrentArea = function(map) {
                 this._showArea(areaService.getCurrentArea(), map);
+            };
+
+            /**
+             * Navigate to the main map page and start the add location flow.
+             */
+            MainMapService.prototype.goToMapAndAddLocation = function() {
+                this._onMapInitialiseStartAddLocation = true;
+                $location.url('/map/');
             };
 
             /**

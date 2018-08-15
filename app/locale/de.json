@@ -658,7 +658,8 @@
     },
     "participate": {
       "text": "Willst du anderen helfen, das vegane Universum zu erkunden? Auf Veganaut kannst du vegane Entdeckungen teilen und bewerten.",
-      "register": "Ich mache mit!"
+      "register": "Ich mache mit!",
+      "addLocation": "Location hinzufügen"
     }
   },
   "missingFeature": {

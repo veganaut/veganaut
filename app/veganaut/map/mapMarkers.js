@@ -43,6 +43,15 @@
             var markers = {};
 
             /**
+             * Map of locationItem id to the boolean value `true` for all
+             * location items that were added to the map. Some item can already
+             * be added to the map but not yet visible (no map marker) if
+             * we don't know yet where they are (used when creating a new location).
+             * @type {{}}
+             */
+            var addedLocationItemIds = {};
+
+            /**
              * Creates a new marker for the given locationItem and returns it.
              * @param {{}} locationItem
              * @returns {L.marker}
@@ -58,6 +67,7 @@
 
                 // Register event handler
                 marker.on('click', function() {
+                    console.log('click');
                     // Pass on to the handler if it's defined
                     if (angular.isDefined(vm.onClick)) {
                         vm.onClick({locationItem: locationItem});
@@ -108,14 +118,28 @@
                 }
             };
 
+            /**
+             * Helper for adding a locationItem to the map
+             * @param {{}} locationItem
+             */
+            var addLocationItem = function(locationItem) {
+                // Add the item to the list of items, then create/update the marker
+                addedLocationItemIds[locationItem.id] = true;
+                updateMarker(locationItem);
+            };
+
 
             // Listen for newly added location items
             $scope.$on('veganaut.locationSet.locationItem.added', function(event, locationItem) {
-                updateMarker(locationItem);
+                addLocationItem(locationItem);
             });
 
             // Listen for removed location items
             $scope.$on('veganaut.locationSet.locationItem.removed', function(event, locationItem) {
+                // Delete the item from the list of added items
+                delete addedLocationItemIds[locationItem.id];
+
+                // Remove the marker if there was one
                 if (angular.isObject(markers[locationItem.id])) {
                     vm.map.removeLayer(markers[locationItem.id]);
                     delete markers[locationItem.id];
@@ -124,17 +148,15 @@
 
             // Listen for updated location item markers
             $scope.$on('veganaut.locationItem.marker.updated', function(event, location) {
-                // Only update the marker if we already have it (as updateMarker would also add a new one)
-                if (angular.isObject(markers[location.id])) {
+                // Only update the marker if this item was explicitly added
+                if (addedLocationItemIds[location.id]) {
                     updateMarker(location);
                 }
             });
 
             // Initialise the markers for the locations that are already around.
             // The rest will be done through events
-            angular.forEach(vm.locationItems, function(location) {
-                updateMarker(location);
-            });
+            angular.forEach(vm.locationItems, addLocationItem);
         }
     ];
 

@@ -1,6 +1,9 @@
 angular.module('veganaut.app.map').factory('LocationSet', [
-    '$rootScope', 'angularPiwik', 'backendService', 'alertService', 'Location', 'LocationCluster', 'CreateLocation',
-    function($rootScope, angularPiwik, backendService, alertService, Location, LocationCluster, CreateLocation) {
+    '$rootScope', '$location', 'angularPiwik', 'backendService', 'alertService',
+    'Location', 'LocationCluster', 'CreateLocation',
+    function($rootScope, $location, angularPiwik, backendService, alertService,
+        Location, LocationCluster, CreateLocation)
+    {
         'use strict';
 
         /**
@@ -98,12 +101,15 @@ angular.module('veganaut.app.map').factory('LocationSet', [
 
         /**
          * Starts to create a new location. Will instantiate a new CreateLocation.
-         * @param {{}} player Player that adds the location
          * @param {{}} map Map on which the location is added
          */
-        LocationSet.prototype.startCreateLocation = function(player, map) {
-            this.createLocation = new CreateLocation(player, map);
+        LocationSet.prototype.startCreateLocation = function(map) {
+            // Instantiate the creation helper and activate the location it creates
+            this.createLocation = new CreateLocation(map);
             this.activate(this.createLocation.newLocation);
+
+            // Add the location to the list of all items (to show it on the map)
+            this.allLocationItems[this.createLocation.newLocation.id] = this.createLocation.newLocation;
 
             // Broadcast addition and track
             $rootScope.$broadcast('veganaut.locationSet.locationItem.added', this.createLocation.newLocation);
@@ -115,7 +121,9 @@ angular.module('veganaut.app.map').factory('LocationSet', [
          */
         LocationSet.prototype.abortCreateLocation = function() {
             if (this.isCreatingLocation()) {
+                // Remove the location that was created from the list and unset the CreateLocation helper
                 var abortedLocation = this.createLocation.newLocation;
+                delete this.allLocationItems[this.createLocation.newLocation.id];
                 this.createLocation = undefined;
 
                 // Deactivate the location that was aborted
@@ -133,16 +141,15 @@ angular.module('veganaut.app.map').factory('LocationSet', [
         LocationSet.prototype.submitCreateLocation = function() {
             var that = this;
 
-            // TODO WIP: the map should be in the correct mode (category) when the location is added otherwise it gets confusing
-
             // Check if we can actually submit the location
             if (that.isCreatingLocation() &&
                 that.createLocation.isLastStep() &&
                 that.createLocation.stepIsValid())
             {
-                // Get the new location and unset create location
-                // This should prevent multiple submissions
+                // Get the new location, unset create location and remove the temporary
+                // location from the list. This should prevent multiple submissions
                 var newLocation = that.createLocation.newLocation;
+                delete that.allLocationItems[that.createLocation.newLocation.id];
                 that.createLocation = undefined;
 
                 // Create deferred to return
@@ -170,6 +177,9 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                         $rootScope.$broadcast('veganaut.locationSet.locationItem.added', newLocation);
                         alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
                         angularPiwik.track('map.addLocation', 'finish');
+
+                        // Go the the location details page
+                        $location.url('/location/' + newLocation.id);
                     })
                     .error(function(data) {
                         // Broadcast removal and show alert
@@ -202,6 +212,13 @@ angular.module('veganaut.app.map').factory('LocationSet', [
             // Index the locations and clusters by id
             newData.locations = _.indexBy(newData.locations, 'id');
             newData.clusters = _.indexBy(newData.clusters, 'id');
+
+            // If we are creating a location, remove that new location from the list temporarily
+            // The backend doesn't yet know about it, and the updates here should be done only
+            // with locations from the backend.
+            if (this.isCreatingLocation()) {
+                delete this.allLocationItems[this.createLocation.newLocation.id];
+            }
 
             // Get the ids of all new and old location items
             var newLocationItems = _.extend({}, newData.locations, newData.clusters);
@@ -237,6 +254,11 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                 // TODO: location sends the update (and only for marker changed), is that OK?
                 that.allLocationItems[id].update(newLocationItems[id]);
             });
+
+            // Add back the location that is currently being created
+            if (this.isCreatingLocation()) {
+                this.allLocationItems[this.createLocation.newLocation.id] = this.createLocation.newLocation;
+            }
 
             // Deactivate the location that was active if it's no longer around
             // (and if it's not the location we are just creating).

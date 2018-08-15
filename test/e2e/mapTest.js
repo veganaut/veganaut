@@ -210,7 +210,7 @@ describe('map when logged in.', function() {
 
             element(by.css('.create-location')).click();
 
-            var form = element(by.css('form.location-form'));
+            var form = element(by.css('form.vg-create-location-pane__form'));
             expect(form.isDisplayed()).toBe(true, 'shows the add location form when button is clicked');
 
             var next = form.element(by.css('.btn-create-location-next'));

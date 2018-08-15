@@ -658,7 +658,8 @@
     },
     "participate": {
       "text": "Tu veux aider d‘autres personnes à explorer l‘univers végan? Tu peux partager et évaluer tes découvertes véganes sur Véganaut.",
-      "register": "Je participe!"
+      "register": "Je participe!",
+      "addLocation": "Location hinzufügen"
     }
   },
   "missingFeature": {
