@@ -382,7 +382,14 @@
       "existing": "This location is still in business",
       "closedDown": "This location is permanently closed",
       "wronglyEntered": "This location entry was made by mistake"
-    }
+    },
+    "creator": {
+      "label": "Created by"
+    },
+    "contributors": {
+      "label": "Infos by",
+      "and": "and",
+      "more": "{{ count }} more"
   },
   "locationCluster": {
     "marker": {

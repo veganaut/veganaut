@@ -382,6 +382,14 @@
       "existing": "Diese Location ist noch in Betrieb",
       "closedDown": "Diese Location ist permanent geschlossen",
       "wronglyEntered": "Dieser Location-Eintrag wurde fälschlicherweise erstellt"
+    },
+    "creator": {
+      "label": "Erstellt von"
+    },
+    "contributors": {
+      "label": "Infos von",
+      "and": "und",
+      "more": "{{ count }} weitere"
     }
   },
   "locationCluster": {

@@ -67,8 +67,8 @@
                         $ctrl.location[$ctrl.task.updatePropertyAfterSubmit] = data.outcome[$ctrl.task.mainOutcomeName];
                     }
 
-                    // Always set the updated at timestamp to now
-                    $ctrl.location.updatedAt = new Date();
+                    // Tell the location that the current user has contributed to let it update some properties
+                    $ctrl.location.notifyUserHasContributed();
 
                     // Show message to user
                     alertService.addAlert($translate.instant($ctrl.task.successMessage), 'success');

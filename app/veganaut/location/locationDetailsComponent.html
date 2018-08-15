@@ -122,7 +122,6 @@
     </div>
 </vg-card>
 
-<!-- TODO WIP Change Mock Data -->
 <div class="vg-location-details__footer-wrapper">
     <div class="last-update" ng-if="$ctrl.location.updatedAt">
         <vg-icon vg-name="'clock'"></vg-icon>
@@ -131,12 +130,24 @@
             {{ $ctrl.location.updatedAt | date:'dd.MM.yyyy' }}
         </div>
     </div>
-    <div class="contributor">
+    <div class="contributor" ng-if="$ctrl.location.creator">
         <vg-icon vg-name="'profile'"></vg-icon>
-        <div class="text">Erstellt von <a href="#">Hans Muster</a></div>
+        <div class="text">
+            {{ 'location.creator.label' | translate }}
+            <a ng-href="/veganaut/{{ $ctrl.location.creator.id }}">{{ $ctrl.location.creator.nickname }}</a>
+        </div>
     </div>
-    <div class="contributors">
-        <div>Infos von <a href="#">Hans Muster</a>, <a href="#">Hans Muster</a>, <a href="#">Hans Muster</a></div>
+    <div class="contributors" ng-if="$ctrl.location.contributors.length > 0">
+        {{ 'location.contributors.label' | translate }}
+        <span ng-repeat="contributor in $ctrl.location.contributors | limitTo: ($ctrl.showAllContributors ? undefined : 3) track by contributor.id">
+            <a ng-href="/veganaut/{{ contributor.id }}">{{ contributor.nickname }}</a><span ng-if="!$last">,</span>
+        </span>
+        <span ng-if="$ctrl.location.contributors.length > 3 && !$ctrl.showAllContributors">
+            {{ 'location.contributors.and' | translate }}
+            <a href="" ng-click="$ctrl.showAllContributors = true">
+                {{ 'location.contributors.more' | translate:{ count: ($ctrl.location.contributors.length - 3) } }}&hellip;
+            </a>
+        </span>
     </div>
 </div>
 

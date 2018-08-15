@@ -382,7 +382,14 @@
       "existing": "Cet endroit est toujours en opération",
       "closedDown": "Cet endroit est fermé en permanence",
       "wronglyEntered": "Cette entrée a été saisie par erreur"
-    }
+    },
+    "creator": {
+      "label": "Erstellt von"
+    },
+    "contributors": {
+      "label": "Infos von",
+      "and": "und",
+      "more": "{{ count }} weitere"
   },
   "locationCluster": {
     "marker": {

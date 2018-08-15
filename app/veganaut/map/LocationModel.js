@@ -60,6 +60,8 @@
                 this.products = [];
                 this.updatedAt = undefined;
                 this.existence = undefined;
+                this.creator = undefined;
+                this.contributors = [];
 
                 // Rank of the best product of this location. Only set on the map views showing products
                 this.topProductRank = undefined;
@@ -500,6 +502,35 @@
                     }
                 }
                 return address;
+            };
+
+            /**
+             * Tells this location that the current user has just contributed something.
+             * This can be used for optimistic updates.
+             * The updatedAt timestamp will be set to now and the user added in the front
+             * of the list of contributors.
+             */
+            Location.prototype.notifyUserHasContributed = function() {
+                var that = this;
+
+                // Set the update timestamp to now
+                that.updatedAt = new Date();
+
+                // Get the player
+                playerService.getDeferredMe()
+                    .then(function(user) {
+                        // Remove the user (in case they already contributed before)
+                        that.contributors = _.filter(that.contributors, function(contributor) {
+                            return contributor.id !== user.id;
+                        });
+
+                        // Add the user to the front of the list
+                        that.contributors.unshift({
+                            id: user.id,
+                            nickname: user.nickname
+                        });
+                    })
+                ;
             };
 
             /**
