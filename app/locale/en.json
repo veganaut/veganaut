@@ -384,7 +384,7 @@
       "wronglyEntered": "This location entry was made by mistake"
     },
     "creator": {
-      "label": "Created by"
+      "label": "Entry created by"
     },
     "contributors": {
       "label": "Infos by",
