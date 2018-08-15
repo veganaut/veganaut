@@ -390,6 +390,7 @@
       "label": "Infos by",
       "and": "and",
       "more": "{{ count }} more"
+    }
   },
   "locationCluster": {
     "marker": {
