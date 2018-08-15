@@ -124,9 +124,12 @@
 
 <!-- TODO WIP Change Mock Data -->
 <div class="vg-location-details__footer-wrapper">
-    <div class="last-update">
+    <div class="last-update" ng-if="$ctrl.location.updatedAt">
         <vg-icon vg-name="'clock'"></vg-icon>
-        <div class="text">Letzte Aktualisierung MOCK</div>
+        <div class="text">
+            {{ 'location.updatedAt' | translate }}:
+            {{ $ctrl.location.updatedAt | date:'dd.MM.yyyy' }}
+        </div>
     </div>
     <div class="contributor">
         <vg-icon vg-name="'profile'"></vg-icon>
