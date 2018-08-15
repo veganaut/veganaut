@@ -384,7 +384,7 @@
       "wronglyEntered": "Dieser Location-Eintrag wurde fälschlicherweise erstellt"
     },
     "creator": {
-      "label": "Erstellt von"
+      "label": "Eintrag erstellt von"
     },
     "contributors": {
       "label": "Infos von",
