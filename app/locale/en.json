@@ -430,7 +430,13 @@
     }
   },
   "map": {
-    "mapSectionDescription": "in the current map section",
+    "footer": {
+      "mapSection": "in the current map section",
+      "gastronomyLocation": "{{ count }} restaurants",
+      "retailLocation": "{{ count }} shops",
+      "gastronomyProduct": "{{ count }} restaurants",
+      "retailProduct": "{{ count }} shops"
+    },
     "mission": {
       "hasOptions": {
         "title": "Ask the staff for vegan options.",

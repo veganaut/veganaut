@@ -430,7 +430,13 @@
     }
   },
   "map": {
-    "mapSectionDescription": "dans cette section de la carte",
+    "footer": {
+      "mapSection": "dans cette section de la carte",
+      "gastronomyLocation": "{{ count }} restaurants",
+      "retailLocation": "{{ count }} magasins",
+      "gastronomyProduct": "{{ count }} restaurants",
+      "retailProduct": "{{ count }} magasins"
+    },
     "mission": {
       "hasOptions": {
         "title": "Renseigne-toi sur les options véganes auprès du personnel.",

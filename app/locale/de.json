@@ -430,7 +430,13 @@
     }
   },
   "map": {
-    "mapSectionDescription": "im Kartenausschnitt",
+    "footer": {
+      "mapSection": "im Kartenausschnitt",
+      "gastronomyLocation": "{{ count }} Restaurants",
+      "retailLocation": "{{ count }} Läden",
+      "gastronomyProduct": "{{ count }} Restaurants",
+      "retailProduct": "{{ count }} Läden"
+    },
     "mission": {
       "hasOptions": {
         "title": "Frag das Personal nach veganen Angeboten.",

@@ -100,11 +100,11 @@
         <div class="vg-map-footer-content">
             <div class="vg-map-footer-text">
                 <div class="vg-map-footer-text__locations-count" ng-show="mainMapVm.mapCategory">
-                    {{ 'lists.' + mainMapVm.mapCategory + '.title' |
+                    {{ 'map.footer.' + mainMapVm.mapCategory |
                         translate: {count: mainMapVm.locationSet.totalLocations} }}
                 </div>
                 <div class="vg-map-footer-text__radius">
-                    {{ 'map.mapSectionDescription' | translate }}
+                    {{ 'map.footer.mapSection' | translate }}
                 </div>
             </div>
             <button type="button"
