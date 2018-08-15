@@ -42,7 +42,7 @@
   },
   "message": {
     "new": "neu",
-    "generalError": "Ein Fehler ist aufgetreten.",
+    "generalError": "Oje, ein Fehler ist aufgetreten. Pardon!",
     "registration": {
       "success": "Willkommen bei Veganaut.net {{ name }}! Du bist jetzt eingeloggt. Wir schicken dir eine E-Mail mit einem Link, mit dem du dein Passwort für spätere Logins setzen kannst.",
       "error": "Registrierung fehlgeschlagen: {{ reason }}"
@@ -224,8 +224,9 @@
           }
         },
         "GiveFeedback": {
-          "title": "Give feedback!",
-          "standaloneCallToAction": "Give feedback",
+          "title": "Gib ein Feedback!",
+          "standaloneCallToAction": "Gib ein Feedback",
+          "description": "Rede mit dem Personal (oder schreibe ihnen) und gib ihnen Lob, Feedbacks oder Vorschläge zur Verbesserung.",
           "commitment": {
             "yes": "Ja, mache ich!",
             "maybe": "OK, vielleicht"
