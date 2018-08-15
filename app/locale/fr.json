@@ -42,6 +42,7 @@
   },
   "message": {
     "new": "new",
+    "generalError": "Ein Fehler ist aufgetreten.",
     "registration": {
       "success": "Bienvenue chez Veganaut.net {{ name }}! Tu es maintenant connecté. Nous t'envoyons un mail pour que tu puisses saisir un mot de passe pour des connexions futures.",
       "error": "Inscription échoué: {{ reason }}"

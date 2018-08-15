@@ -39,7 +39,11 @@
 <vg-nav-bar ng-if="!isEmbedded" vg-menu-shown="menu.shown"></vg-nav-bar>
 
 <div class="container main-container">
-    <div ng-view></div>
+    <div ng-view ng-if="!routeError"></div>
+    <div class="route-error" ng-if="routeError">
+        <span ng-if="routeError !== true" ng-bind="routeError"></span>
+        <span ng-if="routeError === true" translate="message.generalError"></span>
+    </div>
 </div>
 <div class="alert-container">
     <div class="container">

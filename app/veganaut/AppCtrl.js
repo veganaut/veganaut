@@ -26,6 +26,9 @@
             // TODO: Add tests for this mode, it contains quite a few tricky changes
             $scope.isEmbedded = ($location.search()['mode'] === 'embedded');
 
+            // Global route error message
+            $scope.routeError = undefined;
+
             // TODO: create a service to handle the menu state instead of having this duplicate in the nav bar component
             $scope.closeMenu = function() {
                 $scope.menu.shown = false;
@@ -98,6 +101,21 @@
                     // Finally, track the page view
                     angularPiwik.trackPageView(absUrl, pageTitleService.getPageTitle());
                 });
+            });
+
+            // Reset the error when a route change starts
+            $scope.$on('$routeChangeStart', function() {
+                $scope.routeError = undefined;
+            });
+
+            // Handle route errors
+            $scope.$on('$routeChangeError', function(event, current, previous, rejection) {
+                // Check if the rejection has an error message (from the backend most likely),
+                // otherwise just set error to true to show the default message
+                $scope.routeError = true;
+                if (angular.isObject(rejection) && angular.isString(rejection.error) && rejection.error.length > 0) {
+                    $scope.routeError = rejection.error;
+                }
             });
 
             // If we're embedded, all links outside the map should open in a new window

@@ -26,8 +26,6 @@
     function LocationDetailsComponentController($location, constants, pageTitleService) {
         var $ctrl = this;
 
-        // TODO WIP: handle location not found nicely
-
         /**
          * Whether we are currently in edit mode
          * @type {boolean}
@@ -55,7 +53,7 @@
         $ctrl.veganizeTasks = _.shuffle(['MentionVegan', 'GiveFeedback', 'BuyProduct']);
 
         $ctrl.toggleEditMode = function() {
-            // TODO WIP: call setEditing() on location model?
+            // TODO: call setEditing() on location model?
             $ctrl.editMode = !$ctrl.editMode;
         };
 

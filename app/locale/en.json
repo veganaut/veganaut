@@ -42,6 +42,7 @@
   },
   "message": {
     "new": "new",
+    "generalError": "Ein Fehler ist aufgetreten.",
     "registration": {
       "success": "Welcome to Veganaut.net {{ name }}! You are now logged in. We're sending you an e-mail with a link so you can set your password for later logins.",
       "error": "Registration failed: {{ reason }}"
