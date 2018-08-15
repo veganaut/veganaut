@@ -67,7 +67,6 @@
 
                 // Register event handler
                 marker.on('click', function() {
-                    console.log('click');
                     // Pass on to the handler if it's defined
                     if (angular.isDefined(vm.onClick)) {
                         vm.onClick({locationItem: locationItem});
