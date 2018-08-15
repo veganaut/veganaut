@@ -384,12 +384,12 @@
       "wronglyEntered": "Cette entrée a été saisie par erreur"
     },
     "creator": {
-      "label": "Erstellt von"
+      "label": "Entrée créée par"
     },
     "contributors": {
-      "label": "Infos von",
-      "and": "und",
-      "more": "{{ count }} weitere"
+      "label": "Infos de",
+      "and": "et",
+      "more": "{{ count }} autres"
     }
   },
   "locationCluster": {
