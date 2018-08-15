@@ -11,6 +11,13 @@ angular.module('veganaut.app.main').factory('Area', [
         var MIN_RADIUS_TO_CONSIDER_WHOLE_WORLD = 10000000;
 
         /**
+         * Minimum radius to use. Smaller radius do not make sense to
+         * show as a list or area overview page.
+         * @type {number} in meters
+         */
+        var MIN_RADIUS_TO_USE = 100;
+
+        /**
          * Model for storing an area (coordinates / zoom / bounding box).
          * @param {{}} [data]
          * @constructor
@@ -241,6 +248,9 @@ angular.module('veganaut.app.main').factory('Area', [
                     params.radius = this._getRadiusFromZoom();
                 }
             }
+
+            // Make sure that we have at least the minimum radius
+            params.radius = Math.max(MIN_RADIUS_TO_USE, params.radius);
 
             // If the radius exceeds a certain amount, we say it includes the whole world
             params.includesWholeWorld = (params.radius > MIN_RADIUS_TO_CONSIDER_WHOLE_WORLD);

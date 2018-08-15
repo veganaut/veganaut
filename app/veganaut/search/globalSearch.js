@@ -50,7 +50,6 @@
              */
             vm.onGeoClick = function(geoResult) {
                 // Show the area on the currently selected page type
-                // TODO WIP: make sure we never show a too small area, e.g. when searching for a precise address
                 areaService.setAreaAndShowOn(geoResult.getArea(), searchService.getGeoResultTargetPage());
 
                 // Track and tell parent
