@@ -42,7 +42,7 @@
   },
   "message": {
     "new": "new",
-    "generalError": "Ein Fehler ist aufgetreten.",
+    "generalError": "Oops, an error occured. Sorry!",
     "registration": {
       "success": "Welcome to Veganaut.net {{ name }}! You are now logged in. We're sending you an e-mail with a link so you can set your password for later logins.",
       "error": "Registration failed: {{ reason }}"
@@ -226,13 +226,14 @@
         "GiveFeedback": {
           "title": "Give feedback!",
           "standaloneCallToAction": "Give feedback",
+          "description": "Talk to the staff (or write them), giving praise, feedback or suggestions for improvement.",
           "commitment": {
             "yes": "Yes, I'm doing it!",
             "maybe": "OK, maybe"
           },
           "notesTitle": {
-            "yes": "Inspire others by sharing what you are saying to them!",
-            "maybe": "Inspire others by sharing what you might say to them"
+            "yes": "Inspire others by sharing what you are telling them!",
+            "maybe": "Inspire others by sharing what you might tell them"
           },
           "completedTasks": {
             "thisLocation": "To inspire you, here's what someone else wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
