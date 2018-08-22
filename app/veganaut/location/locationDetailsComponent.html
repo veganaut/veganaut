@@ -1,4 +1,4 @@
-<!-- TODO WIP: <vg-location-edit-end></vg-location-edit-end>-->
+<!-- TODO NEXT: <vg-location-edit-end></vg-location-edit-end>-->
 <vg-location-edit-overlay
  ng-if="$ctrl.editTask"
  vg-is-questionnaire="false"
@@ -47,10 +47,11 @@
         </div>
     </div>
 </vg-card>
-<vg-card class="vg-location-details__card">
-    <vg-location-rating-chick ng-class="{'vg-location-details__card--disabled' : $ctrl.editMode}">
-    </vg-location-rating-chick>
-</vg-card>
+<!-- TODO NEXT: implement task flow -->
+<!--<vg-card class="vg-location-details__card">-->
+    <!--<vg-location-rating-chick ng-class="{'vg-location-details__card&#45;&#45;disabled' : $ctrl.editMode}">-->
+    <!--</vg-location-rating-chick>-->
+<!--</vg-card>-->
 <vg-card class="vg-location-details__card vg-location-details__card--products">
     <h2 class="vg-location-products__title">
         <vg-icon vg-name="'gastronomyProduct'" class="vg-location-products__title-icon"></vg-icon>
@@ -76,7 +77,7 @@
     <vg-location-map-preview vg-location="$ctrl.location" vg-on-click="$ctrl.mapClickHandler()">
     </vg-location-map-preview>
 </vg-card>
-<!-- TODO: implement open route in map -->
+<!-- TODO NEXT: implement open route in map -->
 <!--<vg-card class="vg-location-details__card">-->
     <!--<div ng-class="{'vg-location-details__card&#45;&#45;disabled': $ctrl.editMode}">-->
         <!--<a href="#">-->
