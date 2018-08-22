@@ -96,7 +96,7 @@
             $ctrl.isSaving = false;
 
             if (tasks.hasOwnProperty($ctrl.editTask)) {
-                // TODO WIP: get last completed task
+                // TODO NEXT: get last completed task
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
 
                 // For the veganize tasks, load related tasks to display for inspiration
