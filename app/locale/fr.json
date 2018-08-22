@@ -7,7 +7,7 @@
     "panorama": "Panorama",
     "map": "Carte",
     "list": "Liste",
-    "addLocation": "Location hinzufügen",
+    "addLocation": "Ajouter endroit",
     "locationList": "Endroits",
     "productList": "Offres véganes",
     "community": "Communauté",
@@ -40,7 +40,7 @@
     "ownProfile.edit": "Modifier mon profile",
     "register": "Participer",
     "resetPassword": "Modifier le mot de passe",
-    "panorama": "Panorama"
+    "panorama": "Panorama des offres véganes"
   },
   "message": {
     "new": "new",
@@ -676,7 +676,7 @@
     "participate": {
       "text": "Tu veux aider d‘autres personnes à explorer l‘univers végan? Tu peux partager et évaluer tes découvertes véganes sur Véganaut.",
       "register": "Je participe!",
-      "addLocation": "Location hinzufügen"
+      "addLocation": "Ajouter endroit"
     }
   },
   "missingFeature": {
