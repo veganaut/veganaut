@@ -14,16 +14,12 @@
         };
     }
 
-    AreaOverviewCtrl.$inject = [
-        '$scope',
-        'backendService',
-        'areaService'
-    ];
+    AreaOverviewCtrl.$inject = ['$scope', 'backendService', 'areaService', 'pageTitleService'];
 
     /**
      * Area Overview Controller
      */
-    function AreaOverviewCtrl($scope, backendService, areaService) {
+    function AreaOverviewCtrl($scope, backendService, areaService, pageTitleService) {
         var $ctrl = this;
 
         /**
@@ -63,6 +59,13 @@
             });
         };
 
+        /**
+         * Adds the name of the area to the page title
+         */
+        var setPageTitle = function() {
+            pageTitleService.addCustomTitle($ctrl.area.longName);
+        };
+
         var showArea = function(area, addHistoryEntry) {
             // Get the radius params from the area
             lastParams = area.getRadiusParams();
@@ -76,7 +79,14 @@
             if ($ctrl.areaType === 'withoutId') {
                 // Area without id and therefore probably without name, ask the
                 // service to retrieve a name for the center of the area
-                areaService.retrieveNameForArea(area);
+                areaService.retrieveNameForArea(area)
+                    // Set the name int the page title when done
+                    .then(setPageTitle)
+                ;
+            }
+            else {
+                // For other area types, we already have a name to set as title
+                setPageTitle();
             }
 
             // If we have a last area with id and it's not the one already shown, we show a
@@ -106,8 +116,6 @@
         };
 
         $ctrl.$onInit = function() {
-            // TODO WIP: Set page title with pageTitleService (also on map & list)
-
             // Try to set the area from the URL params
             areaService.setAreaFromUrl()
                 .finally(function() {

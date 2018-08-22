@@ -1,8 +1,11 @@
 (function(module) {
     'use strict';
     module.factory('mainMapService', [
-        '$rootScope', '$route', '$location', 'Leaflet', 'Area', 'locationService', 'locationFilterService', 'areaService',
-        function($rootScope, $route, $location, L, Area, locationService, locationFilterService, areaService) {
+        '$rootScope', '$route', '$location', 'Leaflet', 'Area', 'locationService',
+        'locationFilterService', 'areaService', 'pageTitleService',
+        function($rootScope, $route, $location, L, Area, locationService,
+            locationFilterService, areaService, pageTitleService)
+        {
             /**
              * Default and at the same time maximum zoom level used when
              * showing an area that doesn't have an explicit zoom set.
@@ -84,6 +87,11 @@
                 var lat = area.getLat();
                 var lng = area.getLng();
                 var boundingBox = area.getBoundingBox();
+
+                // If the area has an id (so was explicitly set), add its name ot the page title
+                if (area.getAreaType() === 'withId') {
+                    pageTitleService.addCustomTitle(area.longName);
+                }
 
                 // If zoom is not given, find other options to get the zoom
                 if (!angular.isNumber(zoom)) {
@@ -191,6 +199,10 @@
                     if (angular.isDefined(this._mapAreaForCurrentArea)) {
                         // TODO: improve to also not set area when doing actions such as resizing the window
                         areaService.setArea(newArea);
+
+                        // Map was moved, so we are no longer showing the area initially defined,
+                        // unset the custom title (if one was ever set)
+                        pageTitleService.addCustomTitle(undefined);
                     }
 
                     // Store that we are now showing this area

@@ -18,9 +18,9 @@
 
     var areaListCtrl = [
         '$scope', 'constants', 'angularPiwik', 'Location', 'geocodeService',
-        'areaService', 'locationFilterService', 'locationService',
+        'areaService', 'locationFilterService', 'locationService', 'pageTitleService',
         function($scope, constants, angularPiwik, Location, geocodeService,
-            areaService, locationFilterService, locationService)
+            areaService, locationFilterService, locationService, pageTitleService)
         {
             var $ctrl = this;
 
@@ -200,6 +200,14 @@
                 }
             };
 
+            /**
+             * Adds the name of the area to the page title
+             */
+            var setPageTitle = function() {
+                pageTitleService.addCustomTitle($ctrl.area.longName);
+            };
+
+
             // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
             // TODO: it should also get de-duplicated with the areaOverview component
             /**
@@ -224,7 +232,14 @@
                 if ($ctrl.areaType === 'withoutId') {
                     // Area without id and therefore probably without name, ask the
                     // service to retrieve a name for the center of the area
-                    areaService.retrieveNameForArea(area);
+                    areaService.retrieveNameForArea(area)
+                        // Set the name int the page title when done
+                        .then(setPageTitle)
+                    ;
+                }
+                else {
+                    // For other area types, we already have a name to set as title
+                    setPageTitle();
                 }
 
                 // Round the radius to two significant digits and display it as meters or kms
