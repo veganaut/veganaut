@@ -42,6 +42,10 @@
         </div>
         <div class="vg-location-header-edit__row__content">
             {{ 'location.rating.' + $ctrl.location.getRoundedQuality() | translate }}
+            <div class="text--small-note">
+                {{ 'location.rating.average' | translate }}: {{ $ctrl.location.quality.average | number:1 }},
+                {{ 'location.rating.numRatings' | translate }}: {{ $ctrl.location.quality.numRatings }}
+            </div>
         </div>
     </div>
 </header>
