@@ -25,9 +25,6 @@
     function ListController(backendService, locationFilterService, locationService) {
         var $ctrl = this;
 
-        // Set the filters from the URL and initiate with the currently valid area
-        locationFilterService.setFiltersFromUrl();
-
         $ctrl.onOpenToggle = function() {
             // Only need to do something when showing locations
             if (locationFilterService.getGranularityFilterValue() === 'location') {

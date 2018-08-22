@@ -44,7 +44,7 @@ describe('locationFilterService.', function() {
         it('does not initialise in constructor.', inject(function(locationFilterService) {
             var lfs = locationFilterService;
             expect(typeof lfs.INACTIVE_FILTER_VALUE).toBe('object', 'INACTIVE_FILTER_VALUE');
-            expect(typeof lfs.INACTIVE_FILTER_VALUE.type).toBe('string', 'INACTIVE_FILTER_VALUE.type');
+            expect(typeof lfs.INACTIVE_FILTER_VALUE.type).toBe('undefined', 'INACTIVE_FILTER_VALUE.type');
             expect(typeof lfs.INACTIVE_FILTER_VALUE.recent).toBe('string', 'INACTIVE_FILTER_VALUE.recent');
 
             expect(typeof lfs.POSSIBLE_FILTERS).toBe('object', 'POSSIBLE_FILTERS');
@@ -57,8 +57,8 @@ describe('locationFilterService.', function() {
             expect(typeof lfs.RECENT_FILTER_PERIOD.day).toBe('number', 'RECENT_FILTER_PERIOD.day');
 
             expect(typeof lfs.activeFilters).toBe('object', 'has activeFilters set');
-            expect(lfs.activeFilters.type).toBe(lfs.INACTIVE_FILTER_VALUE.type, '"type" initialised to inactive');
-            expect(lfs.activeFilters.recent).toBe(lfs.INACTIVE_FILTER_VALUE.recent, '"recent" initialised to inactive');
+            expect(lfs.activeFilters.type).toBe(lfs.DEFAULT_FILTER_VALUE.type, '"type" initialised to default');
+            expect(lfs.activeFilters.recent).toBe(lfs.DEFAULT_FILTER_VALUE.recent, '"recent" initialised to default');
         }));
 
         it('cleans up URL when leaving route with filters.', inject(function(locationFilterService) { // jshint ignore:line
@@ -115,9 +115,9 @@ describe('locationFilterService.', function() {
             $routeParams.recent = 'alsoNot';
             lfs.setFiltersFromUrl();
 
-            expect(lfs.activeFilters.type).toBe(lfs.INACTIVE_FILTER_VALUE.type, 'type filter stays inactive');
-            expect(lfs.activeFilters.recent).toBe(lfs.INACTIVE_FILTER_VALUE.recent, 'recent filter stays inactive');
-            expect(typeof lfs.getTypeFilterValue()).toBe('undefined', 'type filter value stays undefined');
+            expect(lfs.activeFilters.type).toBe(lfs.DEFAULT_FILTER_VALUE.type, 'type filter stays default');
+            expect(lfs.activeFilters.recent).toBe(lfs.DEFAULT_FILTER_VALUE.recent, 'recent filter stays default');
+            expect(lfs.getTypeFilterValue()).toBe(lfs.DEFAULT_FILTER_VALUE.type, 'type filter value stays default');
             expect(typeof lfs.getRecentFilterValue()).toBe('undefined', 'recent filter value stays undefined');
 
             // Clears URL
@@ -147,12 +147,10 @@ describe('locationFilterService.', function() {
 
         it('does not put the incative filter values in the URL.', inject(function(locationFilterService) {
             var lfs = locationFilterService;
-            lfs.activeFilters.type = lfs.INACTIVE_FILTER_VALUE.type;
             lfs.activeFilters.recent = lfs.INACTIVE_FILTER_VALUE.recent;
             lfs.onFiltersChanged();
 
             expect($location.replace).toHaveBeenCalled();
-            expect($location.search).toHaveBeenCalledWith('type', undefined);
             expect($location.search).toHaveBeenCalledWith('recent', undefined);
         }));
 

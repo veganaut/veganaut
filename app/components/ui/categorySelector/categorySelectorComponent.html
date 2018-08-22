@@ -1,15 +1,15 @@
 <nav class="vg-category-selector">
     <div class="vg-category-selector-type"
-     ng-repeat="type in $ctrl.typeFilters"
+     ng-repeat="type in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
      ng-class="{'vg-category-selector-type--active':
      type.indexOf($ctrl.locationFilterService.getTypeFilterValue()) !== -1}">
         <a href="" class="vg-category-selector-item"
-         ng-repeat-start="granularity in $ctrl.granularityFilters"
+         ng-repeat-start="granularity in $ctrl.locationFilterService.POSSIBLE_FILTERS.granularity"
          ng-click="$ctrl.setFilter(type, granularity)"
          ng-class="{'vg-category-selector-item--active':
           $ctrl.locationFilterService.getTypeFilterValue() === type &&
           $ctrl.locationFilterService.getGranularityFilterValue() === granularity}">
-            {{ 'lists.' + $ctrl.categories[type][granularity] + '.name' | translate }}
+            {{ 'lists.' + $ctrl.locationFilterService.CATEGORIES[type][granularity] + '.name' | translate }}
         </a>
         <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
     </div>

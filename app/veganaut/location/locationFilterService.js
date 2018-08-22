@@ -14,10 +14,10 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
              * @type {{}}
              */
             this.activeFilters = {
-                recent: this.INACTIVE_FILTER_VALUE.recent,
-                type: this.INACTIVE_FILTER_VALUE.type,
-                granularity: this.INACTIVE_FILTER_VALUE.granularity,
-                sortBy: this.INACTIVE_FILTER_VALUE.sortBy
+                recent: this.DEFAULT_FILTER_VALUE.recent,
+                type: this.DEFAULT_FILTER_VALUE.type,
+                granularity: this.DEFAULT_FILTER_VALUE.granularity,
+                sortBy: this.DEFAULT_FILTER_VALUE.sortBy
             };
         };
 
@@ -27,9 +27,15 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
-            type: 'anytype',
-            granularity: 'anygranularity',
             sortBy: 'none'
+            // granularity and type are never inactive
+        };
+
+        LocationFilterService.prototype.DEFAULT_FILTER_VALUE = {
+            recent: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.recent,
+            type: 'gastronomy',
+            granularity: 'location',
+            sortBy: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.sortBy
         };
 
         /**
@@ -59,12 +65,10 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'day'
             ],
             type: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.type,
                 'gastronomy',
                 'retail'
             ],
             granularity: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.granularity,
                 'location',
                 'product'
             ],
@@ -100,25 +104,19 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Returns the type filter value or undefined if that filter is not active.
-         * @returns {string|undefined}
+         * Returns the type filter value (type filter is always active).
+         * @returns {string}
          */
         LocationFilterService.prototype.getTypeFilterValue = function() {
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
-                return this.activeFilters.type;
-            }
-            return undefined;
+            return this.activeFilters.type;
         };
 
         /**
-         * Returns the granularity filter value or undefined if that filter is not active.
-         * @returns {string|undefined}
+         * Returns the granularity filter value (granularity filter is always active).
+         * @returns {string}
          */
         LocationFilterService.prototype.getGranularityFilterValue = function() {
-            if (this.activeFilters.granularity !== this.INACTIVE_FILTER_VALUE.granularity) {
-                return this.activeFilters.granularity;
-            }
-            return undefined;
+            return this.activeFilters.granularity;
         };
 
         /**
@@ -225,8 +223,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.setFiltersFromUrl = function() {
             // TODO: don't duplicate all filters, make generic
             if ($routeParams.type) {
-                // By default set the inactive value (if invalid value was given)
-                var typeFilter = this.INACTIVE_FILTER_VALUE.type;
+                // Set the default value (if invalid value was given)
+                var typeFilter = this.DEFAULT_FILTER_VALUE.type;
                 if (this.POSSIBLE_FILTERS.type.indexOf($routeParams.type) >= 0) {
                     // Found valid location type filter
                     typeFilter = $routeParams.type;
@@ -237,8 +235,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             if ($routeParams.granularity) {
-                // By default set the inactive value (if invalid value was given)
-                var granularityFilter = this.INACTIVE_FILTER_VALUE.granularity;
+                // Set the default value (if invalid value was given)
+                var granularityFilter = this.DEFAULT_FILTER_VALUE.granularity;
                 if (this.POSSIBLE_FILTERS.granularity.indexOf($routeParams.granularity) >= 0) {
                     // Found valid location granularity filter
                     granularityFilter = $routeParams.granularity;
@@ -249,8 +247,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             if ($routeParams.recent) {
-                // By default set the inactive value (if invalid value was given)
-                var recentFilter = this.INACTIVE_FILTER_VALUE.recent;
+                // Set the default value (if invalid value was given)
+                var recentFilter = this.DEFAULT_FILTER_VALUE.recent;
                 if (this.POSSIBLE_FILTERS.recent.indexOf($routeParams.recent) >= 0) {
                     // Found valid recent filter
                     recentFilter = $routeParams.recent;
@@ -261,8 +259,8 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             if ($routeParams.sortBy) {
-                // By default set the inactive value (if invalid value was given)
-                var sortBy = this.INACTIVE_FILTER_VALUE.sortBy;
+                // Set the default value (if invalid value was given)
+                var sortBy = this.DEFAULT_FILTER_VALUE.sortBy;
                 if (this.POSSIBLE_FILTERS.sortBy.indexOf($routeParams.sortBy) >= 0) {
                     // Found valid sortBy value
                     sortBy = $routeParams.sortBy;
@@ -293,16 +291,12 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             var typeFilter;
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
-                this.routeHasTypeFilter())
-            {
+            if (this.routeHasTypeFilter()) {
                 typeFilter = this.activeFilters.type;
             }
 
             var granularityFilter;
-            if (this.activeFilters.granularity !== this.INACTIVE_FILTER_VALUE.granularity &&
-                this.routeHasGranularityFilter())
-            {
+            if (this.routeHasGranularityFilter()) {
                 granularityFilter = this.activeFilters.granularity;
             }
 

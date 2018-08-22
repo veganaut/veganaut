@@ -411,7 +411,6 @@
     "type": {
       "title": "Filter for location type",
       "form": {
-        "anytype": "Both",
         "gastronomy": "Gastronomy",
         "retail": "Retail"
       }

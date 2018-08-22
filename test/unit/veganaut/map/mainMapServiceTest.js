@@ -37,19 +37,18 @@ describe('mainMapService.', function() {
 
         locationFilterService = {
             POSSIBLE_FILTERS: {
-                type: ['retail', 'gastronomy', 'defaultTypeFilter'],
+                type: ['retail', 'gastronomy'],
                 recent: ['week', 'month', 'defaultRecentFilter']
-
             },
-            INACTIVE_FILTER_VALUE: {
-                type: 'defaultTypeFilter',
+            DEFAULT_FILTER_VALUE: {
+                type: 'gastronomy',
                 recent: 'defaultRecentFilter'
             },
             activeFilters: activeFilters,
             setFiltersFromUrl: jasmine.createSpy('locationFilterService.setFiltersFromUrl')
         };
-        activeFilters.type = locationFilterService.INACTIVE_FILTER_VALUE.type;
-        activeFilters.recent = locationFilterService.INACTIVE_FILTER_VALUE.recent;
+        activeFilters.type = locationFilterService.DEFAULT_FILTER_VALUE.type;
+        activeFilters.recent = locationFilterService.DEFAULT_FILTER_VALUE.recent;
 
         $provide.value('$location', $location);
         $provide.value('$routeParams', $routeParams);

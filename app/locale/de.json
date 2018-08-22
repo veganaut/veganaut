@@ -411,7 +411,6 @@
     "type": {
       "title": "Filtern nach Art der Location",
       "form": {
-        "anytype": "Beide",
         "gastronomy": "Gastro",
         "retail": "Shopping"
       }
