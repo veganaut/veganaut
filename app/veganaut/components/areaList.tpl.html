@@ -61,16 +61,13 @@
             </button>
         </div>
 
-        <!-- TODO: replace button with auto-loading on scroll -->
-        <!-- TODO WIP: improve styling -->
-        <div ng-show="$ctrl.totalItems > $ctrl.list.length">
-            <p>
-                <button type="button" class="btn btn-block btn-default"
-                 ng-click="$ctrl.showMore()">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span>{{ 'lists.' + $ctrl.listType + '.showMore' | translate }}</span>
-                </button>
-            </p>
+        <!-- TODO NEXT: replace button with auto-loading on scroll -->
+        <div ng-show="$ctrl.totalItems > $ctrl.list.length" class="vg-list__load-more">
+            <button type="button" class="btn btn-large btn-primary"
+             ng-click="$ctrl.showMore()">
+                <span>{{ 'lists.' + $ctrl.listType + '.showMore' | translate }}</span>
+                <vg-icon vg-name="'chevron-big-down'"></vg-icon>
+            </button>
         </div>
     </div>
 </div>
