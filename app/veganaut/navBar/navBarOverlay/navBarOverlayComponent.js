@@ -8,11 +8,11 @@
      */
     function navBarOverlayComponent() {
         return {
-            require: {parent: '^^vgNavBar'},
+            require: {
+                parent: '^^vgNavBar'
+            },
             controller: NavBarOverlayCtrl,
-            controllerAs: '$ctrl',
-            templateUrl: '/veganaut/navBar/navBarOverlay/navBarOverlay.tpl.html'
-
+            templateUrl: '/veganaut/navBar/navBarOverlay/navBarOverlayComponent.html'
         };
     }
 
