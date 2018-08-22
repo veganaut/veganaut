@@ -144,6 +144,11 @@
                 mainMapService.showCurrentArea(vm.map);
             });
 
+            // Listen to requests to start adding a location
+            $scope.$on('veganaut.location.startAddLocation', function() {
+                vm.startCreateLocation(vm.map);
+            });
+
             // When we go away from this page, abort adding location
             $scope.$on('$routeChangeStart', function(event) {
                 if (!event.defaultPrevented) {

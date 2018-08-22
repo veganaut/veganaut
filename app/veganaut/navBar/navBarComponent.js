@@ -18,22 +18,13 @@
         return component;
     }
 
-    NavBarController.$inject = [
-        '$location',
-        '$rootScope',
-        'backendService',
-        'localeService',
-        'searchService'
-    ];
+    NavBarController.$inject = ['$location', 'backendService', 'localeService', 'searchService'];
 
-    function NavBarController($location, $rootScope, backendService, localeService, searchService) {
+    function NavBarController($location, backendService, localeService, searchService) {
         var $ctrl = this;
 
         // Expose service
         $ctrl.localeService = localeService;
-
-        $ctrl.$onInit = function() {
-        };
 
         $ctrl.closeMenu = function() {
             $ctrl.menuShown = false;
@@ -46,7 +37,9 @@
             searchService.toggleSearchModal();
         };
 
-        $ctrl.goToView = $rootScope.goToView;
+        $ctrl.goToView = function(view) {
+            $location.url(view);
+        };
 
         // TODO: Merge this with other places where this is checked
         $ctrl.isHomePage = function() {

@@ -2,9 +2,12 @@
   "navigation": {
     "home": "Home",
     "register": "Mitmachen",
-    "login": "Login",
+    "loginAndRegister": "Login & Mitmachen",
     "logout": "Logout",
+    "panorama": "Panorama",
     "map": "Karte",
+    "list": "Liste",
+    "addLocation": "Location hinzufügen",
     "locationList": "Locations",
     "productList": "Vegane Angebote",
     "community": "Community",

@@ -2,9 +2,12 @@
   "navigation": {
     "home": "Accueil",
     "register": "Participer",
-    "login": "Connexion",
+    "loginAndRegister": "Connexion & Participer",
     "logout": "Déconnexion",
+    "panorama": "Panorama",
     "map": "Carte",
+    "list": "Liste",
+    "addLocation": "Location hinzufügen",
     "locationList": "Endroits",
     "productList": "Offres véganes",
     "community": "Communauté",

@@ -1,6 +1,7 @@
-.navbar-overlay {
+.vg-nav-bar-overlay {
     z-index: 1050;
     position: fixed;
+    overflow-y: auto;
     top: 0;
     bottom: 0;
     left: 0;
@@ -9,63 +10,37 @@
     opacity: 1;
 }
 
-.overlay-modal-top {
+.vg-nav-bar-overlay__top {
     img {
-        width: 100%;
-        opacity: 0.6;
-    }
-
-}
-
-.overlay-modal-bottom {
-    img {
-        margin-top: 45vh;
         position: absolute;
-        width: 550px;
         opacity: 0.6;
-        @media screen and (max-height: 1100px) {
-            position: absolute;
-            width: 550px;
-            margin-top: 60vh;
-            bottom: 0;
-        }
+        width: 100%;
+        max-width: 550px;
+        z-index: -1;
     }
 }
 
-.navbar-content-overlay {
-    overflow-y: scroll;
-    z-index: 1051;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-
-    .h4 {
-        cursor: pointer;
+.vg-nav-bar-overlay__bottom {
+    img {
+        opacity: 0.6;
+        width: 100%;
     }
 }
 
-.overlay-container {
-    margin: 0 auto;
-    text-align: center;
-}
-
-.overlay-cross {
-    padding-top: 15px;
-    margin-left: 85%;
+.vg-nav-bar-overlay__corner-action {
+    padding: 15px;
+    margin-bottom: -15px;
     background: none;
     border: none;
+    line-height: 0; // Let svg determine size
     svg {
-        float: right;
-        fill: @_color-dark-grey;
-        width: 25px;
-        height: 25px;
+        fill: @color-text;
+        width: 20px;
+        height: 20px;
     }
 }
 
-.overlay-logo {
+.vg-nav-bar-overlay__logo {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0 33%;
@@ -81,82 +56,78 @@
     }
 }
 
-.overlay-content {
-    margin: 30px 10% !important;
-    width: 80%;
-    @media screen and (max-width: 420px) {
-        margin: 20px 12%;
-    }
+.vg-nav-bar-overlay {
 
-    svg {
-        height: 12px;
-        width: 12px;
-        fill: #fff;
-    }
+    .overlay-content {
+        margin: 15px 25px;
+        text-align: center;
 
-    a& {
-        color: inherit;
+        a {
+            color: inherit;
 
-        &:hover,
-        &:focus {
-            text-decoration: none;
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
         }
     }
-}
 
-.overlay-logout,
-.overlay-locale-change-button {
-    padding: 0;
-    background: none;
-    border: none;
-}
-
-.btn-overlay {
-    padding: 15px 0;
-    border-radius: 5px;
-}
-
-.overlay-row {
-    margin: 8% 20%;
-    @media screen and (max-width: 420px) {
-        margin: 6% 10%;
+    .overlay-content--medium {
+        .vg-typography-display-2-strong();
+        margin-top: 30px;
     }
 
-    h2 {
-        cursor: pointer
-    }
-}
-
-
-
-
-.overlay-icons svg {
-    width: 25px;
-    height: 25px;
-    fill: @_color-dark-grey;
-}
-
-.current-locale {
-    text-decoration: underline;
-}
-
-.overlay-bottom {
-    text-align: center;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    @media screen and (max-width: 420px) {
-        flex-direction: column
-    }
-    @media screen and (max-width: 350px) {
-        margin-top: 5px;
-
-    }
+    .overlay-content--small {
+        .vg-typography-display-1-strong();
+        margin-top: 30px;
     }
 
-.col-4 {
-    width: 33.3333333%;
-    @media screen and (max-width: 420px) {
+    .overlay-content__main-action {
+        .vg-typography-display-3-strong();
         width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border: none;
+        background: none;
+    }
+
+    .overlay-content__main-action--highlighted {
+        .vg-typography-display-3();
+        .btn-primary();
+        border-radius: 5px;
+    }
+
+    .overlay-content__secondary-action {
+        .remove-btn();
+        padding: 3px 15px;
+        display: inline-block;
+    }
+
+    .overlay-content__secondary-action--with-icon {
+        padding-left: 35px;
+        position: relative;
+        svg {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            fill: @color-accent-2;
+            left: 15px;
+            top: 4px;
+        }
+    }
+
+    .overlay-content__secondary-action--icon-only {
+        padding-left: 25px;
+        padding-right: 25px;
+        line-height: 0; // Let svg determine the height
+        svg {
+            width: 25px;
+            height: 25px;
+            fill: @color-text;
+        }
+    }
+
+    .overlay-content__secondary-action--active {
+        text-decoration: underline;
     }
 }

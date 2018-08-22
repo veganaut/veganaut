@@ -1,98 +1,127 @@
-<div class="container">
-    <div class="overlay-modal-top">
-        <img src="img/background/view-on-earth.svg">
-    </div>
-    <div class="overlay-modal-bottom">
-        <img src="img/background/landscape.svg">
-    </div>
-    <div class="navbar-content-overlay">
-        <div class="container overlay-container row">
-            <!-- TODO WIP: implement as designed -->
-            <button class="overlay-cross" ng-click="$ctrl.closeOverlay()">
-                <vg-icon vg-name="'cross-big'"></vg-icon>
+<div class="vg-nav-bar-overlay">
+    <div class="container">
+        <div class="vg-nav-bar-overlay__top">
+            <img src="img/background/view-on-earth.svg">
+        </div>
+        <button class="vg-nav-bar-overlay__corner-action" ng-click="$ctrl.search()">
+            <vg-icon vg-name="'search'"></vg-icon>
+        </button>
+        <button class="pull-right vg-nav-bar-overlay__corner-action" ng-click="$ctrl.closeOverlay()">
+            <vg-icon vg-name="'cross-big'"></vg-icon>
+        </button>
+        <button class="vg-nav-bar-overlay__logo" ng-click="$ctrl.goToView('/')">
+            <img src="img/logo/veganaut.png">
+        </button>
+
+        <div class="overlay-content overlay-content--small">
+            <a href="" class="overlay-content__secondary-action overlay-content__secondary-action--with-icon"
+             ng-click="$ctrl.goToView('/panorama/')">
+                <vg-icon vg-name="'location'" class=""></vg-icon>
+                {{ 'navigation.panorama' | translate }}
+            </a>
+            <a href="" class="overlay-content__secondary-action overlay-content__secondary-action--with-icon"
+             ng-click="$ctrl.goToView('/map/')">
+                <vg-icon vg-name="'map'" class=""></vg-icon>
+                {{ 'navigation.map' | translate }}
+            </a>
+            <a href="" class="overlay-content__secondary-action overlay-content__secondary-action--with-icon"
+             ng-click="$ctrl.goToView('/list/')">
+                <vg-icon vg-name="'list'" class=""></vg-icon>
+                {{ 'navigation.list' | translate }}
+            </a>
+        </div>
+
+        <div class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--secondary"
+             ng-click="$ctrl.goToView('/community')">
+                {{ 'navigation.community' | translate }}
             </button>
-            <button class="overlay-logo" ng-click="$ctrl.goToView('/')">
-                <img src="img/logo/veganaut.png">
+        </div>
+        <div class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--secondary"
+             ng-click="$ctrl.goToView('/me')">
+                {{ 'navigation.profile' | translate }}
             </button>
-            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('/community')">
-                <span class="h4">{{'navigation.community' | translate}}</span>
+        </div>
+
+        <div ng-if="!$ctrl.isLoggedIn()" class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--highlighted"
+             ng-click="$ctrl.goToView('/register')">
+                {{ 'navigation.loginAndRegister' | translate}}
+                <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
-            <button class="remove-btn overlay-content col-xs-12" ng-click="$ctrl.goToView('/me')">
-                <span class="h4">{{'navigation.profile' | translate}}</span>
+        </div>
+        <div ng-if="$ctrl.isLoggedIn()" class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--highlighted"
+             ng-click="$ctrl.addLocation() | track:'startAddLocation':'startAddLocation.mainMenu'">
+                {{ 'navigation.addLocation' | translate}}
+                <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
-            <button ng-if="!$ctrl.isLoggedIn()"
-             ng-click="$ctrl.goToView('/register')"
-             class="btn btn-primary btn-overlay overlay-content">
-                <span class="h4">{{'navigation.login' | translate}} &amp; {{'navigation.register' | translate}} &nbsp;</span>
-                <vg-icon vg-name="'chevron-right'" id="home-chevron-right"></vg-icon>
+        </div>
+        <div ng-if="$ctrl.isLoggedIn()" class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--secondary"
+             ng-click="$ctrl.logout() | track:'logout':'logout'">
+                {{ 'navigation.logout' | translate }}
             </button>
-            <button ng-if="$ctrl.isLoggedIn()"
-             ng-click="$ctrl.logout()"
-             class="overlay-logout overlay-content">
-                <span class="h4">{{'navigation.logout' | translate}}</span>
-            </button>
-            <div class="row overlay-content">
-                <div class="col-xs-4 overlay-border-right">
-                    <a class="h5 overlay-row-content" href="https://blog.veganaut.net/about/" target="_blank">
-                        {{'navigation.about' | translate}}
-                    </a>
-                </div>
-                <div class="col-xs-4 overlay-border-right">
-                    <a class="h5 overlay-row-content" href="https://blog.veganaut.net/contact" target="_blank">
-                        {{'navigation.contactForm' | translate}}
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a class="h5 overlay-row-content" href="https://blog.veganaut.net/" target="_blank">
-                        {{'navigation.blog' | translate}}
-                    </a>
-                </div>
-            </div>
-            <div class="row overlay-content">
-                <div class="col-xs-4 overlay-icons">
-                    <a title="{{'navigation.bugs'| translate}}" href="https://github.com/veganaut/veganaut/issues" target="_blank">
-                        <vg-icon vg-name="'github'"></vg-icon>
-                    </a>
-                </div>
-                <div class="col-xs-4 overlay-icons">
-                    <a title="{{'navigation.facebook'| translate}}" href="https://www.facebook.com/veganautnet" target="_blank">
-                        <vg-icon vg-name="'facebook'"></vg-icon>
-                    </a>
-                </div>
-                <div class="col-xs-4 overlay-icons">
-                    <a title="{{'navigation.twitter'| translate}}" href="https://twitter.com/veganautnet" target="_blank">
-                        <vg-icon vg-name="'twitter'"></vg-icon>
-                    </a>
-                </div>
-            </div>
-            <div class="row" ng-controller="ChangeLocaleCtrl">
-                <div class="col-xs-4" ng-class="{'overlay-border-right':!$last}" ng-repeat="locale in availableLocales">
-                    <button class="remove-btn" ng-click="localeService.changeLocale(locale); $ctrl.closeOverlay()">
-                        <span  ng-class="{'current-locale':locale === localeService.getLocale()}" class="h5 overlay-row-content">
-                            {{'navigation.language.' + locale | translate}}
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div class="overlay-bottom">
-                <div class="row overlay-content">
-                    <div class="col-md-4 col-xs-12">
-                        <a class="h5" href="https://blog.veganaut.net/nutzungsbedingungen/" target="_blank">
-                            {{'navigation.termsOfUse' | translate}}
-                        </a>
-                    </div>
-                    <div class="col-md-4 col-xs-12">
-                        <a class="h5" href="https://blog.veganaut.net/datenschutzerklarung/" target="_blank">
-                            {{'navigation.privacyPolicy' | translate}}
-                        </a>
-                    </div>
-                    <div class="col-md-4 col-xs-12">
-                        <a class="h5" href="https://blog.veganaut.net/impressum/" target="_blank">
-                            {{'navigation.imprint' | translate}}
-                        </a>
-                    </div>
-                </div>
-            </div>
+        </div>
+
+        <div class="overlay-content overlay-content--medium">
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/about/" target="_blank">
+                {{'navigation.about' | translate}}
+            </a>
+            |
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/contact" target="_blank">
+                {{'navigation.contactForm' | translate}}
+            </a>
+            |
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/" target="_blank">
+                {{'navigation.blog' | translate}}
+            </a>
+        </div>
+
+        <div class="overlay-content overlay-content--medium">
+            <a class="overlay-content__secondary-action overlay-content__secondary-action--icon-only"
+             title="{{'navigation.bugs'| translate}}"
+             href="https://github.com/veganaut/veganaut/issues" target="_blank">
+                <vg-icon vg-name="'github'"></vg-icon>
+            </a>
+            <a class="overlay-content__secondary-action overlay-content__secondary-action--icon-only"
+             title="{{'navigation.facebook'| translate}}"
+             href="https://www.facebook.com/veganautnet" target="_blank">
+                <vg-icon vg-name="'facebook'"></vg-icon>
+            </a>
+            <a class="overlay-content__secondary-action overlay-content__secondary-action--icon-only"
+             title="{{'navigation.twitter'| translate}}"
+             href="https://twitter.com/veganautnet" target="_blank">
+                <vg-icon vg-name="'twitter'"></vg-icon>
+            </a>
+        </div>
+
+        <div class="overlay-content overlay-content--small" ng-controller="ChangeLocaleCtrl">
+            <span ng-repeat="locale in availableLocales">
+                <button class="overlay-content__secondary-action"
+                 ng-click="localeService.changeLocale(locale); $ctrl.closeOverlay()">
+                    <span ng-class="{ 'overlay-content__secondary-action--active': locale === localeService.getLocale() }">
+                        {{'navigation.language.' + locale | translate}}
+                    </span>
+                </button><span ng-if="!$last">|</span>
+            </span>
+        </div>
+
+        <div class="overlay-content overlay-content--small">
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/nutzungsbedingungen/" target="_blank">
+                {{'navigation.termsOfUse' | translate}}
+            </a>
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/datenschutzerklarung/" target="_blank">
+                {{'navigation.privacyPolicy' | translate}}
+            </a>
+            <a class="overlay-content__secondary-action" href="https://blog.veganaut.net/impressum/" target="_blank">
+                {{'navigation.imprint' | translate}}
+            </a>
+        </div>
+
+        <div class="vg-nav-bar-overlay__bottom">
+            <img src="img/background/landscape.svg">
         </div>
     </div>
 </div>

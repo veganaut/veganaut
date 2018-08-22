@@ -154,10 +154,11 @@
 
                         // Check if we should start adding a location right away
                         if (that._onMapInitialiseStartAddLocation) {
-                            locationService.getLocationSet().startCreateLocation(map);
-
                             // Reset, to not add a location again next time
                             that._onMapInitialiseStartAddLocation = false;
+
+                            // Broadcast that a location should start to be added
+                            $rootScope.$broadcast('veganaut.location.startAddLocation');
                         }
                     })
                 ;
@@ -175,8 +176,14 @@
              * Navigate to the main map page and start the add location flow.
              */
             MainMapService.prototype.goToMapAndAddLocation = function() {
-                this._onMapInitialiseStartAddLocation = true;
-                $location.url('/map/');
+                // Check if we are already on the map page
+                if ($route.current.vgRouteName === MAP_ROUTE_NAME) {
+                    $rootScope.$broadcast('veganaut.location.startAddLocation');
+                }
+                else {
+                    this._onMapInitialiseStartAddLocation = true;
+                    $location.url('/map/');
+                }
             };
 
             /**
