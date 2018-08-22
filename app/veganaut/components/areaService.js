@@ -19,7 +19,7 @@ angular.module('veganaut.app.main').factory('areaService', [
          * @type {{}}
          */
         var AREA_PAGE_INFOS = {
-            areaOverview: '/area/',
+            panorama: '/panorama/',
             map: '/map/',
             list: '/list/'
         };
@@ -204,7 +204,7 @@ angular.module('veganaut.app.main').factory('areaService', [
          * target page.
          *
          * @param {Area} area
-         * @param {string} page: either 'map', 'list' or 'areaOverview'
+         * @param {string} page: either 'map', 'list' or 'panorama'
          */
         AreaService.prototype.setAreaAndShowOn = function(area, page) {
             // Store the id of the previous area, to be able to check if it changed
@@ -258,8 +258,8 @@ angular.module('veganaut.app.main').factory('areaService', [
             // Promise to keep track of the progress of parsing the URL
             var promise;
 
-            // Try first to resolve from the area id given in the parameter "a"
-            var placeParts = (urlParams.a || '').split(constants.URL_PLACE_NAME_ID_SEPARATOR);
+            // Try first to resolve from the area id given in the parameter "area"
+            var placeParts = (urlParams.area || '').split(constants.URL_PLACE_NAME_ID_SEPARATOR);
             if (placeParts.length === 2 && placeParts[1].length > 0) {
                 var areaId = placeParts[1];
 
@@ -353,8 +353,8 @@ angular.module('veganaut.app.main').factory('areaService', [
                     lng = this._currentArea.getLng();
                     zoomParam = this._currentArea.getZoom();
                     break;
-                case 'list': // List and areaOverview have the same URL params
-                case 'areaOverview':
+                case 'list': // List and panorama have the same URL params
+                case 'panorama':
                     var params = this._currentArea.getRadiusParams();
                     lat = params.lat;
                     lng = params.lng;
@@ -379,7 +379,7 @@ angular.module('veganaut.app.main').factory('areaService', [
             $location.search('zoom', zoomParam);
             $location.search('coords', coordsParam);
             $location.search('radius', radiusParam);
-            $location.search('a', areaParam);
+            $location.search('area', areaParam);
         };
 
         return new AreaService();

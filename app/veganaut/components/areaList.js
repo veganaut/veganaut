@@ -209,7 +209,7 @@
 
 
             // TODO: this should go in a service, so state can be kept better also when return to a list one has already interacted with
-            // TODO: it should also get de-duplicated with the areaOverview component
+            // TODO: it should also get de-duplicated with the panorama component
             /**
              * Shows the list of the given area
              * @param {Area} area

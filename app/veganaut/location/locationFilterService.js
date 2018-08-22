@@ -280,7 +280,6 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * Updates the URL params to correctly reflect the currently active filters.
          */
         LocationFilterService.prototype.updateFiltersInUrl = function() {
-            // TODO WIP: make the category filters more readable in the URL? Just using 1 instead of 2 params?
             // Only change the URL when we are on a route that has filters
             if (!angular.isObject($route.current.vgFilters)) {
                 return;

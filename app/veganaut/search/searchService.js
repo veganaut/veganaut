@@ -77,7 +77,7 @@ angular.module('veganaut.app.search').factory('searchService', [
 
         /**
          * Gets the target page when the user selects a geo (=area) result.
-         * @returns {string} 'areaOverview', 'map' or 'list'
+         * @returns {string} 'panorama', 'map' or 'list'
          */
         SearchService.prototype.getGeoResultTargetPage = function() {
             if ($route.current.vgRouteName === 'map' || $route.current.vgRouteName === 'list') {
@@ -85,7 +85,7 @@ angular.module('veganaut.app.search').factory('searchService', [
             }
 
             // If not on one of map or list page, always go to the overview
-            return 'areaOverview';
+            return 'panorama';
         };
 
         /**

@@ -2,13 +2,13 @@
     'use strict';
 
     /**
-     * Component for areaOverview. Presents all restaurants and stores in one view
-     * @returns {{controller: PlantRatingCtrl, controllerAs: string, templateUrl: string}}
+     * Component for showing the location quality overview on the panorama page
+     * @returns {{}}
      */
     function plantRatingComponent() {
         return {
             bindings: {
-                areaOverview: '<vgAreaOverview'
+                panorama: '<vgPanorama'
             },
             controller: PlantRatingCtrl,
             controllerAs: '$ctrl',

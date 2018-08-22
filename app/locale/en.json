@@ -37,7 +37,7 @@
     "ownProfile.edit": "Edit my profile",
     "register": "Participate",
     "resetPassword": "Reset password",
-    "areaOverview": "Overview"
+    "panorama": "Overview"
   },
   "message": {
     "new": "new",
@@ -687,7 +687,7 @@
       "withoutId": "Around: {{area}}"
     }
   },
-  "areaOverview": {
+  "panorama": {
     "subtitle": {
       "world": "Vegan offer in the whole world",
       "withId": "Vegan offer in a radius of {{radius}} around {{area}}:",

@@ -98,9 +98,9 @@
                 redirectTo: '/list/' // location list is now in the list page. TODO: This could be removed at some point
             });
 
-            $routeProvider.when('/area/', {
-                vgRouteName: 'areaOverview',
-                template: '<vg-area-overview></vg-area-overview>',
+            $routeProvider.when('/panorama/', {
+                vgRouteName: 'panorama',
+                template: '<vg-panorama></vg-panorama>',
                 resolve: {
                     areaInitialised: resolveInitialiseArea
                 },

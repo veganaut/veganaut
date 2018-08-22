@@ -11,42 +11,42 @@
             </div>
         </button>
         <p>
-            {{ 'areaOverview.subtitle.' + $ctrl.areaType |
+            {{ 'panorama.subtitle.' + $ctrl.areaType |
                 translate: {radius: $ctrl.displayRadius, area: $ctrl.area.longName} }}
         </p>
         <p class="area-location-area">
-            {{ 'areaOverview.locationQualityTitle' |
-                translate: {total: $ctrl.areaOverview.locations.total} }}
+            {{ 'panorama.locationQualityTitle' |
+                translate: {total: $ctrl.panorama.locations.total} }}
         </p>
-        <vg-plant-rating vg-area-overview="$ctrl.areaOverview"></vg-plant-rating>
+        <vg-plant-rating vg-panorama="$ctrl.panorama"></vg-plant-rating>
     </div>
     <div class="tile-wrapper">
         <div class="tile">
             <a href="/map/?type=gastronomy&granularity=location" class="category-wrapper">
-                <div class="category-counter">{{ $ctrl.areaOverview.locations.gastronomy }}</div>
+                <div class="category-counter">{{ $ctrl.panorama.locations.gastronomy }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'gastronomyLocationSparkly'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.gastronomyLocations' | translate }}</h3>
+                <h3 class="h4">{{ 'panorama.gastronomyLocations' | translate }}</h3>
             </a>
             <hr>
             <a href="/list/?type=gastronomy&granularity=location" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>{{ 'areaOverview.showInList' | translate }}</span>
+                    <span>{{ 'panorama.showInList' | translate }}</span>
                 </p>
             </a>
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
             <a href="/map/?type=gastronomy&granularity=product" class="category-wrapper">
-                <div class="category-counter">{{ $ctrl.areaOverview.products.gastronomy }}</div>
+                <div class="category-counter">{{ $ctrl.panorama.products.gastronomy }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'gastronomyProductSparkly'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.gastronomyProducts' | translate }}</h3>
+                <h3 class="h4">{{ 'panorama.gastronomyProducts' | translate }}</h3>
             </a>
             <hr>
             <a href="/list/?type=gastronomy&granularity=product" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>{{ 'areaOverview.showInList' | translate }}</span>
+                    <span>{{ 'panorama.showInList' | translate }}</span>
                 </p>
             </a>
         </div>
@@ -57,30 +57,30 @@
     <div class="tile-wrapper">
         <div class="tile">
             <a href="/map/?type=retail&granularity=location" class="category-wrapper">
-                <div class="category-counter">{{ $ctrl.areaOverview.locations.retail }}</div>
+                <div class="category-counter">{{ $ctrl.panorama.locations.retail }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'retailLocationSparkly'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.retailLocations' | translate }}</h3>
+                <h3 class="h4">{{ 'panorama.retailLocations' | translate }}</h3>
             </a>
             <hr>
             <a href="/list/?type=retail&granularity=location" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>{{ 'areaOverview.showInList' | translate }}</span>
+                    <span>{{ 'panorama.showInList' | translate }}</span>
                 </p>
             </a>
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
             <a href="/map/?type=retail&granularity=product" class="category-wrapper">
-                <div class="category-counter">{{ $ctrl.areaOverview.products.retail }}</div>
+                <div class="category-counter">{{ $ctrl.panorama.products.retail }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'retailProductSparkly'"></vg-icon>
-                <h3 class="h4">{{ 'areaOverview.retailProducts' | translate }}</h3>
+                <h3 class="h4">{{ 'panorama.retailProducts' | translate }}</h3>
             </a>
             <hr>
             <a href="/list/?type=retail&granularity=product" class="class-show-list-wrapper">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
-                    <span>{{ 'areaOverview.showInList' | translate }}</span>
+                    <span>{{ 'panorama.showInList' | translate }}</span>
                 </p>
             </a>
         </div>

@@ -131,7 +131,7 @@
          */
         $ctrl.onCtaSubmit = function() {
             // Show the area on overview page
-            areaService.setAreaAndShowOn(targetArea, 'areaOverview');
+            areaService.setAreaAndShowOn(targetArea, 'panorama');
 
             // Track the submission
             angularPiwik.track('home.cta');

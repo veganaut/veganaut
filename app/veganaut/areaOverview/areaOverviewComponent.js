@@ -2,24 +2,24 @@
     'use strict';
 
     /**
-     * Component for areaOverview. Presents all locations and products in one view
-     * @returns {{controller: AreaOverviewCtrl, controllerAs: string, templateUrl: string}}
+     * Component for the panorama page. Presents all locations and products in one view
+     * @returns {{}}
      */
-    function areaOverviewComponent() {
+    function panoramaComponent() {
         return {
-            controller: AreaOverviewCtrl,
+            controller: PanoramaCtrl,
             controllerAs: '$ctrl',
             templateUrl: 'veganaut/areaOverview/areaOverview.tpl.html'
 
         };
     }
 
-    AreaOverviewCtrl.$inject = ['$scope', 'backendService', 'areaService', 'pageTitleService'];
+    PanoramaCtrl.$inject = ['$scope', 'backendService', 'areaService', 'pageTitleService'];
 
     /**
      * Area Overview Controller
      */
-    function AreaOverviewCtrl($scope, backendService, areaService, pageTitleService) {
+    function PanoramaCtrl($scope, backendService, areaService, pageTitleService) {
         var $ctrl = this;
 
         /**
@@ -42,7 +42,7 @@
          * Note: this doesn't reset the area of the list.
          */
         var resetOverview = function() {
-            $ctrl.areaOverview = {};
+            $ctrl.panorama = {};
 
             $ctrl.areaType = undefined;
             $ctrl.area = undefined;
@@ -54,8 +54,8 @@
          * Loads the items with the currently set lastParams
          */
         var loadItems = function() {
-            backendService.getAreaOverview(lastParams.lat, lastParams.lng, lastParams.radius).then(function(overview) {
-                $ctrl.areaOverview = overview;
+            backendService.getAreaOverview(lastParams.lat, lastParams.lng, lastParams.radius).then(function(panorama) {
+                $ctrl.panorama = panorama;
             });
         };
 
@@ -154,5 +154,5 @@
 
     // Expose as component
     angular.module('veganaut.app.main')
-        .component('vgAreaOverview', areaOverviewComponent());
+        .component('vgPanorama', panoramaComponent());
 })();

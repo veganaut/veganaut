@@ -1,58 +1,58 @@
 <div>
     <div class="plant-tooltip" ng-class="{'plant0-tooltip': $ctrl.ratingPlants.ratingPlant0.tooltip}">
-        <p>{{ 'areaOverview.rating.0' | translate: { numLocations: $ctrl.areaOverview.locations.quality[0] } }}</p>
+        <p>{{ 'panorama.rating.0' | translate: { numLocations: $ctrl.panorama.locations.quality[0] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant1-tooltip': $ctrl.ratingPlants.ratingPlant1.tooltip}">
-        <p>{{ 'areaOverview.rating.1' | translate: { numLocations: $ctrl.areaOverview.locations.quality[1] } }}</p>
+        <p>{{ 'panorama.rating.1' | translate: { numLocations: $ctrl.panorama.locations.quality[1] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant2-tooltip': $ctrl.ratingPlants.ratingPlant2.tooltip}">
-        <p>{{ 'areaOverview.rating.2' | translate: { numLocations: $ctrl.areaOverview.locations.quality[2] } }}</p>
+        <p>{{ 'panorama.rating.2' | translate: { numLocations: $ctrl.panorama.locations.quality[2] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant3-tooltip': $ctrl.ratingPlants.ratingPlant3.tooltip}">
-        <p>{{ 'areaOverview.rating.3' | translate: { numLocations: $ctrl.areaOverview.locations.quality[3] } }}</p>
+        <p>{{ 'panorama.rating.3' | translate: { numLocations: $ctrl.panorama.locations.quality[3] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant4-tooltip': $ctrl.ratingPlants.ratingPlant4.tooltip}">
-        <p>{{ 'areaOverview.rating.4' | translate: { numLocations: $ctrl.areaOverview.locations.quality[4] } }}</p>
+        <p>{{ 'panorama.rating.4' | translate: { numLocations: $ctrl.panorama.locations.quality[4] } }}</p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant5-tooltip': $ctrl.ratingPlants.ratingPlant5.tooltip}">
-        <p>{{ 'areaOverview.rating.5' | translate: { numLocations: $ctrl.areaOverview.locations.quality[5] } }}</p>
+        <p>{{ 'panorama.rating.5' | translate: { numLocations: $ctrl.panorama.locations.quality[5] } }}</p>
     </div>
     <div class="row" class="veganlevel-wrapper">
         <div class="plant plant0" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant0.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant0')">
                 <vg-icon vg-name="'veganlevel-0'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[0] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[0] }}</span>
         </div>
         <div class="plant plant1" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant1.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant1')">
                 <vg-icon vg-name="'veganlevel-1'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[1] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[1] }}</span>
         </div>
         <div class="plant plant2" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant2.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant2')">
                 <vg-icon vg-name="'veganlevel-2'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[2] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[2] }}</span>
         </div>
         <div class="plant plant3" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant3.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant3')">
                 <vg-icon vg-name="'veganlevel-3'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[3] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[3] }}</span>
         </div>
         <div class="plant plant4" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant4.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant4')">
                 <vg-icon vg-name="'veganlevel-4'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[4] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[4] }}</span>
         </div>
         <div class="plant plant5" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant5.visible}">
             <button class="veganlevel-plant-button" ng-click="$ctrl.toggle('ratingPlant5')">
                 <vg-icon vg-name="'veganlevel-5'"></vg-icon>
             </button>
-            <span class="veganlevel-number">{{ $ctrl.areaOverview.locations.quality[5] }}</span>
+            <span class="veganlevel-number">{{ $ctrl.panorama.locations.quality[5] }}</span>
         </div>
     </div>
 </div>

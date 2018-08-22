@@ -62,7 +62,7 @@
         };
 
         $ctrl.isAreaPage = function() {
-            return $location.path() === '/area/';
+            return $location.path() === '/panorama/';
         };
 
 

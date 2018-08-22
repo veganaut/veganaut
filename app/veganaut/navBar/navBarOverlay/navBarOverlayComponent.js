@@ -3,8 +3,8 @@
 
 
     /**
-     * Component for areaOverview. Presents all restaurants and stores in one view
-     * @returns {{controller: navBarOverlayCtrl, controllerAs: string, templateUrl: string}}
+     * Component for the main menu overlay
+     * @returns {{}}
      */
     function navBarOverlayComponent() {
         return {
