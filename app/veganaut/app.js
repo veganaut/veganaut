@@ -39,7 +39,6 @@
             $locationProvider.html5Mode(appSettings.html5Mode);
             $compileProvider.debugInfoEnabled(appSettings.debugInfo);
 
-            // TODO WIP: make sure old routes are redirected in a way that makes sense
             // Set up routes
             $routeProvider.when('/register', {
                 vgRouteName: 'register',
@@ -93,11 +92,6 @@
                 reloadOnSearch: false
             });
 
-            // Location list (with trailing slash for Piwik)
-            $routeProvider.when('/locations/', {
-                redirectTo: '/list/' // location list is now in the list page. TODO: This could be removed at some point
-            });
-
             $routeProvider.when('/panorama/', {
                 vgRouteName: 'panorama',
                 template: '<vg-panorama></vg-panorama>',
@@ -118,9 +112,6 @@
                 vgRouteName: 'location.edit',
                 templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
-            $routeProvider.when('/products', {
-                redirectTo: '/list/?granularity=product' // product list is now in the list page. TODO: This could be removed at some point
-            });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
                 templateUrl: '/veganaut/user/profile.tpl.html'
@@ -137,6 +128,30 @@
                 vgRouteName: 'otherProfile',
                 templateUrl: '/veganaut/user/person.tpl.html',
                 controller: 'PersonCtrl'
+            });
+
+            // Redirect legacy URLs
+            // TODO: These should be removed at some point
+            $routeProvider.when('/locations/', {
+                redirectTo: '/list/' // location list is now in the list page.
+            });
+            $routeProvider.when('/products/', {
+                // Product list is now in the list page.
+                redirectTo: function(routeParams, path, search) {
+                    var redirect = '/list/?granularity=product';
+
+                    // Keep the get params we know
+                    if (search.type) {
+                        redirect += '&type=' + search.type;
+                    }
+                    if (search.coords) {
+                        redirect += '&coords=' + search.coords;
+                    }
+                    if (search.radius) {
+                        redirect += '&radius=' + search.radius;
+                    }
+                    return redirect;
+                }
             });
 
             $routeProvider.otherwise({redirectTo: '/'});
@@ -192,6 +207,7 @@
 
     resolveLocation.$inject = ['$route', 'locationService'];
     function resolveLocation($route, locationService) {
+        // TODO WIP: how to handle the legacy location ids? probably the backend should handle those
         var locationId = $route.current.params.id;
         return locationService.getLocation(locationId);
     }
