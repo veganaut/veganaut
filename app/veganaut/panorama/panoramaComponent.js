@@ -9,7 +9,7 @@
         return {
             controller: PanoramaCtrl,
             controllerAs: '$ctrl',
-            templateUrl: 'veganaut/areaOverview/areaOverview.tpl.html'
+            templateUrl: 'veganaut/panorama/panoramaComponent.html'
 
         };
     }
@@ -54,7 +54,7 @@
          * Loads the items with the currently set lastParams
          */
         var loadItems = function() {
-            backendService.getAreaOverview(lastParams.lat, lastParams.lng, lastParams.radius).then(function(panorama) {
+            backendService.getPanorama(lastParams.lat, lastParams.lng, lastParams.radius).then(function(panorama) {
                 $ctrl.panorama = panorama;
             });
         };

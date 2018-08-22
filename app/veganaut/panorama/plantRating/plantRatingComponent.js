@@ -11,8 +11,7 @@
                 panorama: '<vgPanorama'
             },
             controller: PlantRatingCtrl,
-            controllerAs: '$ctrl',
-            templateUrl: 'veganaut/areaOverview/plantRating/plantRating.tpl.html'
+            templateUrl: 'veganaut/panorama/plantRating/plantRatingComponent.html'
         };
     }
 
@@ -74,7 +73,6 @@
             }
         };
     }
-
 
     // Expose as component
     angular.module('veganaut.app.main')

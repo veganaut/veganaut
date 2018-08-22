@@ -244,13 +244,13 @@
             };
 
             /**
-             * Gets the area overview info: how many locations and products of which type
+             * Gets the info for the panorama page: how many locations and products of which type
              * @param lat
              * @param lng
              * @param radius
              * @returns {Promise}
              */
-            BackendService.prototype.getAreaOverview = function(lat, lng, radius) {
+            BackendService.prototype.getPanorama = function(lat, lng, radius) {
                 return $http.get(backendUrl + '/areaOverview', {
                     params: {
                         lat: lat,
