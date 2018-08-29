@@ -163,13 +163,13 @@
       "fullName": "Vorname und Nachname",
       "nickname": "Nickname",
       "password": "Passwort",
-      "completedTasks": "Anzahl Bearbeitungen"
+      "completedTasks": "Anzahl Beiträge"
     }
   },
   "community": {
     "points": "Punkte",
     "locationTypes": "Locations",
-    "tasks": "Rangliste nach Anzahl Bearbeitungen",
+    "tasks": "Rangliste nach Anzahl Beiträge",
     "and": "und",
     "numPeople": "{{ count }} Veganaut*innen",
     "numOtherPeople": "{{ count }} andere Veganaut*innen",
@@ -200,7 +200,7 @@
         "name": {
           "gastronomy": "Wie heisst das Restaurant / Take-Away / Kantine, die du hinzufügen möchtest?",
           "retail": "Wie heisst der Laden / Supermarkt, den du hinzufügen möchtest?",
-          "placeholder": "Name ..."
+          "placeholder": "Name"
         },
         "selectCoordinates": "Wo befindet sich die Location? Markiere die genaue Stelle von Hand und/oder mit der Suchfunktion.",
         "search": "Nach Name oder Addresse suchen",
@@ -227,8 +227,8 @@
           }
         },
         "GiveFeedback": {
-          "title": "Gib ein Feedback!",
-          "standaloneCallToAction": "Gib ein Feedback",
+          "title": "Gib dem Personal ein Feedback!",
+          "standaloneCallToAction": "Gib ein Feedback!",
           "description": "Rede mit dem Personal (oder schreibe ihnen) und gib ihnen Lob, Feedbacks oder Vorschläge zur Verbesserung.",
           "commitment": {
             "yes": "Ja, mache ich!",
@@ -255,7 +255,8 @@
         },
         "MentionVegan": {
           "title": "Brauch das Wort \"vegan\" im Gespräch mit dem Personal hier!",
-          "standaloneCallToAction": "Brauch das Wort \"vegan\" im Gespräch mit dem Personal",
+          "standaloneCallToAction": "Brauch hier das Wort \"vegan\"!",
+          "description": "Vegane Angebote kaufen ist gut, noch besser ist es, wenn das Personal weiss, dass diese Angebote gekauft wurden, weil sie vegan sind. Auch gut: Wenn das Personal erfährt, dass unvegane Angebote gekauft würden, wenn sie vegan wären. Und weil niemand Gedanken lesen kann: Sag es ihnen, brauch das Wort \"vegan\"!",
           "commitment": {
             "yes": "Ja, mache ich!",
             "maybe": "OK, vielleicht"
@@ -265,8 +266,8 @@
             "maybe": "Inspiriere andere, indem du teilst, was du ihnen sagen könntest!"
           },
           "completedTasks": {
-            "thisLocation": "Als Inspiration für dich: Jemand anderes hat hier z.B. das geschrieben: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "Als Inspiration für dich: Bei einer anderen Location hat hier jemand z.B. folgendes geschrieben: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "thisLocation": "Als Inspiration für dich: Jemand anderes hat z.B. das geschrieben: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Als Inspiration für dich: Bei einer anderen Location hat jemand z.B. das geschrieben: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
             "fallback": "Hier könnte jemand z.B. schreiben: \"Ich hab dem Personal gesagt, das ich hier bin, weil eine Freundin meinte, hier gäb's tolle vegane Desserts. Ich liebe vegane Desserts!\" "
           }
         },
