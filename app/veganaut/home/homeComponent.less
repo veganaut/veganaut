@@ -2,8 +2,9 @@
     width: 100%;
     background-color: #ffffff;
     display: block;
-    box-shadow: 0 3px 3px -1px rgba(63, 73, 83, 0.2);
+    box-shadow: 0 1px 3px 0 rgba(63, 73, 83, 0.2);
     margin-top: -70px;
+    margin-bottom: @vg-card-bottom-margin;
     img {
         position: relative;
         width: 100%;
@@ -93,11 +94,6 @@
     position: absolute;
 }
 
-.text--home {
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
 // Global style changes only applicable on the home page
 .body--home {
     // Make navbar transparent
@@ -157,16 +153,14 @@
 }
 
 
-
 .home {
     .input-geo, .btn-geo {
-        border-color: @_color-blue ;
+        border-color: @color-accent ;
     }
     .home-location {
-        fill: @_color-blue
+        fill: @color-accent
     }
-    p {
-        padding: 10px 16px;
-        .vg-typography-display-2;
+    .home-card-button {
+        margin-top: @vg-card-spacing;
     }
 }

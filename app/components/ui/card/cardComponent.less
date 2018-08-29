@@ -6,14 +6,36 @@
     display: block;
     box-shadow: 0 1px 3px 0 rgba(63, 73, 83, 0.2);
     position: relative;
+    .vg-typography-display-2();
+    padding: @vg-card-spacing;
+    margin-bottom: @vg-card-bottom-margin;
 }
 
-.vg-card + .vg-card {
-    margin-top: 12px;
-}
-
-.vg-card > * {
+.vg-card--large-font {
     .vg-typography-display-3();
-    padding: @vg-card-spacing; // TODO: This is the hate to reset, get rid of it
-    display: block;
+}
+
+.vg-card__title {
+    .vg-typography-display-3();
+    margin: 0;
+    padding-bottom: 12px;
+}
+
+.vg-card__title__icon {
+    margin-right: 10px;
+}
+
+.vg-card__title__icon,
+.vg-card__title__icon svg {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.vg-card__title__icon path {
+    fill: @color-accent-2;
+}
+
+.vg-card__title__icon--veganize path {
+    fill: @color-veganize;
 }

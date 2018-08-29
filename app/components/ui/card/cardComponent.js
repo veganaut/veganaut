@@ -7,7 +7,10 @@
 
     function cardComponent() {
         var component = {
-            template: '<div class="vg-card" ng-transclude></div>',
+            bindings: {
+                largeFont: '<?vgLargeFont'
+            },
+            template: '<div class="vg-card" ng-class="{ \'vg-card--large-font\': $ctrl.largeFont }" ng-transclude></div>',
             transclude: true
         };
 

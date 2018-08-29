@@ -52,11 +52,9 @@
             </button>
         </form>
     </div>
-    <div class="vg-card">
-        <p class="text--home">
-            {{ 'home.participate.text' | translate }}
-        </p>
-        <p>
+    <vg-card>
+        {{ 'home.participate.text' | translate }}
+        <div class="home-card-button">
             <button type="button" class="btn-register btn-primary btn-small"
              ng-if="!$ctrl.legacyGlobals.isLoggedIn()"
              ng-click="$ctrl.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'"
@@ -68,16 +66,14 @@
              ng-click="$ctrl.addLocation() | track:'startAddLocation':'startAddLocation.home'">
                 {{ 'home.participate.addLocation' | translate }}
             </button>
-        </p>
-    </div>
-    <div class="vg-card">
-        <p class="text--home">
-            {{ 'home.open.text1' | translate }}
-            <a href="https://github.com/veganaut/veganaut/blob/master/LICENSE" target="_blank">{{ 'home.open.source' | translate }}</a>
-            {{ 'home.open.text2' | translate }}
-            <a href="https://creativecommons.org/licenses/by-sa/3.0/ch/" target="_blank">{{ 'home.open.content' | translate }}</a>.
-        </p>
-    </div>
+        </div>
+    </vg-card>
+    <vg-card>
+        {{ 'home.open.text1' | translate }}
+        <a href="https://github.com/veganaut/veganaut/blob/master/LICENSE" target="_blank">{{ 'home.open.source' | translate }}</a>
+        {{ 'home.open.text2' | translate }}
+        <a href="https://creativecommons.org/licenses/by-sa/3.0/ch/" target="_blank">{{ 'home.open.content' | translate }}</a>.
+    </vg-card>
     <div id="home-modal-bottom">
         <img src="img/background/landscape.svg">
     </div>
