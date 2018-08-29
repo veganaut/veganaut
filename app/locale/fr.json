@@ -163,13 +163,13 @@
       "fullName": "Prénom et nom de famille",
       "nickname": "Pseudo",
       "password": "Mot de passe",
-      "completedTasks": "Modifications complétées"
+      "completedTasks": "Contributions"
     }
   },
   "community": {
     "points": "Points",
     "locationTypes": "Endroits",
-    "tasks": "Classement par modifications complétées",
+    "tasks": "Classement par nombre de contributions",
     "and": "et",
     "numPeople": "{{ count }} Véganautes",
     "numOtherPeople": "{{ count }} autres Véganautes",
@@ -200,7 +200,7 @@
         "name": {
           "gastronomy": "Comment s'appelle le restaurant / take-away / la cantine que tu veux ajouter?",
           "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?",
-          "placeholder": "Name ..."
+          "placeholder": "Nom"
         },
         "selectCoordinates": "Où est cet endroit? Marques le lieu exact en cliquant sur la carte et/ou en utilisant la fonction recherche.",
         "search": "Cherche par nom ou adresse",
@@ -227,8 +227,8 @@
           }
         },
         "GiveFeedback": {
-          "title": "Donne un feedback!",
-          "standaloneCallToAction": "Donne un feedback",
+          "title": "Donne un feedback au personnel!",
+          "standaloneCallToAction": "Donne un feedback!",
           "description": "Parle au personnel (ou écri-les), en faisant des compliments, des commentaires ou des suggestions d'amélioration.",
           "commitment": {
             "yes": "Oui, je le fais!",
@@ -255,7 +255,8 @@
         },
         "MentionVegan": {
           "title": "Utilise le mot \"végan\" quand tu parles au personnel ici!",
-          "standaloneCallToAction": "Utilise le mot \"végan\" quand tu parles au personnel",
+          "standaloneCallToAction": "Utilise le mot \"végan\" ici!",
+          "description": "Acheter des offres véganes est une bonne chose, mais c'est encore mieux si le personnel sait que ces offres ont été achetées parce qu'elles sont véganes. Tout aussi bon : si le personnel est informé que les offres non véganes seraient achetées si elles étaient véganes. Et puisque personne ne peut lire dans tes pensées : Dis-leur, utilise le mot \"végan\" !",
           "commitment": {
             "yes": "Oui, je le fais!",
             "maybe": "OK, peut-être"
@@ -265,9 +266,9 @@
             "maybe": "Inspire les autres en partageant ce que tu pourrais leur dire!"
           },
           "completedTasks": {
-            "thisLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit ici à un autre endroit: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
-            "fallback": "Par exemple, voilà ce que quelqu'un pourrait écrire ici : \"J'ai dit au personnel que je suis venu ici parce qu'un ami m'a dit qu'ils ont de grands déserts végans. J'adore les déserts végans!\" "
+            "thisLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "Pour t'inspirer a ton tour, voilà ce que quelqu'un d'autre a écrit à un autre endroit: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "P. ex., voilà ce que quelqu'un pourrait écrire: \"J'ai dit au personnel que je suis venu ici parce qu'un ami m'a dit qu'ils ont de grands déserts végans. J'adore les déserts végans!\" "
           }
         },
         "SetLocationName": {
@@ -358,7 +359,7 @@
     "products": {
       "title": "Offre végane",
       "listCompleteness": {
-        "": "Liste complète? - En mode édition, tu peux le spécifier!",
+        "": "Liste complète? - En mode édition, tu peux l'indiquer!",
         "complete": "Liste complète? - Oui! (En tout cas, elle l'était une fois.)",
         "incompleteGoodSummary": "Liste complète? - Non, mais un bon résumé.",
         "incomplete": "Liste complète? - Non, pas encore."
