@@ -519,7 +519,7 @@
   "product": {
     "action": {
       "showAllEditingOptions": "Afficher toutes les modifications possibles",
-      "editAvailability": "Change availability",
+      "editAvailability": "Modifier la disponibilité",
       "editName": "Modifier le nom"
     },
     "rating": {
