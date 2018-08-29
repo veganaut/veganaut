@@ -199,7 +199,8 @@
         "type": "Quel genre d'endroit est-ce que tu veux ajouter?",
         "name": {
           "gastronomy": "Comment s'appelle le restaurant / take-away / la cantine que tu veux ajouter?",
-          "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?"
+          "retail": "Comment s'appelle le magasin / supermarché que tu veux ajouter?",
+          "placeholder": "Name ..."
         },
         "selectCoordinates": "Où est cet endroit? Marques le lieu exact en cliquant sur la carte et/ou en utilisant la fonction recherche.",
         "search": "Cherche par nom ou adresse",

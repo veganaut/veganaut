@@ -199,7 +199,8 @@
         "type": "What type of location would you like to add?",
         "name": {
           "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
-          "retail": "What is the name of the shop / supermarket that you would like to add?"
+          "retail": "What is the name of the shop / supermarket that you would like to add?",
+          "placeholder": "Name ..."
         },
         "selectCoordinates": "Where is the location? Mark the exact spot by hand and/or with the search function.",
         "search": "Search name or address",
