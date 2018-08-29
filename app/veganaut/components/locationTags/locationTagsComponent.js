@@ -14,7 +14,6 @@
                 tags: '<vgTags'
             },
             controller: LocationTagsComponentController,
-            controllerAs: 'vm',
             templateUrl: 'veganaut/components/locationTags/locationTagsComponent.html'
         };
 
@@ -22,16 +21,16 @@
     }
 
     function LocationTagsComponentController() {
-        var vm = this;
+        var $ctrl = this;
 
-        vm.isExpanded = false;
+        $ctrl.isExpanded = false;
 
-        vm.onExpandCollapseToggleClick = function onExpandCollapseToggleClick() {
-            vm.isExpanded = !vm.isExpanded;
+        $ctrl.onExpandCollapseToggleClick = function() {
+            $ctrl.isExpanded = !$ctrl.isExpanded;
         };
 
-        vm.hasTags = function() {
-            return (angular.isArray(vm.tags) && vm.tags.length > 0);
+        $ctrl.hasTags = function() {
+            return (angular.isArray($ctrl.tags) && $ctrl.tags.length > 0);
         };
     }
 })();

@@ -1,47 +1,54 @@
-<div class="vg-location-tags" ng-class=" {'vg-location-tags--open': vm.isExpanded}">
-    <!-- TODO WIP: the whole section has to be the button -->
-    <div ng-if="vm.hasTags()"
-     class="card__right-float"
-     ng-class="{'is-edit-mode': vm.parent.editMode}">
-        <button class="remove-btn" ng-click="vm.onExpandCollapseToggleClick()">
-            <vg-icon class="location-details-chevron"
-             ng-class="{ 'location-details-chevron--expanded': vm.isExpanded }"
-             vg-name="'chevron-big-down'">
-            </vg-icon>
-            <span class="edit-icon" ng-if="vm.parent.editMode">
+<div class="vg-location-tags" ng-class=" {'vg-location-tags--open': $ctrl.isExpanded}">
+    <button class="vg-location-tags__tag-list remove-btn"
+     ng-class="{ 'is-edit-mode': $ctrl.parent.editMode }"
+     ng-if="$ctrl.hasTags()"
+     ng-click="$ctrl.onExpandCollapseToggleClick()">
+        <div class="vg-location-tags__tag-list__container">
+            <div class="vg-location-tags__tag-list__container__wrapper">
+                <div ng-repeat="tag in $ctrl.tags">
+                    <span class="badge" ng-class="'opacity-' + tag.weight">
+                        {{ 'tags.' + tag.name + '.name' | translate }}
+                    </span>
+                </div>
+            </div>
+
+            <span class="vg-location-tags__tag-list__expand">
+                <vg-icon
+                 ng-class="{'location-details-chevron--expanded': $ctrl.isExpanded}"
+                 class="location-details-chevron" vg-name="'chevron-big-down'">
+                </vg-icon>
+            </span>
+            <span class="edit-icon" ng-if="$ctrl.parent.editMode">
                 <vg-icon vg-name="'pen'"></vg-icon>
             </span>
-        </button>
-    </div>
-    <div ng-if="!vm.hasTags() && vm.parent.editMode"
-     class="card__right-float">
-        <button class="remove-btn" ng-click="vm.parent.startTask('TagLocation')">
-            <span class="edit-icon">
-                <vg-icon vg-name="'pen'"></vg-icon>
-            </span>
-        </button>
-    </div>
-    <div class="tag-wrapper">
-        <div ng-if="!vm.hasTags()">
-            <button type="button" class="btn-link-style btn-link-style--add-icon"
-             ng-click="vm.parent.startTask('TagLocation')">
-                <vg-icon vg-name="'add'"></vg-icon>
-                {{'location.tags.addEmptyState' | translate}}
+        </div>
+    </button>
+
+    <div class="vg-location-tags__no-tags-add-btn" ng-if="!$ctrl.hasTags()">
+        <div ng-if="$ctrl.parent.editMode"
+         class="card__right-float">
+            <button class="remove-btn" ng-click="$ctrl.parent.startTask('TagLocation')">
+                <span class="edit-icon">
+                    <vg-icon vg-name="'pen'"></vg-icon>
+                </span>
             </button>
         </div>
-        <div ng-repeat="tag in vm.tags">
-            <span class="badge clickable" ng-class="'opacity-' + tag.weight">
-                {{ 'tags.' + tag.name + '.name' | translate }}
-            </span>
+        <button type="button" class="btn-link-style btn-link-style--add-icon"
+         ng-click="$ctrl.parent.startTask('TagLocation')">
+            <vg-icon vg-name="'add'"></vg-icon>
+            {{'location.tags.addEmptyState' | translate}}
+        </button>
+    </div>
+    <div class="vg-location-tags__expanded_container">
+        <div class="text--small-note">
+            {{'location.tags.explanation' | translate}}
         </div>
+        <button type="button" class="btn-primary btn-small vg-location-tags--add-tags"
+         tabindex="{{$ctrl.isExpanded ? 0 : -1}}"
+         ng-click="$ctrl.parent.startTask('TagLocation')">
+            <vg-icon vg-name="'plus'" class="btn__icon"></vg-icon>
+            {{'location.tags.add' | translate}}
+        </button>
     </div>
-    <div class="tags-explanation text--small-note">
-        {{'location.tags.explanation' | translate}}
-    </div>
-    <button type="button" class="btn-primary btn-small" tabindex="{{vm.isExpanded ? 0 : -1}}"
-     ng-click="vm.parent.startTask('TagLocation')">
-        <vg-icon vg-name="'plus'" class="btn__icon"></vg-icon>
-        {{'location.tags.add' | translate}}
-    </button>
 </div>
 
