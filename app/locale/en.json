@@ -163,13 +163,13 @@
       "fullName": "First name and family name",
       "nickname": "Nickname",
       "password": "Password",
-      "completedTasks": "Completed edits"
+      "completedTasks": "Contributions"
     }
   },
   "community": {
     "points": "Points",
     "locationTypes": "Locations",
-    "tasks": "Ranking by completed edits",
+    "tasks": "Ranking by number of contributions",
     "and": "and",
     "numPeople": "{{ count }} Veganauts",
     "numOtherPeople": "{{ count }} other Veganauts",
@@ -200,7 +200,7 @@
         "name": {
           "gastronomy": "What is the name of the restaurant / take-away / canteen that you would like to add?",
           "retail": "What is the name of the shop / supermarket that you would like to add?",
-          "placeholder": "Name ..."
+          "placeholder": "Name"
         },
         "selectCoordinates": "Where is the location? Mark the exact spot by hand and/or with the search function.",
         "search": "Search name or address",
@@ -227,8 +227,8 @@
           }
         },
         "GiveFeedback": {
-          "title": "Give feedback!",
-          "standaloneCallToAction": "Give feedback",
+          "title": "Give the staff feedback!",
+          "standaloneCallToAction": "Give feedback!",
           "description": "Talk to the staff (or write them), giving praise, feedback or suggestions for improvement.",
           "commitment": {
             "yes": "Yes, I'm doing it!",
@@ -255,7 +255,8 @@
         },
         "MentionVegan": {
           "title": "Use the word \"vegan\" when talking to the staff here!",
-          "standaloneCallToAction": "Use the word \"vegan\" when talking to the staff",
+          "standaloneCallToAction": "Use the word \"vegan\" here!",
+          "description": "Buying vegan offers is good, but it is even better if the staff knows that these offers were bought because they are vegan. Equally good: If the staff learns that non-vegan offers would be bought if they were vegan. And since no one can read your mind: Tell them, use the word \"vegan\"!",
           "commitment": {
             "yes": "Yes, I'm doing it!",
             "maybe": "OK, maybe"
@@ -265,9 +266,9 @@
             "maybe": "Inspire others by sharing what you might say to them"
           },
           "completedTasks": {
-            "thisLocation": "To inspire you, here's what someone else wrote here: \"{{ text }}\" ({{ person }}, {{ year }})",
-            "otherLocation": "To inspire you, here's what someone else wrote here at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
-            "fallback": "Here's an example of what someone might write here: \"I told the staff that I came here because a friend said they have great vegan deserts. I love vegan deserts!\" "
+            "thisLocation": "To inspire you, here's what someone else wrote: \"{{ text }}\" ({{ person }}, {{ year }})",
+            "otherLocation": "To inspire you, here's what someone else wrote at another location: \"{{ text }}\" ({{ person }} at {{ location }}, {{ city }}, {{ year }})",
+            "fallback": "Here's an example of what someone might write: \"I told the staff that I came here because a friend said they have great vegan deserts. I love vegan deserts!\" "
           }
         },
         "SetLocationName": {
@@ -358,7 +359,7 @@
     "products": {
       "title": "Vegan offer",
       "listCompleteness": {
-        "": "List complete? - Switch to edit-mode and tell us!",
+        "": "List complete? - In the edit-mode you can indicate it!",
         "complete": "List complete? - Yes! (At least it was once.)",
         "incompleteGoodSummary": "List complete? - No, but a good summary.",
         "incomplete": "List complete? - No, not yet."
