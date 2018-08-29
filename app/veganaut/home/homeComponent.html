@@ -57,8 +57,7 @@
         <div class="home-card-button">
             <button type="button" class="btn-register btn-primary btn-small"
              ng-if="!$ctrl.legacyGlobals.isLoggedIn()"
-             ng-click="$ctrl.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'"
-             title="{{ 'navigation.register' | translate }}">
+             ng-click="$ctrl.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.home'">
                 {{ 'home.participate.register' | translate }}
             </button>
             <button type="button" class="btn-primary btn-small"

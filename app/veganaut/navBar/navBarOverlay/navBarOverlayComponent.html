@@ -47,7 +47,7 @@
         <div ng-if="!$ctrl.isLoggedIn()" class="overlay-content">
             <button class="overlay-content__main-action overlay-content__main-action--highlighted"
              ng-click="$ctrl.goToView('/register')">
-                {{ 'navigation.loginAndRegister' | translate}}
+                {{ 'navigation.register' | translate}}
                 <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>
         </div>
@@ -56,6 +56,12 @@
              ng-click="$ctrl.addLocation() | track:'startAddLocation':'startAddLocation.mainMenu'">
                 {{ 'navigation.addLocation' | translate}}
                 <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
+            </button>
+        </div>
+        <div ng-if="!$ctrl.isLoggedIn()" class="overlay-content">
+            <button class="overlay-content__main-action overlay-content__main-action--secondary"
+             ng-click="$ctrl.goToView('/login')">
+                {{ 'navigation.login' | translate }}
             </button>
         </div>
         <div ng-if="$ctrl.isLoggedIn()" class="overlay-content">

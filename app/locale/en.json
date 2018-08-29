@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Home",
     "register": "Participate",
-    "loginAndRegister": "Login & Participate",
+    "login": "Login",
     "logout": "Logout",
     "panorama": "Panorama",
     "map": "Map",
