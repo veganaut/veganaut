@@ -229,7 +229,7 @@
         "GiveFeedback": {
           "title": "Gib dem Personal ein Feedback!",
           "standaloneCallToAction": "Gib ein Feedback!",
-          "description": "Rede mit dem Personal (oder schreibe ihnen) und gib ihnen Lob, Feedbacks oder Vorschläge zur Verbesserung.",
+          "description": "Rede mit dem Personal (oder schreibe ihnen) und gib ihnen Lob, Rückmeldungen oder Vorschläge zur Verbesserung.",
           "commitment": {
             "yes": "Ja, mache ich!",
             "maybe": "OK, vielleicht"
