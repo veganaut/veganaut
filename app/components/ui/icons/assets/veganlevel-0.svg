@@ -1,33 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
-    <defs>
-        <circle id="a" cx="6" cy="3" r="3"/>
-        <rect id="b" width="12" height="1" x="9" y="27" rx=".5"/>
-        <rect id="c" width="6" height="1" x="12" y="29" rx=".5"/>
-    </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
     <g fill="none" fill-rule="evenodd">
-        <path fill="#E6E6E6" stroke="#E6E6E6" stroke-width="2" d="M15 27.02V3"/>
-        <path stroke="#E6E6E6" stroke-width="2" d="M15 27.469v-2.63c0-3.495 2.344-4.777 4.375-5.839"/>
-        <g transform="translate(15 15)">
-            <use fill="#00A89F" xlink:href="#a"/>
-            <circle cx="6" cy="3" r="3.5" stroke="#FFF"/>
-        </g>
+        <path fill="#00A89F" d="M20.338 20.199h1.528C21.724 18.827 23.5 18.4 23.5 16.97c0-1.36-1.007-1.971-2.345-1.971-.876 0-1.622.427-2.155 1.049l.96.853c.319-.311.639-.53 1.077-.53.474 0 .793.253.793.726 0 .865-1.729 1.522-1.492 3.1zm-.284 1.74c0 .6.438 1.061 1.042 1.061.604 0 1.054-.461 1.054-1.06 0-.611-.45-1.073-1.054-1.073-.604 0-1.042.462-1.042 1.072z"/>
+        <path stroke="#F2F2F2" stroke-width="2" d="M15 27.469v-2.63c0-2.531 1.23-3.901 2.679-4.868"/>
         <g transform="translate(15 7)">
-            <path stroke="#E6E6E6" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
-            <circle cx="6" cy="3" r="3" fill="#E6E6E6"/>
+            <path stroke="#F2F2F2" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#F2F2F2"/>
         </g>
-        <circle cx="3" cy="3" r="3" fill="#E6E6E6" transform="translate(12 1)"/>
+        <circle cx="3" cy="3" r="3" fill="#F2F2F2" transform="translate(12 1)"/>
         <g transform="matrix(-1 0 0 1 15 7)">
-            <path stroke="#E6E6E6" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
-            <circle cx="6" cy="3" r="3" fill="#E6E6E6"/>
+            <path stroke="#F2F2F2" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#F2F2F2"/>
         </g>
-        <g transform="matrix(-1 0 0 1 23 2)">
-            <path stroke="#E6E6E6" stroke-width="2" d="M8 25.469v-2.63c0-3.495 2.344-4.776 4.375-5.839"/>
-            <circle cx="14" cy="16" r="3" fill="#E6E6E6"/>
-            <circle cx="14" cy="16" r="2" fill="#FFF"/>
-            <circle cx="14" cy="8" r="2" fill="#FFF"/>
-            <circle cx="2" cy="8" r="2" fill="#FFF"/>
-            <circle cx="8" cy="2" r="2" fill="#FFF"/>
+        <g transform="matrix(-1 0 0 1 15 15)">
+            <path stroke="#F2F2F2" stroke-width="2" d="M0 12.469v-2.63C0 6.344 2.344 5.062 4.375 4"/>
+            <circle cx="6" cy="3" r="3" fill="#F2F2F2"/>
         </g>
+        <path fill="#E6E6E6" stroke="#F2F2F2" stroke-width="2" d="M15 27.02V3"/>
         <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
             <path d="M3.548 2.09s.056 1.54-1.389 1.43M4.984 3.525s-1.541.055-1.43-1.389M3.549 4.962s-.056-1.542 1.389-1.43M2.112 3.525s1.542-.055 1.43 1.39"/>
         </g>
@@ -40,14 +28,7 @@
         <g stroke="#E6E6E6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" opacity=".5">
             <path d="M4.032 13.06s.037 1.027-.926.953M4.99 14.016s-1.028.037-.954-.925M4.033 14.974s-.037-1.027.925-.953M3.075 14.017s1.027-.037.953.926"/>
         </g>
-        <g>
-            <use fill="#E6E6E6" xlink:href="#b"/>
-            <rect width="11" height="1" x="9.5" y="27.5" stroke="#E6E6E6" rx=".5"/>
-        </g>
-        <g>
-            <use fill="#E6E6E6" xlink:href="#c"/>
-            <rect width="5" height="1" x="12.5" y="29.5" stroke="#E6E6E6" rx=".5"/>
-        </g>
-        <path fill="#FFF" d="M20.595 18.61h.679c-.063-.61.726-.799.726-1.434 0-.604-.447-.876-1.042-.876-.39 0-.721.19-.958.466l.426.38c.142-.139.285-.236.48-.236.21 0 .352.112.352.322 0 .385-.769.677-.663 1.379zm-.127.774c0 .267.195.472.464.472a.46.46 0 0 0 .468-.472c0-.271-.2-.476-.468-.476a.457.457 0 0 0-.464.476z"/>
+        <rect width="11" height="1" x="9.5" y="27.5" fill="#F2F2F2" stroke="#F2F2F2" rx=".5"/>
+        <rect width="5" height="1" x="12.5" y="29.5" fill="#F2F2F2" stroke="#F2F2F2" rx=".5"/>
     </g>
 </svg>
