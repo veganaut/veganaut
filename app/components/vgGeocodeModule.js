@@ -140,6 +140,9 @@
                 parts.push(that.type);
             }
 
+            // TODO NEXT: use something smarter in the direction of convertFromOsmAddress method from the backend?
+            // current problem: https://nominatim.openstreetmap.org/search?accept-language=de&addressdetails=true&format=json&limit=3&q=koeln
+
             // Add other parts
             _.each(['road', 'footway', 'pedestrian', 'house_number', 'hamlet',
                     'village', 'town', 'city_district', 'city', 'country'],
