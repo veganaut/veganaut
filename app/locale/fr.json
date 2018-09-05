@@ -505,7 +505,7 @@
       "noRating": "Cette option n'a pas encore été évaluée."
     },
     "availability": {
-      "unknown": "Angebot verfügbar? Sag es uns!",
+      "unknown": "Cette option est-elle toujours disponible? - Dis-nous si tu le sais!",
       "always": "Cette option est toujours disponsible.",
       "sometimes": "Cette option n'est pas toujours disponible.",
       "not": "Cette option n'est plus disponible."
