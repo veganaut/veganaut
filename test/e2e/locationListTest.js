@@ -69,7 +69,7 @@ describe('location list accessed from map.', function() {
                 expect(ruprecht.getText()).toContain('Bio shop with many vegan options.', 'loaded location description');
                 var products = ruprecht.element(by.css('vg-location-product-summary'));
                 expect(products.getText()).toContain('tofu', 'showing products');
-                expect(products.element(by.css('vg-average-rating')).isPresent()).toBe(true, 'shows rating');
+                expect(products.element(by.css('vg-product-rating')).isPresent()).toBe(true, 'shows rating');
             });
         });
     });

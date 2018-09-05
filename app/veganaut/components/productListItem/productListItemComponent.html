@@ -3,11 +3,11 @@
  ng-disabled="$ctrl.parentVm.isPreview"
  ng-click="$ctrl.onExpandCollapseToggleClick()">
     <div class="vg-product-list-item__container">
-        <vg-average-rating
+        <vg-product-rating
          class="vg-product-list-item__rating"
-         average="$ctrl.product.rating.average"
-         num-ratings="$ctrl.product.rating.numRatings">
-        </vg-average-rating>
+         vg-average="$ctrl.product.rating.average"
+         vg-num-ratings="$ctrl.product.rating.numRatings">
+        </vg-product-rating>
         <p class="vg-product-list-item__product-name">
             {{ $ctrl.product.name }}
         </p>

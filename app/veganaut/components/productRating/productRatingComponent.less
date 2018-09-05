@@ -1,0 +1,53 @@
+@import '../../../less/variables.less';
+
+@vg-product-rating-icon-width: 13px;
+@vg-product-rating-icon-height: 15px;
+@vg-product-rating-no-rating-icon-size: 15px;
+@vg-product-rating-icon-gutter: 2px;
+
+.vg-product-rating {
+    display: inline-block;
+    // Add min width to optimize rendering when icons are not yet loaded
+    width: @vg-product-rating-icon-width * 5 + (@vg-product-rating-icon-gutter * 4);
+}
+
+.vg-product-rating__icon {
+    vertical-align: middle;
+    display: inline-block;
+    height: @vg-product-rating-icon-height;
+
+    svg {
+        vertical-align: top;
+    }
+}
+
+.vg-product-rating__icon path {
+    fill: fade(@color-text, 15%);
+}
+.vg-product-rating__icon.vg-product-rating__icon--active path {
+    fill: @color-text;
+}
+
+.vg-product-rating__icon--no-rating {
+    background-color: @color-accent;
+    width: @vg-product-rating-no-rating-icon-size;
+    height: @vg-product-rating-no-rating-icon-size;
+    border-radius: 50%;
+    padding: 3px 0 0 6px;
+    margin-left: 0;
+    margin-right: @vg-product-rating-icon-width - @vg-product-rating-no-rating-icon-size;
+
+    path {
+        fill: @colorLight;
+    }
+}
+
+.vg-product-rating__icon .vg-icon-wrapper {
+    width: @vg-product-rating-icon-width;
+    height: @vg-product-rating-icon-height;
+    display: inline-block;
+}
+
+.vg-product-rating__icon + .vg-product-rating__icon {
+    margin-left: @vg-product-rating-icon-gutter;
+}

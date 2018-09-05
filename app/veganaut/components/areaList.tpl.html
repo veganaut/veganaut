@@ -42,10 +42,10 @@
                     <vg-location-quality-icon location="item"></vg-location-quality-icon>
                 </div>
                 <div class="vg-list-item__rating" ng-if="$ctrl.isProductGranularity()">
-                    <vg-average-rating
-                     average="item.rating.average"
-                     num-ratings="item.rating.numRatings">
-                    </vg-average-rating>
+                    <vg-product-rating
+                     vg-average="item.rating.average"
+                     vg-num-ratings="item.rating.numRatings">
+                    </vg-product-rating>
                 </div>
                 <div class="vg-list-item__text">
                     <h2 class="vg-list-item__title">

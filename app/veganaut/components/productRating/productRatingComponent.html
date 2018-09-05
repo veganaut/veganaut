@@ -1,0 +1,11 @@
+<div class="vg-product-rating"
+ uib-tooltip="{{ 'location.rating.average' | translate }}: {{ $ctrl.average | number:1 }},
+ {{ 'location.rating.numRatings' | translate }}: {{ $ctrl.numRatings }}">
+    <vg-icon
+     ng-repeat="icon in $ctrl.getIcons() track by icon.id"
+     vg-name="icon.iconName"
+     class="vg-product-rating__icon"
+     ng-class="{'vg-product-rating__icon--active': icon.active,
+      'vg-product-rating__icon--no-rating': icon.noRating}">
+    </vg-icon>
+</div>
