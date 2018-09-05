@@ -56,6 +56,11 @@
             {{ 'product.' + vm.location.type + '.addProduct' | translate }}
         </button>
     </div>
+    <div class="vg-location-products__preview-more-products-label"
+     ng-if="vm.isPreview && vm.location.getProducts().length > vm.limit">
+        {{ 'product.' + vm.location.type + '.moreProducts' |
+        translate:{numProducts: vm.location.getProducts().length - vm.limit} }}
+    </div>
     <div class="vg-location-products__expand-list-container" ng-if="!vm.isPreview">
         <button
          class="vg-location-products__more-products"
