@@ -505,6 +505,7 @@
       "noRating": "This product hasn't been rated yet."
     },
     "availability": {
+      "unknown": "Angebot verfügbar? Sag es uns!",
       "always": "This offer is always available.",
       "sometimes": "This offer is not always available.",
       "not": "This offer is no longer available."

@@ -505,6 +505,7 @@
       "noRating": "Dieses Angebot wurde noch nicht bewertet."
     },
     "availability": {
+      "unknown": "Angebot verfügbar? Sag es uns!",
       "always": "Dieses Angebot ist immer verfügbar.",
       "sometimes": "Dieses Angebot ist nur manchmal oder vorübergehend verfügbar.",
       "not": "Dieses Angebot ist nicht mehr verfügbar."

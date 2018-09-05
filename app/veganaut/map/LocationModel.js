@@ -62,6 +62,7 @@
                 this.existence = undefined;
                 this.creator = undefined;
                 this.contributors = [];
+                this.productListComplete = undefined;
 
                 // Rank of the best product of this location. Only set on the map views showing products
                 this.topProductRank = undefined;
@@ -387,7 +388,7 @@
             /**
              * Get the products that should be displayed for this location
              * @param {boolean} [showUnavailable=false] Whether to also include unavailable products.
-             *      By default only "always" and "sometimes" products are shown.
+             *      By default only "unknown", "always" and "sometimes" products are shown.
              * @returns {Product[]}
              */
             Location.prototype.getProducts = function(showUnavailable) {
@@ -398,7 +399,7 @@
                 if (showUnavailable) {
                     return this.products;
                 }
-                return this._getProductsByAvailability(['always', 'sometimes']);
+                return this._getProductsByAvailability(['unknown', 'always', 'sometimes']);
             };
 
             /**
