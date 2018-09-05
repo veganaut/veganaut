@@ -12,7 +12,7 @@
                     .success(function () {
                         if (backendService.isLoggedIn()) {
                             angularPiwik.track('login', 'login.success');
-                            $scope.goToView('/map/');
+                            $scope.goToView('/panorama/');
                         }
                     })
                     .error(function (data) {

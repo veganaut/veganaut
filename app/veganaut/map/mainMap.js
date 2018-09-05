@@ -92,14 +92,19 @@
             };
 
             vm.isCreateLocationButtonVisible = function() {
-                return backendService.isLoggedIn() && !vm.locationSet.isCreatingLocation();
+                return !vm.locationSet.isCreatingLocation();
             };
 
             /**
              * Starts creating a new location
              */
             vm.startCreateLocation = function() {
-                vm.locationSet.startCreateLocation(vm.map);
+                if (backendService.isLoggedIn()) {
+                    vm.locationSet.startCreateLocation(vm.map);
+                }
+                else {
+                    vm.legacyGlobals.goToView('/register');
+                }
             };
 
             /**

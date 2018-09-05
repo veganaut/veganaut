@@ -54,8 +54,8 @@
                         // Request a password "reset"
                         backendService.sendPasswordResetMail(email, true);
 
-                        // Go to the map
-                        $location.url('/map');
+                        // Go to the panorama
+                        $location.url('/panorama/');
                     })
                     .error(function(data) {
                         alertService.addAlert($translate.instant('message.registration.error', {

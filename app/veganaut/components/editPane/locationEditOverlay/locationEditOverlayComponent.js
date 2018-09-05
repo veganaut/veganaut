@@ -22,9 +22,12 @@
 
     // TODO: rename this component to something with "Task"?
     LocationEditOverlayComponentController.$inject = [
-        '$q', '$translate', 'tasks', 'backendService', 'alertService', 'locationService'
+        '$q', '$translate', '$location', 'tasks',
+        'backendService', 'alertService', 'locationService'
     ];
-    function LocationEditOverlayComponentController($q, $translate, tasks, backendService, alertService, locationService) {
+    function LocationEditOverlayComponentController($q, $translate, $location, tasks,
+        backendService, alertService, locationService)
+    {
         var $ctrl = this;
 
         $ctrl.getDescription = function() {
@@ -95,7 +98,12 @@
         $ctrl.$onInit = function() {
             $ctrl.isSaving = false;
 
-            if (tasks.hasOwnProperty($ctrl.editTask)) {
+            // Check if user is logged in
+            if (!backendService.isLoggedIn()) {
+                // If not logged in, redirect to register
+                $location.url('/register');
+            }
+            else if (tasks.hasOwnProperty($ctrl.editTask)) {
                 // TODO NEXT: get last completed task
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
 
