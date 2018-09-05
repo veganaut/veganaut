@@ -34,6 +34,7 @@
 
     <div ng-if="$ctrl.list.length > 0">
         <div class="vg-list-body">
+            <!-- TODO: De-duplicate with globalSearch.html -->
             <button class="vg-list-item"
              ng-class="{'vg-list-item--location': $ctrl.isLocationGranularity(), 'vg-list-item--product': $ctrl.isProductGranularity()}"
              ng-repeat="item in $ctrl.list track by item.id"

@@ -33,15 +33,25 @@
             {{ 'globalSearch.title.locations' | translate }}
         </h2>
         <div class="location-search-results vg-global-search-results">
-            <a href="/location/{{location.id}}"
-             ng-repeat="location in globalSearchVm.searchService.locationResults track by location.id"
-             class="vg-global-search-result"
-             ng-click="globalSearchVm.onLocationClick(location)">
-                <vg-location-title
-                 vg-location="location"
-                 vg-address-type="city">
-                </vg-location-title>
-            </a>
+            <!-- TODO: De-duplicate with areaList.tpl.html -->
+            <button class="vg-list-item vg-list-item--location"
+             ng-repeat="item in globalSearchVm.searchService.locationResults track by item.id"
+             ng-click="globalSearchVm.onLocationClick(item)">
+                <div class="vg-list-item__vegan-level">
+                    <vg-location-quality-icon location="item"></vg-location-quality-icon>
+                </div>
+                <div class="vg-list-item__text">
+                    <h2 class="vg-list-item__title">
+                        {{ item.name }}
+                    </h2>
+                    <div class="vg-list-item__details" ng-if="item.address">
+                        {{ item.getDisplayAddress('city') }}
+                    </div>
+                </div>
+                <div class="vg-list-item__type-icon">
+                    <vg-location-type-badge location="item"></vg-location-type-badge>
+                </div>
+            </button>
         </div>
         <button class="btn btn-link btn-block btn--more-results"
          ng-if="globalSearchVm.searchService.hasMoreLocations"
