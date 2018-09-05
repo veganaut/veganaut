@@ -1,55 +1,4 @@
 <div>
-    <!--
-        The top-box bar is currently shown only for the embedded view.
-        It will eventually get a redesign.
-        TODO: Once the redesign is done, adapt the top-box or use the <vg-category-selector>
-    -->
-    <div class="top-box top-box--full-width container main-container"
-     ng-if="mainMapVm.legacyGlobals.isEmbedded"
-     ng-hide="mainMapVm.locationSet.active">
-        <div class="top-box--full-width__border-offset">
-            <div class="btn-group--top-box">
-                <div>
-                    <a type="button" class="btn-logo btn btn-default btn-default--transparent"
-                     ng-click="mainMapVm.legacyGlobals.goToView('/')">
-                        <ng-include src="'img/logo/veganaut.svg'" class="logo logo--top-box"></ng-include>
-                    </a>
-                </div>
-                <button type="button" class="btn-show-product-list btn btn-default btn-default--transparent"
-                 title="{{ 'action.showProductList.description' | translate }}"
-                 ng-click="mainMapVm.legacyGlobals.goToView('/products/')">
-                    <span class="glyphicon glyphicon-leaf"></span><br/>
-                    <span class="small">
-                        {{ 'action.showProductList.name' | translate }}
-                    </span>
-                </button>
-                <button type="button" class="btn-location-list btn btn-default btn-default--transparent"
-                 ng-click="mainMapVm.legacyGlobals.goToView('/locations/')"
-                 title="{{ 'action.showList.description' | translate }}">
-                    <span class="glyphicon glyphicon-th-list"></span><br/>
-                    <span class="small">{{ 'action.showList.name' | translate }}</span>
-                </button>
-                <vg-filter-button
-                 ng-if="!mainMapVm.legacyGlobals.isEmbedded">
-                </vg-filter-button>
-                <button type="button" class="btn-register btn btn-primary"
-                 ng-if="!mainMapVm.legacyGlobals.isLoggedIn()"
-                 ng-click="mainMapVm.legacyGlobals.goToView('/register') | track:'linkToRegister':'linkToRegister.mainMap'"
-                 title="{{ 'action.register.description' | translate }}">
-                    <span class="glyphicon glyphicon-heart"></span><br/>
-                    <span class="small">{{ 'action.register.name' | translate }}</span>
-                </button>
-                <button type="button" class="create-location btn btn-primary"
-                 ng-if="mainMapVm.legacyGlobals.isLoggedIn()"
-                 ng-click="mainMapVm.startCreateLocation()"
-                 title="{{ 'action.createLocation.description' | translate }}">
-                    <span class="glyphicon glyphicon-plus-sign"></span><br/>
-                    <span class="small">{{ 'action.createLocation.name' | translate }}</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <div class="top-box container main-container"
      ng-if="mainMapVm.locationSet.active && !mainMapVm.locationSet.isCreatingLocation()">
         <vg-location-pane
@@ -69,13 +18,38 @@
         </vg-create-location-pane>
     </div>
 
-    <!-- TODO WIP: re-implement the embedded view -->
-    <!--
-        Currently, the category selector is hidden in the embedded view.
-        TODO: Once the embedded view get redesigned, it is possible it will need to be shown.
-    -->
+    <!-- Embedded map elements -->
+    <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
+        <button class="vg-main-map__hovering-space-chick remove-btn"
+         ng-click="mainMapVm.toggleSpaceChickOverlay()"
+         ng-if="!mainMapVm.showSpaceChickOverlay"
+         ng-include="'img/chicken/chicken-with-cord.svg'">
+        </button>
+
+        <div ng-if="mainMapVm.showSpaceChickOverlay">
+            <div class="vg-main-map__space-chick-speech_bubble"
+             ng-include="'img/animations/svg/speech-bubble-big.svg'">
+            </div>
+            <div class="vg-main-map__space-chick-text">
+                {{ 'embedded.spaceChickMessage' | translate }}
+            </div>
+            <button class="vg-main-map__space-chick-veganaut-button remove-btn"
+             ng-click="mainMapVm.legacyGlobals.goToView('/panorama')">
+                <vg-icon vg-name="'chevron-big-right'"></vg-icon>
+            </button>
+            <div class="vg-main-map__space-chick-talking"
+             ng-include="'img/chicken/chicken-with-cord.svg'">
+            </div>
+        </div>
+        <button class="vg-main-map__space-chick-backdrop remove-btn"
+         ng-click="mainMapVm.toggleSpaceChickOverlay()"
+         ng-if="mainMapVm.showSpaceChickOverlay">
+        </button>
+    </div>
+
     <vg-category-selector
-     ng-if="!mainMapVm.legacyGlobals.isEmbedded && !mainMapVm.locationSet.isCreatingLocation()">
+     vg-hover="mainMapVm.legacyGlobals.isEmbedded"
+     ng-if="!mainMapVm.locationSet.isCreatingLocation()">
     </vg-category-selector>
 
     <div id="mainMap" class="main-map"
@@ -97,7 +71,14 @@
     </vg-geolocate-button>
 
     <div class="vg-map-footer">
-        <div class="vg-map-footer-content">
+        <div class="vg-map-footer-content" ng-if="mainMapVm.legacyGlobals.isEmbedded">
+            <button class="vg-map-footer__logo remove-btn"
+             ng-click="mainMapVm.legacyGlobals.goToView('/panorama')"
+             ng-if="mainMapVm.legacyGlobals.isEmbedded">
+                <img src="img/logo/veganaut.svg">
+            </button>
+        </div>
+        <div class="vg-map-footer-content" ng-if="!mainMapVm.legacyGlobals.isEmbedded">
             <div class="vg-map-footer-text">
                 <div class="vg-map-footer-text__locations-count" ng-show="mainMapVm.mapCategory">
                     {{ 'map.footer.' + mainMapVm.mapCategory |
@@ -109,8 +90,9 @@
             </div>
             <button type="button"
              class="btn btn-primary btn-small"
-             ng-if="mainMapVm.isCreateLocationButtonVisible()"
-             ng-click="mainMapVm.startCreateLocation()">
+             ng-if="!mainMapVm.isCreateLocationButtonVisible()"
+             ng-click="mainMapVm.startCreateLocation()"
+             title="{{ 'action.createLocation.description' | translate }}">
                 <vg-icon vg-name="'add-location'" class="btn__icon"></vg-icon>
                 {{ 'action.createLocation.name' | translate }}
             </button>

@@ -118,33 +118,9 @@
       "save": "Profil speichern",
       "changePassword": "Passwort ändern"
     },
-    "register": {
-      "name": "Mitmachen",
-      "description": "Registrieren, um die Karte zu bearbeiten"
-    },
     "createLocation": {
       "name": "Hinzufügen",
       "description": "Neue Location hinzufügen"
-    },
-    "showProductList": {
-      "name": "Vega Angebote",
-      "description": "Vegane Angebote im jetzigen Gebiet anzeigen"
-    },
-    "searchMap": {
-      "name": "Suchen",
-      "description": "Auf der Karte suchen"
-    },
-    "showFilters": {
-      "name": "Filtern",
-      "description": "Locations filtern"
-    },
-    "showList": {
-      "name": "Locations",
-      "description": "Locations in einer Liste anzeigen"
-    },
-    "showMap": {
-      "name": "Karte",
-      "description": "Locations auf der Karte anzeigen"
     },
     "openInMapApp": "Route in Karten App öffnen",
     "locationVisitAction": "Mehr Infos",
@@ -711,5 +687,8 @@
     "retailLocations": "Läden",
     "retailProducts": "Produkte",
     "showInList": " Liste anzeigen"
+  },
+  "embedded": {
+    "spaceChickMessage": "Auf veganaut.net kannst du Location als Liste durchstöbern, neue Orte hinzufügen und vieles mehr. Jetz ausprobieren"
   }
 }

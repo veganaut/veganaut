@@ -120,6 +120,12 @@
                 // TODO: if not handled, should pass on the click to the map?
             };
 
+            // Handling of the space chick overlay used on the embedded map
+            vm.showSpaceChickOverlay = false;
+            vm.toggleSpaceChickOverlay = function() {
+                vm.showSpaceChickOverlay = !vm.showSpaceChickOverlay;
+            };
+
             // Register to map changes
             // We do it directly through leaflet, because watching the center
             // provided from leaflet-directive is buggy in some cases.

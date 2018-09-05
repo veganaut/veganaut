@@ -118,33 +118,9 @@
       "save": "Enregistrer le profil",
       "changePassword": "Modifier le mot de passe"
     },
-    "register": {
-      "name": "Participer",
-      "description": "S'inscrire pour modifier la carte"
-    },
     "createLocation": {
       "name": "Ajouter",
       "description": "Ajouter nouvel endroit"
-    },
-    "showProductList": {
-      "name": "Offres véganes",
-      "description": "Afficher les offres véganes dans cette région"
-    },
-    "searchMap": {
-      "name": "Recherche",
-      "description": "Chercher sur la carte"
-    },
-    "showFilters": {
-      "name": "Filtrer",
-      "description": "Filtrer les endroits"
-    },
-    "showList": {
-      "name": "Endroits",
-      "description": "Afficher les endroits sur une liste"
-    },
-    "showMap": {
-      "name": "Carte",
-      "description": "Afficher les endroits sur la carte"
     },
     "openInMapApp": "Afficher l'itinéraire dans Plans",
     "locationVisitAction": "Afficher l'endroit",
@@ -711,5 +687,8 @@
     "retailLocations": "Magasins",
     "retailProducts": "Produits",
     "showInList": " Afficher liste"
+  },
+  "embedded": {
+    "spaceChickMessage": "Auf veganaut.net kannst du Location als Liste durchstöbern, neue Orte hinzufügen und vieles mehr. Jetz ausprobieren"
   }
 }

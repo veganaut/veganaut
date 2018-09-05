@@ -1,4 +1,5 @@
-<nav class="vg-category-selector">
+<nav class="vg-category-selector"
+ ng-class="{ 'vg-category-selector--hover': $ctrl.hover }">
     <div class="vg-category-selector-type"
      ng-repeat="type in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
      ng-class="{'vg-category-selector-type--active':

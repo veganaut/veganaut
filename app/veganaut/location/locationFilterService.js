@@ -329,6 +329,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
         /**
          * Opens the modal containing the form for editing the filters.
+         * TODO: This is currently unused, use again or remove
          */
         LocationFilterService.prototype.showFilterModal = function() {
             $uibModal.open({

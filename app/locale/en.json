@@ -118,36 +118,12 @@
       "save": "Save profile",
       "changePassword": "Change password"
     },
-    "register": {
-      "name": "Participate",
-      "description": "Register to edit the map"
-    },
     "createLocation": {
       "name": "Add",
       "description": "Add new location"
     },
-    "showProductList": {
-      "name": "Vegan offers",
-      "description": "Show vegan offers in the current area"
-    },
-    "searchMap": {
-      "name": "Search",
-      "description": "Search on the map"
-    },
-    "showFilters": {
-      "name": "Filter",
-      "description": "Filter locations"
-    },
-    "showList": {
-      "name": "Locations",
-      "description": "Show locations in a list"
-    },
-    "showMap": {
-      "name": "Map",
-      "description": "Show locations on map"
-    },
-    "locationVisitAction": "View location",
     "openInMapApp": "Open route in Maps",
+    "locationVisitAction": "View location",
     "close": "Close",
     "location": {
       "edit": "Edit location",
@@ -711,5 +687,8 @@
     "retailLocations": "Stores",
     "retailProducts": "Products",
     "showInList": " Show list"
+  },
+  "embedded": {
+    "spaceChickMessage": "Auf veganaut.net kannst du Location als Liste durchstöbern, neue Orte hinzufügen und vieles mehr. Jetz ausprobieren"
   }
 }

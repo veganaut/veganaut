@@ -7,7 +7,9 @@
 
     function categorySelectorComponent() {
         var component = {
-            bindings: {},
+            bindings: {
+                hover: '<?vgHover'
+            },
             controller: CategorySelectorController,
             templateUrl: 'components/ui/categorySelector/categorySelectorComponent.html'
         };

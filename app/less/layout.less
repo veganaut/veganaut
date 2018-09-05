@@ -11,10 +11,6 @@ body {
     margin-top: @navbarHeight;
 }
 
-body.embedded .main-container {
-    margin-top: 10px;
-}
-
 .container, .navbar-container {
     max-width: @maxContainerWidth;
 }
@@ -62,69 +58,9 @@ body.embedded .main-container {
     box-shadow: 0 2px 3px @colorLighter;
 }
 
-.top-box--full-width {
-    padding: 0;
-    width: 100%;
-    border-left: 0;
-    border-right: 0;
-}
-
-body.embedded {
-    .top-box--full-width {
-        margin-top: 9px;
-    }
-
-    .btn-group--top-box .btn {
-        width: 20%;
-
-        &.btn-logo {
-            width: 40%;
-            padding: 12px 0 5px;
-        }
-    }
-}
-
-// TODO: This should not be necessary. But it is so that there is no border on small screens
-// and border on bigger screens on the left and right side
-.top-box--full-width__border-offset {
-    margin: 0 -1px;
-}
-
-// TODO: where to put this?
-.btn-group--top-box {
-    width: 100%;
-
-    .btn {
-        width: 25%;
-        float: left;
-        padding: 4px 0;
-        line-height: 1.2;
-        border-radius: 0;
-        border-top-width: 0;
-        border-bottom-width: 0;
-        border-left-width: 0;
-
-        .small {
-            font-size: 12px;
-        }
-
-        .glyphicon {
-            vertical-align: middle;
-        }
-    }
-
-    > .btn:first-child {
-        border-left-width: 1px;
-    }
-}
-
 // Create a list style with some space between the elements
 .list-spaced li {
     margin-top: 5px;
-}
-
-.bottom-spaced {
-    margin-bottom: 10px;
 }
 
 // Adapt the default hr style
