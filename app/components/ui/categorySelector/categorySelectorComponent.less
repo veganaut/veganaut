@@ -1,13 +1,13 @@
 .vg-category-selector {
+    background-color: @colorLight;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    height: 42px;
     position: relative;
     z-index: 1;
-    max-width: 350px;
-    margin: 0 auto;
 
     .vg-category-selector-type {
         height: 28px;
@@ -15,7 +15,6 @@
         border-radius: 14px;
         background-color: @colorLight;
         padding: 0;
-        margin-top: 10px;
     }
 
     .vg-category-selector-type--active {
@@ -80,6 +79,20 @@
     }
 
     &.vg-category-selector--hover {
+        background-color: transparent;
+        height: auto;
+        max-width: 350px;
+        margin: 0 auto;
+
+        .vg-category-selector-type {
+            margin-top: 10px;
+        }
+    }
+
+}
+
+body.embedded {
+    .vg-category-selector--hover {
         background-color: transparent;
         justify-content: right;
         position: absolute;
