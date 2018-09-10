@@ -88,6 +88,13 @@ StaticServlet.prototype.handleRequest = function(req, res) {
     if (parts[parts.length-1].charAt(0) === '.') {
         return self.sendForbidden_(req, res, path);
     }
+
+    // Serve files in the node_modules folder
+    if (parts[0] === '.' && parts[1] === 'node_modules') {
+        // Go one directory up to point to the correct folder
+        path = '.' + path;
+    }
+
     fs.stat(path, function(err, stat) {
         if (err) {
             // If not found, check if the e2e bridge is requested

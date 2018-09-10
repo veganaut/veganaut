@@ -46,7 +46,6 @@ var files = {
         'app/lib/angular-translate/angular-translate.js',
         'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
         'app/lib/slug/slug.js',
-        // 'app/lib/spirit.min.js'
         'node_modules/spiritjs/dist/spirit.min.js'
     ],
     less: 'app/main.less',
@@ -135,14 +134,17 @@ var webPathJsFiles = [];
  */
 gulp.task('listJsFiles', function() {
     var basePath = __dirname + '/app';
+    var nodeModulesBasePath = __dirname + '/node_modules';
     return gulp.src([].concat(files.jsLib, files.js))
         .pipe(tap(function(file) {
             if (file.path.indexOf(basePath) === 0) {
-                var webPath = file.path.slice(basePath.length);
-                webPathJsFiles.push(webPath);
+                webPathJsFiles.push(file.path.slice(basePath.length));
             }
-        }))
-        ;
+            else if (file.path.indexOf(nodeModulesBasePath) === 0) {
+                // Add files from NPM with the "/node_modules/" prefix
+                webPathJsFiles.push(file.path.slice(__dirname.length));
+            }
+        }));
 });
 
 // TODO: find a better way to create dev and prod index
