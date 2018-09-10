@@ -251,7 +251,7 @@
              * @returns {Promise}
              */
             BackendService.prototype.getPanorama = function(lat, lng, radius) {
-                return $http.get(backendUrl + '/areaOverview', {
+                return $http.get(backendUrl + '/panorama', {
                     params: {
                         lat: lat,
                         lng: lng,
