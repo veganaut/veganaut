@@ -37,7 +37,7 @@
              */
             vm.onLocationClick = function(location) {
                 // Go to the location detail page
-                $location.url('/location/' + location.id);
+                $location.url(location.getUrl());
 
                 // Track and tell parent
                 angularPiwik.track('globalSearch', 'globalSearch.selectResult.location');

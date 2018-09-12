@@ -101,16 +101,12 @@
                 // Don't reload when get params or hash changes
                 reloadOnSearch: false
             });
-            $routeProvider.when('/location/:id', {
+            $routeProvider.when('/location/:slug', {
                 vgRouteName: 'location',
                 template: '<vg-location-details vg-location="$resolve.location"></vg-location-details>',
                 resolve: {
                     location: resolveLocation
                 }
-            });
-            $routeProvider.when('/location/:id/edit', {
-                vgRouteName: 'location.edit',
-                templateUrl: '/veganaut/map/editLocation.tpl.html'
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
@@ -152,6 +148,9 @@
                     }
                     return redirect;
                 }
+            });
+            $routeProvider.when('/location/:id/edit', {
+                redirectTo: '/location/:id'
             });
 
             $routeProvider.otherwise({redirectTo: '/'});
@@ -205,11 +204,22 @@
         userModule: userModule
     };
 
-    resolveLocation.$inject = ['$route', 'locationService'];
-    function resolveLocation($route, locationService) {
+    resolveLocation.$inject = ['$route', '$location', 'locationService'];
+    function resolveLocation($route, $location, locationService) {
         // TODO WIP: how to handle the legacy location ids? probably the backend should handle those
-        var locationId = $route.current.params.id;
-        return locationService.getLocation(locationId);
+        var slug = $route.current.params.slug;
+        var slugParts = slug.split('-');
+        return locationService.getLocation(slugParts[slugParts.length - 1])
+            .then(function(location) {
+                // Check if we are on the correct URL (using the slug that the backend says)
+                var correctUrl = location.getUrl();
+                if ($location.path() !== correctUrl) {
+                    // Redirect to the correct URL. This will re-query the location, but
+                    // not a big deal as this shouldn't happen too often
+                    $location.path(correctUrl);
+                }
+                return location;
+            });
     }
 
     resolveInitialiseArea.$inject = ['areaService'];

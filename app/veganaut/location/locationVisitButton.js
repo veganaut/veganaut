@@ -29,7 +29,7 @@
                  * Routes to the location details page
                  */
                 vm.visit = function() {
-                    $location.url('/location/' + vm.location.id);
+                    $location.url(vm.location.getUrl());
                 };
             }],
             controllerAs: 'locationVisitButtonVm',

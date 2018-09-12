@@ -82,6 +82,8 @@
                         // Reload the location
                         return locationService.loadFullLocation($ctrl.location);
                     }
+
+                    // TODO NEXT: when SetLocationName was done, redirect to the new URL (new slug)
                 })
                 .then(function() {
                     $ctrl.onClose();

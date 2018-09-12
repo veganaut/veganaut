@@ -34,9 +34,8 @@ describe('LocationModel.', function() {
     });
 
     it('getUrl returns the correct URL.', function() {
-        var loc = new Location({id: 'test1234'});
-        expect(loc.getUrl()).toBe('/location/test1234', 'correct url');
-        expect(loc.getUrl(true)).toBe('/location/test1234/edit', 'correct edit url');
+        var loc = new Location({id: 1234, slug: 'test-bla'});
+        expect(loc.getUrl()).toBe('/location/test-bla-1234', 'correct url');
     });
 
     describe('getRoundedQuality.', function() {

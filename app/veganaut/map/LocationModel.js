@@ -46,6 +46,7 @@
                  * @type {string}
                  */
                 this.id = 'new';
+                this.slug = undefined;
                 this.lat = undefined;
                 this.lng = undefined;
                 this.name = undefined;
@@ -452,15 +453,14 @@
 
             /**
              * Returns the URL of this location
-             * @param {boolean} [edit=false] Whether to return the URL to edit
-             *      this location
              * @returns {string}
              */
-            Location.prototype.getUrl = function(edit) {
-                var url = '/location/' + this.id;
-                if (edit === true) {
-                    url += '/edit';
+            Location.prototype.getUrl = function() {
+                var url = '/location/';
+                if (typeof(this.slug) === 'string' && this.slug.length > 0) {
+                    url += this.slug + '-';
                 }
+                url += this.id;
                 return url;
             };
 
@@ -543,7 +543,6 @@
                 _.assign(this, newData || {});
 
                 // Clear memoiziations
-                this._sortedPoints = undefined;
                 this._sortedTags = undefined;
 
                 // Instantiate the date
