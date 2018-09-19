@@ -13,12 +13,16 @@
         {{ me.email }}
     </p>
     <p>
+        <strong>{{ 'person.label.addedLocations' | translate }}</strong><br />
+        {{ me.addedLocations }}
+    </p>
+    <p>
         <strong>{{ 'person.label.completedTasks' | translate }}</strong><br />
         {{ me.completedTasks }}
     </p>
-</div>
 
-<button type="button" class="edit-profile btn btn-block btn-default" ng-click="goToView('me/edit')">
-    <span class="glyphicon glyphicon-edit"></span>
-    <span ng-bind="'action.profile.edit'|translate"></span>
-</button>
+    <button type="button" class="edit-profile btn btn-block btn-default" ng-click="goToView('me/edit')">
+        <span class="glyphicon glyphicon-edit"></span>
+        <span ng-bind="'action.profile.edit'|translate"></span>
+    </button>
+</div>

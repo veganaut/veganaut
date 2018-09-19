@@ -139,6 +139,7 @@
       "fullName": "First name and family name",
       "nickname": "Nickname",
       "password": "Password",
+      "addedLocations": "Added Locations",
       "completedTasks": "Contributions"
     }
   },
