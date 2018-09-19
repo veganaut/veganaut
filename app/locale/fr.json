@@ -337,7 +337,7 @@
       "title": "Offre végane",
       "listCompleteness": {
         "": "Liste complète? - En mode édition, tu peux l'indiquer!",
-        "complete": "Liste complète? - Oui! (En tout cas, elle l'était une fois.)",
+        "complete": "Liste complète? - Oui!",
         "incompleteGoodSummary": "Liste complète? - Non, mais un bon résumé.",
         "incomplete": "Liste complète? - Non, pas encore."
       },
