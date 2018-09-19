@@ -337,7 +337,7 @@
       "title": "Veganes Angebot",
       "listCompleteness": {
         "": "Liste komplett? - Im Edit-Modus kannst du es angeben!",
-        "complete": "Liste komplett? - Ja! (Jedenfalls war sie's mal.)",
+        "complete": "Liste komplett? - Ja!",
         "incompleteGoodSummary": "Liste komplett? - Nein, aber gute Zusammenfassung.",
         "incomplete": "Liste komplett? - Nein, noch nicht."
       },
