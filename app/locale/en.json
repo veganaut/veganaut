@@ -337,7 +337,7 @@
       "title": "Vegan offer",
       "listCompleteness": {
         "": "List complete? - In the edit-mode you can indicate it!",
-        "complete": "List complete? - Yes! (At least it was once.)",
+        "complete": "List complete? - Yes!",
         "incompleteGoodSummary": "List complete? - No, but a good summary.",
         "incomplete": "List complete? - No, not yet."
       },
