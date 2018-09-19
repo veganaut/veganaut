@@ -331,7 +331,14 @@ body.embedded {
         left: -25px;
         width: 150px;
         z-index: 15;
-        transform: scaleX(-1) rotate(40deg); // TODO WIP: make cross-browser compatible
+
+        // TODO: de-duplicate with similar code above and check what is really necessary for modern browsers
+        -moz-transform: scaleX(-1) rotate(40deg);
+        -o-transform: scaleX(-1) rotate(40deg);
+        -webkit-transform: scaleX(-1) rotate(40deg);
+        transform: scaleX(-1) rotate(40deg);
+        filter: FlipH;
+        -ms-filter: "FlipH";
 
         svg {
             width: 100%;
