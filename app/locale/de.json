@@ -540,9 +540,9 @@
   },
   "lists": {
     "subtitle": {
-      "world": "Auf der ganzen Welt",
-      "withId": "Im Ukreis von {{radius}} um {{area}}",
-      "withoutId": "Im Ukreis von {{radius}} um {{area}}"
+      "world": "auf der ganzen Welt",
+      "withId": "im Ukreis von {{radius}} um {{area}}",
+      "withoutId": "im Ukreis von {{radius}} um {{area}}"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
