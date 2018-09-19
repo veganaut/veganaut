@@ -75,7 +75,8 @@
     // Icons for product granularity are set further down
 
     &.marker--editing {
-        border-color: #000;
+        border: 3px dashed #000;
+        background-color: fade(@color-accent, 60%);
     }
 
     // TODO: this is currently not used, remove?
@@ -95,7 +96,7 @@
         .map-card__map--highlight-marker &,
         &:hover, &.marker--active {
             .marker-style(@sizeActive, @opacityActive);
-            border-width: 4px;
+            border-width: 3px;
         }
     }
 }
