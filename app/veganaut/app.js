@@ -206,7 +206,6 @@
 
     resolveLocation.$inject = ['$route', '$location', 'locationService'];
     function resolveLocation($route, $location, locationService) {
-        // TODO WIP: how to handle the legacy location ids? probably the backend should handle those
         var slug = $route.current.params.slug;
         var slugParts = slug.split('-');
         return locationService.getLocation(slugParts[slugParts.length - 1])
