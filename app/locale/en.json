@@ -192,7 +192,7 @@
         },
         "BuyProduct": {
           "title": "Buy something vegan here!",
-          "standaloneCallToAction": "Use the money argument!",
+          "standaloneCallToAction": "Buy something vegan here!",
           "description": "Money is probably the only argument for veganism that everyone understands. So, argue for veganism by spending your money on something vegan here!",
           "commitment": {
             "yes": "Sure, I'm doing it!"
@@ -211,7 +211,7 @@
             "maybe": "OK, maybe"
           },
           "notesTitle": {
-            "yes": "Inspire others by sharing what you are telling them!",
+            "yes": "Inspire others by sharing what you are telling them and/or what they reply!",
             "maybe": "Inspire others by sharing what you might tell them"
           },
           "completedTasks": {
@@ -238,7 +238,7 @@
             "maybe": "OK, maybe"
           },
           "notesTitle": {
-            "yes": "Inspire others by sharing what you are saying to them!",
+            "yes": "Inspire others by sharing what you are saying to them and/or what they reply!",
             "maybe": "Inspire others by sharing what you might say to them"
           },
           "completedTasks": {
