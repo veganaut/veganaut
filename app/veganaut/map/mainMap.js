@@ -53,7 +53,7 @@
                 // TODO: move the layer definition also to the config
                 layers: [
                     L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        attribution: '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OSM contrib</a>'
                     })
                 ]
             }, mapDefaults));

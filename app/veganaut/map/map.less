@@ -228,9 +228,10 @@
     }
 }
 
-.leaflet-control-attribution {
+.leaflet-container .leaflet-control-attribution {
     color: @colorMedium;
     font-size: 10px;
+    background: transparent;
 
     a {
         color: @colorDark;
@@ -293,7 +294,7 @@ body.embedded {
 
     .vg-main-map__hovering-space-chick {
         position: absolute;
-        top: 5px;
+        top: 40px;
         left: -25px;
         z-index: 1;
 
@@ -329,7 +330,7 @@ body.embedded {
         left: -25px;
         width: 150px;
         z-index: 15;
-        transform: scaleX(-1) rotate(40deg);
+        transform: scaleX(-1) rotate(40deg); // TODO WIP: make cross-browser compatible
 
         svg {
             width: 100%;
