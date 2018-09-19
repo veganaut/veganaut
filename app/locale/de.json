@@ -192,7 +192,7 @@
         },
         "BuyProduct": {
           "title": "Kauf hier etwas Veganes!",
-          "standaloneCallToAction": "Bring das Geld-Argument!",
+          "standaloneCallToAction": "Kauf hier etwas Veganes!",
           "description": "Geld ist wahrscheinlich das einzige Argument für den Veganismus, das alle verstehen. Darum: Gib dein Geld hier für etwas Veganes aus!",
           "commitment": {
             "yes": "Klar, mache ich!"
@@ -211,7 +211,7 @@
             "maybe": "OK, vielleicht"
           },
           "notesTitle": {
-            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst!",
+            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst und/oder was sie antworten!",
             "maybe": "Inspiriere andere, indem du teilst, was du ihnen sagen könntest!"
           },
           "completedTasks": {
@@ -238,7 +238,7 @@
             "maybe": "OK, vielleicht"
           },
           "notesTitle": {
-            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst!",
+            "yes": "Inspiriere andere, indem du teilst, was du ihnen sagst und/oder was sie antworten!",
             "maybe": "Inspiriere andere, indem du teilst, was du ihnen sagen könntest!"
           },
           "completedTasks": {
@@ -322,7 +322,7 @@
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
-      "0": "Keine Bewertung vorhanden",
+      "0": "Noch keine Bewertung vorhanden",
       "1": "Location mit so gut wie keiner veganen Auswahl",
       "2": "Location mit nur kleiner veganer Auswahl",
       "3": "Location mit OK veganer Auswahl",
