@@ -192,7 +192,7 @@
         },
         "BuyProduct": {
           "title": "Achète quelque chose de végan ici!",
-          "standaloneCallToAction": "Présente l'argument du fric!",
+          "standaloneCallToAction": "Achète quelque chose de végan ici!",
           "description": "L'argent est probablement le seul argument en faveur du véganisme que tout le monde comprend. Alors, plaide pour le véganisme en dépensant ton argent pour quelque chose de végan ici!",
           "commitment": {
             "yes": "Oui, je le fais!"
@@ -211,7 +211,7 @@
             "maybe": "OK, peut-être"
           },
           "notesTitle": {
-            "yes": "Inspire les autres en partageant ce que tu leur dis!",
+            "yes": "Inspire les autres en partageant ce que tu leur dis et/ou ce qu'ils répondent!",
             "maybe": "Inspire les autres en partageant ce que tu pourrais leur dire!"
           },
           "completedTasks": {
@@ -238,7 +238,7 @@
             "maybe": "OK, peut-être"
           },
           "notesTitle": {
-            "yes": "Inspire les autres en partageant ce que tu leur dis!",
+            "yes": "Inspire les autres en partageant ce que tu leur dis et/ou ce qu'ils répondent!",
             "maybe": "Inspire les autres en partageant ce que tu pourrais leur dire!"
           },
           "completedTasks": {
