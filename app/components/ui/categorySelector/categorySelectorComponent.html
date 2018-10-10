@@ -6,7 +6,8 @@
      type.indexOf($ctrl.locationFilterService.getTypeFilterValue()) !== -1}">
         <a href="" class="vg-category-selector-item"
          ng-repeat-start="granularity in $ctrl.locationFilterService.POSSIBLE_FILTERS.granularity"
-         ng-click="$ctrl.setFilter(type, granularity)"
+         ng-click="$ctrl.setFilter(type, granularity)
+           | track:'switchCategory':('switchCategory.' + $ctrl.locationFilterService.CATEGORIES[type][granularity])"
          ng-class="{'vg-category-selector-item--active':
           $ctrl.locationFilterService.getTypeFilterValue() === type &&
           $ctrl.locationFilterService.getGranularityFilterValue() === granularity}">

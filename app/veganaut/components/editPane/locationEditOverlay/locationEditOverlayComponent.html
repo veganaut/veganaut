@@ -249,14 +249,14 @@
             </form>
 
             <div class="button-wrapper" ng-if="!$ctrl.isQuestionnaire">
-                <button class="remove-btn btn-edit" ng-click="$ctrl.onClose()" ng-disabled="$ctrl.isSaving">
+                <button class="remove-btn btn-edit" ng-click="$ctrl.abort()" ng-disabled="$ctrl.isSaving">
                     <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
                     {{ 'location.pane.abort' | translate }}
                 </button>
             </div>
             <div class="button-wrapper row" ng-if="$ctrl.isQuestionnaire">
                 <div class="col-xs-5">
-                    <button class="remove-btn btn-edit" ng-click="$ctrl.onClose()" ng-disabled="$ctrl.isSaving">
+                    <button class="remove-btn btn-edit" ng-click="$ctrl.abort()" ng-disabled="$ctrl.isSaving">
                         <vg-icon class="cross-big" vg-name="'cross-big'"></vg-icon>
                         {{ 'location.pane.abort' | translate }}
                     </button>

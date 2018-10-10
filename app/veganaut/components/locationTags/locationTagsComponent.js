@@ -20,13 +20,15 @@
         return component;
     }
 
-    function LocationTagsComponentController() {
+    LocationTagsComponentController.$inject = ['angularPiwik'];
+    function LocationTagsComponentController(angularPiwik) {
         var $ctrl = this;
 
         $ctrl.isExpanded = false;
 
         $ctrl.onExpandCollapseToggleClick = function() {
             $ctrl.isExpanded = !$ctrl.isExpanded;
+            angularPiwik.track('location.tags', 'location.tags.' + ($ctrl.isExpanded ? 'open' : 'close'));
         };
 
         $ctrl.hasTags = function() {

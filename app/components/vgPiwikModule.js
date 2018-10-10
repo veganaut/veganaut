@@ -3,7 +3,7 @@
 
     /**
      * AngularPiwik class exposed to angular with the angularPiwik module.
-     * TODO WIP: track more stuff
+     *
      * @param $q
      * @param $window
      * @param piwikDomain

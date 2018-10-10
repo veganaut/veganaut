@@ -35,7 +35,8 @@
     <div ng-if="vm.isProductListExpanded && !vm.showNotAvailableProducts && vm.location.hasUnavailableProducts()"
      class="vg-location-products__show-not-available">
         <button type="button" class="remove-btn"
-         ng-click="vm.showNotAvailableProducts = true">
+         ng-click="vm.showNotAvailableProducts = true
+           | track:'location.productList':'location.productList.showNotAvailableProducts'">
             &hellip;
         </button>
     </div>

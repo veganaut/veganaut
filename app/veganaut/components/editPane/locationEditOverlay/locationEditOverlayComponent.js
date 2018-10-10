@@ -22,10 +22,11 @@
 
     // TODO: rename this component to something with "Task"?
     LocationEditOverlayComponentController.$inject = [
-        '$q', '$translate', '$location', 'tasks',
+        '$q', '$translate', '$location', 'angularPiwik', 'tasks',
         'backendService', 'alertService', 'locationService'
     ];
-    function LocationEditOverlayComponentController($q, $translate, $location, tasks,
+    function LocationEditOverlayComponentController(
+        $q, $translate, $location, angularPiwik, tasks,
         backendService, alertService, locationService)
     {
         var $ctrl = this;
@@ -41,6 +42,7 @@
 
         $ctrl.save = function() {
             $ctrl.isSaving = true;
+            angularPiwik.track('locationTask', 'locationTask.finish', 'locationTask.' + $ctrl.editTask);
 
             // Prepare the outcome
             var outcome = $ctrl.task.getOutcome();
@@ -97,15 +99,26 @@
             ;
         };
 
+        /**
+         * Abort the task
+         */
+        $ctrl.abort = function() {
+            angularPiwik.track('locationTask', 'locationTask.abort', 'locationTask.' + $ctrl.editTask);
+            $ctrl.onClose();
+        };
+
         $ctrl.$onInit = function() {
             $ctrl.isSaving = false;
 
             // Check if user is logged in
             if (!backendService.isLoggedIn()) {
                 // If not logged in, redirect to register
+                angularPiwik.track('linkToRegister', 'linkToRegister.locationTask.' + $ctrl.editTask);
                 $location.url('/register');
             }
             else if (tasks.hasOwnProperty($ctrl.editTask)) {
+                angularPiwik.track('locationTask', 'locationTask.start', 'locationTask.' + $ctrl.editTask);
+
                 // TODO NEXT: get last completed task
                 $ctrl.task = new tasks[$ctrl.editTask]($ctrl.location, undefined, undefined, $ctrl.product);
 

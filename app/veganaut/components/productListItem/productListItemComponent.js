@@ -21,7 +21,8 @@
         return component;
     }
 
-    function ProductListItemComponentController() {
+    ProductListItemComponentController.$inject = ['angularPiwik'];
+    function ProductListItemComponentController(angularPiwik) {
         var $ctrl = this;
 
         var showAllEditingOptions = false;
@@ -30,6 +31,7 @@
 
         $ctrl.onExpandCollapseToggleClick = function() {
             $ctrl.isProductListExpanded = !$ctrl.isProductListExpanded;
+            angularPiwik.track('location.product', 'location.product.' + ($ctrl.isProductListExpanded ? 'open' : 'close'));
 
             // When collapsing, hide the editing options again
             if (!$ctrl.isProductListExpanded) {

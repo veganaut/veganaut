@@ -100,9 +100,11 @@
              */
             vm.startCreateLocation = function() {
                 if (backendService.isLoggedIn()) {
+                    angularPiwik.track('startAddLocation', 'startAddLocation.map');
                     vm.locationSet.startCreateLocation(vm.map);
                 }
                 else {
+                    angularPiwik.track('linkToRegister', 'linkToRegister.mapAddLocation');
                     vm.legacyGlobals.goToView('/register');
                 }
             };

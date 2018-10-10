@@ -54,7 +54,7 @@
     </div>
     <div class="vg-product-list-item__show-all-edit-options" ng-if="!$ctrl.isShowingAllEditingOptions()">
         <button type="button" class="remove-btn"
-         ng-click="$ctrl.onShowAllEditingOptionsClick()"
+         ng-click="$ctrl.onShowAllEditingOptionsClick() | track:'location.product':'location.product.showAllTasks'"
          tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
             {{ 'product.action.showAllEditingOptions' | translate }}
         </button>

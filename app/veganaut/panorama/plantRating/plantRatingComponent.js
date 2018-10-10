@@ -15,7 +15,8 @@
         };
     }
 
-    function PlantRatingCtrl() {
+    PlantRatingCtrl.$inject = ['angularPiwik'];
+    function PlantRatingCtrl(angularPiwik) {
         this.ratingPlants = {
             ratingPlant0: {
                 visible: true,
@@ -46,6 +47,7 @@
 
         /**
          * Function to show the plants right if clicked
+         * TODO NEXT: Refactor this...
          * @param plantId
          */
         $ctrl.toggle = function(plantId) {
@@ -60,6 +62,11 @@
                         this.ratingPlants[plant].tooltip = false;
                     }
                     else if (plant === plantId && !this.ratingPlants[plant].tooltip) {
+                        angularPiwik.track(
+                            'panorama.qualityOverview',
+                            'panorama.qualityOverview.showExplanation',
+                            'panorama.qualityOverview.' + plantId
+                        );
                         for (var r in this.ratingPlants) {
                             if (this.ratingPlants.hasOwnProperty(r)) {
                                 this.ratingPlants[r].visible = false;

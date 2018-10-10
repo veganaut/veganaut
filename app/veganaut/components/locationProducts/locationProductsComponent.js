@@ -25,7 +25,8 @@
         return component;
     }
 
-    function LocationProductsComponentController() {
+    LocationProductsComponentController.$inject = ['angularPiwik'];
+    function LocationProductsComponentController(angularPiwik) {
         var vm = this;
 
         vm.isProductListExpanded = false;
@@ -34,6 +35,8 @@
 
         vm.onExpandCollapseToggleClick = function() {
             vm.isProductListExpanded = !vm.isProductListExpanded;
+            angularPiwik.track('location.productList', 'location.productList.' +
+                (vm.isProductListExpanded ? 'open' : 'close'));
 
             // Hide the not available products again when collapsing
             if (vm.isProductListExpanded === false) {

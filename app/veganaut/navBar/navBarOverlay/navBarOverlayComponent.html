@@ -46,7 +46,7 @@
 
         <div ng-if="!$ctrl.isLoggedIn()" class="overlay-content">
             <button class="overlay-content__main-action overlay-content__main-action--highlighted"
-             ng-click="$ctrl.goToView('/register')">
+             ng-click="$ctrl.goToView('/register') | track:'linkToRegister':'linkToRegister.menu'">
                 {{ 'navigation.register' | translate}}
                 <vg-icon vg-name="'chevron-right'" class="home-chevron-right"></vg-icon>
             </button>

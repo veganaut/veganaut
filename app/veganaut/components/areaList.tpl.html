@@ -38,7 +38,7 @@
             <button class="vg-list-item"
              ng-class="{'vg-list-item--location': $ctrl.isLocationGranularity(), 'vg-list-item--product': $ctrl.isProductGranularity()}"
              ng-repeat="item in $ctrl.list track by item.id"
-             ng-click="$ctrl.onItemClick(item)">
+             ng-click="$ctrl.onItemClick(item) | track:'areaList':'areaList.itemClick'">
                 <div class="vg-list-item__vegan-level" ng-if="$ctrl.isLocationGranularity()">
                     <vg-location-quality-icon location="item"></vg-location-quality-icon>
                 </div>

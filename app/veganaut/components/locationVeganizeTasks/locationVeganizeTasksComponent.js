@@ -19,12 +19,16 @@
         return component;
     }
 
-    function LocationVeganizeTasksComponentController() {
+    LocationVeganizeTasksComponentController.$inject = ['angularPiwik'];
+    function LocationVeganizeTasksComponentController(angularPiwik) {
         var $ctrl = this;
         $ctrl.isListExpanded = false;
 
         $ctrl.onExpandCollapseToggleClick = function onExpandCollapseToggleClick() {
             $ctrl.isListExpanded = !$ctrl.isListExpanded;
+            angularPiwik.track('location.veganizeTasks',
+                'location.veganizeTasks.' + ($ctrl.isListExpanded ? 'open' : 'close')
+            );
         };
     }
 })();

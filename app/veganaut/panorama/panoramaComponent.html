@@ -4,7 +4,8 @@
             <vg-icon vg-name="'location'" class="area-overview-location"></vg-icon>
             {{ 'areaDescription.title.' + $ctrl.areaType | translate: {area: $ctrl.area.shortName} }}
         </h1>
-        <button ng-if="$ctrl.lastAreaWithId" class="return-btn" ng-click="$ctrl.backToLastAreaWithId()">
+        <button ng-if="$ctrl.lastAreaWithId" class="return-btn"
+         ng-click="$ctrl.backToLastAreaWithId() | track:'panorama.setArea':'panorama.setArea.backToLastAreaWithId'">
             <div class="return-btn-content">
                 <vg-icon vg-name="'jump-back'"></vg-icon>
                 <span>{{ $ctrl.lastAreaWithId.shortName }}</span>
@@ -22,13 +23,17 @@
     </div>
     <div class="tile-wrapper">
         <div class="tile">
-            <a href="/map/?type=gastronomy&granularity=location" class="category-wrapper">
+            <a class="category-wrapper" href=""
+              ng-click="$ctrl.legacyGlobals.goToView('/map/?type=gastronomy&granularity=location')
+              | track:'panorama.action':'panorama.action.map.gastronomyLocation'">
                 <div class="category-counter">{{ $ctrl.panorama.locations.gastronomy }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'gastronomyLocationSparkly'"></vg-icon>
                 <h3 class="h4">{{ 'panorama.gastronomyLocations' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=gastronomy&granularity=location" class="class-show-list-wrapper">
+            <a href="" class="class-show-list-wrapper"
+              ng-click="$ctrl.legacyGlobals.goToView('/list/?type=gastronomy&granularity=location')
+              | track:'panorama.action':'panorama.action.list.gastronomyLocation'">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'panorama.showInList' | translate }}</span>
@@ -37,13 +42,17 @@
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <a href="/map/?type=gastronomy&granularity=product" class="category-wrapper">
+            <a class="category-wrapper" href=""
+              ng-click="$ctrl.legacyGlobals.goToView('/map/?type=gastronomy&granularity=product')
+              | track:'panorama.action':'panorama.action.map.gastronomyProduct'">
                 <div class="category-counter">{{ $ctrl.panorama.products.gastronomy }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'gastronomyProductSparkly'"></vg-icon>
                 <h3 class="h4">{{ 'panorama.gastronomyProducts' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=gastronomy&granularity=product" class="class-show-list-wrapper">
+            <a href="" class="class-show-list-wrapper"
+              ng-click="$ctrl.legacyGlobals.goToView('/list/?type=gastronomy&granularity=product')
+              | track:'panorama.action':'panorama.action.list.gastronomyProduct'">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'panorama.showInList' | translate }}</span>
@@ -56,13 +65,17 @@
 <div class="earth-closeup-bottom">
     <div class="tile-wrapper">
         <div class="tile">
-            <a href="/map/?type=retail&granularity=location" class="category-wrapper">
+            <a class="category-wrapper" href=""
+              ng-click="$ctrl.legacyGlobals.goToView('/map/?type=retail&granularity=location')
+              | track:'panorama.action':'panorama.action.map.retailLocation'">
                 <div class="category-counter">{{ $ctrl.panorama.locations.retail }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'retailLocationSparkly'"></vg-icon>
                 <h3 class="h4">{{ 'panorama.retailLocations' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=retail&granularity=location" class="class-show-list-wrapper">
+            <a href="" class="class-show-list-wrapper"
+              ng-click="$ctrl.legacyGlobals.goToView('/list/?type=retail&granularity=location')
+              | track:'panorama.action':'panorama.action.list.retailLocation'">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'panorama.showInList' | translate }}</span>
@@ -71,13 +84,17 @@
         </div>
         <div class="vertical-line"></div>
         <div class="tile">
-            <a href="/map/?type=retail&granularity=product" class="category-wrapper">
+            <a class="category-wrapper" href=""
+              ng-click="$ctrl.legacyGlobals.goToView('/map/?type=retail&granularity=product')
+              | track:'panorama.action':'panorama.action.map.retailProduct'">
                 <div class="category-counter">{{ $ctrl.panorama.products.retail }}</div>
                 <vg-icon class="area-overview-big-icon" vg-name="'retailProductSparkly'"></vg-icon>
                 <h3 class="h4">{{ 'panorama.retailProducts' | translate }}</h3>
             </a>
             <hr>
-            <a href="/list/?type=retail&granularity=product" class="class-show-list-wrapper">
+            <a href="" class="class-show-list-wrapper"
+              ng-click="$ctrl.legacyGlobals.goToView('/list/?type=retail&granularity=product')
+              | track:'panorama.action':'panorama.action.list.retailProduct'">
                 <p>
                     <vg-icon vg-name="'list'"></vg-icon>
                     <span>{{ 'panorama.showInList' | translate }}</span>

@@ -22,6 +22,12 @@
     function PanoramaCtrl($scope, backendService, areaService, pageTitleService) {
         var $ctrl = this;
 
+        // Expose the global methods we still need
+        // TODO: find a better way to do this
+        $ctrl.legacyGlobals = {
+            goToView: $scope.$parent.goToView
+        };
+
         /**
          * Go back to show the overview of the last area with id
          */

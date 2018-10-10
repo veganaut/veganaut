@@ -21,7 +21,7 @@
     <!-- Embedded map elements -->
     <div ng-if="mainMapVm.legacyGlobals.isEmbedded">
         <button class="vg-main-map__hovering-space-chick remove-btn"
-         ng-click="mainMapVm.toggleSpaceChickOverlay()"
+         ng-click="mainMapVm.toggleSpaceChickOverlay() | track:'embeddedMap':'embeddedMap.chickClick'"
          ng-if="!mainMapVm.showSpaceChickOverlay"
          ng-include="'img/chicken/chicken-with-cord.svg'">
         </button>
@@ -34,7 +34,7 @@
                 {{ 'embedded.spaceChickMessage' | translate }}
             </div>
             <button class="vg-main-map__space-chick-veganaut-button remove-btn"
-             ng-click="mainMapVm.legacyGlobals.goToView('/panorama')">
+             ng-click="mainMapVm.legacyGlobals.goToView('/panorama') | track:'embeddedMap':'embeddedMap.speechBubbleClick'">
                 <vg-icon vg-name="'chevron-big-right'"></vg-icon>
             </button>
             <div class="vg-main-map__space-chick-talking"
@@ -73,7 +73,7 @@
     <div class="vg-map-footer">
         <div class="vg-map-footer-content" ng-if="mainMapVm.legacyGlobals.isEmbedded">
             <button class="vg-map-footer__logo remove-btn"
-             ng-click="mainMapVm.legacyGlobals.goToView('/')"
+             ng-click="mainMapVm.legacyGlobals.goToView('/') | track:'embeddedMap':'embeddedMap.logoClick'"
              ng-if="mainMapVm.legacyGlobals.isEmbedded">
                 <img src="img/logo/veganaut.svg">
             </button>

@@ -14,7 +14,8 @@
             <h1 class="h4">{{ 'location.edit' | translate }}</h1>
         </div>
         <div class="col-xs-4">
-            <button ng-click="$ctrl.toggleEditMode()" class="btn btn-finish">
+            <button class="btn btn-finish"
+             ng-click="$ctrl.toggleEditMode() | track:'locationEditMode':'locationEditMode.disable'">
                 {{ 'location.finish' | translate }}
             </button>
         </div>
