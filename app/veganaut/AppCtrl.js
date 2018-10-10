@@ -2,10 +2,10 @@
     'use strict';
 
     module.controller('AppCtrl', [
-        '$rootScope', '$scope', '$location', '$window', '$q',
+        '$rootScope', '$scope', '$location', '$window', '$q', 'alertService',
         'angularPiwik', 'featureToggle', 'searchService', 'pageTitleService',
         'backendService', 'playerService', 'localeService',
-        function($rootScope, $scope, $location, $window, $q,
+        function($rootScope, $scope, $location, $window, $q, alertService,
             angularPiwik, featureToggle, searchService, pageTitleService,
             backendService, playerService, localService)
         {
@@ -160,6 +160,11 @@
             playerService.getDeferredMe().then(function(me) {
                 $scope.me = me;
             });
+
+            alertService.addAlert(
+                'INFO: Due to a major update, Veganaut is currently in read-only mode.',
+                'warning', '', 60000
+            );
         }
     ]);
 })(window.veganaut.mainModule);
