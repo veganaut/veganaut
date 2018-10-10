@@ -4,6 +4,17 @@ Veganaut Changelog
 ongoing:
 -------------------------------------------
 
+1.0.0: (2018-10-10)
+-------------------------------------------
+- New design.
+- New panorama page.
+- All location updates done as individual tasks.
+- Clear separation of info tasks and veganize tasks.
+- Possibility to mark a location as closed.
+- Clearer navigation between different location & product views.
+- Better aggregation of multiple ratings (one person only gets one vote).
+- New database (PostgreSQL instead of MongoDB).
+
 0.11.0: Much Products (2017-06-28)
 -------------------------------------------
 * New feature: Dedicated page for products.
