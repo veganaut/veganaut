@@ -134,7 +134,7 @@
             areaService.setAreaAndShowOn(targetArea, 'panorama');
 
             // Track the submission
-            angularPiwik.track('home.cta');
+            angularPiwik.track('home.cta', 'home.cta.submit');
         };
 
         /**
