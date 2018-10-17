@@ -112,7 +112,7 @@
                 });
 
                 // Track it
-                angularPiwik.track($ctrl.listType + 'List', $ctrl.listType + 'List.showMore');
+                angularPiwik.track('areaList', 'areaList.showMore', 'areaList.' + $ctrl.listType);
             };
 
             $ctrl.showSortModal = function() {
