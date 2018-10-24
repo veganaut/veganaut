@@ -106,7 +106,8 @@
                 template: '<vg-location-details vg-location="$resolve.location"></vg-location-details>',
                 resolve: {
                     location: resolveLocation
-                }
+                },
+                reloadOnSearch: false
             });
             $routeProvider.when('/me', {
                 vgRouteName: 'ownProfile',
@@ -215,7 +216,7 @@
                 if ($location.path() !== correctUrl) {
                     // Redirect to the correct URL. This will re-query the location, but
                     // not a big deal as this shouldn't happen too often
-                    $location.path(correctUrl);
+                    $location.replace().path(correctUrl);
                 }
                 return location;
             });

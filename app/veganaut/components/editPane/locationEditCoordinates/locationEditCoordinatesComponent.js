@@ -105,6 +105,7 @@
                 type: $ctrl._location.type,
                 quality: $ctrl._location.quality
             });
+            $ctrl.editLocation.setEditing(true);
 
             // Show the map in the next cycle. This needs to be done
             // because leaflet somehow doesn't like to be initialised

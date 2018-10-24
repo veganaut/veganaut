@@ -20,10 +20,10 @@
     }
 
     LocationDetailsComponentController.$inject = [
-        '$location', 'constants', 'pageTitleService'
+        '$scope', '$routeParams', '$location', 'constants', 'pageTitleService'
     ];
 
-    function LocationDetailsComponentController($location, constants, pageTitleService) {
+    function LocationDetailsComponentController($scope, $routeParams, $location, constants, pageTitleService) {
         var $ctrl = this;
 
         /**
@@ -45,6 +45,14 @@
          */
         $ctrl.editProduct = undefined;
 
+        /**
+         * Sets the edit mode based on the params given int he URL
+         */
+        var setEditModeFromParams = function() {
+            $ctrl.editMode = ($routeParams.edit === true);
+            $ctrl.location.setEditing($ctrl.editMode);
+        };
+
         $ctrl.$onInit = function() {
             pageTitleService.addCustomTitle($ctrl.location.name);
         };
@@ -53,8 +61,7 @@
         $ctrl.veganizeTasks = _.shuffle(['MentionVegan', 'GiveFeedback', 'BuyProduct']);
 
         $ctrl.toggleEditMode = function() {
-            // TODO: call setEditing() on location model?
-            $ctrl.editMode = !$ctrl.editMode;
+            $location.search('edit', ($ctrl.editMode ? null : true));
         };
 
         $ctrl.closeEditOverlay = function() {
@@ -80,5 +87,14 @@
                 );
             }
         };
+
+        // Listen to route updates to set the edit mode, and read the URL state now
+        $scope.$on('$routeUpdate', setEditModeFromParams);
+        setEditModeFromParams();
+
+        // Make sure edit mode is turned off before we leave this location
+        $scope.$on('$routeChangeStart', function() {
+            $ctrl.location.setEditing(false);
+        });
     }
 })();

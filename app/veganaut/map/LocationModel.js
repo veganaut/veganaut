@@ -453,14 +453,19 @@
 
             /**
              * Returns the URL of this location
+             * @param {boolean} [edit=false] Whether to return the URL to edit
+             *      this location
              * @returns {string}
              */
-            Location.prototype.getUrl = function() {
+            Location.prototype.getUrl = function(edit) {
                 var url = '/location/';
                 if (typeof(this.slug) === 'string' && this.slug.length > 0) {
                     url += this.slug + '-';
                 }
                 url += this.id;
+                if (edit === true) {
+                    url += '?edit';
+                }
                 return url;
             };
 
