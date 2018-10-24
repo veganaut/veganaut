@@ -292,6 +292,14 @@
             };
 
             /**
+             * Whether the location is being edited
+             * @returns {boolean}
+             */
+            Location.prototype.isEditing = function() {
+                return this._isBeingEdited;
+            };
+
+            /**
              * Sets the location to be disabled or enabled on the map.
              * Disabled locations are shown greyed out.
              * @param {boolean} [isDisabled=true]
@@ -337,7 +345,7 @@
                     return Math.max(max, (angular.isNumber(value) ? value : 0));
                 }, MAX_TAG_WEIGHT);
 
-                this._sortedTags = this._sortedTags ||  _.chain(this.tags)
+                this._sortedTags = this._sortedTags || _.chain(this.tags)
                     .map(function(value, tagName) {
                         // Calculate a weight between 1 and MAX_TAG_WEIGHT
                         var weight = 1;

@@ -12,7 +12,8 @@
                 parentVm: '^vgLocationProducts'
             },
             bindings: {
-                product: '<vgProduct'
+                product: '<vgProduct',
+                location: '<vgLocation'
             },
             controller: ProductListItemComponentController,
             templateUrl: 'veganaut/components/productListItem/productListItemComponent.html'
@@ -44,7 +45,7 @@
         };
 
         $ctrl.isShowingAllEditingOptions = function() {
-            return (showAllEditingOptions || ($ctrl.locationDetailsVm && $ctrl.locationDetailsVm.editMode));
+            return (showAllEditingOptions || ($ctrl.location && $ctrl.location.isEditing()));
         };
     }
 })();

@@ -1,11 +1,11 @@
 <div class="vg-location-tags" ng-class=" {'vg-location-tags--open': $ctrl.isExpanded}">
     <button class="vg-location-tags__tag-list remove-btn"
-     ng-class="{ 'is-edit-mode': $ctrl.parent.editMode }"
+     ng-class="{ 'is-edit-mode': $ctrl.location.isEditing() }"
      ng-if="$ctrl.hasTags()"
      ng-click="$ctrl.onExpandCollapseToggleClick()">
         <div class="vg-location-tags__tag-list__container">
             <div class="vg-location-tags__tag-list__container__wrapper">
-                <div ng-repeat="tag in $ctrl.tags">
+                <div ng-repeat="tag in $ctrl.location.getSortedTags()">
                     <span class="badge" ng-class="'opacity-' + tag.weight">
                         {{ 'tags.' + tag.name + '.name' | translate }}
                     </span>
@@ -18,14 +18,14 @@
                  class="location-details-chevron" vg-name="'chevron-big-down'">
                 </vg-icon>
             </span>
-            <span class="edit-icon" ng-if="$ctrl.parent.editMode">
+            <span class="edit-icon" ng-if="$ctrl.location.isEditing()">
                 <vg-icon vg-name="'pen'"></vg-icon>
             </span>
         </div>
     </button>
 
     <div class="vg-location-tags__no-tags-add-btn" ng-if="!$ctrl.hasTags()">
-        <div ng-if="$ctrl.parent.editMode"
+        <div ng-if="$ctrl.location.isEditing()"
          class="card__right-float">
             <button class="remove-btn" ng-click="$ctrl.parent.startTask('TagLocation')">
                 <span class="edit-icon">

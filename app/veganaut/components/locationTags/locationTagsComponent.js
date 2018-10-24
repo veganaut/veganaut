@@ -11,7 +11,7 @@
                 parent: '^^?vgLocationDetails'
             },
             bindings: {
-                tags: '<vgTags'
+                location: '<vgLocation'
             },
             controller: LocationTagsComponentController,
             templateUrl: 'veganaut/components/locationTags/locationTagsComponent.html'
@@ -32,7 +32,8 @@
         };
 
         $ctrl.hasTags = function() {
-            return (angular.isArray($ctrl.tags) && $ctrl.tags.length > 0);
+            var tags = $ctrl.location.getSortedTags();
+            return (angular.isArray(tags) && tags.length > 0);
         };
     }
 })();

@@ -7,9 +7,6 @@
 
     function locationMapPreviewComponent() {
         var component = {
-            require: {
-                parent: '^^vgLocationDetails'
-            },
             bindings: {
                 location: '<vgLocation',
                 onClick: '&vgOnClick'

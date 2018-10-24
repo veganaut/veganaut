@@ -8,7 +8,7 @@
  vg-on-close="$ctrl.closeEditOverlay()">
 </vg-location-edit-overlay>
 
-<div class="vg-location-details__edit-mode-banner" ng-if="$ctrl.editMode">
+<div class="vg-location-details__edit-mode-banner" ng-if="$ctrl.location.isEditing()">
     <div class="row">
         <div class="col-xs-8">
             <h1 class="h4">{{ 'location.edit' | translate }}</h1>
@@ -22,12 +22,12 @@
     </div>
 </div>
 <vg-card class="vg-location-details__card vg-location-details__card--header"
- ng-class="{ 'is-edit-mode': $ctrl.editMode }">
-    <vg-location-header vg-location="$ctrl.location" ng-if="!$ctrl.editMode"></vg-location-header>
-    <vg-location-header-edit vg-location="$ctrl.location" ng-if="$ctrl.editMode"></vg-location-header-edit>
+ ng-class="{ 'is-edit-mode': $ctrl.location.isEditing() }">
+    <vg-location-header vg-location="$ctrl.location" ng-if="!$ctrl.location.isEditing()"></vg-location-header>
+    <vg-location-header-edit vg-location="$ctrl.location" ng-if="$ctrl.location.isEditing()"></vg-location-header-edit>
 
-    <div class="vg-location-details__description" ng-class="{ 'is-edit-mode': $ctrl.editMode }">
-        <div ng-if="$ctrl.editMode" class="card__right-float">
+    <div class="vg-location-details__description" ng-class="{ 'is-edit-mode': $ctrl.location.isEditing() }">
+        <div ng-if="$ctrl.location.isEditing()" class="card__right-float">
             <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationDescription')">
                 <span class="edit-icon">
                     <vg-icon vg-name="'pen'"></vg-icon>
@@ -48,7 +48,7 @@
 </vg-card>
 <!-- TODO NEXT: implement task flow -->
 <!--<vg-card class="vg-location-details__card">-->
-    <!--<vg-location-rating-chick ng-class="{'vg-location-details__card&#45;&#45;disabled' : $ctrl.editMode}">-->
+    <!--<vg-location-rating-chick ng-class="{'vg-location-details__card&#45;&#45;disabled' : $ctrl.location.isEditing()}">-->
     <!--</vg-location-rating-chick>-->
 <!--</vg-card>-->
 <vg-card class="vg-location-details__card">
@@ -56,11 +56,11 @@
         <vg-icon vg-name="'gastronomyProduct'" class="vg-card__title__icon"></vg-icon>
         {{ 'location.products.title' | translate }}
     </h2>
-    <vg-location-tags vg-tags="$ctrl.location.getSortedTags()" class="location-tags-card"></vg-location-tags>
+    <vg-location-tags vg-location="$ctrl.location" class="location-tags-card"></vg-location-tags>
     <vg-location-products vg-location="$ctrl.location" vg-limit="1"></vg-location-products>
 </vg-card>
 <vg-card class="vg-location-details__card"
- ng-class="{'vg-location-details__card--disabled' : $ctrl.editMode}">
+ ng-class="{'vg-location-details__card--disabled' : $ctrl.location.isEditing()}">
     <h2 class="vg-card__title">
         <vg-icon vg-name="'missions'" class="vg-card__title__icon vg-card__title__icon--veganize"></vg-icon>
         {{ 'location.veganize.title' | translate }}
@@ -74,7 +74,7 @@
 </vg-card>
 <!-- TODO NEXT: implement open route in map -->
 <!--<vg-card class="vg-location-details__card">-->
-    <!--<div ng-class="{'vg-location-details__card&#45;&#45;disabled': $ctrl.editMode}">-->
+    <!--<div ng-class="{'vg-location-details__card&#45;&#45;disabled': $ctrl.location.isEditing()}">-->
         <!--<a href="#">-->
             <!--<vg-icon vg-name="'route'" class="vg-location-details_icon"></vg-icon>-->
             <!--{{ 'action.openInMapApp' | translate }}-->
@@ -83,8 +83,8 @@
 <!--</vg-card>-->
 
 <vg-card class="vg-location-details__card" vg-large-font="true"
- ng-if="$ctrl.location.website || $ctrl.editMode">
-    <div ng-if="$ctrl.editMode" class="card__right-float">
+ ng-if="$ctrl.location.website || $ctrl.location.isEditing()">
+    <div ng-if="$ctrl.location.isEditing()" class="card__right-float">
         <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationWebsite')">
             <span class="edit-icon">
                 <vg-icon vg-name="'pen'"></vg-icon>
@@ -101,7 +101,7 @@
     </div>
 </vg-card>
 
-<vg-card class="vg-location-details__card" vg-large-font="true" ng-if="$ctrl.editMode">
+<vg-card class="vg-location-details__card" vg-large-font="true" ng-if="$ctrl.location.isEditing()">
     <div class="card__right-float">
         <button class="remove-btn" ng-click="$ctrl.startTask('SetLocationExistence')">
             <span class="edit-icon">

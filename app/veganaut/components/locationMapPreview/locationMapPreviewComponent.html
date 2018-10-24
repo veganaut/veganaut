@@ -1,6 +1,6 @@
 <a ng-click="$ctrl.mapClickHandler()">
     <p class="vg-location-map-preview__address">
-        <span ng-if="$ctrl.parent.editMode" class="card__right-float">
+        <span ng-if="$ctrl.location.isEditing()" class="card__right-float">
             <button class="remove-btn">
                 <span class="edit-icon">
                     <vg-icon vg-name="'pen'"></vg-icon>

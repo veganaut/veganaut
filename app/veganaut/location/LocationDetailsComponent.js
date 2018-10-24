@@ -27,12 +27,6 @@
         var $ctrl = this;
 
         /**
-         * Whether we are currently in edit mode
-         * @type {boolean}
-         */
-        $ctrl.editMode = false;
-
-        /**
          * Which edit task is currently shown in the overlay
          * @type {string}
          */
@@ -49,8 +43,7 @@
          * Sets the edit mode based on the params given int he URL
          */
         var setEditModeFromParams = function() {
-            $ctrl.editMode = ($routeParams.edit === true);
-            $ctrl.location.setEditing($ctrl.editMode);
+            $ctrl.location.setEditing($routeParams.edit === true);
         };
 
         $ctrl.$onInit = function() {
@@ -61,7 +54,7 @@
         $ctrl.veganizeTasks = _.shuffle(['MentionVegan', 'GiveFeedback', 'BuyProduct']);
 
         $ctrl.toggleEditMode = function() {
-            $location.search('edit', ($ctrl.editMode ? null : true));
+            $location.search('edit', ($ctrl.location.isEditing() ? null : true));
         };
 
         $ctrl.closeEditOverlay = function() {
@@ -75,7 +68,7 @@
         };
 
         $ctrl.mapClickHandler = function() {
-            if ($ctrl.editMode) {
+            if ($ctrl.location.isEditing()) {
                 $ctrl.startTask('SetLocationCoordinates');
             }
             else {

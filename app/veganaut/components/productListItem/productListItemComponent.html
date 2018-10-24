@@ -1,5 +1,5 @@
 <button class="vg-product-list-item remove-btn"
- ng-class="{ 'is-edit-mode': $ctrl.locationDetailsVm.editMode }"
+ ng-class="{ 'is-edit-mode': $ctrl.location.isEditing() }"
  ng-disabled="$ctrl.parentVm.isPreview"
  ng-click="$ctrl.onExpandCollapseToggleClick()">
     <div class="vg-product-list-item__container">
@@ -19,7 +19,7 @@
             </vg-icon>
         </span>
         <span class="edit-icon"
-         ng-if="!$ctrl.parentVm.isPreview && $ctrl.locationDetailsVm.editMode">
+         ng-if="!$ctrl.parentVm.isPreview && $ctrl.location.isEditing()">
             <vg-icon vg-name="'pen'"></vg-icon>
         </span>
     </div>
@@ -37,7 +37,7 @@
     <button type="button" class="btn-primary btn-small"
      ng-click="$ctrl.locationDetailsVm.startTask('RateProduct', $ctrl.product)"
      tabindex="{{$ctrl.isProductListExpanded ? 0 : -1}}">
-        {{ 'product.' + $ctrl.parentVm.location.type + '.rate' | translate }}
+        {{ 'product.' + $ctrl.location.type + '.rate' | translate }}
     </button>
     <div ng-if="$ctrl.isShowingAllEditingOptions()">
         <button type="button" class="btn-primary btn-small"
