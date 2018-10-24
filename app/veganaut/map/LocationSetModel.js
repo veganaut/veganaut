@@ -179,7 +179,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                         angularPiwik.track('map.addLocation', 'finish');
 
                         // Go the the location details page
-                        $location.url(newLocation.getUrl());
+                        $location.url(newLocation.getUrl(true));
                     })
                     .error(function(data) {
                         // Broadcast removal and show alert
