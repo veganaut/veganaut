@@ -323,7 +323,7 @@
     "rating": {
       "average": "Durchschnitt",
       "numRatings": "Bewertungen",
-      "0": "Noch keine Bewertung vorhanden",
+      "0": "Vegane Auswahl noch nicht bewertet",
       "1": "Location mit so gut wie keiner veganen Auswahl",
       "2": "Location mit nur kleiner veganer Auswahl",
       "3": "Location mit OK veganer Auswahl",
