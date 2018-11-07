@@ -267,6 +267,10 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * TODO: should we listen to route changes and call this ourselves instead of relying on external components?
          */
         LocationFilterService.prototype.setFiltersFromUrl = function() {
+            // Whether the type/quality filters where set from the URL
+            var hasSetType = false;
+            var hasSetQuality = false;
+
             // TODO: don't duplicate all filters, make generic
             if ($routeParams.type) {
                 // Set the default value (if invalid value was given)
@@ -274,6 +278,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 if (this.POSSIBLE_FILTERS.type.indexOf($routeParams.type) >= 0) {
                     // Found valid location type filter
                     typeFilter = $routeParams.type;
+                    hasSetType = true;
                 }
 
                 // Set the new value
@@ -327,6 +332,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     min = this.DEFAULT_FILTER_VALUE.minQuality;
                     max = this.DEFAULT_FILTER_VALUE.maxQuality;
                 }
+                else {
+                    hasSetQuality = true;
+                }
 
                 // Set the new value
                 this.activeFilters.minQuality = min;
@@ -348,6 +356,16 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     this.activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality)
                 {
                     this.activeFilters.granularity = 'location';
+                }
+
+                // If exactly one of either quality or type was set, make sure the other is set to inactive
+                // (this might not be the case, if it was set earlier during the visit).
+                if (hasSetQuality && !hasSetType) {
+                    this.activeFilters.type = this.INACTIVE_FILTER_VALUE.type;
+                }
+                else if (!hasSetQuality && hasSetType) {
+                    this.activeFilters.minQuality = this.INACTIVE_FILTER_VALUE.minQuality;
+                    this.activeFilters.maxQuality = this.INACTIVE_FILTER_VALUE.maxQuality;
                 }
             }
 
