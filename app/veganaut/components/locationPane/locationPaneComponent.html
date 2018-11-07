@@ -4,7 +4,8 @@
      vg-icons-right="false">
     </vg-location-title>
 
-    <div ng-if="vm.viewCategory === 'gastronomyLocation' || vm.viewCategory === 'retailLocation'">
+    <div ng-if="vm.viewCategory === 'gastronomyLocation' ||
+     vm.viewCategory === 'retailLocation' || vm.viewCategory === 'location'">
         <span class="location-pane__description">{{ vm.location.getShortDescription() }}</span>
     </div>
     <vg-location-products
