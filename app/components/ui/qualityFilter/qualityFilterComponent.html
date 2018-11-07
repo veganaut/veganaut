@@ -13,9 +13,9 @@
             </vg-icon>
         </button>
 
-        <div ng-if="$ctrl.settingRange"
+        <div
          uib-tooltip="{{ 'globalFilters.quality.tooltip' | translate }}"
-         tooltip-is-open="true"
+         tooltip-is-open="$ctrl.settingRange"
          tooltip-placement="bottom">
         </div>
     </div>
