@@ -333,13 +333,22 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 this.activeFilters.maxQuality = max;
             }
 
-            // If there should be a filter, but neither the type nor quality is set,
-            // default to using the type filter
-            if (this.routeHasTypeFilter() && this.routeHasQualityFilter() &&
-                angular.isUndefined(this.getTypeFilterValue()) &&
-                angular.isUndefined(this.activeFilters.minQuality))
-            {
-                this.activeFilters.type = 'gastronomy';
+            // Make some sanity checks for the combination of filters
+            if (this.routeHasTypeFilter() && this.routeHasQualityFilter()) {
+                // If neither the type nor quality is set, default to using the type filter
+                if (angular.isUndefined(this.getTypeFilterValue()) &&
+                    angular.isUndefined(this.activeFilters.minQuality))
+                {
+                    this.activeFilters.type = 'gastronomy';
+                }
+
+                // If the quality filter is active, make sure the granularity is set to location
+                // TODO: De-duplicate the various places where we check if the quality filter is active
+                if (this.activeFilters.minQuality !== this.INACTIVE_FILTER_VALUE.minQuality ||
+                    this.activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality)
+                {
+                    this.activeFilters.granularity = 'location';
+                }
             }
 
             // Update the URL to make sure it's always well-formed
