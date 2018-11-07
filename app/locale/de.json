@@ -398,12 +398,12 @@
       }
     },
     "quality": {
-      "tooltip": "Select range"
+      "tooltip": "Bereich auswählen"
     }
   },
   "sortToggle": {
     "quality": {
-      "title": "Vegan level"
+      "title": "Vegan Level"
     },
     "distance": {
       "title": "Distanz"
