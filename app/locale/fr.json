@@ -398,7 +398,7 @@
       }
     },
     "quality": {
-      "tooltip": "Select range"
+      "tooltip": "Choisir gamme"
     }
   },
   "sortToggle": {
@@ -415,7 +415,7 @@
   "map": {
     "footer": {
       "mapSection": "dans cette section de la carte",
-      "location": "{{ count }} Locations",
+      "location": "{{ count }} endroits",
       "gastronomyLocation": "{{ count }} restaurants",
       "retailLocation": "{{ count }} magasins",
       "gastronomyProduct": "{{ count }} restaurants",
@@ -549,11 +549,11 @@
       "withoutId": "dans un périmètre de {{ radius }} autour {{area}}"
     },
     "location": {
-      "name": "Locations",
-      "title": "{{ count }} Locations",
-      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Locations eingetragen.",
-      "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
-      "showMore": "Weitere Locations anzeigen"
+      "name": "Endroits",
+      "title": "{{ count }} endroits",
+      "noResults": "Jusqu'à présent, personne n'a enregistré un endroit dans la zone demandée.",
+      "noResultsFiltered": "Aucun endroit n'a passé le filtre.",
+      "showMore": "Afficher plus d'endroits"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -695,7 +695,7 @@
       "4": "{{numLocations}} endroits avec un bon choix végan (selon les dernières évaluations des Véganautes).",
       "5": "{{numLocations}} endroits avec un excellent choix végan (selon les dernières évaluations des Véganautes)."
     },
-    "qualityFilterLink": "Auf Karte anzeigen",
+    "qualityFilterLink": "Afficher sur la carte",
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Plats",
     "retailLocations": "Magasins",
