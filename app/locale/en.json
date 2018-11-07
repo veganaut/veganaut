@@ -551,9 +551,9 @@
     "location": {
       "name": "Locations",
       "title": "{{ count }} Locations",
-      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Locations eingetragen.",
-      "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
-      "showMore": "Weitere Locations anzeigen"
+      "noResults": "So far, nobody has enterd any locations in the given area.",
+      "noResultsFiltered": "All locations were filtered out.",
+      "showMore": "Show more locations"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -695,7 +695,7 @@
       "4": "{{numLocations}} locations with a good vegan choice (according to the latest evaluations by Veganauts).",
       "5": "{{numLocations}} locations with an excellent vegan choice (according to the latest evaluations by Veganauts)."
     },
-    "qualityFilterLink": "Auf Karte anzeigen",
+    "qualityFilterLink": "Show on map",
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Meals",
     "retailLocations": "Stores",
