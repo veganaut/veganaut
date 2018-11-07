@@ -396,6 +396,9 @@
         "gastronomy": "Gastro",
         "retail": "Shopping"
       }
+    },
+    "quality": {
+      "tooltip": "Select range"
     }
   },
   "sortToggle": {
@@ -412,6 +415,7 @@
   "map": {
     "footer": {
       "mapSection": "im Kartenausschnitt",
+      "location": "{{ count }} Locations",
       "gastronomyLocation": "{{ count }} Restaurants",
       "retailLocation": "{{ count }} Läden",
       "gastronomyProduct": "{{ count }} Restaurants",
@@ -543,6 +547,13 @@
       "world": "auf der ganzen Welt",
       "withId": "im Ukreis von {{radius}} um {{area}}",
       "withoutId": "im Ukreis von {{radius}} um {{area}}"
+    },
+    "location": {
+      "name": "Locations",
+      "title": "{{ count }} Locations",
+      "noResults": "Im angegebenen Gebiet hat bis jetzt noch niemand Locations eingetragen.",
+      "noResultsFiltered": "Alle Locations wurden herausgefiltert.",
+      "showMore": "Weitere Locations anzeigen"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
@@ -684,6 +695,7 @@
       "4": "{{numLocations}} Locations mit einer guten veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen).",
       "5": "{{numLocations}} Locations mit einer hervorragenden veganen Auswahl (laut den letzten Bewertungen durch Veganaut*innen)."
     },
+    "qualityFilterLink": "Auf Karte anzeigen",
     "gastronomyLocations": "Restaurants",
     "gastronomyProducts": "Gerichte",
     "retailLocations": "Läden",

@@ -67,7 +67,7 @@
                 vgFilters: {
                     type: true,
                     granularity: true,
-                    recent: true
+                    quality: true
                 },
                 template: '<vg-main-map></vg-main-map>',
                 resolve: {
@@ -81,8 +81,7 @@
                 vgFilters: {
                     type: true,
                     granularity: true,
-                    recent: true,
-                    sortBy: true
+                    quality: true
                 },
                 template: '<vg-list></vg-list>',
                 resolve: {

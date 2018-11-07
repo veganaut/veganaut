@@ -15,9 +15,17 @@
         };
     }
 
-    PlantRatingCtrl.$inject = ['angularPiwik'];
-    function PlantRatingCtrl(angularPiwik) {
-        this.ratingPlants = {
+    PlantRatingCtrl.$inject = ['$rootScope', 'angularPiwik'];
+    function PlantRatingCtrl($rootScope, angularPiwik) {
+        var $ctrl = this;
+
+        // Expose the global methods we still need
+        // TODO: find a better way to do this
+        $ctrl.legacyGlobals = {
+            goToView: $rootScope.goToView
+        };
+
+        $ctrl.ratingPlants = {
             ratingPlant0: {
                 visible: true,
                 tooltip: false
@@ -43,7 +51,6 @@
                 tooltip: false
             }
         };
-        var $ctrl = this;
 
         /**
          * Function to show the plants right if clicked

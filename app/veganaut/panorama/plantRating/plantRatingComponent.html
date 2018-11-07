@@ -1,21 +1,63 @@
 <div>
     <div class="plant-tooltip" ng-class="{'plant0-tooltip': $ctrl.ratingPlants.ratingPlant0.tooltip}">
-        <p>{{ 'panorama.rating.0' | translate: { numLocations: $ctrl.panorama.locations.quality[0] } }}</p>
+        <p>
+            {{ 'panorama.rating.0' | translate: { numLocations: $ctrl.panorama.locations.quality[0] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=0')
+             | track:'panorama.action':'panorama.action.map.quality0'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant1-tooltip': $ctrl.ratingPlants.ratingPlant1.tooltip}">
-        <p>{{ 'panorama.rating.1' | translate: { numLocations: $ctrl.panorama.locations.quality[1] } }}</p>
+        <p>
+            {{ 'panorama.rating.1' | translate: { numLocations: $ctrl.panorama.locations.quality[1] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=1')
+             | track:'panorama.action':'panorama.action.map.quality1'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant2-tooltip': $ctrl.ratingPlants.ratingPlant2.tooltip}">
-        <p>{{ 'panorama.rating.2' | translate: { numLocations: $ctrl.panorama.locations.quality[2] } }}</p>
+        <p>
+            {{ 'panorama.rating.2' | translate: { numLocations: $ctrl.panorama.locations.quality[2] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=2')
+             | track:'panorama.action':'panorama.action.map.quality2'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant3-tooltip': $ctrl.ratingPlants.ratingPlant3.tooltip}">
-        <p>{{ 'panorama.rating.3' | translate: { numLocations: $ctrl.panorama.locations.quality[3] } }}</p>
+        <p>
+            {{ 'panorama.rating.3' | translate: { numLocations: $ctrl.panorama.locations.quality[3] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=3')
+             | track:'panorama.action':'panorama.action.map.quality3'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant4-tooltip': $ctrl.ratingPlants.ratingPlant4.tooltip}">
-        <p>{{ 'panorama.rating.4' | translate: { numLocations: $ctrl.panorama.locations.quality[4] } }}</p>
+        <p>
+            {{ 'panorama.rating.4' | translate: { numLocations: $ctrl.panorama.locations.quality[4] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=4')
+             | track:'panorama.action':'panorama.action.map.quality4'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="plant-tooltip" ng-class="{'plant5-tooltip': $ctrl.ratingPlants.ratingPlant5.tooltip}">
-        <p>{{ 'panorama.rating.5' | translate: { numLocations: $ctrl.panorama.locations.quality[5] } }}</p>
+        <p>
+            {{ 'panorama.rating.5' | translate: { numLocations: $ctrl.panorama.locations.quality[5] } }}
+            <a href="" class="link-highlighted"
+             ng-click="$ctrl.legacyGlobals.goToView('/map/?quality=5')
+             | track:'panorama.action':'panorama.action.map.quality5'">
+                {{ 'panorama.qualityFilterLink' | translate }}
+            </a>
+        </p>
     </div>
     <div class="row" class="veganlevel-wrapper">
         <div class="plant plant0" ng-class="{'plant-disabled': !$ctrl.ratingPlants.ratingPlant0.visible}">

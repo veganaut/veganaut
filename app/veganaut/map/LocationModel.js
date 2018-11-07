@@ -136,6 +136,14 @@
 
 
             /**
+             * Returns the icon name of this location's type
+             * @returns {string|boolean}
+             */
+            Location.prototype.getIconName = function() {
+                return Location.getIconNameForType(this.type);
+            };
+
+            /**
              * Returns the marker definition to be used for this location.
              * The event 'veganaut.locationItem.marker.updated' will be broadcast
              * when the definition changes.

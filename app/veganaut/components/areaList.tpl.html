@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="vg-list-item__type-icon">
-                    <vg-icon vg-name="$ctrl.listType"></vg-icon>
+                    <vg-icon vg-name="$ctrl.listType === 'location' ? item.getIconName() : $ctrl.listType"></vg-icon>
                 </div>
             </button>
         </div>

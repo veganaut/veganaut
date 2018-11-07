@@ -104,6 +104,15 @@
                 params.updatedWithin = locationFilterService.getRecentFilterValue();
                 queryId += '-updatedWithin' + params.updatedWithin;
 
+                if (angular.isNumber(locationFilterService.activeFilters.minQuality) &&
+                    angular.isNumber(locationFilterService.activeFilters.maxQuality))
+                {
+                    params.minQuality = locationFilterService.activeFilters.minQuality;
+                    queryId += '-minQuality' + params.minQuality;
+                    params.maxQuality = locationFilterService.activeFilters.maxQuality;
+                    queryId += '-maxQuality' + params.maxQuality;
+                }
+
                 // Cancel ongoing request
                 if (angular.isObject(this._requestInProgress)) {
                     if (this._requestInProgressQueryId === queryId) {
@@ -206,7 +215,9 @@
                     skip: skip,
                     addressType: addressType,
                     type: locationFilterService.getTypeFilterValue(),
-                    updatedWithin: locationFilterService.getRecentFilterValue()
+                    updatedWithin: locationFilterService.getRecentFilterValue(),
+                    minQuality: locationFilterService.activeFilters.minQuality,
+                    maxQuality: locationFilterService.activeFilters.maxQuality
                 }).then(function(res) {
                     // Instantiate the locations
                     _.each(res.data.locations, function(locationData, i) {

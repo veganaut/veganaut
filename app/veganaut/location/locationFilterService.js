@@ -17,7 +17,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 recent: this.DEFAULT_FILTER_VALUE.recent,
                 type: this.DEFAULT_FILTER_VALUE.type,
                 granularity: this.DEFAULT_FILTER_VALUE.granularity,
-                sortBy: this.DEFAULT_FILTER_VALUE.sortBy
+                sortBy: this.DEFAULT_FILTER_VALUE.sortBy,
+                minQuality: this.DEFAULT_FILTER_VALUE.minQuality,
+                maxQuality: this.DEFAULT_FILTER_VALUE.maxQuality
             };
         };
 
@@ -27,15 +29,20 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.INACTIVE_FILTER_VALUE = {
             recent: 'anytime',
-            sortBy: 'none'
-            // granularity and type are never inactive
+            sortBy: 'none',
+            type: 'anytype',
+            minQuality: undefined,
+            maxQuality: undefined
+            // granularity is never inactive
         };
 
         LocationFilterService.prototype.DEFAULT_FILTER_VALUE = {
             recent: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.recent,
-            type: 'gastronomy',
+            type: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.type,
             granularity: 'location',
-            sortBy: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.sortBy
+            sortBy: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.sortBy,
+            minQuality: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.minQuality,
+            maxQuality: LocationFilterService.prototype.INACTIVE_FILTER_VALUE.maxQuality
         };
 
         /**
@@ -65,6 +72,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'day'
             ],
             type: [
+                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.type,
                 'gastronomy',
                 'retail'
             ],
@@ -79,6 +87,19 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'lastUpdate'
             ]
         };
+
+        /**
+         * Lowest possible value for the quality filter
+         * @type {number}
+         */
+        LocationFilterService.prototype.LOWEST_POSSIBLE_QUALITY = 0;
+
+        /**
+         * Highest possible value for the quality filter
+         * @type {number}
+         */
+        LocationFilterService.prototype.HIGHEST_POSSIBLE_QUALITY = 5;
+
 
         /**
          * Map of recent filter values to the period of
@@ -108,7 +129,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * @returns {string}
          */
         LocationFilterService.prototype.getTypeFilterValue = function() {
-            return this.activeFilters.type;
+            // return this.activeFilters.type;
+            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
+                return this.activeFilters.type;
+            }
+            return undefined;
         };
 
         /**
@@ -121,18 +146,19 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
         /**
          * Returns the category based on the active type and granularity
+         * If the type filter is not active, it returns only the granularity
          * @return {string|undefined}
          */
         LocationFilterService.prototype.getCategoryValue = function() {
-            if (this.routeHasGranularityFilter() &&
-                this.routeHasTypeFilter() &&
-                this.CATEGORIES[this.activeFilters.type])
-            {
-                return this.CATEGORIES[this.activeFilters.type][this.activeFilters.granularity];
+            if (this.routeHasGranularityFilter() && this.routeHasTypeFilter()) {
+                if (this.CATEGORIES[this.activeFilters.type]) {
+                    return this.CATEGORIES[this.activeFilters.type][this.activeFilters.granularity];
+                }
+                else {
+                    return this.activeFilters.granularity;
+                }
             }
-            else {
-                return undefined;
-            }
+            return undefined;
         };
 
         /**
@@ -190,6 +216,18 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             );
         };
 
+
+        /**
+         * Returns whether the current route uses the quality filter
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.routeHasQualityFilter = function() {
+            return (
+                angular.isObject($route.current.vgFilters) &&
+                $route.current.vgFilters.quality === true
+            );
+        };
+
         /**
          * Returns the number of active filters relevant to the current page
          * @returns {number}
@@ -198,6 +236,14 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             var active = 0;
             if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
                 this.routeHasRecentFilter())
+            {
+                active += 1;
+            }
+
+            if (this.routeHasQualityFilter() &&
+                angular.isNumber(this.activeFilters.minQuality) &&
+                angular.isNumber(this.activeFilters.maxQuality) &&
+                this.activeFilters.maxQuality - this.activeFilters.minQuality < 5)
             {
                 active += 1;
             }
@@ -270,6 +316,32 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 this.activeFilters.sortBy = sortBy;
             }
 
+            if ($routeParams.quality) {
+                var qualityValues = $routeParams.quality.split('-');
+                var min = parseInt(qualityValues[0], 10);
+                var max = qualityValues.length > 1 ? parseInt(qualityValues[1], 10) : min;
+                if (isNaN(min) || isNaN(max) || min > max ||
+                    min < this.LOWEST_POSSIBLE_QUALITY || max > this.HIGHEST_POSSIBLE_QUALITY)
+                {
+                    // Set the default value (if invalid value was given)
+                    min = this.DEFAULT_FILTER_VALUE.minQuality;
+                    max = this.DEFAULT_FILTER_VALUE.maxQuality;
+                }
+
+                // Set the new value
+                this.activeFilters.minQuality = min;
+                this.activeFilters.maxQuality = max;
+            }
+
+            // If there should be a filter, but neither the type nor quality is set,
+            // default to using the type filter
+            if (this.routeHasTypeFilter() && this.routeHasQualityFilter() &&
+                angular.isUndefined(this.getTypeFilterValue()) &&
+                angular.isUndefined(this.activeFilters.minQuality))
+            {
+                this.activeFilters.type = 'gastronomy';
+            }
+
             // Update the URL to make sure it's always well-formed
             this.updateFiltersInUrl();
         };
@@ -291,7 +363,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             var typeFilter;
-            if (this.routeHasTypeFilter()) {
+            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
+                this.routeHasTypeFilter())
+            {
                 typeFilter = this.activeFilters.type;
             }
 
@@ -307,6 +381,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 sortByValue = this.activeFilters.sortBy;
             }
 
+            var quality;
+            if (this.activeFilters.minQuality !== this.INACTIVE_FILTER_VALUE.minQuality &&
+                this.activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality &&
+                this.routeHasQualityFilter())
+            {
+                quality = this.activeFilters.minQuality;
+                if (this.activeFilters.minQuality !== this.activeFilters.maxQuality) {
+                    quality += '-' + this.activeFilters.maxQuality;
+                }
+            }
+
             // Replace the url hash (without adding a new history item)
             // Can't use $route.updateParams as this will set all params, not only the ones we want
             $location.replace();
@@ -314,6 +399,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             $location.search('type', typeFilter);
             $location.search('granularity', granularityFilter);
             $location.search('sortBy', sortByValue);
+            $location.search('quality', quality);
         };
 
         /**

@@ -1,18 +1,24 @@
-<nav class="vg-category-selector"
- ng-class="{ 'vg-category-selector--hover': $ctrl.hover }">
-    <div class="vg-category-selector-type"
-     ng-repeat="type in $ctrl.locationFilterService.POSSIBLE_FILTERS.type"
-     ng-class="{'vg-category-selector-type--active':
-     type.indexOf($ctrl.locationFilterService.getTypeFilterValue()) !== -1}">
-        <a href="" class="vg-category-selector-item"
-         ng-repeat-start="granularity in $ctrl.locationFilterService.POSSIBLE_FILTERS.granularity"
+<nav class="vg-category-selector ui-filter"
+ ng-class="{ 'ui-filter--hover': $ctrl.hover }">
+    <div class="ui-filter__container"
+     ng-repeat="type in $ctrl.getPossibleTypeValues()"
+     ng-class="{'ui-filter__container--active': $ctrl.locationFilterService.getTypeFilterValue() === type}">
+        <button href="" class="ui-filter__item remove-btn"
+         ng-repeat-start="granularity in $ctrl.getPossibleGranularityValues(type)"
          ng-click="$ctrl.setFilter(type, granularity)
            | track:'switchCategory':('switchCategory.' + $ctrl.locationFilterService.CATEGORIES[type][granularity])"
-         ng-class="{'vg-category-selector-item--active':
+         ng-class="{'ui-filter__item--active':
           $ctrl.locationFilterService.getTypeFilterValue() === type &&
           $ctrl.locationFilterService.getGranularityFilterValue() === granularity}">
             {{ 'lists.' + $ctrl.locationFilterService.CATEGORIES[type][granularity] + '.name' | translate }}
-        </a>
-        <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector-separator" ng-repeat-end></vg-icon>
+        </button>
+        <vg-icon vg-name="'chevron-big-right'" class="vg-category-selector__separator" ng-repeat-end></vg-icon>
+    </div>
+
+    <div class="ui-filter__container">
+        <button class="ui-filter__item remove-btn"
+         ng-click="$ctrl.switchToQualityFilter() | track:'switchFilter':'switchFilter.toQuality'">
+            &hellip;
+        </button>
     </div>
 </nav>

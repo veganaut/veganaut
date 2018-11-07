@@ -1,0 +1,67 @@
+// Base styles for the filters used on the map and list
+// Used by categorySelector and qualityFilter
+.ui-filter {
+    background-color: @colorLight;
+    padding: 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 42px;
+    position: relative;
+    z-index: 1;
+
+    .ui-filter__container {
+        height: 28px;
+        border: 1px solid @color-accent-faded;
+        border-radius: 14px;
+        background-color: @colorLight;
+        padding: 0;
+        margin: 0 5px;
+    }
+
+    .ui-filter__item {
+        display: inline-block;
+        .vg-typography-display-2();
+        padding: 2px 10px;
+        height: 28px;
+        border-radius: 14px;
+        position: relative;
+        margin: -1px -1px 0 -1px;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .ui-filter__item--active {
+        border-color: @color-accent;
+        background-color: @color-accent;
+        color: white;
+    }
+
+    &.ui-filter--hover {
+        justify-content: space-around;
+        padding: 0;
+        background-color: transparent;
+        height: auto;
+        max-width: 350px;
+        margin: 0 auto;
+
+        .ui-filter__container {
+            margin: 10px 0 0;
+        }
+    }
+
+}
+
+body.embedded {
+    .ui-filter--hover {
+        background-color: transparent;
+        justify-content: right;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        .ui-filter__container {
+            margin-right: 15px;
+        }
+    }
+}

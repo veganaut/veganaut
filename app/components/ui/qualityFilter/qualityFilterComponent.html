@@ -1,0 +1,29 @@
+<nav class="vg-quality-filter ui-filter"
+ ng-class="{ 'ui-filter--hover': $ctrl.hover }">
+    <div class="ui-filter__container"
+     ng-class="{ 'ui-filter__container--setting-range': $ctrl.settingRange }">
+        <button class="ui-filter__item remove-btn"
+         ng-repeat="quality in [0,1,2,3,4,5]"
+         ng-click="$ctrl.handleFilterClick(quality)"
+         ng-class="{'ui-filter__item--active': $ctrl.isQualityPartOfFilterInterval(quality),
+         'ui-filter__item--active-to-right': $ctrl.isQualityPartOfFilterInterval(quality + 1),
+         'ui-filter__item--active-to-left': $ctrl.isQualityPartOfFilterInterval(quality - 1)}">
+            <vg-icon
+             vg-name="'level-' + quality + ($ctrl.isQualityPartOfFilterInterval(quality) || $ctrl.settingRange ? '-white' : '')">
+            </vg-icon>
+        </button>
+
+        <div ng-if="$ctrl.settingRange"
+         uib-tooltip="{{ 'globalFilters.quality.tooltip' | translate }}"
+         tooltip-is-open="true"
+         tooltip-placement="bottom">
+        </div>
+    </div>
+
+    <div class="ui-filter__container">
+        <button class="ui-filter__item remove-btn"
+         ng-click="$ctrl.switchToTypeFilter() | track:'switchFilter':'switchFilter.toType'">
+            &hellip;
+        </button>
+    </div>
+</nav>
