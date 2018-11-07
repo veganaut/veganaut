@@ -415,7 +415,7 @@
   "map": {
     "footer": {
       "mapSection": "in the current map section",
-      "location": "{{ count }} Locations",
+      "location": "{{ count }} locations",
       "gastronomyLocation": "{{ count }} restaurants",
       "retailLocation": "{{ count }} shops",
       "gastronomyProduct": "{{ count }} restaurants",
