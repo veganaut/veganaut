@@ -398,7 +398,7 @@
       }
     },
     "quality": {
-      "tooltip": "Bereich auswählen"
+      "tooltip": "Zweiter Klick: Bereich auswählen"
     }
   },
   "sortToggle": {
