@@ -398,7 +398,7 @@
       }
     },
     "quality": {
-      "tooltip": "Select range"
+      "tooltip": "Second click: select range"
     }
   },
   "sortToggle": {
