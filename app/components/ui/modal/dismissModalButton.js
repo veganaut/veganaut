@@ -7,7 +7,8 @@
      */
     var dismissModalButtonComponent = {
         bindings: {
-            'onDismiss': '&vgOnDismiss'
+            'onDismiss': '&vgOnDismiss',
+            'text': '@?vgText'
         },
         templateUrl: '/components/ui/modal/dismissModalButton.tpl.html'
     };

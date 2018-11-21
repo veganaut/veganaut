@@ -8,28 +8,33 @@
     </div>
 
     <div class="vg-list-header">
-        <div class="vg-list-header__type-icon">
-            <vg-icon vg-name="$ctrl.listType === 'location' ? 'list' : $ctrl.listType"></vg-icon>
+        <div class="vg-list-header__filters">
+            <vg-quick-filters></vg-quick-filters>
         </div>
-        <div class="vg-list-header__text">
-            <h1 class="vg-list-header__title">
-                {{ 'areaDescription.title.' + $ctrl.areaType | translate: {area: $ctrl.area.shortName} }}:
-                {{ 'lists.' + $ctrl.listType + '.title' | translate: {count: $ctrl.totalItems} }}
-            </h1>
+        <div class="vg-list-header__content">
+            <div class="vg-list-header__type-icon">
+                <vg-icon vg-name="$ctrl.listType === 'location' ? 'list' : $ctrl.listType"></vg-icon>
+            </div>
+            <div class="vg-list-header__text">
+                <h1 class="vg-list-header__title">
+                    {{ 'areaDescription.title.' + $ctrl.areaType | translate: {area: $ctrl.area.shortName} }}:
+                    {{ 'lists.' + $ctrl.listType + '.title' | translate: {count: $ctrl.totalItems} }}
+                </h1>
 
-            <p class="vg-list-header__area">
-                {{ 'lists.subtitle.' + $ctrl.areaType |
-                    translate: {radius: $ctrl.displayRadius, area: $ctrl.area.longName} }}
-            </p>
+                <p class="vg-list-header__area">
+                    {{ 'lists.subtitle.' + $ctrl.areaType |
+                        translate: {radius: $ctrl.displayRadius, area: $ctrl.area.longName} }}
+                </p>
 
-            <p ng-if="$ctrl.noResultsText">
-                {{ $ctrl.noResultsText | translate }}
-            </p>
+                <p ng-if="$ctrl.noResultsText">
+                    {{ $ctrl.noResultsText | translate }}
+                </p>
+            </div>
+            <!-- TODO NEXT: implement sorting -->
+            <!--<button class="vg-list-header__sort" ng-click="$ctrl.showSortModal()">-->
+                <!--<vg-icon vg-name="'sort'" class="vg-list-header__sort__icon"></vg-icon>-->
+            <!--</button>-->
         </div>
-        <!-- TODO NEXT: implement sorting -->
-        <!--<button class="vg-list-header__sort" ng-click="$ctrl.showSortModal()">-->
-            <!--<vg-icon vg-name="'sort'" class="vg-list-header__sort__icon"></vg-icon>-->
-        <!--</button>-->
     </div>
 
     <div ng-if="$ctrl.list.length > 0">

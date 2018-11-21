@@ -9,6 +9,7 @@
          'ui-filter__item--active-to-right': $ctrl.isQualityPartOfFilterInterval(quality + 1),
          'ui-filter__item--active-to-left': $ctrl.isQualityPartOfFilterInterval(quality - 1)}">
             <vg-icon
+             class="vg-quality-filter__quality-icon"
              vg-name="'level-' + quality + ($ctrl.isQualityPartOfFilterInterval(quality) || $ctrl.settingRange ? '-white' : '')">
             </vg-icon>
         </button>
@@ -20,10 +21,10 @@
         </div>
     </div>
 
-    <div class="ui-filter__container">
-        <button class="ui-filter__item remove-btn"
-         ng-click="$ctrl.switchToTypeFilter() | track:'switchFilter':'switchFilter.toType'">
-            &hellip;
+    <div class="ui-filter__container" ng-if="!$ctrl.isInFilterModal">
+        <button class="ui-filter__item ui-filter__item--show-modal remove-btn"
+         ng-click="$ctrl.locationFilterService.showFilterModal()">
+            <vg-icon vg-name="'filter'"></vg-icon>
         </button>
     </div>
 </nav>

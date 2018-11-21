@@ -4,11 +4,19 @@
 
 .vg-list-header {
     background-color: white;
-    padding: 8px @mainSidePadding;
     box-shadow: 0 1px 3px 0 @color-shadow;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+
+    .vg-list-header__filters {
+        padding: 0 (@mainSidePadding - 5px) 8px;
+        border-bottom: 1px solid @color-horizontal-separator;
+    }
+
+    .vg-list-header__content {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px @mainSidePadding;
+    }
 
     .vg-list-header__type-icon {
         padding-top: 8px;

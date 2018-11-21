@@ -44,8 +44,9 @@
         };
 
         $ctrl.onSave = function() {
-            locationFilterService.activeFilters.sortBy = $ctrl.activeToggle;
-            locationFilterService.onFiltersChanged();
+            locationFilterService.setFilters({
+                sortBy: $ctrl.activeToggle
+            });
             $ctrl.onClose();
         };
     }

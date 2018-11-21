@@ -8,7 +8,8 @@
     function qualityFilterComponent() {
         var component = {
             bindings: {
-                hover: '<?vgHover'
+                hover: '<?vgHover',
+                isInFilterModal: '<?vgIsInFilterModal'
             },
             controller: QualityFilterController,
             templateUrl: 'components/ui/qualityFilter/qualityFilterComponent.html'
@@ -51,9 +52,10 @@
          * @param {number} max
          */
         var setFilter = function(min, max) {
-            $ctrl.locationFilterService.activeFilters.minQuality = min;
-            $ctrl.locationFilterService.activeFilters.maxQuality = max;
-            locationFilterService.onFiltersChanged();
+            locationFilterService.setFilters({
+                minQuality: min,
+                maxQuality: max
+            });
         };
 
         /**
@@ -65,16 +67,18 @@
                 stopSettingRange();
 
                 // Check if the second click was on a lower or higher quality, and set filters accordingly
-                if (clickedQuality < $ctrl.locationFilterService.activeFilters.minQuality) {
-                    setFilter(clickedQuality, $ctrl.locationFilterService.activeFilters.minQuality);
+                if (clickedQuality < $ctrl.locationFilterService.getQualityFilterValue().min) {
+                    setFilter(clickedQuality, $ctrl.locationFilterService.getQualityFilterValue().min);
                 }
                 else {
-                    setFilter($ctrl.locationFilterService.activeFilters.minQuality, clickedQuality);
+                    setFilter($ctrl.locationFilterService.getQualityFilterValue().min, clickedQuality);
                 }
 
-                var trackingString = $ctrl.locationFilterService.activeFilters.minQuality;
-                if ($ctrl.locationFilterService.activeFilters.minQuality !== $ctrl.locationFilterService.activeFilters.maxQuality) {
-                    trackingString += '-' + $ctrl.locationFilterService.activeFilters.maxQuality;
+                var trackingString = $ctrl.locationFilterService.getQualityFilterValue().min;
+                if ($ctrl.locationFilterService.getQualityFilterValue().min !==
+                    $ctrl.locationFilterService.getQualityFilterValue().max)
+                {
+                    trackingString += '-' + $ctrl.locationFilterService.getQualityFilterValue().max;
                 }
                 angularPiwik.track('switchQuality', 'switchQuality.' + trackingString);
             }
@@ -86,7 +90,9 @@
                 $ctrl.settingRange = true;
                 settingRangeTimeout = $timeout(stopSettingRange, 3000);
 
-                angularPiwik.track('switchQuality', 'switchQuality.' + $ctrl.locationFilterService.activeFilters.minQuality);
+                angularPiwik.track('switchQuality', 'switchQuality.' +
+                    $ctrl.locationFilterService.getQualityFilterValue().min
+                );
             }
         };
 
@@ -96,16 +102,8 @@
          * @returns {boolean}
          */
         $ctrl.isQualityPartOfFilterInterval = function(quality) {
-            return (quality >= $ctrl.locationFilterService.activeFilters.minQuality &&
-                quality <= $ctrl.locationFilterService.activeFilters.maxQuality);
-        };
-
-        $ctrl.switchToTypeFilter = function() {
-            locationFilterService.activeFilters.type = 'gastronomy';
-            locationFilterService.activeFilters.granularity = 'location';
-            locationFilterService.activeFilters.minQuality = undefined;
-            locationFilterService.activeFilters.maxQuality = undefined;
-            locationFilterService.onFiltersChanged();
+            return (quality >= $ctrl.locationFilterService.getQualityFilterValue().min &&
+                quality <= $ctrl.locationFilterService.getQualityFilterValue().max);
         };
     }
 })();

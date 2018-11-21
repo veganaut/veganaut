@@ -12,8 +12,9 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
              * List of active filters
              * TODO: Remove sortBy from this service as it is not an actual filter
              * @type {{}}
+             * @private
              */
-            this.activeFilters = {
+            this._activeFilters = {
                 recent: this.DEFAULT_FILTER_VALUE.recent,
                 type: this.DEFAULT_FILTER_VALUE.type,
                 granularity: this.DEFAULT_FILTER_VALUE.granularity,
@@ -62,17 +63,17 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
 
         /**
          * Possible filter options for all the available filters
+         * (without the inactive filter value).
          * @type {{recent: string[]}}
          */
-        LocationFilterService.prototype.POSSIBLE_FILTERS = {
+        LocationFilterService.prototype.POSSIBLE_ACTIVE_FILTERS = {
             recent: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.recent,
+                'year',
                 'month',
                 'week',
                 'day'
             ],
             type: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.type,
                 'gastronomy',
                 'retail'
             ],
@@ -81,7 +82,6 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                 'product'
             ],
             sortBy: [
-                LocationFilterService.prototype.INACTIVE_FILTER_VALUE.sortBy,
                 'quality',
                 'distance',
                 'lastUpdate'
@@ -104,12 +104,21 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         /**
          * Map of recent filter values to the period of
          * time in seconds for which to show the locations.
-         * @type {{month: number, week: number, day: number}}
+         * @type {{year: number, month: number, week: number, day: number}}
          */
         LocationFilterService.prototype.RECENT_FILTER_PERIOD = {
+            year: 52 * 7 * 24 * 3600,
             month: 4 * 7 * 24 * 3600,
             week: 7 * 24 * 3600,
             day: 24 * 3600
+        };
+
+        /**
+         * Returns the string representation of the currently set recent filter
+         * @returns {string}
+         */
+        LocationFilterService.prototype.getRecentFilterString = function() {
+            return this._activeFilters.recent;
         };
 
         /**
@@ -118,20 +127,19 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * @returns {number|undefined}
          */
         LocationFilterService.prototype.getRecentFilterValue = function() {
-            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent) {
-                return this.RECENT_FILTER_PERIOD[this.activeFilters.recent];
+            if (this._activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent) {
+                return this.RECENT_FILTER_PERIOD[this._activeFilters.recent];
             }
             return undefined;
         };
 
         /**
-         * Returns the type filter value (type filter is always active).
-         * @returns {string}
+         * Returns the type filter value.
+         * @returns {string|undefined}
          */
         LocationFilterService.prototype.getTypeFilterValue = function() {
-            // return this.activeFilters.type;
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
-                return this.activeFilters.type;
+            if (this._activeFilters.type !== this.INACTIVE_FILTER_VALUE.type) {
+                return this._activeFilters.type;
             }
             return undefined;
         };
@@ -141,7 +149,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * @returns {string}
          */
         LocationFilterService.prototype.getGranularityFilterValue = function() {
-            return this.activeFilters.granularity;
+            return this._activeFilters.granularity;
         };
 
         /**
@@ -151,11 +159,11 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.getCategoryValue = function() {
             if (this.routeHasGranularityFilter() && this.routeHasTypeFilter()) {
-                if (this.CATEGORIES[this.activeFilters.type]) {
-                    return this.CATEGORIES[this.activeFilters.type][this.activeFilters.granularity];
+                if (this.CATEGORIES[this._activeFilters.type]) {
+                    return this.CATEGORIES[this._activeFilters.type][this._activeFilters.granularity];
                 }
                 else {
-                    return this.activeFilters.granularity;
+                    return this._activeFilters.granularity;
                 }
             }
             return undefined;
@@ -166,10 +174,25 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          * @returns {string|undefined}
          */
         LocationFilterService.prototype.getSortByValue = function() {
-            if (this.activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy) {
-                return this.activeFilters.sortBy;
+            if (this._activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy) {
+                return this._activeFilters.sortBy;
             }
             return undefined;
+        };
+
+        /**
+         * Returns the set quality filter value (min and max) or an empty object
+         * if the filter is not active.
+         * @returns {{min: number|undefined, max: number|undefined}}
+         */
+        LocationFilterService.prototype.getQualityFilterValue = function() {
+            if (this.qualityFilterIsUsed()) {
+                return {
+                    min: this._activeFilters.minQuality,
+                    max: this._activeFilters.maxQuality
+                };
+            }
+            return {};
         };
 
         /**
@@ -229,21 +252,32 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
+         * Whether the quality filter is currently used (so a min and max is set)
+         * Note that even if it's used, it can be that it includes everything
+         * (if min = 0 and max = 5).
+         * @returns {boolean}
+         */
+        LocationFilterService.prototype.qualityFilterIsUsed = function() {
+            return (angular.isNumber(this._activeFilters.minQuality) &&
+                angular.isNumber(this._activeFilters.maxQuality));
+        };
+
+        /**
          * Returns the number of active filters relevant to the current page
          * @returns {number}
          */
         LocationFilterService.prototype.getNumActiveFilters = function() {
             var active = 0;
-            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
+            if (this._activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
                 this.routeHasRecentFilter())
             {
                 active += 1;
             }
 
             if (this.routeHasQualityFilter() &&
-                angular.isNumber(this.activeFilters.minQuality) &&
-                angular.isNumber(this.activeFilters.maxQuality) &&
-                this.activeFilters.maxQuality - this.activeFilters.minQuality < 5)
+                this.qualityFilterIsUsed() &&
+                // Only count as active, if not all qualities are included
+                this._activeFilters.maxQuality - this._activeFilters.minQuality < 5)
             {
                 active += 1;
             }
@@ -263,69 +297,76 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Reads and sets the filters from the current route params.
-         * TODO: should we listen to route changes and call this ourselves instead of relying on external components?
+         * Validates the given set of filters and sets the ones that are valid.
+         * Will also perform some sanity checks on the combination of filters
+         * and update the URL.
+         * @param {{}} filtersToSet
+         * @private
          */
-        LocationFilterService.prototype.setFiltersFromUrl = function() {
-            // Whether the type/quality filters where set from the URL
-            var hasSetType = false;
-            var hasSetQuality = false;
+        LocationFilterService.prototype._validateAndSetFilters = function(filtersToSet) {
+            // Whether the type/recent/quality filters where set
+            var hasSetFilter = {
+                type: false,
+                recent: false,
+                quality: false
+            };
 
             // TODO: don't duplicate all filters, make generic
-            if ($routeParams.type) {
+            if (angular.isDefined(filtersToSet.type)) {
                 // Set the default value (if invalid value was given)
                 var typeFilter = this.DEFAULT_FILTER_VALUE.type;
-                if (this.POSSIBLE_FILTERS.type.indexOf($routeParams.type) >= 0) {
+                if (this.POSSIBLE_ACTIVE_FILTERS.type.indexOf(filtersToSet.type) >= 0) {
                     // Found valid location type filter
-                    typeFilter = $routeParams.type;
-                    hasSetType = true;
+                    typeFilter = filtersToSet.type;
+                    hasSetFilter.type = true;
                 }
 
                 // Set the new value
-                this.activeFilters.type = typeFilter;
+                this._activeFilters.type = typeFilter;
             }
 
-            if ($routeParams.granularity) {
+            if (angular.isDefined(filtersToSet.granularity)) {
                 // Set the default value (if invalid value was given)
                 var granularityFilter = this.DEFAULT_FILTER_VALUE.granularity;
-                if (this.POSSIBLE_FILTERS.granularity.indexOf($routeParams.granularity) >= 0) {
+                if (this.POSSIBLE_ACTIVE_FILTERS.granularity.indexOf(filtersToSet.granularity) >= 0) {
                     // Found valid location granularity filter
-                    granularityFilter = $routeParams.granularity;
+                    granularityFilter = filtersToSet.granularity;
                 }
 
                 // Set the new value
-                this.activeFilters.granularity = granularityFilter;
+                this._activeFilters.granularity = granularityFilter;
             }
 
-            if ($routeParams.recent) {
+            if (angular.isDefined(filtersToSet.recent)) {
                 // Set the default value (if invalid value was given)
                 var recentFilter = this.DEFAULT_FILTER_VALUE.recent;
-                if (this.POSSIBLE_FILTERS.recent.indexOf($routeParams.recent) >= 0) {
+                if (this.POSSIBLE_ACTIVE_FILTERS.recent.indexOf(filtersToSet.recent) >= 0) {
                     // Found valid recent filter
-                    recentFilter = $routeParams.recent;
+                    recentFilter = filtersToSet.recent;
+                    hasSetFilter.recent = true;
                 }
 
                 // Set the new value
-                this.activeFilters.recent = recentFilter;
+                this._activeFilters.recent = recentFilter;
             }
 
-            if ($routeParams.sortBy) {
+            if (angular.isDefined(filtersToSet.sortBy)) {
                 // Set the default value (if invalid value was given)
                 var sortBy = this.DEFAULT_FILTER_VALUE.sortBy;
-                if (this.POSSIBLE_FILTERS.sortBy.indexOf($routeParams.sortBy) >= 0) {
+                if (this.POSSIBLE_ACTIVE_FILTERS.sortBy.indexOf(filtersToSet.sortBy) >= 0) {
                     // Found valid sortBy value
-                    sortBy = $routeParams.sortBy;
+                    sortBy = filtersToSet.sortBy;
                 }
 
                 // Set the new value
-                this.activeFilters.sortBy = sortBy;
+                this._activeFilters.sortBy = sortBy;
             }
 
-            if ($routeParams.quality) {
-                var qualityValues = $routeParams.quality.split('-');
-                var min = parseInt(qualityValues[0], 10);
-                var max = qualityValues.length > 1 ? parseInt(qualityValues[1], 10) : min;
-                if (isNaN(min) || isNaN(max) || min > max ||
+            if (angular.isDefined(filtersToSet.minQuality) && angular.isDefined(filtersToSet.maxQuality)) {
+                var min = filtersToSet.minQuality;
+                var max = filtersToSet.maxQuality;
+                if (!angular.isNumber(min) || !angular.isNumber(max) ||
+                    isNaN(min) || isNaN(max) || min > max ||
                     min < this.LOWEST_POSSIBLE_QUALITY || max > this.HIGHEST_POSSIBLE_QUALITY)
                 {
                     // Set the default value (if invalid value was given)
@@ -333,45 +374,74 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
                     max = this.DEFAULT_FILTER_VALUE.maxQuality;
                 }
                 else {
-                    hasSetQuality = true;
+                    hasSetFilter.quality = true;
                 }
 
                 // Set the new value
-                this.activeFilters.minQuality = min;
-                this.activeFilters.maxQuality = max;
+                this._activeFilters.minQuality = min;
+                this._activeFilters.maxQuality = max;
             }
 
-            // Make some sanity checks for the combination of filters
-            if (this.routeHasTypeFilter() && this.routeHasQualityFilter()) {
-                // If neither the type nor quality is set, default to using the type filter
+            // Make some sanity checks for the combination of filters if we are on a page with many possible filters
+            if (this.routeHasTypeFilter() && this.routeHasRecentFilter() && this.routeHasQualityFilter()) {
+                // If neither of the possible filters is set, default to using the type filter
                 if (angular.isUndefined(this.getTypeFilterValue()) &&
-                    angular.isUndefined(this.activeFilters.minQuality))
+                    angular.isUndefined(this.getRecentFilterValue()) &&
+                    !this.qualityFilterIsUsed())
                 {
-                    this.activeFilters.type = 'gastronomy';
+                    this._activeFilters.type = 'gastronomy';
                 }
 
-                // If the quality filter is active, make sure the granularity is set to location
-                // TODO: De-duplicate the various places where we check if the quality filter is active
-                if (this.activeFilters.minQuality !== this.INACTIVE_FILTER_VALUE.minQuality ||
-                    this.activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality)
-                {
-                    this.activeFilters.granularity = 'location';
+                // If exactly one of either quality, type or recent was set, make sure the others are inactive.
+                // This is done to make sure that if one navigates e.g. from the panorama where only one of the
+                // filters is set in the URL, the other ones are unset. And it still supports the hidden feature
+                // that you can set multiple filters as active through the URL.
+                var numSet = (hasSetFilter.type ? 1 : 0) + (hasSetFilter.recent ? 1 : 0) + (hasSetFilter.quality ? 1 : 0);
+                if (numSet === 1) {
+                    // Make sure the ones that weren't set are inactive
+                    if (!hasSetFilter.type) {
+                        this._activeFilters.type = this.INACTIVE_FILTER_VALUE.type;
+                    }
+                    if (!hasSetFilter.recent) {
+                        this._activeFilters.recent = this.INACTIVE_FILTER_VALUE.recent;
+                    }
+                    if (!hasSetFilter.quality) {
+                        this._activeFilters.minQuality = this.INACTIVE_FILTER_VALUE.minQuality;
+                        this._activeFilters.maxQuality = this.INACTIVE_FILTER_VALUE.maxQuality;
+                    }
                 }
 
-                // If exactly one of either quality or type was set, make sure the other is set to inactive
-                // (this might not be the case, if it was set earlier during the visit).
-                if (hasSetQuality && !hasSetType) {
-                    this.activeFilters.type = this.INACTIVE_FILTER_VALUE.type;
-                }
-                else if (!hasSetQuality && hasSetType) {
-                    this.activeFilters.minQuality = this.INACTIVE_FILTER_VALUE.minQuality;
-                    this.activeFilters.maxQuality = this.INACTIVE_FILTER_VALUE.maxQuality;
+                // If the quality or recent filter is active, make sure the granularity is set to location
+                if (this.qualityFilterIsUsed() || angular.isDefined(this.getRecentFilterValue())) {
+                    this._activeFilters.granularity = 'location';
                 }
             }
 
             // Update the URL to make sure it's always well-formed
             this.updateFiltersInUrl();
         };
+
+        /**
+         * Reads and sets the filters from the current route params.
+         * TODO: should we listen to route changes and call this ourselves instead of relying on external components?
+         */
+        LocationFilterService.prototype.setFiltersFromUrl = function() {
+            var filtersFromUrl = {
+                type: $routeParams.type,
+                granularity: $routeParams.granularity,
+                recent: $routeParams.recent,
+                sortBy: $routeParams.sortBy
+            };
+
+            if (angular.isString($routeParams.quality)) {
+                var qualityValues = $routeParams.quality.split('-');
+                filtersFromUrl.minQuality = parseInt(qualityValues[0], 10);
+                filtersFromUrl.maxQuality = qualityValues.length > 1 ? parseInt(qualityValues[1], 10) : filtersFromUrl.minQuality;
+            }
+
+            this._validateAndSetFilters(filtersFromUrl);
+        };
+
 
         /**
          * Updates the URL params to correctly reflect the currently active filters.
@@ -383,39 +453,39 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
             }
 
             var recentFilter;
-            if (this.activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
+            if (this._activeFilters.recent !== this.INACTIVE_FILTER_VALUE.recent &&
                 this.routeHasRecentFilter())
             {
-                recentFilter = this.activeFilters.recent;
+                recentFilter = this._activeFilters.recent;
             }
 
             var typeFilter;
-            if (this.activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
+            if (this._activeFilters.type !== this.INACTIVE_FILTER_VALUE.type &&
                 this.routeHasTypeFilter())
             {
-                typeFilter = this.activeFilters.type;
+                typeFilter = this._activeFilters.type;
             }
 
             var granularityFilter;
             if (this.routeHasGranularityFilter()) {
-                granularityFilter = this.activeFilters.granularity;
+                granularityFilter = this._activeFilters.granularity;
             }
 
             var sortByValue;
-            if (this.activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy &&
+            if (this._activeFilters.sortBy !== this.INACTIVE_FILTER_VALUE.sortBy &&
                 this.routeHasSortBy())
             {
-                sortByValue = this.activeFilters.sortBy;
+                sortByValue = this._activeFilters.sortBy;
             }
 
             var quality;
-            if (this.activeFilters.minQuality !== this.INACTIVE_FILTER_VALUE.minQuality &&
-                this.activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality &&
+            if (this._activeFilters.minQuality !== this.INACTIVE_FILTER_VALUE.minQuality &&
+                this._activeFilters.maxQuality !== this.INACTIVE_FILTER_VALUE.maxQuality &&
                 this.routeHasQualityFilter())
             {
-                quality = this.activeFilters.minQuality;
-                if (this.activeFilters.minQuality !== this.activeFilters.maxQuality) {
-                    quality += '-' + this.activeFilters.maxQuality;
+                quality = this._activeFilters.minQuality;
+                if (this._activeFilters.minQuality !== this._activeFilters.maxQuality) {
+                    quality += '-' + this._activeFilters.maxQuality;
                 }
             }
 
@@ -430,24 +500,24 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         };
 
         /**
-         * Informs the service that the filters have changed. This should always be
-         * called when modifying the activeFilters.
-         * TODO: we should only allow changing the filters over a method here.
+         * Sets the given filter values
+         * @param {{}} filterValues
          */
-        LocationFilterService.prototype.onFiltersChanged = function() {
-            // Update the URL and broadcast the change
-            this.updateFiltersInUrl();
+        LocationFilterService.prototype.setFilters = function(filterValues) {
+            this._validateAndSetFilters(filterValues);
+
+            // Broadcast the change
             $rootScope.$broadcast('veganaut.filters.changed');
         };
 
         /**
          * Opens the modal containing the form for editing the filters.
-         * TODO: This is currently unused, use again or remove
          */
         LocationFilterService.prototype.showFilterModal = function() {
             $uibModal.open({
                 template: '<vg-global-filters></vg-global-filters>' +
-                    '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
+                    '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()" vg-text="globalFilters.closeModal">' +
+                    '</vg-dismiss-modal-button>',
                 controller: 'vgSimpleModalCtrl',
                 controllerAs: '$ctrl',
                 bindToController: true
@@ -463,7 +533,7 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
         LocationFilterService.prototype.showSortModal = function() {
             $uibModal.open({
                 template: '<vg-global-sort vg-on-close="$ctrl.onClose()"></vg-global-sort>' +
-                '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
+                    '<vg-dismiss-modal-button vg-on-dismiss="$ctrl.onDismiss()"></vg-dismiss-modal-button>',
                 controller: 'vgSimpleModalCtrl',
                 controllerAs: '$ctrl',
                 bindToController: true

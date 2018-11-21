@@ -1,12 +1,10 @@
 // Base styles for the filters used on the map and list
 // Used by categorySelector and qualityFilter
 .ui-filter {
-    background-color: @colorLight;
-    padding: 0 10px;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    height: 42px;
     position: relative;
     z-index: 1;
 
@@ -16,7 +14,7 @@
         border-radius: 14px;
         background-color: @colorLight;
         padding: 0;
-        margin: 0 5px;
+        margin: 10px 5px 0;
     }
 
     .ui-filter__item {
@@ -31,6 +29,12 @@
         border: 1px solid transparent;
     }
 
+    .ui-filter__item--show-modal svg {
+        width: 16px;
+        height: 16px;
+        margin-top: 3px
+    }
+
     .ui-filter__item--active {
         border-color: @color-accent;
         background-color: @color-accent;
@@ -38,16 +42,7 @@
     }
 
     &.ui-filter--hover {
-        justify-content: space-around;
-        padding: 0;
-        background-color: transparent;
-        height: auto;
-        max-width: 350px;
-        margin: 0 auto;
-
-        .ui-filter__container {
-            margin: 10px 0 0;
-        }
+        justify-content: center;
     }
 
 }

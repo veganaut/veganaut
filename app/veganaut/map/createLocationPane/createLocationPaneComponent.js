@@ -95,8 +95,9 @@
         $scope.$watch('$ctrl.createLocation.newLocation.type', function() {
             if (angular.isDefined($ctrl.createLocation.newLocation.type)) {
                 // Show the type of location on the map that we are about to add
-                locationFilterService.activeFilters.type = $ctrl.createLocation.newLocation.type;
-                locationFilterService.onFiltersChanged();
+                locationFilterService.setFilters({
+                    type: $ctrl.createLocation.newLocation.type
+                });
             }
         });
     }

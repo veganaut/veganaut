@@ -1,0 +1,24 @@
+<div class="vg-global-filters">
+    <div class="vg-global-filters__header">
+        <vg-icon vg-name="'filter'" class="vg-global-filters__header__icon"></vg-icon>
+        <h1 class="vg-global-filters__header__title">{{ 'globalFilters.title' | translate }}</h1>
+    </div>
+
+    <div class="vg-global-filters__content">
+        <div ng-if="$ctrl.locationFilterService.routeHasTypeFilter() &&
+         $ctrl.locationFilterService.routeHasGranularityFilter()">
+            <h2 class="h4 vg-global-filters__filter-name">{{ 'globalFilters.category.title' | translate }}</h2>
+            <vg-category-selector vg-is-in-filter-modal="true"></vg-category-selector>
+        </div>
+
+        <div ng-if="$ctrl.locationFilterService.routeHasQualityFilter">
+            <h2 class="h4 vg-global-filters__filter-name">{{ 'globalFilters.quality.title' | translate }}</h2>
+            <vg-quality-filter vg-is-in-filter-modal="true"></vg-quality-filter>
+        </div>
+
+        <div ng-if="$ctrl.locationFilterService.routeHasRecentFilter()">
+            <h2 class="h4 vg-global-filters__filter-name">{{ 'globalFilters.recent.title' | translate }}</h2>
+            <vg-recent-filter vg-is-in-filter-modal="true"></vg-recent-filter>
+        </div>
+    </div>
+</div>

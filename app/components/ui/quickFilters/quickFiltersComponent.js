@@ -32,6 +32,9 @@
             if (angular.isDefined($ctrl.locationFilterService.getTypeFilterValue())) {
                 return 'category';
             }
+            else if (angular.isDefined($ctrl.locationFilterService.getRecentFilterValue())) {
+                return 'recent';
+            }
             else {
                 return 'quality';
             }

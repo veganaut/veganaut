@@ -8,7 +8,8 @@
     function categorySelectorComponent() {
         var component = {
             bindings: {
-                hover: '<?vgHover'
+                hover: '<?vgHover',
+                isInFilterModal: '<?vgIsInFilterModal'
             },
             controller: CategorySelectorController,
             templateUrl: 'components/ui/categorySelector/categorySelectorComponent.html'
@@ -25,13 +26,13 @@
         $ctrl.locationFilterService = locationFilterService;
 
         $ctrl.getPossibleTypeValues = function() {
-            return ['gastronomy', 'retail'];
+            return $ctrl.locationFilterService.POSSIBLE_ACTIVE_FILTERS.type;
         };
 
         $ctrl.getPossibleGranularityValues = function(type) {
-            // We only show both granularities if the type is active
-            if (type === $ctrl.locationFilterService.getTypeFilterValue()) {
-                return $ctrl.locationFilterService.POSSIBLE_FILTERS.granularity;
+            // We only show both granularities if the type is active or if we're in the filter modal
+            if (type === $ctrl.locationFilterService.getTypeFilterValue() || $ctrl.isInFilterModal === true) {
+                return $ctrl.locationFilterService.POSSIBLE_ACTIVE_FILTERS.granularity;
             }
             else {
                 return ['location'];
@@ -39,17 +40,10 @@
         };
 
         $ctrl.setFilter = function(type, granularity) {
-            locationFilterService.activeFilters.type = type;
-            locationFilterService.activeFilters.granularity = granularity;
-            locationFilterService.onFiltersChanged();
-        };
-
-        $ctrl.switchToQualityFilter = function() {
-            locationFilterService.activeFilters.type = 'anytype';
-            locationFilterService.activeFilters.granularity = 'location';
-            locationFilterService.activeFilters.minQuality = 4;
-            locationFilterService.activeFilters.maxQuality = 5;
-            locationFilterService.onFiltersChanged();
+            locationFilterService.setFilters({
+                type: type,
+                granularity: granularity
+            });
         };
     }
 })();
