@@ -383,7 +383,7 @@
     "howSorted": "Wie sollen die Ergebnisse sortiert werden?"
   },
   "globalFilters": {
-    "title": "Filtern nach",
+    "title": "Filtern nach...",
     "closeModal": "Schliessen",
     "recent": {
       "title": "Filtern nach letzter Aktivität",
@@ -395,10 +395,10 @@
       }
     },
     "category": {
-      "title": "Filtern nach Art der Location und Granularity"
+      "title": "Filtern nach Art der Location / des Angebots"
     },
     "quality": {
-      "title": "Filter for location quality",
+      "title": "Filtern nach Bewertung",
       "tooltip": "Zweiter Klick: Bereich auswählen"
     }
   },
