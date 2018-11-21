@@ -378,26 +378,27 @@
       "title": "Zoome herein um diese {{numLocations}} Locations anzuzeigen."
     }
   },
-  "globalFilters": {
+  "globalSort": {
     "title": "Sortieren nach",
-    "howSorted": "Wie sollen die Ergebnisse sortiert werden?",
+    "howSorted": "Wie sollen die Ergebnisse sortiert werden?"
+  },
+  "globalFilters": {
+    "title": "Filtern nach",
+    "closeModal": "Schliessen",
     "recent": {
       "title": "Filtern nach letzter Aktivität",
       "form": {
-        "anytime": "egal",
+        "year": "Jahr",
         "month": "Monat",
         "week": "Woche",
         "day": "Tag"
       }
     },
-    "type": {
-      "title": "Filtern nach Art der Location",
-      "form": {
-        "gastronomy": "Gastro",
-        "retail": "Shopping"
-      }
+    "category": {
+      "title": "Filtern nach Art der Location und Granularity"
     },
     "quality": {
+      "title": "Filter for location quality",
       "tooltip": "Zweiter Klick: Bereich auswählen"
     }
   },

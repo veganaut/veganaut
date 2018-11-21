@@ -378,26 +378,27 @@
       "title": "Zoom in to show these {{numLocations}} locations."
     }
   },
-  "globalFilters": {
+  "globalSort": {
     "title": "Sort by",
-    "howSorted": "How should the results be sorted?",
+    "howSorted": "How should the results be sorted?"
+  },
+  "globalFilters": {
+    "title": "Filter",
+    "closeModal": "Close",
     "recent": {
-      "title": "Filter for last activity",
+      "title": "Filter for recent updates",
       "form": {
-        "anytime": "Anytime",
+        "year": "Year",
         "month": "Month",
         "week": "Week",
         "day": "Day"
       }
     },
-    "type": {
-      "title": "Filter for location type",
-      "form": {
-        "gastronomy": "Gastronomy",
-        "retail": "Retail"
-      }
+    "category": {
+      "title": "Filter for location type and granularity"
     },
     "quality": {
+      "title": "Filter for location quality",
       "tooltip": "Second click: select range"
     }
   },
