@@ -386,7 +386,7 @@
     "title": "Filtern nach...",
     "closeModal": "Schliessen",
     "recent": {
-      "title": "Filtern nach letzter Aktivität",
+      "title": "Filtern nach News im Zeitraum...",
       "form": {
         "year": "Jahr",
         "month": "Monat",
@@ -398,7 +398,7 @@
       "title": "Filtern nach Art der Location / des Angebots"
     },
     "quality": {
-      "title": "Filtern nach Bewertung",
+      "title": "Filtern nach Bewertung der veganen Auswahl",
       "tooltip": "Zweiter Klick: Bereich auswählen"
     }
   },
