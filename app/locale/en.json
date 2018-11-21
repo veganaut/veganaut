@@ -475,35 +475,35 @@
       "name": "Locations",
       "title": "{{ count }} Locations",
       "noResults": "So far, nobody has enterd any locations in the given area.",
-      "noResultsFiltered": "All locations were filtered out.",
+      "noResultsFiltered": "No location has passed the filter.",
       "showMore": "Show more locations"
     },
     "gastronomyLocation": {
       "name": "Restaurants",
       "title": "{{ count }} restaurants",
       "noResults": "So far, nobody has enterd any restaurants in the given area.",
-      "noResultsFiltered": "All restaurants were filtered out.",
+      "noResultsFiltered": "No restaurant has passed the filter.",
       "showMore": "Show more restaurants"
     },
     "retailLocation": {
       "name": "Shops",
       "title": "{{ count }} shops",
       "noResults": "So far, nobody has enterd any shops in the given area.",
-      "noResultsFiltered": "All shops were filtered out.",
+      "noResultsFiltered": "No shop has passed the filter.",
       "showMore": "Show more shops"
     },
     "gastronomyProduct": {
       "name": "Meals",
       "title": "{{ count }} vegan meals",
       "noResults": "So far, nobody has enterd any meals in the given area.",
-      "noResultsFiltered": "All meals were filtered out.",
+      "noResultsFiltered": "No meal has passed the filter.",
       "showMore": "Show more meals"
     },
     "retailProduct": {
       "name": "Products",
       "title": "{{ count }} vegan products",
       "noResults": "So far, nobody has enterd any products in the given area.",
-      "noResultsFiltered": "All products were filtered out.",
+      "noResultsFiltered": "No product has passed the filter.",
       "showMore": "Show more products"
     }
   },
