@@ -383,10 +383,10 @@
     "howSorted": "How should the results be sorted?"
   },
   "globalFilters": {
-    "title": "Filter",
+    "title": "Filter...",
     "closeModal": "Close",
     "recent": {
-      "title": "Filter for recent updates",
+      "title": "Filter for news (within the chosen time period)",
       "form": {
         "year": "Year",
         "month": "Month",
@@ -395,10 +395,10 @@
       }
     },
     "category": {
-      "title": "Filter for location type and granularity"
+      "title": "Filter by location type / offer type"
     },
     "quality": {
-      "title": "Filter for location quality",
+      "title": "Filter by rating of vegan offer",
       "tooltip": "Second click: select range"
     }
   },
