@@ -383,22 +383,22 @@
     "howSorted": "Comment les résultats doivent-ils être triés?"
   },
   "globalFilters": {
-    "title": "Filter",
-    "closeModal": "Schliessen",
+    "title": "Filtrer par...",
+    "closeModal": "Fermer",
     "recent": {
-      "title": "Filtrer par activité récente",
+      "title": "Filtrer par nouvelles (dans la période sélectionnée)",
       "form": {
-        "year": "Year",
+        "year": "An",
         "month": "Mois",
         "week": "Semaine",
         "day": "Jour"
       }
     },
     "category": {
-      "title": "Filtrer par type d'endroit and granularity"
+      "title": "Filtrer par type d'endroit / d'offre"
     },
     "quality": {
-      "title": "Filter for location quality",
+      "title": "Filtrer par évaluation du choix végan",
       "tooltip": "Deuxième clic: Choisir gamme"
     }
   },
