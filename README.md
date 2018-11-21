@@ -33,18 +33,16 @@ file for the backend in `veganaut-backend/app/config.js`
 
 Start all the things (you have to start your PostgreSQL server before):
 
-    cd veganaut; ./scripts/run-all.sh
+    cd veganaut; npm run start:all
 
 Load the fixtures:
 
     cd veganaut-backend; node ./test/fixtures/basic.js
 
-The starting script does the following:
+The `start:all` script does the following:
 
 * Run `gulp dev` which creates the index.html file from index.ejs and compiles the less files
-    * Note that at the moment there is no gulp watch task, so if you change index.ejs or any of the less files,
-      you have to run `./node_modules/.bin/gulp dev` manually. If you use PHP/WebStorm,
-      there is also a file watcher that recompiles the less files.
+    * To watch the less files, you can either run `npm run watch:less` or use browsersync with `npm run serve`.
 * Start the frontend web server: [http://localhost:8000/](http://localhost:8000/)
 * Start the backend. [Supervisor](https://github.com/isaacs/node-supervisor) will automatically restart
 the backend when the code is edited.

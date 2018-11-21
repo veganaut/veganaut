@@ -30,11 +30,13 @@
   "scripts": {
     "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update",
     "test": "./node_modules/.bin/karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
-    "start:backend": "./scripts/run-all.sh",
-    "serve:dev": "gulp watch",
+    "start:fe": "./scripts/run-fe.sh",
+    "start:all": "./scripts/run-all.sh",
+    "serve:dev": "./node_modules/.bin/gulp watch",
     "serve": "npm run serve:dev",
     "watch:dev": "npm run serve:dev",
     "watch": "npm run watch:dev",
+    "watch:less": "./node_modules/.bin/gulp watchLess",
     "build": "gulp production"
   },
   "dependencies": {

@@ -19,6 +19,6 @@ node_modules/.bin/supervisor e2eBridge.js > ../veganaut/log/e2eBridge.log 2>&1 &
 
 cd ../veganaut
 
-echo "Go to http://localhost:8000/"
+echo "Veganaut dev server ready on http://localhost:8000/"
+echo "You might want to run 'npm run serve' to watch less/js/templates and have browsersync"
 wait
-

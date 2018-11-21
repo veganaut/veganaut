@@ -61,8 +61,7 @@ gulp.task('js', ['ngTemplateConcat'], function() {
     return gulp.src(files.js)
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('app/build/'))
-        ;
+        .pipe(gulp.dest('app/build/'));
 });
 
 // TODO: don't minify libs ourselves, use the provided min versions (when available)
@@ -70,8 +69,7 @@ gulp.task('jsLib', function() {
     return gulp.src(files.jsLib)
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('app/build/'))
-        ;
+        .pipe(gulp.dest('app/build/'));
 });
 
 gulp.task('less', function() {
@@ -122,8 +120,7 @@ gulp.task('ngTemplateConcat', function() {
         }))
 
         // Save it. TODO: would be better to pass it directly to the 'js' task
-        .pipe(gulp.dest('app/build/'))
-        ;
+        .pipe(gulp.dest('app/build/'));
 });
 
 // TODO: find better way to pass results between tasks
@@ -154,8 +151,7 @@ var createIndex = function(jsFiles) {
             jsFiles: jsFiles || [],
             bust: Date.now() % 100000 // TODO: make a better bust
         }))
-        .pipe(gulp.dest('app/'))
-        ;
+        .pipe(gulp.dest('app/'));
 };
 
 gulp.task('indexDev', ['listJsFiles'], function() {
@@ -175,7 +171,8 @@ gulp.task('serve-reload', ['indexDev'], function(done) {
 gulp.task('serve', ['less', 'indexDev'], function() {
     browserSync.init({
         port: 3001,
-        proxy: 'localhost:8000'
+        proxy: 'localhost:8000',
+        open: false
     });
 
     gulp.watch(files.watchLess, ['less']);
@@ -184,17 +181,12 @@ gulp.task('serve', ['less', 'indexDev'], function() {
 
 gulp.task('watch', ['serve']);
 
-gulp.task('simple-watch', function() {
-    // Watch less
-    gulp.watch(
-        files.watchLess,
-        ['less']
-    );
-    // Watch js
-    gulp.watch(
-        [files.watchJs.concat(files.watchTemplates)],
-        ['js']
-    );
+gulp.task('watchLess', function() {
+    gulp.watch(files.watchLess, ['less']);
+});
+
+gulp.task('watchJs', function() {
+    gulp.watch([files.watchJs.concat(files.watchTemplates)], ['js']);
 });
 
 gulp.task('dev', ['less', 'indexDev']);
