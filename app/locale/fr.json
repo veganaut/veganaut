@@ -373,27 +373,18 @@
       "more": "{{ count }} autres"
     },
     "news": {
-      "AddLocation": "Location neu hinzugefügt",
-      "AddProduct": "Neu hinzugefügt:",
-      "BuyProduct": "Etwas veganes wurde gekauft",
-      "GiveFeedback": {
-        "yes": "Feedback gegeben",
-        "maybe": "Vielleicht ein Feedback gegeben"
-      },
-      "MentionVegan": {
-        "yes": "Vegan erwaehnt",
-        "maybe": "Vielleicht vegan erwaehnt"
-      },
-      "RateLocationQuality": "Neue Bewertung:",
-      "RateProduct": "Neue Bewertung:",
-      "SetLocationDescription": "Neue Beschreibung:",
+      "AddLocation": "Cet endroit a été nouvellement ajouté.",
+      "AddProduct": "Nouveau produit ajouté:",
+      "RateLocationQuality": "Nouvelle évaluation globale du choix végan ici:",
+      "RateProduct": "Nouvelle évaluation d'un produit:",
+      "SetLocationDescription": "Nouvelle description de cet endroit:",
       "SetLocationExistence": {
-        "existing": "Location als normal geöffnet markiert",
-        "closedDown": "Location als permanent geschlossen markiert",
-        "wronglyEntered": "Location als fälschlicherweise eingetragen markiert"
+        "existing": "Cet endroit a été marqué \"en opération\".",
+        "closedDown": "Cet endroit a été marqué \"fermé en permanence\".",
+        "wronglyEntered": "Cet endroit a été marqué \"entré par erreur\"."
       },
-      "TagLocation": "Neue Tags:",
-      "moreNews": "Und {{num}} weitere Neuigkeiten"
+      "TagLocation": "Nouvelles tags:",
+      "moreNews": "Et {{num}} autres nouvelles"
     }
   },
   "locationCluster": {
