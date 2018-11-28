@@ -386,19 +386,25 @@
     "title": "Filtrer par...",
     "closeModal": "Fermer",
     "recent": {
-      "title": "Filtrer par nouvelles (dans la période sélectionnée)",
+      "title": "...nouvelles",
       "form": {
         "year": "An",
         "month": "Mois",
         "week": "Semaine",
-        "day": "Jour"
+        "day": "Aujourd'hui"
+      },
+      "tooltip": {
+        "year": "Toutes les endroits avec nouvelles cet an",
+        "month": "Toutes les endroits avec nouvelles ce mois",
+        "week": "Toutes les endroits avec nouvelles cette semaine",
+        "day": "Toutes les endroits avec nouvelles d'ajourd'hui"
       }
     },
     "category": {
-      "title": "Filtrer par type d'endroit / d'offre"
+      "title": "...type d'endroit / d'offre"
     },
     "quality": {
-      "title": "Filtrer par évaluation du choix végan",
+      "title": "...évaluation du choix végan",
       "tooltip": "Deuxième clic: Choisir gamme"
     }
   },
