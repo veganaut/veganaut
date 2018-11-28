@@ -68,10 +68,10 @@ angular.module('veganaut.app.location').factory('locationFilterService', [
          */
         LocationFilterService.prototype.POSSIBLE_ACTIVE_FILTERS = {
             recent: [
-                'year',
-                'month',
+                'day',
                 'week',
-                'day'
+                'month',
+                'year'
             ],
             type: [
                 'gastronomy',
