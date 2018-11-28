@@ -386,19 +386,25 @@
     "title": "Filtern nach...",
     "closeModal": "Schliessen",
     "recent": {
-      "title": "Filtern nach News im Zeitraum...",
+      "title": "...Neuigkeiten",
       "form": {
         "year": "Jahr",
         "month": "Monat",
         "week": "Woche",
-        "day": "Tag"
+        "day": "Heute"
+      },
+      "tooltip": {
+        "year": "Alle Neuigkeiten des Jahres",
+        "month": "Alle Neuigkeiten des Monats",
+        "week": "Alle Neuigkeiten der Woche",
+        "day": "Alle Neuigkeiten des Tages"
       }
     },
     "category": {
-      "title": "Filtern nach Art der Location / des Angebots"
+      "title": "...Art der Location / des Angebots"
     },
     "quality": {
-      "title": "Filtern nach Bewertung der veganen Auswahl",
+      "title": "...Bewertung der veganen Auswahl",
       "tooltip": "Zweiter Klick: Bereich auswählen"
     }
   },
