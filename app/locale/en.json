@@ -386,19 +386,25 @@
     "title": "Filter...",
     "closeModal": "Close",
     "recent": {
-      "title": "Filter for news (within the chosen time period)",
+      "title": "...for news",
       "form": {
         "year": "Year",
         "month": "Month",
         "week": "Week",
-        "day": "Day"
+        "day": "Today"
+      },
+      "tooltip": {
+        "year": "All locations with news this year",
+        "month": "All locations with news this month",
+        "week": "All locations with news this week",
+        "today": "All locations with news today"
       }
     },
     "category": {
-      "title": "Filter by location type / offer type"
+      "title": "...by location type / offer type"
     },
     "quality": {
-      "title": "Filter by rating of vegan offer",
+      "title": "...by rating of vegan offer",
       "tooltip": "Second click: select range"
     }
   },
