@@ -371,6 +371,29 @@
       "label": "Infos by",
       "and": "and",
       "more": "{{ count }} more"
+    },
+    "news": {
+      "AddLocation": "Location neu hinzugefügt",
+      "AddProduct": "Neu hinzugefügt:",
+      "BuyProduct": "Etwas veganes wurde gekauft",
+      "GiveFeedback": {
+        "yes": "Feedback gegeben",
+        "maybe": "Vielleicht ein Feedback gegeben"
+      },
+      "MentionVegan": {
+        "yes": "Vegan erwaehnt",
+        "maybe": "Vielleicht vegan erwaehnt"
+      },
+      "RateLocationQuality": "Neue Bewertung:",
+      "RateProduct": "Neue Bewertung:",
+      "SetLocationDescription": "Neue Beschreibung:",
+      "SetLocationExistence": {
+        "existing": "Location als normal geöffnet markiert",
+        "closedDown": "Location als permanent geschlossen markiert",
+        "wronglyEntered": "Location als fälschlicherweise eingetragen markiert"
+      },
+      "TagLocation": "Neue Tags:",
+      "moreNews": "Und {{num}} weitere Neuigkeiten"
     }
   },
   "locationCluster": {
