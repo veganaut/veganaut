@@ -373,27 +373,18 @@
       "more": "{{ count }} more"
     },
     "news": {
-      "AddLocation": "Location neu hinzugefügt",
-      "AddProduct": "Neu hinzugefügt:",
-      "BuyProduct": "Etwas veganes wurde gekauft",
-      "GiveFeedback": {
-        "yes": "Feedback gegeben",
-        "maybe": "Vielleicht ein Feedback gegeben"
-      },
-      "MentionVegan": {
-        "yes": "Vegan erwaehnt",
-        "maybe": "Vielleicht vegan erwaehnt"
-      },
-      "RateLocationQuality": "Neue Bewertung:",
-      "RateProduct": "Neue Bewertung:",
-      "SetLocationDescription": "Neue Beschreibung:",
+      "AddLocation": "This location was newly added.",
+      "AddProduct": "Newly added product:",
+      "RateLocationQuality": "New overall rating of the vegan offer here:",
+      "RateProduct": "New product rating:",
+      "SetLocationDescription": "New description of this location:",
       "SetLocationExistence": {
-        "existing": "Location als normal geöffnet markiert",
-        "closedDown": "Location als permanent geschlossen markiert",
-        "wronglyEntered": "Location als fälschlicherweise eingetragen markiert"
+        "existing": "This location was marked as \"still in business\".",
+        "closedDown": "This location was marked as \"permanently closed down\".",
+        "wronglyEntered": "This location was marked as \"entered by mistake\"."
       },
-      "TagLocation": "Neue Tags:",
-      "moreNews": "Und {{num}} weitere Neuigkeiten"
+      "TagLocation": "New tags:",
+      "moreNews": "And {{num}} other changes"
     }
   },
   "locationCluster": {
