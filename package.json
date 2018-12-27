@@ -4,8 +4,8 @@
   "private": true,
   "repository": "https://github.com/veganaut/veganaut",
   "devDependencies": {
+    "angular-mocks": "1.5.11",
     "autoprefixer": "7.1.6",
-    "bower": "1.6.3",
     "browser-sync": "^2.26.3",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
@@ -28,18 +28,31 @@
     "protractor": "4.0.14"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/bower install; ./node_modules/protractor/bin/webdriver-manager update",
-    "test": "./node_modules/.bin/karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
+    "postinstall": "webdriver-manager update",
+    "test": "karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
     "start:fe": "./scripts/run-fe.sh",
     "start:all": "./scripts/run-all.sh",
-    "serve:dev": "./node_modules/.bin/gulp watch",
+    "serve:dev": "/gulp watch",
     "serve": "npm run serve:dev",
     "watch:dev": "npm run serve:dev",
     "watch": "npm run watch:dev",
-    "watch:less": "./node_modules/.bin/gulp watchLess",
+    "watch:less": "gulp watchLess",
     "build": "gulp production"
   },
   "dependencies": {
+    "angular": "1.5.11",
+    "angular-leaflet-directive": "0.9.0",
+    "angular-loading-bar": "0.8.0",
+    "angular-route": "1.5.11",
+    "angular-sanitize": "1.5.11",
+    "angular-translate": "2.13.1",
+    "angular-translate-loader-static-files": "2.13.1",
+    "angular-ui-bootstrap": "0.14.1",
+    "bootstrap": "3.3.5",
+    "gsap": "^2.0.2",
+    "leaflet": "0.7.5",
+    "lodash": "3.10.1",
+    "slug": "^0.9.3",
     "spiritjs": "2.2.4"
   }
 }
