@@ -159,7 +159,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                     lng: newLocation.lng,
                     type: newLocation.type
                 })
-                    .success(function(data) {
+                    .then(function(data) {
                         // Update the location, we broadcast removal and addition because the id will change
                         $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
                         newLocation.update(data);
@@ -180,8 +180,7 @@ angular.module('veganaut.app.map').factory('LocationSet', [
 
                         // Go the the location details page
                         $location.url(newLocation.getUrl(true));
-                    })
-                    .error(function(data) {
+                    }, function(data) {
                         // Broadcast removal and show alert
                         $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
                         alertService.addAlert('Failed to add location: ' + data.error, 'danger');

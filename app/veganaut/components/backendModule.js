@@ -41,7 +41,7 @@
                 }
 
                 return $http.post(backendUrl + '/person', postData)
-                    .success(function(data) {
+                    .then(function(data) {
                         sessionService.createSession(data.sessionId);
                     });
             };
@@ -55,7 +55,7 @@
              */
             BackendService.prototype.login = function(email, password) {
                 return $http.post(backendUrl + '/session', {email: email, password: password})
-                    .success(function(data) {
+                    .then(function(data) {
                         sessionService.createSession(data.sessionId);
                     });
             };

@@ -43,7 +43,7 @@
 
                 // Do the registration
                 backendService.register(email, nickname, locale)
-                    .success(function() {
+                    .then(function() {
                         // Show the success message longer than usual (it's a longer text)
                         alertService.addAlert($translate.instant('message.registration.success', {
                             name: nickname
@@ -56,8 +56,7 @@
 
                         // Go to the panorama
                         $location.url('/panorama/');
-                    })
-                    .error(function(data) {
+                    }, function(data) {
                         alertService.addAlert($translate.instant('message.registration.error', {
                             reason: data.error
                         }), 'danger');

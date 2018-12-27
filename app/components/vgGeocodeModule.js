@@ -223,7 +223,7 @@
                         format: 'json'
                     }
                 })
-                .success(function(data) {
+                .then(function(data) {
                     var results = [];
                     for (var i = 0; i < data.length; i += 1) {
                         // Check if we should filter. If yes, don't add buildings to the results.
@@ -234,8 +234,8 @@
                         }
                     }
                     deferred.resolve(results);
-                })
-                .error(function(data) {
+                },
+                function(data) {
                     deferred.reject(data);
                 })
             ;
@@ -264,7 +264,7 @@
                         format: 'json'
                     }
                 })
-                .success(function(data) {
+                .then(function(data) {
                     // API doesn't use correct HTTP return codes for errors
                     if (angular.isObject(data) && angular.isString(data.error)) {
                         deferred.reject(data);
@@ -273,8 +273,7 @@
                         var result = new GeocodeResult(data);
                         deferred.resolve(result);
                     }
-                })
-                .error(function(data) {
+                }, function(data) {
                     deferred.reject(data);
                 })
             ;
@@ -305,7 +304,7 @@
                             format: 'json'
                         }
                     })
-                    .success(function(data) {
+                    .then(function(data) {
                         // TODO: De-duplicate this with the reverseSearch method
                         // API doesn't use correct HTTP return codes for errors
                         if (angular.isObject(data) && angular.isString(data.error)) {
@@ -315,8 +314,7 @@
                             var result = new GeocodeResult(data);
                             deferred.resolve(result);
                         }
-                    })
-                    .error(function(data) {
+                    }, function(data) {
                         deferred.reject(data);
                     })
                 ;
