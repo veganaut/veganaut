@@ -4,7 +4,7 @@
   "private": true,
   "repository": "https://github.com/veganaut/veganaut",
   "devDependencies": {
-    "angular-mocks": "1.5.11",
+    "angular-mocks": "^1.7.5",
     "autoprefixer": "7.1.6",
     "browser-sync": "^2.26.3",
     "gulp": "3.9.0",
