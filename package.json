@@ -29,7 +29,7 @@
   },
   "scripts": {
     "postinstall": "webdriver-manager update",
-    "test": "karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
+    "test": "npm run dev && karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
     "start:fe": "./scripts/run-fe.sh",
     "start:all": "./scripts/run-all.sh",
     "serve:dev": "/gulp watch",
@@ -37,7 +37,8 @@
     "watch:dev": "npm run serve:dev",
     "watch": "npm run watch:dev",
     "watch:less": "gulp watchLess",
-    "build": "gulp production"
+    "build": "gulp production",
+    "build:dev": "gulp dev"
   },
   "dependencies": {
     "angular": "1.5.11",
