@@ -29,7 +29,7 @@
   },
   "scripts": {
     "postinstall": "webdriver-manager update",
-    "test": "npm run dev && karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
+    "test": "npm run build:dev && karma start config/karma-coverage.conf.js --single-run --browsers Firefox",
     "start:fe": "./scripts/run-fe.sh",
     "start:all": "./scripts/run-all.sh",
     "serve:dev": "/gulp watch",
