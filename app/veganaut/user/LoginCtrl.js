@@ -14,10 +14,11 @@
                             angularPiwik.track('login', 'login.success');
                             $scope.goToView('/panorama/');
                         }
-                    }, function (data) {
+                    }, function (response) {
+                        var data = response.data || {};
                         angularPiwik.track('login', 'login.error');
                         alertService.addAlert($translate.instant('message.login.error', {
-                            reason: data.error
+                            reason: data.error || ''
                         }), 'danger');
                     })
                 ;

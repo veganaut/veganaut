@@ -57,9 +57,10 @@
             BackendService.prototype.login = function(email, password) {
                 return $http.post(backendUrl + '/session', {email: email, password: password})
                     .then(function (response) {
-                        var data = response.data;
-                        sessionService.createSession(data.sessionId);
-                    });
+                            var data = response.data;
+                            sessionService.createSession(data.sessionId);
+                        }
+                    );
             };
 
             /**
