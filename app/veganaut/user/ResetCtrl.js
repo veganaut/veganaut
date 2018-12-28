@@ -24,7 +24,7 @@
             backendService.isValidToken(token)
                 .then(function() {
                     $scope.validToken = true;
-                }).error(function() {
+                }, function() {
                     alertService.addAlert($translate.instant('message.resetPassword.invalidToken'), 'danger');
                     $location.url('/forgot');
                 })
