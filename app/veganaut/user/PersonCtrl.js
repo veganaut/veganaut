@@ -8,7 +8,7 @@
             }
 
             var personId = $routeParams.personId;
-            backendService.getPerson(personId).success(function(person) {
+            backendService.getPerson(personId).then(function(person) {
                 $scope.person = person;
             });
         }

@@ -22,7 +22,7 @@
 
             // Check if the token is valid
             backendService.isValidToken(token)
-                .success(function() {
+                .then(function() {
                     $scope.validToken = true;
                 }).error(function() {
                     alertService.addAlert($translate.instant('message.resetPassword.invalidToken'), 'danger');
@@ -32,11 +32,10 @@
 
             $scope.submit = function () {
                 backendService.resetPassword(token, $scope.form.password)
-                    .success(function() {
+                    .then(function() {
                         alertService.addAlert($translate.instant('message.resetPassword.success'), 'success');
                         $location.url('/login');
-                    })
-                    .error(function(response) {
+                    }, function(response) {
                         alertService.addAlert(response.error, 'danger');
                     })
                 ;

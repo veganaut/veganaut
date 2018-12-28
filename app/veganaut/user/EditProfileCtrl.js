@@ -23,10 +23,9 @@
                 }
 
                 playerService.updateMe(form)
-                    .success(function() {
+                    .then(function() {
                         alertService.addAlert($translate.instant('message.profile.update.success'), 'success');
-                    })
-                    .error(function() {
+                    }, function() {
                         alertService.addAlert($translate.instant('message.profile.update.error'), 'danger');
                     })
                 ;

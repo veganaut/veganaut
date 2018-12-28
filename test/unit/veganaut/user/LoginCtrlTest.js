@@ -12,10 +12,10 @@ describe('LoginCtrl', function() {
         backendMock = {
             login: function() {
                 var req = {
-                    success: function() {
+                    then: function() {
                         return req;
                     },
-                    error: function() {
+                    catch: function() {
                         return req;
                     }
                 };

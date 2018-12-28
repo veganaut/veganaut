@@ -34,19 +34,22 @@ var files = {
         'app/veganaut/**/*.js'
     ],
     jsLib: [
-        'app/lib/lodash/lodash.js',
-        'app/lib/angular/angular.js',
-        'app/lib/leaflet/dist/leaflet-src.js',
-        'app/lib/angular-route/angular-route.js',
-        'app/lib/angular-sanitize/angular-sanitize.js',
-        'app/lib/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
-        'app/lib/angular-loading-bar/build/loading-bar.js',
-        'app/lib/angular-simple-logger/dist/angular-simple-logger.light.js', // Needed for angular-leaflet-directive
-        'app/lib/angular-leaflet-directive/dist/angular-leaflet-directive.js',
-        'app/lib/angular-translate/angular-translate.js',
-        'app/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-        'app/lib/slug/slug.js',
+        'node_modules/lodash/index.js',
+        'node_modules/angular/angular.js',
+        'node_modules/leaflet/dist/leaflet-src.js',
+        'node_modules/angular-route/angular-route.js',
+        'node_modules/angular-sanitize/angular-sanitize.js',
+        'node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+        'node_modules/angular-loading-bar/build/loading-bar.js',
+        'node_modules/angular-simple-logger/dist/angular-simple-logger.light.js', // Needed for angular-leaflet-directive
+        'node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js',
+        'node_modules/angular-translate/dist/angular-translate.js',
+        'node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+        'node_modules/slug/slug.js',
         'node_modules/spiritjs/dist/spirit.min.js'
+    ],
+    cssLib: [
+        'node_modules/bootstrap/dist/css/bootstrap.min.css'
     ],
     less: 'app/main.less',
     templates: 'app/**/*.tpl.html',
@@ -70,6 +73,16 @@ gulp.task('jsLib', function() {
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('app/build/'));
+});
+
+gulp.task('jsLibUnbundled', function() {
+    return gulp.src(files.jsLib, { base: './node_modules/' })
+        .pipe(gulp.dest('app/lib/'));
+});
+
+gulp.task('cssLibUnbundled', function() {
+    return gulp.src(files.cssLib, { base: './node_modules/' })
+        .pipe(gulp.dest('app/lib/'));
 });
 
 gulp.task('less', function() {
@@ -133,7 +146,7 @@ gulp.task('listJsFiles', function() {
     var basePath = __dirname + '/app';
     var nodeModulesBasePath = __dirname + '/node_modules';
     return gulp.src([].concat(files.jsLib, files.js))
-        .pipe(tap(function(file) {
+        .pipe(tap(function (file) {
             if (file.path.indexOf(basePath) === 0) {
                 webPathJsFiles.push(file.path.slice(basePath.length));
             }
@@ -189,6 +202,6 @@ gulp.task('watchJs', function() {
     gulp.watch([files.watchJs.concat(files.watchTemplates)], ['js']);
 });
 
-gulp.task('dev', ['less', 'indexDev']);
+gulp.task('dev', ['cssLibUnbundled', 'jsLibUnbundled', 'less', 'indexDev']);
 
-gulp.task('production', ['js', 'jsLib', 'less', 'indexProduction']);
+gulp.task('production', ['js', 'jsLib', 'cssLibUnbundled', 'less', 'indexProduction']);

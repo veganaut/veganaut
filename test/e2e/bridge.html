@@ -14,7 +14,7 @@ angular.module('e2eBridge', [])
         // e.g. #/basic for the basic fixture
         var fixture = $location.path();
         $http.post('http://localhost:3333/fixtures' + fixture)
-            .error(function(data, code) {
+            .then(null, function(data, code) {
                 console.log(code, data);
             })
         ;

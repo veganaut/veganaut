@@ -146,7 +146,7 @@
                     this._requestInProgressDeferred = $q.defer();
 
                     this._requestInProgress = backendService.getLocations(params);
-                    this._requestInProgress.then(function(data) {
+                    this._requestInProgress.then(function(response) {
                         // No longer requesting
                         this._requestInProgress = false;
 
@@ -155,7 +155,7 @@
                         this._currentQueryId = this._requestInProgressQueryId;
 
                         // Handle result
-                        this._handleLocationResult(data.data, this._requestInProgressGranularity);
+                        this._handleLocationResult(response.data, this._requestInProgressGranularity);
 
                         // Resolve deferred
                         this._requestInProgressDeferred.resolve();

@@ -10,10 +10,9 @@
 
             $scope.submit = function() {
                 backendService.sendPasswordResetMail($scope.form.email)
-                    .success(function() {
+                    .then(function() {
                         alertService.addAlert($translate.instant('message.resetPassword.emailSent'), 'success');
-                    })
-                    .error(function(response) {
+                    }, function(response) {
                         alertService.addAlert(response.error, 'danger');
                     })
                 ;

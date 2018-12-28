@@ -9,16 +9,16 @@
 
             $scope.submit = function() {
                 backendService.login($scope.form.email, $scope.form.password)
-                    .success(function () {
+                    .then(function () {
                         if (backendService.isLoggedIn()) {
                             angularPiwik.track('login', 'login.success');
                             $scope.goToView('/panorama/');
                         }
-                    })
-                    .error(function (data) {
+                    }, function (response) {
+                        var data = response.data || {};
                         angularPiwik.track('login', 'login.error');
                         alertService.addAlert($translate.instant('message.login.error', {
-                            reason: data.error
+                            reason: data.error || ''
                         }), 'danger');
                     })
                 ;

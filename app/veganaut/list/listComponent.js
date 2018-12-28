@@ -37,7 +37,8 @@
             case 'location':
                 return locationService
                     .getLocationsByRadius(lat, lng, radius, limit, skip, addressType)
-                    .then(function(data) {
+                    .then(function (response) {
+                        var data = response.data;
                         return {
                             totalItems: data.totalLocations,
                             items: data.locations

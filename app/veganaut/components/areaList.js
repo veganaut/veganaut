@@ -106,7 +106,8 @@
                     limit: NUM_ITEMS_SHOWN_STEP,
                     skip: $ctrl.list.length,
                     addressType: $ctrl.addressType
-                }).then(function(data) {
+                }).then(function (response) {
+                    var data = response.data;
                     $ctrl.totalItems = data.totalItems;
                     $ctrl.list = $ctrl.list.concat(data.items);
                 });

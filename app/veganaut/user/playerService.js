@@ -112,8 +112,8 @@
             var that = this;
             that._canReloadData = false;
             backendService.getMe()
-                .success(that._setPlayerData.bind(that))
-                .error(function() {
+                .then(that._setPlayerData.bind(that),
+                function() {
                     that._resetMe();
                     // TODO: handle error
                 })
@@ -131,7 +131,7 @@
          */
         PlayerService.prototype.updateMe = function(newPlayerData) {
             return backendService.updateMe(newPlayerData)
-                .success(this._setPlayerData.bind(this))
+                .then(this._setPlayerData.bind(this))
             ;
         };
 
