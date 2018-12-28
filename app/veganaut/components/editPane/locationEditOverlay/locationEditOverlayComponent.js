@@ -66,7 +66,8 @@
 
             // Handle response from backend
             submitPromise
-                .then(function(data) {
+                .then(function (response) {
+                    var data = response.data;
                     // Update location if required by this task
                     if ($ctrl.task.updatePropertyAfterSubmit) {
                         $ctrl.location[$ctrl.task.updatePropertyAfterSubmit] = data.outcome[$ctrl.task.mainOutcomeName];
@@ -90,7 +91,8 @@
                 .then(function() {
                     $ctrl.onClose();
                 })
-                .catch(function(data) {
+                .catch(function (response) {
+                    var data = response.data;
                     alertService.addAlert($translate.instant('message.locationTask.error') + data.error, 'danger');
                 })
                 .finally(function() {

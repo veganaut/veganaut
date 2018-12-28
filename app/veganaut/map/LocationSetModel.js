@@ -159,33 +159,37 @@ angular.module('veganaut.app.map').factory('LocationSet', [
                     lng: newLocation.lng,
                     type: newLocation.type
                 })
-                    .then(function(data) {
-                        // Update the location, we broadcast removal and addition because the id will change
-                        $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
-                        newLocation.update(data);
+                    .then(function (response) {
+                            var data = response.data;
+                            // Update the location, we broadcast removal and addition because the id will change
+                            $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
+                            newLocation.update(data);
 
-                        // The location is no longer being edited
-                        newLocation.setEditing(false);
+                            // The location is no longer being edited
+                            newLocation.setEditing(false);
 
-                        // Add to list
-                        // TODO: make a helper method to add locations and locationClusters to not forget to update allLocationItems
-                        that.totalLocations += 1;
-                        that.locations[newLocation.id] = newLocation;
-                        that.allLocationItems[newLocation.id] = newLocation;
+                            // Add to list
+                            // TODO: make a helper method to add locations and locationClusters to not forget to update allLocationItems
+                            that.totalLocations += 1;
+                            that.locations[newLocation.id] = newLocation;
+                            that.allLocationItems[newLocation.id] = newLocation;
 
-                        // Broadcast the new final location and add an alert
-                        $rootScope.$broadcast('veganaut.locationSet.locationItem.added', newLocation);
-                        alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
-                        angularPiwik.track('map.addLocation', 'finish');
+                            // Broadcast the new final location and add an alert
+                            $rootScope.$broadcast('veganaut.locationSet.locationItem.added', newLocation);
+                            alertService.addAlert('Added new location "' + newLocation.name + '"', 'success');
+                            angularPiwik.track('map.addLocation', 'finish');
 
-                        // Go the the location details page
-                        $location.url(newLocation.getUrl(true));
-                    }, function(data) {
-                        // Broadcast removal and show alert
-                        $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
-                        alertService.addAlert('Failed to add location: ' + data.error, 'danger');
-                        angularPiwik.track('map.addLocation', 'submitError');
-                    })
+                            // Go the the location details page
+                            $location.url(newLocation.getUrl(true));
+                        }, function (response) {
+                            var data = response.data;
+
+                            // Broadcast removal and show alert
+                            $rootScope.$broadcast('veganaut.locationSet.locationItem.removed', newLocation);
+                            alertService.addAlert('Failed to add location: ' + data.error, 'danger');
+                            angularPiwik.track('map.addLocation', 'submitError');
+                        }
+                    )
                 ;
             }
             else {

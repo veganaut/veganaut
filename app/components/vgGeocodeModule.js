@@ -223,21 +223,23 @@
                         format: 'json'
                     }
                 })
-                .then(function(data) {
-                    var results = [];
-                    for (var i = 0; i < data.length; i += 1) {
-                        // Check if we should filter. If yes, don't add buildings to the results.
-                        if (filterBuildings === false ||
-                            OSM_BUILDING_CLASSES.indexOf(data[i].class) === -1)
-                        {
-                            results.push(new GeocodeResult(data[i]));
+                .then(function (response) {
+                        var data = response.data;
+                        var results = [];
+                        for (var i = 0; i < data.length; i += 1) {
+                            // Check if we should filter. If yes, don't add buildings to the results.
+                            if (filterBuildings === false ||
+                                OSM_BUILDING_CLASSES.indexOf(data[i].class) === -1)
+                            {
+                                results.push(new GeocodeResult(data[i]));
+                            }
                         }
+                        deferred.resolve(results);
+                    }, function (response) {
+                        var data = response.data;
+                        deferred.reject(data);
                     }
-                    deferred.resolve(results);
-                },
-                function(data) {
-                    deferred.reject(data);
-                })
+                )
             ;
 
             return deferred.promise;
@@ -264,18 +266,21 @@
                         format: 'json'
                     }
                 })
-                .then(function(data) {
-                    // API doesn't use correct HTTP return codes for errors
-                    if (angular.isObject(data) && angular.isString(data.error)) {
+                .then(function (response) {
+                        var data = response.data;
+                        // API doesn't use correct HTTP return codes for errors
+                        if (angular.isObject(data) && angular.isString(data.error)) {
+                            deferred.reject(data);
+                        }
+                        else {
+                            var result = new GeocodeResult(data);
+                            deferred.resolve(result);
+                        }
+                    }, function (response) {
+                        var data = response.data;
                         deferred.reject(data);
                     }
-                    else {
-                        var result = new GeocodeResult(data);
-                        deferred.resolve(result);
-                    }
-                }, function(data) {
-                    deferred.reject(data);
-                })
+                )
             ;
 
             return deferred.promise;
@@ -304,19 +309,22 @@
                             format: 'json'
                         }
                     })
-                    .then(function(data) {
-                        // TODO: De-duplicate this with the reverseSearch method
-                        // API doesn't use correct HTTP return codes for errors
-                        if (angular.isObject(data) && angular.isString(data.error)) {
+                    .then(function (response) {
+                            var data = response.data;
+                            // TODO: De-duplicate this with the reverseSearch method
+                            // API doesn't use correct HTTP return codes for errors
+                            if (angular.isObject(data) && angular.isString(data.error)) {
+                                deferred.reject(data);
+                            }
+                            else {
+                                var result = new GeocodeResult(data);
+                                deferred.resolve(result);
+                            }
+                        }, function (response) {
+                            data = response.data;
                             deferred.reject(data);
                         }
-                        else {
-                            var result = new GeocodeResult(data);
-                            deferred.resolve(result);
-                        }
-                    }, function(data) {
-                        deferred.reject(data);
-                    })
+                    )
                 ;
             }
             else {

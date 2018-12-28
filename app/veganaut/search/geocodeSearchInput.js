@@ -67,8 +67,8 @@
 
                 // Lookup the search string, finding all results, also buildings (shops, ...)
                 geocodeService.search(vm.input, 5, false)
-                    .then(function(data) {
-                        vm.results = data;
+                    .then(function(response) {
+                        vm.results = response.data;
                     })
                 ;
             });

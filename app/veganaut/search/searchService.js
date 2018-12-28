@@ -147,7 +147,8 @@ angular.module('veganaut.app.search').factory('searchService', [
                 that.searchString,
                 DEFAULT_NUM_RESULTS + 1
             );
-            geoPromise.then(function(data) {
+            geoPromise.then(function (response) {
+                var data = response.data;
                 that.geoResults = data;
 
                 // Check if we got enough results to show a "more" button
