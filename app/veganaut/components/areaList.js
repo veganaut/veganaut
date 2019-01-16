@@ -17,10 +17,10 @@
     };
 
     var areaListCtrl = [
-        '$scope', 'constants', 'angularPiwik', 'Location', 'geocodeService',
-        'areaService', 'locationFilterService', 'locationService', 'pageTitleService',
-        function($scope, constants, angularPiwik, Location, geocodeService,
-            areaService, locationFilterService, locationService, pageTitleService)
+        '$scope', 'constants', 'angularPiwik', 'Location', 'areaService',
+        'locationFilterService', 'locationService', 'pageTitleService',
+        function($scope, constants, angularPiwik, Location, areaService,
+            locationFilterService, locationService, pageTitleService)
         {
             var $ctrl = this;
 

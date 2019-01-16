@@ -2,8 +2,8 @@
 
 /* global describe, beforeEach, it, expect, inject, jasmine */
 describe('areaService.', function() {
-    var areaService, backendService, localeService;
-    var $rootScope, $route, localStorage, getGeoIPDeferred;
+    var areaService, backendService, localeService, geocodeService;
+    var $rootScope, $route, $location, localStorage, getGeoIPDeferred;
     beforeEach(module('veganaut.app.main', 'veganaut.app.map'));
 
     beforeEach(module(function($provide) {
@@ -18,10 +18,15 @@ describe('areaService.', function() {
             getItem: jasmine.createSpy('getItem'),
             setItem: jasmine.createSpy('setItem')
         };
+        geocodeService = {};
         $route = {
             current: {
                 vgRouteName: ''
             }
+        };
+        $location = {
+            replace: jasmine.createSpy('$location.replace'),
+            search: jasmine.createSpy('$location.search').andReturn({})
         };
 
         $provide.value('$window', {
@@ -29,6 +34,8 @@ describe('areaService.', function() {
         });
         $provide.value('localeService', localeService);
         $provide.value('backendService', backendService);
+        $provide.value('geocodeService', geocodeService);
+        $provide.value('$location', $location);
         $provide.value('$route', $route);
     }));
 
@@ -48,10 +55,12 @@ describe('areaService.', function() {
 
             inject(function(areaService) {
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautArea');
+                expect($location.search).not.toHaveBeenCalled();
                 expect(backendService.getGeoIP).not.toHaveBeenCalled();
 
                 var resolved = false;
-                areaService.getCurrentArea().then(function(area) {
+                areaService.initialised().then(function() {
+                    var area = areaService.getCurrentArea();
                     resolved = true;
                     expect(area.getLat()).toBe(10.5, 'correct lat');
                     expect(area.getLng()).toBe(20.1, 'correct lng');
@@ -64,13 +73,43 @@ describe('areaService.', function() {
             });
         });
 
-        it('initialises second from backend.', inject(function(areaService) {
+        it('initialises second from URL.', function() {
+            $location.search.andReturn({
+                coords: '65.2,54.3',
+                radius: '1234'
+            });
+            inject(function(areaService) {
+                expect(localStorage.getItem).toHaveBeenCalledWith('veganautArea');
+                expect($location.search).toHaveBeenCalled();
+                expect(backendService.getGeoIP).not.toHaveBeenCalled();
+
+                var resolved = false;
+                areaService.initialised().then(function() {
+                    var area = areaService.getCurrentArea();
+                    resolved = true;
+                    expect(area.getLat()).toBe(65.2, 'correct lat');
+                    expect(area.getLng()).toBe(54.3, 'correct lng');
+                    expect(area.getRadius()).toBe(1234, 'correct zoom');
+                });
+                $rootScope.$apply();
+                expect(resolved).toBeTruthy('returned area');
+
+                expect(localStorage.setItem).toHaveBeenCalledWith('veganautArea', '{"lat":65.2,"lng":54.3,"radius":1234}');
+            });
+        });
+
+        // TODO: Test URL with areaId
+
+        it('initialises third from backend.', inject(function(areaService) {
             expect(localStorage.getItem).toHaveBeenCalledWith('veganautArea');
+            expect($location.search).toHaveBeenCalled();
+            $rootScope.$apply();
             expect(backendService.getGeoIP).toHaveBeenCalledWith('de');
 
             // Prepare what the are should eventually be set to
             var resolved = false;
-            areaService.getCurrentArea().then(function(area) {
+            areaService.initialised().then(function() {
+                var area = areaService.getCurrentArea();
                 resolved = true;
                 expect(area.getLat()).toBe(0.8, 'correct lat');
                 expect(area.getLng()).toBe(0.12, 'correct lng');
@@ -94,7 +133,7 @@ describe('areaService.', function() {
 
             expect(localStorage.setItem).toHaveBeenCalledWith(
                 'veganautArea',
-                '{"lat":0.8,"lng":0.12,"boundingBox":[[-42.6,-78],[68.31,70.9]]}'
+                '{"shortName":"Landy","longName":"Landy","lat":0.8,"lng":0.12,"boundingBox":[[-42.6,-78],[68.31,70.9]]}'
             );
         }));
 
@@ -104,11 +143,14 @@ describe('areaService.', function() {
 
             inject(function(areaService) {
                 expect(localStorage.getItem).toHaveBeenCalledWith('veganautArea');
-                expect(backendService.getGeoIP).toHaveBeenCalled();
+                expect($location.search).toHaveBeenCalled();
+                $rootScope.$apply();
+                expect(backendService.getGeoIP).toHaveBeenCalledWith('de');
 
                 var resolved = false;
-                areaService.getCurrentArea().then(function(area) {
+                areaService.initialised().then(function() {
                     // Resolved with default values
+                    var area = areaService.getCurrentArea();
                     resolved = true;
                     expect(area.getLat()).toBe(0, 'correct lat');
                     expect(area.getLng()).toBe(0, 'correct lng');
@@ -140,8 +182,37 @@ describe('areaService.', function() {
         });
 
         describe('setArea.', function() {
+            // TODO: test method
             it('method exists', function() {
                 expect(typeof areaService.setArea).toBe('function');
+            });
+        });
+
+        describe('retrieveNameForArea.', function() {
+            // TODO: test method
+            it('method exists', function() {
+                expect(typeof areaService.retrieveNameForArea).toBe('function');
+            });
+        });
+
+        describe('setAreaAndShowOn.', function() {
+            // TODO: test method
+            it('method exists', function() {
+                expect(typeof areaService.setAreaAndShowOn).toBe('function');
+            });
+        });
+
+        describe('setAreaFromUrl.', function() {
+            // TODO: test method
+            it('method exists', function() {
+                expect(typeof areaService.setAreaFromUrl).toBe('function');
+            });
+        });
+
+        describe('writeAreaToUrl.', function() {
+            // TODO: test method
+            it('method exists', function() {
+                expect(typeof areaService.writeAreaToUrl).toBe('function');
             });
         });
     });

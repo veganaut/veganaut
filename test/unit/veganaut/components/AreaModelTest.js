@@ -43,7 +43,7 @@ describe('AreaModel.', function() {
         expect(typeof area.getRadius()).toBe('undefined', 'radius');
         expect(typeof area.getBoundingBox()).toBe('undefined', 'bounds');
         expect(area.longName).toBe('this is the name', 'name');
-        expect(JSON.stringify(area.toJSON())).toBe('{"lat":12.3,"lng":45.6,"zoom":7}', 'toJSON');
+        expect(JSON.stringify(area.toJSON())).toBe('{"longName":"this is the name","lat":12.3,"lng":45.6,"zoom":7}', 'toJSON');
     });
 
     it('area with radius', function() {

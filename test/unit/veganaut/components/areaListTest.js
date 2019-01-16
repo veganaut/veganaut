@@ -6,21 +6,21 @@ describe('areaList.', function() {
     var scope;
     var $rootScope;
     var Location;
+    var Area;
 
     // Mock services
-    var $location = {};
-    var $routeParams = {};
     var areaService = {};
-    var geocodeService = {};
     var angularPiwik = {};
     var playerService = {};
     var locationService = {};
     var locationFilterService = {};
+    var pageTitleService = {};
 
     // Mock data returned by mock services
-    var getCurrentAreaDeferred;
+    var currentArea;
+    var setAreaFromUrlDeferred;
     var deferredQuery;
-    var deferredGeocodeSearch;
+    var deferredNameForArea;
 
     // Mock data passed to the controller
     var onLoadItems;
@@ -28,41 +28,41 @@ describe('areaList.', function() {
     beforeEach(module('veganaut.app.main', 'veganaut.app.map'));
 
     beforeEach(module(function($provide) {
-        $provide.value('$location', $location);
-        $provide.value('$routeParams', $routeParams);
         $provide.value('areaService', areaService);
-        $provide.value('geocodeService', geocodeService);
         $provide.value('angularPiwik', angularPiwik);
         $provide.value('playerService', playerService);
         $provide.value('locationService', locationService);
         $provide.value('locationFilterService', locationFilterService);
+        $provide.value('pageTitleService', pageTitleService);
     }));
 
-    beforeEach(inject(function(_$rootScope_, $q, _Location_) {
+    beforeEach(inject(function(_$rootScope_, $q, _Location_, _Area_) {
         $rootScope = _$rootScope_;
         Location = _Location_;
+        Area = _Area_;
         scope = $rootScope.$new();
 
-        $location.replace = jasmine.createSpy('$location.replace');
-        $location.search = jasmine.createSpy('$location.search');
+        setAreaFromUrlDeferred = $q.defer();
+        areaService.setAreaFromUrl = jasmine.createSpy('areaService.setAreaFromUrl')
+            .andReturn(setAreaFromUrlDeferred.promise)
+        ;
 
-        areaService.setArea = jasmine.createSpy('areaService.setArea');
-
-        getCurrentAreaDeferred = $q.defer();
         areaService.getCurrentArea = jasmine.createSpy('areaService.getCurrentArea')
             .andCallFake(function() {
-                return getCurrentAreaDeferred.promise;
+                return currentArea;
             })
         ;
 
-        deferredGeocodeSearch = $q.defer();
-        geocodeService.reverseSearch = jasmine.createSpy('geocodeService.reverseSearch')
-            .andReturn(deferredGeocodeSearch.promise)
+        deferredNameForArea = $q.defer();
+        areaService.retrieveNameForArea = jasmine.createSpy('areaService.retrieveNameForArea')
+            .andReturn(deferredNameForArea.promise)
         ;
+
+        areaService.writeAreaToUrl = jasmine.createSpy('areaService.writeAreaToUrl');
 
         angularPiwik.track = jasmine.createSpy('angularPiwik.track');
 
-        playerService.getImmediateMe = jasmine.createSpy('playerService.getImmediateMe');
+        // playerService.getImmediateMe = jasmine.createSpy('playerService.getImmediateMe');
         playerService.getDeferredMe = jasmine.createSpy('playerService.getDeferredMe')
             .andCallFake(function() {
                 return $q.defer().promise;
@@ -74,10 +74,12 @@ describe('areaList.', function() {
         locationFilterService.setFiltersFromUrl = jasmine.createSpy('locationFilterService.setFiltersFromUrl');
         locationFilterService.hasActiveFilters = jasmine.createSpy('locationFilterService.hasActiveFilters')
             .andReturn(false);
-        locationFilterService.getTypeFilterValue = jasmine.createSpy('locationFilterService.getTypeFilterValue')
-            .andReturn('gastronomy');
         locationFilterService.getGranularityFilterValue = jasmine.createSpy('locationFilterService.getGranularityFilterValue')
             .andReturn('location');
+        locationFilterService.getCategoryValue = jasmine.createSpy('locationFilterService.getCategoryValue')
+            .andReturn('gastronomyLocation');
+
+        pageTitleService.addCustomTitle = jasmine.createSpy('pageTitleService.addCustomTitle');
 
         deferredQuery = $q.defer();
         onLoadItems = jasmine.createSpy('onLoadItems')
@@ -93,31 +95,31 @@ describe('areaList.', function() {
                 onLoadItems: onLoadItems
             });
             expect(typeof $ctrl).toBe('object', 'could instantiate controller');
+            $ctrl.$onInit();
 
-            expect($location.search).not.toHaveBeenCalled();
-            expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
+            // expect($location.search).not.toHaveBeenCalled();
+            expect(areaService.retrieveNameForArea).not.toHaveBeenCalled();
 
-            expect(areaService.setArea).not.toHaveBeenCalled();
-            expect(areaService.getCurrentArea).toHaveBeenCalled();
+            expect(areaService.setAreaFromUrl).toHaveBeenCalled();
+            expect(areaService.getCurrentArea).not.toHaveBeenCalled();
 
             expect(angular.isArray($ctrl.list)).toBe(true, 'has a list defined');
             expect($ctrl.list.length).toBe(0, 'list is empty');
             expect($ctrl.totalItems).toBe(0, 'total is 0');
             expect($ctrl.noResultsText).toBe(false, 'not yet declared that no results were found');
 
-            getCurrentAreaDeferred.resolve({
-                getRadiusParams: function() {
-                    return {
-                        lat: 46.5,
-                        lng: 7.4,
-                        radius: 522,
-                        includesWholeWorld: false
-                    };
-                }
+            currentArea = new Area({
+                lat: 46.5,
+                lng: 7.4,
+                radius: 522,
+                includesWholeWorld: false
             });
+            setAreaFromUrlDeferred.resolve();
             $rootScope.$apply();
+            expect(areaService.getCurrentArea).toHaveBeenCalled();
 
-            expect($ctrl.wholeWorld).toBe(false, 'exposed whole world setting');
+            expect($ctrl.area).toBe(currentArea, 'exposed the area');
+            expect($ctrl.areaType).toBe('withoutId', 'exposed area type');
             expect(onLoadItems).toHaveBeenCalledWith({
                 lat: 46.5,
                 lng: 7.4,
@@ -126,11 +128,9 @@ describe('areaList.', function() {
                 skip: 0,
                 addressType: 'street'
             });
-            expect(geocodeService.reverseSearch).toHaveBeenCalledWith(46.5, 7.4, 16);
+            expect(areaService.retrieveNameForArea).toHaveBeenCalledWith(currentArea);
 
-            expect($location.replace).toHaveBeenCalled();
-            expect($location.search).toHaveBeenCalledWith('coords', '46.5000000,7.4000000');
-            expect($location.search).toHaveBeenCalledWith('radius', 522);
+            expect(areaService.writeAreaToUrl).toHaveBeenCalled();
 
             expect($ctrl.noResultsText).toBe(false, 'still not declared that no results found');
             expect($ctrl.displayRadius).toBe('520m', 'set rounded display radius');
@@ -151,14 +151,10 @@ describe('areaList.', function() {
             expect($ctrl.list.length).toBe(20, 'list now has elements');
             expect($ctrl.totalItems).toBe(30, 'exposes total items');
 
-            deferredGeocodeSearch.resolve({
-                getLongName: function() {
-                    return 'test place';
-                }
-            });
-            expect($ctrl.displayName).toBe('', 'display name empty at first');
+            currentArea.longName = 'test place';
+            deferredNameForArea.resolve();
             $rootScope.$apply();
-            expect($ctrl.displayName).toBe('test place', 'set the name from the geocode result');
+            expect(pageTitleService.addCustomTitle).toHaveBeenCalledWith('test place');
 
             // Test show more
             expect(angular.isFunction($ctrl.showMore), 'has a showMore function');
@@ -183,24 +179,22 @@ describe('areaList.', function() {
             expect($ctrl.totalItems).toBe(30, 'still the same total items');
             expect($ctrl.list[3].id).toBe('a3', 'kept the locations from the first call');
             expect($ctrl.list[24].id).toBe('a24', 'concatenated the list from the second call to the end');
-            expect(angularPiwik.track).toHaveBeenCalledWith('restaurantList', 'restaurantList.showMore');
+            expect(angularPiwik.track).toHaveBeenCalledWith('areaList', 'areaList.showMore', 'areaList.gastronomyLocation');
         }));
 
         it('with big radius, no results', inject(function($controller) {
             var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {
                 onLoadItems: onLoadItems
             });
+            $ctrl.$onInit();
 
-            getCurrentAreaDeferred.resolve({
-                getRadiusParams: function() {
-                    return {
-                        lat: 10.2,
-                        lng: 20,
-                        radius: 268096,
-                        includesWholeWorld: false
-                    };
-                }
+            currentArea = new Area({
+                lat: 10.2,
+                lng: 20,
+                radius: 268096,
+                includesWholeWorld: false
             });
+            setAreaFromUrlDeferred.resolve();
             $rootScope.$apply();
 
             expect(onLoadItems).toHaveBeenCalledWith({
@@ -211,7 +205,6 @@ describe('areaList.', function() {
                 skip: 0,
                 addressType: 'city'
             });
-            expect(geocodeService.reverseSearch).toHaveBeenCalledWith(10.2, 20, 13);
             expect($ctrl.displayRadius).toBe('270km', 'set rounded display radius');
 
             // Resolve with an empty location list
@@ -221,96 +214,66 @@ describe('areaList.', function() {
                 items: []
             });
             $rootScope.$apply();
-            expect($ctrl.noResultsText).toBe('lists.restaurant.noResults', 'declared that no results found');
+            expect($ctrl.noResultsText).toBe('lists.gastronomyLocation.noResults', 'declared that no results found');
             expect($ctrl.list.length).toBe(0, 'list is empty');
             expect($ctrl.totalItems).toBe(0, '0 total items');
-
-            // Resolve with no geocode result
-            deferredGeocodeSearch.resolve();
-            $rootScope.$apply();
-            expect($ctrl.displayName).toBe('lat 10.200 lng 20.000', 'display name set to fallback');
         }));
 
         it('with whole world radius, no results', inject(function($controller) {
             var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {
                 onLoadItems: onLoadItems
             });
+            $ctrl.$onInit();
 
-            getCurrentAreaDeferred.resolve({
-                getRadiusParams: function() {
-                    return {
-                        lat: 10.3,
-                        lng: 20.2,
-                        radius: 30000000,
-                        includesWholeWorld: true
-                    };
-                }
+            currentArea = new Area({
+                lat: 10.3,
+                lng: 20.2,
+                radius: 30000000,
+                includesWholeWorld: true
             });
+            setAreaFromUrlDeferred.resolve();
             $rootScope.$apply();
 
             expect(onLoadItems).toHaveBeenCalledWith({
-                lat: 10.3,
-                lng: 20.2,
+                lat: 0,
+                lng: 0,
                 radius: 30000000,
                 limit: 20,
                 skip: 0,
                 addressType: 'city'
             });
-            expect(geocodeService.reverseSearch).not.toHaveBeenCalled();
-            expect($ctrl.displayRadius).toBe('', 'set no display radius');
-            expect($ctrl.wholeWorld).toBe(true, 'set whole world');
+            expect(areaService.retrieveNameForArea).not.toHaveBeenCalled();
+            expect($ctrl.areaType).toBe('world', 'set whole world');
         }));
 
-        it('sets area from URL', inject(function($controller) {
-            $routeParams.coords = '65.2,54.3';
-            $routeParams.radius = '1234';
-
-            $controller('vgAreaListCtrl', {$scope: scope});
-
-            expect(areaService.setArea.calls.length).toBe(1, 'called setArea once');
-            expect(areaService.setArea.calls[0].args.length).toBe(1, 'called setArea with one argument');
-            var areaSet = areaService.setArea.calls[0].args[0];
-            expect(typeof areaSet).toBe('object', 'set an object');
-            expect(areaSet.getLat()).toBe(65.2, 'set correct lat');
-            expect(areaSet.getLng()).toBe(54.3, 'set correct lng');
-            expect(areaSet.getRadius()).toBe(1234, 'set correct radius');
-        }));
-
-        it('reloads items on area changes', inject(function($controller, $q) {
-            $controller('vgAreaListCtrl', {$scope: scope}, {onLoadItems: onLoadItems});
+        it('reloads items on area changes', inject(function($controller) {
+            var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {onLoadItems: onLoadItems});
+            $ctrl.$onInit();
 
             // Resolve for the initial load
-            getCurrentAreaDeferred.resolve({
-                getRadiusParams: function() {
-                    return {
-                        lat: 1.2,
-                        lng: 2.3,
-                        radius: 9876,
-                        includesWholeWorld: false
-                    };
-                }
+            currentArea = new Area({
+                lat: 1.2,
+                lng: 2.3,
+                radius: 9876,
+                includesWholeWorld: false
             });
+            setAreaFromUrlDeferred.resolve();
             $rootScope.$apply();
+            expect(areaService.writeAreaToUrl).toHaveBeenCalledWith(undefined); // Write area without update to URL
 
             // Then reset the spies and helpers
-            getCurrentAreaDeferred = $q.defer();
             areaService.getCurrentArea.reset();
             onLoadItems.reset();
-            $rootScope.$broadcast('veganaut.area.changed');
-            expect(areaService.getCurrentArea).toHaveBeenCalled();
-
-            getCurrentAreaDeferred.resolve({
-                getRadiusParams: function() {
-                    return {
-                        lat: 15,
-                        lng: 16,
-                        radius: 1234,
-                        includesWholeWorld: false
-                    };
-                }
+            areaService.writeAreaToUrl.reset();
+            currentArea = new Area({
+                lat: 15,
+                lng: 16,
+                radius: 1234,
+                includesWholeWorld: false
             });
-            $rootScope.$apply();
+            $rootScope.$broadcast('veganaut.area.changed');
 
+            expect(areaService.getCurrentArea).toHaveBeenCalled();
             expect(onLoadItems).toHaveBeenCalledWith({
                 lat: 15,
                 lng: 16,
@@ -319,26 +282,19 @@ describe('areaList.', function() {
                 skip: 0,
                 addressType: 'street'
             });
-        }));
-
-        it('unsets get parameters when leaving', inject(function($controller) {
-            $controller('vgAreaListCtrl', {$scope: scope});
-
-            expect($location.search).not.toHaveBeenCalled();
-
-            scope.$broadcast('$routeChangeStart');
-            expect($location.search).toHaveBeenCalledWith('coords', undefined);
-            expect($location.search).toHaveBeenCalledWith('radius', undefined);
+            expect(areaService.writeAreaToUrl).toHaveBeenCalledWith(true); // Write area with update to URL
         }));
 
         it('initialises filters from URL', inject(function($controller) {
-            $controller('vgAreaListCtrl', {$scope: scope});
+            var $ctrl = $controller('vgAreaListCtrl', {$scope: scope});
+            $ctrl.$onInit();
 
             expect(locationFilterService.setFiltersFromUrl).toHaveBeenCalled();
         }));
 
         it('reloads items on filter changes', inject(function($controller) {
-            $controller('vgAreaListCtrl', {$scope: scope}, {onLoadItems: onLoadItems});
+            var $ctrl = $controller('vgAreaListCtrl', {$scope: scope}, {onLoadItems: onLoadItems});
+            $ctrl.$onInit();
 
             expect(onLoadItems).not.toHaveBeenCalled();
             $rootScope.$broadcast('veganaut.filters.changed');
