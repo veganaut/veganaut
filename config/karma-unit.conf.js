@@ -9,7 +9,7 @@ module.exports = function(config) {
             'app/lib/lodash/lodash.js',
             'app/lib/angular/angular.js',
             'app/lib/angular-route/angular-route.js',
-            'app/lib/angular-mocks/angular-mocks.js',
+            'node_modules/angular-mocks/angular-mocks.js',
             'app/lib/leaflet/dist/leaflet-src.js',
             'app/veganaut/app.js',
             'app/components/ui/vgUiModule.js',

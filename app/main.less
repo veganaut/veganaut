@@ -1,15 +1,11 @@
 // TODO: Refactor: Move all less files in the /less folder to the corresponding module or component folders
-
-@import (less) 'lib/angular-loading-bar/build/loading-bar.css';
-@import (less) 'lib/leaflet/dist/leaflet.css';
-
+@import (less) '../node_modules/angular-loading-bar/build/loading-bar.css';
+@import (less) '../node_modules/leaflet/dist/leaflet.css';
 @import (less) 'less/iconFont.css';
 @import 'less/variables';
 @import 'less/buttons';
-
 @import 'less/forms';
 @import 'less/layout';
-
 @import 'veganaut/community/community';
 @import 'veganaut/filter/globalSortComponent';
 @import 'veganaut/home/homeComponent';
@@ -30,21 +26,15 @@
 @import "veganaut/components/editPane/locationEditOverlay/locationEditOverlayComponent";
 @import "veganaut/components/editPane/locationEditEnd/locationEditEndComponent";
 @import "veganaut/components/productRating/productRatingComponent";
-
-
-
 @import 'components/ui/ui';
-
 @import 'less/modules/geolocateButton';
 @import 'less/modules/globalSearch';
 @import 'less/modules/loadingBar';
 @import 'less/modules/navbar';
 @import 'less/modules/list';
-
 html, body {
     background: @color-background-general;
 }
-
 
 .clickable {
     cursor: pointer;
@@ -65,13 +55,11 @@ html, body {
     display: none !important;
 }
 
-
 // TODO: make proper component
 .link-for-toggle {
     display: block;
     padding: 5px 0;
     color: @colorDark;
-
     &:hover, &:active, &:focus {
         color: @colorDark;
     }

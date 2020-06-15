@@ -13,10 +13,10 @@ describe('playerService', function() {
             },
             getMe: function() {
                 var promise = {
-                    success: function() {
+                    then: function() {
                         return promise;
                     },
-                    error: function() {
+                    catch: function() {
                         return promise;
                     },
                     finally: function() {
